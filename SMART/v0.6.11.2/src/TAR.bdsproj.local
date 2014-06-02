@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2012/05/31 13:46:44.078.bdsproj,C:\Documents and Settings\AdvDev\My Documents\Borland Studio Projects\Project1.bdsproj=D:\work\d2006\ATR_OptionA\ATR_OptionA.bdsproj</Transaction>
+    <Transaction>2012/05/31 13:52:50.948.bdsproj,D:\work\d2006\ATR_OptionA\ATR_OptionA.bdsproj=D:\work\d2006\ATR_OptionA\ATR_OptionA.bdsproj</Transaction>
+    <Transaction>2012/07/02 09:37:45.912.pas,D:\work\d2006\CPRS 1_0_28_24\OR_30_280_SRC\OR_SRC_CREATION\CPRS-Chart\rCore.pas=</Transaction>
+    <Transaction>2012/07/02 13:14:09.896.pas,D:\work\d2006\ATR_OptionA\Unit3.pas=D:\work\d2006\ATR_OptionA\fATRNoteSlelct.pas</Transaction>
+    <Transaction>2012/07/02 13:14:09.896.dfm,D:\work\d2006\ATR_OptionA\Unit3.dfm=D:\work\d2006\ATR_OptionA\fATRNoteSlelct.dfm</Transaction>
+    <Transaction>2012/07/11 15:14:59.013.pas,D:\work\d2006\ATR_OptionA\Unit1.pas=D:\work\d2006\ATR_OptionA\fTARNotification.pas</Transaction>
+    <Transaction>2012/07/11 15:14:59.013.dfm,D:\work\d2006\ATR_OptionA\Unit1.dfm=D:\work\d2006\ATR_OptionA\fTARNotification.dfm</Transaction>
+    <Transaction>2012/07/11 15:18:05.576.pas,D:\work\d2006\ATR_OptionA\Unit2.pas=D:\work\d2006\ATR_OptionA\fTARProcess.pas</Transaction>
+    <Transaction>2012/07/11 15:18:05.576.dfm,D:\work\d2006\ATR_OptionA\Unit2.dfm=D:\work\d2006\ATR_OptionA\fTARProcess.dfm</Transaction>
+    <Transaction>2012/07/11 15:22:14.367.pas,D:\work\d2006\ATR_OptionA\fATRNoteSlelct.pas=D:\work\d2006\ATR_OptionA\fATRNoteSelect.pas</Transaction>
+    <Transaction>2012/07/11 15:22:14.367.dfm,D:\work\d2006\ATR_OptionA\fATRNoteSlelct.dfm=D:\work\d2006\ATR_OptionA\fATRNoteSelect.dfm</Transaction>
+    <Transaction>2012/07/11 15:28:14.706.bdsproj,D:\work\d2006\ATR_OptionA\ATR_OptionA.bdsproj=D:\work\d2006\ATR_OptionA\TAR.bdsproj</Transaction>
+    <Transaction>2012/07/11 15:33:27.440.bdsproj,D:\work\d2006\ATR_OptionA\TAR.bdsproj=D:\work\d2006\ATR_OptionA\ATR.bdsproj</Transaction>
+    <Transaction>2012/07/12 09:31:21.673.pas,D:\work\d2006\ATR\fATRNoteSelect.pas=D:\work\d2006\ATR\fTARNoteSelect.pas</Transaction>
+    <Transaction>2012/07/12 09:31:21.673.dfm,D:\work\d2006\ATR\fATRNoteSelect.dfm=D:\work\d2006\ATR\fTARNoteSelect.dfm</Transaction>
+    <Transaction>2012/07/12 09:32:17.134.pas,D:\work\d2006\ATR\UATRConst.pas=D:\work\d2006\ATR\UTARConst.pas</Transaction>
+    <Transaction>2012/07/12 09:38:06.819.bdsproj,D:\work\d2006\ATR\ATR.bdsproj=D:\work\d2006\ATR\TAR.bdsproj</Transaction>
+  </Transactions>
+	<IPServerDescMap></IPServerDescMap>
+	<StarTeamShortcuts>; 1; 0; False; 0; -1; </StarTeamShortcuts>
+	<StarTeamMiscUserData></StarTeamMiscUserData>
+</BorlandProject>

@@ -1,0 +1,1864 @@
+KIDS Distribution saved on Dec 30, 2013@14:46:27
+DSIO ORATR 1.0 T1
+**KIDS**:DSIO ORATR 1.0^
+
+**INSTALL NAME**
+DSIO ORATR 1.0
+"BLD",9685,0)
+DSIO ORATR 1.0^^0^3131230^n
+"BLD",9685,4,0)
+^9.64PA^21695.5^1
+"BLD",9685,4,21695.5,0)
+21695.5
+"BLD",9685,4,21695.5,222)
+y^y^f^^^^n
+"BLD",9685,4,"B",21695.5,21695.5)
+
+"BLD",9685,6.3)
+1
+"BLD",9685,"KRN",0)
+^9.67PA^779.2^20
+"BLD",9685,"KRN",.4,0)
+.4
+"BLD",9685,"KRN",.401,0)
+.401
+"BLD",9685,"KRN",.402,0)
+.402
+"BLD",9685,"KRN",.403,0)
+.403
+"BLD",9685,"KRN",.5,0)
+.5
+"BLD",9685,"KRN",.84,0)
+.84
+"BLD",9685,"KRN",3.6,0)
+3.6
+"BLD",9685,"KRN",3.8,0)
+3.8
+"BLD",9685,"KRN",9.2,0)
+9.2
+"BLD",9685,"KRN",9.8,0)
+9.8
+"BLD",9685,"KRN",9.8,"NM",0)
+^9.68A^2^2
+"BLD",9685,"KRN",9.8,"NM",1,0)
+ORATR^^0^B104825368
+"BLD",9685,"KRN",9.8,"NM",2,0)
+ORATRPC^^0^B64999387
+"BLD",9685,"KRN",9.8,"NM","B","ORATR",1)
+
+"BLD",9685,"KRN",9.8,"NM","B","ORATRPC",2)
+
+"BLD",9685,"KRN",19,0)
+19
+"BLD",9685,"KRN",19.1,0)
+19.1
+"BLD",9685,"KRN",101,0)
+101
+"BLD",9685,"KRN",409.61,0)
+409.61
+"BLD",9685,"KRN",771,0)
+771
+"BLD",9685,"KRN",779.2,0)
+779.2
+"BLD",9685,"KRN",870,0)
+870
+"BLD",9685,"KRN",8989.51,0)
+8989.51
+"BLD",9685,"KRN",8989.52,0)
+8989.52
+"BLD",9685,"KRN",8994,0)
+8994
+"BLD",9685,"KRN",8994,"NM",0)
+^9.68A^1^1
+"BLD",9685,"KRN",8994,"NM",1,0)
+ORATR ALERT TYPE^^0
+"BLD",9685,"KRN",8994,"NM","B","ORATR ALERT TYPE",1)
+
+"BLD",9685,"KRN","B",.4,.4)
+
+"BLD",9685,"KRN","B",.401,.401)
+
+"BLD",9685,"KRN","B",.402,.402)
+
+"BLD",9685,"KRN","B",.403,.403)
+
+"BLD",9685,"KRN","B",.5,.5)
+
+"BLD",9685,"KRN","B",.84,.84)
+
+"BLD",9685,"KRN","B",3.6,3.6)
+
+"BLD",9685,"KRN","B",3.8,3.8)
+
+"BLD",9685,"KRN","B",9.2,9.2)
+
+"BLD",9685,"KRN","B",9.8,9.8)
+
+"BLD",9685,"KRN","B",19,19)
+
+"BLD",9685,"KRN","B",19.1,19.1)
+
+"BLD",9685,"KRN","B",101,101)
+
+"BLD",9685,"KRN","B",409.61,409.61)
+
+"BLD",9685,"KRN","B",771,771)
+
+"BLD",9685,"KRN","B",779.2,779.2)
+
+"BLD",9685,"KRN","B",870,870)
+
+"BLD",9685,"KRN","B",8989.51,8989.51)
+
+"BLD",9685,"KRN","B",8989.52,8989.52)
+
+"BLD",9685,"KRN","B",8994,8994)
+
+"BLD",9685,"QDEF")
+^^^^NO^^^^NO^^NO
+"BLD",9685,"QUES",0)
+^9.62^^
+"FIA",21695.5)
+VFD TAR CONTROL
+"FIA",21695.5,0)
+^VFD(21695.5,
+"FIA",21695.5,0,0)
+21695.5
+"FIA",21695.5,0,1)
+y^y^f^^^^n
+"FIA",21695.5,0,10)
+
+"FIA",21695.5,0,11)
+
+"FIA",21695.5,0,"RLRO")
+
+"FIA",21695.5,21695.5)
+0
+"FIA",21695.5,21695.51)
+0
+"FIA",21695.5,21695.52)
+0
+"FIA",21695.5,21695.54)
+0
+"FIA",21695.5,21695.55)
+0
+"KRN",8994,3948,-1)
+0^1
+"KRN",8994,3948,0)
+ORATR ALERT TYPE^TYPE^ORATR^1^S
+"KRN",8994,3948,1,0)
+^8994.01^2^2^3131216^^
+"KRN",8994,3948,1,1,0)
+This RPC allows SMART Alerts to use ComObjects by identifing if a TIU 
+"KRN",8994,3948,1,2,0)
+Template is either a Reminder Dialog or ComObject.
+"KRN",8994,3948,2,0)
+^8994.02A^1^1
+"KRN",8994,3948,2,1,0)
+ORIEN^1^^1^1
+"KRN",8994,3948,2,1,1,0)
+^8994.021^2^2^3131216^^
+"KRN",8994,3948,2,1,1,1,0)
+This is the IEN of the VFD TAR CONTROL file entry associated with the 
+"KRN",8994,3948,2,1,1,2,0)
+current OR Notification used to trigger the SMART Alert.
+"KRN",8994,3948,2,"B","ORIEN",1)
+
+"KRN",8994,3948,2,"PARAMSEQ",1,1)
+
+"KRN",8994,3948,3,0)
+^8994.03^3^3^3131216^^
+"KRN",8994,3948,3,1,0)
+Will return a R for Reminder Dialog, C for ComObject or a -1 if neither 
+"KRN",8994,3948,3,2,0)
+is defined. Furthermore, if both a Reminder Dialog and ComObject are 
+"KRN",8994,3948,3,3,0)
+defined then the Reminder Dialog will take priority.
+"MBREQ")
+0
+"ORD",16,8994)
+8994;16;1;;;;;;;RPCDEL^XPDIA1
+"ORD",16,8994,0)
+REMOTE PROCEDURE
+"QUES","XPF1",0)
+Y
+"QUES","XPF1","??")
+^D REP^XPDH
+"QUES","XPF1","A")
+Shall I write over your |FLAG| File
+"QUES","XPF1","B")
+YES
+"QUES","XPF1","M")
+D XPF1^XPDIQ
+"QUES","XPF2",0)
+Y
+"QUES","XPF2","??")
+^D DTA^XPDH
+"QUES","XPF2","A")
+Want my data |FLAG| yours
+"QUES","XPF2","B")
+YES
+"QUES","XPF2","M")
+D XPF2^XPDIQ
+"QUES","XPI1",0)
+YO
+"QUES","XPI1","??")
+^D INHIBIT^XPDH
+"QUES","XPI1","A")
+Want KIDS to INHIBIT LOGONs during the install
+"QUES","XPI1","B")
+NO
+"QUES","XPI1","M")
+D XPI1^XPDIQ
+"QUES","XPM1",0)
+PO^VA(200,:EM
+"QUES","XPM1","??")
+^D MG^XPDH
+"QUES","XPM1","A")
+Enter the Coordinator for Mail Group '|FLAG|'
+"QUES","XPM1","B")
+
+"QUES","XPM1","M")
+D XPM1^XPDIQ
+"QUES","XPO1",0)
+Y
+"QUES","XPO1","??")
+^D MENU^XPDH
+"QUES","XPO1","A")
+Want KIDS to Rebuild Menu Trees Upon Completion of Install
+"QUES","XPO1","B")
+NO
+"QUES","XPO1","M")
+D XPO1^XPDIQ
+"QUES","XPZ1",0)
+Y
+"QUES","XPZ1","??")
+^D OPT^XPDH
+"QUES","XPZ1","A")
+Want to DISABLE Scheduled Options, Menu Options, and Protocols
+"QUES","XPZ1","B")
+NO
+"QUES","XPZ1","M")
+D XPZ1^XPDIQ
+"QUES","XPZ2",0)
+Y
+"QUES","XPZ2","??")
+^D RTN^XPDH
+"QUES","XPZ2","A")
+Want to MOVE routines to other CPUs
+"QUES","XPZ2","B")
+NO
+"QUES","XPZ2","M")
+D XPZ2^XPDIQ
+"RTN")
+2
+"RTN","ORATR")
+0^1^B104825368
+"RTN","ORATR",1,0)
+ORATR ; DSS/SMP/ASF - Abnormal Alert Utilities ; AUG 28, 2012
+"RTN","ORATR",2,0)
+ ;;1.0;VENDOR - DOCUMENT STORAGE SYSTEMS;;7/17/2012;Build 1
+"RTN","ORATR",3,0)
+ ;;;
+"RTN","ORATR",4,0)
+ Q
+"RTN","ORATR",5,0)
+ ;
+"RTN","ORATR",6,0)
+ ; Documented API and ICRs
+"RTN","ORATR",7,0)
+ ; -----------------------
+"RTN","ORATR",8,0)
+ ; 2043      EN1^RAO7PC1
+"RTN","ORATR",9,0)
+ ; 2051      FIND^DIC   
+"RTN","ORATR",10,0)
+ ; 2056      $$GET1^DIQ
+"RTN","ORATR",11,0)
+ ; 2056      GETS^DIQ
+"RTN","ORATR",12,0)
+ ; 2263      ^XPAR
+"RTN","ORATR",13,0)
+ ; 3315      UPDATE^DIE
+"RTN","ORATR",14,0)
+ ;
+"RTN","ORATR",15,0)
+ ;=====================================================================
+"RTN","ORATR",16,0)
+ ;                 A B N O R M A L   A L E R T   R P C S
+"RTN","ORATR",17,0)
+ ;=====================================================================
+"RTN","ORATR",18,0)
+PROVIDER(ORRET,ORUSR) ; RPC - ORATR PROVIDER
+"RTN","ORATR",19,0)
+ ; ORRET - Return array, passed by reference
+"RTN","ORATR",20,0)
+ ; ORUSR - IEN of provider (FILE 200)
+"RTN","ORATR",21,0)
+ ;
+"RTN","ORATR",22,0)
+ K ORRET
+"RTN","ORATR",23,0)
+ N ORX S ORUSR=$G(ORUSR),ORX=$$PROV^ORATRPC
+"RTN","ORATR",24,0)
+ I 'ORX S ORRET=0
+"RTN","ORATR",25,0)
+ Q
+"RTN","ORATR",26,0)
+ ;
+"RTN","ORATR",27,0)
+PATIENT(ORRET,ORDFN) ; RPC - ORATR PATIENT
+"RTN","ORATR",28,0)
+ ; ORRET - Return array, passed by reference
+"RTN","ORATR",29,0)
+ ; ORDFN - IEN of patient (FILE 2)
+"RTN","ORATR",30,0)
+ ;
+"RTN","ORATR",31,0)
+ K ORRET
+"RTN","ORATR",32,0)
+ N ORX S ORDFN=$G(ORDFN),ORX=$$PAT^ORATRPC
+"RTN","ORATR",33,0)
+ I 'ORX S ORRET=0
+"RTN","ORATR",34,0)
+ Q
+"RTN","ORATR",35,0)
+ ;
+"RTN","ORATR",36,0)
+TYPE(ORRET,ORIEN) ; RPC - ORATR ALERT TYPE
+"RTN","ORATR",37,0)
+ ; ORRET - Return array, passed by reference
+"RTN","ORATR",38,0)
+ ; ORIEN - IEN of VFD TAR CONTROL file
+"RTN","ORATR",39,0)
+ ;
+"RTN","ORATR",40,0)
+ ; TFF - ADDED A NEW RPC
+"RTN","ORATR",41,0)
+ ;
+"RTN","ORATR",42,0)
+ ; NAME: ORATR ALERT TYPE                TAG: TYPE
+"RTN","ORATR",43,0)
+ ; ROUTINE: ORATR                        RETURN VALUE TYPE: SINGLE VALUE
+"RTN","ORATR",44,0)
+ ; AVAILABILITY: SUBSCRIPTION
+"RTN","ORATR",45,0)
+ ;
+"RTN","ORATR",46,0)
+ ; DESCRIPTION:   
+"RTN","ORATR",47,0)
+ ; This RPC allows SMART Alerts to use ComObjects by identifing if a TIU 
+"RTN","ORATR",48,0)
+ ; Template is either a Reminder Dialog or ComObject.
+"RTN","ORATR",49,0)
+ ;
+"RTN","ORATR",50,0)
+ ; INPUT PARAMETER: ORIEN                PARAMETER TYPE: LITERAL
+"RTN","ORATR",51,0)
+ ; REQUIRED: YES                         SEQUENCE NUMBER: 1
+"RTN","ORATR",52,0)
+ ; DESCRIPTION:   
+"RTN","ORATR",53,0)
+ ; This is the IEN of the VFD TAR CONTROL file entry associated with the 
+"RTN","ORATR",54,0)
+ ; current OR Notification used to trigger the SMART Alert.
+"RTN","ORATR",55,0)
+ ;
+"RTN","ORATR",56,0)
+ ; RETURN PARAMETER DESCRIPTION:   
+"RTN","ORATR",57,0)
+ ; Will return a R for Reminder Dialog, C for ComObject or a -1 if neither 
+"RTN","ORATR",58,0)
+ ; is defined. Furthermore, if both a Reminder Dialog and ComObject are 
+"RTN","ORATR",59,0)
+ ; defined then the Reminder Dialog will take priority.
+"RTN","ORATR",60,0)
+ ;
+"RTN","ORATR",61,0)
+ N ORTIU S ORTIU=$$GET1^DIQ(21695.5,ORIEN,.02,"I")
+"RTN","ORATR",62,0)
+ I $$GET1^DIQ(8927,ORTIU,.15)'="" S ORRET="R" Q
+"RTN","ORATR",63,0)
+ I $$GET1^DIQ(8927,ORTIU,.17)'="" S ORRET="C" Q
+"RTN","ORATR",64,0)
+ S ORRET=-1
+"RTN","ORATR",65,0)
+ Q
+"RTN","ORATR",66,0)
+ ;
+"RTN","ORATR",67,0)
+NOTE(ORRET,ORNOTE) ; RPC - ORATR GET NOTE
+"RTN","ORATR",68,0)
+ ; ORRET  - Return string
+"RTN","ORATR",69,0)
+ ; ORNOTE - IEN in the VFD ATR CONTROL file (21695.5)
+"RTN","ORATR",70,0)
+ K ORRET
+"RTN","ORATR",71,0)
+ N ORX S ORNOTE=$G(ORNOTE),ORX=$$NOTE^ORATRPC
+"RTN","ORATR",72,0)
+ I ORX=-1 S ORRET="-1^Error"
+"RTN","ORATR",73,0)
+ Q
+"RTN","ORATR",74,0)
+ ;
+"RTN","ORATR",75,0)
+PARAM(ORRET,ORVAL) ; RPC - ORATR SET FILTER PARAM
+"RTN","ORATR",76,0)
+ ;PARAM NAME = ORATR FILTER TAR
+"RTN","ORATR",77,0)
+ D EN^XPAR("USR","ORATR FILTER TAR",,ORVAL,.ORRET)
+"RTN","ORATR",78,0)
+ Q
+"RTN","ORATR",79,0)
+ ;
+"RTN","ORATR",80,0)
+TEMPLATE(ORRET,ORRDIEN) ; RPC - ORATR GET TIU TEMPLATE
+"RTN","ORATR",81,0)
+ ; ORRET   - Return string
+"RTN","ORATR",82,0)
+ ; ORRDIEN - IEN in the TIU TEMPLATE file (#8927) ;TFF
+"RTN","ORATR",83,0)
+ K ORRET
+"RTN","ORATR",84,0)
+ N ORX S ORRDIEN=$G(ORRDIEN),ORX=$$TEMPLATE^ORATRPC
+"RTN","ORATR",85,0)
+ I 'ORX S ORRET="-1^Error"
+"RTN","ORATR",86,0)
+ Q
+"RTN","ORATR",87,0)
+ ;
+"RTN","ORATR",88,0)
+PROCESS(ORRET,ORIEN,ORPRO) ; RPC - ORATR SET ATR PROCESSING LEVEL
+"RTN","ORATR",89,0)
+ ; ORRET - Return String
+"RTN","ORATR",90,0)
+ ; ORIEN - IEN in the VFD ALERT TRACKING file (#21695.2)
+"RTN","ORATR",91,0)
+ ; ORPRO - Internal form of PROCESSED field (#1.05)
+"RTN","ORATR",92,0)
+ ;
+"RTN","ORATR",93,0)
+ ; 0 - Not Processed
+"RTN","ORATR",94,0)
+ ; 1 - Partially Processed
+"RTN","ORATR",95,0)
+ ; 2 - Completed
+"RTN","ORATR",96,0)
+ ; 3 - Transmitted
+"RTN","ORATR",97,0)
+ ;
+"RTN","ORATR",98,0)
+ K ORRET
+"RTN","ORATR",99,0)
+ D FOLLOWUP^ORATR2(ORIEN)
+"RTN","ORATR",100,0)
+ S ORRET=$$PROCESS^ORATRPC(ORIEN,ORPRO)
+"RTN","ORATR",101,0)
+ Q
+"RTN","ORATR",102,0)
+ ;
+"RTN","ORATR",103,0)
+RESULTS(ORRET,ORDATA) ; RPC - ORATR GET TEST RESULTS
+"RTN","ORATR",104,0)
+ ; ORRET  - Return array, passed by reference
+"RTN","ORATR",105,0)
+ ; ORDATA - Input array
+"RTN","ORATR",106,0)
+ ;     passed by reference
+"RTN","ORATR",107,0)
+ ;     format:  ORDATA(sub) = code ^ value   where
+"RTN","ORATR",108,0)
+ ;         code = PAT for patient (#2)
+"RTN","ORATR",109,0)
+ ;                ATR for notification (#21695.2)
+"RTN","ORATR",110,0)
+ ;        value = for code PAT - patient DFN
+"RTN","ORATR",111,0)
+ ;                for code ATR - IEN in VFD ALERT TRACKING (#21695.2)
+"RTN","ORATR",112,0)
+ K ORRET
+"RTN","ORATR",113,0)
+ D RESULTS^ORATRDO
+"RTN","ORATR",114,0)
+ I '$D(ORRET) S ORRET(1)="Input is invalid"
+"RTN","ORATR",115,0)
+ Q
+"RTN","ORATR",116,0)
+ ;
+"RTN","ORATR",117,0)
+SETNOTE(ORRET,ORIEN,ORNOTE) ; RPC - ORATR SET TIU NOTE
+"RTN","ORATR",118,0)
+ ; ORRET  - Return string, passed by reference
+"RTN","ORATR",119,0)
+ ; ORIEN  - IEN in the VFD ALERT TRACKING file (#21695.2)
+"RTN","ORATR",120,0)
+ ; ORNOTE - Pointer to the TIU DOCUMENT file (#8925)
+"RTN","ORATR",121,0)
+ N ORFDA,ORERR K ORRET
+"RTN","ORATR",122,0)
+ S ORNOTE=$S(ORNOTE:"`"_ORNOTE,ORNOTE="@":"@",1:-1)
+"RTN","ORATR",123,0)
+ S ORFDA(21695.2,ORIEN_",",1.07)=ORNOTE
+"RTN","ORATR",124,0)
+ L +^VFD(21695.2,ORIEN):$S($G(DILOCKTM)>0:DILOCKTM,1:5)
+"RTN","ORATR",125,0)
+ D UPDATE^DIE("E","ORFDA",,"ORERR")
+"RTN","ORATR",126,0)
+ L -^VFD(21695.2,ORIEN):$S($G(DILOCKTM)>0:DILOCKTM,1:5)
+"RTN","ORATR",127,0)
+ S ORRET=$S('$D(ORERR):1,1:-1)
+"RTN","ORATR",128,0)
+ Q
+"RTN","ORATR",129,0)
+ ;
+"RTN","ORATR",130,0)
+BCCCR(ORRET) ; RPC - ORATR BCCCR TRANSMIT
+"RTN","ORATR",131,0)
+ ; ORRET - Return array, passed by reference
+"RTN","ORATR",132,0)
+ N ORIEN,ORFLAG
+"RTN","ORATR",133,0)
+ K ORRET S ORIEN="",ORFLAG=0
+"RTN","ORATR",134,0)
+ F  S ORIEN=$O(^VFD(21695.2,"APROC",2,ORIEN)) Q:'ORIEN  D  Q:ORFLAG
+"RTN","ORATR",135,0)
+ .N ORTYPE S ORTYPE=$$GET1^DIQ(21695.2,ORIEN,1.09,"I")
+"RTN","ORATR",136,0)
+ .;I $$GET1^DIQ(21695.5,+ORTYPE,.01)'["BCCCR" D PROCESS^ORATRPC(ORIEN,3) Q
+"RTN","ORATR",137,0)
+ .I '$$GET1^DIQ(21695.5,ORTYPE,.06,"I") D PROCESS^ORATRPC(ORIEN,3) Q
+"RTN","ORATR",138,0)
+ .S ORFLAG=1
+"RTN","ORATR",139,0)
+ I ORIEN="" S ORRET(1)="-1^Error" Q
+"RTN","ORATR",140,0)
+ D BCCCR^ORATRPC(ORIEN)
+"RTN","ORATR",141,0)
+ I '$D(ORRET) S ORRET(1)="-1^Error"
+"RTN","ORATR",142,0)
+ Q
+"RTN","ORATR",143,0)
+ ;
+"RTN","ORATR",144,0)
+GETHF(ORRET,ORIEN,ORHF) ;
+"RTN","ORATR",145,0)
+ ; HEALTH FACTORS       ^AUTTHF(
+"RTN","ORATR",146,0)
+ ; V HEALTH FACTOR      ^AUPNVHF(
+"RTN","ORATR",147,0)
+ N X,Y,Z,ORERR S ORIEN=+$G(ORIEN)
+"RTN","ORATR",148,0)
+ N ZTIO,ZTRTN,ZTDTH,ZTSAVE,ZTDESC,ZTSYNC,ZTSK
+"RTN","ORATR",149,0)
+ S ZTRTN="GETHF^ORATRPC",ZTDTH=$H,$P(ZTDTH,",",2)=100+$P(ZTDTH,",",2)
+"RTN","ORATR",150,0)
+ S ZTDESC="Track Health Factors for SMART Notifications"
+"RTN","ORATR",151,0)
+ M ^TMP("ORATRHF",$$NOW^XLFDT,ORIEN)=ORHF
+"RTN","ORATR",152,0)
+ D ^%ZTLOAD I '$D(ZTSK) D GETHF^ORATRPC
+"RTN","ORATR",153,0)
+ S ORRET=1
+"RTN","ORATR",154,0)
+ Q 
+"RTN","ORATR",155,0)
+ ;
+"RTN","ORATR",156,0)
+ ;=====================================================================
+"RTN","ORATR",157,0)
+ ;                            U T I L I T E S
+"RTN","ORATR",158,0)
+ ;=====================================================================
+"RTN","ORATR",159,0)
+TRANSFER(ORATIEN) ;Transfer data from Alert Tracking to VFD Alert Tracking
+"RTN","ORATR",160,0)
+ ;asf 7/14/12
+"RTN","ORATR",161,0)
+ ;ORATIEN- IEN of file 8992.1
+"RTN","ORATR",162,0)
+ N X,%X,%Y,DA,DIK,ORATRFDA,ORDATA,ORFLAG,ORLOC,ORNOT,VFDNEWIEN,ORERR
+"RTN","ORATR",163,0)
+ S ORATIEN=+ORATIEN ;remove trailing comma asf 7/17
+"RTN","ORATR",164,0)
+ I '$D(^XTV(8992.1,ORATIEN)) Q -1  ;out--> bad ien
+"RTN","ORATR",165,0)
+ S ORDATA=$$GETIEN($$GET1^DIQ(8992.1,ORATIEN,.01,,,"ORERR"))
+"RTN","ORATR",166,0)
+ S VFDNEWIEN(1)=$P(ORDATA,U) I VFDNEWIEN(1)'>0 Q -1  ;Entry not made out-->
+"RTN","ORATR",167,0)
+ L +^VFD(21695.2,VFDNEWIEN(1)):$S($G(DILOCKTM)>0:DILOCKTM,1:5)
+"RTN","ORATR",168,0)
+ D SETUP(VFDNEWIEN(1),'$G(ORFLAG))
+"RTN","ORATR",169,0)
+ L -^VFD(21695.2,VFDNEWIEN(1)):$S($G(DILOCKTM)>0:DILOCKTM,1:5)
+"RTN","ORATR",170,0)
+ Q VFDNEWIEN(1)
+"RTN","ORATR",171,0)
+ ;
+"RTN","ORATR",172,0)
+GETIEN(ORNM) ;
+"RTN","ORATR",173,0)
+ ; ORNM is the .01 field in 8992.1
+"RTN","ORATR",174,0)
+ N ORATRFDA,ORERR,ORIEN,NEWIEN
+"RTN","ORATR",175,0)
+ S ORNM=$$TRNSFRM(ORNM) Q:ORNM="" -1
+"RTN","ORATR",176,0)
+ ; check inactive
+"RTN","ORATR",177,0)
+ Q:$$GET1^DIQ(21695.5,$P(ORNM,";",5),.04,"I") -1
+"RTN","ORATR",178,0)
+ S ORIEN=$$FIND1^DIC(21695.2,,"X",ORNM,,,"ORERR")
+"RTN","ORATR",179,0)
+ I ORIEN S ORFLAG=1 Q ORIEN_U_ORNM
+"RTN","ORATR",180,0)
+ S ORATRFDA(21695.2,"+1,",.01)=ORNM
+"RTN","ORATR",181,0)
+ D UPDATE^DIE("U","ORATRFDA","NEWIEN")
+"RTN","ORATR",182,0)
+ Q NEWIEN(1)_U_ORNM
+"RTN","ORATR",183,0)
+ ;
+"RTN","ORATR",184,0)
+TRNSFRM(ORNM) ; Transform the .01 field for an ATR notification
+"RTN","ORATR",185,0)
+ ;TFF - REMOVED THE DUPLICATE N OR ORFLAG
+"RTN","ORATR",186,0)
+ N ORX,ORDATA,ORDER,ORERR,ORFLAG,ORID,ORI,ORY,ORPAT,ORNOT
+"RTN","ORATR",187,0)
+ Q:$E(ORNM,1,2)'="OR" ""
+"RTN","ORATR",188,0)
+ S ORPAT=$$GET1^DIQ(8992.1,ORATIEN,.04,"I",,"ORERR")
+"RTN","ORATR",189,0)
+ S ORX=$P($P(ORNM,";"),",",3) Q:'ORX ""
+"RTN","ORATR",190,0)
+ Q:'$D(^VFD(21695.5,"AB",ORX)) ""  S ORNOT=ORX
+"RTN","ORATR",191,0)
+ S ORDATA=$$GET1^DIQ(8992.1,ORATIEN,2)
+"RTN","ORATR",192,0)
+ I ORDATA["@OR"&($D(^OR(100,+ORDATA))) S ORDER=+ORDATA_","
+"RTN","ORATR",193,0)
+ ;TFF - ADDED THE SET CONDITION FOR THE NEXT TWO LINES
+"RTN","ORATR",194,0)
+ E  S:$G(ORDATA)'="" ORDER=$$GETORDER(ORPAT,ORDATA)
+"RTN","ORATR",195,0)
+ D:$D(ORDER) GETS^DIQ(100,ORDER,".1*","I","ORDER","ORERR")
+"RTN","ORATR",196,0)
+ S ORX="ORDER" F  S ORX=$Q(@ORX) Q:ORX=""  D  Q:$D(ORID)
+"RTN","ORATR",197,0)
+ .;TFF - REBUILT THE C X-REF ^VFD(21695.5,"C",3028,1,2)="" TO
+"RTN","ORATR",198,0)
+ .; ^VFD(21695.5,"C",ORNOT,3028,1,2)="" WHERE ORNOT = OR NOTIFICATION
+"RTN","ORATR",199,0)
+ .; IF DIFFERENT OR NOTIFICATIONS CAN HAVE THE SAME ORDERS THEN LOOKING UP ON
+"RTN","ORATR",200,0)
+ .; ORDER ID ALONE WILL CAUSE TO ORID TO BE SET INCORRECTLY
+"RTN","ORATR",201,0)
+ .;
+"RTN","ORATR",202,0)
+ .; Traditional Indexes "C"
+"RTN","ORATR",203,0)
+ .;       Field:  ORDERABLE ITEM  (21695.51,.01)
+"RTN","ORATR",204,0)
+ .;               1)= I +$P($G(^VFD(21695.5,DA(1),2,0)),U,4)>0 N Z S Z="" F  
+"RTN","ORATR",205,0)
+ .;                   S Z=$O(^VFD(21695.5,DA(1),2,"B",Z)) Q:Z=""  S ^VFD(21695.5,
+"RTN","ORATR",206,0)
+ .;                   "C",Z,X,DA(1),DA)=""
+"RTN","ORATR",207,0)
+ .;               2)= N Z S Z="" F  S Z=$O(^VFD(21695.5,DA(1),2,"B",Z)) Q:Z="
+"RTN","ORATR",208,0)
+ .;                   "  K ^VFD(21695.5,"C",Z,X)
+"RTN","ORATR",209,0)
+ .;
+"RTN","ORATR",210,0)
+ .; Traditional Indexes AC
+"RTN","ORATR",211,0)
+ .;       Field:  OR NOTIFICATIONS  (21695.52,.01)
+"RTN","ORATR",212,0)
+ .;               1)= N Z S Z="" F  S Z=$O(^VFD(21695.5,DA(1),1,"B",Z)) Q:Z="
+"RTN","ORATR",213,0)
+ .;                   "  S ^VFD(21695.5,"C",X,Z,DA(1),DA)=""
+"RTN","ORATR",214,0)
+ .;               2)= K ^VFD(21695.5,"C",X)
+"RTN","ORATR",215,0)
+ .;
+"RTN","ORATR",216,0)
+ .I $D(^VFD(21695.5,ORNOT,"C",@ORX)) S ORID=$O(^(@ORX,""))
+"RTN","ORATR",217,0)
+ .I $D(ORID) S ORLOC=$$GET1^DIQ(100,+ORDER_",",6,"I",,"ORERR")
+"RTN","ORATR",218,0)
+ ;TFF - TOOK THE FOLLOWING LINE OUT OF THE DOT BLOCK HOWEVER, IS IT NEEDED
+"RTN","ORATR",219,0)
+ I '$D(ORID) S ORID=$$LABTEST(ORATIEN,ORDATA)
+"RTN","ORATR",220,0)
+ ;TFF - ADDED $G TO ORID
+"RTN","ORATR",221,0)
+ ;Q:$G(ORID)="" "" ;COMMENTED THIS LINE OUT - SEE BELOW
+"RTN","ORATR",222,0)
+ ;TFF - IF THE ALERT IS CREATED WITH AN OR NOTIFICATION THAT'S IN THE CONTROL FILE
+"RTN","ORATR",223,0)
+ ; WITH AN ORDERABLE ITEM THAT IS NOT OR IS SET TO A DIFFERENT CONTROL TYPE THEN
+"RTN","ORATR",224,0)
+ ; THE WRONG IEN WILL BE SET TO PIECE 5 (ORID)
+"RTN","ORATR",225,0)
+ ;TFF - CHANGED THE FIFTH PIECE OF ORNM FROM ORID TO 
+"RTN","ORATR",226,0)
+ ;
+"RTN","ORATR",227,0)
+ ; XQAID=p1;p2..;p5;p6 where p1, p2,...p8 are:
+"RTN","ORATR",228,0)
+ ;     p1  := ATR , PATIENT , NOTIFICATION ID (pointer to 100.9)
+"RTN","ORATR",229,0)
+ ;     p2  := 10000 (constant)
+"RTN","ORATR",230,0)
+ ;     p3  := PATIENT
+"RTN","ORATR",231,0)
+ ;     p4  := date/time notification was sent
+"RTN","ORATR",232,0)
+ ;     p5  := type of ATR (pointer to VFD ATR CONTROL file #21695.5) - was incorrectly being set
+"RTN","ORATR",233,0)
+ ;     p6  := date/time of original order
+"RTN","ORATR",234,0)
+ ;     p7  := IEN in VFD ALERT TRACKING file (#21695.2)
+"RTN","ORATR",235,0)
+ ;     p8  := IEN of the associated TIU Note
+"RTN","ORATR",236,0)
+ ;
+"RTN","ORATR",237,0)
+ S ORNM="ATR,"_ORPAT_","_ORNOT_";10000;"_ORPAT_";"_$P(ORNM,";",3)_";"_$O(^VFD(21695.5,"AB",ORNOT,""))
+"RTN","ORATR",238,0)
+ S ORNM=ORNM_";"_$$GET1^DIQ(100,$G(ORDER),4,"I")
+"RTN","ORATR",239,0)
+ Q ORNM
+"RTN","ORATR",240,0)
+ ;
+"RTN","ORATR",241,0)
+GETORDER(ORPAT,ORDATA) ;
+"RTN","ORATR",242,0)
+ N ORX,ORY,ORIEN,TODAY
+"RTN","ORATR",243,0)
+ S TODAY=$$DT^XLFDT,ORDATA=$TR(ORDATA,"~","-")
+"RTN","ORATR",244,0)
+ K ^TMP($J,"RAE1")
+"RTN","ORATR",245,0)
+ D EN1^RAO7PC1(ORPAT,$$FMADD^XLFDT(TODAY,-60),TODAY,10)
+"RTN","ORATR",246,0)
+ Q:'$D(^TMP($J,"RAE1",ORPAT,ORDATA)) -1  S ORIEN=$P(^(ORDATA),U,11)
+"RTN","ORATR",247,0)
+ S ORIEN=ORIEN_"," K ^TMP($J,"RAE1")
+"RTN","ORATR",248,0)
+ Q ORIEN
+"RTN","ORATR",249,0)
+ ;
+"RTN","ORATR",250,0)
+LABTEST(ORATIEN,ORDATA) ;
+"RTN","ORATR",251,0)
+ N ORDT,ORSN,TEMP,OR,ORRET,LBTST S ORRET=""
+"RTN","ORATR",252,0)
+ I ORDATA'["|" Q ORRET
+"RTN","ORATR",253,0)
+ S ORDT=$P(ORDATA,";",2),ORSN=$P(ORDATA,";",3)
+"RTN","ORATR",254,0)
+ I 'ORDT!('ORSN) Q ORRET
+"RTN","ORATR",255,0)
+ K ^TMP("LRX",$J)
+"RTN","ORATR",256,0)
+ D 69^LR7OB69(ORDT,ORSN)
+"RTN","ORATR",257,0)
+ S TEMP=$NA(^TMP("LRX",$J,69)),OR=0
+"RTN","ORATR",258,0)
+ F  S OR=$O(@TEMP@(OR)) Q:'OR  S LBTST=+@TEMP@(OR) D  Q:ORRET
+"RTN","ORATR",259,0)
+ .Q:'$D(^VFD(21695.5,"D",LBTST))
+"RTN","ORATR",260,0)
+ .N RESULT,NODE S NODE=$O(@TEMP@(OR,63,"")) Q:NODE=""
+"RTN","ORATR",261,0)
+ .S RESULT=$P($G(@TEMP@(OR,63,NODE)),U,2) Q:RESULT=""
+"RTN","ORATR",262,0)
+ .I $$GET1^DIQ(8992.1,ORATIEN,1.01)[RESULT D
+"RTN","ORATR",263,0)
+ ..S ORRET=$O(^VFD(21695.5,"D",LBTST,""))
+"RTN","ORATR",264,0)
+ K ^TMP("LRX",$J)
+"RTN","ORATR",265,0)
+ Q ORRET
+"RTN","ORATR",266,0)
+ ;
+"RTN","ORATR",267,0)
+SETUP(ORIEN,ORNEW) ; Add data to the new entry in 21695.2
+"RTN","ORATR",268,0)
+ N ORCNT,ORDA,ORDATA,ORERR,ORFDA,ORNA,ORTEMP,ORX,ORGUID,ORIPT
+"RTN","ORATR",269,0)
+ S ORNA=$NA(ORFDA(21695.2,ORIEN_",")),ORCNT=1
+"RTN","ORATR",270,0)
+ I ORNEW D SETUP1(ORIEN)
+"RTN","ORATR",271,0)
+ D GETS^DIQ(8992.1,ORATIEN_",","20*","I","ORDATA","ORERR")
+"RTN","ORATR",272,0)
+ ; Update 21695.21 Multiple
+"RTN","ORATR",273,0)
+ S ORX="" F  S ORX=$O(ORDATA(8992.11,ORX)) Q:'ORX  D
+"RTN","ORATR",274,0)
+ .S ORDA=$$FIND1^DIC(21695.21,","_ORIEN_",","Q",ORDATA(8992.11,ORX,.01,"I"))
+"RTN","ORATR",275,0)
+ .S:'ORDA ORDA="+"_ORCNT,ORCNT=ORCNT+1
+"RTN","ORATR",276,0)
+ .D SETUP2(21695.21,8992.11,ORDA_","_ORIEN_",",ORX)
+"RTN","ORATR",277,0)
+ .S ORTEMP(+ORX)=ORDA
+"RTN","ORATR",278,0)
+ ; Update 21695.211 Multiple
+"RTN","ORATR",279,0)
+ S ORX="" F  S ORX=$O(ORDATA(8992.111,ORX)) Q:'ORX  D
+"RTN","ORATR",280,0)
+ .S ORDA=ORTEMP($P(ORX,",",2))
+"RTN","ORATR",281,0)
+ .I $E(ORDA,1)="+" S ORDA="+"_ORCNT_","_ORDA_","_ORIEN_",",ORCNT=ORCNT+1
+"RTN","ORATR",282,0)
+ .E  D
+"RTN","ORATR",283,0)
+ ..S ORDA(1)=$$FIND1^DIC(21695.211,","_ORDA_","_ORIEN_",","Q",ORDATA(8992.111,ORX,.01,"I"))
+"RTN","ORATR",284,0)
+ ..S:ORDA(1) ORDA=ORDA(1)_","_ORDA_","_ORIEN_","
+"RTN","ORATR",285,0)
+ ..S:'ORDA(1) ORDA="+"_ORCNT_","_ORDA_","_ORIEN_",",ORCNT=ORCNT+1
+"RTN","ORATR",286,0)
+ .D SETUP2(21695.211,8992.111,ORDA,ORX)
+"RTN","ORATR",287,0)
+ ; Update 21695.212 Multiple
+"RTN","ORATR",288,0)
+ S ORX="" F  S ORX=$O(ORDATA(8992.112,ORX)) Q:'ORX  D
+"RTN","ORATR",289,0)
+ .S ORDA=ORTEMP($P(ORX,",",2))
+"RTN","ORATR",290,0)
+ .I $E(ORDA,1)="+" S ORDA="+"_ORCNT_","_ORDA_","_ORIEN_",",ORCNT=ORCNT+1
+"RTN","ORATR",291,0)
+ .E  D
+"RTN","ORATR",292,0)
+ ..S ORDA(1)=$$FIND1^DIC(21695.212,","_ORDA_","_ORIEN_",","Q",ORDATA(8992.112,ORX,.01,"I"))
+"RTN","ORATR",293,0)
+ ..S:ORDA(1) ORDA=ORDA(1)_","_ORDA_","_ORIEN_","
+"RTN","ORATR",294,0)
+ ..S:'ORDA(1) ORDA="+"_ORCNT_","_ORDA_","_ORIEN_",",ORCNT=ORCNT+1
+"RTN","ORATR",295,0)
+ .D SETUP2(21695.212,8992.112,ORDA,ORX)
+"RTN","ORATR",296,0)
+ D UPDATE^DIE(,"ORFDA",,"ORERR")
+"RTN","ORATR",297,0)
+ Q
+"RTN","ORATR",298,0)
+ ;
+"RTN","ORATR",299,0)
+SETUP1(ORIEN) ; Set top level data
+"RTN","ORATR",300,0)
+ ; ORIEN - IEN in 21695.2
+"RTN","ORATR",301,0)
+ N ORDT,ORDUZ,ORERR,ORFDA,ORNA,ORDATA
+"RTN","ORATR",302,0)
+ D GETS^DIQ(8992.1,ORATIEN_",","*","I","ORDATA","ORERR")
+"RTN","ORATR",303,0)
+ S ORNA=$NA(ORFDA(21695.2,ORIEN_","))
+"RTN","ORATR",304,0)
+ S ORX=.01 F  S ORX=$O(ORDATA(8992.1,ORATIEN_",",ORX)) Q:'ORX  D
+"RTN","ORATR",305,0)
+ .Q:ORX=.08  S @ORNA@(ORX)=ORDATA(8992.1,ORATIEN_",",ORX,"I")
+"RTN","ORATR",306,0)
+ S ORDUZ=$$GET1^DIQ(8992.11,"1,"_ORATIEN_",",.01,"I",,"ORERR")
+"RTN","ORATR",307,0)
+ S ORDT=@ORNA@(.02)
+"RTN","ORATR",308,0)
+ S @ORNA@(.09)=ORATIEN
+"RTN","ORATR",309,0)
+ S:$G(ORNOT)'="" @ORNA@(.1)=ORNOT
+"RTN","ORATR",310,0)
+ I ORDUZ,ORDT D
+"RTN","ORATR",311,0)
+ .S @ORNA@(.11)=$$GET1^DIQ(8992.01,ORDT_","_ORDUZ,.1,"I",,"ORERR")
+"RTN","ORATR",312,0)
+ S:$G(ORLOC)'="" @ORNA@(.12)=ORLOC
+"RTN","ORATR",313,0)
+ S @ORNA@(1.05)=0
+"RTN","ORATR",314,0)
+ S @ORNA@(1.09)=$P($$GET1^DIQ(21695.2,ORIEN,.01),";",5)
+"RTN","ORATR",315,0)
+ D UPDATE^DIE(,"ORFDA",,"ORERR")
+"RTN","ORATR",316,0)
+ Q
+"RTN","ORATR",317,0)
+ ;
+"RTN","ORATR",318,0)
+SETUP2(ORNEW,OROLD,ORIENS,ORX) ;
+"RTN","ORATR",319,0)
+ N ORNA,ORY
+"RTN","ORATR",320,0)
+ S ORNA=$NA(ORFDA(ORNEW,ORIENS))
+"RTN","ORATR",321,0)
+ S ORY=0 F  S ORY=$O(ORDATA(OROLD,ORX,ORY)) Q:'ORY  D
+"RTN","ORATR",322,0)
+ .S @ORNA@(ORY)=ORDATA(OROLD,ORX,ORY,"I")
+"RTN","ORATR",323,0)
+ Q
+"RTN","ORATRPC")
+0^2^B64999387
+"RTN","ORATRPC",1,0)
+ORATRPC ; DSS/SMP - Abnormal Alert RPCs ; AUG 17, 2012
+"RTN","ORATRPC",2,0)
+ ;;1.0;VENDOR - DOCUMENT STORAGE SYSTEMS;;7/17/2012;Build 1
+"RTN","ORATRPC",3,0)
+ Q
+"RTN","ORATRPC",4,0)
+ ;
+"RTN","ORATRPC",5,0)
+ ; Documented API and ICRs
+"RTN","ORATRPC",6,0)
+ ; -----------------------
+"RTN","ORATRPC",7,0)
+ ; 2056      $$GET1^DIQ
+"RTN","ORATRPC",8,0)
+ ; 2056      GETS^DIQ
+"RTN","ORATRPC",9,0)
+ ; 10103     $$FMTE^XLFDT
+"RTN","ORATRPC",10,0)
+ ; XXXXX     $$NODEDATA^TIUSRVT
+"RTN","ORATRPC",11,0)
+ ;
+"RTN","ORATRPC",12,0)
+ ; Return Array Format For PAT and PROV
+"RTN","ORATRPC",13,0)
+ ;  ^ Piece
+"RTN","ORATRPC",14,0)
+ ;  1 - Info Flag
+"RTN","ORATRPC",15,0)
+ ;  2 - Patient Name ABC,PATIE (A4321)
+"RTN","ORATRPC",16,0)
+ ;  3 - Patient Location
+"RTN","ORATRPC",17,0)
+ ;  4 - Alert Urgency Level (HIGH, Moderate, low)
+"RTN","ORATRPC",18,0)
+ ;  5 - Alert Date/Time
+"RTN","ORATRPC",19,0)
+ ;  6 - Alert Message
+"RTN","ORATRPC",20,0)
+ ;  7 - Forwarded By/When
+"RTN","ORATRPC",21,0)
+ ;  8 - XQAID
+"RTN","ORATRPC",22,0)
+ ;  9 - null
+"RTN","ORATRPC",23,0)
+ ; 10 - Remove w/o Processing Flag
+"RTN","ORATRPC",24,0)
+ ; 11 - Forwarding Comments (if applicable)
+"RTN","ORATRPC",25,0)
+ ; 12 - Pointer to the Order File (#100)
+"RTN","ORATRPC",26,0)
+ ; 13 - Processing Level
+"RTN","ORATRPC",27,0)
+ ;
+"RTN","ORATRPC",28,0)
+ ; Return Array Example
+"RTN","ORATRPC",29,0)
+ ; RET(1)="^BHYHGDST  (B1022)^^HIGH^06/06/2012@10:15^BCCCR.^^ATR;10000;155^^"
+"RTN","ORATRPC",30,0)
+ ;
+"RTN","ORATRPC",31,0)
+PAT() ; RPC - ORATR PATIENT
+"RTN","ORATRPC",32,0)
+ N ORX,ORNA,ORCNT S ORCNT=1
+"RTN","ORATRPC",33,0)
+ S ORNA=$NA(^VFD(21695.2,"C",ORDFN)) Q:'$D(@ORNA) 0
+"RTN","ORATRPC",34,0)
+ S ORX=0 F  S ORX=$O(@ORNA@(ORX)) Q:'ORX  D
+"RTN","ORATRPC",35,0)
+ .N ORY D GETINFO(ORX) D:$G(ORY)'="" ADD(ORY)
+"RTN","ORATRPC",36,0)
+ Q 1
+"RTN","ORATRPC",37,0)
+ ;
+"RTN","ORATRPC",38,0)
+PROV() ; RPC - ORATR PROVIDER
+"RTN","ORATRPC",39,0)
+ N ORX,ORX2,ORNA,ORCNT S ORCNT=1
+"RTN","ORATRPC",40,0)
+ S ORNA=$NA(^VFD(21695.2,"R",ORUSR)) Q:'$D(@ORNA) 0
+"RTN","ORATRPC",41,0)
+ S ORX=0 F  S ORX=$O(@ORNA@(ORX)) Q:'ORX  D
+"RTN","ORATRPC",42,0)
+ .S ORX2=0 F  S ORX2=$O(@ORNA@(ORX,ORX2)) Q:'ORX2  D
+"RTN","ORATRPC",43,0)
+ ..N ORY D GETINFO(ORX,ORX2,1) D:$G(ORY)'="" ADD(ORY)
+"RTN","ORATRPC",44,0)
+ Q 1
+"RTN","ORATRPC",45,0)
+ ;
+"RTN","ORATRPC",46,0)
+NOTE() ; RPC - ORATR GET NOTE
+"RTN","ORATRPC",47,0)
+ N ORX,ORFLDS,ORIENS,ORDATA,ORERR,ORNA
+"RTN","ORATRPC",48,0)
+ Q:'$D(^VFD(21695.5,ORNOTE)) -1
+"RTN","ORATRPC",49,0)
+ S ORIENS=ORNOTE_",",ORFLDS=".02;.03"
+"RTN","ORATRPC",50,0)
+ D GETS^DIQ(21695.5,ORIENS,ORFLDS,"IE","ORDATA","ORERR")
+"RTN","ORATRPC",51,0)
+ Q:$D(ORERR) -1  S ORNA=$NA(ORDATA(21695.5,ORIENS))
+"RTN","ORATRPC",52,0)
+ S ORRET=$G(@ORNA@(.03,"I"))_U_$G(@ORNA@(.03,"E"))_U_$G(@ORNA@(.02,"I"))
+"RTN","ORATRPC",53,0)
+ Q 1
+"RTN","ORATRPC",54,0)
+ ;
+"RTN","ORATRPC",55,0)
+TEMPLATE() ; RPC - ORATR GET TIU TEMPLATE
+"RTN","ORATRPC",56,0)
+ ;TFF - GET THE TEMPLATE WITH THE PASSING IN OF THE TIU TEMPLATE IEN?
+"RTN","ORATRPC",57,0)
+ N ORX Q:'ORRDIEN 0
+"RTN","ORATRPC",58,0)
+ ;Q:'$D(^PXRMD(801.41,ORRDIEN)) 0
+"RTN","ORATRPC",59,0)
+ ;S ORX=0 F  S ORX=$O(^TIU(8927,ORX)) Q:'ORX  D  ;Q:$D(ORRET)
+"RTN","ORATRPC",60,0)
+ ;.Q:$P(^TIU(8927,ORX,0),U,15)'=ORRDIEN
+"RTN","ORATRPC",61,0)
+ ;.S ORRET=$$NODEDATA^TIUSRVT(ORX)
+"RTN","ORATRPC",62,0)
+ S ORRET=$$NODEDATA^TIUSRVT(ORRDIEN)
+"RTN","ORATRPC",63,0)
+ Q $D(ORRET)
+"RTN","ORATRPC",64,0)
+ ;
+"RTN","ORATRPC",65,0)
+PROCESS(ORIEN,ORPRO) ; RPC - ORATR SET ATR PROCESSING LEVEL
+"RTN","ORATRPC",66,0)
+ N ORFDA,ORERR
+"RTN","ORATRPC",67,0)
+ S ORFDA(21695.2,ORIEN_",",1.05)=ORPRO
+"RTN","ORATRPC",68,0)
+ ; if COMPLETED, put date/time in DATE COMPLETED field
+"RTN","ORATRPC",69,0)
+ I ORPRO=2 D
+"RTN","ORATRPC",70,0)
+ .S ORFDA(21695.2,ORIEN_",",1.08)=$$NOW^XLFDT
+"RTN","ORATRPC",71,0)
+ .N ALERT S ALERT=$$GET1^DIQ(21695.2,ORIEN,.09)
+"RTN","ORATRPC",72,0)
+ .I ALERT'="" D ACTION^XQALERT(ALERT)
+"RTN","ORATRPC",73,0)
+ ; if TRANSMITTED, put date in DATE TRANSMITTED field
+"RTN","ORATRPC",74,0)
+ I ORPRO=3 S ORFDA(21695.2,ORIEN_",",1.06)=$$DT^XLFDT
+"RTN","ORATRPC",75,0)
+ L +^VFD(21695.2,ORIEN):$S($G(DILOCKTM)>0:DILOCKTM,1:5)
+"RTN","ORATRPC",76,0)
+ D UPDATE^DIE("E","ORFDA",,"ORERR")
+"RTN","ORATRPC",77,0)
+ L -^VFD(21695.2,ORIEN):$S($G(DILOCKTM)>0:DILOCKTM,1:5)
+"RTN","ORATRPC",78,0)
+ Q $S('$D(ORERR):1,1:-1)
+"RTN","ORATRPC",79,0)
+ ;
+"RTN","ORATRPC",80,0)
+BCCCR(ORIEN) ; RPC - ORATR BCCCR TRANSMIT
+"RTN","ORATRPC",81,0)
+ ;  1     TAR IEN
+"RTN","ORATRPC",82,0)
+ ;  2     Patient DFN
+"RTN","ORATRPC",83,0)
+ ;  3     Site NUM
+"RTN","ORATRPC",84,0)
+ ;  4     Patient ICN
+"RTN","ORATRPC",85,0)
+ ;  5     HF Name
+"RTN","ORATRPC",86,0)
+ ;  6     HF Date
+"RTN","ORATRPC",87,0)
+ ;  7     HF Deleted (Yes/No)
+"RTN","ORATRPC",88,0)
+ ;  8     HF BI-RAD
+"RTN","ORATRPC",89,0)
+ ;  9     HF Contact Method
+"RTN","ORATRPC",90,0)
+ ; 10     HF Contact Individual
+"RTN","ORATRPC",91,0)
+ ; 11     Order IEN
+"RTN","ORATRPC",92,0)
+ ; 12     Order Date
+"RTN","ORATRPC",93,0)
+ ; 13     Orderable Item Name
+"RTN","ORATRPC",94,0)
+ ; 14     Orderable Item CPT Code
+"RTN","ORATRPC",95,0)
+ ; 15     Orderable Item Package
+"RTN","ORATRPC",96,0)
+ ; 16     Encounter Provider DUZ
+"RTN","ORATRPC",97,0)
+ ; 17     Ordering Provider DUZ
+"RTN","ORATRPC",98,0)
+ ;
+"RTN","ORATRPC",99,0)
+ N DATA,DFN,FLDS,IENS,NA,ORCNT,ORCPT,ORDER,ORERR,ORHF,ORX,ORY,SITE,TYPE
+"RTN","ORATRPC",100,0)
+ N STATION,ICN
+"RTN","ORATRPC",101,0)
+ S ORCNT=1,STATION=$P($$SITE^VASITE,U,3)
+"RTN","ORATRPC",102,0)
+ S IENS=ORIEN_",",FLDS=".01;.04;.12;2;5*;6*"
+"RTN","ORATRPC",103,0)
+ D GETS^DIQ(21695.2,IENS,FLDS,"I","DATA","ORERR")
+"RTN","ORATRPC",104,0)
+ ;D GETS^DIQ(21695.2,IENS,FLDS,"IE","DATA","ORERR")
+"RTN","ORATRPC",105,0)
+ S NA=$NA(DATA(21695.2,IENS)) Q:'$D(@NA)
+"RTN","ORATRPC",106,0)
+ S DFN=$G(@NA@(.04,"I")),ORX=$G(@NA@(2,"I"))
+"RTN","ORATRPC",107,0)
+ I $L($T(GETICN^MPIF001)) S ICN=$$GETICN^MPIF001(DFN)
+"RTN","ORATRPC",108,0)
+ ; GETICN returns ICN_"V"_CHECKSUM
+"RTN","ORATRPC",109,0)
+ I +ICN=-1 ;DO SOMETHING
+"RTN","ORATRPC",110,0)
+ S ID=ORIEN_U_DFN_U_STATION_U_ICN_U
+"RTN","ORATRPC",111,0)
+ S ORX="" F  S ORX=$O(DATA(21695.26,ORX)) Q:ORX=""  D
+"RTN","ORATRPC",112,0)
+ .D ADD(ID_$$HF(ORX))
+"RTN","ORATRPC",113,0)
+ S ORX="" F  S ORX=$O(DATA(21695.25,ORX)) Q:ORX=""  D
+"RTN","ORATRPC",114,0)
+ .N ORDER,ORDATA S ORDER=DATA(21695.25,ORX,.01,"I")
+"RTN","ORATRPC",115,0)
+ .D ORDATA(ORDER,ID)
+"RTN","ORATRPC",116,0)
+ Q
+"RTN","ORATRPC",117,0)
+ ;
+"RTN","ORATRPC",118,0)
+GETHF ; RPC - ORATR HEALTH FACTORS
+"RTN","ORATRPC",119,0)
+ ; HEALTH FACTORS       ^AUTTHF(
+"RTN","ORATRPC",120,0)
+ ; V HEALTH FACTOR      ^AUPNVHF(
+"RTN","ORATRPC",121,0)
+ N ORIEN,ORHF,ORX,HFIEN,ORFDA,ORERR,CNT,DFN,ORDT
+"RTN","ORATRPC",122,0)
+ S ORDT=$O(^TMP("ORATRHF","")) Q:'ORDT
+"RTN","ORATRPC",123,0)
+ S ORIEN=$O(^TMP("ORATRHF",ORDT,"")) Q:'ORIEN  S ORHF=$G(^(ORIEN))
+"RTN","ORATRPC",124,0)
+ S DFN=$$GET1^DIQ(21695.2,ORIEN,.04,"I"),ORIEN=ORIEN_",",CNT=1
+"RTN","ORATRPC",125,0)
+ F ORX=2:1:$L(ORHF,U) D
+"RTN","ORATRPC",126,0)
+ .K ORERR S HF=$$FIND1^DIC(9999999.64,,"X",$P(ORHF,U,ORX),,,"ORERR")
+"RTN","ORATRPC",127,0)
+ .I '$D(ORERR) S ORHF(HF)=$P(ORHF,U,ORX)
+"RTN","ORATRPC",128,0)
+ S HF="" F  S HF=$O(ORHF(HF)) Q:'HF  D
+"RTN","ORATRPC",129,0)
+ .N FLAG S VHF=""
+"RTN","ORATRPC",130,0)
+ .F  S VHF=$O(^AUPNVHF("B",HF,VHF),-1) Q:'VHF  D  Q:$D(FLAG)
+"RTN","ORATRPC",131,0)
+ ..Q:'$D(^AUPNVHF("C",DFN,VHF))
+"RTN","ORATRPC",132,0)
+ ..I $D(^VFD(21695.2,+ORIEN,6,"B",VHF)) S FLAG=1 Q
+"RTN","ORATRPC",133,0)
+ ..D GETHF1
+"RTN","ORATRPC",134,0)
+ D:$D(ORFDA)
+"RTN","ORATRPC",135,0)
+ .L +^VFD(21695.2,ORIEN):$S($G(DILOCKTM)>0:DILOCKTM,1:5)
+"RTN","ORATRPC",136,0)
+ .D UPDATE^DIE(,"ORFDA",,"ORERR")
+"RTN","ORATRPC",137,0)
+ .L -^VFD(21695.2,ORIEN):$S($G(DILOCKTM)>0:DILOCKTM,1:5)
+"RTN","ORATRPC",138,0)
+ I '$D(ORERR) K ^TMP("ORATRHF",ORDT,+ORIEN)
+"RTN","ORATRPC",139,0)
+ D FOLLOWUP^ORATR2(+ORIEN)
+"RTN","ORATRPC",140,0)
+ Q
+"RTN","ORATRPC",141,0)
+ ;
+"RTN","ORATRPC",142,0)
+ ;=====================================================================
+"RTN","ORATRPC",143,0)
+ ;                      R P C   U T I L I T I E S
+"RTN","ORATRPC",144,0)
+ ;=====================================================================
+"RTN","ORATRPC",145,0)
+ ;
+"RTN","ORATRPC",146,0)
+GETINFO(ORIEN,ORSUB,ORPROV) ; gets info for alert at ^VFD(21695.2,ORIEN,"XQA",ORSUB)
+"RTN","ORATRPC",147,0)
+ ; TOP LEVEL INFORMATION
+"RTN","ORATRPC",148,0)
+ ; PATIENT               .04
+"RTN","ORATRPC",149,0)
+ ; ALERT DATE/TIME       .01 (can be obtained thru .01 field)
+"RTN","ORATRPC",150,0)
+ ; ALERT MESSAGE        1.01
+"RTN","ORATRPC",151,0)
+ ; XQAID                 .01
+"RTN","ORATRPC",152,0)
+ ; URGNECY               .1  (can be obtained thru .1 field)
+"RTN","ORATRPC",153,0)
+ ; CAN DELETE...         .11
+"RTN","ORATRPC",154,0)
+ ; PATIENT LOCATION      .12
+"RTN","ORATRPC",155,0)
+ ; DATA FOR PROCESSING  2
+"RTN","ORATRPC",156,0)
+ ; PROCESSED            1.05
+"RTN","ORATRPC",157,0)
+ ;
+"RTN","ORATRPC",158,0)
+ ;
+"RTN","ORATRPC",159,0)
+ N X,ORX,OROUT,ORIENS,ORFLDS,ORERR,ORSSN,ORNA,ORURG
+"RTN","ORATRPC",160,0)
+ S ORFLDS=".01;.04;.1;.11;.12;1.01;1.05;1.07;2",ORIENS=ORIEN_","
+"RTN","ORATRPC",161,0)
+ D GETS^DIQ(21695.2,ORIENS,ORFLDS,"IE","OROUT","ORERR")
+"RTN","ORATRPC",162,0)
+ S ORNA=$NA(OROUT(21695.2,ORIENS))
+"RTN","ORATRPC",163,0)
+ ; Patient Name/SSN
+"RTN","ORATRPC",164,0)
+ S ORX=$G(@ORNA@(.04,"I"))_U_$G(@ORNA@(.04,"E"))
+"RTN","ORATRPC",165,0)
+ I ORX S ORSSN=$$GET1^DIQ(2,+ORX,.09,"E") D
+"RTN","ORATRPC",166,0)
+ .S ORX=$E($P(ORX,U,2),1,9)_" (",ORX=ORX_$E(ORX,1)_$E(ORSSN,6,9)_")"
+"RTN","ORATRPC",167,0)
+ .S $P(ORY,U,2)=ORX
+"RTN","ORATRPC",168,0)
+ ; Patient Location
+"RTN","ORATRPC",169,0)
+ S $P(ORY,U,3)=$G(@ORNA@(.12,"E"))
+"RTN","ORATRPC",170,0)
+ ; Alert Urgency Level
+"RTN","ORATRPC",171,0)
+ S ORX=$G(@ORNA@(.1,"I"))
+"RTN","ORATRPC",172,0)
+ I ORX D URGENCY^ORQORB(.ORURG,ORX) S ORURG=$S($G(ORURG)>0:ORURG,1:2) D
+"RTN","ORATRPC",173,0)
+ .S $P(ORY,U,4)=$S(ORURG=1:"HIGH",ORURG=2:"Moderate",1:"low")
+"RTN","ORATRPC",174,0)
+ ; Alert Date/Time
+"RTN","ORATRPC",175,0)
+ S ORX=$P($G(@ORNA@(.01,"I")),";",4)
+"RTN","ORATRPC",176,0)
+ S $P(ORY,U,5)=$$FMTE^XLFDT(ORX,"7M")
+"RTN","ORATRPC",177,0)
+ ; Alert Message
+"RTN","ORATRPC",178,0)
+ S ORX=$G(@ORNA@(1.01,"E")) I $G(ORPROV),$L(ORX,"):")>1 S ORX=$P(ORX,": ",2,99)
+"RTN","ORATRPC",179,0)
+ S $P(ORY,U,6)=ORX
+"RTN","ORATRPC",180,0)
+ ; XQAID
+"RTN","ORATRPC",181,0)
+ ;============================================
+"RTN","ORATRPC",182,0)
+ ;    Set ORX to the TIU DOCUMENT POINTER
+"RTN","ORATRPC",183,0)
+ ;============================================
+"RTN","ORATRPC",184,0)
+ S ORX=$G(@ORNA@(1.07,"I"))
+"RTN","ORATRPC",185,0)
+ S $P(ORY,U,8)=$G(@ORNA@(.01,"E"))_";"_ORIEN_";"_ORX_U
+"RTN","ORATRPC",186,0)
+ ; Remove w/o Processing Flag
+"RTN","ORATRPC",187,0)
+ S $P(ORY,U,10)=$G(@ORNA@(.11,"I"))
+"RTN","ORATRPC",188,0)
+ ; Pointer to the Order File (#100)
+"RTN","ORATRPC",189,0)
+ S ORX=$G(@ORNA@(2,"E")) I ORX["@OR" D
+"RTN","ORATRPC",190,0)
+ .S $P(ORY,U,12)=+ORX
+"RTN","ORATRPC",191,0)
+ ; Processing Level
+"RTN","ORATRPC",192,0)
+ S $P(ORY,U,13)=$G(@ORNA@(1.05,"I"))
+"RTN","ORATRPC",193,0)
+ ; Get latest forwarding information
+"RTN","ORATRPC",194,0)
+ I '$D(ORSUB) S ORSUB=$$GETSUB(ORIEN)
+"RTN","ORATRPC",195,0)
+ S ORX=$O(^VFD(21695.2,ORIEN,20,ORSUB,2,"A"),-1)
+"RTN","ORATRPC",196,0)
+ K @ORNA S ORIENS=ORX_","_ORSUB_","_ORIEN_",",ORFLDS=".01;.03;1.01"
+"RTN","ORATRPC",197,0)
+ I ORX D GETS^DIQ(21695.212,ORIENS,ORFLDS,"IE","OROUT","ORERR") D
+"RTN","ORATRPC",198,0)
+ .S ORNA=$NA(OROUT(21695.212,ORIENS))
+"RTN","ORATRPC",199,0)
+ .; Forwarded by/when
+"RTN","ORATRPC",200,0)
+ .S ORX=$G(@ORNA@(.03,"E"))_";"_$$FMTE^XLFDT($G(@ORNA@(.01,"I")),"7M")
+"RTN","ORATRPC",201,0)
+ .S $P(ORY,U,7)=ORX
+"RTN","ORATRPC",202,0)
+ .; Forwarding Comments (if applicable)
+"RTN","ORATRPC",203,0)
+ .S $P(ORY,U,11)=$G(@ORNA@(1.01,"E"))
+"RTN","ORATRPC",204,0)
+ Q
+"RTN","ORATRPC",205,0)
+ ;
+"RTN","ORATRPC",206,0)
+GETHF1 ;
+"RTN","ORATRPC",207,0)
+ N VST,VSTDT
+"RTN","ORATRPC",208,0)
+ S VST=$$GET1^DIQ(9000010.23,VHF,.03,"I")
+"RTN","ORATRPC",209,0)
+ S VSTDT=$$GET1^DIQ(9000010,VST,.01,"I")
+"RTN","ORATRPC",210,0)
+ S ORFDA(21695.26,"+"_CNT_","_ORIEN,.01)=VHF
+"RTN","ORATRPC",211,0)
+ S ORFDA(21695.26,"+"_CNT_","_ORIEN,.02)=$$GET1^DIQ(9999999.64,HF,.03,"I")
+"RTN","ORATRPC",212,0)
+ S ORFDA(21695.26,"+"_CNT_","_ORIEN,.03)=ORHF(HF)
+"RTN","ORATRPC",213,0)
+ S ORFDA(21695.26,"+"_CNT_","_ORIEN,1)=VSTDT
+"RTN","ORATRPC",214,0)
+ S CNT=CNT+1,FLAG=1
+"RTN","ORATRPC",215,0)
+ Q
+"RTN","ORATRPC",216,0)
+ ;
+"RTN","ORATRPC",217,0)
+ADD(ORSTR) ;
+"RTN","ORATRPC",218,0)
+ S ORRET(ORCNT)=ORSTR,ORCNT=ORCNT+1
+"RTN","ORATRPC",219,0)
+ Q
+"RTN","ORATRPC",220,0)
+ ;
+"RTN","ORATRPC",221,0)
+GETSUB(ORIEN) ;
+"RTN","ORATRPC",222,0)
+ N ORX,RET
+"RTN","ORATRPC",223,0)
+ S ORX=0 F  S ORX=$O(^VFD(21695.2,ORIEN,20,ORX)) Q:'ORX  D
+"RTN","ORATRPC",224,0)
+ .I $D(^VFD(21695.2,ORIEN,20,ORX,2)) S RET=ORX
+"RTN","ORATRPC",225,0)
+ Q $G(RET,-1)
+"RTN","ORATRPC",226,0)
+ ;
+"RTN","ORATRPC",227,0)
+ ;=====================================================================
+"RTN","ORATRPC",228,0)
+ ;     U S E D   W I T H   O R A T R   B C C C R   T R A N S M I T
+"RTN","ORATRPC",229,0)
+ ;=====================================================================
+"RTN","ORATRPC",230,0)
+ ;
+"RTN","ORATRPC",231,0)
+HF(IENS) ; Returns information relating to a health factor
+"RTN","ORATRPC",232,0)
+ ;  5     HF Name
+"RTN","ORATRPC",233,0)
+ ;  6     HF Date
+"RTN","ORATRPC",234,0)
+ ;  7     HF Deleted (Yes/No)
+"RTN","ORATRPC",235,0)
+ ;  8     HF BI-RAD
+"RTN","ORATRPC",236,0)
+ ;  9     HF Contact Method
+"RTN","ORATRPC",237,0)
+ ; 10     HF Contact Individual
+"RTN","ORATRPC",238,0)
+ ; 16     Encounter Provider DUZ
+"RTN","ORATRPC",239,0)
+ N X,DEL,FLDS,HF,HFDATA,HFERR,PROV,RET,VST
+"RTN","ORATRPC",240,0)
+ S HF(1)=$G(DATA(21695.26,IENS,.03,"I"))
+"RTN","ORATRPC",241,0)
+ S HF(2)=$G(DATA(21695.26,IENS,1,"I"))
+"RTN","ORATRPC",242,0)
+ S DEL=+$G(DATA(21695.26,IENS,.04,"I"))
+"RTN","ORATRPC",243,0)
+ S HF=$G(DATA(21695.26,IENS,.01,"I"))_",",FLDS=".01;.03;1201;1204;81101"
+"RTN","ORATRPC",244,0)
+ I 'DEL D
+"RTN","ORATRPC",245,0)
+ .D GETS^DIQ(9000010.23,HF,FLDS,"IE","HFDATA","HFERR")
+"RTN","ORATRPC",246,0)
+ S HF(3)=$S('DEL:"No",1:"Yes")
+"RTN","ORATRPC",247,0)
+ I HF(1)["BI-RAD" S HF(4)=+$P(HF(1),"RAD ",2)
+"RTN","ORATRPC",248,0)
+ I HF(1)["CONTACT METHOD" D
+"RTN","ORATRPC",249,0)
+ .S HF(5)=$P(HF(1),":",2)
+"RTN","ORATRPC",250,0)
+ .S HF(6)=$G(HFDATA(9000010.23,HF,81101,"E"))
+"RTN","ORATRPC",251,0)
+ S X="" F  S X=$O(HF(X)) Q:'X  S $P(RET,U,X)=HF(X)
+"RTN","ORATRPC",252,0)
+ S PROV=$G(HFDATA(9000010.23,HF,1204,"I"))
+"RTN","ORATRPC",253,0)
+ S $P(RET,U,12)=PROV
+"RTN","ORATRPC",254,0)
+ Q RET
+"RTN","ORATRPC",255,0)
+ ;
+"RTN","ORATRPC",256,0)
+ORDATA(IEN,ID) ; Gathers information relating to an order
+"RTN","ORATRPC",257,0)
+ ; 11     Order IEN
+"RTN","ORATRPC",258,0)
+ ; 12     Order Date
+"RTN","ORATRPC",259,0)
+ ; 13     Orderable Item Name
+"RTN","ORATRPC",260,0)
+ ; 14     Orderable Item CPT Code
+"RTN","ORATRPC",261,0)
+ ; 15     Orderable Item Package
+"RTN","ORATRPC",262,0)
+ ; 17     Ordering Provider
+"RTN","ORATRPC",263,0)
+ N CPT,ORDATA,ORITEM,ORX,PROV S $P(ID,U,11)=IEN
+"RTN","ORATRPC",264,0)
+ D GETS^DIQ(100,IEN_",",".1*;1;4","IE","ORDATA","ORERR")
+"RTN","ORATRPC",265,0)
+ S $P(ID,U,12)=$G(ORDATA(100,IEN_",",4,"I"))
+"RTN","ORATRPC",266,0)
+ S PROV=$G(ORDATA(100,IEN_",",1,"I"))
+"RTN","ORATRPC",267,0)
+ S ORY="" F  S ORY=$O(ORDATA(100.001,ORY)) Q:ORY=""  D
+"RTN","ORATRPC",268,0)
+ .N ORX S ORX=ID,ORITEM=ORDATA(100.001,ORY,.01,"I")
+"RTN","ORATRPC",269,0)
+ .S $P(ORX,U,13)=ORDATA(100.001,ORY,.01,"E")
+"RTN","ORATRPC",270,0)
+ .S ORX=ORX_U_$$GETORITM(ORITEM),$P(ORX,U,17)=PROV
+"RTN","ORATRPC",271,0)
+ .D ADD(ORX)
+"RTN","ORATRPC",272,0)
+ Q
+"RTN","ORATRPC",273,0)
+ ;
+"RTN","ORATRPC",274,0)
+GETORITM(ORITEM) ;
+"RTN","ORATRPC",275,0)
+ N CPT,IENS,ORERR,ORINFO,RET S IENS=ORITEM_","
+"RTN","ORATRPC",276,0)
+ D GETS^DIQ(101.43,IENS,"1.1;3;4",,"ORINFO","ORERR")
+"RTN","ORATRPC",277,0)
+ I $G(ORINFO(101.43,IENS,4))["CPT" D
+"RTN","ORATRPC",278,0)
+ .S CPT=$G(ORINFO(101.43,IENS,3))
+"RTN","ORATRPC",279,0)
+ .Q:$$GET1^DIQ(81,CPT,5,"I")
+"RTN","ORATRPC",280,0)
+ .S RET=CPT
+"RTN","ORATRPC",281,0)
+ S $P(RET,U,2)=$G(ORINFO(101.43,IENS,1.1))
+"RTN","ORATRPC",282,0)
+ Q RET
+"RTN","ORATRPC",283,0)
+ ;
+"SEC","^DIC",21695.5,21695.5,0,"AUDIT")
+@
+"SEC","^DIC",21695.5,21695.5,0,"DD")
+@
+"SEC","^DIC",21695.5,21695.5,0,"DEL")
+@
+"SEC","^DIC",21695.5,21695.5,0,"LAYGO")
+@
+"SEC","^DIC",21695.5,21695.5,0,"RD")
+@
+"SEC","^DIC",21695.5,21695.5,0,"WR")
+@
+"VER")
+8.0^22.0
+"^DD",21695.5,21695.5,0)
+FIELD^^.02^11
+"^DD",21695.5,21695.5,0,"DDA")
+N
+"^DD",21695.5,21695.5,0,"DT")
+3131212
+"^DD",21695.5,21695.5,0,"IX","AB",21695.52,.01)
+
+"^DD",21695.5,21695.5,0,"IX","AC",21695.52,.01)
+
+"^DD",21695.5,21695.5,0,"IX","B",21695.5,.01)
+
+"^DD",21695.5,21695.5,0,"IX","C",21695.51,.01)
+
+"^DD",21695.5,21695.5,0,"IX","CR",21695.55,.01)
+
+"^DD",21695.5,21695.5,0,"IX","D",21695.54,.01)
+
+"^DD",21695.5,21695.5,0,"NM","VFD TAR CONTROL")
+
+"^DD",21695.5,21695.5,0,"PT",21695.2,1.09)
+
+"^DD",21695.5,21695.5,.01,0)
+TYPE^RF^^0;1^K:$L(X)>50!($L(X)<3)!'(X'?1P.E) X
+"^DD",21695.5,21695.5,.01,1,0)
+^.1
+"^DD",21695.5,21695.5,.01,1,1,0)
+21695.5^B
+"^DD",21695.5,21695.5,.01,1,1,1)
+S ^VFD(21695.5,"B",$E(X,1,30),DA)=""
+"^DD",21695.5,21695.5,.01,1,1,2)
+K ^VFD(21695.5,"B",$E(X,1,30),DA)
+"^DD",21695.5,21695.5,.01,3)
+Answer must be 3-50 characters in length.
+"^DD",21695.5,21695.5,.01,21,0)
+^^2^2^3120917^
+"^DD",21695.5,21695.5,.01,21,1,0)
+This is the type of TAR (Tracking of Abnormal Results) notification that 
+"^DD",21695.5,21695.5,.01,21,2,0)
+will be generated.
+"^DD",21695.5,21695.5,.01,"DT")
+3120917
+"^DD",21695.5,21695.5,.02,0)
+TIU TEMPLATE^*P8927'^TIU(8927,^0;2^S DIC("S")="I $P(^(0),U,15)'=""""!($P(^(0),U,17)'="""")" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
+"^DD",21695.5,21695.5,.02,3)
+Enter a TIU TEMPLATE defined as a Reminder Dialog or ComObject.
+"^DD",21695.5,21695.5,.02,12)
+Only REMINDER DIALOG or COM OBJECT type TIU TEMPLATES.
+"^DD",21695.5,21695.5,.02,12.1)
+S DIC("S")="I $P(^(0),U,15)'=""""!($P(^(0),U,17)'="""")"
+"^DD",21695.5,21695.5,.02,21,0)
+^.001^2^2^3131212^^^
+"^DD",21695.5,21695.5,.02,21,1,0)
+Select the TIU TEMPLATE that will be executed for this type of SMART 
+"^DD",21695.5,21695.5,.02,21,2,0)
+Alert. This TIU Templates are defined as Reminder Dialogs or ComObjects.
+"^DD",21695.5,21695.5,.02,"DT")
+3131212
+"^DD",21695.5,21695.5,.03,0)
+INITIAL NOTE^P8925.1'^TIU(8925.1,^0;3^Q
+"^DD",21695.5,21695.5,.03,3)
+Enter the name of a TIU NOTE.
+"^DD",21695.5,21695.5,.03,21,0)
+^^1^1^3120917^
+"^DD",21695.5,21695.5,.03,21,1,0)
+This is the name of the note used as the initial plan of care.
+"^DD",21695.5,21695.5,.03,"DT")
+3120917
+"^DD",21695.5,21695.5,.04,0)
+INACTIVE^S^0:NO;1:YES;^0;4^Q
+"^DD",21695.5,21695.5,.04,3)
+Is this type of TAR Notificaation inactive?
+"^DD",21695.5,21695.5,.04,21,0)
+^^3^3^3121012^
+"^DD",21695.5,21695.5,.04,21,1,0)
+This is a flag to turn off this particular type of TAR Notification.  If an
+"^DD",21695.5,21695.5,.04,21,2,0)
+entry is marked as INACTIVE, TAR Notifcations matching the entry will not be 
+"^DD",21695.5,21695.5,.04,21,3,0)
+generated.
+"^DD",21695.5,21695.5,.04,"DT")
+3121012
+"^DD",21695.5,21695.5,.05,0)
+RECIPIENTS^F^^0;5^K:$L(X)>8!($L(X)<1) X
+"^DD",21695.5,21695.5,.05,3)
+Answer must be 1-8 characters in length.
+"^DD",21695.5,21695.5,.05,21,0)
+^^24^24^3121107^
+"^DD",21695.5,21695.5,.05,21,1,0)
+Set of codes indicating default provider recipients of a notification by 
+"^DD",21695.5,21695.5,.05,21,2,0)
+their title or relationship to the patient.  Notifications can be set up 
+"^DD",21695.5,21695.5,.05,21,3,0)
+with any or all of the following codes:
+"^DD",21695.5,21695.5,.05,21,4,0)
+ 
+"^DD",21695.5,21695.5,.05,21,5,0)
+P (Primary Provider): deliver notification to  the patient's Primary 
+"^DD",21695.5,21695.5,.05,21,6,0)
+Provider.  
+"^DD",21695.5,21695.5,.05,21,7,0)
+ 
+"^DD",21695.5,21695.5,.05,21,8,0)
+A (Attending Physician): deliver notification to the patient's Attending 
+"^DD",21695.5,21695.5,.05,21,9,0)
+Physician.
+"^DD",21695.5,21695.5,.05,21,10,0)
+ 
+"^DD",21695.5,21695.5,.05,21,11,0)
+T (Patient Care Team): deliver notification to the patient's  primary 
+"^DD",21695.5,21695.5,.05,21,12,0)
+care Team.
+"^DD",21695.5,21695.5,.05,21,13,0)
+ 
+"^DD",21695.5,21695.5,.05,21,14,0)
+M (PCMM Team): deliver notification to users/providers linked to the 
+"^DD",21695.5,21695.5,.05,21,15,0)
+patient via PCMM Team Position assignments.
+"^DD",21695.5,21695.5,.05,21,16,0)
+ 
+"^DD",21695.5,21695.5,.05,21,17,0)
+E (Encounter Provider): deliver notification to the encounter provider 
+"^DD",21695.5,21695.5,.05,21,18,0)
+who is associated with the health factors generating this notification.
+"^DD",21695.5,21695.5,.05,21,19,0)
+ 
+"^DD",21695.5,21695.5,.05,21,20,0)
+R (PCMM Primary Care Practitioner): deliver notification to the patient's 
+"^DD",21695.5,21695.5,.05,21,21,0)
+PCMM Primary Care Practitioner.
+"^DD",21695.5,21695.5,.05,21,22,0)
+ 
+"^DD",21695.5,21695.5,.05,21,23,0)
+S (PCMM Associate Provider): deliver notification to the patient's PCMM 
+"^DD",21695.5,21695.5,.05,21,24,0)
+Associate Provider.
+"^DD",21695.5,21695.5,.05,"DT")
+3121107
+"^DD",21695.5,21695.5,.06,0)
+TRANSMIT TO BCR^S^1:YES;0:NO;^0;6^Q
+"^DD",21695.5,21695.5,.06,21,0)
+^^3^3^3121120^
+"^DD",21695.5,21695.5,.06,21,1,0)
+If this field is marked YES, all the collected information for this type 
+"^DD",21695.5,21695.5,.06,21,2,0)
+of notification will be transmitted to the Breast Care Registry (BCR).  
+"^DD",21695.5,21695.5,.06,21,3,0)
+Otherwise, no information will be transmitted.
+"^DD",21695.5,21695.5,.06,"DT")
+3121120
+"^DD",21695.5,21695.5,1,0)
+ORDERABLE ITEM^21695.51P^^1;0
+"^DD",21695.5,21695.5,1,21,0)
+^^2^2^3120917^
+"^DD",21695.5,21695.5,1,21,1,0)
+This multiple contains ORDERABLE ITEMS that identify an alert as an
+"^DD",21695.5,21695.5,1,21,2,0)
+abnormal alert.
+"^DD",21695.5,21695.5,1,"DT")
+3120618
+"^DD",21695.5,21695.5,2,0)
+OR NOTIFICATIONS^21695.52IP^^2;0
+"^DD",21695.5,21695.5,2,21,0)
+^.001^2^2^3131212^^^^
+"^DD",21695.5,21695.5,2,21,1,0)
+This multiple contains OR/EE NOTIFICATIONS that are used to trigger this
+"^DD",21695.5,21695.5,2,21,2,0)
+type of TAR notification.
+"^DD",21695.5,21695.5,2,"DT")
+3131212
+"^DD",21695.5,21695.5,3,0)
+DEFAULT TEXT^F^^3;1^K:$L(X)>200!($L(X)<1) X
+"^DD",21695.5,21695.5,3,3)
+Answer must be 1-200 characters in length.
+"^DD",21695.5,21695.5,3,21,0)
+^^2^2^3120917^
+"^DD",21695.5,21695.5,3,21,1,0)
+This is the default text for a TAR notification and will only be used
+"^DD",21695.5,21695.5,3,21,2,0)
+if there is no other text associated with the notification.
+"^DD",21695.5,21695.5,3,"DT")
+3121003
+"^DD",21695.5,21695.5,4,0)
+LAB TEST^21695.54PA^^4;0
+"^DD",21695.5,21695.5,4,21,0)
+^.001^2^2^3120919^^
+"^DD",21695.5,21695.5,4,21,1,0)
+This multiple contains LABORATORY TESTS that are associated with this type
+"^DD",21695.5,21695.5,4,21,2,0)
+of TAR notification.
+"^DD",21695.5,21695.5,5,0)
+REMINDER DEFINITION^21695.55PA^^5;0
+"^DD",21695.5,21695.5,5,21,0)
+^.001^2^2^3120919^^
+"^DD",21695.5,21695.5,5,21,1,0)
+This multiple contains REMINDER DEFINITIONS that are associated with this 
+"^DD",21695.5,21695.5,5,21,2,0)
+type of TAR notification.
+"^DD",21695.5,21695.51,0)
+ORDERABLE ITEM SUB-FIELD^^.01^1
+"^DD",21695.5,21695.51,0,"DT")
+3120718
+"^DD",21695.5,21695.51,0,"IX","B",21695.51,.01)
+
+"^DD",21695.5,21695.51,0,"NM","ORDERABLE ITEM")
+
+"^DD",21695.5,21695.51,0,"UP")
+21695.5
+"^DD",21695.5,21695.51,.01,0)
+ORDERABLE ITEM^MP101.43'^ORD(101.43,^0;1^Q
+"^DD",21695.5,21695.51,.01,1,0)
+^.1
+"^DD",21695.5,21695.51,.01,1,1,0)
+21695.51^B
+"^DD",21695.5,21695.51,.01,1,1,1)
+S ^VFD(21695.5,DA(1),1,"B",$E(X,1,30),DA)=""
+"^DD",21695.5,21695.51,.01,1,1,2)
+K ^VFD(21695.5,DA(1),1,"B",$E(X,1,30),DA)
+"^DD",21695.5,21695.51,.01,1,2,0)
+21695.5^C^MUMPS
+"^DD",21695.5,21695.51,.01,1,2,1)
+I +$P($G(^VFD(21695.5,DA(1),2,0)),U,4)>0 N Z S Z="" F  S Z=$O(^VFD(21695.5,DA(1),2,"B",Z)) Q:Z=""  S ^VFD(21695.5,"C",Z,X,DA(1),DA)=""
+"^DD",21695.5,21695.51,.01,1,2,2)
+N Z S Z="" F  S Z=$O(^VFD(21695.5,DA(1),2,"B",Z)) Q:Z=""  K ^VFD(21695.5,"C",Z,X)
+"^DD",21695.5,21695.51,.01,1,2,"DT")
+3131216
+"^DD",21695.5,21695.51,.01,3)
+Enter an ORDERABLE ITEM that will trigger this type of TAR notification.
+"^DD",21695.5,21695.51,.01,21,0)
+^^2^2^3120917^
+"^DD",21695.5,21695.51,.01,21,1,0)
+This is the name of an orderable item that is associated with this type 
+"^DD",21695.5,21695.51,.01,21,2,0)
+of TAR notification.
+"^DD",21695.5,21695.51,.01,"DT")
+3131216
+"^DD",21695.5,21695.52,0)
+OR NOTIFICATIONS SUB-FIELD^^.01^1
+"^DD",21695.5,21695.52,0,"DT")
+3131212
+"^DD",21695.5,21695.52,0,"IX","B",21695.52,.01)
+
+"^DD",21695.5,21695.52,0,"NM","OR NOTIFICATIONS")
+
+"^DD",21695.5,21695.52,0,"UP")
+21695.5
+"^DD",21695.5,21695.52,.01,0)
+OR NOTIFICATIONS^M*P100.9'^ORD(100.9,^0;1^S DIC("S")="I '$D(^VFD(21695.5,""AB"",Y))" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
+"^DD",21695.5,21695.52,.01,1,0)
+^.1
+"^DD",21695.5,21695.52,.01,1,1,0)
+21695.52^B
+"^DD",21695.5,21695.52,.01,1,1,1)
+S ^VFD(21695.5,DA(1),2,"B",$E(X,1,30),DA)=""
+"^DD",21695.5,21695.52,.01,1,1,2)
+K ^VFD(21695.5,DA(1),2,"B",$E(X,1,30),DA)
+"^DD",21695.5,21695.52,.01,1,2,0)
+21695.5^AB
+"^DD",21695.5,21695.52,.01,1,2,1)
+S ^VFD(21695.5,"AB",$E(X,1,30),DA(1),DA)=""
+"^DD",21695.5,21695.52,.01,1,2,2)
+K ^VFD(21695.5,"AB",$E(X,1,30),DA(1),DA)
+"^DD",21695.5,21695.52,.01,1,2,"DT")
+3120928
+"^DD",21695.5,21695.52,.01,1,3,0)
+21695.5^AC^MUMPS
+"^DD",21695.5,21695.52,.01,1,3,1)
+N Z S Z="" F  S Z=$O(^VFD(21695.5,DA(1),1,"B",Z)) Q:Z=""  S ^VFD(21695.5,"C",X,Z,DA(1),DA)=""
+"^DD",21695.5,21695.52,.01,1,3,2)
+K ^VFD(21695.5,"C",X)
+"^DD",21695.5,21695.52,.01,1,3,"DT")
+3131216
+"^DD",21695.5,21695.52,.01,3)
+Enter an OR/EE Notification.
+"^DD",21695.5,21695.52,.01,12)
+OR NOTIFICATIONS can only be assigned to one control type.
+"^DD",21695.5,21695.52,.01,12.1)
+S DIC("S")="I '$D(^VFD(21695.5,""AB"",Y))"
+"^DD",21695.5,21695.52,.01,21,0)
+^.001^1^1^3131212^^^^
+"^DD",21695.5,21695.52,.01,21,1,0)
+This is an OR/EE NOTIFICATION that is associated with this type of TAR notification.
+"^DD",21695.5,21695.52,.01,"DT")
+3131216
+"^DD",21695.5,21695.54,0)
+LAB TEST SUB-FIELD^^.01^1
+"^DD",21695.5,21695.54,0,"DT")
+3120911
+"^DD",21695.5,21695.54,0,"IX","B",21695.54,.01)
+
+"^DD",21695.5,21695.54,0,"NM","LAB TEST")
+
+"^DD",21695.5,21695.54,0,"UP")
+21695.5
+"^DD",21695.5,21695.54,.01,0)
+LAB TEST^MP60'^LAB(60,^0;1^Q
+"^DD",21695.5,21695.54,.01,1,0)
+^.1
+"^DD",21695.5,21695.54,.01,1,1,0)
+21695.54^B
+"^DD",21695.5,21695.54,.01,1,1,1)
+S ^VFD(21695.5,DA(1),4,"B",$E(X,1,30),DA)=""
+"^DD",21695.5,21695.54,.01,1,1,2)
+K ^VFD(21695.5,DA(1),4,"B",$E(X,1,30),DA)
+"^DD",21695.5,21695.54,.01,1,2,0)
+21695.5^D
+"^DD",21695.5,21695.54,.01,1,2,1)
+S ^VFD(21695.5,"D",$E(X,1,30),DA(1),DA)=""
+"^DD",21695.5,21695.54,.01,1,2,2)
+K ^VFD(21695.5,"D",$E(X,1,30),DA(1),DA)
+"^DD",21695.5,21695.54,.01,1,2,"%D",0)
+^^1^1^3120911^
+"^DD",21695.5,21695.54,.01,1,2,"%D",1,0)
+Cross-references the whole file by LAB TEST.
+"^DD",21695.5,21695.54,.01,1,2,"DT")
+3120911
+"^DD",21695.5,21695.54,.01,3)
+Enter a lab test to be tracked.
+"^DD",21695.5,21695.54,.01,21,0)
+^.001^2^2^3120919^^
+"^DD",21695.5,21695.54,.01,21,1,0)
+This is a LABORATORY TEST that is associated with this type of TAR 
+"^DD",21695.5,21695.54,.01,21,2,0)
+notification.
+"^DD",21695.5,21695.54,.01,"DT")
+3120917
+"^DD",21695.5,21695.55,0)
+REMINDER DEFINITION SUB-FIELD^^.01^1
+"^DD",21695.5,21695.55,0,"DT")
+3120919
+"^DD",21695.5,21695.55,0,"IX","B",21695.55,.01)
+
+"^DD",21695.5,21695.55,0,"NM","REMINDER DEFINITION")
+
+"^DD",21695.5,21695.55,0,"UP")
+21695.5
+"^DD",21695.5,21695.55,.01,0)
+REMINDER DEFINITION^MP811.9'^PXD(811.9,^0;1^Q
+"^DD",21695.5,21695.55,.01,1,0)
+^.1
+"^DD",21695.5,21695.55,.01,1,1,0)
+21695.55^B
+"^DD",21695.5,21695.55,.01,1,1,1)
+S ^VFD(21695.5,DA(1),5,"B",$E(X,1,30),DA)=""
+"^DD",21695.5,21695.55,.01,1,1,2)
+K ^VFD(21695.5,DA(1),5,"B",$E(X,1,30),DA)
+"^DD",21695.5,21695.55,.01,1,2,0)
+21695.5^CR
+"^DD",21695.5,21695.55,.01,1,2,1)
+S ^VFD(21695.5,"CR",$E(X,1,30),DA(1),DA)=""
+"^DD",21695.5,21695.55,.01,1,2,2)
+K ^VFD(21695.5,"CR",$E(X,1,30),DA(1),DA)
+"^DD",21695.5,21695.55,.01,1,2,"DT")
+3120919
+"^DD",21695.5,21695.55,.01,3)
+Enter a reminder definition to be evaluated.
+"^DD",21695.5,21695.55,.01,21,0)
+^.001^2^2^3120919^^
+"^DD",21695.5,21695.55,.01,21,1,0)
+This is a REMINDER DEFINITION that is associated with this type of TAR.  
+"^DD",21695.5,21695.55,.01,21,2,0)
+If this reminder is true, a notification will be sent.
+"^DD",21695.5,21695.55,.01,"DT")
+3120919
+"^DIC",21695.5,21695.5,0)
+VFD TAR CONTROL^21695.5
+"^DIC",21695.5,21695.5,0,"GL")
+^VFD(21695.5,
+"^DIC",21695.5,21695.5,"%",0)
+^1.005^^0
+"^DIC",21695.5,21695.5,"%D",0)
+^1.001^2^2^3131212^^^^
+"^DIC",21695.5,21695.5,"%D",1,0)
+This file is used to screen what constitutes a trackable abnormal test
+"^DIC",21695.5,21695.5,"%D",2,0)
+result.
+"^DIC",21695.5,"B","VFD TAR CONTROL",21695.5)
+
+**END**
+**END**

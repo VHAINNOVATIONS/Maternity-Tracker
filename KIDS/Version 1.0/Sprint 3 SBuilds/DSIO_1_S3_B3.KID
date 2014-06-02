@@ -1,0 +1,1098 @@
+KIDS Distribution saved on Dec 16, 2013@08:53:43
+DSI0*1.3*3 WV PATIENT TRIGGER
+**KIDS**:DSI0*1.3*3^
+
+**INSTALL NAME**
+DSI0*1.3*3
+"BLD",9490,0)
+DSI0*1.3*3^DSID THERADOC INTERFACE^0^3131216^n
+"BLD",9490,1,0)
+^9.61A^1^1^3131204^^^^
+"BLD",9490,1,1,0)
+DSID SPRINT RELEASE
+"BLD",9490,4,0)
+^9.64PA^790^1
+"BLD",9490,4,790,0)
+790
+"BLD",9490,4,790,222)
+y^y^f^^^^n
+"BLD",9490,4,"B",790,790)
+
+"BLD",9490,6.3)
+8
+"BLD",9490,"INIT")
+
+"BLD",9490,"KRN",0)
+^9.67PA^779.2^20
+"BLD",9490,"KRN",.4,0)
+.4
+"BLD",9490,"KRN",.401,0)
+.401
+"BLD",9490,"KRN",.402,0)
+.402
+"BLD",9490,"KRN",.403,0)
+.403
+"BLD",9490,"KRN",.5,0)
+.5
+"BLD",9490,"KRN",.84,0)
+.84
+"BLD",9490,"KRN",3.6,0)
+3.6
+"BLD",9490,"KRN",3.8,0)
+3.8
+"BLD",9490,"KRN",9.2,0)
+9.2
+"BLD",9490,"KRN",9.8,0)
+9.8
+"BLD",9490,"KRN",9.8,"NM",0)
+^9.68A^1^1
+"BLD",9490,"KRN",9.8,"NM",1,0)
+DSIO5^^0^B18146407
+"BLD",9490,"KRN",9.8,"NM","B","DSIO5",1)
+
+"BLD",9490,"KRN",19,0)
+19
+"BLD",9490,"KRN",19,"NM",0)
+^9.68A^^0
+"BLD",9490,"KRN",19.1,0)
+19.1
+"BLD",9490,"KRN",101,0)
+101
+"BLD",9490,"KRN",101,"NM",0)
+^9.68A^^0
+"BLD",9490,"KRN",409.61,0)
+409.61
+"BLD",9490,"KRN",771,0)
+771
+"BLD",9490,"KRN",779.2,0)
+779.2
+"BLD",9490,"KRN",870,0)
+870
+"BLD",9490,"KRN",8989.51,0)
+8989.51
+"BLD",9490,"KRN",8989.52,0)
+8989.52
+"BLD",9490,"KRN",8994,0)
+8994
+"BLD",9490,"KRN","B",.4,.4)
+
+"BLD",9490,"KRN","B",.401,.401)
+
+"BLD",9490,"KRN","B",.402,.402)
+
+"BLD",9490,"KRN","B",.403,.403)
+
+"BLD",9490,"KRN","B",.5,.5)
+
+"BLD",9490,"KRN","B",.84,.84)
+
+"BLD",9490,"KRN","B",3.6,3.6)
+
+"BLD",9490,"KRN","B",3.8,3.8)
+
+"BLD",9490,"KRN","B",9.2,9.2)
+
+"BLD",9490,"KRN","B",9.8,9.8)
+
+"BLD",9490,"KRN","B",19,19)
+
+"BLD",9490,"KRN","B",19.1,19.1)
+
+"BLD",9490,"KRN","B",101,101)
+
+"BLD",9490,"KRN","B",409.61,409.61)
+
+"BLD",9490,"KRN","B",771,771)
+
+"BLD",9490,"KRN","B",779.2,779.2)
+
+"BLD",9490,"KRN","B",870,870)
+
+"BLD",9490,"KRN","B",8989.51,8989.51)
+
+"BLD",9490,"KRN","B",8989.52,8989.52)
+
+"BLD",9490,"KRN","B",8994,8994)
+
+"BLD",9490,"QUES",0)
+^9.62^^
+"BLD",9490,"REQB",0)
+^9.611^^
+"FIA",790)
+WV PATIENT
+"FIA",790,0)
+^WV(790,
+"FIA",790,0,0)
+790IP
+"FIA",790,0,1)
+y^y^f^^^^n
+"FIA",790,0,10)
+
+"FIA",790,0,11)
+
+"FIA",790,0,"RLRO")
+
+"FIA",790,0,"VR")
+1.3^DSI0
+"FIA",790,790)
+0
+"FIA",790,790.06)
+0
+"FIA",790,790.09)
+0
+"FIA",790,790.12)
+0
+"MBREQ")
+0
+"PKG",549,-1)
+1^1
+"PKG",549,0)
+DSID THERADOC INTERFACE^DSID^VISTA TO THERADOC INTERFACE
+"PKG",549,22,0)
+^9.49I^1^1
+"PKG",549,22,1,0)
+1.3
+"PKG",549,22,1,"PAH",1,0)
+3^3131216
+"PKG",549,22,1,"PAH",1,1,0)
+^^1^1^3131216
+"PKG",549,22,1,"PAH",1,1,1,0)
+DSID SPRINT RELEASE
+"QUES","XPF1",0)
+Y
+"QUES","XPF1","??")
+^D REP^XPDH
+"QUES","XPF1","A")
+Shall I write over your |FLAG| File
+"QUES","XPF1","B")
+YES
+"QUES","XPF1","M")
+D XPF1^XPDIQ
+"QUES","XPF2",0)
+Y
+"QUES","XPF2","??")
+^D DTA^XPDH
+"QUES","XPF2","A")
+Want my data |FLAG| yours
+"QUES","XPF2","B")
+YES
+"QUES","XPF2","M")
+D XPF2^XPDIQ
+"QUES","XPI1",0)
+YO
+"QUES","XPI1","??")
+^D INHIBIT^XPDH
+"QUES","XPI1","A")
+Want KIDS to INHIBIT LOGONs during the install
+"QUES","XPI1","B")
+NO
+"QUES","XPI1","M")
+D XPI1^XPDIQ
+"QUES","XPM1",0)
+PO^VA(200,:EM
+"QUES","XPM1","??")
+^D MG^XPDH
+"QUES","XPM1","A")
+Enter the Coordinator for Mail Group '|FLAG|'
+"QUES","XPM1","B")
+
+"QUES","XPM1","M")
+D XPM1^XPDIQ
+"QUES","XPO1",0)
+Y
+"QUES","XPO1","??")
+^D MENU^XPDH
+"QUES","XPO1","A")
+Want KIDS to Rebuild Menu Trees Upon Completion of Install
+"QUES","XPO1","B")
+NO
+"QUES","XPO1","M")
+D XPO1^XPDIQ
+"QUES","XPZ1",0)
+Y
+"QUES","XPZ1","??")
+^D OPT^XPDH
+"QUES","XPZ1","A")
+Want to DISABLE Scheduled Options, Menu Options, and Protocols
+"QUES","XPZ1","B")
+NO
+"QUES","XPZ1","M")
+D XPZ1^XPDIQ
+"QUES","XPZ2",0)
+Y
+"QUES","XPZ2","??")
+^D RTN^XPDH
+"QUES","XPZ2","A")
+Want to MOVE routines to other CPUs
+"QUES","XPZ2","B")
+NO
+"QUES","XPZ2","M")
+D XPZ2^XPDIQ
+"RTN")
+1
+"RTN","DSIO5")
+0^1^B18146407
+"RTN","DSIO5",1,0)
+DSIO5 ;DSS/TFF - DSIO TRIGGER;06/28/2013 15:19
+"RTN","DSIO5",2,0)
+ ;;1.0;DSS,INC OPEN SOURCE;;28 Jan 2013;Build 8
+"RTN","DSIO5",3,0)
+ ;Copyright 1995-2013,Document Storage Systems Inc. All Rights Reserved
+"RTN","DSIO5",4,0)
+ ;
+"RTN","DSIO5",5,0)
+ ;
+"RTN","DSIO5",6,0)
+ Q
+"RTN","DSIO5",7,0)
+ ;
+"RTN","DSIO5",8,0)
+EN(DSDFN,DSTRG,DSSOR) ;DSIO TRIGGER ENTRY POINT
+"RTN","DSIO5",9,0)
+ ;
+"RTN","DSIO5",10,0)
+ I $G(DSDFN)="",$G(DSTRG)="",$G(DSSOR)="" Q
+"RTN","DSIO5",11,0)
+ S II="DSIOMSG"
+"RTN","DSIO5",12,0)
+ S DSIOMSG(1)=DSDFN,DSIOMSG(2)=DSTRG,DSIOMSG(3)=DSSOR
+"RTN","DSIO5",13,0)
+ K ^TMP("DSIO5",DSSOR,$J,DSDFN) S ^TMP("DSIO5",DSSOR,$J,"EN",DSDFN)=DSTRG
+"RTN","DSIO5",14,0)
+ N ZTRTN,ZTDTH,ZTIO,ZTDESC,ZTSAVE
+"RTN","DSIO5",15,0)
+ S DSSOR=$P(DSSOR,"^")
+"RTN","DSIO5",16,0)
+ I $G(DSSOR)="WVP" S ZTRTN="MVPAT^DSIO5"
+"RTN","DSIO5",17,0)
+ I $G(DSSOR)="PROBLEM LIST" S ZTRTN="PROB^DSIO5"
+"RTN","DSIO5",18,0)
+ I $G(ZTRTN)="" Q
+"RTN","DSIO5",19,0)
+ S ZTDTH=$H,ZTIO="",ZTDESC="DSIO MT Trigger"
+"RTN","DSIO5",20,0)
+ ;F II="DSDFN","DSTRG","DSSOR" S ZTSAVE(II)=""
+"RTN","DSIO5",21,0)
+ S ZTSAVE("DSIOMSG(")=""
+"RTN","DSIO5",22,0)
+ D:$G(ZTRTN)'="" ^%ZTLOAD
+"RTN","DSIO5",23,0)
+ Q
+"RTN","DSIO5",24,0)
+ ;
+"RTN","DSIO5",25,0)
+MVPAT ;TRIGGER LOGIC FOR WV PATIENT CURRENTLY PREG
+"RTN","DSIO5",26,0)
+ ; TRIGGERED BY ENTRY IN ^MV FILE DD(790,.13) "CURRENTLY PREGNANT^S^1:YES;0:NO
+"RTN","DSIO5",27,0)
+ ;N DSDFN,DSTRG,DSSOR
+"RTN","DSIO5",28,0)
+ K ^TMP("DSIO5",$J)
+"RTN","DSIO5",29,0)
+ M ^TMP("DSIO5",$J)=DSIOMSG
+"RTN","DSIO5",30,0)
+ S DSDFN=$G(^TMP("DSIO5",$J,1)),DSTRG=$G(^TMP("DSIO5",$J,2)),DSSOR=$G(^TMP("DSIO5",$J,3))
+"RTN","DSIO5",31,0)
+ ;S ^TMP("DSIO5",$J,0)=DSDFN_"^"_DSTRG
+"RTN","DSIO5",32,0)
+ I $G(DSTRG)=1 D
+"RTN","DSIO5",33,0)
+ . S DSRES="MV PREGNANT",DSCOM(0)="CURRENTY PREGNANT MV PATIENT",DSSOR="MV PATIENT"
+"RTN","DSIO5",34,0)
+ . S DSACT=2 ;FLAGGED MT PATIENT ACTION (2)
+"RTN","DSIO5",35,0)
+ . D REC^DSIO1(.DSRET,DSDFN,DSACT,DSRES,.DSCOM,DSSOR) ;MT FLAG PATIENT
+"RTN","DSIO5",36,0)
+ . S ^TMP("DSIO5",$J,"RET","MVPAT")=DSRET
+"RTN","DSIO5",37,0)
+ Q
+"RTN","DSIO5",38,0)
+ ;
+"RTN","DSIO5",39,0)
+PROB ;TRIGGER LOGIC FOR CPRS PROBLEM LIST PREGNANCY ICD9
+"RTN","DSIO5",40,0)
+ ; TRIGGERED BY ENTRY IN ^AUPNPROB DD(9000011,.01) "DIAGNOSIS"
+"RTN","DSIO5",41,0)
+ N DSDFN,DSTRG,DSSOR
+"RTN","DSIO5",42,0)
+ K ^TMP("DSIO5",$J)
+"RTN","DSIO5",43,0)
+ M ^TMP("DSIO5",$J)=DSIOMSG S DSJ=$J
+"RTN","DSIO5",44,0)
+ S DSDFN=$G(^TMP("DSIO5",$J,1)),DSTRG=$G(^TMP("DSIO5",$J,2)),DSSOR=$G(^TMP("DSIO5",$J,3))
+"RTN","DSIO5",45,0)
+ ;S ^TMP("DSIO5",$J,0)=DSDFN_"^"_DSTRG
+"RTN","DSIO5",46,0)
+ I DSTRG D
+"RTN","DSIO5",47,0)
+ . S ICD9=$$GET1^DIQ(80,DSTRG_",",.01,"I") Q:'$G(ICD9)  ;CHECK FOR VALID ICD9 CODE
+"RTN","DSIO5",48,0)
+ . ;S ICDI=$$GET1^DIQ(19641.3,DIAG_",",.01,"I") Q:'$G(ICDI)  ;CHECK FOR VALID ICD9 CODE
+"RTN","DSIO5",49,0)
+ . ;S ICDI=$$FIND1^DIC(19641.3,,"X",DIAG)
+"RTN","DSIO5",50,0)
+ . S ICDI=$O(^DSIO(19641.3,"B",DIAG,"")) I '$G(ICDI) Q
+"RTN","DSIO5",51,0)
+ . S DSRES="PROBLEM LIST PREGNANT",DSCOM(1)="PREGNANT PROBLEM DIAG SET IN CPRS",DSSOR="PROBLEM LIST"
+"RTN","DSIO5",52,0)
+ . S DSACT=2 ;FLAGGED MT PATIENT ACTION (2)
+"RTN","DSIO5",53,0)
+ . D REC^DSIO1(.DSRET,DSDFN,DSACT,DSRES,.DSCOM,DSSOR) ;MT FLAG PATIENT
+"RTN","DSIO5",54,0)
+ . S ^TMP("DSIO5",$J,"RET","PROB")=DSRET
+"RTN","DSIO5",55,0)
+ Q
+"RTN","DSIO5",56,0)
+ ;
+"RTN","DSIO5",57,0)
+REC(RET,DFN,ACT,RES,COM,SOR) ; RPC: DSIO CREATE TRACKING LOG
+"RTN","DSIO5",58,0)
+ ;
+"RTN","DSIO5",59,0)
+ ; CREATE A TRACKING LOG AND POSSIBLY CHANGE
+"RTN","DSIO5",60,0)
+ ; PATIENT'S TRACKING STATUS
+"RTN","DSIO5",61,0)
+ ;
+"RTN","DSIO5",62,0)
+ ; MCC DASHBOARD PURPOSE -  TO CHANGE THE TRACKING STATUS OF A PATIENT
+"RTN","DSIO5",63,0)
+ ;
+"RTN","DSIO5",64,0)
+ ; INPUT PARAMETER:
+"RTN","DSIO5",65,0)
+ ;  DFN : PATIENT NUMBER
+"RTN","DSIO5",66,0)
+ ;  ACT : ACTION (0:STOP,1:START,2:FLAG,3:REJECT,4:ACCEPT)
+"RTN","DSIO5",67,0)
+ ;  RES : REASON  - #^#^#
+"RTN","DSIO5",68,0)
+ ;  COM : COMMENT - ARRAY
+"RTN","DSIO5",69,0)
+ ;  SOR : SOURCE  - DEFAULT IS DASHBOARD
+"RTN","DSIO5",70,0)
+ ;
+"RTN","DSIO5",71,0)
+ ; RETURN:
+"RTN","DSIO5",72,0)
+ ; -1/1^COMMENT
+"RTN","DSIO5",73,0)
+ ;
+"RTN","DSIO5",74,0)
+ N DIC,DA,X,Y,IPT,IEN,CT,ACT1,DB,I S (ACT,ACT1)=$$STAT(ACT)
+"RTN","DSIO5",75,0)
+ S RES=$G(RES),COM=$G(COM),RET="-1^M Error - Check the trap."
+"RTN","DSIO5",76,0)
+ I ACT="" S RET="-1^EVENT TYPE could not be identified." Q
+"RTN","DSIO5",77,0)
+ S DIC="^DSIO(19641,",DIC(0)="XL",X="`"_DFN D ^DIC
+"RTN","DSIO5",78,0)
+ I +Y<1 S RET="-1^Patient entry not found." Q
+"RTN","DSIO5",79,0)
+ S CT=$$GET1^DIQ(19641,DFN_",",.02,"I")
+"RTN","DSIO5",80,0)
+ ;
+"RTN","DSIO5",81,0)
+ I ACT<2&(CT=ACT) S RET="-1^Tracking status already "_$$STAT(ACT,1)_"." Q
+"RTN","DSIO5",82,0)
+ D
+"RTN","DSIO5",83,0)
+ .I ACT>2 S ACT=$S(ACT=3:0,ACT=4:1,1:"") Q:ACT=""
+"RTN","DSIO5",84,0)
+ .I CT'=""&(ACT=CT!(ACT=2&(CT'=0))) D TRAK^DSIO2(DFN,ACT1) Q
+"RTN","DSIO5",85,0)
+ .S IPT(19641,DFN_",",.02)=ACT D FILE^DIE("I","IPT") K IPT I ACT1>2 D
+"RTN","DSIO5",86,0)
+ ..S IEN=+$G(^TMP($J,"DSIO TRAK")) K ^TMP($J,"TRAK")
+"RTN","DSIO5",87,0)
+ ..S IPT(19641.21,IEN_",",.03)=ACT1 D FILE^DIE("I","IPT") K IPT
+"RTN","DSIO5",88,0)
+ ;
+"RTN","DSIO5",89,0)
+ I '$D(IEN) S IEN=+$G(^TMP($J,"DSIO TRAK")) K ^TMP($J,"TRAK")
+"RTN","DSIO5",90,0)
+ I IEN<1 S RET="-1^Tracking log not created." Q
+"RTN","DSIO5",91,0)
+ ;
+"RTN","DSIO5",92,0)
+ ;"DASHBOARD" AND "FILEMAN" ARE SYSTEM ENTRIES
+"RTN","DSIO5",93,0)
+ S SOR=$$UP^XLFSTR($G(SOR,"DASHBOARD")) S:SOR="" SOR="DASHBOARD"
+"RTN","DSIO5",94,0)
+ S DB(1)=$$FIND1^DIC(19641.22,,"O",SOR) I DB(1)<1 K IPT,DB D
+"RTN","DSIO5",95,0)
+ .S IPT(19641.22,"?+1,",.01)=SOR D UPDATE^DIE(,"IPT","DB") K IPT
+"RTN","DSIO5",96,0)
+ .S IPT(19641.22,DB(1)_",",.02)=1 D FILE^DIE("I","IPT") K IPT
+"RTN","DSIO5",97,0)
+ I DB(1)<1 S RET="-1^Unable to define source." Q
+"RTN","DSIO5",98,0)
+ S IPT(19641.21,IEN_",",.05)=SOR D FILE^DIE("I","IPT","ERR") K IPT
+"RTN","DSIO5",99,0)
+ I $D(ERR) S RET="1^Unable to set the source as """_SOR_"""."
+"RTN","DSIO5",100,0)
+ ;
+"RTN","DSIO5",101,0)
+ F I=1:1:$L(RES,U) D
+"RTN","DSIO5",102,0)
+ .S IPT(19641.23,"?+1,",.01)=$P(RES,U,I) D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO5",103,0)
+ .S IPT(19641.211,"?+1,"_IEN_",",.01)=$P(RES,U,I) D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO5",104,0)
+ K ^TMP($J,"DSIO REC") S I="" F  S I=$O(COM(I)) Q:I=""  D
+"RTN","DSIO5",105,0)
+ .S ^TMP($J,"DSIO REC",I+1)=COM(I)
+"RTN","DSIO5",106,0)
+ D WP^DIE(19641.21,IEN_",",2,"K","^TMP($J,""DSIO REC"")")
+"RTN","DSIO5",107,0)
+ K ^TMP($J,"DSIO REC")
+"RTN","DSIO5",108,0)
+ S RET="1^SUCCESS"
+"RTN","DSIO5",109,0)
+ Q
+"RTN","DSIO5",110,0)
+ ;
+"RTN","DSIO5",111,0)
+ ;
+"SEC","^DIC",790,790,0,"AUDIT")
+@
+"SEC","^DIC",790,790,0,"DD")
+@
+"SEC","^DIC",790,790,0,"DEL")
+
+"SEC","^DIC",790,790,0,"LAYGO")
+
+"SEC","^DIC",790,790,0,"RD")
+
+"SEC","^DIC",790,790,0,"WR")
+
+"VER")
+8.0^22.0
+"^DD",790,790,0)
+FIELD^^3^26
+"^DD",790,790,0,"DDA")
+N
+"^DD",790,790,0,"DT")
+3131205
+"^DD",790,790,0,"ID",.1)
+S %I=Y,Y=$S('$D(^(0)):"",$D(^WV(790.01,+$P(^(0),U,10),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(790.01,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
+"^DD",790,790,0,"IX","AEDC",790,.13)
+
+"^DD",790,790,0,"IX","AEDC1",790,.14)
+
+"^DD",790,790,0,"IX","APDLOG",790,.17)
+
+"^DD",790,790,0,"IX","APRG",790,.13)
+
+"^DD",790,790,0,"IX","APRLOG",790,.16)
+
+"^DD",790,790,0,"IX","B",790,.01)
+
+"^DD",790,790,0,"IX","C",790,.1)
+
+"^DD",790,790,0,"NM","WV PATIENT")
+
+"^DD",790,790,0,"PT",790.04,.02)
+
+"^DD",790,790,0,"PT",790.05,.02)
+
+"^DD",790,790,0,"PT",790.1,.02)
+
+"^DD",790,790,0,"PT",790.3,1)
+
+"^DD",790,790,0,"PT",790.4,.01)
+
+"^DD",790,790,0,"PT",21670,.01)
+
+"^DD",790,790,0,"VRPK")
+WOMEN'S HEALTH
+"^DD",790,790,.01,0)
+NAME^RP2'X^DPT(^0;1^S:$D(X) DINUM=X I $P(^DPT(DINUM,0),"^",2)'="F" K X D EN^DDIOL("Patient is not female.")
+"^DD",790,790,.01,1,0)
+^.1^^-1
+"^DD",790,790,.01,1,1,0)
+790^B
+"^DD",790,790,.01,1,1,1)
+S ^WV(790,"B",$E(X,1,30),DA)=""
+"^DD",790,790,.01,1,1,2)
+K ^WV(790,"B",$E(X,1,30),DA)
+"^DD",790,790,.01,3)
+
+"^DD",790,790,.01,21,0)
+^^2^2^2980918^
+"^DD",790,790,.01,21,1,0)
+This field contains the patient's name.  It is a pointer to the Patient
+"^DD",790,790,.01,21,2,0)
+(#2) file.
+"^DD",790,790,.01,"DT")
+2980508
+"^DD",790,790,.02,0)
+MAILING ADDRESS-STREET^CJ25^^ ; ^X ^DD(790,.02,9.2) S X=$P(Y(790,.02,101),U,1) S D0=Y(790,.02,80)
+"^DD",790,790,.02,9)
+^
+"^DD",790,790,.02,9.01)
+2^.111;790^.01
+"^DD",790,790,.02,9.1)
+.01:.111
+"^DD",790,790,.02,9.2)
+S Y(790,.02,80)=$S($D(D0):D0,1:""),Y(790,.02,1)=$S($D(^WV(790,D0,0)):^(0),1:""),D0=$P(Y(790,.02,1),U,1) S:'$D(^DPT(+D0,0)) D0=-1 S Y(790,.02,101)=$S($D(^DPT(D0,.11)):^(.11),1:"")
+"^DD",790,790,.02,21,0)
+^^2^2^2980629^
+"^DD",790,790,.02,21,1,0)
+The street mailing address of this patient.  This is computed from data in
+"^DD",790,790,.02,21,2,0)
+the Patient file.
+"^DD",790,790,.02,"DT")
+2980513
+"^DD",790,790,.03,0)
+MAILING ADDRESS-CITY^CJ20^^ ; ^X ^DD(790,.03,9.2) S X=$P(Y(790,.03,101),U,4) S D0=Y(790,.03,80)
+"^DD",790,790,.03,9)
+^
+"^DD",790,790,.03,9.01)
+2^.114;790^.01
+"^DD",790,790,.03,9.1)
+.01:.114
+"^DD",790,790,.03,9.2)
+S Y(790,.03,80)=$S($D(D0):D0,1:""),Y(790,.03,1)=$S($D(^WV(790,D0,0)):^(0),1:""),D0=$P(Y(790,.03,1),U,1) S:'$D(^DPT(+D0,0)) D0=-1 S Y(790,.03,101)=$S($D(^DPT(D0,.11)):^(.11),1:"")
+"^DD",790,790,.03,21,0)
+^^2^2^2980629^
+"^DD",790,790,.03,21,1,0)
+The city mailing address for this patient.  This information in this field
+"^DD",790,790,.03,21,2,0)
+is obtained from the Patient file.
+"^DD",790,790,.03,"DT")
+2980513
+"^DD",790,790,.04,0)
+MAILING ADDRESS-STATE^CJ2^^ ; ^X ^DD(790,.04,9.3) S X=$P(Y(790,.04,201),U,2) S D0=Y(790,.04,80)
+"^DD",790,790,.04,9)
+^
+"^DD",790,790,.04,9.01)
+5^1;2^.115;790^.01
+"^DD",790,790,.04,9.1)
+.01:.115:1
+"^DD",790,790,.04,9.2)
+S Y(790,.04,80)=$S($D(D0):D0,1:""),Y(790,.04,1)=$S($D(^WV(790,D0,0)):^(0),1:""),D0=$P(Y(790,.04,1),U,1) S:'$D(^DPT(+D0,0)) D0=-1 S Y(790,.04,180)=$S($D(D0):D0,1:"")
+"^DD",790,790,.04,9.3)
+X ^DD(790,.04,9.2) S Y(790,.04,101)=$S($D(^DPT(D0,.11)):^(.11),1:""),D0=$P(Y(790,.04,101),U,5) S:'$D(^DIC(5,+D0,0)) D0=-1 S Y(790,.04,201)=$S($D(^DIC(5,D0,0)):^(0),1:"")
+"^DD",790,790,.04,21,0)
+^^2^2^2980918^
+"^DD",790,790,.04,21,1,0)
+The State portion of this patient's mailing address, obtained from the
+"^DD",790,790,.04,21,2,0)
+Patient file.
+"^DD",790,790,.04,"DT")
+2980513
+"^DD",790,790,.05,0)
+MAILING ADDRESS-ZIP^CJ10^^ ; ^X ^DD(790,.05,9.2) S X=$P(Y(790,.05,101),U,6) S D0=Y(790,.05,80)
+"^DD",790,790,.05,9)
+^
+"^DD",790,790,.05,9.01)
+2^.116;790^.01
+"^DD",790,790,.05,9.1)
+.01:.116
+"^DD",790,790,.05,9.2)
+S Y(790,.05,80)=$S($D(D0):D0,1:""),Y(790,.05,1)=$S($D(^WV(790,D0,0)):^(0),1:""),D0=$P(Y(790,.05,1),U,1) S:'$D(^DPT(+D0,0)) D0=-1 S Y(790,.05,101)=$S($D(^DPT(D0,.11)):^(.11),1:"")
+"^DD",790,790,.05,21,0)
+^^2^2^2980918^
+"^DD",790,790,.05,21,1,0)
+The zip code portion of this patient's mailing address is obtained from
+"^DD",790,790,.05,21,2,0)
+the Patient file.
+"^DD",790,790,.05,"DT")
+2980513
+"^DD",790,790,.06,0)
+SSN#^CJ12^^ ; ^X ^DD(790,.06,9.2) S X=$P(Y(790,.06,101),U,9) S D0=Y(790,.06,80)
+"^DD",790,790,.06,9)
+^
+"^DD",790,790,.06,9.01)
+2^.09;790^.01
+"^DD",790,790,.06,9.1)
+.01:SSN
+"^DD",790,790,.06,9.2)
+S Y(790,.06,80)=$S($D(D0):D0,1:""),Y(790,.06,1)=$S($D(^WV(790,D0,0)):^(0),1:""),D0=$P(Y(790,.06,1),U,1) S:'$D(^DPT(+D0,0)) D0=-1 S Y(790,.06,101)=$S($D(^DPT(D0,0)):^(0),1:"")
+"^DD",790,790,.06,21,0)
+^^2^2^2980918^
+"^DD",790,790,.06,21,1,0)
+This computed field gathers the patient's social security number from the
+"^DD",790,790,.06,21,2,0)
+Patient file.
+"^DD",790,790,.06,"DT")
+2980518
+"^DD",790,790,.1,0)
+CASE MANAGER^RP790.01'^WV(790.01,^0;10^Q
+"^DD",790,790,.1,1,0)
+^.1
+"^DD",790,790,.1,1,1,0)
+790^C
+"^DD",790,790,.1,1,1,1)
+S ^WV(790,"C",$E(X,1,30),DA)=""
+"^DD",790,790,.1,1,1,2)
+K ^WV(790,"C",$E(X,1,30),DA)
+"^DD",790,790,.1,1,1,"DT")
+2940917
+"^DD",790,790,.1,3)
+Select the person who is currently managing this patient's breast and cervical treatment needs, letters, follow-up, etc.
+"^DD",790,790,.1,21,0)
+^^2^2^2980918^^
+"^DD",790,790,.1,21,1,0)
+This field contains the name of the person who is currently managing the
+"^DD",790,790,.1,21,2,0)
+women's health care needs of this patient.
+"^DD",790,790,.1,"DT")
+2980507
+"^DD",790,790,.11,0)
+CX TX NEED^P790.5'^WV(790.5,^0;11^Q
+"^DD",790,790,.11,3)
+Select the current or next cervical procedure needed for this patient.
+"^DD",790,790,.11,21,0)
+^^2^2^2980629^
+"^DD",790,790,.11,21,1,0)
+This field contains the name of the current or next cervical procedure or
+"^DD",790,790,.11,21,2,0)
+treatment need scheduled for this patient.
+"^DD",790,790,.11,"DT")
+2980507
+"^DD",790,790,.12,0)
+CX TX NEED DUE DATE^D^^0;12^S %DT="E" D ^%DT S X=Y K:Y<1 X
+"^DD",790,790,.12,3)
+Enter the date by which this cervical treatment need should be completed.
+"^DD",790,790,.12,21,0)
+^^2^2^2980918^^
+"^DD",790,790,.12,21,1,0)
+This field contains the date when this cervical procedure or treatment
+"^DD",790,790,.12,21,2,0)
+need should be completed.
+"^DD",790,790,.12,"DT")
+2950317
+"^DD",790,790,.13,0)
+CURRENTLY PREGNANT^S^1:YES;0:NO;^0;13^Q
+"^DD",790,790,.13,1,0)
+^.1
+"^DD",790,790,.13,1,1,0)
+790^AEDC^MUMPS
+"^DD",790,790,.13,1,1,1)
+S WVPREG=X,WVEDC=$P(^WV(790,DA,0),U,14) D STOREDC^WVUTL3
+"^DD",790,790,.13,1,1,2)
+S WVPREG="",WVEDC=0 D STOREDC^WVUTL3
+"^DD",790,790,.13,1,1,"DT")
+2941024
+"^DD",790,790,.13,1,2,0)
+790^APRG^MUMPS
+"^DD",790,790,.13,1,2,1)
+S MTPRG=X D:X=1 EN^DSIO5(DA,MTPRG,"WVP^CUR^SET")
+"^DD",790,790,.13,1,2,2)
+S MTPRG=0
+"^DD",790,790,.13,1,2,"%D",0)
+^.101^1^1^3131212^^^^
+"^DD",790,790,.13,1,2,"%D",1,0)
+Maternity Track trigger for Currently Pregnant
+"^DD",790,790,.13,1,2,"DT")
+3131212
+"^DD",790,790,.13,3)
+Enter 'Yes' if this patient is currently pregnant, 'No' if not, and leave blank if unknown.
+"^DD",790,790,.13,4)
+
+"^DD",790,790,.13,21,0)
+^.001^4^4^3131205^^^^
+"^DD",790,790,.13,21,1,0)
+This field contains information on the pregnancy status of the patient.
+"^DD",790,790,.13,21,2,0)
+The status is a set of codes: 1 = Yes if this patient is currently
+"^DD",790,790,.13,21,3,0)
+pregnant, 0 = No, if not.  When the pregnanacy status is unknown, the
+"^DD",790,790,.13,21,4,0)
+field is blank.
+"^DD",790,790,.13,"DT")
+3131212
+"^DD",790,790,.14,0)
+EDC^D^^0;14^S %DT="E" D ^%DT S X=Y K:Y<1 X
+"^DD",790,790,.14,1,0)
+^.1^^-1
+"^DD",790,790,.14,1,1,0)
+790^AEDC1^MUMPS
+"^DD",790,790,.14,1,1,1)
+S WVEDC=X,WVPREG=$P(^WV(790,DA,0),U,13) D STOREDC^WVUTL3
+"^DD",790,790,.14,1,1,2)
+S WVEDC="",WVPREG=$P(^WV(790,DA,0),U,13) D STOREDC^WVUTL3
+"^DD",790,790,.14,1,1,"DT")
+2941024
+"^DD",790,790,.14,3)
+Enter the estimated date of confinement (delivery date).
+"^DD",790,790,.14,21,0)
+^^2^2^2980918^^^
+"^DD",790,790,.14,21,1,0)
+This field stores the patient's delivery date or estimated date of
+"^DD",790,790,.14,21,2,0)
+confinement (EDC).
+"^DD",790,790,.14,"DT")
+3131213
+"^DD",790,790,.15,0)
+DES DAUGHTER^S^1:YES;0:NO;9:UNKNOWN;^0;15^Q
+"^DD",790,790,.15,3)
+Enter 'Yes' if this patient's mother took DES when she was pregnant with this patient.
+"^DD",790,790,.15,21,0)
+^^2^2^2990524^^
+"^DD",790,790,.15,21,1,0)
+This field indicates if this patient's mother took diethylstilbestrol
+"^DD",790,790,.15,21,2,0)
+(DES) when she was pregnant with this patient.
+"^DD",790,790,.15,"DT")
+2990524
+"^DD",790,790,.16,0)
+PAP REGIMEN^P790.03'^WV(790.03,^0;16^Q
+"^DD",790,790,.16,1,0)
+^.1
+"^DD",790,790,.16,1,1,0)
+790^APRLOG^MUMPS
+"^DD",790,790,.16,1,1,1)
+S WVLPRG=X,WVLDAT=$P(^WV(790,DA,0),U,17) D STORPAP^WVUTL3
+"^DD",790,790,.16,1,1,2)
+;
+"^DD",790,790,.16,1,1,"DT")
+2941021
+"^DD",790,790,.16,3)
+
+"^DD",790,790,.16,21,0)
+^^1^1^2980630^^^
+"^DD",790,790,.16,21,1,0)
+This field stores the current PAP regimen for the patient.
+"^DD",790,790,.16,"DT")
+2980507
+"^DD",790,790,.17,0)
+PAP REGIMEN START DATE^D^^0;17^S %DT="E" D ^%DT S X=Y K:Y<1 X
+"^DD",790,790,.17,1,0)
+^.1
+"^DD",790,790,.17,1,1,0)
+790^APDLOG^MUMPS
+"^DD",790,790,.17,1,1,1)
+S WVLDAT=X,WVLPRG=$P(^WV(790,DA,0),U,16) D STORPAP^WVUTL3
+"^DD",790,790,.17,1,1,2)
+;
+"^DD",790,790,.17,1,1,"DT")
+2941021
+"^DD",790,790,.17,3)
+Enter the date on which the patient began or will begin the current PAP regimen.
+"^DD",790,790,.17,21,0)
+^^2^2^2980918^
+"^DD",790,790,.17,21,1,0)
+This field stores a date on which the patient began or will begin her
+"^DD",790,790,.17,21,2,0)
+current PAP regimen.
+"^DD",790,790,.17,"DT")
+2941021
+"^DD",790,790,.18,0)
+BR TX NEED^P790.51'^WV(790.51,^0;18^Q
+"^DD",790,790,.18,3)
+Select the current or next breast study procedure needed for this patient.
+"^DD",790,790,.18,21,0)
+^^2^2^2980630^
+"^DD",790,790,.18,21,1,0)
+This field contains the name of the the current or next breast study
+"^DD",790,790,.18,21,2,0)
+procedure needed for this patient.
+"^DD",790,790,.18,"DT")
+2980507
+"^DD",790,790,.19,0)
+BR TX NEED DUE DATE^D^^0;19^S %DT="E" D ^%DT S X=Y K:Y<1 X
+"^DD",790,790,.19,3)
+Enter the date by which this breast Tx procedure should be completed.
+"^DD",790,790,.19,21,0)
+^^2^2^2980924^
+"^DD",790,790,.19,21,1,0)
+This field contains the date by which the breast treatment procedure
+"^DD",790,790,.19,21,2,0)
+should be completed.
+"^DD",790,790,.19,"DT")
+2950317
+"^DD",790,790,.21,0)
+DATE OF FIRST ENCOUNTER^DX^^0;21^S %DT="EX",%DT(0)=-DT D ^%DT S X=Y K:Y<1 X K %DT(0)
+"^DD",790,790,.21,3)
+Enter the date on which this patient was enrolled in the Women's Health package.
+"^DD",790,790,.21,21,0)
+^^4^4^2980828^^
+"^DD",790,790,.21,21,1,0)
+This field contains the date of the patient's first clinic visit.
+"^DD",790,790,.21,21,2,0)
+Although a date is automatically stuffed when the Automatically Load
+"^DD",790,790,.21,21,3,0)
+Patients [WV AUTOLOAD PATIENTS] option is run, the information can be
+"^DD",790,790,.21,21,4,0)
+edited through the Edit/Print Patient Case Data option.
+"^DD",790,790,.21,"DT")
+2980723
+"^DD",790,790,.22,0)
+REFERRAL SOURCE^P790.07'^WV(790.07,^0;22^Q
+"^DD",790,790,.22,3)
+
+"^DD",790,790,.22,21,0)
+^^3^3^2980630^
+"^DD",790,790,.22,21,1,0)
+This field stores information on who referred the patient or how the
+"^DD",790,790,.22,21,2,0)
+patient found out about the womens health care services at the facility.
+"^DD",790,790,.22,21,3,0)
+This field points to entries in the WV Referral Source (#790.07) file.
+"^DD",790,790,.22,"DT")
+2980520
+"^DD",790,790,.23,0)
+FAMILY HX OF BR CA^S^0:no family history;1:2nd degree relative;2:1st degree relative;3:>1 1st degree relatives;4:personal history;9:unknown;^0;23^Q
+"^DD",790,790,.23,3)
+Enter the code that describes the category of relative(s) who have had breast cancer.  (1st degree relative is a sister/mother, 2nd degree relatives are extended family.)
+"^DD",790,790,.23,21,0)
+^^5^5^2990524^
+"^DD",790,790,.23,21,1,0)
+This field identifies if the patient or the patient's relatives have had
+"^DD",790,790,.23,21,2,0)
+breast cancer. The information may be selected from a set of codes to
+"^DD",790,790,.23,21,3,0)
+indicate unknown, personal history, no family history, a 2nd degree
+"^DD",790,790,.23,21,4,0)
+relative (cousin, aunt, grandmother), a 1st degree relative (mother OR
+"^DD",790,790,.23,21,5,0)
+sister) or multiple 1st degree relatives (mother AND sister).
+"^DD",790,790,.23,"DT")
+2990524
+"^DD",790,790,.24,0)
+DATE INACTIVE^D^^0;24^S %DT="EX" D ^%DT S X=Y K:Y<1 X
+"^DD",790,790,.24,3)
+Enter the date on which this patient became inactive.  ANY date (past, present or future) will cause this patient to be excluded from all reports that assess treatment needs.
+"^DD",790,790,.24,21,0)
+^^5^5^2980918^
+"^DD",790,790,.24,21,1,0)
+This field contains the date on which this patient's record became
+"^DD",790,790,.24,21,2,0)
+inactive.  ANY date (past, present or future) will cause this patient's
+"^DD",790,790,.24,21,3,0)
+data to be excluded from all reports that assess treatment needs (i.e.,
+"^DD",790,790,.24,21,4,0)
+Snapshot of the Program Today report and Browse Patients with Needs Past
+"^DD",790,790,.24,21,5,0)
+Due).
+"^DD",790,790,.24,"DT")
+2960301
+"^DD",790,790,.25,0)
+BREAST TX FACILITY^P4'^DIC(4,^0;25^Q
+"^DD",790,790,.25,3)
+The name of the facility that has the responsibility to provide the appropriate breast tests/exams for this patient.
+"^DD",790,790,.25,21,0)
+^^3^3^2980918^^
+"^DD",790,790,.25,21,1,0)
+The name of the facility responsible for performing breast diagnostic
+"^DD",790,790,.25,21,2,0)
+procedures for this patient if treatment is performed at another facility.
+"^DD",790,790,.25,21,3,0)
+Facility choices are limited to entries in the Institution (#4) file.
+"^DD",790,790,.25,"DT")
+2980526
+"^DD",790,790,.26,0)
+CERVICAL TX FACILITY^P4'^DIC(4,^0;26^Q
+"^DD",790,790,.26,3)
+The name of the facility that has the responsibility to provide the appropriate cervical tests/exams for this patient.
+"^DD",790,790,.26,21,0)
+^^4^4^2980918^^
+"^DD",790,790,.26,21,1,0)
+The name of the facility that is responsible for providing the
+"^DD",790,790,.26,21,2,0)
+gynecological tests/exams for this patient if treatment is performed at
+"^DD",790,790,.26,21,3,0)
+another facility. Facility choices are limited to entries in the
+"^DD",790,790,.26,21,4,0)
+Institution (#4) file.
+"^DD",790,790,.26,"DT")
+2980526
+"^DD",790,790,.28,0)
+CST^S^Y:Yes;N:No;D:Declined to Answer;U:Unknown;^0;28^Q
+"^DD",790,790,.28,21,0)
+^.001^2^2^3001229^^
+"^DD",790,790,.28,21,1,0)
+This field indicates if the patient has experienced any sexual trauma
+"^DD",790,790,.28,21,2,0)
+(rape, sexual assault, etc.) as a civilian.
+"^DD",790,790,.28,"DT")
+3001229
+"^DD",790,790,1.01,0)
+NOTES^790.06^^1;0
+"^DD",790,790,1.01,21,0)
+^^2^2^2980706^
+"^DD",790,790,1.01,21,1,0)
+This field stores special notes regarding the patient and her health care
+"^DD",790,790,1.01,21,2,0)
+needs.
+"^DD",790,790,2,0)
+APPOINTMENTS^790.09A^^2;0
+"^DD",790,790,2,21,0)
+^^1^1^2990903^
+"^DD",790,790,2,21,1,0)
+This multiple contains the patient's future appointments.
+"^DD",790,790,3,0)
+COMPLETE ADDRESS^790.12A^^3;0
+"^DD",790,790,3,21,0)
+^^1^1^3000114^
+"^DD",790,790,3,21,1,0)
+This multiple field contains the patient's complete mailing address.
+"^DD",790,790,3,23,0)
+^^2^2^3000114^^^^
+"^DD",790,790,3,23,1,0)
+The value for this field is created by calling the ADD^VADPT supported
+"^DD",790,790,3,23,2,0)
+API from the WVUTL9 routine.
+"^DD",790,790,3,"DT")
+3000114
+"^DD",790,790.06,0)
+NOTES SUB-FIELD^^.01^1
+"^DD",790,790.06,0,"NM","NOTES")
+
+"^DD",790,790.06,0,"UP")
+790
+"^DD",790,790.06,0,"VRPK")
+WOMEN'S HEALTH
+"^DD",790,790.06,.01,0)
+NOTES^W^^0;1^Q
+"^DD",790,790.06,.01,3)
+Enter any special notes regarding the patient.
+"^DD",790,790.06,.01,21,0)
+^^1^1^2980513^^^
+"^DD",790,790.06,.01,21,1,0)
+Enter any special notes regarding the patient
+"^DD",790,790.06,.01,"DT")
+2941028
+"^DD",790,790.09,0)
+APPOINTMENTS SUB-FIELD^^.01^1
+"^DD",790,790.09,0,"DT")
+2990318
+"^DD",790,790.09,0,"IX","B",790.09,.01)
+
+"^DD",790,790.09,0,"NM","APPOINTMENTS")
+
+"^DD",790,790.09,0,"UP")
+790
+"^DD",790,790.09,.01,0)
+APPOINTMENTS^F^^0;1^K:$L(X)>80!($L(X)<3) X
+"^DD",790,790.09,.01,1,0)
+^.1
+"^DD",790,790.09,.01,1,1,0)
+790.09^B
+"^DD",790,790.09,.01,1,1,1)
+S ^WV(790,DA(1),2,"B",$E(X,1,30),DA)=""
+"^DD",790,790.09,.01,1,1,2)
+K ^WV(790,DA(1),2,"B",$E(X,1,30),DA)
+"^DD",790,790.09,.01,3)
+Answer must be 3-80 characters in length.
+"^DD",790,790.09,.01,21,0)
+^^8^8^2990903^^
+"^DD",790,790.09,.01,21,1,0)
+This field contains the external date of the appointment concatenated to
+"^DD",790,790.09,.01,21,2,0)
+the name of the clinic. This field value is set by the WVUTL9 routine when
+"^DD",790,790.09,.01,21,3,0)
+a WH user displays/prints a notification letter. If there are no future
+"^DD",790,790.09,.01,21,4,0)
+appointments scheduled, then the value "No Future Appointments" is stored
+"^DD",790,790.09,.01,21,5,0)
+in this field.
+"^DD",790,790.09,.01,21,6,0)
+ 
+"^DD",790,790.09,.01,21,7,0)
+The future appointments are displayed in the text of the letter only when
+"^DD",790,790.09,.01,21,8,0)
+"|APPOINTMENTS|" (without the quotes) appears in the form letter template.
+"^DD",790,790.09,.01,"DT")
+2990318
+"^DD",790,790.12,0)
+COMPLETE ADDRESS SUB-FIELD^^.01^1
+"^DD",790,790.12,0,"DT")
+2991101
+"^DD",790,790.12,0,"IX","B",790.12,.01)
+
+"^DD",790,790.12,0,"NM","COMPLETE ADDRESS")
+
+"^DD",790,790.12,0,"UP")
+790
+"^DD",790,790.12,.01,0)
+COMPLETE ADDRESS^F^^0;1^K:$L(X)>50!($L(X)<3) X
+"^DD",790,790.12,.01,1,0)
+^.1
+"^DD",790,790.12,.01,1,1,0)
+790.12^B
+"^DD",790,790.12,.01,1,1,1)
+S ^WV(790,DA(1),3,"B",$E(X,1,30),DA)=""
+"^DD",790,790.12,.01,1,1,2)
+K ^WV(790,DA(1),3,"B",$E(X,1,30),DA)
+"^DD",790,790.12,.01,3)
+Answer must be 3-50 characters in length.
+"^DD",790,790.12,.01,21,0)
+^^15^15^3000114^
+"^DD",790,790.12,.01,21,1,0)
+This field contains the patient's complete address (street, city, state
+"^DD",790,790.12,.01,21,2,0)
+and zip code). This information is computed by a call to the ADD^VADPT API
+"^DD",790,790.12,.01,21,3,0)
+and stuffed into this multiple field whenever a notification letter is
+"^DD",790,790.12,.01,21,4,0)
+printed.
+"^DD",790,790.12,.01,21,5,0)
+ 
+"^DD",790,790.12,.01,21,6,0)
+This address information is displayed in the text of the letter only when
+"^DD",790,790.12,.01,21,7,0)
+"|COMPLETE ADDRESS|" (without the quotes) appears in the form letter
+"^DD",790,790.12,.01,21,8,0)
+template.
+"^DD",790,790.12,.01,21,9,0)
+ 
+"^DD",790,790.12,.01,21,10,0)
+ Example:
+"^DD",790,790.12,.01,21,11,0)
+ 
+"^DD",790,790.12,.01,21,12,0)
+ STREET ADDRESS [LINE 1] <---if there is a value
+"^DD",790,790.12,.01,21,13,0)
+ STREET ADDRESS [LINE 2] <---if there is a value
+"^DD",790,790.12,.01,21,14,0)
+ STREET ADDRESS [LINE 3] <---if there is a value
+"^DD",790,790.12,.01,21,15,0)
+ CITY, STATE  ZIP CODE
+"^DD",790,790.12,.01,"DT")
+3000114
+"^DIC",790,790,0)
+WV PATIENT^790
+"^DIC",790,790,0,"GL")
+^WV(790,
+"^DIC",790,790,"%",0)
+^1.005^^
+"^DIC",790,790,"%D",0)
+^1.001^15^15^3131010^^
+"^DIC",790,790,"%D",1,0)
+This file contains the names of patient's tracked by the Women's Health
+"^DIC",790,790,"%D",2,0)
+application.  Patient names may be either manually entered by a case
+"^DIC",790,790,"%D",3,0)
+manager or loaded through the Automatically Load Patients [WV AUTOLOAD
+"^DIC",790,790,"%D",4,0)
+PATIENTS] option.
+"^DIC",790,790,"%D",5,0)
+ 
+"^DIC",790,790,"%D",6,0)
+Other data stored in this file can be categorized as demographic,
+"^DIC",790,790,"%D",7,0)
+administrative, and clinical information.  The clinical data reflects
+"^DIC",790,790,"%D",8,0)
+current breast and cervical treatment needs, pregnancy information, breast
+"^DIC",790,790,"%D",9,0)
+and cervical treatment regimes, family history of breast cancer and DES,
+"^DIC",790,790,"%D",10,0)
+name of facility responsible for breast and treatment needs, and personal
+"^DIC",790,790,"%D",11,0)
+history of sexual trauma. Information specific to the results of breast
+"^DIC",790,790,"%D",12,0)
+and cervical exams and procedures are stored in the WV Procedure (#790.1)
+"^DIC",790,790,"%D",13,0)
+file.  Administrative data is limited to the name of the current case
+"^DIC",790,790,"%D",14,0)
+manager, the date of first encounter, and the date the patient record was
+"^DIC",790,790,"%D",15,0)
+inactivated.
+"^DIC",790,"B","WV PATIENT",790)
+
+**END**
+**END**

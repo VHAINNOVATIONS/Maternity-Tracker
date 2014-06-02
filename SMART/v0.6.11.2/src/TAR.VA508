@@ -1,0 +1,37 @@
+D:\work\d2006\ATR\fTARNotification.dfm
+3914/1098086041
+0
+2
+D:\work\d2006\ATR\fTARProcess.dfm
+2865/1098085722
+2
+2
+D:\work\d2006\ATR\fTARNoteSelect.dfm
+2602/1098085722
+4
+2
+C:\Vista\cprs\OR_3_306V29\TAR\fTARNotification.dfm
+3935/1132808888
+6
+2
+C:\Vista\cprs\OR_3_306V29\TAR\fTARProcess.dfm
+2865/1098085722
+8
+2
+C:\Vista\cprs\OR_3_306V29\TAR\fTARNoteSelect.dfm
+2602/1133538890
+10
+2
+|EOINDEX|
+177
+object frmTARNotification: TfrmTARNotification
+130
+object frmTARProcess: TfrmTARProcess
+119
+object frmATRNoteSelect: TfrmATRNoteSelect
+178
+object frmTARNotification: TfrmTARNotification
+130
+object frmTARProcess: TfrmTARProcess
+119
+object frmATRNoteSelect: TfrmATRNoteSelect
