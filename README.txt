@@ -60,7 +60,7 @@ SMART: This is an independent project. Maternity Tracker fixes some bugs and
 
 ----------------------------------- ROUTINES -----------------------------------
 
-DSIO0		 DSIO OCNT SUPPORT
+DSIO0        DSIO OCNT SUPPORT
 DSIO1        DISO GENERAL RPCS
 DSIO2        DSIO X-REFERENCES AND UTILITIES
 DSIO3        DSIO TIU AND IHE SUPPORT
