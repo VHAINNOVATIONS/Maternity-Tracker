@@ -1,0 +1,1266 @@
+KIDS Distribution saved on Jun 11, 2014@09:58:25
+DSIO 1.0 S12 B10 pATIENT ORDERS
+**KIDS**:DSIO 1.0^
+
+**INSTALL NAME**
+DSIO 1.0
+"BLD",9811,0)
+DSIO 1.0^^0^3140611^n
+"BLD",9811,4,0)
+^9.64PA^^0
+"BLD",9811,6.3)
+10
+"BLD",9811,"INID")
+^
+"BLD",9811,"INIT")
+
+"BLD",9811,"KRN",0)
+^9.67PA^779.2^20
+"BLD",9811,"KRN",.4,0)
+.4
+"BLD",9811,"KRN",.401,0)
+.401
+"BLD",9811,"KRN",.402,0)
+.402
+"BLD",9811,"KRN",.403,0)
+.403
+"BLD",9811,"KRN",.403,"NM",0)
+^9.68A^^
+"BLD",9811,"KRN",.5,0)
+.5
+"BLD",9811,"KRN",.5,"NM",0)
+^9.68A^^
+"BLD",9811,"KRN",.84,0)
+.84
+"BLD",9811,"KRN",3.6,0)
+3.6
+"BLD",9811,"KRN",3.8,0)
+3.8
+"BLD",9811,"KRN",9.2,0)
+9.2
+"BLD",9811,"KRN",9.8,0)
+9.8
+"BLD",9811,"KRN",9.8,"NM",0)
+^9.68A^4^4
+"BLD",9811,"KRN",9.8,"NM",1,0)
+DSIO5O^^0^B8921045
+"BLD",9811,"KRN",9.8,"NM",2,0)
+DSIO5O1^^0^B32188112
+"BLD",9811,"KRN",9.8,"NM",3,0)
+DSIO5O2^^0^B8647554
+"BLD",9811,"KRN",9.8,"NM",4,0)
+DSIO5O3^^0^B19509550
+"BLD",9811,"KRN",9.8,"NM","B","DSIO5O",1)
+
+"BLD",9811,"KRN",9.8,"NM","B","DSIO5O1",2)
+
+"BLD",9811,"KRN",9.8,"NM","B","DSIO5O2",3)
+
+"BLD",9811,"KRN",9.8,"NM","B","DSIO5O3",4)
+
+"BLD",9811,"KRN",19,0)
+19
+"BLD",9811,"KRN",19,"NM",0)
+^9.68A^1^1
+"BLD",9811,"KRN",19,"NM",1,0)
+DSIO GUI CONTEXT^^0
+"BLD",9811,"KRN",19,"NM","B","DSIO GUI CONTEXT",1)
+
+"BLD",9811,"KRN",19.1,0)
+19.1
+"BLD",9811,"KRN",19.1,"NM",0)
+^9.68A^^
+"BLD",9811,"KRN",101,0)
+101
+"BLD",9811,"KRN",409.61,0)
+409.61
+"BLD",9811,"KRN",409.61,"NM",0)
+^9.68A^^
+"BLD",9811,"KRN",771,0)
+771
+"BLD",9811,"KRN",779.2,0)
+779.2
+"BLD",9811,"KRN",870,0)
+870
+"BLD",9811,"KRN",8989.51,0)
+8989.51
+"BLD",9811,"KRN",8989.51,"NM",0)
+^9.68A^^0
+"BLD",9811,"KRN",8989.52,0)
+8989.52
+"BLD",9811,"KRN",8989.52,"NM",0)
+^9.68A^^
+"BLD",9811,"KRN",8994,0)
+8994
+"BLD",9811,"KRN",8994,"NM",0)
+^9.68A^2^2
+"BLD",9811,"KRN",8994,"NM",1,0)
+DSIO GET ORDER LIST^^0
+"BLD",9811,"KRN",8994,"NM",2,0)
+DSIO GET ORDER DETAIL^^0
+"BLD",9811,"KRN",8994,"NM","B","DSIO GET ORDER DETAIL",2)
+
+"BLD",9811,"KRN",8994,"NM","B","DSIO GET ORDER LIST",1)
+
+"BLD",9811,"KRN","B",.4,.4)
+
+"BLD",9811,"KRN","B",.401,.401)
+
+"BLD",9811,"KRN","B",.402,.402)
+
+"BLD",9811,"KRN","B",.403,.403)
+
+"BLD",9811,"KRN","B",.5,.5)
+
+"BLD",9811,"KRN","B",.84,.84)
+
+"BLD",9811,"KRN","B",3.6,3.6)
+
+"BLD",9811,"KRN","B",3.8,3.8)
+
+"BLD",9811,"KRN","B",9.2,9.2)
+
+"BLD",9811,"KRN","B",9.8,9.8)
+
+"BLD",9811,"KRN","B",19,19)
+
+"BLD",9811,"KRN","B",19.1,19.1)
+
+"BLD",9811,"KRN","B",101,101)
+
+"BLD",9811,"KRN","B",409.61,409.61)
+
+"BLD",9811,"KRN","B",771,771)
+
+"BLD",9811,"KRN","B",779.2,779.2)
+
+"BLD",9811,"KRN","B",870,870)
+
+"BLD",9811,"KRN","B",8989.51,8989.51)
+
+"BLD",9811,"KRN","B",8989.52,8989.52)
+
+"BLD",9811,"KRN","B",8994,8994)
+
+"BLD",9811,"PRE")
+
+"BLD",9811,"PRET")
+
+"BLD",9811,"QDEF")
+^^^^NO^^^^NO^^NO
+"BLD",9811,"QUES",0)
+^9.62^^
+"BLD",9811,"REQB",0)
+^9.611^^
+"KRN",19,14757,-1)
+0^1
+"KRN",19,14757,0)
+DSIO GUI CONTEXT^MCC DASHBOARD RPCS^^B^^^^^^^^
+"KRN",19,14757,"RPC",0)
+^19.05P^45^45
+"KRN",19,14757,"RPC",1,0)
+DSIO CREATE TRACKING LOG
+"KRN",19,14757,"RPC",2,0)
+DSIO FEMALE PATIENT FIND
+"KRN",19,14757,"RPC",3,0)
+DSIO FEMALE PATIENT SEARCH
+"KRN",19,14757,"RPC",4,0)
+DSIO GET TRACKING
+"KRN",19,14757,"RPC",6,0)
+DSIO SELECT LIST
+"KRN",19,14757,"RPC",7,0)
+ORWU HASKEY
+"KRN",19,14757,"RPC",8,0)
+DG SENSITIVE RECORD ACCESS
+"KRN",19,14757,"RPC",9,0)
+DG SENSITIVE RECORD BULLETIN
+"KRN",19,14757,"RPC",10,0)
+TIU DOCUMENTS BY CONTEXT
+"KRN",19,14757,"RPC",11,0)
+ORWPT SELECT
+"KRN",19,14757,"RPC",12,0)
+ORWU USERINFO
+"KRN",19,14757,"RPC",13,0)
+DSIO GET SINGLE VALUE
+"KRN",19,14757,"RPC",14,0)
+DSIO SAVE NON VA ENTITY
+"KRN",19,14757,"RPC",15,0)
+DSIO RETURN ENTITY
+"KRN",19,14757,"RPC",16,0)
+DSIO CREATE A NOTE
+"KRN",19,14757,"RPC",17,0)
+DSIO UPDATE A NOTE
+"KRN",19,14757,"RPC",18,0)
+DSIO MAKE ADDENDUM
+"KRN",19,14757,"RPC",19,0)
+DSIO GET RECORD TEXT
+"KRN",19,14757,"RPC",20,0)
+DSIO DELETE A NOTE
+"KRN",19,14757,"RPC",21,0)
+DSIO SIGN A NOTE
+"KRN",19,14757,"RPC",22,0)
+DSIO NOTES BY DFN AND TITLE
+"KRN",19,14757,"RPC",23,0)
+DSIO GET NOTE ELEMENT
+"KRN",19,14757,"RPC",24,0)
+DSIO IS IT CONTROLLED?
+"KRN",19,14757,"RPC",26,0)
+XUS CVC
+"KRN",19,14757,"RPC",27,0)
+TIU GET RECORD TEXT
+"KRN",19,14757,"RPC",28,0)
+TIU AUTHORIZATION
+"KRN",19,14757,"RPC",29,0)
+DSIO IHE SAVE
+"KRN",19,14757,"RPC",30,0)
+VPR DATA VERSION
+"KRN",19,14757,"RPC",31,0)
+VPR GET PATIENT DATA
+"KRN",19,14757,"RPC",32,0)
+DSIO IHE PATIENT LIST
+"KRN",19,14757,"RPC",33,0)
+DSIO IHE GET DOC
+"KRN",19,14757,"RPC",34,0)
+ORWU1 NEWLOC
+"KRN",19,14757,"RPC",35,0)
+DSIO VPR GET PATIENT DATA
+"KRN",19,14757,"RPC",36,0)
+DSIO SAVE PERSON
+"KRN",19,14757,"RPC",37,0)
+DSIO GET PERSON
+"KRN",19,14757,"RPC",38,0)
+DSIO SAVE PREG DETAILS
+"KRN",19,14757,"RPC",40,0)
+DSIO SAVE OBSERVATION
+"KRN",19,14757,"RPC",41,0)
+DSIO GET PREG DETAILS
+"KRN",19,14757,"RPC",42,0)
+DSIO PATIENT INFORMATION
+"KRN",19,14757,"RPC",43,0)
+DSIO GET OBSERVATIONS
+"KRN",19,14757,"RPC",44,0)
+DSIO GET ORDER LIST
+"KRN",19,14757,"RPC",45,0)
+DSIO GET ORDER DETAIL
+"KRN",19,14757,"U")
+MCC DASHBOARD RPCS
+"KRN",8994,3999,-1)
+0^1
+"KRN",8994,3999,0)
+DSIO GET ORDER LIST^AGET^DSIO5O^4^^^^1
+"KRN",8994,3999,1,0)
+^8994.01^1^1^3140605^^^^
+"KRN",8994,3999,1,1,0)
+Get list of all orders for a patient. of all orders for a patient
+"KRN",8994,3999,2,0)
+^8994.02A^5^5
+"KRN",8994,3999,2,1,0)
+DFN^1^99^1^1
+"KRN",8994,3999,2,1,1,0)
+^^1^1^3140605^
+"KRN",8994,3999,2,1,1,1,0)
+Enter patient IEN.
+"KRN",8994,3999,2,2,0)
+FILTER^1^5^0^2
+"KRN",8994,3999,2,2,1,0)
+^^1^1^3140605^
+"KRN",8994,3999,2,2,1,1,0)
+Enter FILTER number. (default= 2)
+"KRN",8994,3999,2,3,0)
+GROUPS^1^5^0^3
+"KRN",8994,3999,2,3,1,0)
+^^1^1^3140605^
+"KRN",8994,3999,2,3,1,1,0)
+Enter GROUPS (default=1)
+"KRN",8994,3999,2,4,0)
+DTFROM^1^10^0^4
+"KRN",8994,3999,2,4,1,0)
+^^1^1^3140605^
+"KRN",8994,3999,2,4,1,1,0)
+List order From Date
+"KRN",8994,3999,2,5,0)
+DTTHRU^1^10^0^5
+"KRN",8994,3999,2,5,1,0)
+^8994.021^1^1^3140605^^
+"KRN",8994,3999,2,5,1,1,0)
+Enter Order Date Thru
+"KRN",8994,3999,2,"B","DFN",1)
+
+"KRN",8994,3999,2,"B","DTFROM",4)
+
+"KRN",8994,3999,2,"B","DTTHRU",5)
+
+"KRN",8994,3999,2,"B","FILTER",2)
+
+"KRN",8994,3999,2,"B","GROUPS",3)
+
+"KRN",8994,3999,2,"PARAMSEQ",1,1)
+
+"KRN",8994,3999,2,"PARAMSEQ",2,2)
+
+"KRN",8994,3999,2,"PARAMSEQ",3,3)
+
+"KRN",8994,3999,2,"PARAMSEQ",4,4)
+
+"KRN",8994,3999,2,"PARAMSEQ",5,5)
+
+"KRN",8994,3999,3,0)
+^8994.03^7^7^3140605^^
+"KRN",8994,3999,3,1,0)
+ ; Get orders for patient
+"KRN",8994,3999,3,2,0)
+ ;        1   2    3     4      5     6   7   8   9   10     11    12    
+"KRN",8994,3999,3,3,0)
+13    14     15     16 17    18
+"KRN",8994,3999,3,4,0)
+ ; 
+"KRN",8994,3999,3,5,0)
+.RET=~IFN^Grp^ActTm^StrtTm^StopTm^Sts^Sig^Nrs^Clk^PrvID^PrvNam^ActDA^Flag^
+"KRN",8994,3999,3,6,0)
+DCType^ChrtRev^DEA#^^Schedule
+"KRN",8994,3999,3,7,0)
+ ; .RET=tOrder Text (repeating as necessary)
+"KRN",8994,4020,-1)
+0^2
+"KRN",8994,4020,0)
+DSIO GET ORDER DETAIL^DETAIL^DSIO5O^4^^^^1
+"KRN",8994,4020,1,0)
+^8994.01^1^1^3140606^^
+"KRN",8994,4020,1,1,0)
+Get order detail for a patient order.
+"KRN",8994,4020,2,0)
+^8994.02A^2^2
+"KRN",8994,4020,2,1,0)
+ORIEN^1^20^1^1
+"KRN",8994,4020,2,1,1,0)
+^^1^1^3140605^
+"KRN",8994,4020,2,1,1,1,0)
+Enter the IEN for the order.
+"KRN",8994,4020,2,2,0)
+DFN^1^20^1^2
+"KRN",8994,4020,2,2,1,0)
+^^1^1^3140605^
+"KRN",8994,4020,2,2,1,1,0)
+Enter the the Patient ien for the order.
+"KRN",8994,4020,2,"B","DFN",2)
+
+"KRN",8994,4020,2,"B","ORIEN",1)
+
+"KRN",8994,4020,2,"PARAMSEQ",1,1)
+
+"KRN",8994,4020,2,"PARAMSEQ",2,2)
+
+"KRN",8994,4020,3,0)
+^^1^1^3140605^
+"KRN",8994,4020,3,1,0)
+RPC returns details for a given order for a patient.
+"MBREQ")
+0
+"ORD",16,8994)
+8994;16;1;;;;;;;RPCDEL^XPDIA1
+"ORD",16,8994,0)
+REMOTE PROCEDURE
+"ORD",18,19)
+19;18;;;OPT^XPDTA;OPTF1^XPDIA;OPTE1^XPDIA;OPTF2^XPDIA;;OPTDEL^XPDIA
+"ORD",18,19,0)
+OPTION
+"QUES","XPF1",0)
+Y
+"QUES","XPF1","??")
+^D REP^XPDH
+"QUES","XPF1","A")
+Shall I write over your |FLAG| File
+"QUES","XPF1","B")
+YES
+"QUES","XPF1","M")
+D XPF1^XPDIQ
+"QUES","XPF2",0)
+Y
+"QUES","XPF2","??")
+^D DTA^XPDH
+"QUES","XPF2","A")
+Want my data |FLAG| yours
+"QUES","XPF2","B")
+YES
+"QUES","XPF2","M")
+D XPF2^XPDIQ
+"QUES","XPI1",0)
+YO
+"QUES","XPI1","??")
+^D INHIBIT^XPDH
+"QUES","XPI1","A")
+Want KIDS to INHIBIT LOGONs during the install
+"QUES","XPI1","B")
+NO
+"QUES","XPI1","M")
+D XPI1^XPDIQ
+"QUES","XPM1",0)
+PO^VA(200,:EM
+"QUES","XPM1","??")
+^D MG^XPDH
+"QUES","XPM1","A")
+Enter the Coordinator for Mail Group '|FLAG|'
+"QUES","XPM1","B")
+
+"QUES","XPM1","M")
+D XPM1^XPDIQ
+"QUES","XPO1",0)
+Y
+"QUES","XPO1","??")
+^D MENU^XPDH
+"QUES","XPO1","A")
+Want KIDS to Rebuild Menu Trees Upon Completion of Install
+"QUES","XPO1","B")
+NO
+"QUES","XPO1","M")
+D XPO1^XPDIQ
+"QUES","XPZ1",0)
+Y
+"QUES","XPZ1","??")
+^D OPT^XPDH
+"QUES","XPZ1","A")
+Want to DISABLE Scheduled Options, Menu Options, and Protocols
+"QUES","XPZ1","B")
+NO
+"QUES","XPZ1","M")
+D XPZ1^XPDIQ
+"QUES","XPZ2",0)
+Y
+"QUES","XPZ2","??")
+^D RTN^XPDH
+"QUES","XPZ2","A")
+Want to MOVE routines to other CPUs
+"QUES","XPZ2","B")
+NO
+"QUES","XPZ2","M")
+D XPZ2^XPDIQ
+"RTN")
+4
+"RTN","DSIO5O")
+0^1^B8921045
+"RTN","DSIO5O",1,0)
+DSIO5O ;DSS/CMW - DSIO RPCS;06/06/2014 15:19
+"RTN","DSIO5O",2,0)
+ ;;1.0;DSS,INC OPEN SOURCE;;28 Jan 2013;Build 10
+"RTN","DSIO5O",3,0)
+ ;Copyright 1995-2014,Document Storage Systems Inc. All Rights Reserved
+"RTN","DSIO5O",4,0)
+ ;
+"RTN","DSIO5O",5,0)
+ ; Documented API and ICRs needed
+"RTN","DSIO5O",6,0)
+ ; -----------------------------
+"RTN","DSIO5O",7,0)
+ ; DETAIL^ORQ2
+"RTN","DSIO5O",8,0)
+ ; -----------------------------
+"RTN","DSIO5O",9,0)
+ ; AGET - Get orders for patient
+"RTN","DSIO5O",10,0)
+ ;        1   2    3     4      5     6   7   8   9   10     11    12    13    14     15     16 17    18
+"RTN","DSIO5O",11,0)
+ ; .RET=~IFN^Grp^ActTm^StrtTm^StopTm^Sts^Sig^Nrs^Clk^PrvID^PrvNam^ActDA^Flag^DCType^ChrtRev^DEA#^^Schedule
+"RTN","DSIO5O",12,0)
+ ; .RET=tOrder Text (repeating as necessary)
+"RTN","DSIO5O",13,0)
+ ;  DFN=Patient ID
+"RTN","DSIO5O",14,0)
+ ;  FILTER=# indicates which orders to return, default=2 (current)
+"RTN","DSIO5O",15,0)
+ ;  GROUPS=display grp of orders to show (default=ALL)
+"RTN","DSIO5O",16,0)
+ ;  -------------------------------------------------------------
+"RTN","DSIO5O",17,0)
+ ;  DETAILS - Get Order detail
+"RTN","DSIO5O",18,0)
+ ; .RET = (see ORDER DETAIL SCREEN in CPRS)
+"RTN","DSIO5O",19,0)
+ Q
+"RTN","DSIO5O",20,0)
+ ;
+"RTN","DSIO5O",21,0)
+AGET(RET,DFN,FILTER,GROUPS,DTFROM,DTTHRU,EVENT,ORRECIP,SORT) ;Get abbrev. event delayed order list for patient
+"RTN","DSIO5O",22,0)
+ ; returns ^TMP("ORR",$J,ORLIST,n)=IFN^DGrp^ActTm
+"RTN","DSIO5O",23,0)
+ ; see input parameters above
+"RTN","DSIO5O",24,0)
+ ; -- from ORWORR
+"RTN","DSIO5O",25,0)
+ ; -- section uses ORQ1 to get orders list rather than XGET --
+"RTN","DSIO5O",26,0)
+ ; SORT: PAGE#,CT
+"RTN","DSIO5O",27,0)
+ ;
+"RTN","DSIO5O",28,0)
+ ;N ORLIST,IFNLIST
+"RTN","DSIO5O",29,0)
+ N ORIFN,IFN,I,ORWTS,TOT,MULT,ORWARD,TXTVW,ORYD,PTEVTID,EVTNAME
+"RTN","DSIO5O",30,0)
+ S (PTEVTID,EVTNAME)=""
+"RTN","DSIO5O",31,0)
+ K ^TMP("ORR",$J),^TMP("ORRJD",$J),^TMP("DSIO ORDER",$J)
+"RTN","DSIO5O",32,0)
+ S:'$D(GROUPS) GROUPS=1 S:'$D(FILTER) FILTER=2  ;default setting
+"RTN","DSIO5O",33,0)
+ S ORWTS=+$P(FILTER,U,2),FILTER=+FILTER
+"RTN","DSIO5O",34,0)
+ S MULT=$S("^1^6^8^9^10^11^13^14^20^22^"[(U_FILTER_U):1,1:0)
+"RTN","DSIO5O",35,0)
+ I $L($G(^DPT(DFN,.1))) S ORWARD=1 ; normally ptr to 42
+"RTN","DSIO5O",36,0)
+ S DTFROM=$$DT1^DSIO2($G(DTFROM)) S:'$L($G(DTFROM)) DTFROM=0 ;USE DSIO2 EXT DATE CONVERTER
+"RTN","DSIO5O",37,0)
+ S DTTHRU=$$DT1^DSIO2($G(DTTHRU)) S:'$L($G(DTTHRU)) DTTHRU=0 ;
+"RTN","DSIO5O",38,0)
+ I $P(DTFROM,".")=$P(DTTHRU,"."),$P(DTFROM,".",2)>$P(DTTHRU,".",2),$P(DTTHRU,".",2)="" S $P(DTTHRU,".",2)=2359
+"RTN","DSIO5O",39,0)
+ S:'$L($G(EVENT)) EVENT=0
+"RTN","DSIO5O",40,0)
+ I $G(EVTDCREL)="TRUE" D
+"RTN","DSIO5O",41,0)
+ . D EN^DSIO5O1(DFN_";DPT(",GROUPS,FILTER,"",DTFROM,DTTHRU,2,MULT,"",1,EVENT)
+"RTN","DSIO5O",42,0)
+ . D GET2^DSIO5O2
+"RTN","DSIO5O",43,0)
+ E  D
+"RTN","DSIO5O",44,0)
+ . D EN^DSIO5O1(DFN_";DPT(",GROUPS,FILTER,"",DTFROM,DTTHRU,0,MULT,"",1,EVENT)
+"RTN","DSIO5O",45,0)
+ . D GET1^DSIO5O2
+"RTN","DSIO5O",46,0)
+ . K @REF@(.1) ;DSIO
+"RTN","DSIO5O",47,0)
+ ;
+"RTN","DSIO5O",48,0)
+RET ;
+"RTN","DSIO5O",49,0)
+ S TXT=2,ORYD=$H
+"RTN","DSIO5O",50,0)
+ M IFNLST=@REF K @REF,REF
+"RTN","DSIO5O",51,0)
+ S I=0
+"RTN","DSIO5O",52,0)
+ F  S I=$O(IFNLST(I)) Q:I=""  S IFNLST(I)=$P(IFNLST(I),"^")
+"RTN","DSIO5O",53,0)
+ D GETORD^DSIO5O3(.REF,TXT,ORYD,.IFNLST)
+"RTN","DSIO5O",54,0)
+ ;D ORWORR^GET4V11(LST,TXTVW,ORYD,IFNLST) ; get order fields TEMP
+"RTN","DSIO5O",55,0)
+ S RET=$NA(^TMP("DSIO ORDER",$J)) ; OUT=$NA(^TMP("DSIO ORLST",$J))
+"RTN","DSIO5O",56,0)
+ I $G(REF1)=0 S @RET@(0)="-1^No entries found." Q
+"RTN","DSIO5O",57,0)
+ ;M @RET=OUT 
+"RTN","DSIO5O",58,0)
+ ;S TO=$G(REF1),RET=$NA(^TMP("DSIO ORDER",$J))
+"RTN","DSIO5O",59,0)
+ ;D SORT^DSIO2(@REFS,RET,$G(SORT),$G(TO),1,"")
+"RTN","DSIO5O",60,0)
+ K @RET M @RET=REF
+"RTN","DSIO5O",61,0)
+ K IFNLST,ORLIST,REF,FLT,GRPS
+"RTN","DSIO5O",62,0)
+ Q
+"RTN","DSIO5O",63,0)
+ ;
+"RTN","DSIO5O",64,0)
+DETAIL(RET,ORID,DFN)    ; Return details of ORID (shell to kill VIDEO subs)
+"RTN","DSIO5O",65,0)
+ I '$G(ORID) S @RET@(0)="-1^Order IEN required." Q
+"RTN","DSIO5O",66,0)
+ I '$G(DFN) S @RET@(0)="-1^Patient IEN required." Q
+"RTN","DSIO5O",67,0)
+ I $G(DFN) N ORVP S ORVP=DFN_";DPT("
+"RTN","DSIO5O",68,0)
+ S RET=$NA(^TMP("DSIO ORD",$J)) K @RET S @RET@(0)="-1^No entry found."
+"RTN","DSIO5O",69,0)
+ D DETAIL^ORQ2(.RET,ORID)
+"RTN","DSIO5O",70,0)
+ I $D(@RET@(1)) K @RET@(0)
+"RTN","DSIO5O",71,0)
+ Q
+"RTN","DSIO5O",72,0)
+TST ; test entry point
+"RTN","DSIO5O",73,0)
+ ;K ^TMP
+"RTN","DSIO5O",74,0)
+ ;S DSDFN=740 ;0
+"RTN","DSIO5O",75,0)
+ S DSDFN=751 ;13
+"RTN","DSIO5O",76,0)
+ S FLT=2,GRPS=1,SORT="1,5"
+"RTN","DSIO5O",77,0)
+ S DSBDT="",DSEDT=""
+"RTN","DSIO5O",78,0)
+ ;D AGET(.RET,DSDFN,FLT,GRPS,DSBDT,DSEDT)
+"RTN","DSIO5O",79,0)
+ D AGET(.RET,DSDFN,"","","","","","",SORT) ;
+"RTN","DSIO5O",80,0)
+ Q
+"RTN","DSIO5O",81,0)
+TST2 ;
+"RTN","DSIO5O",82,0)
+ S ORID=19136
+"RTN","DSIO5O",83,0)
+ S DFN=715     ;751
+"RTN","DSIO5O",84,0)
+ D DETAIL(.RET,ORID,DFN)
+"RTN","DSIO5O",85,0)
+ ;D DETAIL(.RET,ORID)
+"RTN","DSIO5O",86,0)
+ Q
+"RTN","DSIO5O",87,0)
+ ;
+"RTN","DSIO5O1")
+0^2^B32188112
+"RTN","DSIO5O1",1,0)
+DSIO5O1 ;DSS/CMW - DSIO RPCS;06/06/2014 15:19
+"RTN","DSIO5O1",2,0)
+ ;;1.0;DSS,INC OPEN SOURCE;;28 Jan 2013;Build 10
+"RTN","DSIO5O1",3,0)
+ ;Copyright 1995-2014,Document Storage Systems Inc. All Rights Reserved
+"RTN","DSIO5O1",4,0)
+ ;
+"RTN","DSIO5O1",5,0)
+EN(PAT,GROUP,FLG,EXPAND,SDATE,EDATE,DETAIL,MULT,XREF,GETKID,EVENT) ;Get orders
+"RTN","DSIO5O1",6,0)
+ ; Returns orders in ^TMP("ORR",$J,ORLIST,i) for defined context:
+"RTN","DSIO5O1",7,0)
+ ;
+"RTN","DSIO5O1",8,0)
+ ; PAT  =patient variable ptr in format "DFN;DPT("
+"RTN","DSIO5O1",9,0)
+ ; GROUP=Display group
+"RTN","DSIO5O1",10,0)
+ ; FLG  =#:                Includes status:
+"RTN","DSIO5O1",11,0)
+ ; 1. All               => 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+"RTN","DSIO5O1",12,0)
+ ; 2. Active/Current    =>     3,4,5,6,  8,9,   11,         15
+"RTN","DSIO5O1",13,0)
+ ;    Includes CONTEXT HRS 1,2,7,13 & Action Status=13
+"RTN","DSIO5O1",14,0)
+ ;                         Orders in ^OR(100,"AC",PAT,TM,IFN,ACTION)
+"RTN","DSIO5O1",15,0)
+ ; 3. Discontinued      => 1                       12,13
+"RTN","DSIO5O1",16,0)
+ ; 4. Completed/Expired =>   2,        7
+"RTN","DSIO5O1",17,0)
+ ; 5. Expiring          =>     3,4,5,6,  8,9
+"RTN","DSIO5O1",18,0)
+ ; 6. Recent Activity   => 1,2,3,4,5,6,7,8,9,      12,      15
+"RTN","DSIO5O1",19,0)
+ ;                         Orders in ^OR(100,"AR",PAT,TM,IFN,ACTION)
+"RTN","DSIO5O1",20,0)
+ ; 7. Pending           =>         5
+"RTN","DSIO5O1",21,0)
+ ; 8. Unverified        => 1,  3,4,5,6,  8,9,               15
+"RTN","DSIO5O1",22,0)
+ ; 9. Unverified/Nurse  => 1,  3,4,5,6,  8,9,               15
+"RTN","DSIO5O1",23,0)
+ ;10. Unverified/Clerk  => 1,  3,4,5,6,  8,9,               15
+"RTN","DSIO5O1",24,0)
+ ;11. Unsigned          => 1,2,3,4,5,6,7,8,9,10,11,   13,14,15
+"RTN","DSIO5O1",25,0)
+ ;                         Orders in ^OR(100,"AS",PAT,TM,IFN)
+"RTN","DSIO5O1",26,0)
+ ;12. Flagged           => 1,2,3,4,5,6,7,8,9,      12,13,14,15
+"RTN","DSIO5O1",27,0)
+ ;13. Verbal/Phoned     => 1,2,3,4,5,6,7,8,9,         13,14,15
+"RTN","DSIO5O1",28,0)
+ ;                         Nature of order of verbal or phoned
+"RTN","DSIO5O1",29,0)
+ ;14. Verb/Phn unsigned => 1,2,3,4,5,6,7,8,9,         13,14,15
+"RTN","DSIO5O1",30,0)
+ ;                         Nature of order V or P & unsigned
+"RTN","DSIO5O1",31,0)
+ ;15. Admission         =>           6,      10
+"RTN","DSIO5O1",32,0)
+ ;16. Discharge         =>           6,      10
+"RTN","DSIO5O1",33,0)
+ ;17. Transfer          =>           6,      10
+"RTN","DSIO5O1",34,0)
+ ;                         Orders in ^OR(100,"AEVNT",PAT,EVENT,IFN)
+"RTN","DSIO5O1",35,0)
+ ;18. On Hold           =>     3
+"RTN","DSIO5O1",36,0)
+ ;19. New Orders        =>                   10,11
+"RTN","DSIO5O1",37,0)
+ ;                         Orders in ^TMP("ORNEW",$J,ORIFN)
+"RTN","DSIO5O1",38,0)
+ ;20. Chart Review      => 1,  3,4,5,6,  8,9,               15
+"RTN","DSIO5O1",39,0)
+ ;21. Chart Copy Summary=> same as All w/screen on Nature of order
+"RTN","DSIO5O1",40,0)
+ ;22. Lapsed            =>                               14
+"RTN","DSIO5O1",41,0)
+ ;23. Active status     =>         5,6
+"RTN","DSIO5O1",42,0)
+ ;24. All Delayed       =>           6,      10
+"RTN","DSIO5O1",43,0)
+ ;25. Out of OR         =>           6,      10
+"RTN","DSIO5O1",44,0)
+ ;26. Manual Release    =>           6,      10
+"RTN","DSIO5O1",45,0)
+ ;27. Expired           =>             7
+"RTN","DSIO5O1",46,0)
+ ;28. Discontinued Entered in Error => code handles this in ORQ12
+"RTN","DSIO5O1",47,0)
+ ;                         Orders in ^OR(100,"AEVNT",PAT,EVENT,IFN)
+"RTN","DSIO5O1",48,0)
+EN0 ; where order status=#:
+"RTN","DSIO5O1",49,0)
+ ; 1 => Discontinued (dc) 6 => Active (a)           11 => Unreleased (u)
+"RTN","DSIO5O1",50,0)
+ ; 2 => Complete (c)      7 => Expired (e)          12 => DC/Edit (dce)
+"RTN","DSIO5O1",51,0)
+ ; 3 => Hold (h)          8 => Scheduled (s)        13 => Cancelled (x)
+"RTN","DSIO5O1",52,0)
+ ; 4 => Flagged (?)       9 => Partial Results (pr) 14 => Lapsed (l)
+"RTN","DSIO5O1",53,0)
+ ; 5 => Pending (p)      10 => Delayed (d)          15 => Renewed (rn)
+"RTN","DSIO5O1",54,0)
+ ;                                                  99 => No Status (')
+"RTN","DSIO5O1",55,0)
+ ; EXPAND=ifn of parent order, used to expand child orders
+"RTN","DSIO5O1",56,0)
+ ; SDATE =Start date
+"RTN","DSIO5O1",57,0)
+ ; EDATE =End date
+"RTN","DSIO5O1",58,0)
+ ; DETAIL=Data to be returned (optional, default=0):
+"RTN","DSIO5O1",59,0)
+ ;     0 => ^TMP("ORR",$J,ORLIST,i) = order #
+"RTN","DSIO5O1",60,0)
+ ;     1 => ^TMP("ORR",$J,ORLIST,i) = order #^display group^when entered^
+"RTN","DSIO5O1",61,0)
+ ;                                    start d/t^stop d/t^status^sts abbrv
+"RTN","DSIO5O1",62,0)
+ ;          ^TMP("ORR",$J,ORLIST,i,"TX",j) = order text
+"RTN","DSIO5O1",63,0)
+ ; MULT  =0:Don't allow multiple occurrances of order
+"RTN","DSIO5O1",64,0)
+ ;       =1:Allow multiple occurances
+"RTN","DSIO5O1",65,0)
+ ; XREF  =cross reference to use instead of ACT (AW for completed orders)
+"RTN","DSIO5O1",66,0)
+ ; GETKID=includes children of multiple orders
+"RTN","DSIO5O1",67,0)
+ ; EVENT =ptr to Patient Event file #100.2, for orders tied to an event
+"RTN","DSIO5O1",68,0)
+ ;
+"RTN","DSIO5O1",69,0)
+EN1 ; -- start here
+"RTN","DSIO5O1",70,0)
+ Q:'$G(PAT)  N X,ORLST,ORGRP,LAPSE
+"RTN","DSIO5O1",71,0)
+ S:'$G(GROUP) GROUP=$O(^ORD(100.98,"B","ALL SERVICES",0))
+"RTN","DSIO5O1",72,0)
+ S:'$G(FLG) FLG=2 S:'$G(DETAIL) DETAIL=0 S:'$G(MULT) MULT=0
+"RTN","DSIO5O1",73,0)
+ I $G(EDATE)<$G(SDATE) S X=EDATE,EDATE=SDATE,SDATE=X
+"RTN","DSIO5O1",74,0)
+ I $G(EDATE) S EDATE=$S($L(EDATE,".")=2:EDATE+.0001,1:EDATE+1)
+"RTN","DSIO5O1",75,0)
+ I $G(SDATE) S SDATE=$S($L(SDATE,".")=2:SDATE-.0001,1:SDATE)
+"RTN","DSIO5O1",76,0)
+ S SDATE=9999999-$S($G(SDATE):SDATE,FLG=6:DT-.7641,1:0),EDATE=9999999-$S($G(EDATE):EDATE,FLG=6:DT+.2359,1:9999998)
+"RTN","DSIO5O1",77,0)
+ S ORLST=0,X=EDATE,EDATE=SDATE,SDATE=X D GRP(GROUP),LIST
+"RTN","DSIO5O1",78,0)
+ S LAPSE=+$$GET^XPAR("ALL","OR DELAYED ORDERS LAPSE DAYS")
+"RTN","DSIO5O1",79,0)
+ S:LAPSE LAPSE=$$FMADD^XLFDT(DT,(0-LAPSE)) ;=0 or cutoff date
+"RTN","DSIO5O1",80,0)
+ I "^15^16^17^24^25^26^"[(U_FLG_U)!$G(EVENT) D DEN G ENQ
+"RTN","DSIO5O1",81,0)
+ D @($S(FLG=2:"CUR",FLG=5:"EXG","^6^8^9^10^20^"[(U_FLG_U):"ACT",FLG=11:"SIG",FLG=19:"NEW","^1^3^4^7^12^13^14^18^21^22^23^27^28^"[(U_FLG_U):"LOOP",1:"QUIT")_"^ORQ11")
+"RTN","DSIO5O1",82,0)
+ENQ K ^TMP("ORGOTIT",$J)
+"RTN","DSIO5O1",83,0)
+ Q
+"RTN","DSIO5O1",84,0)
+ ;
+"RTN","DSIO5O1",85,0)
+LIST ;Get entry in ^TMP("ORR",$J,ORLIST)
+"RTN","DSIO5O1",86,0)
+ S ORLIST=$H
+"RTN","DSIO5O1",87,0)
+ L +^TMP("ORR",$J,ORLIST):0 Q:$T  ;ADD TIMEOUT CMW/DSS 06/06/14
+"RTN","DSIO5O1",88,0)
+ I $D(^TMP("ORR",$J,ORLIST)) L -^TMP("ORR",$J,ORLIST) H 1 G LIST
+"RTN","DSIO5O1",89,0)
+ S ^TMP("ORR",$J,ORLIST)=""
+"RTN","DSIO5O1",90,0)
+ S REF=$NA(^TMP("ORR",$J,ORLIST)) K @REF
+"RTN","DSIO5O1",91,0)
+ L -^TMP("ORR",$J,ORLIST)
+"RTN","DSIO5O1",92,0)
+ Q
+"RTN","DSIO5O1",93,0)
+ ;
+"RTN","DSIO5O1",94,0)
+GRP(DG) ;Setup display groups
+"RTN","DSIO5O1",95,0)
+ ;DG=Display group to expand
+"RTN","DSIO5O1",96,0)
+ N STK,MEM
+"RTN","DSIO5O1",97,0)
+ S ORGRP(DG)="",STK=1,STK(STK)=DG_"^0",STK(0)=0,MEM=0
+"RTN","DSIO5O1",98,0)
+ F  S MEM=$O(^ORD(100.98,+STK(STK),1,MEM)) D @$S(+MEM'>0:"POP",1:"PROC") Q:STK<1
+"RTN","DSIO5O1",99,0)
+ Q
+"RTN","DSIO5O1",100,0)
+ ;
+"RTN","DSIO5O1",101,0)
+POP S STK=STK-1,MEM=$P(STK(STK),"^",2)
+"RTN","DSIO5O1",102,0)
+ Q
+"RTN","DSIO5O1",103,0)
+PROC S $P(STK(STK),"^",2)=MEM,DG=$P(^ORD(100.98,+STK(STK),1,MEM,0),"^",1)
+"RTN","DSIO5O1",104,0)
+ S ORGRP(DG)="",STK=STK+1,STK(STK)=DG_"^0",MEM=0
+"RTN","DSIO5O1",105,0)
+ Q
+"RTN","DSIO5O1",106,0)
+ ;
+"RTN","DSIO5O1",107,0)
+DEN ; -- Event Delayed: 24=All Delayed orders, or
+"RTN","DSIO5O1",108,0)
+ ;     15=Admission, 16=Discharge, 17=Transfer, 25=OR, 26=Manual
+"RTN","DSIO5O1",109,0)
+ ;     or EVENT=ptr to Patient Event in #100.2
+"RTN","DSIO5O1",110,0)
+ D UNDO I $G(EVENT) D DEN1 Q
+"RTN","DSIO5O1",111,0)
+ N TYPE,EVT,EVENT,IFN,X0,TM,STS
+"RTN","DSIO5O1",112,0)
+ S TYPE=$S(FLG=15:"A",FLG=16:"D",FLG=17:"T",FLG=25:"O",FLG=26:"M",1:"ADTOM")
+"RTN","DSIO5O1",113,0)
+ S EVT=0 F  S EVT=+$O(^ORE(100.2,"AE",+PAT,EVT)) Q:EVT<1  S EVENT=+$O(^(EVT,0)) D
+"RTN","DSIO5O1",114,0)
+ . Q:TYPE'[$P($G(^ORD(100.5,EVT,0)),U,2)  ;Q:$$LAPSED^OREVNTX(EVENT)
+"RTN","DSIO5O1",115,0)
+ . S IFN=0 F  S IFN=$O(^OR(100,"AEVNT",PAT,EVENT,IFN)) Q:IFN<1  D ADD(IFN)
+"RTN","DSIO5O1",116,0)
+ S ^TMP("ORR",$J,ORLIST,"TOT")=ORLST
+"RTN","DSIO5O1",117,0)
+ Q
+"RTN","DSIO5O1",118,0)
+ ;
+"RTN","DSIO5O1",119,0)
+DEN1 ; -- Delayed for EVENT [and related Pt Events]
+"RTN","DSIO5O1",120,0)
+ N DAD,CHLD S DAD=+$P($G(^ORE(100.2,EVENT,1)),U,5) ;EVENT=child
+"RTN","DSIO5O1",121,0)
+ I DAD<1,$O(^ORE(100.2,"DAD",EVENT,0)) S DAD=EVENT ;EVENT=parent
+"RTN","DSIO5O1",122,0)
+ D:DAD<1 DEVNT(EVENT) I DAD D
+"RTN","DSIO5O1",123,0)
+ . D DEVNT(DAD) S CHLD=0
+"RTN","DSIO5O1",124,0)
+ . F  S CHLD=+$O(^ORE(100.2,"DAD",DAD,CHLD)) Q:CHLD<1  D DEVNT(CHLD)
+"RTN","DSIO5O1",125,0)
+ S ^TMP("ORR",$J,ORLIST,"TOT")=ORLST
+"RTN","DSIO5O1",126,0)
+ Q
+"RTN","DSIO5O1",127,0)
+ ;
+"RTN","DSIO5O1",128,0)
+DEVNT(EVENT) ; -- Orders tied to EVENT in #100.2
+"RTN","DSIO5O1",129,0)
+ N DONE,IFN,I,X,ORDER
+"RTN","DSIO5O1",130,0)
+ S DONE=$G(^ORE(100.2,EVENT,1)) D:DONE  ;get released, dc'd orders
+"RTN","DSIO5O1",131,0)
+ . S I=+$O(^ORE(100.2,EVENT,10,"B"),-1),X=$P($G(^(I,0)),U,2) Q:X="LP"!(X="CA")  ;skip if lapsed or cancelled
+"RTN","DSIO5O1",132,0)
+ . S ORDER=+$P($G(^ORE(100.2,EVENT,0)),U,4) D:ORDER ADD(ORDER,"RL")
+"RTN","DSIO5O1",133,0)
+ . S IFN=0 F  S IFN=$O(^ORE(100.2,EVENT,2,IFN)) Q:IFN<1  D ADD(IFN,"RL")
+"RTN","DSIO5O1",134,0)
+ . S IFN=0 F  S IFN=$O(^OR(100,"AEVNT",PAT,EVENT,IFN)) Q:IFN<1  I IFN'=ORDER,'$D(^ORE(100.2,EVENT,2,IFN)) D ADD(IFN,"RL")
+"RTN","DSIO5O1",135,0)
+ . S IFN=0 F  S IFN=$O(^ORE(100.2,EVENT,3,IFN)) Q:IFN<1  D ADD(IFN,"DC")
+"RTN","DSIO5O1",136,0)
+ I 'DONE S IFN=0 F  S IFN=$O(^OR(100,"AEVNT",PAT,EVENT,IFN)) Q:IFN<1  D ADD(IFN)
+"RTN","DSIO5O1",137,0)
+ Q
+"RTN","DSIO5O1",138,0)
+ ;
+"RTN","DSIO5O1",139,0)
+ADD(IFN,TYPE)        ; -- add EVENT order to list?
+"RTN","DSIO5O1",140,0)
+ N X0,X3,DA,X8,TM,CURR
+"RTN","DSIO5O1",141,0)
+ S X0=$G(^OR(100,IFN,0)),X3=$G(^(3)) Q:'$D(ORGRP(+$P(X0,U,11)))
+"RTN","DSIO5O1",142,0)
+ Q:$P(X3,U,8)  I $P(X3,U,9),'$P($G(^OR(100,$P(X3,U,9),3)),U,8) Q
+"RTN","DSIO5O1",143,0)
+ I $P(X3,U,3)=12,$P($G(^OR(100,+$P(X3,U,6),0)),U,17)=EVENT Q  ;changed
+"RTN","DSIO5O1",144,0)
+ S CURR=$P(X3,U,7) S:CURR<1 CURR=+$O(^OR(100,IFN,8,"?"),-1) ;current/last
+"RTN","DSIO5O1",145,0)
+ S DA=0 F  S DA=+$O(^OR(100,IFN,8,DA)) Q:DA<1  S X8=$G(^(DA,0)) D
+"RTN","DSIO5O1",146,0)
+ . S TM=$P(X8,U) Q:TM<SDATE  Q:TM>EDATE
+"RTN","DSIO5O1",147,0)
+ . I DA'=CURR,$P(X8,U,15)'=11 Q  ;current or unrel action
+"RTN","DSIO5O1",148,0)
+ . I DETAIL<2!'$L($G(TYPE)) D GET^ORQ12(IFN,ORLIST,DETAIL,DA) Q
+"RTN","DSIO5O1",149,0)
+ . S ORLST=ORLST+1,^TMP("ORGOTIT",$J,IFN,DA)=""
+"RTN","DSIO5O1",150,0)
+ . S ^TMP("ORR",$J,ORLIST,EVENT,TYPE,ORLST)=IFN_";"_DA
+"RTN","DSIO5O1",151,0)
+ Q
+"RTN","DSIO5O1",152,0)
+ ;
+"RTN","DSIO5O1",153,0)
+UNDO ; -- un-invert dates from ORQ1
+"RTN","DSIO5O1",154,0)
+ N X S X=EDATE,EDATE=SDATE,SDATE=X
+"RTN","DSIO5O1",155,0)
+ S SDATE=9999999-SDATE,EDATE=9999999-EDATE
+"RTN","DSIO5O1",156,0)
+ Q
+"RTN","DSIO5O1",157,0)
+ ;
+"RTN","DSIO5O1",158,0)
+QUIT ; -- stop
+"RTN","DSIO5O1",159,0)
+ Q
+"RTN","DSIO5O2")
+0^3^B8647554
+"RTN","DSIO5O2",1,0)
+DSIO5O2 ;DSS/CMW - DSIO RPCS;06/06/2014 15:19
+"RTN","DSIO5O2",2,0)
+ ;;1.0;DSS,INC OPEN SOURCE;;28 Jan 2013;Build 10
+"RTN","DSIO5O2",3,0)
+ ;Copyright 1995-2014,Document Storage Systems Inc. All Rights Reserved
+"RTN","DSIO5O2",4,0)
+ ;Called from ORWORR
+"RTN","DSIO5O2",5,0)
+ ;
+"RTN","DSIO5O2",6,0)
+GET1 ; 
+"RTN","DSIO5O2",7,0)
+ S TOT=^TMP("ORR",$J,ORLIST,"TOT") K ^TMP("ORR",$J,ORLIST,"TOT")
+"RTN","DSIO5O2",8,0)
+ S I=.1 F  S I=$O(^TMP("ORR",$J,ORLIST,I)) Q:'I  S IFN=^(I) D
+"RTN","DSIO5O2",9,0)
+ . I $G(ORRECIP)&($G(FILTER)=12&($$FLAGRULE(+IFN))) K ^TMP("ORR",$J,ORLIST,I) S TOT=TOT-1 Q
+"RTN","DSIO5O2",10,0)
+ . I ORWTS,(+$P($G(^OR(100,+IFN,0)),U,13)'=ORWTS) K ^TMP("ORR",$J,ORLIST,I) S TOT=TOT-1 Q
+"RTN","DSIO5O2",11,0)
+ . S PTEVTID=$P($G(^OR(100,+IFN,0)),U,17)
+"RTN","DSIO5O2",12,0)
+ . S:PTEVTID>0 EVTNAME=$$NAME^OREVNTX(PTEVTID)
+"RTN","DSIO5O2",13,0)
+ . S ^TMP("ORR",$J,ORLIST,I)=IFN_U_$P($G(^OR(100,+IFN,0)),U,11)_U_$P($G(^(8,+$P(IFN,";",2),0)),U)_U_PTEVTID_U_EVTNAME
+"RTN","DSIO5O2",14,0)
+ S TXTVW=$S(MULT:0,FILTER=2:2,1:1) D:FILTER=2 ORYD
+"RTN","DSIO5O2",15,0)
+ S ^TMP("ORR",$J,ORLIST,.1)=TOT_U_TXTVW_U_$G(ORYD,0)
+"RTN","DSIO5O2",16,0)
+ S REF=$NA(^TMP("ORR",$J,ORLIST))
+"RTN","DSIO5O2",17,0)
+ ;DSIO START
+"RTN","DSIO5O2",18,0)
+ I $D(@REF@(1)) K @REF@(0)
+"RTN","DSIO5O2",19,0)
+ ;DSIO END
+"RTN","DSIO5O2",20,0)
+ Q
+"RTN","DSIO5O2",21,0)
+GET2 ; For AUTO DC/Event Release Orders
+"RTN","DSIO5O2",22,0)
+ N JDND,JDIX,JDCNT,DCSPLIT
+"RTN","DSIO5O2",23,0)
+ S JDCNT=1,DCSPLIT=0
+"RTN","DSIO5O2",24,0)
+ S TOT=^TMP("ORR",$J,ORLIST,"TOT") K ^TMP("ORR",$J,ORLIST,"TOT")
+"RTN","DSIO5O2",25,0)
+ F JDND="RL","DC" D
+"RTN","DSIO5O2",26,0)
+ . S I=.1 F  S I=$O(^TMP("ORR",$J,ORLIST,I)) Q:'I  D
+"RTN","DSIO5O2",27,0)
+ . . I '$D(^TMP("ORR",$J,ORLIST,I,JDND)) Q
+"RTN","DSIO5O2",28,0)
+ . . S JDIX=0 F  S JDIX=$O(^TMP("ORR",$J,ORLIST,I,JDND,JDIX)) Q:'JDIX  S IFN=^(JDIX)  D
+"RTN","DSIO5O2",29,0)
+ . . . I 'DCSPLIT,(JDND="DC") D
+"RTN","DSIO5O2",30,0)
+ . . . . S ^TMP("ORRJD",$J,JDCNT)="DC START"
+"RTN","DSIO5O2",31,0)
+ . . . . S DCSPLIT=1,JDCNT=JDCNT+1,TOT=TOT+1
+"RTN","DSIO5O2",32,0)
+ . . . I ORWTS,(+$P($G(^OR(100,+IFN,0)),U,13)'=ORWTS) S TOT=TOT-1 Q
+"RTN","DSIO5O2",33,0)
+ . . . S PTEVTID=$P($G(^OR(100,+IFN,0)),U,17)
+"RTN","DSIO5O2",34,0)
+ . . . S:PTEVTID>0 EVTNAME=$$NAME^OREVNTX(PTEVTID)
+"RTN","DSIO5O2",35,0)
+ . . . S ^TMP("ORRJD",$J,JDCNT)=IFN_U_$P($G(^OR(100,+IFN,0)),U,11)_U_$P($G(^(8,+$P(IFN,";",2),0)),U)_U_PTEVTID_U_EVTNAME
+"RTN","DSIO5O2",36,0)
+ . . . S JDCNT=JDCNT+1
+"RTN","DSIO5O2",37,0)
+ S TXTVW=$S(MULT:0,FILTER=2:2,1:1) D:FILTER=2 ORYD
+"RTN","DSIO5O2",38,0)
+ S ^TMP("ORRJD",$J,.1)=TOT_U_TXTVW_U_$G(ORYD,0)
+"RTN","DSIO5O2",39,0)
+ S REF=$NA(^TMP("ORRJD",$J))
+"RTN","DSIO5O2",40,0)
+ Q
+"RTN","DSIO5O2",41,0)
+FLAGRULE(ORNUM,USR) ;
+"RTN","DSIO5O2",42,0)
+ ;returns 0 if we should keep ORNUM in the list
+"RTN","DSIO5O2",43,0)
+ ;returns 1 if we should remove ORNUM from the list
+"RTN","DSIO5O2",44,0)
+ ;determines based on whether the user USR should see these flagged orders
+"RTN","DSIO5O2",45,0)
+ ; based on presence in file 100 NODE 8 FIELD 39 and
+"RTN","DSIO5O2",46,0)
+ ; based on whether the user should have gotten the flag due to provider recipients
+"RTN","DSIO5O2",47,0)
+ N ORI,ORRET,ORQUIT,I,LST,ORDFN
+"RTN","DSIO5O2",48,0)
+ I '$G(USR) S USR=DUZ
+"RTN","DSIO5O2",49,0)
+ S ORRET=1,ORQUIT=0
+"RTN","DSIO5O2",50,0)
+ S ORI=0 F  S ORI=$O(^OR(100,ORNUM,8,ORI)) Q:'ORI  D
+"RTN","DSIO5O2",51,0)
+ .I '$P($G(^OR(100,ORNUM,8,ORI,3)),U,6)&($P($G(^OR(100,ORNUM,8,ORI,3)),U,9)) S LST($P($G(^OR(100,ORNUM,8,ORI,3)),U,9))=""
+"RTN","DSIO5O2",52,0)
+ S ORDFN=+$P($G(^OR(100,ORNUM,0)),U,2)
+"RTN","DSIO5O2",53,0)
+ D START^ORBPRCHK(.LST,ORNUM,6,ORDFN)
+"RTN","DSIO5O2",54,0)
+ ;add ordering provider
+"RTN","DSIO5O2",55,0)
+ N ORDPROV
+"RTN","DSIO5O2",56,0)
+ S ORDPROV=$$ORDERER^ORQOR2(ORNUM)
+"RTN","DSIO5O2",57,0)
+ I $G(ORDPROV) S LST(ORDPROV)=""
+"RTN","DSIO5O2",58,0)
+ D ADDSURR(.LST)
+"RTN","DSIO5O2",59,0)
+ I $D(LST(USR)) S ORRET=0
+"RTN","DSIO5O2",60,0)
+ Q ORRET
+"RTN","DSIO5O2",61,0)
+ADDSURR(LST) ;TAKE LIST OF USERS AND ADD SURROGATES TO THE LIST
+"RTN","DSIO5O2",62,0)
+ N I
+"RTN","DSIO5O2",63,0)
+ S I=0 F  S I=$O(LST(I)) Q:'I  S LST($$CURRSURO^XQALSURO(I))=""
+"RTN","DSIO5O2",64,0)
+ Q
+"RTN","DSIO5O2",65,0)
+ORYD ; -- Return Current Orders context hours in ORYD
+"RTN","DSIO5O2",66,0)
+ N X,X1,X2,X3,%,%H
+"RTN","DSIO5O2",67,0)
+ S ORYD=$$GET^XPAR("SYS","ORPF ACTIVE ORDERS CONTEXT HRS",1,"I")
+"RTN","DSIO5O2",68,0)
+ Q
+"RTN","DSIO5O3")
+0^4^B19509550
+"RTN","DSIO5O3",1,0)
+DSIO5O3 ;DSS/CMW - DSIO RPCS;06/06/2014 15:19
+"RTN","DSIO5O3",2,0)
+ ;;1.0;DSS,INC OPEN SOURCE;;28 Jan 2013;Build 10
+"RTN","DSIO5O3",3,0)
+ ;Copyright 1995-2014,Document Storage Systems Inc. All Rights Reserved
+"RTN","DSIO5O3",4,0)
+ ;
+"RTN","DSIO5O3",5,0)
+GETORD(REF,TXTVW,ORYD,IFNLST) ; get order fields TEMP
+"RTN","DSIO5O3",6,0)
+ ;
+"RTN","DSIO5O3",7,0)
+ N ACT,ACTID,IDX,X0,X3,X8,PRV,ID,LN,TXT,STRT,STOP,CSTS,IFN,IFNIDX,ORIGVIEW,DEA ;PKI
+"RTN","DSIO5O3",8,0)
+ N LOC ;IMO
+"RTN","DSIO5O3",9,0)
+ S (IDX,REF1,IFNIDX)=0
+"RTN","DSIO5O3",10,0)
+ F  S IFNIDX=$O(IFNLST(IFNIDX)) Q:'IFNIDX  S IFN=IFNLST(IFNIDX) D
+"RTN","DSIO5O3",11,0)
+ . S ACT=$S($P(IFN,";",2):$P(IFN,";",2),1:1),IFN=+IFN
+"RTN","DSIO5O3",12,0)
+ . S X0=$G(^OR(100,IFN,0)),X3=$G(^(3)),X8=$G(^(8,ACT,0))
+"RTN","DSIO5O3",13,0)
+ . S IDX=0
+"RTN","DSIO5O3",14,0)
+ . D GETFLDS
+"RTN","DSIO5O3",15,0)
+ Q
+"RTN","DSIO5O3",16,0)
+ ;
+"RTN","DSIO5O3",17,0)
+GETFLDS ; used by entry points to place order fields into list
+"RTN","DSIO5O3",18,0)
+ ; expects IDX=sequence #, IFN=order, X0=node 0, X3=node 3, REF=results
+"RTN","DSIO5O3",19,0)
+ ; REF(IDX)=~IFN^Grp^OrdTm^StrtTm^StopTm^Sts^Sig^Nrs^Clk^PrvID^PrvNam^Act^Flagged[^DCType]^ChartRev^DEA#^^DigSig^LOC^[DCORIGNAL]^IsPendingDCorder^IsDelayOrder
+"RTN","DSIO5O3",20,0)
+ S PRV=$P(X8,U,5) S:'PRV PRV=$P(X8,U,3) S PRV=PRV_U
+"RTN","DSIO5O3",21,0)
+ I PRV S PRV=PRV_$P(^VA(200,+PRV,0),U)
+"RTN","DSIO5O3",22,0)
+ S DEA=$$DEA^XUSER(,+PRV) ; get user DEA info - PKI
+"RTN","DSIO5O3",23,0)
+ S IDX=IDX+1,REF1=REF1+1,ID=IFN_";"_ACT,ACTID=$P(X8,U,2)
+"RTN","DSIO5O3",24,0)
+ S CSTS=$S($P(X8,U,15):$P(X8,U,15),1:$P(X3,U,3))
+"RTN","DSIO5O3",25,0)
+ I $G(CSTS) S CSTS=CSTS_":"_$$GET1^DIQ(100.01,CSTS,.01,"I") ;GET STAT
+"RTN","DSIO5O3",26,0)
+ S DGRP=$P(X0,U,11) I $G(DGRP) D
+"RTN","DSIO5O3",27,0)
+ . S DGRP=DGRP_":"_$$GET1^DIQ(100.98,DGRP,2,"I") ;GET DISPLAY GRP
+"RTN","DSIO5O3",28,0)
+ I $P(X8,U,15)=10,$P(X3,U,3)=14 S CSTS=14 ;delayed-lapsed order
+"RTN","DSIO5O3",29,0)
+ S STRT=$S($P(X3,U,3)=11:$$RSTRT,ACTID="NW"!(ACTID="XX")!(ACTID="RL"):$P(X0,U,8),ACTID="DC":"",1:$P(X8,U)) ;110
+"RTN","DSIO5O3",30,0)
+ S STOP=$S($P(X3,U,3)=11:$$RSTOP,ACTID="HD":$P($G(^OR(100,+IFN,8,ACT,2)),U),1:$P(X0,U,9))
+"RTN","DSIO5O3",31,0)
+ S REF(IFNIDX,IDX)="~"_ID_U_DGRP_U_$P(X8,U)_U_STRT_U_STOP_U_CSTS_U_$P(X8,U,4)_U_$P(X8,U,8)_U_$P(X8,U,10)_U_PRV
+"RTN","DSIO5O3",32,0)
+ S $P(REF(IFNIDX,IDX),U,13)=+$G(^OR(100,IFN,8,ACT,3))    ; flagged
+"RTN","DSIO5O3",33,0)
+ ; OTHER ACTIONS
+"RTN","DSIO5O3",34,0)
+ I +$P(X8,U,8) S $P(REF(IFNIDX,IDX),U,8)=$$INITIALS^ORCHTAB2(+$P(X8,U,8))    ;nurse
+"RTN","DSIO5O3",35,0)
+ I +$P(X8,U,10) S $P(REF(IFNIDX,IDX),U,9)=$$INITIALS^ORCHTAB2(+$P(X8,U,10))  ;clerk
+"RTN","DSIO5O3",36,0)
+ I +$P(X8,U,18) S $P(REF(IFNIDX,IDX),U,15)=$$INITIALS^ORCHTAB2(+$P(X8,U,18)) ;chart review
+"RTN","DSIO5O3",37,0)
+ I $L($G(DEA)) S $P(REF(IFNIDX,IDX),U,16)=DEA ;PKI
+"RTN","DSIO5O3",38,0)
+ I $P($G(^OR(100,IFN,8,ACT,2)),"^",5) S $P(REF(IFNIDX,IDX),U,18)=$P(^(2),"^",4)
+"RTN","DSIO5O3",39,0)
+ I '$P($G(^OR(100,IFN,8,ACT,2)),"^",5),$P(X0,"^",5) D  ;Copy orders PKI fix
+"RTN","DSIO5O3",40,0)
+ . N OI,ORVP,ORCAT,PKG,ORPKIU
+"RTN","DSIO5O3",41,0)
+ . S OI=+$O(^OR(100,IFN,4.5,"ID","ORDERABLE",0)),OI=+$G(^OR(100,IFN,4.5,OI,1)) Q:'OI
+"RTN","DSIO5O3",42,0)
+ . S ORVP=$P(X0,"^",2),PKG=$P(X0,"^",14)
+"RTN","DSIO5O3",43,0)
+ . S ORCAT=$S($L($P($G(^DPT(+ORVP,.1)),U)):"I",1:"O")
+"RTN","DSIO5O3",44,0)
+ . I PKG'=$O(^DIC(9.4,"B","OUTPATIENT PHARMACY",0)) Q
+"RTN","DSIO5O3",45,0)
+ . S ORPKIU=0 I $D(^ORD(100.7,"C",DUZ)) S ORPKIU=1
+"RTN","DSIO5O3",46,0)
+ . D PKI^ORWDPS1(.ORY,OI,ORCAT,+ORVP,ORPKIU)
+"RTN","DSIO5O3",47,0)
+ . I $E($G(ORY))=2 S $P(REF(IFNIDX,IDX),U,18)=ORY
+"RTN","DSIO5O3",48,0)
+ ; Change to display location for Clinic Orders, Inpatients, & IV infusion orders.
+"RTN","DSIO5O3",49,0)
+ N DGID,DGNAM
+"RTN","DSIO5O3",50,0)
+ S LOC=""
+"RTN","DSIO5O3",51,0)
+ S DGID=$P(X0,U,11)
+"RTN","DSIO5O3",52,0)
+ I $L(DGID) D
+"RTN","DSIO5O3",53,0)
+ .S DGNAM=$P($G(^ORD(100.98,DGID,0)),U)
+"RTN","DSIO5O3",54,0)
+ .;I DGNAM="CLINIC ORDERS"!(DGNAM="INPATIENT MEDICATIONS")!(DGNAM="IV MEDICATIONS")!(DGNAM="UNIT DOSE MEDICATIONS") D
+"RTN","DSIO5O3",55,0)
+ .S LOC=$P(X0,U,10) ;IMO
+"RTN","DSIO5O3",56,0)
+ .S:+LOC LOC=$P($G(^SC(+LOC,0)),U)_":"_+LOC ;IMO
+"RTN","DSIO5O3",57,0)
+ S $P(REF(IFNIDX,IDX),U,19)=LOC ;IMO
+"RTN","DSIO5O3",58,0)
+ ;need a way to determine if order is in an unsigned DC state.
+"RTN","DSIO5O3",59,0)
+ S $P(REF(IFNIDX,IDX),U,21)=$S(ACTID="DC":1,1:0)
+"RTN","DSIO5O3",60,0)
+ S $P(REF(IFNIDX,IDX),U,22)=$$CHKORD^OREVNTX1(IFN)
+"RTN","DSIO5O3",61,0)
+ D
+"RTN","DSIO5O3",62,0)
+ . N OI,ORVP,ORCAT,PKG,ORCONSUB,ORCSPKG,ORYD
+"RTN","DSIO5O3",63,0)
+ . S ORCSPKG=""
+"RTN","DSIO5O3",64,0)
+ . S OI=+$O(^OR(100,IFN,4.5,"ID","ORDERABLE",0)),OI=+$G(^OR(100,IFN,4.5,OI,1)) Q:'OI
+"RTN","DSIO5O3",65,0)
+ . S ORVP=$P(X0,"^",2),PKG=$P(X0,"^",14)
+"RTN","DSIO5O3",66,0)
+ . S ORCAT=$S($L($P($G(^DPT(+ORVP,.1)),U)):"I",1:"O")
+"RTN","DSIO5O3",67,0)
+ . I PKG=$O(^DIC(9.4,"B","OUTPATIENT PHARMACY",0)) S ORCSPKG="O"
+"RTN","DSIO5O3",68,0)
+ . I PKG=$O(^DIC(9.4,"B","UNIT DOSE MEDICATIONS",0)) S ORCSPKG="I"
+"RTN","DSIO5O3",69,0)
+ . I PKG=$O(^DIC(9.4,"B","INPATIENT MEDICATIONS",0)) S ORCSPKG="I"
+"RTN","DSIO5O3",70,0)
+ . I PKG=$O(^DIC(9.4,"B","IV MEDICATIONS",0)) S ORCSPKG="I"
+"RTN","DSIO5O3",71,0)
+ . I ORCSPKG="" S $P(REF(IFNIDX,IDX),U,23,24)="0^0" Q
+"RTN","DSIO5O3",72,0)
+ . D CSCHECK^ORDEA(.ORCONSUB,OI,ORCSPKG)
+"RTN","DSIO5O3",73,0)
+ . S $P(REF(IFNIDX,IDX),U,23)=$P(ORCONSUB,U)
+"RTN","DSIO5O3",74,0)
+ . S $P(REF(IFNIDX,IDX),U,24)=$P(ORCONSUB,U,2)
+"RTN","DSIO5O3",75,0)
+ ;
+"RTN","DSIO5O3",76,0)
+ S ORIGVIEW=$S($G(TXTVW)=0:0,$G(TXTVW)=1:1,ORYD=-1:1,'ORYD:1,$P(X8,U)'<ORYD:0,1:1)
+"RTN","DSIO5O3",77,0)
+ K TXT D TEXT^ORQ12(.TXT,ID,255)                  ; optimize later
+"RTN","DSIO5O3",78,0)
+ I $O(^OR(100,+IFN,2,0)) S LN=$O(TXT(0)),TXT(LN)="+"_TXT(LN)
+"RTN","DSIO5O3",79,0)
+ I $O(^OR(100,+IFN,8,"C","XX",0)) S LN=$O(TXT(0)),TXT(LN)="*"_TXT(LN)
+"RTN","DSIO5O3",80,0)
+ S LN=0 F  S LN=$O(TXT(LN)) Q:'LN  S IDX=IDX+1,REF(IFNIDX,IDX)="t"_TXT(LN)
+"RTN","DSIO5O3",81,0)
+ I $O(^OR(100,+IFN,8,1,.2,0)) S IDX=IDX+1,REF(IFNIDX,IDX)="|" D  ;PKI XMLText
+"RTN","DSIO5O3",82,0)
+ . S I=0 F  S I=$O(^OR(100,+IFN,8,1,.2,I)) Q:'I  S IDX=IDX+1,REF(IFNIDX,IDX)="x"_^(I,0)
+"RTN","DSIO5O3",83,0)
+ Q
+"RTN","DSIO5O3",84,0)
+RSTRT() ; return start date from responses
+"RTN","DSIO5O3",85,0)
+ Q $G(^OR(100,IFN,4.5,+$O(^OR(100,IFN,4.5,"ID","START",0)),1))
+"RTN","DSIO5O3",86,0)
+RSTOP() ; return stop date from responses
+"RTN","DSIO5O3",87,0)
+ Q $G(^OR(100,IFN,4.5,+$O(^OR(100,IFN,4.5,"ID","STOP",0)),1))
+"RTN","DSIO5O3",88,0)
+ Q
+"RTN","DSIO5O3",89,0)
+ ;
+"RTN","DSIO5O3",90,0)
+TST ;
+"RTN","DSIO5O3",91,0)
+ S TXT=2,ORYD=$H
+"RTN","DSIO5O3",92,0)
+ M IFNLST=@RET
+"RTN","DSIO5O3",93,0)
+ D GETORD(.RET,TXT,ORYD,.IFNLST)
+"RTN","DSIO5O3",94,0)
+ Q
+"VER")
+8.0^22.0
+**END**
+**END**
