@@ -1,0 +1,55 @@
+===============================================================================
+790     - TO SYNC WITH DSIO AND TRIGGER (PREGNANCY STATUS)
+===============================================================================
+
+  AVFD1    MUMPS    WHOLE FILE (#790)
+            Field:  PREGNANCY STATUS  (790.16,2)
+                    1)= D WV^DSIO4($G(DA(1)),$G(DA))
+                    2)= D WV^DSIO4($G(DA(1)),$G(DA))
+
+  AVFD2    MUMPS    WHOLE FILE (#790)
+            Field:  EDD  (790.16,3)
+                    1)= D WV^DSIO4($G(DA(1)),$G(DA))
+                    2)= D WV^DSIO4($G(DA(1)),$G(DA))
+
+  AVFD3    MUMPS    WHOLE FILE (#790)
+            Field:  MENSTRUAL PERIOD END DATE  (790.15,2)
+                    1)= D MH^DSIO4($G(DA(1)),$G(DA))
+                    2)= D MH^DSIO4($G(DA(1)),$G(DA))
+
+===============================================================================
+8925    - DISCREET DATA FOR NOTES
+===============================================================================
+
+  AVFD1 (#440)    FIELD    MUMPS    IR    ACTION
+      Short Descr:  PUSH DISCREET DATA FOR SIGNED NOTES
+        Set Logic:  N VFD S VFD=$S(X(1)="COMPLETED":"PUSH^DSIO6(DA)",X(1)="DELE
+                    TED":"DELETE^DSIO0(DA)",1:"") D:VFD'="" @VFD
+       Kill Logic:  Q
+             X(1):  STATUS  (8925,.05)  (Subscr 1)  (forwards)
+                      Transform (Storage):  S X=$$GET1^DIQ(8925.6,X_",",.01)
+         NO RE-INDEXING ALLOWED!
+
+===============================================================================
+123     - TRIGGER
+===============================================================================
+
+  AVFD (#1258)    RECORD    MUMPS    IR    ACTION
+      Short Descr:  Maternity Tracker Trigger logic
+        Set Logic:  D CON^DSIO5(X(2),X(1))
+       Kill Logic:  Q
+             X(1):  TO SERVICE  (123,1)  (forwards)
+             X(2):  PATIENT NAME  (123,.02)  (forwards)
+         NO RE-INDEXING ALLOWED!
+
+===============================================================================
+9000011 - TRIGGER
+===============================================================================
+
+  AVFD (#1259)    RECORD    MUMPS    IR    ACTION
+      Short Descr:  Maternity Tracker Trigger logic
+        Set Logic:  D PRO^DSIO5(X(2),X(1))
+       Kill Logic:  Q
+             X(1):  DIAGNOSIS  (9000011,.01)  (forwards)
+             X(2):  PATIENT NAME  (9000011,.02)  (forwards)
+         NO RE-INDEXING ALLOWED!
