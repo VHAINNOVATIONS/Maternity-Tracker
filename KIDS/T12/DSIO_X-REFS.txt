@@ -21,7 +21,7 @@
 8925    - DISCREET DATA FOR NOTES
 ===============================================================================
 
-  AVFD1 (#440)    FIELD    MUMPS    IR    ACTION
+  AVFD (#440)    FIELD    MUMPS    IR    ACTION
       Short Descr:  PUSH DISCREET DATA FOR SIGNED NOTES
         Set Logic:  N VFD S VFD=$S(X(1)="COMPLETED":"PUSH^DSIO6(DA)",X(1)="DELE
                     TED":"DELETE^DSIO0(DA)",1:"") D:VFD'="" @VFD
