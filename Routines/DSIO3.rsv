@@ -1,5 +1,5 @@
-Routine DSIO3 saved using VFDXTRS routine on May 20, 2015 17:01
-DSIO3^INT^63692,31310^May 20, 2015@08:41
+Routine DSIO3 saved using VFDXTRS routine on May 20, 2015 17:21
+DSIO3^INT^63692,62386^May 20, 2015@17:19
 DSIO3 ;DSS/TFF - DSIO TIU SUPPORT;06/28/2013 15:19
  ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 1
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -31,7 +31,7 @@ DSIO3 ;DSS/TFF - DSIO TIU SUPPORT;06/28/2013 15:19
  ;
  Q
  ;
-CREATE(RET,DFN,TITLE,NOTE,DATA,SUBJ,PG) ; RPC: DSIO CREATE A NOTE
+CREATE(RET,DFN,TITLE,NOTE,DATA,SUBJ,PREG) ; RPC: DSIO CREATE A NOTE
  ;
  ; Visit information will come out of a configuration file
  ;
@@ -60,7 +60,7 @@ CREATE(RET,DFN,TITLE,NOTE,DATA,SUBJ,PG) ; RPC: DSIO CREATE A NOTE
  S TIEN=$$TITLE($G(TITLE)) I 'TIEN S RET="-1^Title not found." Q
  S VSTR=$$VISIT(TIEN)
  I 'VSTR S RET="-1^DSIO TITLE CONFIGURATION not setup for this TITLE." Q
- I $G(PG),'$$SPG(DFN,IEN,PG) S RET="0^Unable to associate pregnancy."
+ I $G(PREG),'$$SPG(DFN,IEN,PREG) S RET="0^Unable to associate pregnancy."
  S DTIUX(1202)=DUZ                  ; AUTHOR/DICTATOR
  S DTIUX(1205)=$P(VSTR,";")         ; HOSPITAL LOCATION
  S DTIUX(1301)=$P(VSTR,";",2)       ; REFERENCE DATE
@@ -86,7 +86,7 @@ VISIT(TIEN) ; Get visit information from a TITLE
  S VTYPE=$$GET1^DIQ(19641.5,TIEN_",",.03,"I") Q:$L(VTYPE)'=1 0
  Q VLOC_";"_$$NOW^XLFDT_";"_VTYPE
  ;
-SET(RET,IEN,NOTE,DATA,SUBJ,PG) ; RPC: DSIO UPDATE A NOTE
+SET(RET,IEN,NOTE,DATA,SUBJ,PREG) ; RPC: DSIO UPDATE A NOTE
  ; 
  ; REQUIRED INPUT:
  ; ---------------
@@ -109,7 +109,7 @@ SET(RET,IEN,NOTE,DATA,SUBJ,PG) ; RPC: DSIO UPDATE A NOTE
  S DTIUX(1301)=$$NOW^XLFDT
 UPDATE1 ; Continue for Create, Set, and Addendum
  N TASK,NOTIN,CT,I,X N:'$D(DTIUX) DTIUX
- I $G(PG),'$$SPG(DFN,IEN,PG) S RET="0^Unable to associate pregnancy."
+ I $G(PREG),'$$SPG(DFN,IEN,PREG) S RET="0^Unable to associate pregnancy."
  S DTIUX(1202)=DUZ                  ; AUTHOR/DICTATOR
  S:$G(SUBJ)'="" DTIUX(1701)=SUBJ    ; SUBJECT
  ; *** If LCK is TRUE then FAILED to lock
@@ -117,7 +117,7 @@ UPDATE1 ; Continue for Create, Set, and Addendum
  D UPDATE^TIUSRVP(.RET,IEN,.DTIUX,0)
  I 'RET S $P(RET,U)=-1 D UNLCK(IEN) Q
  ; *** DDCS
- ;I $D(DATA) D STORED^DSIO6(.TASK,TIEN_";TIU(8925.1,",IEN,"O",.DATA)
+ I $D(DATA) N TASK D STORED^DSIO6(.TASK,IEN,.DATA,"O")
  I $D(BLR) M NOTIN=BLR S CT=$O(NOTIN("TEXT",""),-1)+1
  S:'$D(CT) CT=1 S X="" F I=CT:1 S X=$O(NOTE(X)) Q:X=""  S NOTIN("TEXT",I,0)=NOTE(X)
  ; <# of Current Page>^<Total # of Pages>
@@ -212,14 +212,14 @@ SIGN(RET,IEN,SIG) ; RPC: DSIO SIGN A NOTE
  ;
  ; ------------------------------ TIU LIST ------------------------------------
  ;
-LIST(RET,IEN,DFN,TITLES,FDT,TDT,PG,SORT) ; RPC: DSIO GET TIU NOTES
+LIST(RET,IEN,DFN,TITLES,FDT,TDT,PREG,SORT) ; RPC: DSIO GET TIU NOTES
  ;
  ;     IEN: NOTE IEN
  ;     DFN: PATIENT IEN
  ;  TITLES: ARRY OF TITLES TITLE(#)=TITLE
  ;     FDT: FROM DATE
  ;     TDT: TO DATE
- ;      PG: IEN OF PREGNANCY HISTORY FILE (19641.13)
+ ;    PREG: IEN OF PREGNANCY HISTORY FILE (19641.13)
  ;    SORT: PAGE#,CT
  ;
  ; X-REF: ACLPT = ALL OF PATIENTS PROGRESS NOTES IF
@@ -239,7 +239,7 @@ LIST(RET,IEN,DFN,TITLES,FDT,TDT,PG,SORT) ; RPC: DSIO GET TIU NOTES
  I '$G(DFN) S @RET@(0)="-1^Patient not provided." Q
  S CT=$NA(TITLES) F  S CT=$Q(@CT) Q:CT=""  S:@CT'="" TL($$UP^XLFSTR(@CT))=""
  I '$D(TL) S @RET@(0)="-1^Titles required." Q 
- I $G(PG),'$D(^DSIO(19641.13,PG)) S @RET@(0)="-1^Pregnacy not found." Q
+ I $G(PREG),'$D(^DSIO(19641.13,PREG)) S @RET@(0)="-1^Pregnacy not found." Q
  I $G(FDT)'="" D  Q:$P(@RET@(0),U)=-1
  . S FDT=$$DT^DSIO2(FDT)
  . I FDT="" S @RET@(0)="-1^Invalid from date time format." Q
@@ -254,7 +254,7 @@ LIST(RET,IEN,DFN,TITLES,FDT,TDT,PG,SORT) ; RPC: DSIO GET TIU NOTES
  . S IEN=$O(^TIU(8925,"ACLPT",3,DFN,DATE,""))
  . Q:'$D(TL($$UP^XLFSTR($$GET1^DIQ(8925,IEN_",",.01))))
  . Q:'$$STATUS(IEN)
- . I $G(PG),'$$PG(IEN,PG) Q
+ . I $G(PG),'$$PG(IEN,PREG) Q
  . S TS=TS+1 I STRT'="",TS'>STRT Q
  . S RCT=RCT+1 I END'="",RCT>END Q
  . S @RET@(RCT)=$$L1(IEN)
