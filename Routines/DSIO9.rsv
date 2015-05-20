@@ -1,5 +1,5 @@
-Routine DSIO9 saved using VFDXTRS routine on May 20, 2015 09:21
-DSIO9^INT^63692,31310^May 20, 2015@08:41
+Routine DSIO9 saved using VFDXTRS routine on May 20, 2015 17:01
+DSIO9^INT^63692,60492^May 20, 2015@16:48
 DSIO9 ;DSS/TFF - DSIO PERSON;06/28/2013 15:19
  ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 1
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -234,5 +234,5 @@ FOF(DFN,FOF) ; Get DSIO PERSON IEN
  S FOF=$$UP^XLFSTR($G(FOF))
  Q:FOF=""!(FOF="U")!(FOF="UNSPECIFIED") "UNSPECIFIED"
  D PERSON(.RET,$G(DFN),FOF) Q:'$D(RET(1)) "UNSPECIFIED"
- I $P($G(RET(1)),U)!($P($G(RET(1)),U)="S") Q $$UP^XLFSTR($P(RET(1),U,2))_"|"_RET(1)
+ Q:$P($G(RET(1)),U)!($P($G(RET(1)),U)="S") $$UP^XLFSTR($P(RET(1),U,2))_"|"_$P(RET(1),U)
  Q "UNSPECIFIED"

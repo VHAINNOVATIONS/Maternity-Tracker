@@ -1,5 +1,5 @@
-Routine DSIO7 saved using VFDXTRS routine on May 20, 2015 09:21
-DSIO7^INT^63692,31238^May 20, 2015@08:40
+Routine DSIO7 saved using VFDXTRS routine on May 20, 2015 17:01
+DSIO7^INT^63692,60901^May 20, 2015@16:55
 DSIO7 ;DSS/TFF - DSIO VPR FOR IHE;06/28/2013 15:19
  ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 23
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -255,12 +255,13 @@ PAR(DFN,BEG,END,MAX,ID) ; -- find patient family information (Participant)
  .D ATCS($TR($P($P(RT,U,";",2),"(",2),",",""),+RT,$QS(I,2))
  ;
  ; GET ONLY CURRENT FOF
- D PREGG^DSIO10(.OUT,DFN,"C")
- I +$G(OUT(0))>0 S FOF=$P(OUT(0),U,6),FOFIEN=$P(OUT(0),U,7) D
+ D PREGG^DSIO15(.OUT,"C",DFN)
+ I $G(@OUT@(0)) D
+ .S FOF=$P($P($G(@OUT@(1)),U,7),"|"),FOFIEN=$P($P($G(@OUT@(1)),U,7),"|",2)
  .I FOFIEN="" S PAT("father_of_fetus",0)=FOF Q
  .S PAT("father_of_fetus",FOFIEN)=FOF
  .K OUT D PERSON^DSIO9(.OUT,DFN,FOFIEN) I $D(OUT) D
- ..Q:FOF='$P($G(OUT(0)),U,2)
+ ..Q:FOF='$P($G(OUT(1)),U,2)
  ..S PAT("father_of_fetus",FOFIEN,"address")=$P(OUT(0),U,6,11)
  ..S PAT("father_of_fetus",FOFIEN,"telecom")=$P(OUT(0),U,12,14)
  ; THE FOLLOWING CODE IS FOR ALL FOF'S

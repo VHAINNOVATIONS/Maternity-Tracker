@@ -1,5 +1,5 @@
-Routine DSIO12 saved using VFDXTRS routine on May 20, 2015 09:21
-DSIO12^INT^63692,31367^May 20, 2015@08:42
+Routine DSIO12 saved using VFDXTRS routine on May 20, 2015 17:01
+DSIO12^INT^63692,46789^May 20, 2015@12:59
 DSIO12 ;DSS/CMW - DSIO CLINICAL RPCS;06/06/2014 15:19
  ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 12
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -18,53 +18,56 @@ DSIO12 ;DSS/CMW - DSIO CLINICAL RPCS;06/06/2014 15:19
 PROV(RET,LIST) ; RPC: DSIO GET PROVIDER
  ;
  ; LIST - LIST(#)= PIEN (Provider IEN List)
- ;  RET - IEN^NAME^ADDRESS1^ADDRESS2^ADDRESS3^CITY^STATE^ZIP^PH OFFICE^#:TITLE^#:SERVICE^NPI
  ;
- N CNT,PIEN,NIEN,FLD,I,CT
- S RET=$NA(^TMP("DSIO PROV",$J)) K @RET S @RET@(0)="-1^No entries found."
+ ; RETURN:
+ ;  IEN^NAME^ADDRESS1^ADDRESS2^ADDRESS3^CITY^STATE^ZIP^PH OFFICE^
+ ;  TITLE^SERVICE^NPI
+ ;
+ N CT,I
+ S RET=$NA(^TMP($J,"DSIO PROV")) K @RET S @RET@(0)="-1^Entrie(s) not found."
+ S I=0,CT="" F  S CT=$O(LIST(CT)) Q:CT=""  S @RET@(I)=$$PF(+LIST(CT)),I=I+1
+ Q
+ ;
+PF(IEN) ; Provider Fields
+ N FLD,OUT,LINE,FLD,STR
  S FLD=".01;.111;.112;.113;.114;.115;.116;.132;8;29;41.99"
- S CNT="" F  S CNT=$O(LIST(CNT)) Q:CNT=""  D
- . S PIEN=+LIST(CNT)
- . K OUT D GETS^DIQ(200,PIEN_",",FLD,"E","OUT")
- . I '$D(OUT) S @RET@(CNT)=PIEN_"^"_"Provider Not Found." Q
- . S I=1,@RET@(CNT)=PIEN,CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
- . . S I=I+1
- . . I $QS(CT,3)=".115" S NIEN=$$FIND1^DIC(5,,"X",@(CT)),NIEN=$$GET1^DIQ(5,NIEN_",",1) S @(CT)=NIEN_":"_@(CT)
- . . I $QS(CT,3)="8" S NIEN=$$FIND1^DIC(3.1,,"X",@(CT)) S @(CT)=NIEN_":"_@(CT)
- . . I $QS(CT,3)="29" S NIEN=$$FIND1^DIC(49,,"X",@(CT)) S @(CT)=NIEN_":"_@(CT)
- Q
+ D GETS^DIQ(200,IEN_",",FLD,"IE","OUT") Q:'$D(OUT) IEN_"^Provider Not Found."
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+ S STR=IEN_U
+ S STR=STR_$$NAME^DSIO2(FLD(.01,"I"))_U              ; NAME
+ S STR=STR_FLD(.111,"I")_U                           ; STREET ADDRESS 1
+ S STR=STR_FLD(.112,"I")_U                           ; STREET ADDRESS 2
+ S STR=STR_FLD(.113,"I")_U                           ; STREET ADDRESS 3
+ S STR=STR_FLD(.114,"I")_U                           ; CITY
+ S STR=STR_$$GET1^DIQ(5,FLD(.115,"I")_",",1)_U       ; STATE
+ S STR=STR_FLD(.116,"I")_U                           ; ZIP
+ S STR=STR_FLD(.132,"I")_U                           ; OFFICE PHONE
+ S STR=STR_FLD(8,"E")_U                              ; TITLE
+ S STR=STR_FLD(29,"E")_U                             ; SERVICE
+ S STR=STR_FLD(41.99,"I")                            ; NPI
+ Q STR
  ;
-REM(RET,PIEN,SORT) ; RPC: DSIO GET REMINDER LIST
+REM(RET,DFN,SORT) ; RPC: DSIO GET REMINDER LIST
+ ;                       ORQQPX REMINDERS LIST
  ;
- ; Return pt's currently due PCE clinical reminders
- ; in the format file 811.9 ien^reminder print name^date due^last occur.
- ; INPUT PARM: RET FOR RETURN, PIEN - PATIENT IEN
- ; OUTPUT: RET(1)="500011^Influenza (MJB)^DUE NOW"
+ ; Return patient's currently due PCE clinical reminders.
+ ;
+ ; RETURN:
  ; -----------------------------
- ; RET=Reminder ien^Reminder Text^Due date (3050724)
+ ; ^TMP("DSIO REMIND",$J,0)=COUNT
+ ; ^TMP("DSIO REMIND",$J,1)=IEN^REMINDER PRINT NAME^DATE DUE
  ;
- N I,TOT S TOT=0
- I $G(SORT)'?.N1",".N S SORT=""
- D REMIND^ORQQPX(.LST,PIEN)
- S I=0 F  S I=$O(LST(I)) Q:I=""  S LST(I)=$P(LST(I),"^",1,3),TOT=I ;CLEAN UP ARRAY
- S RET=$NA(^TMP("DSIO REMIND",$J)) K @RET
- I $G(TOT)=0 S @RET@(0)="-1^No entries found." Q
- I $G(SORT) D
- . D SORTA^DSIO2(.LST,.RETLST)
- . K @RET M @RET=RETLST
- I '$G(SORT) M @RET=LST
- S @RET@(0)=TOT
- K LST,RETLST
+ N LST,RCT,TS,CT,STRT,END D SORT($G(SORT))
+ S RET=$NA(^TMP($J,"DSIO12 REM")) K @RET S @RET@(0)="0^Nothing found."
+ I '$G(DFN) S @RET@(0)="-1^Patient entry not found." Q
+ D REMIND^ORQQPX(.LST,DFN)
+ S (RCT,TS,CT)=0
+ F  S CT=$O(LST(CT)) Q:'CT  D
+ . S TS=TS+1 I STRT'="",TS'>STRT Q
+ . S RCT=RCT+1 I END'="",RCT>END Q
+ . S @RET@(RCT)=$P(LST(CT),"^",1,3)
+ S:$G(TS) @RET@(0)=TS
  Q
- 
- 
- 
- 
- 
- ; BELOW IS UPDATED
- 
- 
- 
  ;
 DETAIL(RET,DFN,RIEN) ; RPC: DSIO GET REMINDER DETAIL
  ; DBIA 3078                PXRM REMINDER DETAIL
