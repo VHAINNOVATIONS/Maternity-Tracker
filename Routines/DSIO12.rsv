@@ -1,0 +1,106 @@
+Routine DSIO12 saved using VFDXTRS routine on May 20, 2015 09:21
+DSIO12^INT^63692,31367^May 20, 2015@08:42
+DSIO12 ;DSS/CMW - DSIO CLINICAL RPCS;06/06/2014 15:19
+ ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 12
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;
+ ; External References      DBIA#
+ ; -------------------      -----
+ ; REMLIST^ORQORB
+ ; REMNONOR^ORQORB
+ ; URGLIST^ORQORB
+ ; REMIND^ORQQPX
+ ; REMDET^PXRMRPCA
+ ; GETUSER1^XQALDATA
+ ;
+ Q
+ ;
+PROV(RET,LIST) ; RPC: DSIO GET PROVIDER
+ ;
+ ; LIST - LIST(#)= PIEN (Provider IEN List)
+ ;  RET - IEN^NAME^ADDRESS1^ADDRESS2^ADDRESS3^CITY^STATE^ZIP^PH OFFICE^#:TITLE^#:SERVICE^NPI
+ ;
+ N CNT,PIEN,NIEN,FLD,I,CT
+ S RET=$NA(^TMP("DSIO PROV",$J)) K @RET S @RET@(0)="-1^No entries found."
+ S FLD=".01;.111;.112;.113;.114;.115;.116;.132;8;29;41.99"
+ S CNT="" F  S CNT=$O(LIST(CNT)) Q:CNT=""  D
+ . S PIEN=+LIST(CNT)
+ . K OUT D GETS^DIQ(200,PIEN_",",FLD,"E","OUT")
+ . I '$D(OUT) S @RET@(CNT)=PIEN_"^"_"Provider Not Found." Q
+ . S I=1,@RET@(CNT)=PIEN,CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
+ . . S I=I+1
+ . . I $QS(CT,3)=".115" S NIEN=$$FIND1^DIC(5,,"X",@(CT)),NIEN=$$GET1^DIQ(5,NIEN_",",1) S @(CT)=NIEN_":"_@(CT)
+ . . I $QS(CT,3)="8" S NIEN=$$FIND1^DIC(3.1,,"X",@(CT)) S @(CT)=NIEN_":"_@(CT)
+ . . I $QS(CT,3)="29" S NIEN=$$FIND1^DIC(49,,"X",@(CT)) S @(CT)=NIEN_":"_@(CT)
+ Q
+ ;
+REM(RET,PIEN,SORT) ; RPC: DSIO GET REMINDER LIST
+ ;
+ ; Return pt's currently due PCE clinical reminders
+ ; in the format file 811.9 ien^reminder print name^date due^last occur.
+ ; INPUT PARM: RET FOR RETURN, PIEN - PATIENT IEN
+ ; OUTPUT: RET(1)="500011^Influenza (MJB)^DUE NOW"
+ ; -----------------------------
+ ; RET=Reminder ien^Reminder Text^Due date (3050724)
+ ;
+ N I,TOT S TOT=0
+ I $G(SORT)'?.N1",".N S SORT=""
+ D REMIND^ORQQPX(.LST,PIEN)
+ S I=0 F  S I=$O(LST(I)) Q:I=""  S LST(I)=$P(LST(I),"^",1,3),TOT=I ;CLEAN UP ARRAY
+ S RET=$NA(^TMP("DSIO REMIND",$J)) K @RET
+ I $G(TOT)=0 S @RET@(0)="-1^No entries found." Q
+ I $G(SORT) D
+ . D SORTA^DSIO2(.LST,.RETLST)
+ . K @RET M @RET=RETLST
+ I '$G(SORT) M @RET=LST
+ S @RET@(0)=TOT
+ K LST,RETLST
+ Q
+ 
+ 
+ 
+ 
+ 
+ ; BELOW IS UPDATED
+ 
+ 
+ 
+ ;
+DETAIL(RET,DFN,RIEN) ; RPC: DSIO GET REMINDER DETAIL
+ ; DBIA 3078                PXRM REMINDER DETAIL
+ ;
+ ;   RIEN - clinical reminder (811.9 IEN)
+ ;
+ ; RETURN:
+ ;  RET(1)="The reminder ZZ Breast Exam was inactivated 04/13/2005@21:55:15"
+ ;
+ D REMDET^PXRMRPCA(.RET,DFN,RIEN)
+ S:'$D(RET) RET(0)="0^No entries found."
+ Q
+ ;
+ALERT(RET,SORT) ; RPC: DSIO GET NOTIFICATIONS/ALERTS
+ ;
+ ; Get user alerts for patients that are being tracked. Current this only works for
+ ; TIU related alerts to determine patient.
+ ;
+ N ND,RCT,TS,CT,STRT,END D SORT($G(SORT))
+ S RET=$NA(^TMP($J,"DSIO12 ALERT")),ND=$NA(^TMP($J,"DSIO ALERT")) K @RET,@ND
+ K @RET S @RET@(0)="0^No tracked patient alerts."
+ D GETUSER1^XQALDATA(ND,DUZ)
+ S (RCT,TS,CT)=0 F  S CT=$O(@ND@(CT)) Q:'CT  D
+ . S TST=$P($P(@ND@(CT),U,2),";") Q:$E(TST,1,3)'="TIU"
+ . Q:'$$TRACK($$GET1^DIQ(8925,$E(TST,4,($L(TST)))_",",.02,"I"))
+ . S TS=TS+1 I STRT'="",TS'>STRT Q
+ . S RCT=RCT+1 I END'="",RCT>END Q
+ . S @RET@(RCT)=@ND@(CT)
+ S:$G(TS) @RET@(0)=TS
+ Q
+ ;
+TRACK(DFN) ; Tracked Yes or No
+ Q $S($$TRACK^DSIO4(DFN,1)=1:1,1:0)
+ ;
+ ; ---------------------------------- COMMON ----------------------------------
+ ;
+SORT(SORT) ; Set Start and End
+ D S^DSIO2(SORT)
+ Q

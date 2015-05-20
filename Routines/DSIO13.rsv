@@ -1,0 +1,49 @@
+Routine DSIO13 saved using VFDXTRS routine on May 20, 2015 09:21
+DSIO13^INT^63692,31238^May 20, 2015@08:40
+DSIO13 ;DSS/CMW/TFF - DSIO ORDER RPCS;06/06/2014 15:19
+ ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 23
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;
+ ; External References      DBIA#
+ ; -------------------      -----
+ ; DETAIL^ORQ2
+ ; AGET^ORWORR
+ ; GET4LST^ORWORR
+ ;
+ Q
+ ;
+AGET(RET,DFN,FILTER,GROUPS,DTFROM,DTTHRU,SORT) ; RPC: DSIO GET ORDER LIST
+ ;
+ ;    AGET - Get orders for patient
+ ;             1   2    3     4      5     6   7   8   9   10     11    12    13    14     15     16 17    18
+ ;     RET = ~IFN^Grp^ActTm^StrtTm^StopTm^Sts^Sig^Nrs^Clk^PrvID^PrvNam^ActDA^Flag^DCType^ChrtRev^DEA#^^Schedule
+ ;     RET = tOrder Text (repeating as necessary)
+ ;     DFN = Patient ID
+ ;  FILTER = # indicates which orders to return, default=2 (current)
+ ;  GROUPS = display grp of orders to show (default=ALL)
+ ; DETAILS = Get Order detail
+ ;
+ N OUT,TXT,ORYD,IFNLST,CT,TOR,DETLS
+ S RET=$NA(^TMP($J,"DSIOAGET")) K @RET S @RET@(0)="-1^An error occured."
+ I '$G(DFN) S @RET@(0)="-1^Patient DFN is required." Q
+ S:'$D(FILTER) FILTER=2
+ S DTFROM=$$DT1^DSIO2($G(DTFROM)) S:'$L($G(DTFROM)) DTFROM=0
+ S DTTHRU=$$DT1^DSIO2($G(DTTHRU)) S:'$L($G(DTTHRU)) DTTHRU=0
+ D AGET^ORWORR(.OUT,$G(DFN),FILTER,.GROUPS,DTFROM,DTTHRU) K @OUT@(.1)
+ S TXT=2,ORYD=$H M IFNLST=@OUT K @OUT
+ S CT=0 F  S CT=$O(IFNLST(CT)) Q:'CT  S IFNLST(CT)=$P(IFNLST(CT),"^"),TOR=CT
+ D GET4LST^ORWORR(.DETLS,.IFNLST)
+ I DETLS>0 S OUT=$NA(^TMP($J,"DSIOGET4LST")) K @OUT M @OUT=DETLS
+ ;D SORT^DSIO2(.OUT,.RET,$G(SORT),TOR,,"3^5Z|4^5Z|5^5Z","11|19",,,,"t","2^:^100.98^.01|6^:^100^5")
+ D SORT^DSIO2(.OUT,.RET,$G(SORT),TOR,,,"11|19",,,,"t","2*^:^100.98^.01|6^:^100^5","19^:")
+ K @OUT
+ Q
+ ;
+DETAIL(RET,ORID,DFN) ; RPC: DSIO GET ORDER DETAIL
+ ; Return details of ORID (shell to kill VIDEO subs)
+ N ORVP S ORVP=DFN_";DPT("
+ S RET=$NA(^TMP("DSIO ORD",$J)) K @RET S @RET@(0)="-1^No entries found."
+ I '$G(ORID) S @RET@(0)="-1^Order IEN required." Q
+ I '$G(DFN) S @RET@(0)="-1^Patient DFN required." Q
+ D DETAIL^ORQ2(.RET,ORID) I $D(@RET@(1)) K @RET@(0)
+ Q

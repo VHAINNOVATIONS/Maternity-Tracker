@@ -1,0 +1,61 @@
+Routine DSIO03 saved using VFDXTRS routine on May 20, 2015 09:21
+DSIO03^INT^63692,31237^May 20, 2015@08:40
+DSIO03 ;DSS/TFF - DSIO OCNT GUI CONFIGURATION;06/28/2013 15:19
+ ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 23
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;
+ ; External References      DBIA#
+ ; -------------------      -----
+ ;
+ ;
+ ;
+ Q
+ ;
+GRPTI(RET,FLE,CTR,TYP) ; RPC: DSIO OCNT GET REPORT ITEM
+ ; GET REPORT ITEM (DSIO OCNT CONFIGURATION)
+ ;
+ ; INPUT
+ ; =====
+ ; FLE = FILENAME OF INTERFACE
+ ; CTR = DELPHI CONTROL NAME
+ ; TYP = (S)INGLE, (DL) DIALOG LIST, (WP) WORD PROCESSING, (M)ULTIPLE
+ ;
+ ; OUTPUT
+ ; ======
+ ; ARY(#) = FLD#^VALUE
+ ;
+ S RET(0)="-1^Database error"
+ N IEN,EN,OUT,CT,I
+ S CTR=$$UP^XLFSTR($G(CTR))
+ S IEN=$$FIND1^DIC(19641.48,,"X",$G(FLE)) Q:IEN<1
+ S EN=$$FIND1^DIC(19641.481,","_IEN_",","X",CTR) Q:EN<1
+ D GETS^DIQ(19641.481,EN_","_IEN_",","**","E","OUT")
+ S I=0,CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
+ .Q:$QS(CT,1)'=19641.481
+ .S RET(I)=$QS(CT,3)_U_@CT,I=I+1
+ Q
+ ;
+RSAVE(RET,FLE,CTR,TYP,ARY) ; RPC: DSIO OCNT SAVE REPORT ITEM
+ ; SAVE REPORT ITEM (DSIO OCNT CONFIGURATION)
+ ;
+ ; INPUT
+ ; =====
+ ;    FLE = FILENAME OF INTERFACE
+ ;    CTR = DELPHI CONTROL NAME
+ ;    TYP = (S)INGLE, (DL) DIALOG LIST, (WP) WORD PROCESSING, (M)ULTIPLE
+ ; ARY(#) = FLD#^VALUE
+ ;
+ ; OUTPUT
+ ; ======
+ ; RET = 1 OR -1
+ ;
+ S RET="-1^Database error"
+ N IEN,EN,CT,IPT,ERR
+ S CTR=$$UP^XLFSTR($G(CTR))
+ S IEN=$$FIND1^DIC(19641.48,,"X",$G(FLE)) Q:IEN<1
+ S EN=$$FIND1^DIC(19641.481,","_IEN_",","X",CTR) Q:EN<1
+ S CT=$NA(ARY) F  S CT=$Q(@CT) Q:CT=""  D
+ .Q:$P(@CT,U)=.01
+ .S IPT(19641.481,EN_","_IEN_",",$P(@CT,U))=$S($P(@CT,U,2)=-1:1,1:$P(@CT,U,2))
+ I $D(IPT) D FILE^DIE("E","IPT","ERR") I '$D(ERR) S RET=1
+ Q

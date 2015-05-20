@@ -1,0 +1,314 @@
+Routine DSIO2 saved using VFDXTRS routine on May 20, 2015 09:21
+DSIO2^INT^63692,31310^May 20, 2015@08:41
+DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;06/28/2013 15:19
+ ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 1
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;
+ ; External References      DBIA#
+ ; -------------------      -----
+ ;
+ ;
+ ;
+ Q
+ ;
+ ; --------------------------------- CODING -----------------------------------
+ ;
+ICODE(SYS,CD) ; Transform and lookup code (internal)
+ Q:CD="@" CD
+ N IEN,CODE,CK
+ I SYS="LNC" D
+ . S IEN=+CD,CK=$P(CD,"-",2)
+ . I $$FIND1^DIC(95.3,,"A",IEN)&($$GET1^DIQ(95.3,IEN_",",15)=CK) D
+ . . S CODE=IEN_";LAB(95.3,"
+ I SYS="SCT" D
+ . S IEN=$$FIND1^DIC(757.02,,"O",CD,"CODE")
+ . I +IEN>0,$$GET1^DIQ(757.02,IEN_",",1)=CD D
+ . . S CODE=IEN_";LEX(757.02,"
+ Q $G(CODE)
+ ;
+DCODE(Y) ; Display Code
+ N FLE S FLE=$TR($P(Y,"(",2),",","")
+ I $P(Y,";",2)="LAB(95.3," S Y=$$GET1^DIQ(FLE,+Y_",",.01)
+ E  I $P(Y,";",2)="LEX(757.02," S Y=$$GET1^DIQ(FLE,+Y_",",1)
+ Q Y
+ ;
+SCODE(VP,IEN,FLE) ; Set the Code Type
+ N TYP,IPT
+ S TYP=$S($P(VP,";",2)="LAB(95.3,":"LNC",$P(VP,";",2)="LEX(757.02,":"SCT",1:"OTHER")
+ S IPT(FLE,IEN_",",$S(FLE=19641.123:.03,FLE=19641.12:.07,1:""))=TYP
+ D UPDATE^DIE(,"IPT")
+ Q
+ ;
+LCODE(CODE,TYP,SOR) ; Log codes that are not found in DSIO CODES (19641.99)
+ ; *** USED BY DSIO OBSERVATION
+ N IPT,REASON,DLAYGO
+ S DLAYGO=19641.99
+ S IPT(19641.99,"+1,",.01)=$$NOW^XLFDT
+ S IPT(19641.99,"+1,",.02)=CODE
+ S IPT(19641.99,"+1,",.03)=TYP
+ S IPT(19641.99,"+1,",.04)=DUZ
+ S IPT(19641.99,"+1,",.05)=SOR
+ S REASON=$S(TYP'="LNC"&(TYP'="SCT"):"Type is not LOINC or SNOMED CT.",1:"Unable to find code as "_TYP_".")
+ S IPT(19641.99,"+1,",.06)=REASON
+ D UPDATE^DIE(,"IPT")
+ Q
+ ;
+ ; --------------------------------- UTILITIES --------------------------------
+ ;
+WITHIN(SUB,WOLE,DL) ; Is a string within another
+ ; WOLE IS DELIMITED BY CARET
+ N CT,FLG S:'$D(DL) DL=U
+ F CT=1:1:$L(WOLE,DL) I $P(WOLE,DL,CT)=SUB S FLG=1
+ Q +$G(FLG)
+ ;
+FORMAT(X) ; -- enforce (xxx)xxx-xxxx phone format
+ S X=$G(X) I X?1"("3N1")"3N1"-"4N.E Q X
+ N P,N,I,Y S P=""
+ F I=1:1:$L(X) S N=$E(X,I) I N=+N S P=P_N
+ S:$L(P)<10 P=$E("0000000000",1,10-$L(P))_P
+ S Y=$S(P:"("_$E(P,1,3)_")"_$E(P,4,6)_"-"_$E(P,7,10),1:"")
+ Q Y
+ ;
+AB(LIST) ; Change null to @ for null means delete
+ ;
+ ; This API turns non-existing or existing but equal to null variables
+ ; into the @. Originally, most DSIO RPCS were set up to ignore null
+ ; and use @ as the user's confirmation that they wish to delete data
+ ; before using FileMan API's.
+ ;
+ ; The implementation of this API means that before calling any DSIO
+ ; add or update action all values expressing the current state of the
+ ; record must be passed - thus a get function may need to be called first
+ ; Some methods will include the AB input variable and if set to 1 will
+ ; bypass the use of this method.
+ ;
+ ; THE MCCDASHBOARD expects that by sending a null the user wishes to
+ ; delete that associated data element.
+ ;
+ ; Array inputs are expected to be IDENTIFIER^VALUE PAIRS
+ ; EXAMPLE: ARRAY(<SUBSCRIPT>)="ZIP<^ - THE LAST PIECE IS THE VALUE>66666"
+ ;
+ N I,VAR,CT
+ F I=1:1:$L(LIST,",") S VAR=$P(LIST,",",I) D
+ . I '$D(@VAR) S @VAR="@"
+ . E  I $D(@VAR)=10 S CT=$NA(@VAR) F  S CT=$Q(@CT) Q:CT=""  D
+ . . I $P(@CT,U,$L(@CT,U))="" S $P(@CT,U,$L(@CT,U))="@"
+ . E  I $D(@VAR)=1&(@VAR="") S @VAR="@"
+ Q
+ ;
+STORE ; Save FileMan variables for restoration
+ M:$D(DO) VFDDO=DO
+ M:$D(DI) VFDDI=DI
+ M:$D(DQ) VFDDQ=DQ
+ M:$D(DC) VFDDC=DC
+ M:$D(DM) VFDDM=DM
+ M:$D(DK) VFDDK=DK
+ M:$D(DP) VFDDP=DP
+ M:$D(DL) VFDDL=DL
+ M:$D(DV) VFDDV=DV
+ M:$D(DIU) VFDDIU=DIU
+ Q
+ ;
+GETVAR ; Restore FileMan variables
+ M:$D(VFDDO) DO=VFDDO
+ M:$D(VFDDI) DI=VFDDI
+ M:$D(VFDDQ) DQ=VFDDQ
+ M:$D(VFDDC) DC=VFDDC
+ M:$D(VFDDM) DM=VFDDM
+ M:$D(VFDDK) DK=VFDDK
+ M:$D(VFDDP) DP=VFDDP
+ M:$D(VFDDL) DL=VFDDL
+ M:$D(VFDDV) DV=VFDDV
+ M:$D(VFDDIU) DIU=VFDDIU
+ Q
+ ;
+CHECK(DFN) ; Check for patient in DSIO PATIENT
+ N VFDDO,VFDDI,VFDDQ,VFDDC,VFDDM,VFDDK,VFDDP,VFDDL,VFDDV,VFDDIU
+ D STORE
+ N DIC,DA,X,Y,DLAYGO S DLAYGO=19641
+ S DIC="^DSIO(19641,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
+ ; *** ADD PATIENT TO WV PATIENT (790)
+ N DIC,DA,X,Y,DLAYGO S DLAYGO=790
+ S DIC="^WV(790,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
+ D GETVAR
+ Q 1
+ ;
+NAME(NAM) ; Transform NAME,NAME to title case thats Name,Name
+ I NAM["," S NAM=$$TITLE^XLFSTR($P(NAM,","))_","_$$TITLE^XLFSTR($P(NAM,",",2))
+ E  S NAM=$$TITLE^XLFSTR(NAM)
+ Q NAM
+ ;
+VALID(FLE,FLD,IENS,VAL) ; Check if a value is valid
+ N VALID,ERR
+ D VAL^DIE($G(FLE),$G(IENS),$G(FLD),,$G(VAL),.VALID,,"ERR")
+ I VALID["^"!($D(ERR)) Q 0
+ Q 1
+ ;
+DT(X) ; Validate and attempt to return a valid date
+ N %DT S %DT="ST" D ^%DT
+ I +Y<1 S X=$$DT1(X) I +X<1 S X=$P(X,U,2) S %DT="STX" D ^%DT
+ Q $S(+Y'<1:Y,+$G(X)'<1:X,1:"")
+ ;
+DT1(VAL) ; Translate external date time to FM date time
+ ;
+ ; Converts these 9/23/2004 10:53:25 AM
+ ;                09/03/2014 21:00:00
+ ;                2009-10-22 05:00:00.0
+ ;                10-22-2009 05:00:00.0
+ ;                OCT 12,(, )2012 12:10 AM
+ ;                OCT 12,(, )2012 13:00
+ ;                July 26, 2014 @ 10
+ ;                02-OCT-2014 13.29.28
+ ;
+ ; The FM call below does not work with the time portions
+ ; of the above format
+ ; ------------------------------------------------------
+ ; D DT^DILF("E","DEC 12,2014",.RESULT)
+ ; RESULT=3141212
+ ; RESULT(0)="DEC 12, 2014"
+ ;
+ Q:VAL="" ""
+ I $$FMTH^XLFDT(VAL)'=-1 Q VAL
+ N DATE,FLG,TIME S DATE=-1,FLG=0
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N S FLG=1
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1" ".2A S FLG=1
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1".".2N S FLG=1
+ I VAL?3A1" "1.2N1","4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=2
+ I VAL?3A1" "1.2N1","1" "4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=3
+ I VAL?1.A1" "1.2N1","1" "4N.1" ".1"@".1" ".2N.1":".2N S FLG=4
+ I VAL?2N1"-"3A1"-"4N.1" ".2N.1".".2N.1".".2N S FLG=5
+ I FLG=0 D DT^DILF("E",VAL,.DATE)
+ I FLG=1 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($P(VAL," ",2,99))
+ I FLG=2 D DT^DILF("E",$P(VAL," ",1,2),.DATE) S TIME=$$DT2($P(VAL," ",3,99))
+ I FLG=3 D DT^DILF("E",$P(VAL," ",1,3),.DATE) S TIME=$$DT2($P(VAL," ",4,99))
+ I FLG=4 D DT^DILF("E",$$TRIM^XLFSTR($P(VAL,"@")),.DATE) D
+ . S TIME=$$DT2($$TRIM^XLFSTR($P(VAL,"@",2)))
+ I FLG=5 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($TR($P(VAL," ",2,99),".",":"))
+ I DATE=-1 Q -1_U_VAL
+ Q DATE_$S($G(TIME)'="":"."_TIME,1:"")
+ ;
+DT2(TM) ; Convert Time
+ N SEC,MIN,HR S TM=$$TRIM^XLFSTR($$UP^XLFSTR(TM))
+ I TM'[":",TM?.N D  Q $G(TM)
+ . F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
+ Q:TM'[":" ""
+ S SEC=$S(TM[" ":$P($P(TM,":",3)," "),TM[".":$P($P(TM,":",3),"."),1:$P(TM,":",3))
+ S SEC=$$DT3(SEC) S:$L(SEC)=1 SEC=0_SEC
+ S MIN=$P($P(TM,":",2)," "),MIN=$$DT3(MIN) S:$L(MIN)=1 MIN=0_MIN
+ S HR=$P($P(TM,":")," "),HR=$$DT3(HR) S:$L(HR)=1 HR=0_HR
+ I HR=12&((TM["AM")!($E(TM,$L(TM)-1,$L(TM))="AM")) S HR="00"
+ I HR<12&((TM["PM")!($E(TM,$L(TM)-1,$L(TM))="PM")) S HR=HR+12
+ S TM=HR_MIN_SEC
+ F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
+ Q $S($G(TM)'="":TM,1:"")
+ ;
+DT3(SEG) ; Only Numbers
+ Q $$TRIM^XLFSTR($TR($$UP^XLFSTR(SEG),"ABCDEFGHIJKLMNOPQRSTUVWXYZ",""))
+ ;
+ ; --------------------------------- SORTING ----------------------------------
+ ;
+FN(P,C) ; Get the next record by dashboard page and count forward
+ Q:P<2 0
+ Q C*(P-1)
+ ;
+S(SORT) ; Set Start and End
+ S:$G(SORT)="" SORT="1,500"
+ I SORT?.N1",".N D
+ . S STRT=$$FN($P(SORT,","),$P(SORT,",",2)),END=$P(SORT,",",2)
+ Q
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ; ---- try to phase out SORT
+ ;
+SORT(IN,OUT,SORT,TO,DIR,PDT,PTLE,ADD,EXC,IGN,SKP,EXF,SWP,EXC2) ; CREATE PAGING (GLOBAL)
+ ;
+ ;   IN = ^TMP(<SUBSCRIPTS PASSED IN>,COUNTER (# OR STRING),HANGING 0 (OPTIONAL))
+ ;   TO = TOTAL IF THE CALLER KNOWS THE TOTAL COUNT
+ ;        THIS IS USEFUL FOR SCREENED LISTS
+ ;  DIR = DIRECTION 1 OR -1 (REVERSE)
+ ;  PDT = PIECE TO TRANSFORM DATE (#|#^CODE)
+ ; PTLE = PIECE TO TRANSFORM TO TITLE CASE #|#
+ ;  ADD = ADD ADDITIONAL INFORMATION FROM AN ARRAY WHEN THE ARRAY SUBSCRIPT
+ ;        EQUALS THE FIRST PIECE THE THE BASE ENTRY
+ ;  EXC = EXECUTE CODE TO ADD ADDITIONAL INFORMATION
+ ;        WHERE THE CODE IS A FUNCTION EXPECTING THE ITEM IEN $$FUN^ROUTINE(IEN)
+ ;        WITHOUT THE PARAMETERS LISTED $$FUN^ROUTINE
+ ;  IGN = IF THIS PIECE IS NOT THIS VALUE DON'T INCLUDE (PIECE^VALUE)
+ ;  SKP = LINES STARTING WITH THIS CHARACTER WILL BE SKIPPED
+ ;  EXF = EXECUTE CODE TO ADD INTO A PIECE WITH THE PIECE BEING THE IEN
+ ;        (PIECE#^DELIMITER^FILE^FIELD|) IF $P1 CONTAINS * THEN USE FLD AS IEN
+ ;  SWP = SWAP PIECES OF A PIECE (PEICE^DELIMITER|)
+ ; EXC2 = EXECUTE CODE TO FORMATE A PIECE (1,2,3|CODE) WHERE THE PIECES TO FORMAT
+ ;        ARE DELIMITED BY "," AND THE FUNCTION IS THE SECOND PIECE OF "|"
+ ;
+ N STRT,STOP,T,CT,Z,I,IIGN,IIGN2,VAL,PP,PP1,EX,SKSTP,DLM S M="0^Nothing found."
+ S (STRT,STOP,T)=0 I $G(SORT)?.N1",".N D
+ .S STRT=$$FN($P(SORT,","),$P(SORT,",",2))
+ .S STOP=$P(SORT,",",2)
+ .I IN["DILIST"&(+$G(DIR)>-1) S STRT=STRT+1
+ S CT=1,Z="" F I=0:1 S Z=$O(@IN@(Z),$G(DIR,1)) Q:Z=""  D
+ .Q:Z=0
+ .; WHERE DOES THE VALUE SIT? IS THERE A HANGING ZERO?
+ .S VAL=$S($D(@IN@(Z))=1:@IN@(Z),$D(@IN@(Z,0))=1:@IN@(Z,0),1:"")
+ .I $D(SKP),$E(VAL,1)=SKP S I=I-1
+ .Q:I<STRT
+ .I STOP,T>=STOP,$D(SKP),$E(VAL,1)'=SKP S T=T+1,SKSTP=1 Q
+ .I STOP,T>=STOP,'$D(SKP) S T=T+1 Q
+ .Q:$D(SKSTP)
+ .S @OUT@(CT)=VAL
+ .I $D(SKP),$E(VAL,1)=SKP S CT=CT+1 Q  ; DON'T TRANSFORM SKIP
+ .I $G(SWP)'="" D
+ ..F PP=1:1:$L(SWP,"|") S PP1=$P(SWP,"|",PP) D
+ ...S EX="S $P(@OUT@(CT),U,+PP1)=$P($P(@OUT@(CT),U,+PP1),$P(PP1,U,2),2)_$P(PP1,U,2)"
+ ...S EX=EX_"_$P($P(@OUT@(CT),U,+PP1),$P(PP1,U,2))" X EX
+ .I $G(PDT)'="" D
+ ..F PP=1:1:$L(PDT,"|") S PP1=+$P(PDT,"|",PP) D
+ ...S $P(@OUT@(CT),U,PP1)=$$FMTE^XLFDT($P(@OUT@(CT),U,PP1),$P($P(PDT,"|",PP),U,2))
+ .I $D(ADD(+VAL)) S @OUT@(CT)=@OUT@(CT)_U_ADD(+VAL)
+ .I $G(EXC)'="" S EX="S @OUT@(CT)=@OUT@(CT)_U_"_EXC_"("_+@OUT@(CT)_")" X EX
+ .I $G(EXC2)'="" F PP=1:1:$L(EXC2,",") S PP1=$P($P(EXC2,",",PP),"|") D
+ ..S EX="S $P(@OUT@(CT),U,PP1)="_$P(EXC2,"|",2)_"($P(@OUT@(CT),U,PP1))" X EX
+ .I $G(EXF)'="" D
+ ..F PP=1:1:$L(EXF,"|") S PP1=$P(EXF,"|",PP) D
+ ...S DLM=$P(PP1,U,2)
+ ...S EX="S $P(@OUT@(CT),U,+PP1)=$S(DLM'="""":$P(@OUT@(CT),U,+PP1),1:"""")_DLM_"
+ ...S EX=EX_"$$GET1($S($P(PP1,U)[""*"":$P(@OUT@(CT),U,+PP1),1:$P(@OUT@(CT),U)),$P(PP1,U,3),$P(PP1,U,4))" X EX
+ .I $G(PTLE)'="" D
+ ..F PP=1:1:$L(PTLE,"|") S PP1=+$P(PTLE,"|",PP) D
+ ...S $P(@OUT@(CT),U,PP1)=$$NAME($P(@OUT@(CT),U,PP1))
+ .;I $G(IGN)'="" D  Q  ; ONLY THE ITEMS THAT INCLUDE...
+ .;.I $P(@OUT@(CT),U,+IGN)'=$P(IGN,U,2) K @OUT@(CT) Q
+ .;.S IIGN=$G(IIGN)+1
+ .;.I IIGN<STRT K @OUT@(CT) Q
+ .;.S IIGN2=$G(IIGN2)+1
+ .;.I STOP,IIGN2>STOP K @OUT@(CT) Q
+ .;.S CT=CT+1
+ .S T=T+1,CT=CT+1
+ K:$E(IN,1,4)="^TMP" @IN
+ S @OUT@(0)=$S($O(@OUT@(""),-1)=0:M,+$G(TO)>0:TO,$D(IIGN):IIGN,T>0:T,1:M)
+ Q
+ ;
+SORTA(IN,OUT) ; CREATE PAGING (ARRAY)
+ N PG,CNT,PGX,PGS K OUT
+ S PG=+SORT,CNT=$P(SORT,",",2),PGS=0
+ I '$G(PG)!'$G(CNT) Q
+ S PGX=PG*CNT
+ I PG>1 S PGS=PGX-CNT
+ F  S PGS=$O(IN(PGS)) Q:PGS=""!(PGS>PGX)  D
+ .S OUT(PGS)=IN(PGS)
+ Q
+ ;
+GET1(IEN,FLE,FLD) ; $$GET1^DIQ
+ Q:$G(IEN)=""!($G(FLE)="")!($G(FLD)="") ""
+ N I,XIEN,FLG
+ I +IEN<1 F I=1:1:$L(IEN) D  Q:$D(FLG)
+ .I $E(IEN,I)?.N S XIEN=$G(XIEN)_$E(IEN,I) Q
+ .S:$L($G(XIEN)) FLG=1
+ E  S XIEN=IEN
+ Q $$GET1^DIQ(FLE,XIEN_",",+FLD)

@@ -1,0 +1,297 @@
+Routine DSIO11 saved using VFDXTRS routine on May 20, 2015 09:21
+DSIO11^INT^63692,31237^May 20, 2015@08:40
+DSIO11 ;DSS/CMW - DSIO MCC CHECKLIST;07/28/2013 15:19
+ ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 23
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;
+ ; External References      DBIA#
+ ; -------------------      -----
+ ;
+ ;
+ ;
+ Q
+ ;
+CHKGET(RET,IEN,SORT) ; RPC: GET MCC CHECKLIST DATA
+ ; IEN - IEN FOR EXISTING MCC CHECK LIST ENTRY
+ ; RET(0)=# (TOT ENTRIES)
+ ; RET(#)=IEN:DESC^#:TYPE^#:DCT^DCV^#:CAT^LNK
+ ;
+ N I,TOTFLG,ERR S TOT=0
+ I $G(SORT)'?.N1",".N S SORT=""
+ S IEN=+$G(IEN),RET=""
+ S RET=$NA(^TMP("DSIO MCCHK",$J)) K @RET S @RET@(0)="-1^No entries found."
+ I IEN>0,$$GET1^DIQ(19641.7,IEN_",",.01,"I")="" S @RET@(0)="-1^Checklist IEN not found." Q
+ K LST S LST(1)=IEN,TOT=1
+ I IEN<1 D
+ . K LST S (IEN,TOT)=0 F  S IEN=$O(^DSIO(19641.7,IEN)) Q:'IEN  S TOT=TOT+1,LST(TOT)=IEN
+ ; SORT
+ I $G(SORT) D  ;RUN SORT LOGIC
+ . D SORTA^DSIO2(.LST,.RETLST)
+ I '$G(SORT) M RETLST=LST
+ S CNT="" F  S CNT=$O(RETLST(CNT)) Q:'CNT  D
+ . S IEN=+RETLST(CNT)
+ . S FLD=".01;.02;.03;.04;.05;.06;.1;"
+ . K OUT D GETS^DIQ(19641.7,IEN_",",FLD,"E","OUT")
+ . S I=0,@RET@(CNT)=IEN,CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
+ . . S I=I+1
+ . . I $QS(CT,3)=".01" S @(CT)=IEN_":"_@(CT)
+ . . I $QS(CT,3)=".02" S NIEN=$$FIND1^DIC(19641.71,,"X",@(CT)) S @(CT)=NIEN_":"_@(CT)
+ . . I $QS(CT,3)=".03" S NIEN=$$FIND1^DIC(19641.72,,"X",@(CT)) S @(CT)=NIEN_":"_@(CT)
+ . . I $QS(CT,3)=".05" S NIEN=$$FIND1^DIC(19641.73,,"X",@(CT)) S @(CT)=NIEN_":"_@(CT)
+ . . ;KAR 11-26-14
+ . . I $QS(CT,3)=".06" S NIEN=$$FIND1^DIC(19641.8,,"X",@(CT)) S @(CT)=NIEN_":"_@(CT)
+ . . S $P(@RET@(CNT),U,I)=@CT
+ S @RET@(0)=TOT
+ K LST
+ Q
+ ;
+PATGET(RET,PIEN,CIEN,HIEN,CSI) ; RPC: GET MCC PATIENT CHECKLIST DATA
+ ; CIEN - IEN FOR EXISTING MCC CHECK LIST ENTRY (not req)
+ ; PIEN - Unique DFN identifier for a patient (req)
+ ; HIEN - Pregnancy Id pointing to a pregnancy history entry (not req)
+ ; CSI  - Completion Status ien (not req)
+ ; SORT - Sort field (ex: 1,10) (not req)
+ ;
+ ; RET(0)=# (TOT ENTRIES)
+ ;              1            2       3      4     5   6    7      8     9      10
+ ; RET(CHK)=PIEN:PATIENT^CIEN:DESC^#:HIEN^#:TYPE^#:DCT^DCV^#:CAT^ILNK^UPDTBY^UPDTDT
+ ;           11     12       13    14     15    16    17   18
+ ; RET(PAT)=SDDT^#:INPROG^#:COMST^COMBY^COMDT^COMLNK^NOTE^EDUC
+ ;
+ N CI,CT,DSI,I,NIEN,ERR,TOT,QUIT,DIEN
+ S TOT=0,QUIT=""
+ I $G(SORT)'?.N1",".N S SORT=""
+ S PIEN=+$G(PIEN),CIEN=+$G(CIEN),HIEN=$G(HIEN),CSI=$G(CSI),RET=""
+ S RET=$NA(^TMP("DSIO MCCPAT",$J)) K @RET S @RET@(0)="-1^No entries found."
+ I CSI>0 S @RET@(0)="-1^No entries found for this Completion Status."
+ I PIEN>0,(CIEN<1) D  Q:$G(RET(0))
+ . I '$$CHECK^DSIO2($G(PIEN)) S RET(0)="-1^DSIO PATIENT entry not found." Q
+ . I '$D(^DSIO(19641.76,"B",PIEN)) S QUIT=1,@RET@(0)="-1^Patient Checklist IEN not found." Q
+ . S DIEN=$O(^DSIO(19641.76,"B",PIEN,""))
+ . I $$GET1^DIQ(19641.76,DIEN_",",.01,"I")="" S RET(0)="-1^Patient Checklist - No entry found for this PIEN." Q
+ . ;S (CIEN,HIEN)=""
+ . D PIEN S @RET@(0)=TOT
+ ;
+ I PIEN>0,(CIEN>0) D  Q:$G(RET(0))
+ . I '$$CHECK^DSIO2($G(PIEN)) S RET(0)="-1^DSIO PATIENT entry not found." Q
+ . I '$D(^DSIO(19641.76,"B",PIEN)) S QUIT=1,@RET@(0)="-1^Patient Checklist IEN not found." Q
+ . S DIEN=$O(^DSIO(19641.76,"B",PIEN,""))
+ . I $$GET1^DIQ(19641.76,DIEN_",",.01,"I")="" S RET(0)="-1^Patient Checklist - No entry found for this PIEN." Q
+ . S FLG=CIEN_","_DIEN_","
+ . I $$GET1^DIQ(19641.761,FLG_",",.01,"I")="" S QUIT=1,@RET@(0)="-1^MCC Checklist IEN not found." Q
+ . S HIEN="",CI=0 S FLG=CIEN_","_DIEN_","
+ . ;S PIEN=$$GET1^DIQ(19641.76,FLG_",",.02,"I")
+ . S TOT=1  D CIEN I QUIT Q  ;GET ONE CHECK LIST ITEM
+ . S @RET@(0)=TOT
+ ;
+ I HIEN>0 D  Q:$G(RET(0))
+ . I '$D(^DSIO(19641.76,"C",HIEN)) S QUIT=1,@RET@(0)="-1^Pregnancy History IEN not found." Q
+ . S DIEN=$O(^DSIO(19641.76,"C",HIEN,""))
+ . D HIEN
+ . S @RET@(0)=TOT
+ ;
+ Q
+ ;
+PIEN ;GET ALL CHECK LIST ITEMS FOR PATIENT
+ S (CIEN,TOT)=0
+ F  S CIEN=$O(^DSIO(19641.76,DIEN,1,CIEN)) Q:'CIEN  D
+ . S CI=0 S FLG=CIEN_","_DIEN_","
+ . D CIEN I QUIT Q
+ . S @RET@(0)=TOT
+ Q
+ ;
+HIEN ;GET ALL CHECK LIST ITEMS FOR PATIENT
+ S (CIEN,TOT)=0
+ F  S CIEN=$O(^DSIO(19641.76,"C",HIEN,DIEN,CIEN)) Q:'CIEN  D
+ . S CI=0 S FLG=CIEN_","_DIEN_","
+ . S PIEN=$$GET1^DIQ(19641.76,DIEN_",",.01,"I")
+ . D CIEN I QUIT Q
+ . S @RET@(0)=TOT
+ Q
+ ;
+CIEN ;GET SINGLE CHECK LIST ENTRY
+ S TOT=TOT+1
+ K OUT D GETS^DIQ(19641.761,FLG_",","*","E","OUT")
+ S DSI=$$GET1^DIQ(19641.761,FLG_",",.12,"I") ;CHECK COMPLETION STATUS
+ I $G(CSI),$$GET1^DIQ(19641.74,CSI_",",.01,"I")="" S QUIT=1,@RET@(0)="-1^MCC CompletionStatus IEN not found." Q
+ I $G(CSI),($G(CSI)'=$G(DSI)) S @RET@(0)="-1^CompletionStatus no entries found." Q
+ S PIEND=$$GET1^DIQ(2,PIEN_",",.01,"E")
+ S CI=CI+1,$P(@RET@(TOT),U,CI)=PIEN_":"_PIEND
+ ;
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
+ . S CI=CI+1
+ . I $QS(CT,3)=".01" S @(CT)=CIEN_":"_@(CT) ;Description
+ . I $QS(CT,3)=".02" S NIEN=$$FIND1^DIC(19641.13,,"X",@(CT)) S:NIEN @(CT)=NIEN_":"_@(CT) ;PregnancyHistoryLink
+ . I $QS(CT,3)=".03" S NIEN=$$FIND1^DIC(19641.71,,"X",@(CT)) S:NIEN @(CT)=NIEN_":"_@(CT) ;CheckListType
+ . I $QS(CT,3)=".04" S NIEN=$$FIND1^DIC(19641.72,,"X",@(CT)) S:NIEN @(CT)=NIEN_":"_@(CT) ;DueCalculationType
+ . I $QS(CT,3)=".08" S NIEN=$$FIND1^DIC(200,,"X",@(CT)) S:NIEN @(CT)=NIEN_":"_@(CT) ;LastUpdatedBy
+ . I $QS(CT,3)=".11" S NIEN=$S($G(@(CT))="YES":1,$G(@(CT))="NO":0,1:"0:NO") S @(CT)=NIEN_":"_@(CT)
+ . I $QS(CT,3)=".12" S NIEN=$$FIND1^DIC(19641.74,,"X",@(CT)) S:NIEN @(CT)=NIEN_":"_@(CT) ;CompletionStatus
+ . I $QS(CT,3)=".13" S NIEN=$$FIND1^DIC(200,,"X",@(CT)) S:NIEN @(CT)=NIEN_":"_@(CT) ;CompletedBy
+ . I $QS(CT,3)=".17" S NIEN=$$FIND1^DIC(19641.8,,"X",@(CT)) S:NIEN @(CT)=NIEN_":"_@(CT) ;EducationItemLink
+ . S $P(@RET@(TOT),U,CI)=@CT
+ Q
+ ;
+ ;           1      2     3     4     5     6     7     8
+MCCHK(RET,DSCIEN,DSDESC,DSTYP,DSDCT,DSDCV,DSCAT,DSLNK,DSEDU) ; DSIO SAVE MCC CHECKLIST
+ ; KAR - 11-24-14 ADDED PARAMETER 8: DSEDU POINTER TO 19641.8
+ ; input parameters
+ ; MCCHK(.RET,CIEN,DESC,TYP,DCT,DCV,CAT,LNK,EDUC)
+ ;
+ N DSFLG,DSIPT
+ S DSCIEN=+$G(DSCIEN) K DSIPT,RET
+ I DSCIEN>0 S DSFLG=DSCIEN_","
+ I DSCIEN<1 D  Q:$G(RET(0))
+ . I $G(DSDESC)=""!($G(DSTYP)="")!($G(DSDCT)="")!($G(DSDCV)="") S RET(0)="-1^Required Checklist parameter not found." Q
+ . S DSCIEN=$O(^DSIO(19641.7,"B",DSDESC,""))
+ . I $G(DSCIEN) S DSFLG=DSCIEN_"," Q 
+ . S DSFLG="+1,"
+ ;
+ ;Description
+ S DSIPT(19641.7,DSFLG,.01)=DSDESC ;
+ ;CheckListType
+ I $$GET1^DIQ(19641.71,DSTYP_",",.01,"I")="" S RET(0)="-1^ChecklistType - ien not found." Q
+ S DSIPT(19641.7,DSFLG,.02)=+DSTYP
+ ;DueCalculationType
+ I $$GET1^DIQ(19641.72,DSDCT_",",.01,"I")="" S RET(0)="-1^DueCalculationType - ien not found." Q
+ S DSIPT(19641.7,DSFLG,.03)=+DSDCT
+ ;DueCalculationValue
+ S DSIPT(19641.7,DSFLG,.04)=+DSDCV
+ ;Category
+ ;I DSCAT>0,$$GET1^DIQ(19641.74,DSCAT_",",.01,"I")="" S RET(0)="-1^Category - ien not found." Q
+ S DSIPT(19641.7,DSFLG,.05)=DSCAT
+ ;EducationItemLink
+ I $G(DSEDU)'="" S DSIPT(19641.7,DSFLG,.06)=DSEDU
+ S DSIPT(19641.7,DSFLG,.1)=DSLNK ;ItemLink
+ S DSIPT(19641.7,DSFLG,.2)=DUZ ;LastUpdatedBy
+ S DSIPT(19641.7,DSFLG,.21)=DT ;LastUpdatedDate
+ ;
+ ; CREATE (OR EDIT) THE ENTRY
+ K ERR
+ D UPDATE^DIE("","DSIPT",$S(+$G(DSCIEN)>0:"",1:"DSCIEN"),"ERR")
+ I $D(ERR("DIERR","1","TEXT",1)) S RET(1)="-1^"_$G(ERR("DIERR",1,"TEXT",1)) Q
+ S (DSCIEN,RET(0))=$S(+$G(DSCIEN)>0:DSCIEN,+$G(DSCIEN(1))>0:DSCIEN(1),1:-1)
+ ;
+ K DSCIEN,DSDESC,DSFLG,DSIPT,DSPIEN,DSHIEN,DSTYP,DSDCT,DSDCV,DSCAT,DSLNK,DSEDU
+ Q
+ ;
+ ;           *1     2    *3     *4      *5    *6    *7    8     9    10    *11    12     13    14     15   ; (*=req parameter)
+PATCHK(RET,DSPIEN,DSCIEN,DSDESC,DSHIEN,DSTYP,DSDCT,DSDCV,DSCAT,DSLNK,DSSDT,DSCST,DSCLK,DSNOTE,DSINP,DSEDU) ; DSIO SAVE MCC PATIENT CHECKLIST
+ ; KAR 11-24-14 ADDED PARAMETER 15
+ ; input parameters
+ ;
+ N DSFLG,DSIPT,DSDT S DSIEN=""
+ I $G(DSPIEN),$G(DSDESC)=""!($G(DSHIEN)="")!($G(DSTYP)="") S RET(0)="-1^Required Patient Checklist parameter not found." Q
+ I $G(DSDCT)=""!($G(DSDCV)="")!($G(DSCST)="") S RET(0)="-1^Required Patient Checklist parameter not found." Q
+ ;
+ S DSDT=$$NOW^XLFDT
+ ;CHECK PATIENT PIEN
+ S DSPIEN=+$G(DSPIEN) S DSIEN=0 K DSIPT,RET
+ I DSPIEN>0 D  Q:$G(RET(0))
+ . I '$$CHECK^DSIO2($G(DSPIEN)) S RET(0)="-1^DSIO PATIENT entry not found." Q
+ . S DSIEN=$O(^DSIO(19641.76,"B",DSPIEN,""))
+ . ;I $$GET1^DIQ(19641.76,DSIEN_",",.01,"I")="" S RET(0)="-1^Patient Checklist - No entry found for this PIEN." Q
+ . ;I DSIEN>0 S DSFLG01=DSIEN
+ ;NEW PIEN ENTRY
+ I DSIEN<1 D  Q:$G(RET(1))
+ . S DSFLG="+1,"
+ . S DSIPT(19641.76,DSFLG,.01)=DSPIEN
+ . K ERR,DSIEN D UPDATE^DIE("","DSIPT",$S(+$G(DSIEN)>0:"",1:"DSIEN"),"ERR")
+ . S (DSIEN,RET)=$S(+$G(DSIEN)>0:DSIEN,+$G(DSIEN(1))>0:DSIEN(1),1:-1)
+ . I $G(DSIEN(1))<1 S RET(0)="-1^Patient Checklist - No entry created." Q
+ ;
+ S DSCIEN=+$G(DSCIEN)
+ I DSCIEN>0 D  Q:$G(RET(0))
+ . S DSFLG=DSCIEN_","_DSIEN_","
+ . I $$GET1^DIQ(19641.761,DSFLG_",",.01,"I")="" S RET(0)="-1^Patient Checklist - CIEN not found." Q
+ I DSCIEN<1 D  Q:$G(RET(0))
+ . ;I DSIEN>0 S DSCIEN=$O(^DSIO(19641.76,DSIEN,1,"B",DSDESC,""))
+ . ;I $G(DSCIEN) S DSFLG=DSCIEN_","_DSIEN_"," Q
+ . S DSFLG="+1,"_DSIEN_","
+ ;Description
+ S DSIPT(19641.761,DSFLG,.01)=DSDESC
+ ; ERROR
+ ;PregnancyHistoryLink
+ S DSPIENH=$$GET1^DIQ(19641.13,DSHIEN_",",.03,"I") I $G(DSPIENH)="" S RET(0)="-1^Pregnancy History  - ien not found." Q
+ I DSPIEN'=DSPIENH S RET(0)="-1^Pregnancy History PIEN does not match Patient PIEN." Q
+ S DSIPT(19641.761,DSFLG,.02)=DSHIEN
+ ; ERROR
+ ;CheckListType
+ I $$GET1^DIQ(19641.71,DSTYP_",",.01,"I")="" S RET(0)="-1^ChecklistType - ien not found." Q
+ S DSIPT(19641.761,DSFLG,.03)=+DSTYP
+ ;DueCalculationType
+ I $$GET1^DIQ(19641.72,DSDCT_",",.01,"I")="" S RET(0)="-1^DueCalculationType - ien not found." Q
+ S DSIPT(19641.761,DSFLG,.04)=+DSDCT
+ ;DueCalculationValue
+ S DSIPT(19641.761,DSFLG,.05)=+DSDCV
+ ;Category
+ ;I DSCAT>0,$$GET1^DIQ(19641.73,DSCAT_",",.01,"I")="" S RET(0)="-1^Category - ien not found." Q
+ S DSIPT(19641.761,DSFLG,.06)=DSCAT
+ ; 
+ S DSIPT(19641.761,DSFLG,.07)=DSLNK ;ItemLink
+ S DSIPT(19641.761,DSFLG,.08)=DUZ ;LastUpdatedBy
+ S DSIPT(19641.761,DSFLG,.09)=DSDT ;LastUpdatedDate
+ ;
+ S DSIPT(19641.761,DSFLG,.1)=DSSDT ;SpecificDueDate
+ S DSIP=$S(+$G(DSIP)>0:1,1:0)
+ S DSIPT(19641.761,DSFLG,.11)=DSINP ;Inprogress
+ ;
+ ;CompletionStatus
+ I DSCST>0,$$GET1^DIQ(19641.74,DSCST_",",.01,"I")="" S RET(0)="-1^CompletionStatus - ien not found." Q
+ S DSIPT(19641.761,DSFLG,.12)=DSCST ;CompletionStatus
+ ;
+ I DSCST>1 D
+ . S DSIPT(19641.761,DSFLG,.13)=DUZ ;CompletedBy
+ . S DSIPT(19641.761,DSFLG,.14)=DSDT ;CompleteDate
+ S DSIPT(19641.761,DSFLG,.15)=DSCLK ;CompletionLink
+ S DSIPT(19641.761,DSFLG,.16)=DSNOTE ;Note
+ ;EducationItemLink
+ I $G(DSEDU)'="" S DSIPT(19641.761,DSFLG,.17)=DSEDU ;EducationItemLink
+ ;
+ ; CREATE (OR EDIT) THE ENTRY
+ K ERR D UPDATE^DIE("","DSIPT",$S(+$G(DSCIEN)>0:"",1:"DSCIEN"),"ERR")
+ I $D(ERR("DIERR","1","TEXT",1)) S RET(1)="-1^"_$G(ERR("DIERR",1,"TEXT",1)) Q
+ S (DSCIEN)=$S(+$G(DSCIEN)>0:DSCIEN,+$G(DSCIEN(1))>0:DSCIEN(1),1:-1)
+ S RET(0)=DSPIEN_"^"_DSCIEN
+ ;
+ K DSCIEN,DSDESC,DSFLG,DSIPT,DSPIEN,DSHIEN,DSTYP,DSDCT,DSDCV,DSCAT,DSLNK
+ Q
+ ;
+MCCDEL(RET,DSCIEN) ; RPC: DSIO DELETE MCC CHECKLIST
+ ;
+ ; input parameters
+ ; MCCHK(.RET,CIEN) - CIEN FOR CHECKLIST TO DELETE
+ ;
+ N DSFLG,DSIPT
+ S DSCIEN=+$G(DSCIEN) K DSIPT,RET
+ I $G(DSCIEN)<1 S RET(0)="-1^Required Checklist Delete parameter CIEN missing." Q
+ I $$GET1^DIQ(19641.7,DSCIEN_",",.01,"I")="" S RET(0)="-1^Checklist Delete CIEN not found." Q
+ S DIK="^DSIO(19641.7,",DA=DSCIEN
+ D ^DIK
+ S RET(0)="-1^MCC CHECKLIST CIEN: "_DSCIEN_" DELETED"
+ Q
+ ;
+ ;           *1     *2    ; (*=req parameter)
+PATDEL(RET,DSPIEN,DSCIEN) ; RPC: DSIO DELETE MCC PAT CHKLST 
+ ;
+ ; input parameters
+ ;
+ N DSIEN
+ ;CHECK PATIENT PIEN
+ I $G(DSPIEN)=""!($G(DSCIEN)="") S RET(0)="-1^Required Patient Checklist Delete parameter missing." Q 
+ S DSPIEN=+$G(DSPIEN) S DSIEN=0 K DSIPT,RET
+ I DSPIEN>0 D  Q:$G(RET(0))
+ . I '$$CHECK^DSIO2($G(DSPIEN)) S RET(0)="-1^DSIO PATIENT entry not found." Q
+ . S DSIEN=$O(^DSIO(19641.76,"B",DSPIEN,""))
+ . I $$GET1^DIQ(19641.76,DSIEN_",",.01,"I")="" S RET(0)="-1^Patient Checklist - No entry found for this PIEN." Q
+ ;
+ S DSCIEN=+$G(DSCIEN)
+ I DSCIEN>0 D  Q:$G(RET(0))
+ . S DSFLG=DSCIEN_","_DSIEN_","
+ . I $$GET1^DIQ(19641.761,DSFLG_",",.01,"I")="" S RET(0)="-1^Patient Checklist - CIEN not found." Q
+ S DSFLG=DSCIEN_","_DSIEN_","
+ S DA(1)=DSIEN,DIK="^DSIO(19641.76,"_DA(1)_",1,",DA=DSCIEN
+ ;S DA(1)=DSIEN,DIK="^DSIO(19641.76,"_DA(1)_",""SB","",",DA=DSCIEN
+ D ^DIK
+ S RET(0)="-1^MCC PATIENT CHECKLIST CIEN: "_DSCIEN_" DELETED FROM PATIENT PIEN: "_DSPIEN
+ Q
