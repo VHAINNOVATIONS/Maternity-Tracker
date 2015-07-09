@@ -1,7 +1,5 @@
-Routine DSIO5 saved using VFDXTRS routine on May 20, 2015 17:21
-DSIO5^INT^63692,31238^May 20, 2015@08:40
 DSIO5 ;DSS/TFF - DSIO TRIGGERS;06/28/2013 15:19
- ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 23
+ ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -11,49 +9,49 @@ DSIO5 ;DSS/TFF - DSIO TRIGGERS;06/28/2013 15:19
  ;
  Q
  ;
-TRIGGER(FLE,NUM) ; FLAG PATIENTS OFF OF ^PXRMINDX
+TRIGGER(FLE,NUM) ; Flag patients off of ^PXRMINDX
  N OUT,CT,ND,LIEN,DSIO,SPEC,CON,ST,IX,X,DFN,IEN,RDT
  Q:'$G(FLE)!('$G(NUM))
  D LIST^DIC(FLE,,"@;.01I;.02I","P",,,,,,,"OUT") Q:'$D(OUT)
  F CT=1:1:+$G(OUT("DILIST",0)) S ND=$NA(OUT("DILIST",CT,0)) D
- .Q:'$P(@ND,U,2)!($P(@ND,U,3))   ; IF NO CONTROL (BROKEN POINTER) OR IS INACTIVE
- .S LIEN=$P(@ND,U,2),DSIO(LIEN)=+@ND
- .I FLE=19641.31 D      ; *** PROBLEM
- ..; PXRMINDX IS BY ICD SO UPDATE DSIO TO CON
- ..K SPEC I $$GET1^DIQ(80,LIEN_",",1.1)["ICD" D
- ...S SPEC=$$GET1^DIQ(80,LIEN_",",.01)
- ...I SPEC'="" S CON(LIEN)=SPEC
- ...; CON(LIEN)=ICD CODE
- .I FLE=19641.33 D      ; *** LAB
- ..; ADD THE SPECIMEN AND RESULT VALUES MULTIPLE
- ..K SPEC D GETS^DIQ(19641.33,+@ND_",","1*","I","SPEC") Q:'$D(SPEC)
- ..S ST=$NA(SPEC) F  S ST=$Q(@ST) Q:ST=""  S CON(LIEN)=$G(CON(LIEN))_@ST_U
- ..; CON(LIEN)=LAST RESULT DT^SPECIMEN^VALUE^SPECIMEN^VALUE...
- ..; EVERY EVEN PIECE IS SPECIMEN WITH THE NEXT PIECE BEING ITS VALUE | DELIMITED
+ . Q:'$P(@ND,U,2)!($P(@ND,U,3))   ; IF NO CONTROL (BROKEN POINTER) OR IS INACTIVE
+ . S LIEN=$P(@ND,U,2),DSIO(LIEN)=+@ND
+ . I FLE=19641.31 D      ; *** PROBLEM
+ . . ; PXRMINDX IS BY ICD SO UPDATE DSIO TO CON
+ . . K SPEC I $$GET1^DIQ(80,LIEN_",",1.1)["ICD" D
+ . . . S SPEC=$$GET1^DIQ(80,LIEN_",",.01)
+ . . . I SPEC'="" S CON(LIEN)=SPEC
+ . . . ; CON(LIEN)=ICD CODE
+ . I FLE=19641.33 D      ; *** LAB
+ . . ; ADD THE SPECIMEN AND RESULT VALUES MULTIPLE
+ . . K SPEC D GETS^DIQ(19641.33,+@ND_",","1*","I","SPEC") Q:'$D(SPEC)
+ . . S ST=$NA(SPEC) F  S ST=$Q(@ST) Q:ST=""  S CON(LIEN)=$G(CON(LIEN))_@ST_U
+ . . ; CON(LIEN)=LAST RESULT DT^SPECIMEN^VALUE^SPECIMEN^VALUE...
+ . . ; EVERY EVEN PIECE IS SPECIMEN WITH THE NEXT PIECE BEING ITS VALUE | DELIMITED
  S X=$S(NUM=63:"IP",NUM=9000011:"ICD",1:"") Q:X=""
  S IX=$NA(^PXRMINDX(NUM,X))
  S LIEN="" F  S LIEN=$O(CON(LIEN)) Q:LIEN=""  D
- .I X="ICD" D  Q
- ..S DFN=0 F  S DFN=$O(@IX@("ISPP",CON(LIEN),"A","U",DFN)) Q:'DFN  D
- ...Q:'$$SEX(DFN)
- ...; (U:UNKNOWN, A:ACUTE: C:CRONIC)
- ...F ST="U","A","C" D
- ....S RDT=$O(@IX@("ISPP",CON(LIEN),"A",ST,DFN,""),-1) I RDT'="" D
- .....S IEN=$O(@IX@("ISPP",CON(LIEN),"A",ST,DFN,RDT,""),-1)
- .....I $$RDT(FLE,DSIO(LIEN),DFN,RDT,IEN) D PROV2(DFN,CON(LIEN))
- .I X="IP" D
- ..S DFN=0 F  S DFN=$O(@IX@(LIEN,DFN)) Q:'DFN  D
- ...Q:'$$SEX(DFN)
- ...S RDT=$O(@IX@(LIEN,DFN,""),-1)
- ...Q:'$$RDT(FLE,DSIO(LIEN),DFN,RDT)
- ...D LABV1($O(@IX@(LIEN,DFN,RDT,"")),CON(LIEN))
+ . I X="ICD" D  Q
+ . . S DFN=0 F  S DFN=$O(@IX@("ISPP",CON(LIEN),"A","U",DFN)) Q:'DFN  D
+ . . . Q:'$$SEX(DFN)
+ . . . ; (U:UNKNOWN, A:ACUTE: C:CRONIC)
+ . . . F ST="U","A","C" D
+ . . . . S RDT=$O(@IX@("ISPP",CON(LIEN),"A",ST,DFN,""),-1) I RDT'="" D
+ . . . . . S IEN=$O(@IX@("ISPP",CON(LIEN),"A",ST,DFN,RDT,""),-1)
+ . . . . . I $$RDT(FLE,DSIO(LIEN),DFN,RDT,IEN) D PROV2(DFN,CON(LIEN))
+ . I X="IP" D
+ . . S DFN=0 F  S DFN=$O(@IX@(LIEN,DFN)) Q:'DFN  D
+ . . . Q:'$$SEX(DFN)
+ . . . S RDT=$O(@IX@(LIEN,DFN,""),-1)
+ . . . Q:'$$RDT(FLE,DSIO(LIEN),DFN,RDT)
+ . . . D LABV1($O(@IX@(LIEN,DFN,RDT,"")),CON(LIEN))
  Q
  ;
-SEX(DFN) ; FEMALE PATIENT?
+SEX(DFN) ; Female Patient?
  Q $S($$GET1^DIQ(2,$G(DFN)_",",.02,"I")="F":1,1:0)
  ;
-RDT(FLE,IEN,DFN,RDT,PXIEN) ; TRUE IF RDT IS GREATER THAN RECORDED RDT
- ;                           IF TRUE THEN RECORD IT
+RDT(FLE,IEN,DFN,RDT,PXIEN) ; TRUE if RDT is greater than recorded RDT
+ ;                           If TRUE then record it
  N IPT,FLG
  I '$G(PXIEN) D  Q:$D(FLG) 0
  . I $D(^DSIO(FLE,IEN,2,"C",DFN,RDT)) S FLG=1 Q
@@ -98,24 +96,24 @@ LAB(RET) ; RPC: DSIO CHECK CONTROLLED LABS
  S RET=1 D TRIGGER(19641.33,63)
  Q
  ;
-LABV1(CH,CON) ; VALIDATE THE LAB WITH THE CONTROL
+LABV1(CH,CON) ; Validate the lab with the control
  ;              CH="19;CH;7049475.846546;453"
  N SPM,PT,SP,FLG
  S SPM=$$GET1^DIQ(63.04,$P(CH,";",3)_","_+CH_",",.05,"I")
  F PT=1:1:$L(CON,U) D  Q:$D(FLG)
- .I PT#2,$P(CON,U,PT)=SPM S SP=SPM       ; SPECIMEN
- .Q:'$G(SP)
- .I PT#2=0 K SP I $$LABV2($P(^LR(+CH,"CH",$P(CH,";",3),$P(CH,";",4)),U),$P(CON,U,PT)) S FLG=1  ; VALUE
+ . I PT#2,$P(CON,U,PT)=SPM S SP=SPM       ; SPECIMEN
+ . Q:'$G(SP)
+ . I PT#2=0 K SP I $$LABV2($P(^LR(+CH,"CH",$P(CH,";",3),$P(CH,";",4)),U),$P(CON,U,PT)) S FLG=1  ; VALUE
  Q
  ;
-LABV2(VAL,CON) ; 
+LABV2(VAL,CON) ; Continue
  N PT,FLG,RES,RET
  S RES="Controlled LAB ("_$$GET1^DIQ(60,LIEN_",",.01)_") Result ("
  F PT=1:1:$L(CON,"|") D  Q:$D(FLG)
- .I VAL>$P(CON,"|",PT) D  Q
- ..S FLG=1,RES=RES_VAL_") > Controlled Value ("_$P(CON,"|",PT)_")"
- .I VAL=$P(CON,"|",PT) D
- ..S FLG=1,RES=RES_VAL_") = Controlled Value ("_$P(CON,"|",PT)_")"
+ . I VAL>$P(CON,"|",PT) D  Q
+ . . S FLG=1,RES=RES_VAL_") > Controlled Value ("_$P(CON,"|",PT)_")"
+ . I VAL=$P(CON,"|",PT) D
+ . . S FLG=1,RES=RES_VAL_") = Controlled Value ("_$P(CON,"|",PT)_")"
  I $D(FLG) D REC^DSIO1(.RET,DFN,2,RES,,"TRIGGER") S FLG=+RET
  Q +$G(FLG)
  ;
@@ -125,33 +123,13 @@ CONSULT(RET) ; RPC: DSIO CHECK CONTROLLED CONSULTS
  N OUT,CT,ND,CON,STAT,LAST,FLG,RDT,IEN,DFN,RES,RE,IPT S RET=1
  D LIST^DIC(19641.35,,"@;.01I;.02I;.03I;.04","P",,,,,,,"OUT") Q:'$D(OUT)
  F CT=1:1:+$G(OUT("DILIST",0)) S ND=$NA(OUT("DILIST",CT,0)) D
- .Q:'$P(@ND,U,2)!($P(@ND,U,3))   ; IF NO CONTROL (BROKEN POINTER) OR IS INACTIVE
- .S CON=$P(@ND,U,2),STAT=$P(@ND,U,4),LAST=$P(@ND,U,5) K FLG
- .Q:STAT=""
- .S RDT=LAST F  S RDT=$O(^GMR(123,"AE",CON,STAT,RDT),-1) Q:RDT=""  D
- ..S IEN=$O(^GMR(123,"AE",CON,STAT,RDT,""),-1)
- ..I '$D(FLG) S IPT(19641.35,+@ND_",",.04)=RDT D FILE^DIE(,"IPT") S FLG=1
- ..S DFN=$$GET1^DIQ(123,IEN_",",.02,"I") Q:'$$SEX(DFN)
- ..S RES="Controlled CONSULT ("_$$GET1^DIQ(123,IEN_",",1)_") on "_$$GET1^DIQ(123,IEN_",",.01)
- ..D REC^DSIO1(.RE,DFN,2,RES,,"TRIGGER")
- Q
- ;
- ; ------------------------------- DEPRECIATED --------------------------------
- ;
-PRO(DFN,CODE) ; DETERMINE TO TRACK BASED ON PROBLEM DIAGNOSIS
- Q:'$D(^DSIO(19641.31,"B",+$G(CODE)))!($G(DFN)="")
- N RES,COM,CT,I,CX,RET
- S RES="PROBLEM FILE(9000011) DIAGNOSIS CODE = "_$$GET1^DIQ(80,CODE_",",.01)
- ; GET DESCRIPTION
- D GETS^DIQ(80,CODE_",","68*",,"COM") I $D(COM) D
- .S CT=$NA(COM) F I=0:1 S CT=$Q(@CT) Q:CT=""  D
- ..S CX(I)=$$GET1^DID($QS(CT,1),$QS(CT,3),,"LABEL")_": "_@CT
- D REC^DSIO1(.RET,DFN,2,RES,.CX,"TRIGGER")
- Q
- ;
-CON(DFN,CODE) ; DETERMINE TO TRACK BASED ON REQUEST SERVICE
- Q:'$D(^DSIO(19641.35,"B",+$G(CODE)))!($G(DFN)="")
- N RES
- S RES="REQUEST/CONSULTATION FILE(123) SERVICE = "_$$GET1^DIQ(123.5,CODE_",",.01)
- D REC^DSIO1(.RET,DFN,2,RES,,"TRIGGER")
+ . Q:'$P(@ND,U,2)!($P(@ND,U,3))   ; IF NO CONTROL (BROKEN POINTER) OR IS INACTIVE
+ . S CON=$P(@ND,U,2),STAT=$P(@ND,U,4),LAST=$P(@ND,U,5) K FLG
+ . Q:STAT=""
+ . S RDT=LAST F  S RDT=$O(^GMR(123,"AE",CON,STAT,RDT),-1) Q:RDT=""  D
+ . . S IEN=$O(^GMR(123,"AE",CON,STAT,RDT,""),-1)
+ . . I '$D(FLG) S IPT(19641.35,+@ND_",",.04)=RDT D FILE^DIE(,"IPT") S FLG=1
+ . . S DFN=$$GET1^DIQ(123,IEN_",",.02,"I") Q:'$$SEX(DFN)
+ . . S RES="Controlled CONSULT ("_$$GET1^DIQ(123,IEN_",",1)_") on "_$$GET1^DIQ(123,IEN_",",.01)
+ . . D REC^DSIO1(.RE,DFN,2,RES,,"TRIGGER")
  Q

@@ -1,7 +1,5 @@
-Routine DSIO15 saved using VFDXTRS routine on May 20, 2015 17:21
-DSIO15^INT^63692,60762^May 20, 2015@16:52
 DSIO15 ;DSS/TFF - DSIO PREGNANCY;06/28/2013 15:19
- ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -17,7 +15,7 @@ PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,AB) ; RPC: DSIO SAVE PREG DE
  ;
  ;    DFN = PATIENT IEN
  ;    IEN = IF NOT NULL THEN EDIT
- ;  DATES = START^END^EDD
+ ;  DATES = EDC^END^EDD
  ;    TYP = C(urrent),H(istorical)
  ;    FOF = IEN, U(nspecified), S(pouse)
  ;    OBP = OB (VARIABLE POINTER)
@@ -29,6 +27,7 @@ PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,AB) ; RPC: DSIO SAVE PREG DE
  ;    BAB = NUMBER
  ;            IF 1,2,3 THEN THREE BABIES WILL BE ADDED
  ;            IF 1,2@,3 THEN BABY 2 WILL BE DELETED
+ ;            *** + is the next number.
  ;   POST = ADDITIONAL DETAILS (CARET DELIMITED STRING)
  ;            1: GESTATIONAL AGE AT DELIVERY (NUMBER 0 - 99)
  ;            2: LENGTH OF LABOR (NUMBER (IN HOURS))
@@ -41,15 +40,16 @@ PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,AB) ; RPC: DSIO SAVE PREG DE
  ; If EDD>DT then update WV PATIENT - CURRENTLY PREGNANT (#.13) to 'YES'
  ; and EDC (#.14) with the EDD value
  ;
- ; RETURN: IEN OR -1^MESSAGE
+ ; RETURN: IEN^IEN;BABY|...
+ ;      OR -1^MESSAGE
  ;
- N STR,END,EDD,CT,FLD,IENS,IPT,BVAL,BIEN,DIK,DA
- S DATES=$G(DATES),RET=-1
- S STR=$P(DATES,U),END=$P(DATES,U,2),EDD=$P(DATES,U,3)
+ N EDC,END,EDD,CT,FLD,IENS,IPT,STR S RET=-1
+ S DATES=$G(DATES)
+ S EDC=$P(DATES,U),END=$P(DATES,U,2),EDD=$P(DATES,U,3)
  ; *** POST PREGNANCY DATA
  I $G(POST)'="" F CT=1:1:5 S FLD("3."_CT)=$P(POST,U,CT)
- D:'$G(AB) AB^DSIO2("STR,END,EDD,FOF,OBP,FAP,BAB,FLD")
- S:$G(STR)'="@" STR=$$DT^DSIO2($G(STR))
+ D:'$G(AB) AB^DSIO2("EDC,END,EDD,FOF,OBP,FAP,BAB,FLD")
+ S:$G(EDC)'="@" EDC=$$DT^DSIO2($G(EDC))
  S:$G(END)'="@" END=$$DT^DSIO2($G(END))
  S:$G(EDD)'="@" EDD=$$DT^DSIO2($G(EDD))
  S TYP=$$UP^XLFSTR($E($G(TYP)))
@@ -58,8 +58,8 @@ PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,AB) ; RPC: DSIO SAVE PREG DE
  . I '$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
  . S IENS="+1,",IPT(19641.13,IENS,.01)=$$NOW^XLFDT         ; DATE RECORDED
  . S:TYP="" TYP="C"
- S:$G(IEN) IENS=IEN_","
- S:STR'="" IPT(19641.13,IENS,.02)=STR                      ; EDC
+ S:$G(IEN) IENS=+IEN_","
+ S:EDC'="" IPT(19641.13,IENS,.02)=EDC                      ; EDC
  I $G(DFN),$D(^DPT(DFN)) S IPT(19641.13,IENS,.03)=DFN      ; PATIENT
  S:TYP'="" IPT(19641.13,IENS,.04)=TYP                      ; STATUS
  S:END'="" IPT(19641.13,IENS,.07)=END                      ; PREGNANCY END
@@ -76,18 +76,17 @@ PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,AB) ; RPC: DSIO SAVE PREG DE
  S DFN=$$GET1^DIQ(19641.13,IEN_",",.03,"I")
  I $G(FOF)'="" D
  . S FOF=$$FOF^DSIO9(DFN,FOF)
- . S IPT(19641.13,IENS,.05)=FOF                           ; FATHER OF FETUS/BABY
+ . S IPT(19641.13,IEN_",",.05)=FOF                         ; FATHER OF FETUS/BABY
  S:EDD'="" IPT(19641.13,IEN_",",.06)=$S(EDD="@":"@",1:$$EDD(EDD,IEN))  ; EDD
  D:$D(IPT) UPDATE^DIE(,"IPT") K IPT
  ; *** BABIES
- I $G(BAB) D
+ I $G(BAB)'="" D
+ . I BAB="+" S RET=IEN_U_$$BAB("+",IEN) Q
  . F CT=1:1:$L(BAB,",") D
- . . Q:'$P(BAB,",",CT)
- . . S BVAL=$$BAB($P(BAB,",",CT),IEN)
- . . S BIEN=$O(^DSIO(19641.13,IEN,2,"C",+$P(BAB,",",CT),""))
- . . S IPT(19641.132,$S('BIEN:"?+1",1:BIEN)_","_IEN_",",.01)=BVAL
- . . D UPDATE^DIE(,"IPT") K IPT
- . S DA(1)=IEN,DIK="^DSIO(19641.13,"_DA(1)_",2," D IXALL2^DIK,IXALL^DIK
+ . . I $P(BAB,",",CT) S STR=$G(STR)_$$BAB($P(BAB,",",CT),IEN)_"|"
+ . Q:'$D(STR)
+ . I $E(STR,$L(STR))="|" S STR=$E(STR,1,($L(STR)-1))
+ . S RET=IEN_U_STR
  ; *** COMMENTS
  I $D(COM)>9 K ^TMP($J,"DSIO PREG") D
  . S %X="COM(",%Y="^TMP($J,""DSIO PREG"",1" D %XY^%RCR
@@ -123,59 +122,69 @@ EDD(DATE,PIEN) ; Create an EDD record and return the IEN
  Q $G(IEN(1))
  ;
 BAB(VAL,PIEN) ; Record baby to pregnancy
- N DIK,DA,X,Y,IPT,IEN
+ N DIK,DA,X,Y,IPT,IEN,NUM
  I '$D(DFN) N DFN S DFN=$$GET1^DIQ(19641.13,PIEN_",",.03,"I")
  Q:'DFN ""
  S IEN=$O(^DSIO(19641.112,"C",DFN,PIEN,+VAL,""))
- I VAL["@" D  Q "@"
- . S DA=IEN Q:DA=""
- . S DIK="^DSIO(19641.112," D ^DIK
+ I VAL["@" D  Q ""
+ . Q:'IEN
+ . S DA=IEN,DIK="^DSIO(19641.112," D ^DIK
+ . ; *** Delete from Pregnancy
+ . S DA=$O(^DSIO(19641.13,PIEN,2,"B",IEN,""))
+ . S DA(1)=PIEN,DIK="^DSIO(19641.13,"_DA(1)_",2," D ^DIK
  S:'IEN IEN="+1"
- S IPT(19641.112,IEN_",",.01)=+VAL          ; NUMBER
- S IPT(19641.112,IEN_",",.02)=DFN           ; PATIENT
- S IPT(19641.112,IEN_",",.03)=PIEN          ; PREGNANCY
- D UPDATE^DIE(,"IPT",$S(IEN["+":"IEN",1:""))
- Q $S($G(IEN(1)):IEN(1),1:IEN)
+ S (NUM,IPT(19641.112,IEN_",",.01))=$$NUM    ; NUMBER
+ S IPT(19641.112,IEN_",",.02)=DFN            ; PATIENT
+ S IPT(19641.112,IEN_",",.03)=PIEN           ; PREGNANCY
+ K IEN D UPDATE^DIE(,"IPT","IEN") Q:'$G(IEN(1)) ""
+ S IPT(19641.132,"+1,"_PIEN_",",.01)=IEN(1)
+ D UPDATE^DIE(,"IPT")
+ Q IEN(1)_";"_NUM
+ ;
+NUM() ; Set Baby Number for new entries
+ Q $O(^DSIO(19641.112,"C",DFN,PIEN,""),-1)+1
  ;
 PREGG(RET,IEN,DFN,SORT) ; RPC: DSIO GET PREG DETAILS
  ;
  ; If IEN = "C" get only the CURRENT pregnancy
  ;
  ; RETURN:
- ;  L^IEN^DATE RECORDED^EDC^DFN|PATIENT^STATUS^FOF IEN|FOF^EDD^PREGNANCY END^
- ;    OB IEN|OB^FACILITY IEN|FACILITY^UPDATED BY IEN|UPDATED BY^
- ;    GESTATIONAL AGE AT DELIVERY^LENGTH OF DELIVERY^EPIDERAL/SPINAL^
- ;    PRETERM LABOR^BIRTH TYPE^IEN;BABY |IEN;BABY
+ ;  L^IEN^DATE RECORDED^EDC^DFN|PATIENT^STATUS^FOF|(IEN OR IDENTIFIER)^
+ ;    EDD^PREGNANCY END^OB IEN|OB^FACILITY IEN|FACILITY^
+ ;    UPDATED BY IEN|UPDATED BY^GESTATIONAL AGE AT DELIVERY^LENGTH OF DELIVERY^
+ ;    EPIDERAL/SPINAL^PRETERM LABOR^BIRTH TYPE^IEN;BABY |IEN;BABY
  ;  C^IEN^COMMENT
  ;
  N RCT,TS,DATE,STRT,END D SORT($G(SORT))
  S RET=$NA(^TMP($J,"DSIO PREG")) K @RET S @RET@(0)="0^Nothing found."
- I $G(IEN) Q:'$D(^DSIO(19641.13,IEN))  D P1(IEN,1) S @RET@(0)=1 Q
- I $G(IEN)="C" Q:'$G(DFN)  D P1($$PG^DSIO4(DFN),1) S @RET@(0)=1 Q
+ I $G(IEN) D P1(IEN,1) S:$D(@RET@(1)) @RET@(0)=1 Q
+ I $G(IEN)="C" Q:'$G(DFN)  D  Q
+ . S IEN=$$PG^DSIO4(DFN) Q:'IEN
+ . D P1(IEN,1) S @RET@(0)=1
  Q:'$G(DFN)
  I '$$CHECK^DSIO2($G(DFN)) S @RET@(0)="0^Patient entry not found." Q
  S (RCT,TS)=0,DATE=""
  F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE),-1) Q:DATE=""  D
- . S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,""))
- . S TS=TS+1 I STRT'="",TS'>STRT Q
- . S RCT=RCT+1 I END'="",RCT>END Q
- . D P1(IEN,RCT)
+ . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+ . . D P1(IEN,RCT)
  S:$G(TS) @RET@(0)=TS
  Q
  ;
 P1(IEN,ND) ; Continue
  N OUT,CT,FLD,STR
- D GETS^DIQ(19641.13,IEN_",","*","IE","OUT")
+ D GETS^DIQ(19641.13,IEN_",","*","IE","OUT") Q:'$D(OUT)
  S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  S FLD($QS(CT,3),$QS(CT,4))=@CT
  S STR="L^"_IEN_U_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U         ; DATE RECORDED
  S STR=STR_$$FMTE^XLFDT(FLD(.02,"I"),"5Z")_U                ; EDC
  S STR=STR_FLD(.03,"I")_"|"_$$NAME^DSIO2(FLD(.03,"E"))_U    ; PATIENT
  S STR=STR_FLD(.04,"E")_U                                   ; STATUS
- S STR=STR_$$NAME^DSIO2(FLD(.05,"E"))_U                     ; FATHER OF FETUS/BABY
- S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(19641.03,FLD(.06,"I")_",",.01,"I"),"5Z")_U   ; EDD
+ S STR=STR_$$NAME^DSIO2(FLD(.05,"I"))_U                     ; FATHER OF FETUS/BABY
+ S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(19641.03,FLD(.06,"I")_",",.01,"I"),"5Z")_U    ; EDD
  S STR=STR_$$FMTE^XLFDT(FLD(.07,"I"),"5Z")_U                ; PREGNANCY END
- S STR=STR_+FLD(.08,"I")_"|"_$$NAME^DSIO2(FLD(.08,"E"))_U   ; OB
- S STR=STR_+FLD(.09,"I")_"|"_$$NAME^DSIO2(FLD(.09,"E"))_U   ; FACILITY
+ S STR=STR_$S(FLD(.08,"I"):+FLD(.08,"I"),1:"")_"|"_$$NAME^DSIO2(FLD(.08,"E"))_U  ; OB
+ S STR=STR_$S(FLD(.09,"I"):+FLD(.09,"I"),1:"")_"|"_$$NAME^DSIO2(FLD(.09,"E"))_U  ; FACILITY
  S STR=STR_FLD(1.1,"I")_"|"_$$NAME^DSIO2(FLD(1.1,"E"))_U    ; UPDATED BY
  S STR=STR_FLD(3.1,"E")_U                                   ; GESTATIONAL AGE AT DELIVERY
  S STR=STR_FLD(3.2,"E")_U                                   ; LENGTH OF LABOR
@@ -183,15 +192,18 @@ P1(IEN,ND) ; Continue
  S STR=STR_FLD(3.4,"E")_U                                   ; EPIDERAL/SPINAL
  S STR=STR_FLD(3.5,"E")_U                                   ; PRETERM LABOR
  S STR=STR_FLD(999.1,"E")_U                                 ; BIRTH TYPE (C)
- ; *** FETUS/BABY
- K OUT D GETS^DIQ(19641.13,IEN_",","2*","IE","OUT")
- S CT="" F  S CT=$O(OUT(19641.132,CT)) Q:CT=""  D
- . S STR=STR_OUT(19641.132,CT,.01,"I")_";"_OUT(19641.132,CT,.01,"E")_"|"
- I $E(STR,$L(STR))="|" S STR=$E(STR,1,($L(STR)-1))
- S @RET@(ND)=$G(STR)
+ S @RET@(ND)=$G(STR)_$$FETUS(IEN)
  ; *** COMMENTS
  S CT=0 F  S CT=$O(FLD(4,CT)) Q:'CT  S @RET@(ND,CT)="C^"_IEN_U_FLD(4,CT)
  Q
+ ;
+FETUS(IEN) ; Return Baby String as IEN;Number|...
+ N OUT,CT,STR
+ D GETS^DIQ(19641.13,IEN_",","2*","IE","OUT") Q:'$D(OUT) ""
+ S CT="" F  S CT=$O(OUT(19641.132,CT)) Q:CT=""  D
+ . S STR=$G(STR)_OUT(19641.132,CT,.01,"I")_";"_OUT(19641.132,CT,.01,"E")_"|"
+ I $E(STR,$L(STR))="|" S STR=$E(STR,1,($L(STR)-1))
+ Q $G(STR)
  ;
  ; ---------------------------------- COMMON ----------------------------------
  ;

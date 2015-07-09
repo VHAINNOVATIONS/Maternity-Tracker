@@ -1,7 +1,5 @@
-Routine DSIO14 saved using VFDXTRS routine on May 20, 2015 17:21
-DSIO14^INT^63692,31310^May 20, 2015@08:41
 DSIO14 ;DSS/TFF - DSIO IHE;06/28/2013 15:19
- ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -41,7 +39,8 @@ SAVE(RET,IEN,DFN,DATES,TYP,DIRECT,GUID,TITLE,FAC,REC,DOC,AB) ; RPC: DSIO SAVE IH
  S:$G(DTI)'="" IPT(19641.6,IEN_",",.04)=DTI                ; DT IMPORT/EXPORT
  S:$G(TYP)'="" IPT(19641.6,IEN_",",.05)=$$TYP(TYP)         ; DOCUMENT TYPE
  S:$G(DIRECT)'="" IPT(19641.6,IEN_",",.06)=DIRECT          ; DIRECTION
- S IPT(19641.6,IEN_",",.07)=$$GUID($S(IEN["+":"",1:IEN),$G(GUID))     ; GUID/ID
+ ;S IPT(19641.6,IEN_",",.07)=$$GUID($S(IEN["+":"",1:IEN),$G(GUID))
+ S:$G(GUID)'="" IPT(19641.6,IEN_",",.07)=GUID              ; GUID/ID
  S:$G(TITLE)'="" IPT(19641.6,IEN_",",1.1)=TITLE            ; DOCUMENT TITLE
  S:$G(FAC)'="" IPT(19641.6,IEN_",",1.2)=FAC                ; SENDING FACILITY/PROVIDER
  S:$G(REC)'="" IPT(19641.6,IEN_",",1.3)=REC                ; INTENDED RECIPIENT
@@ -85,19 +84,23 @@ GP(NUM,VAR) ; Generate GUID Segment
 A(NUM) ; Return Alpha
  Q $E("ABCDEFGHIJKLMNOPQRSTUVWXYZ",NUM)
  ;
- ; -------------------------------- RETURN IHE --------------------------------
+ ; ----------------------------------------------------------------------------
  ;
-GET(RET,IEN,DFN,DOC,SORT) ; RPC: DSIO GET IHE PATIENT INFO
+GD(RET,IEN) ; RPC: DSIO GET IHE CONTENT
+ D GET(.RET,$G(IEN),,,1)
+ Q
  ;
- ;  IEN^DATE OF CREATION^DATE OF IMPORT/EXPORT^TYPE^DIRECTION^GUID^TITLE^
- ;  SENDING FAC^INTENDED RECIPIENT
+GET(RET,IEN,DFN,SORT,DOC) ; RPC: DSIO GET IHE DOCS
+ ;
+ ; IEN^DATE OF ENTRY^DFN^DATE OF CREATION^DATE OF IMPORT/EXPORT^DOCUMENT TYPE^
+ ; DIRECTION^GUID/ID^DOCUMENT TITLE^SENDING FACILITY/PROVIDER^INTENDED RECIPIENT
  ;
  N RCT,TS,STRT,END D SORT($G(SORT))
  S RET=$NA(^TMP($J,"DSIO14 GET")) K @RET S @RET@(0)="0^Nothing found."
  I $G(DOC) D  Q
  . Q:'$G(IEN)
  . K @RET D GETS^DIQ(19641.6,IEN_",",2,"E",RET)
- . K @RET@(19641.6,IEN_",",2,"E")
+ . K @RET@(19641.6,IEN_",",2,"E") S:'$D(@RET) @RET@(0)=""
  I $G(IEN) D  Q
  . Q:'$D(^DSIO(19641.6,IEN))
  . S @RET@(1)=$$FLDS(IEN),@RET@(0)=1
@@ -106,7 +109,7 @@ GET(RET,IEN,DFN,DOC,SORT) ; RPC: DSIO GET IHE PATIENT INFO
  F  S IEN=$O(^DSIO(19641.6,"P",DFN,IEN)) Q:'IEN  D
  . S TS=TS+1 I STRT'="",TS'>STRT Q
  . S RCT=RCT+1 I END'="",RCT>END Q
- . S @RET@(RCT)=IEN_U_$$FLDS(IEN)
+ . S @RET@(RCT)=$$FLDS(IEN)
  S:$G(TS) @RET@(0)=TS
  Q
  ;
@@ -115,16 +118,16 @@ FLDS(IEN) ; Return Transformed Fields
  D GETS^DIQ(19641.6,IEN_",","*","IE","OUT")
  S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
  S STR=IEN_U
- S STR=STR_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U          ; DT OF ENTRY
- S STR=STR_$$NAME^DSIO2(FLD(.02,"E"))_U               ; PATIENT
- S STR=STR_$$FMTE^XLFDT(FLD(.03,"I"),"5Z")_U          ; DT CREATION
- S STR=STR_$$FMTE^XLFDT(FLD(.04,"I"),"5Z")_U          ; DT IMPORT/EXPORT
- S STR=STR_$$GET1^DIQ(19641.61,FLD(.05,"I")_",",.01)  ; DOCUMENT TYPE
- S STR=STR_FLD(.06,"E")                               ; DIRECTION
- S STR=STR_FLD(.07,"I")                               ; GUID/ID
- S STR=STR_FLD(1.1,"I")                               ; DOCUMENT TITLE
- S STR=STR_FLD(1.2,"I")                               ; SENDING FACILITY/PROVIDER
- S STR=STR_FLD(1.3,"I")                               ; INTENDED RECIPIENT
+ S STR=STR_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U            ; DT OF ENTRY
+ S STR=STR_FLD(.02,"I")_U                               ; DFN
+ S STR=STR_$$FMTE^XLFDT(FLD(.03,"I"),"5Z")_U            ; DT CREATION
+ S STR=STR_$$FMTE^XLFDT(FLD(.04,"I"),"5Z")_U            ; DT IMPORT/EXPORT
+ S STR=STR_$$GET1^DIQ(19641.61,FLD(.05,"I")_",",.01)_U  ; DOCUMENT TYPE
+ S STR=STR_FLD(.06,"E")_U                               ; DIRECTION
+ S STR=STR_FLD(.07,"I")_U                               ; GUID/ID
+ S STR=STR_FLD(1.1,"I")_U                               ; DOCUMENT TITLE
+ S STR=STR_FLD(1.2,"I")_U                               ; SENDING FACILITY/PROVIDER
+ S STR=STR_FLD(1.3,"I")                                 ; INTENDED RECIPIENT
  Q STR
  ;
 SORT(SORT) ; Set Start and End

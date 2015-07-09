@@ -1,7 +1,5 @@
-Routine DSIO9 saved using VFDXTRS routine on May 20, 2015 17:21
-DSIO9^INT^63692,60492^May 20, 2015@16:48
 DSIO9 ;DSS/TFF - DSIO PERSON;06/28/2013 15:19
- ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -11,7 +9,7 @@ DSIO9 ;DSS/TFF - DSIO PERSON;06/28/2013 15:19
  ;
  Q
  ;
-SAVE(RET,IEN,DFN,NAME,DOB,ADDR,PHONE,EDU,SEX,REL,STATUS,PROB) ; DSIO SAVE PERSON
+SAVE(RET,IEN,DFN,NAME,DOB,ADDR,PHONE,EDU,SEX,REL,STATUS,PROB,AB) ; RPC: DSIO SAVE PERSON
  ;
  ;    IEN = IEN of 19641.11
  ;    DFN = PATIENT IEN
@@ -67,8 +65,8 @@ SAVE(RET,IEN,DFN,NAME,DOB,ADDR,PHONE,EDU,SEX,REL,STATUS,PROB) ; DSIO SAVE PERSON
  . . D UPDATE^DIE(,"IPT") K IPT
  ; *** DIAGNOSIS MULTIPLE
  I $D(PROB) D DEL(IEN) D
- . S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
- . . S IPT(19641.14,"?+1,"_IEN_",",.01)=$$UP^XLFSTR(@CT)
+ . S CT=$NA(PROB) F  S CT=$Q(@CT) Q:CT=""  D
+ . . S IPT(19641.113,"?+1,"_IEN_",",.01)=$$UP^XLFSTR(@CT)
  . . D UPDATE^DIE(,"IPT") K IPT
  Q
  ;
@@ -80,10 +78,6 @@ DEL(IEN) ; Delete DIAGNOSIS Multiple
  Q
  ;
 PERSON(RET,DFN,FIND,SEX) ; RPC: DSIO GET PERSON
- ;
- ; RETURN:
- ;  IEN^NAME^SEX^DOB^EDUCATION^STREET1^STREET2^STREET3^CITY^STATE^
- ;  ZIP^PHONE HOME^PHONE WORK^PHONE CELL^PHONE FAX^PATIENT^DFN
  ;
  ; IF SEX ADD
  ; ^RELATIONSHIP^STATUS^DIAGNOSIS|DIAGNOSIS
@@ -99,6 +93,10 @@ PERSON(RET,DFN,FIND,SEX) ; RPC: DSIO GET PERSON
  ;  - RETURN IF FOUND AND IF ASSOCIATED TO PATIENT
  ; IF 'DFN & FIND="NAME,NAME" OR FIND=#(IEN) THEN
  ;  - RETURN ENTRIES
+ ;
+ ; RETURN:
+ ;  IEN^NAME^SEX^DOB^EDUCATION^STREET1^STREET2^STREET3^CITY^STATE^
+ ;  ZIP^PHONE HOME^PHONE WORK^PHONE CELL^PHONE FAX^PATIENT^DFN
  ;
  N IEN,NAM,CT,SP
  S RET(0)="-1^PERSON(s) not found."
@@ -139,7 +137,7 @@ P1(IEN) ; Continue with 19641.11
  S STR=STR_$$GET1^DIQ(5,FLD(1.5,"I")_",",1)_U               ; STATE
  S STR=STR_FLD(1.6,"I")_U                                   ; ZIP
  S STR=STR_$$PHONE^DSIO1(19641.11,IEN)_U                    ; PHONE NUMBERS 
- S STR=STR_FLD(.05,"E")_U                                   ; PATIENT
+ S STR=STR_$$NAME^DSIO2(FLD(.05,"E"))_U                     ; PATIENT
  S STR=STR_FLD(.05,"I")                                     ; DFN
  Q:'$G(SEX) STR
  S STR=STR_U_FLD(.06,"E")_U                                 ; RELATIONSHIP
@@ -175,7 +173,7 @@ PO2() ; Continue with Other for 2
  S STR=STR_$$FORMAT^DSIO2(FLD(.132,"I"))_U                  ; PHONE (WORK)
  S STR=STR_$$FORMAT^DSIO2(FLD(.134,"I"))_U                  ; PHONE (CELL)
  S STR=STR_U                                                ; PHONE (FAX)
- S STR=STR_$$GET1^DIQ(2,DFN_",",.01)_U                      ; PATIENT
+ S STR=STR_$$NAME^DSIO2($$GET1^DIQ(2,DFN_",",.01))_U        ; PATIENT
  S STR=STR_DFN                                              ; DFN
  Q STR
  ;
@@ -196,7 +194,7 @@ PO408() ; Continue with Other for 408.13
  S STR=STR_U                                                ; PHONE (WORK)
  S STR=STR_U                                                ; PHONE (CELL)
  S STR=STR_U                                                ; PHONE (FAX)
- S STR=STR_$$GET1^DIQ(2,DFN_",",.01)_U                      ; PATIENT
+ S STR=STR_$$NAME^DSIO2($$GET1^DIQ(2,DFN_",",.01))_U        ; PATIENT
  S STR=STR_DFN                                              ; DFN
  Q STR
  ;
@@ -232,7 +230,7 @@ SPN(DFN) ; Return Spouse Name
 FOF(DFN,FOF) ; Get DSIO PERSON IEN
  N RET
  S FOF=$$UP^XLFSTR($G(FOF))
- Q:FOF=""!(FOF="U")!(FOF="UNSPECIFIED") "UNSPECIFIED"
- D PERSON(.RET,$G(DFN),FOF) Q:'$D(RET(1)) "UNSPECIFIED"
+ Q:FOF=""!(FOF="U")!(FOF="UNSPECIFIED") "UNSPECIFIED|U"
+ D PERSON(.RET,$G(DFN),FOF) Q:'$D(RET(1)) "UNSPECIFIED|U"
  Q:$P($G(RET(1)),U)!($P($G(RET(1)),U)="S") $$UP^XLFSTR($P(RET(1),U,2))_"|"_$P(RET(1),U)
- Q "UNSPECIFIED"
+ Q "UNSPECIFIED|U"

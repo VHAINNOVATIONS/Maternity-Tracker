@@ -1,7 +1,5 @@
-Routine DSIO10 saved using VFDXTRS routine on May 20, 2015 17:21
-DSIO10^INT^63692,31310^May 20, 2015@08:41
 DSIO10 ;DSS/TFF - DSIO OBSERVATION;06/28/2013 15:19
- ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -11,72 +9,94 @@ DSIO10 ;DSS/TFF - DSIO OBSERVATION;06/28/2013 15:19
  ;
  Q
  ;
-OBS(RET,IEN,DATES,OBJECT,REL,CAT,CODE,SYS,DESC,VAL,QUAL,NAR,AB) ; RPC: DSIO SAVE OBSERVATION
+OBS(RET,IEN,DFN,DATES,OBJECT,REF,REL,CAT,CODE,VAL,VALCD,NEG,QUAL,NAR,AB) ; RPC: DSIO SAVE OBSERVATION
  ;
  ;    IEN = IF NOT NULL THEN EDIT
+ ;    DFN = PATIENT
  ;  DATES = OBSERVATION^START^END
- ; OBJECT = OBJECT OF OBSERVATION (*PRIMARY^SECONDARY)
- ;           P.IEN (PATIENT)
- ;          FB.### (FETUS BABY)
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+ ;          FB.IEN (FETUS/BABY)
  ;          PG.IEN (PREGNANCY)
- ;           N.IEN (NOTE)
+ ;    REF = OBJECTS OF REFERENCE (ARRAY)
+ ;         TIU.IEN (NOTE)
+ ;         IHE.IEN (IHE DOCUMENT)
  ;    REL = RELATIONSHIP
  ;    CAT = CATEGORY
- ;  *CODE = CODE
- ;   *SYS = CODING SYSTEM
- ;   DESC = DESCRIPTION
- ;    VAL = TYPE^UNIT^NEGATION^VALUE
+ ;   CODE = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+ ;    VAL = TYPE^UNIT^VALUE
+ ;  VALCD = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+ ;    NEG = NEGATION (T/F)
  ;   QUAL = QUALIFIERS (ARRAY OF QUALIFIER^VALUE)
  ;    NAR = NARRATIVE (ARRAY OF TEXT)
+ ;  **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
  ;
  ; RETURN: IEN OR -1^MESSAGE
  ;
- N OBSD,STRT,END,PRI,SEC,VTYP,VUNT,VNEG,PDFN,SDFN,IENS,DIK,DA,X,Y,IPT
- N CT,%X,%Y
- S DATES=$G(DATES)
- S OBSD=$P(DATES,U),STRT=$P(DATES,U,2),END=$P(DATES,U,3)
- S PRI=$P($G(OBJECT),U),SEC=$P($G(OBJECT),U,2)
+ N OBSD,STRT,END,VTYP,VUNT,SYS,CDSV,CDIS,VALCDS,VALCDSV,VALCDIS,IENS,DIK
+ N DA,X,Y,IPT,CT,%X,%Y
+ I '$G(IEN),'$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
+ S DATES=$G(DATES),OBSD=$P(DATES,U),STRT=$P(DATES,U,2),END=$P(DATES,U,3)
  S VAL=$G(VAL)
- S VTYP=$P(VAL,U),VUNT=$P(VAL,U,2)
- S VNEG=$E($$UP^XLFSTR($E($P(VAL,U,3))),1) S VNEG=$S(VNEG="Y":1,VNEG="N":0,1:VNEG)
- S VAL=$P(VAL,U,4)
- D:'$G(AB) AB^DSIO2("OBSD,STRT,END,PRI,SEC,VAL,VTYP,VUNT,VNEG,REL,CAT,CODE,SYS,DESC")
- S:$G(OBSD)'="@" OBSD=$$DT^DSIO2($G(OBSD))
- S:$G(STRT)'="@" STRT=$$DT^DSIO2($G(STRT))
- S:$G(END)'="@" END=$$DT^DSIO2($G(END))
+ S VTYP=$P(VAL,U)                                ; VALUE TYPE
+ S VUNT=$P(VAL,U,2)                              ; VALUE UNIT
+ S VAL=$P(VAL,U,3)                               ; VALUE
+ S NEG=$$UP^XLFSTR($E($G(NEG),1)),NEG=$S(NEG="Y"!(NEG="T")!(NEG=1):1,1:0)  ; NEGATION
+ D:'$G(AB) AB^DSIO2("OBSD,STRT,END,REL,CAT,VAL,VTYP,VUNT")
+ S:$G(OBSD)'="@" OBSD=$$DT^DSIO2($G(OBSD))       ; OBSERVATION DATE
+ S:$G(STRT)'="@" STRT=$$DT^DSIO2($G(STRT))       ; START
+ S:$G(END)'="@" END=$$DT^DSIO2($G(END))          ; END
+ ; *** CODE (SYS^SYSVAL^CODE^DISPLAY NAME)
  S CODE=$G(CODE)
+ S SYS=$$UP^XLFSTR($P(CODE,U))                   ; SYSTEM NAME
+ S SYS=$S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+ S CDSV=$P(CODE,U,2)                             ; SYSTEM VALUE
+ S CDIS=$P(CODE,U,4)                             ; DISPLAY NAME
+ S CODE=$P(CODE,U,3)                             ; CODE
  I CODE="@"!($G(AB)&('$G(IEN))&(CODE="")) S RET="-1^Code is required" Q
- S SYS=$$UP^XLFSTR($E($G(SYS)))
- S SYS=$S(SYS="L":"LNC",SYS="S":"SCT",SYS="O":"OTHER",1:"NONE")
- I SYS="LNC"!(SYS="SCT") S CODE=$$ICODE^DSIO2(SYS,CODE)
- Q:'$$INPUT(.RET,.PRI,.SEC)
- I PRI="@"!($G(AB)&('$G(IEN))&(PRI="")) S RET="-1^Primary Object is required." Q
+ ; *** VALUE CODE (SYS^SYSVAL^CODE^DISPLAY NAME)
+ S VALCD=$G(VALCD)
+ S VALCDS=$$UP^XLFSTR($P(VALCD,U))               ; CODING SYSTEM
+ S VALCDS=$S(VALCDS="LNC":"LOINC",VALCDS="SCT":"SNOMED-CT",1:VALCDS)
+ S VALCDSV=$P(VALCD,U,2)                         ; SYSTEM VALUE
+ S VALCDIS=$P(VALCD,U,4)                         ; DISPLAY NAME
+ S VALCD=$P(VALCD,U,3)                           ; CODE
  I $G(IEN) S IENS=IEN_"," D  Q:$D(RET)
- . I $$GET1^DIQ(19641.12,IEN_",",4.1,"I") D  Q
+ . I $$GET1^DIQ(19641.12,IEN_",",.09,"I") D  Q
  . . S RET="-1^This observation was already pushed and cannot be changed."
  . I OBSD="@" S DIK="^DSIO(19641.12,",DA=IEN D ^DIK S RET=1
  I '$D(IENS) S IENS="+1," D
  . S:OBSD=""!(OBSD="@") OBSD=$$NOW^XLFDT
  . S IPT(19641.12,IENS,.01)=OBSD                           ; DATE OF OBSERVATION
- S IPT(19641.12,IENS,.02)=$$OBJECT(PRI)                    ; PRIMARY OBJECT 
- S:$G(REL)'="" IPT(19641.12,IENS,.03)=$$UP^XLFSTR(REL)     ; RELATIONSHIP
- S:SEC'="" IPT(19641.12,IENS,.04)=$$OBJECT(SEC)            ; SECONDARY OBJECT
- S:$G(CAT)'="" IPT(19641.12,IENS,.05)=CAT                  ; CATEGORY
- S:CODE'="" IPT(19641.12,IENS,.06)=CODE                    ; CODE
- S:SYS'="" IPT(19641.12,IENS,.07)=SYS                      ; CODE SYSTEM
- S IPT(19641.12,IENS,.08)=DUZ                              ; UPDATED BY
- S IPT(19641.12,IENS,.09)=$$NOW^XLFDT                      ; LAST MODIFIED DATE
- S:DESC'="" IPT(19641.12,IENS,1)=DESC                      ; DESCRIPTION
- S:VAL'="" IPT(19641.12,IENS,2)=VAL                        ; VALUE
- S:VTYP'="" IPT(19641.12,IENS,3.1)=VTYP                    ; VALUE TYPE
- S:VUNT'="" IPT(19641.12,IENS,3.2)=VUNT                    ; VALUE UNIT
- S IPT(19641.12,IENS,3.3)=VNEG                             ; NEGATION
- S:STRT'="" IPT(19641.12,IENS,3.4)=STRT                    ; START
- S:END'="" IPT(19641.12,IENS,3.5)=END                      ; END
+ S:$G(DFN) IPT(19641.12,IENS,.02)=DFN                      ; PATIENT
+ S:$G(CAT)'="" IPT(19641.12,IENS,.03)=CAT                  ; CATEGORY
+ S:$G(REL)'="" IPT(19641.12,IENS,.04)=REL                  ; RELATIONSHIP
+ S:STRT'="" IPT(19641.12,IENS,.05)=STRT                    ; START
+ S:END'="" IPT(19641.12,IENS,.06)=END                      ; END
+ S IPT(19641.12,IENS,.07)=DUZ                              ; UPDATED BY
+ S IPT(19641.12,IENS,.08)=$$NOW^XLFDT                      ; MODIFIED
+ S:VTYP'="" IPT(19641.12,IENS,4.1)=VTYP                    ; VALUE TYPE
+ S:VAL'="" IPT(19641.12,IENS,4.2)=VAL                      ; VALUE
+ S:VUNT'="" IPT(19641.12,IENS,4.3)=VUNT                    ; VALUE UNIT
+ S IPT(19641.12,IENS,4.4)=NEG                              ; NEGATION
  D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
  S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
- I SYS="OTHER"!(SYS="NONE") D
- . D LCODE^DSIO2(CODE,SYS,"DSIO OBSERVATION(19641.12) IEN("_IEN_")")
+ I SYS'="LOINC",SYS'="SNOMED-CT" D LCODE^DSIO2(CODE,SYS,IEN_";DSIO(19641.12,")
+ ; *** OBJECTS OF OBSERVATION/OBJECTS OF REFERENCE
+ S:'$G(DFN) DFN=$$GET1^DIQ(19641.12,IEN_",",.02,"I")
+ D TOBJ(IEN,DFN,.OBJECT,.REF)
+ ; *** SAVE CODE AND VALUE CODE
+ S IPT(19641.17,"?+1,"_IEN_",",.01)="C"                    ; CODE TYPE
+ S IPT(19641.17,"?+1,"_IEN_",",1)=CODE                     ; CODE
+ S IPT(19641.17,"?+1,"_IEN_",",2)=CDIS                     ; DISPLAY NAME
+ S IPT(19641.17,"?+1,"_IEN_",",3)=SYS                      ; SYSTEM NAME
+ S IPT(19641.17,"?+1,"_IEN_",",4)=CDSV                     ; SYSTEM VALUE
+ D UPDATE^DIE(,"IPT") K IPT
+ S IPT(19641.17,"?+1,"_IEN_",",.01)="V"                    ; CODE TYPE
+ S IPT(19641.17,"?+1,"_IEN_",",1)=VALCD                    ; CODE
+ S IPT(19641.17,"?+1,"_IEN_",",2)=VALCDIS                  ; DISPLAY NAME
+ S IPT(19641.17,"?+1,"_IEN_",",3)=VALCDS                   ; SYSTEM NAME
+ S IPT(19641.17,"?+1,"_IEN_",",4)=VALCDSV                  ; SYSTEM VALUE
+ D UPDATE^DIE(,"IPT") K IPT
  ; *** QUALIFIERS
  S CT=$NA(QUAL) F  S CT=$Q(@CT) Q:CT=""  D
  . S IPT(19641.125,"?+1,"_IEN_",",.01)=$P(@CT,U)
@@ -87,27 +107,61 @@ OBS(RET,IEN,DATES,OBJECT,REL,CAT,CODE,SYS,DESC,VAL,QUAL,NAR,AB) ; RPC: DSIO SAVE
  . S %X="NAR(",%Y="^TMP($J,""DSIO OBS"",1" D %XY^%RCR
  . D WP^DIE(19641.12,IEN_",",6,"K","^TMP($J,""DSIO OBS"")")
  . K ^TMP($J,"DSIO OBS")
- D OPUSH(IEN) S RET=IEN
+ D OPUSH(DFN,IEN)
  Q
  ;
-OPUSH(OIEN) ; Push Observation
- N CODE,X,VAL,IEN,FLE,FLD,INPUT,ROU,TMP,OBJ,RET,IPT
- S OIEN=$G(OIEN)
- S CODE=$$GET1^DIQ(19641.12,OIEN_",",.06) Q:CODE=""
- S (X,VAL)=$$UP^XLFSTR($$GET1^DIQ(19641.12,OIEN_",",2)) Q:X=""
- Q:$$GET1^DIQ(19641.12,OIEN_",",4.1,"I")'=""    ; ALREADY PUSHED
+TOBJ(IEN,DFN,OBJECT,REF) ; Transform Objects of Observation and Reference and Save
+ ;
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+ ;          FB.IEN (FETUS/BABY)
+ ;          PG.IEN (PREGNANCY)
+ ;    REF = OBJECTS OF REFERENCE (ARRAY)
+ ;         TIU.IEN (NOTE)
+ ;         IHE.IEN (IHE DOCUMENT)
+ ;
+ N CT,IPT
+ ; *** SET UP OBJECTS OF OBSERVATION
+ S CT=$NA(OBJECT) F  S CT=$Q(@CT) Q:CT=""  D
+ . S IPT(19641.121,"?+1,"_IEN_",",.01)=$$OBJECT(@CT)
+ . D UPDATE^DIE(,"IPT") K IPT
+ ; *** SAVE OBJECTS OF REFERENCE
+ S CT=$NA(REF) F  S CT=$Q(@CT) Q:CT=""  D
+ . S IPT(19641.16,"?+1,"_IEN_",",.01)=$$OBJECT(@CT)
+ . D UPDATE^DIE(,"IPT") K IPT
+ Q
+ ;
+OBJECT(OBJECT) ; Transform External Object to Internal
+ N OBJ,GL
+ S OBJ=$P($G(OBJECT),".")
+ S OBJ=$S(OBJ="FB":"DSIO(19641.112,",OBJ="PG":"DSIO(19641.13,",OBJ="TIU":"TIU(8925,",OBJ="IHE":"DSIO(19641.6,",1:"")
+ I OBJ'="",$P($G(OBJECT),".",2) S GL=U_OBJ_$P($G(OBJECT),".",2)_")" Q:$D(@GL) $P($G(OBJECT),".",2)_";"_OBJ
+ Q ""
+ ;
+OPUSH(DFN,OIEN) ; Push Observation
+ N CODE,X,VAL,IEN,FLE,FLD,INPUT,ROU,TMP,RET,IPT
+ S CODE=$$GETCODE(OIEN,"C",1) Q:CODE=""
+ S (X,VAL)=$$UP^XLFSTR($$GET1^DIQ(19641.12,OIEN_",",4.2)) Q:X=""
+ Q:$$GET1^DIQ(19641.12,OIEN_",",.09,"I")'=""      ; *** ALREADY PUSHED
  S IEN=$O(^DSIO(19641.123,"C",CODE,"")) Q:IEN=""
  S FLE=$$GET1^DIQ(19641.123,IEN_",",.04,"I")
  S FLD=$$GET1^DIQ(19641.123,IEN_",",.05,"I")
  S INPUT=$$GET1^DIQ(19641.123,IEN_",",1) X:INPUT'="" INPUT
- I FLE="",FLD="" S ROU=$$GET1^DIQ(19641.123,IEN_",",2) I ROU'="" D
- . X ROU D OPDEL(OIEN)
+ I FLE="",FLD="" D
+ . S ROU=$$GET1^DIQ(19641.123,IEN_",",2)
+ . I ROU'="" X ROU D OPDEL(OIEN)
  S TMP=$NA(^TMP($J,"SETDATA VALUE")) K @TMP S @TMP@(1)=$G(X)
- S OBJ=$$GET1^DIQ(19641.12,OIEN_",",.02,"I")
- D HISTORY^DSIO98(.RET,OBJ,FLE,FLD,OIEN_";DSIO(19641.124,",TMP,$G(ROU))
- K @TMP S IPT(19641.12,OIEN_",",4.1)=RET D UPDATE^DIE(,"IPT") K IPT
+ D HISTORY^DSIO98(.RET,DFN_";DPT(",FLE,FLD,IEN_";DSIO(19641.123,",TMP,$G(ROU))
+ K @TMP I RET D
+ . S IPT(19641.12,OIEN_",",.09)=$$GET1^DIQ(19641.124,RET_",",.01,"I")
+ . D UPDATE^DIE(,"IPT") K IPT
  D OPDEL(IEN,OIEN,RET)
  Q
+ ;
+GETCODE(IEN,IX,PC) ; Get Observation Code from Codes Multiple
+ N IENS
+ S PC=+$G(PC)
+ S IENS=$O(^DSIO(19641.12,IEN,3,"B",IX,"")) Q:IENS="" ""
+ Q $G(^DSIO(19641.12,IEN,3,IENS,PC))
  ;
 OPDEL(PUSH,OIEN,HIS) ; Delete Actions
  ;
@@ -117,153 +171,129 @@ OPDEL(PUSH,OIEN,HIS) ; Delete Actions
  ;   2 BOTH = DELETE THE OBSERVATION AND HISTORY
  ;
  N DEL,DIK,DA,X,Y
- S DEL=$$GET1^DIQ(19641.123,IEN_",",.06,"I") Q:'DEL
- S DIK="^DSIO(19641.12,",DA=+$G(OIEN) D ^DIK
- I DEL=2 K DIK,DA,X,Y S DIK="^DSIO(19641.124,",DA=+$G(HIS) D ^DIK
+ S DEL=$$GET1^DIQ(19641.123,PUSH_",",.06,"I") Q:'DEL
+ S DIK="^DSIO(19641.12,",DA=OIEN D ^DIK
+ I DEL=2 K DIK,DA,X,Y S DIK="^DSIO(19641.124,",DA=HIS D ^DIK
  Q
  ;
-INPUT(RET,PRI,SEC) ; Determine IEN based on Patient, Pregnancy, Baby
- ;
- ; FETUS/BABY NUMBER is PRIMARY OBJECT
- ;  then PATIENT or PREGNANCY would be the SECONDARY OBJECT
- ;
- ; If Patient and Fetus/Baby then Current Pregnacy
- ; If Pregnancy and Fetus/Baby then historical and Patient is already
- ;  associated to Pregnancy.
- ;
- ;  DFN = PATIENT
- ; PREG = PREGNANCY IEN
- ; BNUM = FETUS/BABY NUM
- ;
- N FLG,BNUM,DFN,PREG,IEN,IPT S PRI=$G(PRI),SEC=$G(SEC)
- I $P(PRI,".")="FB" S FLG=PRI,BNUM=$P(PRI,".",2) D
- . I $P(SEC,".")="P" D
- . . S DFN=$P(SEC,".",2),PREG=$$PG^DSIO4(DFN) I 'PREG D PREG^DSIO15(.PREG,DFN,,,"C")
- . I $P(SEC,".")="PG" D
- . . S PREG=$P(SEC,".",2),DFN=$$GET1^DIQ(19641.13,PREG_",",.03,"I")
- I $P(SEC,".")="FB" S FLG=SEC,BNUM=$P(SEC,".",2) D
- . I $P(PRI,".")="P" D
- . . S DFN=$P(PRI,".",2),PREG=$$PG^DSIO4(DFN) I 'PREG D PREG^DSIO15(.PREG,DFN,,,"C")
- . I $P(PRI,".")="PG" D
- . . S PREG=$P(PRI,".",2),DFN=$$GET1^DIQ(19641.13,PREG_",",.03,"I")
- I $G(BNUM)&('$G(DFN)!('$G(PREG))) D  Q 0
- . S RET="-1^Invalid Primary and Secondary Objects."
- Q:'$G(BNUM) 1
- I '$$CHECK^DSIO2(DFN) S RET="-1^Patient entry not found." Q 0
- S IEN=$O(^DSIO(19641.112,"C",DFN,PREG,BNUM,"")) Q:IEN IEN
- S IPT(19641.112,"+1,",.01)=BNUM
- S IPT(19641.112,"+1,",.02)=DFN
- S IPT(19641.112,"+1,",.03)=PREG
- K IEN D UPDATE^DIE(,"IPT","IEN") K IPT
- I '$G(IEN(1)) S RET="-1^Failed to associate baby to pregnancy, patient." Q 0
- S IPT(19641.132,"?+1,"_PREG_",",.01)=IEN(1)
- D UPDATE^DIE(,"IPT")
- S @FLG="FB."_IEN(1)
- Q 1
- ;
-OBJECT(OBJECT) ; Transform External Object to Internal
- N OBJ,GL
- S OBJ=$P($G(OBJECT),".")
- S OBJ=$S(OBJ="P":"DSIO(19641,",OBJ="FB":"DSIO(19641.112,",OBJ="PG":"DSIO(19641.13,",OBJ="N":"TIU(8925,",1:"")
- I OBJ'="",$P($G(OBJECT),".",2) S GL=U_OBJ_$P($G(OBJECT),".",2)_")" Q:$D(@GL) $P($G(OBJECT),".",2)_";"_OBJ
- Q ""
- ;
-OBG(RET,IEN,OBJECT,FDT,TDT,REL,CAT,SYS,CODE,SORT) ; RPC: DSIO GET OBSERVATIONS
+OBG(RET,IEN,DFN,OBJECT,REF,FDT,TDT,REL,CAT,SYS,CODE,SORT) ; RPC: DSIO GET OBSERVATIONS
  ;
  ;    IEN = IF NOT NULL THEN RETURN ONLY
- ; OBJECT = OBJECT OF OBSERVATION (PRIMARY^SECONDARY)
- ;           P.IEN (PATIENT)
- ;          FB.IEN (FETUS BABY)
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+ ;          FB.IEN (FETUS/BABY)
  ;          PG.IEN (PREGNANCY)
- ;           N.IEN (NOTE)
+ ;    REF = OBJECTS OF REFERENCE (ARRAY)
+ ;         TIU.IEN (NOTE)
+ ;         IHE.IEN (IHE DOCUMENT)
+ ; *** OBJECT AND REF - The entry must have at least the provided values
  ;    FDT = FROM DATE
  ;    TDT = TO DATE
  ;    REL = RELATIONSHIP
  ;    CAT = CATEGORY
  ;    SYS = CODING SYSTEM
+ ; **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
  ;
  ; RETURN:
- ;  L^IEN^DATE^PRIMARY OBJECT^SECONDARY OBJECT^REL^CAT^CODE^SYS^UPDATED BY^
- ;    LAST MODIFIED DATE^DESC^VAL^VALUE TYPE^VALUE UNIT^NEGATION^START^END^
- ;    PUSHED^QUALIFIERS(NAME^VALUE)|
+ ;  L^IEN^DFN^DATE^OBJ OF OBS;EXTERNAL VALUE|...^OBJ OF REF;EXTERNAL VALUE|...^
+ ;    REL^CAT^START^END^PUSHED^CODE^SYS^SYS VALUE^DISPLAY NAME^VALUE CODE^
+ ;    VALUE SYS^VALUE SYS VALUE^VALUE DISPLAY NAME^VALUE TYPE^VALUE^VALUE UNIT^
+ ;    NEGATION^UPDATED BY^MODIFIED DATE^QUALIFIERS(NAME;VALUE)|...
  ;  C^IEN^NARRATIVE
  ;
+ N RCT,TS,DATE,STRT,END
  S RET=$NA(^TMP($J,"DSIO OBG")) K @RET S @RET@(0)="0^Nothing found."
- N PRI,SEC,RCT,TS,CT,N,NS,NC,STRT,END
- I $G(IEN) D OBG2(.RET,IEN,1) I $D(@RET@(1)) S @RET@(0)=1 Q
- S PRI=$$OBJECT($P($G(OBJECT),U)) Q:PRI=""
- S SEC=$$OBJECT($P($G(OBJECT),U,2))
- D SORT($G(SORT))
+ I $G(IEN) D FLDS(IEN,1) S:$D(@RET@(1)) @RET@(0)=1 Q
+ I '$$CHECK^DSIO2($G(DFN)) S @RET@(0)="-1^Patient entry not found." Q
+ D OBJL(.OBJECT),OBJL(.REF),SORT($G(SORT))
  ; *** RANGE
- S FDT=$$MDATE($$DT^DSIO2($G(FDT)))
+ S FDT=$S($G(FDT)'="":$$FMADD^XLFDT($$DT^DSIO2(FDT),,,,-1),1:"")
  S TDT=$$DT^DSIO2($G(TDT)) S:TDT="" TDT=$$NOW^XLFDT
  ; *** FILTERS
  S REL=$$UP^XLFSTR($G(REL)),CAT=$$UP^XLFSTR($G(CAT))
  S SYS=$$UP^XLFSTR($E($G(SYS))),CODE=$G(CODE)
- S SYS=$S(SYS="L":"LNC",SYS="S":"SCT",SYS="O":"OTHER","N":"NONE",1:"")
- S (RCT,TS)=0,CT=FDT
- I $G(SEC)'="" D OBGS Q
- I $G(PRI)'="" D OBGP
- Q
- ;
-OBGP ; By PRIMARY,DATE OF OBSERVATION,CODE SYSTEM,CODE
- F  S CT=$O(^DSIO(19641.12,"P",PRI,CT)) Q:CT=""  Q:CT>TDT  D
- . S N=$NA(^DSIO(19641.12,"P",PRI,CT))
- . D OBG1
+ S SYS=$S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+ S (RCT,TS)=0,DATE=FDT
+ F  S DATE=$O(^DSIO(19641.12,"P",DFN,DATE),-1) Q:DATE=""  Q:DATE>TDT  D
+ . S IEN="" F  S IEN=$O(^DSIO(19641.12,"P",DFN,DATE,IEN),-1) Q:IEN=""  D
+ . . ; *** OBJECT AND REF - The entry must have at least the provided values
+ . . I $D(OBJECT) Q:$$CONTAIN(IEN,.OBJECT,1)
+ . . I $D(REF) Q:$$CONTAIN(IEN,.REF,2)
+ . . I CODE'="",$$GETCODE(IEN,"C",1)'=CODE Q
+ . . I SYS'="",$$GETCODE(IEN,"C",3)'=SYS Q
+ . . I REL'="",$$UP^XLFSTR($$GET1^DIQ(19641.12,IEN_",",.04))'=REL Q
+ . . I CAT'="",$$UP^XLFSTR($$GET1^DIQ(19641.12,IEN_",",.03))'=CAT Q
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+ . . D FLDS(IEN,RCT)
  S:$G(TS) @RET@(0)=TS
  Q
  ;
-OBGS ; By PRIMARY,SECONDARY,DATE OF OBSERVATION,CODE SYSTEM,CODE
- F  S CT=$O(^DSIO(19641.12,"S",PRI,SEC,CT)) Q:CT=""  Q:CT>TDT  D
- . S N=$NA(^DSIO(19641.12,"S",PRI,SEC,CT))
- . D OBG1
- S:$G(TS) @RET@(0)=TS
+CONTAIN(IEN,VALS,ND) ; Does the entry contain all objects?
+ N CT,FLG
+ S CT="" F  S CT=$O(VALS(CT)) Q:CT=""  D  Q:$D(FLG)
+ . I '$D(^DSIO(19641.12,IEN,ND,"B",CT)) S FLG=1
+ Q $D(FLG)
+ ;
+OBJL(ARY) ; Prep Object List
+ N CT,OUT,NEW
+ S CT=$NA(ARY) F  S CT=$Q(@CT) Q:CT=""  D
+ . S OUT=$$OBJECT(@CT) I OUT'="" S NEW(OUT)=""
+ K ARY I $D(NEW) M ARY=NEW
  Q
  ;
-OBG1 ; Continue
- ;      NS = CODE SYSTEM
- ;      NC = CODE
- S NS=$O(@N@("")),NC=$O(@N@(NS,"")),IEN=$O(@N@(NS,NC,""))
- Q:SYS'=""&(NS'=SYS)  Q:CODE'=""&(NC'=CODE)
- Q:REL'=""&($$GET1^DIQ(19641.12,IEN_",",.03)'=REL)
- Q:SEC'=""&($$GET1^DIQ(19641.12,IEN_",",.04,"I")'=SEC)
- Q:CAT'=""&($$GET1^DIQ(19641.12,IEN_",",.05)'=CAT)
- S TS=TS+1 I STRT'="",TS'>STRT Q
- S RCT=RCT+1 I END'="",RCT>END Q
- D OBG2(.RET,IEN,RCT)
- Q
- ;
-OBG2(RET,IEN,ND) ; Continue
+FLDS(IEN,ND) ; Continue
  N OUT,LINE,FLD,STR
- D GETS^DIQ(19641.12,IEN_",","*","IE","OUT")
+ D GETS^DIQ(19641.12,IEN_",","*","IE","OUT") Q:'$D(OUT)
  S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
- S STR="L^"_IEN_U_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U     ; DATE OF OBSERVATION
- S STR=STR_FLD(.02,"I")_"|"_FLD(.02,"E")_U              ; PRIMARY OBJECT
- S STR=STR_FLD(.04,"I")_"|"_FLD(.04,"E")_U              ; SECONDARY OBJECT
- S STR=STR_FLD(.03,"E")_U                               ; RELATIONSHIP
- S STR=STR_FLD(.05,"I")_U                               ; CATEGORY
- S STR=STR_FLD(.06,"I")_U                               ; CODE
- S STR=STR_FLD(.07,"I")_U                               ; CODE SYSTEM
- S STR=STR_FLD(.08,"I")_"|"_FLD(.08,"E")_U              ; UPDATED BY
- S STR=STR_$$FMTE^XLFDT(FLD(.09,"I"),"5Z")_U            ; LAST MODIFIED DATE
- S STR=STR_FLD(1,"I")_U                                 ; DESCRIPTION
- S STR=STR_FLD(2,"I")_U                                 ; VALUE
- S STR=STR_FLD(3.1,"I")_U                               ; VALUE TYPE
- S STR=STR_FLD(3.2,"E")_U                               ; VALUE UNIT
- S STR=STR_FLD(3.3,"E")_U                               ; NEGATION
- S STR=STR_$$FMTE^XLFDT(FLD(3.4,"I"),"5Z")_U            ; START
- S STR=STR_$$FMTE^XLFDT(FLD(3.5,"I"),"5Z")_U            ; END
- S STR=STR_$S(FLD(4.1,"I")'="":"YES",1:"NO")_U          ; PUSHED
+ S STR="L^"_IEN_U
+ S STR=STR_FLD(.02,"I")_U                               ; DFN
+ S STR=STR_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U            ; DATE OF OBSERVATION
+ S STR=STR_$$OBJ(IEN,1)_U                               ; OBJECTS OF OBSERVATION
+ S STR=STR_$$OBJ(IEN,2)_U                               ; OBJECTS OF REFERENCE
+ S STR=STR_FLD(.04,"I")_U                               ; RELATIONSHIP
+ S STR=STR_FLD(.03,"I")_U                               ; CATEGORY
+ S STR=STR_$$FMTE^XLFDT(FLD(.05,"I"),"5Z")_U            ; START
+ S STR=STR_$$FMTE^XLFDT(FLD(.06,"I"),"5Z")_U            ; END
+ S STR=STR_$$FMTE^XLFDT(FLD(.09,"I"),"5Z")_U            ; PUSHED
+ S STR=STR_$$GETCODE(IEN,"C",1)_U                       ; CODE
+ S STR=STR_$$GETCODE(IEN,"C",3)_U                       ; CODE SYSTEM NAME
+ S STR=STR_$$GETCODE(IEN,"C",4)_U                       ; CODE SYSTEM VALUE
+ S STR=STR_$$GETCODE(IEN,"C",2)_U                       ; CODE DISPLAY NAME
+ S STR=STR_$$GETCODE(IEN,"V",1)_U                       ; VALUE CODE
+ S STR=STR_$$GETCODE(IEN,"V",3)_U                       ; VALUE SYSTEM NAME
+ S STR=STR_$$GETCODE(IEN,"V",4)_U                       ; VALUE SYSTEM VALUE
+ S STR=STR_$$GETCODE(IEN,"V",2)_U                       ; VALUE DISPLAY NAME
+ S STR=STR_FLD(4.1,"I")_U                               ; VALUE TYPE
+ S STR=STR_FLD(4.2,"I")_U                               ; VALUE
+ S STR=STR_FLD(4.3,"I")_U                               ; VALUE UNIT
+ S STR=STR_FLD(4.4,"E")_U                               ; NEGATION
+ S STR=STR_$$NAME^DSIO2(FLD(.07,"E"))_U                 ; UPDATED BY
+ S STR=STR_$$FMTE^XLFDT(FLD(.08,"I"),"5Z")_U            ; MODIFIED DATE
  S STR=STR_$$QUAL(IEN)                                  ; QUALIFIERS
  S @RET@(ND,0)=STR
  S LINE=0 F  S LINE=$O(FLD(6,LINE)) Q:'LINE  S @RET@(ND,LINE)="C^"_IEN_U_FLD(6,LINE)
  Q
  ;
+OBJ(IEN,ND) ; OBJECTS
+ N OBJ,Q,STR
+ D GETS^DIQ(19641.12,IEN_",",ND_"*","I","OBJ")
+ S Q=$NA(OBJ) F  S Q=$Q(@Q) Q:Q=""  D
+ . S STR=$G(STR)_$$EOBJ(@Q)_"|"
+ Q $E($G(STR),1,($L($G(STR))-1))
+ ;
+EOBJ(OBJ) ; Transform to External Form
+ N STR
+ S STR=$S(OBJ[8925:"TIU."_+OBJ,OBJ[19641.6:"IHE."_+OBJ,OBJ[19641.13:"PG."_+OBJ,OBJ[19641.112:"FB."_+OBJ,1:"")
+ S:STR'="" STR=STR_";"_$$GET1^DIQ($TR($P(OBJ,"(",2),","),+OBJ_",",.01)
+ Q STR
+ ;
 QUAL(IEN) ; QUALIFIERS
  N QUAL,Q,STR
  D GETS^DIQ(19641.12,IEN_",","5*","I","QUAL")
  S Q=$NA(QUAL) F  S Q=$Q(@Q) Q:Q=""  D
- . S STR=$G(STR)_$$TITLE^XLFSTR(@Q)_"|"
+ . S STR=$G(STR)_$$TITLE^XLFSTR(@Q)
+ . I $QS(Q,3)=".01" S STR=STR_";"
+ . I $QS(Q,3)=".02" S STR=STR_"|"
  Q $E($G(STR),1,($L($G(STR))-1))
  ;
  ; ---------------------------------- COMMON ----------------------------------
@@ -271,6 +301,3 @@ QUAL(IEN) ; QUALIFIERS
 SORT(SORT) ; Set Start and End
  D S^DSIO2(SORT)
  Q
- ;
-MDATE(VAL) ; Minus One Second for date for Sorting
- Q $$FMADD^XLFDT(VAL,,,,-1)

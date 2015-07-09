@@ -1,7 +1,5 @@
-Routine DSIO2 saved using VFDXTRS routine on May 20, 2015 17:21
-DSIO2^INT^63692,31310^May 20, 2015@08:41
 DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;06/28/2013 15:19
- ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -21,8 +19,8 @@ ICODE(SYS,CD) ; Transform and lookup code (internal)
  . I $$FIND1^DIC(95.3,,"A",IEN)&($$GET1^DIQ(95.3,IEN_",",15)=CK) D
  . . S CODE=IEN_";LAB(95.3,"
  I SYS="SCT" D
- . S IEN=$$FIND1^DIC(757.02,,"O",CD,"CODE")
- . I +IEN>0,$$GET1^DIQ(757.02,IEN_",",1)=CD D
+ . S IEN=$$FIND1^DIC(757.02,,"O",CD,"CODE") Q:'IEN
+ . I $$GET1^DIQ(757.02,IEN_",",1)=CD D
  . . S CODE=IEN_";LEX(757.02,"
  Q $G(CODE)
  ;
@@ -147,7 +145,7 @@ VALID(FLE,FLD,IENS,VAL) ; Check if a value is valid
 DT(X) ; Validate and attempt to return a valid date
  N %DT S %DT="ST" D ^%DT
  I +Y<1 S X=$$DT1(X) I +X<1 S X=$P(X,U,2) S %DT="STX" D ^%DT
- Q $S(+Y'<1:Y,+$G(X)'<1:X,1:"")
+ Q $S(Y'<1:Y,1:"")
  ;
 DT1(VAL) ; Translate external date time to FM date time
  ;
@@ -212,88 +210,12 @@ FN(P,C) ; Get the next record by dashboard page and count forward
  Q C*(P-1)
  ;
 S(SORT) ; Set Start and End
- S:$G(SORT)="" SORT="1,500"
+ S:$G(SORT)="" STRT="",END=""
  I SORT?.N1",".N D
  . S STRT=$$FN($P(SORT,","),$P(SORT,",",2)),END=$P(SORT,",",2)
  Q
  ;
- ;
- ;
- ;
- ;
- ;
- ;
- ;
- ; ---- try to phase out SORT
- ;
-SORT(IN,OUT,SORT,TO,DIR,PDT,PTLE,ADD,EXC,IGN,SKP,EXF,SWP,EXC2) ; CREATE PAGING (GLOBAL)
- ;
- ;   IN = ^TMP(<SUBSCRIPTS PASSED IN>,COUNTER (# OR STRING),HANGING 0 (OPTIONAL))
- ;   TO = TOTAL IF THE CALLER KNOWS THE TOTAL COUNT
- ;        THIS IS USEFUL FOR SCREENED LISTS
- ;  DIR = DIRECTION 1 OR -1 (REVERSE)
- ;  PDT = PIECE TO TRANSFORM DATE (#|#^CODE)
- ; PTLE = PIECE TO TRANSFORM TO TITLE CASE #|#
- ;  ADD = ADD ADDITIONAL INFORMATION FROM AN ARRAY WHEN THE ARRAY SUBSCRIPT
- ;        EQUALS THE FIRST PIECE THE THE BASE ENTRY
- ;  EXC = EXECUTE CODE TO ADD ADDITIONAL INFORMATION
- ;        WHERE THE CODE IS A FUNCTION EXPECTING THE ITEM IEN $$FUN^ROUTINE(IEN)
- ;        WITHOUT THE PARAMETERS LISTED $$FUN^ROUTINE
- ;  IGN = IF THIS PIECE IS NOT THIS VALUE DON'T INCLUDE (PIECE^VALUE)
- ;  SKP = LINES STARTING WITH THIS CHARACTER WILL BE SKIPPED
- ;  EXF = EXECUTE CODE TO ADD INTO A PIECE WITH THE PIECE BEING THE IEN
- ;        (PIECE#^DELIMITER^FILE^FIELD|) IF $P1 CONTAINS * THEN USE FLD AS IEN
- ;  SWP = SWAP PIECES OF A PIECE (PEICE^DELIMITER|)
- ; EXC2 = EXECUTE CODE TO FORMATE A PIECE (1,2,3|CODE) WHERE THE PIECES TO FORMAT
- ;        ARE DELIMITED BY "," AND THE FUNCTION IS THE SECOND PIECE OF "|"
- ;
- N STRT,STOP,T,CT,Z,I,IIGN,IIGN2,VAL,PP,PP1,EX,SKSTP,DLM S M="0^Nothing found."
- S (STRT,STOP,T)=0 I $G(SORT)?.N1",".N D
- .S STRT=$$FN($P(SORT,","),$P(SORT,",",2))
- .S STOP=$P(SORT,",",2)
- .I IN["DILIST"&(+$G(DIR)>-1) S STRT=STRT+1
- S CT=1,Z="" F I=0:1 S Z=$O(@IN@(Z),$G(DIR,1)) Q:Z=""  D
- .Q:Z=0
- .; WHERE DOES THE VALUE SIT? IS THERE A HANGING ZERO?
- .S VAL=$S($D(@IN@(Z))=1:@IN@(Z),$D(@IN@(Z,0))=1:@IN@(Z,0),1:"")
- .I $D(SKP),$E(VAL,1)=SKP S I=I-1
- .Q:I<STRT
- .I STOP,T>=STOP,$D(SKP),$E(VAL,1)'=SKP S T=T+1,SKSTP=1 Q
- .I STOP,T>=STOP,'$D(SKP) S T=T+1 Q
- .Q:$D(SKSTP)
- .S @OUT@(CT)=VAL
- .I $D(SKP),$E(VAL,1)=SKP S CT=CT+1 Q  ; DON'T TRANSFORM SKIP
- .I $G(SWP)'="" D
- ..F PP=1:1:$L(SWP,"|") S PP1=$P(SWP,"|",PP) D
- ...S EX="S $P(@OUT@(CT),U,+PP1)=$P($P(@OUT@(CT),U,+PP1),$P(PP1,U,2),2)_$P(PP1,U,2)"
- ...S EX=EX_"_$P($P(@OUT@(CT),U,+PP1),$P(PP1,U,2))" X EX
- .I $G(PDT)'="" D
- ..F PP=1:1:$L(PDT,"|") S PP1=+$P(PDT,"|",PP) D
- ...S $P(@OUT@(CT),U,PP1)=$$FMTE^XLFDT($P(@OUT@(CT),U,PP1),$P($P(PDT,"|",PP),U,2))
- .I $D(ADD(+VAL)) S @OUT@(CT)=@OUT@(CT)_U_ADD(+VAL)
- .I $G(EXC)'="" S EX="S @OUT@(CT)=@OUT@(CT)_U_"_EXC_"("_+@OUT@(CT)_")" X EX
- .I $G(EXC2)'="" F PP=1:1:$L(EXC2,",") S PP1=$P($P(EXC2,",",PP),"|") D
- ..S EX="S $P(@OUT@(CT),U,PP1)="_$P(EXC2,"|",2)_"($P(@OUT@(CT),U,PP1))" X EX
- .I $G(EXF)'="" D
- ..F PP=1:1:$L(EXF,"|") S PP1=$P(EXF,"|",PP) D
- ...S DLM=$P(PP1,U,2)
- ...S EX="S $P(@OUT@(CT),U,+PP1)=$S(DLM'="""":$P(@OUT@(CT),U,+PP1),1:"""")_DLM_"
- ...S EX=EX_"$$GET1($S($P(PP1,U)[""*"":$P(@OUT@(CT),U,+PP1),1:$P(@OUT@(CT),U)),$P(PP1,U,3),$P(PP1,U,4))" X EX
- .I $G(PTLE)'="" D
- ..F PP=1:1:$L(PTLE,"|") S PP1=+$P(PTLE,"|",PP) D
- ...S $P(@OUT@(CT),U,PP1)=$$NAME($P(@OUT@(CT),U,PP1))
- .;I $G(IGN)'="" D  Q  ; ONLY THE ITEMS THAT INCLUDE...
- .;.I $P(@OUT@(CT),U,+IGN)'=$P(IGN,U,2) K @OUT@(CT) Q
- .;.S IIGN=$G(IIGN)+1
- .;.I IIGN<STRT K @OUT@(CT) Q
- .;.S IIGN2=$G(IIGN2)+1
- .;.I STOP,IIGN2>STOP K @OUT@(CT) Q
- .;.S CT=CT+1
- .S T=T+1,CT=CT+1
- K:$E(IN,1,4)="^TMP" @IN
- S @OUT@(0)=$S($O(@OUT@(""),-1)=0:M,+$G(TO)>0:TO,$D(IIGN):IIGN,T>0:T,1:M)
- Q
- ;
+ ; ------- PHASING OUT BELOW
 SORTA(IN,OUT) ; CREATE PAGING (ARRAY)
  N PG,CNT,PGX,PGS K OUT
  S PG=+SORT,CNT=$P(SORT,",",2),PGS=0
@@ -303,12 +225,3 @@ SORTA(IN,OUT) ; CREATE PAGING (ARRAY)
  F  S PGS=$O(IN(PGS)) Q:PGS=""!(PGS>PGX)  D
  .S OUT(PGS)=IN(PGS)
  Q
- ;
-GET1(IEN,FLE,FLD) ; $$GET1^DIQ
- Q:$G(IEN)=""!($G(FLE)="")!($G(FLD)="") ""
- N I,XIEN,FLG
- I +IEN<1 F I=1:1:$L(IEN) D  Q:$D(FLG)
- .I $E(IEN,I)?.N S XIEN=$G(XIEN)_$E(IEN,I) Q
- .S:$L($G(XIEN)) FLG=1
- E  S XIEN=IEN
- Q $$GET1^DIQ(FLE,XIEN_",",+FLD)

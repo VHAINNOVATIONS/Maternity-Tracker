@@ -1,7 +1,5 @@
-Routine DSIO7 saved using VFDXTRS routine on May 20, 2015 17:21
-DSIO7^INT^63692,60901^May 20, 2015@16:55
 DSIO7 ;DSS/TFF - DSIO VPR FOR IHE;06/28/2013 15:19
- ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 23
+ ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -166,16 +164,6 @@ ADDFAC(X) ;
  S Y=Y_$S($L($P(X,U,9))>0:" stateProvince='"_$P(X,U,9)_"'",1:"")
  S Y=Y_$S($L($P(X,U,10))>0:" postalCode='"_$P(X,U,10)_"'",1:"")
  S Y=Y_" />" D ADD^VPRDPT(Y)
- ;D ADD("<contactList>")
- ;contact^area^phone
- ;I +$P(^DIC(4,IEN,2,0),U,4)>0 D
- ;.F I=1:1:+$P(^DIC(4,IEN,2,0),U,4) S X=$G(^DIC(4,IEN,2,I,0)) D
- ;..I $L(X)>0 S Y="<contact " D
- ;...S Y=Y_$S($L($P(X,U))>0:" name='"_$P(X,U)_"'",1:"")
- ;...S Y=Y_$S($L($P(X,U,2))>0:" area='"_$P(^SC($P(X,U,2),0),U)_"'",1:"")
- ;...S Y=Y_$S($L($P(X,U,3))>0:" phone='"_$P(X,U,3)_"'",1:"")
- ;...S Y=Y_" />" D ADD(Y)
- ;D ADD("</contactList")
  D ADD^VPRDPT("</facility>")
  Q
  ;
@@ -254,24 +242,16 @@ PAR(DFN,BEG,END,MAX,ID) ; -- find patient family information (Participant)
  .S RT=$$GET1^DIQ(408.12,+@I_",",.03,"I")
  .D ATCS($TR($P($P(RT,U,";",2),"(",2),",",""),+RT,$QS(I,2))
  ;
- ; GET ONLY CURRENT FOF
+ ; *** GET ONLY CURRENT FOF
  D PREGG^DSIO15(.OUT,"C",DFN)
- I $G(@OUT@(0)) D
- .S FOF=$P($P($G(@OUT@(1)),U,7),"|"),FOFIEN=$P($P($G(@OUT@(1)),U,7),"|",2)
- .I FOFIEN="" S PAT("father_of_fetus",0)=FOF Q
- .S PAT("father_of_fetus",FOFIEN)=FOF
- .K OUT D PERSON^DSIO9(.OUT,DFN,FOFIEN) I $D(OUT) D
- ..Q:FOF='$P($G(OUT(1)),U,2)
- ..S PAT("father_of_fetus",FOFIEN,"address")=$P(OUT(0),U,6,11)
- ..S PAT("father_of_fetus",FOFIEN,"telecom")=$P(OUT(0),U,12,14)
- ; THE FOLLOWING CODE IS FOR ALL FOF'S
- ;K OUT D PERSON^DSIO9(.OUT,DFN)
- ;I $D(OUT) S I=$NA(OUT) F  S I=$Q(@I) Q:I=""  D
- ;.Q:+@I<1
- ;.S PAT("father_of_fetus",+@I)=$P(@I,U,2)
- ;.S PAT("father_of_fetus",+@I,"address")=$P(@I,U,6,11)
- ;.S PAT("father_of_fetus",+@I,"telecom")=$P(@I,U,12,14)
- ;
+ I $G(@OUT@(0))>1 D
+ . S FOF=$P($P($G(@OUT@(1)),U,7),"|"),FOFIEN=$P($P($G(@OUT@(1)),U,7),"|",2)
+ . I FOFIEN="" S PAT("father_of_fetus",0)=FOF Q
+ . S PAT("father_of_fetus",FOFIEN)=FOF
+ . K @OUT,OUT D PERSON^DSIO9(.OUT,DFN,FOFIEN) Q:$G(OUT(0))<1
+ . Q:FOF='$P($G(OUT(1)),U,2)
+ . S PAT("father_of_fetus",FOFIEN,"address")=$P(OUT(1),U,6,11)
+ . S PAT("father_of_fetus",FOFIEN,"telecom")=$P(OUT(1),U,12,14)
  D XMLP(.PAT)
  Q
  ;
