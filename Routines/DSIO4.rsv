@@ -1,5 +1,7 @@
+Routine DSIO4 saved using VFDXTRS routine on Oct 02, 2015 16:29
+DSIO4^INT^63827,45345^Oct 02, 2015@12:35
 DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 1
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -12,7 +14,7 @@ DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;06/28/2013 15:19
  ; ------------------------------- UTILITIES ----------------------------------
  ;
 PG(DFN) ; Get Current Pregnancy
- N DATE,IEN,FLG
+ N DATE,IEN,FLG Q:'$G(DFN) ""
  S DATE="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE),-1) Q:DATE=""  D  Q:$D(FLG)
  . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D  Q:$D(FLG)
  . . I $P($G(^DSIO(19641.13,IEN,0)),U,4)="C" S FLG=IEN
@@ -72,11 +74,12 @@ LACE(DFN) ; CURRENTLY LACTATING record
  Q $O(^DSIO(19641,DFN,3,"B",DATE,""),-1)
  ;
 TRACK(DFN,FL) ; Get TRACKING STATUS of a patient
+ Q:'$G(DFN) 0
  N TR S TR=$O(^DSIO(19641.2,"S",DFN,""))
  Q:$D(FL) $S(TR="T":1,TR="F":2,1:0)
  Q $S(TR="T":"YES",TR="F":"FLAGGED",1:"NO")
  ;
- ; ----------------------------------------------------------------------------
+ ; ---------------------------------------------------------------------------- BELOW ... NEEDS REVIEW
  ;
 WVPG(DFN) ; Get WV PATIENT Current Pregnancy
  I '$$VFILE^DILFD(790.16) Q 0

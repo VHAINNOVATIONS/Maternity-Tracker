@@ -1,5 +1,7 @@
+Routine DSIO9 saved using VFDXTRS routine on Oct 02, 2015 16:29
+DSIO9^INT^63813,59776^Sep 18, 2015@16:36
 DSIO9 ;DSS/TFF - DSIO PERSON;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 1
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -51,8 +53,8 @@ SAVE(RET,IEN,DFN,NAME,DOB,ADDR,PHONE,EDU,SEX,REL,STATUS,PROB,AB) ; RPC: DSIO SAV
  . . I LOC[2 S IPT(19641.11,IEN_",",1.2)=VAL Q                 ; STREET ADDRESS 2
  . . I LOC[3 S IPT(19641.11,IEN_",",1.3)=VAL Q                 ; STREET ADDRESS 3
  . . I LOC="CITY" S IPT(19641.11,IEN_",",1.4)=VAL Q            ; CITY
- . . I LOC="STATE",$$FIND1^DIC(5,,"XM",VAL) D
- . . . S IPT(19641.11,IEN_",",1.5)=$$FIND1^DIC(5,,"XM",VAL) Q  ; STATE
+ . . I LOC="STATE",$$FIND1^DIC(5,,"XM",$$UP^XLFSTR(VAL)) D
+ . . . S IPT(19641.11,IEN_",",1.5)=$$FIND1^DIC(5,,"XM",$$UP^XLFSTR(VAL)) Q  ; STATE
  . . I LOC="ZIP" S IPT(19641.11,IEN_",",1.6)=VAL               ; ZIP CODE
  D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
  S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
@@ -141,7 +143,7 @@ P1(IEN) ; Continue with 19641.11
  S STR=STR_FLD(.05,"I")                                     ; DFN
  Q:'$G(SEX) STR
  S STR=STR_U_FLD(.06,"E")_U                                 ; RELATIONSHIP
- S STR=STR_FLD(.07,"I")_U                                   ; STATUS
+ S STR=STR_FLD(.07,"E")_U                                   ; STATUS
  S STR=STR_$$DG(IEN)                                        ; DIAGNOSIS
  Q STR
  ;

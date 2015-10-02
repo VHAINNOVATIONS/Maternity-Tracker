@@ -1,7 +1,7 @@
-Routine DSIO03 saved using VFDXTRS routine on May 20, 2015 17:21
-DSIO03^INT^63692,31237^May 20, 2015@08:40
-DSIO03 ;DSS/TFF - DSIO OCNT GUI CONFIGURATION;06/28/2013 15:19
- ;;1.0;DSIO 1.0;;Feb 06, 2015;Build 23
+Routine DSIO03 saved using VFDXTRS routine on Oct 02, 2015 16:29
+DSIO03^INT^63826,55268^Oct 01, 2015@15:21
+DSIO03 ;DSS/TFF - DSIO OBSERVATION PUSH;06/28/2013 15:19
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -11,51 +11,47 @@ DSIO03 ;DSS/TFF - DSIO OCNT GUI CONFIGURATION;06/28/2013 15:19
  ;
  Q
  ;
-GRPTI(RET,FLE,CTR,TYP) ; RPC: DSIO OCNT GET REPORT ITEM
- ; GET REPORT ITEM (DSIO OCNT CONFIGURATION)
+CREATE(RET,NA,CD,SY,DL) ; Create Observation PUSH
  ;
- ; INPUT
- ; =====
- ; FLE = FILENAME OF INTERFACE
- ; CTR = DELPHI CONTROL NAME
- ; TYP = (S)INGLE, (DL) DIALOG LIST, (WP) WORD PROCESSING, (M)ULTIPLE
+ ; NA = NAME
+ ; CD = CODE
+ ; SY = CODE SYSTEM
+ ; DL = 0:FALSE, 1:TRUE, 2:BOTH
+ ; *For delete observation and transaction
  ;
- ; OUTPUT
- ; ======
- ; ARY(#) = FLD#^VALUE
- ;
- S RET(0)="-1^Database error"
- N IEN,EN,OUT,CT,I
- S CTR=$$UP^XLFSTR($G(CTR))
- S IEN=$$FIND1^DIC(19641.48,,"X",$G(FLE)) Q:IEN<1
- S EN=$$FIND1^DIC(19641.481,","_IEN_",","X",CTR) Q:EN<1
- D GETS^DIQ(19641.481,EN_","_IEN_",","**","E","OUT")
- S I=0,CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
- .Q:$QS(CT,1)'=19641.481
- .S RET(I)=$QS(CT,3)_U_@CT,I=I+1
+ N FDA,IEN S RET=0
+ Q:$G(NA)=""!($G(CD)="")
+ S FDA(19641.123,"?+1,",.01)=NA
+ S FDA(19641.123,"?+1,",.02)=CD
+ S FDA(19641.123,"?+1,",.03)=$G(SY,"OTHER")
+ S FDA(19641.123,"?+1,",.04)=$S(+$G(DL)<3&(+$G(DL)>0):DL,1:0)
+ D UPDATE^DIE(,"FDA","IEN") S:$G(IEN(1)) RET=IEN(1)
  Q
  ;
-RSAVE(RET,FLE,CTR,TYP,ARY) ; RPC: DSIO OCNT SAVE REPORT ITEM
- ; SAVE REPORT ITEM (DSIO OCNT CONFIGURATION)
+ ; ----------------------------------------------------------------------------
  ;
- ; INPUT
- ; =====
- ;    FLE = FILENAME OF INTERFACE
- ;    CTR = DELPHI CONTROL NAME
- ;    TYP = (S)INGLE, (DL) DIALOG LIST, (WP) WORD PROCESSING, (M)ULTIPLE
- ; ARY(#) = FLD#^VALUE
+LAS ; LACTATION STATUS (CODE: Lactating)
  ;
- ; OUTPUT
- ; ======
- ; RET = 1 OR -1
+ ; DSIO PATIENT #19641
+ ;   3  LACTATION HISTORY (Multiple-19641.04), [3;0]
+ ;         .01  LACTATION DATE (MD), [0;1]
+ ;         .02  END DATE (D), [0;2]
  ;
- S RET="-1^Database error"
- N IEN,EN,CT,IPT,ERR
- S CTR=$$UP^XLFSTR($G(CTR))
- S IEN=$$FIND1^DIC(19641.48,,"X",$G(FLE)) Q:IEN<1
- S EN=$$FIND1^DIC(19641.481,","_IEN_",","X",CTR) Q:EN<1
- S CT=$NA(ARY) F  S CT=$Q(@CT) Q:CT=""  D
- .Q:$P(@CT,U)=.01
- .S IPT(19641.481,EN_","_IEN_",",$P(@CT,U))=$S($P(@CT,U,2)=-1:1,1:$P(@CT,U,2))
- I $D(IPT) D FILE^DIE("E","IPT","ERR") I '$D(ERR) S RET=1
+ Q:$G(X)=""!('$G(DFN))
+ N FLE,IPT,IENS S FLE=19641.04
+ I X="YES" D
+ . Q:$$LACT^DSIO4(DFN)="YES"
+ . S IPT(FLE,"?+1,"_DFN_",",.01)=$$NOW^XLFDT
+ I X="NO" D
+ . Q:$$LACT^DSIO4(DFN)="NO"
+ . S IENS=$$LACE^DSIO4(DFN)_","_DFN_","
+ . S:'IENS IENS="?+1,"_DFN_",",IPT(FLE,IENS,.01)=$$NOW^XLFDT
+ . S IPT(FLE,IENS,.02)=$$NOW^XLFDT
+ D:$D(IPT) UPDATE^DIE(,"IPT")
+ Q
+ ;
+PATIENT(FLD) ; Update Patient Element
+ Q:$G(X)=""!('$G(DFN))
+ N DIE,DA,DR
+ S DIE="^DSIO(19641,",DA=DFN,DR=FLD_"///"_X D ^DIE
  Q

@@ -1,56 +1,109 @@
+Routine DSIO0P saved using VFDXTRS routine on Oct 02, 2015 16:29
+DSIO0P^INT^63819,44507^Sep 24, 2015@12:21
 DSIO0P ;DSS/TFF - PRE INSTALL;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ;
  ;
  ;
- ; *** CHECK THE DD FOR DSIO0PP
- ;     EXTERNAL ENTITIES
- I '$$VFILE^DILFD(19641.15) S ^TMP($J,"DSIO THEO","E")=""
- ;     OBSERVATION
- I '$$VFILE^DILFD(19641.121),'$$VFILE^DILFD(19641.17),'$$VFILE^DILFD(19641.125),'$$VFILE^DILFD(19641.126) S ^TMP($J,"DSIO THEO","O")=""
- ;     PERSON
- I '$$VFILE^DILFD(19641.113) S ^TMP($J,"DSIO THEO","P")=""
+ Q
  ;
-PRE ;PRE-INSTALL ACTIONS
- D BMES^XPDUTL("  Deleting data dictionaries:")
- N DIU
- S DIU=19641,DIU(0)="T"
- D EN^DIU2
+PRE ; PRE-INSTALL ACTIONS
+ N DIU D BMES^XPDUTL("  Deleting data dictionaries:")
+ ; ---------------------------------------------------------------- 1
+ K ^DSIO(19641.4)
+ S ^DSIO(19641.4,0)="DSIO DDCS CONTROL^19641.4^^0"
+ S DIU=19641.4,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS CONTROL (#19641.4)")
+ ; ---------------------------------------------------------------- 2
+ K ^DSIO(19641.41)
+ S ^DSIO(19641.41,0)="DSIO DDCS DATA^19641.41^^0"
+ S DIU=19641.41,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS DATA (#19641.41)")
+ ; ---------------------------------------------------------------- 3
+ K ^DSIO(19641.4941)
+ S ^DSIO(19641.4941,0)="DSIO DDCS SHARED DATA^19641.4941P^^0"
+ S DIU=19641.4941,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS SHARED DATA (#19641.4941)")
+ ; ---------------------------------------------------------------- 4
+ K ^DSIO(19641.45)
+ S ^DSIO(19641.45,0)="DSIO DDCS ELEMENT^19641.45^^0"
+ S DIU=19641.45,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS ELEMENT (#19641.45)")
+ ; ---------------------------------------------------------------- 5
+ K ^DSIO(19641.42)
+ S ^DSIO(19641.42,0)="DSIO DDCS FORM CONFIGURATION^19641.42I^^0"
+ S DIU=19641.42,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS FORM CONFIGURATION (#19641.42)")
+ ; ---------------------------------------------------------------- 6
+ S DIU=19641.425,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS CONTROLS (#19641.425)")
+ ; ---------------------------------------------------------------- 7
+ S DIU=19641.4258,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS CONTROL PROPERTIES (#19641.4258)")
+ ; ---------------------------------------------------------------- 8
+ K ^DSIO(19641.401)
+ S ^DSIO(19641.401,0)="DSIO DDCS REPORT ITEMS^19641.401I^^0"
+ S DIU=19641.401,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS REPORT ITEMS (#19641.401)")
+ ; ---------------------------------------------------------------- 9
+ K ^DSIO(19641.402)
+ S ^DSIO(19641.402,0)="DSIO REMINDER ELEMENTS^19641.402P^^0"
+ S DIU=19641.402,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS REMINDER ELEMENT (#19641.402)")
+ ; ---------------------------------------------------------------- 10
+ K ^DSIO(19641.492)
+ S ^DSIO(19641.492,0)="DSIO DDCS PARAMETER^19641.492IP^^0"
+ S DIU=19641.492,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS PARAMETER (#19641.492)")
+ ; ---------------------------------------------------------------- 11 DELETE
+ K ^DSIO(19641.48)
+ S ^DSIO(19641.48,0)="DSIO OCNT CONFIGURATION^19641.48^^0"
+ S DIU=19641.48,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO OCNT CONFIGURATION (#19641.48)")
+ ; ---------------------------------------------------------------- 12
+ K ^DSIO(19641.49)
+ S ^DSIO(19641.49,0)="DSIO DDCS DIALOGS^19641.49^^0"
+ S DIU=19641.49,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS DIALOGS (#19641.49)")
+ ; ---------------------------------------------------------------- 13
+ K ^DSIO(19641.124)
+ S ^DSIO(19641.124,0)="DSIO DDCS PUSH HISTORY^19641.124DO^^0"
+ S DIU=19641.124,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS PUSH HISTORY (#19641.124)")
+ ; ---------------------------------------------------------------- 14
+ K ^DSIO(19641.123)
+ S ^DSIO(19641.123,0)="DSIO OBSERVATION PUSH^19641.123O^^0"
+ S DIU=19641.123,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO OBSERVATION PUSH (#19641.123)")
+ ; ---------------------------------------------------------------- 15 DELETE
+ K ^DSIO(19641.122)
+ S ^DSIO(19641.122,0)="DSIO OBSERVATION CATEGORY^19641.122^^0"
+ S DIU=19641.122,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO OBSERVATION CATEGORY (#19641.122)")
+ ; ---------------------------------------------------------------- 16
+ S DIU=19641,DIU(0)="T" D EN^DIU2
  D MES^XPDUTL("    DSIO PATIENT (#19641)")
- S DIU=19641.1,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO EXTERNAL ENTITIES (#19641.1)")
- S DIU=19641.11,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO PERSON (#19641.11)")
- S DIU=19641.112,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO FETUS/BABY (#19641.112)")
- S DIU=19641.12,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO OBSERVATIONS (#19641.12)")
- S DIU=19641.124,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO PUSH HISTORY (#19641.124)")
- S DIU=19641.13,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO PREGNANCY HISTORY (#19641.13)")
- S DIU=19641.2,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO TRACKING HISTORY (#19641.2)")
- S DIU=19641.5,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO TITLE CONFIGURATION (#19641.5)")
- S DIU=19641.6,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO IHE DOCUMENT (#19641.6)")
- S DIU=19641.83,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO PREGNANCY-NOTE (#19641.83)")
- S DIU=19641.99,DIU(0)="T"
- D EN^DIU2
- D MES^XPDUTL("    DSIO CODES (#19641.99)")
- D MES^XPDUTL("  Finished deleting data dictionaries")
+ Q
+ ;
+POST ; Post Install
+ N NAM,NAME,FLE,IEN,NEW,IPT,PACK
+ S NAM=0 F  S NAM=$O(^DSIO(19641.4,"B",NAM)) Q:NAM=""  D
+ . Q:$E(NAM)'="<"&($E($P(NAM,";"),$L($P(NAM,";")))'=">")
+ . S NAME=$E(NAM,2,$L($P(NAM,";"))-1) Q:NAME=""
+ . S FLE=U_$P(NAM,";",2)_"0)",FLE=$P(@FLE,U) Q:FLE=""
+ . S FLE=$O(^DIC("B",FLE,"")) Q:'FLE
+ . S IEN=$$FIND1^DIC(FLE,,"XM",NAME) Q:'IEN
+ . S NEW($O(^DSIO(19641.4,"B",NAM,"")))=IEN_";"_$P(NAM,";",2)
+ I $D(NEW) D
+ . S IEN=0 F  S IEN=$O(NEW(IEN)) Q:'IEN  D
+ . . I $D(^DSIO(19641.4,"B",NEW(IEN))) D
+ . . . N DIK,DA
+ . . . S DA=$O(^DSIO(19641.4,"B",NEW(IEN),"")),DIK="^DSIO(19641.4," D ^DIK
+ . . S IPT(19641.4,IEN_",",.01)=NEW(IEN)
+ . . S PACK=$$GET1^DIQ(19641.4,IEN_",",99.1,"I")
+ . . S IPT(19641.4,IEN_",",99.1)=$S(PACK=516:$$FIND1^DIC(9.4,,"XM","TIU"),PACK=26:$$FIND1^DIC(9.4,,"XM","LAB SERVICE"),1:"")
+ . . D UPDATE^DIE(,"IPT")
+ ; *** REMINDER DIALOG Update of file #19641.402
  Q

@@ -1,5 +1,7 @@
+Routine DSIO3 saved using VFDXTRS routine on Oct 02, 2015 16:29
+DSIO3^INT^63768,44182^Aug 04, 2015@12:16
 DSIO3 ;DSS/TFF - DSIO TIU SUPPORT;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -109,7 +111,9 @@ UPDATE1 ; Continue for Create, Set, and Addendum
  D UPDATE^TIUSRVP(.RET,IEN,.DTIUX,0)
  I RET<1 S $P(RET,U)=-1 D UNLCK(IEN) Q
  ; *** DDCS
- I $D(DATA) N TASK D STORED^DSIO6(.TASK,IEN,.DATA,"O")
+ I $D(DATA) D
+ . ; STORED(RET,OBJECT,DIEN,INFACE,IDATA,ACT)
+ . N TASK D STORED^DSIO6(.TASK,$$TITLE(IEN)_";TIU(8925.1,",IEN,"OTHER",.DATA)
  I $D(BLR) M NOTIN=BLR S CT=$O(NOTIN("TEXT",""),-1)+1
  S:'$D(CT) CT=1 S X="" F I=CT:1 S X=$O(NOTE(X)) Q:X=""  S NOTIN("TEXT",I,0)=NOTE(X)
  ; <# of Current Page>^<Total # of Pages>

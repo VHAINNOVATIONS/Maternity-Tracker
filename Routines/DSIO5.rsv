@@ -1,5 +1,7 @@
+Routine DSIO5 saved using VFDXTRS routine on Oct 02, 2015 16:29
+DSIO5^INT^63824,49300^Sep 29, 2015@13:41
 DSIO5 ;DSS/TFF - DSIO TRIGGERS;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 23
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -10,7 +12,7 @@ DSIO5 ;DSS/TFF - DSIO TRIGGERS;06/28/2013 15:19
  Q
  ;
 TRIGGER(FLE,NUM) ; Flag patients off of ^PXRMINDX
- N OUT,CT,ND,LIEN,DSIO,SPEC,CON,ST,IX,X,DFN,IEN,RDT
+ N OUT,CT,ND,LIEN,CD,DSIO,SPEC,CON,ST,IX,X,DFN,IEN,RDT
  Q:'$G(FLE)!('$G(NUM))
  D LIST^DIC(FLE,,"@;.01I;.02I","P",,,,,,,"OUT") Q:'$D(OUT)
  F CT=1:1:+$G(OUT("DILIST",0)) S ND=$NA(OUT("DILIST",CT,0)) D
@@ -31,13 +33,13 @@ TRIGGER(FLE,NUM) ; Flag patients off of ^PXRMINDX
  S X=$S(NUM=63:"IP",NUM=9000011:"ICD",1:"") Q:X=""
  S IX=$NA(^PXRMINDX(NUM,X))
  S LIEN="" F  S LIEN=$O(CON(LIEN)) Q:LIEN=""  D
- . I X="ICD" D  Q
- . . S DFN=0 F  S DFN=$O(@IX@("ISPP",CON(LIEN),"A","U",DFN)) Q:'DFN  D
+ . I X="ICD" F CD="ICD","10D" D  Q
+ . . S DFN=0 F  S DFN=$O(^PXRMINDX(NUM,CD,"ISPP",CON(LIEN),"A","U",DFN)) Q:'DFN  D
  . . . Q:'$$SEX(DFN)
  . . . ; (U:UNKNOWN, A:ACUTE: C:CRONIC)
  . . . F ST="U","A","C" D
- . . . . S RDT=$O(@IX@("ISPP",CON(LIEN),"A",ST,DFN,""),-1) I RDT'="" D
- . . . . . S IEN=$O(@IX@("ISPP",CON(LIEN),"A",ST,DFN,RDT,""),-1)
+ . . . . S RDT=$O(^PXRMINDX(NUM,CD,"ISPP",CON(LIEN),"A",ST,DFN,""),-1) I RDT'="" D
+ . . . . . S IEN=$O(^PXRMINDX(NUM,CD,"ISPP",CON(LIEN),"A",ST,DFN,RDT,""),-1)
  . . . . . I $$RDT(FLE,DSIO(LIEN),DFN,RDT,IEN) D PROV2(DFN,CON(LIEN))
  . I X="IP" D
  . . S DFN=0 F  S DFN=$O(@IX@(LIEN,DFN)) Q:'DFN  D

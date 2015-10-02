@@ -1,5 +1,7 @@
+Routine DSIO2 saved using VFDXTRS routine on Oct 02, 2015 16:29
+DSIO2^INT^63826,55342^Oct 01, 2015@15:22
 DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 19
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 1
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -213,15 +215,4 @@ S(SORT) ; Set Start and End
  S:$G(SORT)="" STRT="",END=""
  I SORT?.N1",".N D
  . S STRT=$$FN($P(SORT,","),$P(SORT,",",2)),END=$P(SORT,",",2)
- Q
- ;
- ; ------- PHASING OUT BELOW
-SORTA(IN,OUT) ; CREATE PAGING (ARRAY)
- N PG,CNT,PGX,PGS K OUT
- S PG=+SORT,CNT=$P(SORT,",",2),PGS=0
- I '$G(PG)!'$G(CNT) Q
- S PGX=PG*CNT
- I PG>1 S PGS=PGX-CNT
- F  S PGS=$O(IN(PGS)) Q:PGS=""!(PGS>PGX)  D
- .S OUT(PGS)=IN(PGS)
  Q
