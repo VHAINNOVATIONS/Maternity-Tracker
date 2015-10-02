@@ -1,0 +1,87 @@
+Routine DSIO66 saved using VFDXTRS routine on Oct 02, 2015 16:29
+DSIO66^INT^63799,16148^Sep 04, 2015@04:29
+DSIO66 ;DSS/TFF - DSIO DDCS DIALOG SUPPORT;06/28/2013 15:19
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;
+ ; External References      DBIA#
+ ; -------------------      -----
+ ;
+ ;
+ ;
+ Q
+ ;
+LOOK(RET,CLASS,IEN) ; RPC: DSIO DDCS DIALOG LOOKUP
+ I $G(IEN) D  Q
+ . S RET=$$GET1^DIQ(19641.49,IEN_",",.03)
+ S RET=$$FIND1^DIC(19641.49,,"X",$G(CLASS),"C")
+ Q
+ ;
+DIALOG(IEN,OBJECT,SIEN) ; Part of Configuration (CONFIG^DSIO63)
+ ; *RUN ROUTINE VARIABLES:
+ ;   ***DDCSCT,DDCSCON
+ ;
+ ;    IEN = IEN of 19641.49
+ ;
+ ; OBJECT = OBJECT of CONTROL
+ ;          Example: 500000042;PXRMD(801.41,
+ ;                   Which is the Reminder Dialog of IEN 500000042
+ ;         = O=### (ORDER IEN)
+ ;         = N=### ( NOTE IEN)
+ ;
+ ;   SIEN = Destination IEN - Record of Control
+ ;
+ ; RETURN:
+ ;     CONTROL: CV^NAME^F^(INDEXED^VALUE)
+ ;
+ N DDCSCT,DDCSCON
+ S DDCSCT=0,DDCSCON="" F  S DDCSCON=$O(^DSIO(19641.49,IEN,1,"B",DDCSCON)) Q:DDCSCON=""  D
+ . D DCV(IEN,$O(^DSIO(19641.49,IEN,1,"B",DDCSCON,"")),$G(SIEN))
+ Q
+ ;
+DCV(FORM,IEN,SIEN) ; CONTROL Configuration Value for Dialogs
+ N STRT,FLG,IENS S STRT=DDCSCT
+ ; *** RUN ROUTINE
+ ;     CV^NAME^F^(INDEX^VALUE)
+ I $G(^DSIO(19641.49,FORM,1,IEN,4))'="" S FLG=1 D
+ . X ^DSIO(19641.49,FORM,1,IEN,4)
+ ; *** FREE TEXT
+ ;     CV^NAME^F^(INDEX^VALUE)
+ I '$D(FLG),$P($G(^DSIO(19641.49,FORM,1,IEN,2,0)),U,4)>0 D
+ . S IENS=0 F  S IENS=$O(^DSIO(19641.49,FORM,1,IEN,2,IENS)) Q:'IENS  D
+ . . S @RET@(DDCSCT)="CV^"_DDCSCON_"^F^"_^DSIO(19641.49,FORM,1,IEN,2,IENS,0),DDCSCT=DDCSCT+1
+ ; *** RESTORE
+ ;     A = DO NOT RESTORE
+ Q:$$GET1^DIQ(19641.49,FORM_",",.05)["A"
+ Q:$$GET1^DIQ(19641.491,IEN_","_FORM_",",.05,"I")
+ D:$G(SIEN) RESTD^DSIO64(.RET,STRT,DDCSCON,OBJECT,FORM_";DSIO(19641.49,",SIEN)
+ Q
+ ;
+OWNER(OBJECT) ; Get Owner IEN from OBJECT
+ N CONTROL
+ S CONTROL=$$OBJECT^DSIO65($G(OBJECT))
+ Q $$GET1^DIQ(19641.4,CONTROL_",",.07,"I")
+ ;
+REPORT(FORM,CON) ; Get the Report Item for a Control for an Interface/Form
+ N IEN
+ S IEN=$O(^DSIO(19641.49,FORM,1,"B",CON,"")) Q:'IEN ""
+ Q $P($G(^DSIO(19641.49,FORM,1,IEN,0)),U,3)
+ ;
+IMPORT(RET,UNIT,CLASS,CONTROLS) ; RPC: DSIO DDCS DIALOG IMPORT
+ S RET=-1 Q:$G(UNIT)=""!($G(CLASS)="")
+ N IPT,ERR,IEN,CTR
+ I '$O(^DSIO(19641.49,"D",$$UP^XLFSTR(UNIT),$$UP^XLFSTR(CLASS),"")) D
+ . S IPT(19641.49,"?+1,",.01)="<"_$E(UNIT,5,$L(UNIT))_">"       ; DISPLAY NAME
+ . S IPT(19641.49,"?+1,",.02)=UNIT                              ; UNIT
+ . S IPT(19641.49,"?+1,",.03)=CLASS                             ; CLASS
+ . D UPDATE^DIE(,"IPT",,"ERR") K IPT
+ ; Since dialogs can be reused with different display names we need to
+ ; find all dialogs of this UNIT/CLASS and add their controls
+ S:'$D(ERR) RET=1 Q:'$D(CONTROLS)
+ S IEN=0 F  S IEN=$O(^DSIO(19641.49,"D",$$UP^XLFSTR(UNIT),$$UP^XLFSTR(CLASS),IEN)) Q:'IEN  D
+ . S CTR="" F  S CTR=$O(CONTROLS(CTR)) Q:CTR=""  D
+ . . S IPT(19641.491,"?+1,"_IEN_",",.01)=$$UP^XLFSTR($P(CONTROLS(CTR),U))   ; CONTROL NAME
+ . . ;                                               $P(CONTROLS(CTR),U,2)  ; CLASS
+ . . D UPDATE^DIE(,"IPT") K IPT
+ S RET=1
+ Q

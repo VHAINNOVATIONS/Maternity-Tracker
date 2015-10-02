@@ -1,0 +1,81 @@
+Routine DSIO62 saved using VFDXTRS routine on Oct 02, 2015 16:29
+DSIO62^INT^63799,43811^Sep 04, 2015@12:10
+DSIO62 ;DSS/TFF - DSIO DDCS SPECIAL LOOKUP;06/28/2013 15:19
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;
+ ; External References      DBIA#
+ ; -------------------      -----
+ ;
+ ;
+ ;
+ ; *** VIEW OPTION FOR DSIO DDCS DATA ***
+ ; *** VIEW OPTION FOR DSIO DDCS SHARED DATA ***
+ ; *** VIEW OPTION FOR DSIO DDCS ELEMENT ***
+ ;
+VIEW ; Display Selection Only
+ N SCR,RECORD,IEN,OUT,CONTROL,DFLD,DFN,CT,TYPE,FLD,DATA
+ S SCR="I $D(^DSIO(19641.4,""D"",Y))"
+ S RECORD=$$RECORD^DSIO61("Select DESTINATION FILE",SCR) Q:RECORD=""
+ S IEN=$O(^DSIO(19641.41,"B",RECORD,"")) Q:'IEN
+ W !,$$REPEAT^XLFSTR("=",79)
+ S CONTROL=$$GET1^DIQ(19641.41,IEN_",",.02)
+ ; *** Get DFN for SHARED DATA Collection
+ S DFN=$$DFN^DSIO6(CONTROL,+RECORD)
+ W !," CONTROLLED BY: ",CONTROL,!
+ W "        PUSHED: ",$$FMTE^XLFDT($$GET1^DIQ(19641.41,IEN_",",.03),"5Z"),!
+ D GETS^DIQ(19641.41,IEN_",","1*","I","OUT")
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
+ . S TYPE=$S($L($QS(CT,1))=10:"D",1:"I")
+ . I TYPE="D" D  Q
+ . . S FLD(TYPE,$P($QS(CT,2),",",2),$O(FLD(TYPE,$P($QS(CT,2),",",2),""),-1)+1)=@CT
+ . S FLD(TYPE,+$QS(CT,2),$O(FLD(TYPE,+$QS(CT,2),""),-1)+1)=@CT
+ S CT=0 F  S CT=$O(FLD("I",CT)) Q:'CT  D  Q:'$$GOON^VALM1
+ . W !," INTERFACE: ",FLD("I",CT,1)
+ . W !,"    SHARED: ",$S(FLD("I",CT,2)=1:"YES",1:"NO"),!!
+ . W " DATA -----------------------------------------",!
+ . I 'FLD("I",CT,2) D  Q
+ . . S DATA=0 F  S DATA=$O(FLD("D",CT,DATA)) Q:'DATA  D
+ . . . D DATA(FLD("D",CT,DATA))
+ . ; *** DATA is within the DSIO DDCS SHARED DATA File
+ . ;     However, this file is by Interface by DFN and not by Record
+ . D SHARE(DFN,FLD("I",CT,1))
+ Q
+ ;
+SHARE(DFN,INFACE) ; Get SHARED DATA via DFN and INTERFACE
+ Q:'$G(DFN)!($G(INFACE)="")
+ N IEN,OUT,CT
+ S IEN=$O(^DSIO(19641.4941,DFN,1,"B",INFACE,"")) Q:'IEN
+ D GETS^DIQ(19641.49411,IEN_","_DFN_",","1*","I","OUT")
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D DATA(@CT)
+ Q
+ ;
+DATA(IEN) ; DSIO DDCS ELEMENT (19641.45)
+ N OUT,CT,FLD
+ D GETS^DIQ(19641.45,IEN_",","**","E","OUT")
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  S FLD($QS(CT,3))=@CT
+ W !," -- CONTROL: ",FLD(.01),!
+ W "       IENS: ",FLD(.02),!
+ W "       TYPE: ",FLD(999.01),!
+ W "    VALUE -------------------------------------",!
+ S CT=0 F  S CT=$O(^DSIO(19641.45,IEN,1,CT)) Q:'CT  D
+ . W "          ",^DSIO(19641.45,IEN,1,CT,0),!
+ Q
+ ;
+ ;
+ ; --------------------------------- UTILITIES --------------------------------
+ ; *** ONLY USE DURING PUSH
+ ;
+GET1(IEN) ; Return single line of data
+ Q $G(^DSIO(19641.45,+$G(IEN),1,1,0))
+ ;
+GETS(RET,IEN) ; Return array of data
+ N CT
+ S CT=0 F  S CT=$O(^DSIO(19641.45,+$G(IEN),1,CT)) Q:'CT  D
+ . S RET(CT)=^DSIO(19641.45,IEN,1,CT,0)
+ Q
+ ;
+IEN(NAM) ; Geta Control IEN for 19641.45
+ N TMP
+ S TMP=$O(^DSIO(19641.41,+$G(DATA),1,+$G(FIEN),1,"C",NAM,"")) Q:'TMP 0
+ Q +$G(^DSIO(19641.41,+$G(DATA),1,+$G(FIEN),1,TMP,0))
