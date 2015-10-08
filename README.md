@@ -2,7 +2,7 @@ Maternity-Tracker
 =================
 The VistA namespace for Maternity tracker is: DSIO
            The VistA numberspace for DSIO is: 19641
-   
+
 Installation Instructions:
 
 Pre-Installation:
@@ -18,7 +18,7 @@ Post Installation:
 Borlndmm.dll is required to work with CPRS, COM, and the form dlls – if this dll is not present next to the CPRS exe and at the minimum level as listed in this document then this program will not work appropriately.
 
 User Setup:
-
+===========
 Assign the Menu Context DSIO DDCS CONTEXT to users needing access to the DDCS Form Templates (oCNTs).
 Assign the Menu Context DSIO GUI CONTEXT to users needing access to the MCC Dashboard.
 
@@ -64,7 +64,7 @@ Select Systems Manager Menu <TEST ACCOUNT> Option: USER Management
 Select User Management <TEST ACCOUNT> Option: EDIT an Existing User
 Select NEW PERSON NAME: TF
 
- 
+<image>
 
 Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
 
@@ -88,12 +88,7 @@ Allocate key: DSIO DDCS CONFIG
 
 Another key: 
 
-Holder of key: TF
-     1   TF  FONTANA,THEO F            TF       
-     2   TFK  BLDAALUFHXY,SHUHTL     AAKLYN     NEW YORK     TFK     162-1     C
-OMPUTER SPECIALIST
-     3   TFV  VIPPROVIDER,THREE F            TFV          PHYSICIAN
-CHOOSE 1-3: 1  FONTANA,THEO F            TF       
+Holder of key: FONTANA,THEO F            TF       
 
 Another holder: 
 
@@ -110,7 +105,8 @@ You are allocating keys.  Do you wish to proceed? YES//
 DSIO DDCS CONFIG being assigned to:
      FONTANA,THEO F
 
-Create OE/RR ENTRY
+Create OE/RR ENTRY:
+===================
 This file is accessed by CPRS to use COM. There are only two fields required to use DSIO DDCS and that’s the NAME and OBJECT GUID fields. The GUID must look EXACTLY as seen below (with braces {}) but the name can be determined by the site.
 
 INPUT TO WHAT FILE: OE/RR COM OBJECTS// 
@@ -126,19 +122,19 @@ DESCRIPTION:
   No existing text
   Edit? NO//
 
-Link TIU Titles in CPRS
-
+Link TIU Titles in CPRS:
+========================
 The title must have be edited through the EDIT SHARED TEMPLATE option in CPRS with the title and COM entry.
 
 In CPRS select a patient and navigate to the “Notes” tab and select the “Edit Templates” option under the “Options” menu. Select Document Titles and add a new template. This template must be a “Template Type” of “COM Object” with the “Associated Title” linked to the TIU Note Title you wish to have access this program with the “COM Object” field linked to the DSIO DDCS COM entry you created in the OE/RR COM Objects file.
 
- 
+<image>
 
 For more information check out the documentation in the VA VDL.
 http://www.va.gov/vdl/application.asp?appid=61 
 
 Schedule the Task to PUSH Discreet Data:
-
+========================================
 You may schedule the option DSIO DDCS CHECK STATUS to meet your needs. This option will look for captured data in the DSIO DDCS DATA file and in there are new records that have not been PUSHed it will check the DSIO DDCS CONTROL file if the TRIGGER event is acceptable and if so it will PUSH the data based on the linked DSIO DDCS REPORT ITEMS.
 
 In the “Taskman Management” option…
@@ -164,13 +160,14 @@ ontrol Triggers for PUSH
  
 *Set the fields appropriate to your site.
 
-Register the COM Object
-
+Register the COM Object:
+========================
 In Windows, open the command prompt as an administrator and navigate to the COM Object that is located on the workstation that is accessing the DDCS Form Templates/oCNTs. Once your terminal is pointing to the same directory in which your COM resides run the command “regsvr32 DDCSFormBuilder.dll” without quotes.
 
- 
+<image>
 
 Setting the Location Parameter:
+===============================
 This parameter is required as it and the configuration file needs to be able to build the absolute path that will allow COM to access and open the form dll. In this case if I am accessing the TIU Note Title that is under DDCS control (NURSE POSTPARTUM – MATERNAL) then the oCNT_NursePostpartumMaternal.dll must then be located where the parameter indicates so: C:\Users\DSSDeveloper\Desktop\DDCS\_output\ oCNT_NursePostpartumMaternal.dll
 
 Set the LOCATION parameter to the location of the dlls.
@@ -181,7 +178,8 @@ Select PARAMETER DEFINITION NAME: DSIO DDCS LOCATION     DSIO DDCS LOCATION
 LOCATION: C:\Users\DSSDeveloper\Desktop\DDCS\_output
   Replace 
 
-Optional
+Optional:
+=========
 
 If you wish to launch COM as an order check you can:
 
@@ -204,7 +202,8 @@ COM Object: DSIO DDCS FORM BUILDER//   DSIO DDCS FORM BUILDER
 
 The following is done by the post install build but for knowledge and understanding some of the associations has been listed here so if something is not opening up correctly then you may have to check this associations.
 
-Advanced Setup
+Advanced Setup:
+===============
 This patch transports configuration data so nothing below this line is required at the installation site.
 
 Create CONTROL entries that allow you capture discreet data:
