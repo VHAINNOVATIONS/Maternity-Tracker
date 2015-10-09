@@ -151,7 +151,10 @@ begin
    5: Item.SubItems[5]  := edtAddr2.Text;
    6: Item.SubItems[6]  := edtAddr3.Text;
    7: Item.SubItems[7]  := edtAddrcity.Text;
-   8: Item.SubItems[8]  := cbAddrstate.Text;
+   8: begin
+        if cbAddrstate.ItemIndex <> -1 then
+          Item.SubItems[8]  := cbAddrstate.Items[cbAddrstate.ItemIndex];
+      end;
    9: Item.SubItems[9]  := edtAddrzip.Text;
   10: Item.SubItems[10] := edtPhoneH.Text;
   11: Item.SubItems[11] := edtPhoneW.Text;

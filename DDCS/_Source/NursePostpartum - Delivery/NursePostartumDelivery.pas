@@ -136,6 +136,7 @@ type
     procedure OnChangeRestore(J: Integer);
     procedure UpdateGrams(J: Integer);
   public
+    pgIENs: array of string;
   end;
 
 var
@@ -590,19 +591,17 @@ var
   I,J: Integer;
   lvitem: TListItem;
 
-  procedure ClearComments(LV: TListView);
+  procedure CleanLv(Lv: TListView);
   var
     I: Integer;
   begin
-    for I := 0 to LV.Items.Count - 1 do
-    begin
-      if LV.Items.Item[I].Caption = 'C' then
+    for I := 0 to Lv.Items.Count - 1 do
+      if ((Lv.Items[I].Caption = 'L') or (Lv.Items[I].Caption = 'C')) then
       begin
-        lv.Items.Item[I].Delete;
-        ClearComments(LV);
+        Lv.Items[I].Delete;
+        CleanLv(Lv);
         Break;
       end;
-    end;
   end;
 
 begin
@@ -771,41 +770,43 @@ begin
     end;
   end;
 
-  //Update the DataList Control
-  ClearComments(lstDelivery);
+  CleanLv(lstDelivery);
 
-  for I := 0 to pgCtrlBaby.PageCount - 1 do
+  for I := 0 to pgCtrlbaby.PageCount - 1 do
   begin
     if pgCtrlBaby.Pages[I].TabVisible then
     begin
-      if lstDelivery.Items.Count - 1 < I then
-        lstDelivery.Items.Add;
+      lvitem := lstDelivery.Items.Add;
+      lvitem.Caption := 'L';
+      for J := 0 to 10 do
+        lvitem.SubItems.Add('');
 
-      for J := lstDelivery.Items.Item[I].SubItems.Count - 1 to 9 do
-        lstDelivery.Items.Item[I].SubItems.Add('');
+      if ((Length(pgIENs) >= I) and (I > 0)) then                                        // IEN
+        IEN := pgIENs[I]
+      else IEN := '';
 
-      IEN := lstDelivery.Items.Item[I].SubItems[0];
+      lvitem.SubItems[0] := IEN;
 
       case TRadioGroup(rgSexlist[I]).ItemIndex of                                        // Gender
-        0 : lstDelivery.Items.Item[I].SubItems[3] := 'M';
-        1 : lstDelivery.Items.Item[I].SubItems[3] := 'F';
-        2 : lstDelivery.Items.Item[I].SubItems[3] := 'U';
+        0 : lvitem.SubItems[3] := 'M';
+        1 : lvitem.SubItems[3] := 'F';
+        2 : lvitem.SubItems[3] := 'U';
       end;
                                                                                          // Birth Weight
-      lstDelivery.Items.Item[I].SubItems[4] := TJvSpinEdit(edtLBList[I]).Text + '|' +
-                                               TJvSpinEdit(edtOzList[I]).Text + '|' +
-                                               TJvSpinEdit(edtGList[I]).Text;
+      lvitem.SubItems[4] := TJvSpinEdit(edtLBList[I]).Text + '|' +
+                            TJvSpinEdit(edtOzList[I]).Text + '|' +
+                            TJvSpinEdit(edtGList[I]).Text;
 
-      lstDelivery.Items.Item[I].SubItems[6] := TLabeledEdit(edtAPGARList[I]).Text;       // APGAR1
-      lstDelivery.Items.Item[I].SubItems[7] := TLabeledEdit(edtAPGARsList[I]).Text;      // APGAR2
+      lvitem.SubItems[6] := TLabeledEdit(edtAPGARList[I]).Text;                          // APGAR1
+      lvitem.SubItems[7] := TLabeledEdit(edtAPGARsList[I]).Text;                         // APGAR2
 
       if TRadioButton(rbLivingList[I]).Checked then                                      // Status
-        lstDelivery.Items.Item[I].SubItems[8] := 'L'
+        lvitem.SubItems[8] := 'L'
       else if TRadioButton(rbDemisedList[I]).Checked then
-        lstDelivery.Items.Item[I].SubItems[8] := 'D';
+        lvitem.SubItems[8] := 'D';
 
       if TCheckBox(ckNICUList[I]).Checked then                                           // NICU
-          lstDelivery.Items.Item[I].SubItems[9] := '1';
+        lvitem.SubItems[9] := '1';
 
       if TMemo(memComplicationsList[I]).Lines.Count > 0 then                             //COMMENTS
       begin
@@ -889,6 +890,7 @@ end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
+  SetLength(pgIENs,0);
   rgSexList.Clear;
   rbLivingList.Clear;
   rbDemisedList.Clear;
@@ -939,14 +941,15 @@ begin
       end;
 
       pgx := pgCtrlBaby.PageCount-1;
-      pg := pgCtrlBaby.Pages[pgx];
+       pg := pgCtrlBaby.Pages[pgx];
+      SetLength(pgIENs,pgCtrlBaby.PageCount);
 
       for J := 0 to lstDelivery.Items.Item[I].SubItems.Count - 1 do
       begin
         val := lstDelivery.Items.Item[I].SubItems[J];
         if val <> '' then
           case J of
-            0 : ;                                                               // IEN
+            0 : pgIENs[pgx] := val;                                             // IEN
             1 : ;                                                               // Baby Number
             2 : ;                                                               // Name
             3 : begin                                                           // Gender

@@ -78,12 +78,12 @@
         <DCC_DebugInformation>false</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Release>8</VerInfo_Release>
+        <VerInfo_Release>9</VerInfo_Release>
         <DCC_ExeOutput>C:\Users\DSSDeveloper\Desktop\DDCS\_output\</DCC_ExeOutput>
         <Debugger_HostApplication>C:\Program Files\Vista\CPRSChart.exe</Debugger_HostApplication>
         <VerInfo_Build>0</VerInfo_Build>
         <Manifest_File>None</Manifest_File>
-        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=;FileVersion=1.0.8.0;InternalName=;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=1.0.8.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=;FileVersion=1.0.9.0;InternalName=;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=1.0.9.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>

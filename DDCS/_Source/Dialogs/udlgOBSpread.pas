@@ -1109,7 +1109,10 @@ begin
     begin
       col_ptr := sgStandard.Rows[0].IndexOf('Fetal Heart');
       if (col_ptr <> -1) then
+      begin
         CBSelect(cmbHeart,sgStandard.Cells[col_ptr, row_ptr]);
+        cmbHeartChange(self);
+      end;
 
       col_ptr := sgStandard.Rows[0].IndexOf('Rate 3');
       if (col_ptr <> -1) then

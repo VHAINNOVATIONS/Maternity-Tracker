@@ -363,7 +363,7 @@ var
     for I := 0 to Lv.Items.Count - 1 do
       if ((Lv.Items[I].Caption = 'L') and (Lv.Items[I].SubItems[18] = '')) or (Lv.Items[I].Caption = 'C') then
       begin
-        PregListView.Items[I].Delete;
+        Lv.Items[I].Delete;
         CleanLv(Lv);
         Break;
       end;

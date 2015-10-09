@@ -99,9 +99,9 @@
         <DCC_DebugInformation>false</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <VerInfo_Release>8</VerInfo_Release>
+        <VerInfo_Release>9</VerInfo_Release>
         <VerInfo_DLL>true</VerInfo_DLL>
-        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=;FileVersion=1.0.8.0;InternalName=;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=1.0.8.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=;FileVersion=1.0.9.0;InternalName=;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=1.0.9.0;Comments=</VerInfo_Keys>
         <DCC_ExeOutput>C:\Users\DSSDeveloper\Desktop\DDCS\_output\</DCC_ExeOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>None</Manifest_File>
