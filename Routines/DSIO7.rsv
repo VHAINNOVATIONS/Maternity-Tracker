@@ -1,5 +1,5 @@
-Routine DSIO7 saved using VFDXTRS routine on Oct 02, 2015 16:29
-DSIO7^INT^63799,56267^Sep 04, 2015@15:37
+Routine DSIO7 saved using VFDXTRS routine on Oct 09, 2015 10:03
+DSIO7^INT^63830,46902^Oct 05, 2015@13:01
 DSIO7 ;DSS/TFF - DSIO VPR FOR IHE;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 23
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -245,8 +245,7 @@ PAR(DFN,BEG,END,MAX,ID) ; -- find patient family information (Participant)
  .D ATCS($TR($P($P(RT,U,";",2),"(",2),",",""),+RT,$QS(I,2))
  ;
  ; *** GET ONLY CURRENT FOF
- D PREGG^DSIO15(.OUT,"C",DFN)
- I $G(@OUT@(0))>1 D
+ D PREGG^DSIO15(.OUT,"C",DFN) I $G(@OUT@(0)) D
  . S FOF=$P($P($G(@OUT@(1)),U,7),"|"),FOFIEN=$P($P($G(@OUT@(1)),U,7),"|",2)
  . I FOFIEN="" S PAT("father_of_fetus",0)=FOF Q
  . S PAT("father_of_fetus",FOFIEN)=FOF

@@ -1,5 +1,5 @@
-Routine DSIO01 saved using VFDXTRS routine on Oct 02, 2015 16:29
-DSIO01^INT^63827,45400^Oct 02, 2015@12:36
+Routine DSIO01 saved using VFDXTRS routine on Oct 09, 2015 10:03
+DSIO01^INT^63830,35732^Oct 05, 2015@09:55
 DSIO01 ;DSS/TFF - DSIO OCNT PUSH SUPPORT;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -25,7 +25,7 @@ DELV ; DSIO DDCS REPORT ITEM - NURSE POSTPARTUM-DELIVERY
  ; Update Pregnancy with Babies, and the Babies with their data
  S (BCT,CT)=0 F  S CT=$O(OUT(CT)) Q:'CT  S LN=OUT(CT) D
  . I $P(LN,U,2)="L" S BCT=BCT+1 D
- . . I '$P(LN,U,3) K PG D PREG^DSIO15(.PG,PREG,DFN,,,,,,"+",,,1) Q:'$P(PG,U,2)  S $P(LN,U,3)=+$P(PG,U,2)
+ . . I '$P(LN,U,3) K PG D PREG^DSIO15(.PG,PREG,DFN,,,,,,"+",,,,1) Q:'$P(PG,U,2)  S $P(LN,U,3)=+$P(PG,U,2)
  . . S BY=$P(LN,U,3)
  . . S FDA(19641.112,BY_",",.05)=$P(LN,U,6)         ; GENDER
  . . S BW=$P(LN,U,7)                                ; BIRTH WEIGHT
@@ -54,7 +54,7 @@ DELV ; DSIO DDCS REPORT ITEM - NURSE POSTPARTUM-DELIVERY
  ; *** PREGNANCY
  ; Update Pregnancy with Delivery Date, and Delivery and Complication Notes
  S CT=0 F NAM="MEMODELIVERYNOTES","MEMODELIVERYMETHODCOMPLICATIONS" D DC(NAM,CT) S CT=1
- K PG D PREG^DSIO15(.PG,PREG,DFN,U_$$DT^DSIO2($P($$GET1^DSIO62($$IEN^DSIO62("DTDELIVERY")),U,2))_U,,,,,,,,1)
+ K PG D PREG^DSIO15(.PG,PREG,DFN,U_$$DT^DSIO2($P($$GET1^DSIO62($$IEN^DSIO62("DTDELIVERY")),U,2))_U,,,,,,,,,1)
  Q
  ;
 DC(NAM,I) ; Continue
@@ -101,14 +101,14 @@ HIST ; DSIO DDCS REPORT ITEM - PREGNANCY HISTORY
  . K PG,DATES,FA,FAC,STR
  . I $P(LN,U,2)="L" D
  . . I $P(LN,U,3)["-" D DELETE^DSIO15(+$P(LN,U,3)) Q
- . . I $P(LN,U,3)["+" D PREG^DSIO15(.PG,,DFN,,"H",,,,,,,1) Q:'PG  D UIEN(+PG)
+ . . I $P(LN,U,3)["+" D PREG^DSIO15(.PG,,DFN,,"H",,,,,,,,1) Q:'PG  D UIEN(+PG)
  . . F I=5,10,9 S DATES=$S($D(DATES):DATES_U,1:"")_$$DT^DSIO2($P(LN,U,I))
  . . I $P($P(LN,U,12),"|",2)'="" D  K:$G(FAC)'?1"NVA.".N FAC
  . . . S FAC=$$UP^XLFSTR($P($P(LN,U,12),"|",2))
  . . . I $D(^DSIO(19641.1,"F",FAC)) D  Q
  . . . . S FAC="NVA."_$O(^DSIO(19641.1,"F",FAC,""))
  . . . D SENT^DSIO1(.FA,,FAC,"F",,,,,1) I FA S FAC="NVA."_+FA
- . . K PG D PREG^DSIO15(.PG,$P(LN,U,3),DFN,DATES,"H",,,$G(FAC),,$P(LN,U,14,18)_U_$P(LN,U,21),,1)
+ . . K PG D PREG^DSIO15(.PG,$P(LN,U,3),DFN,DATES,"H",,,$G(FAC),,$P(LN,U,14,18)_U_$P(LN,U,21),,,1)
  . . ; Add/Update Babies
  . . F I=1:1:$L($P(LN,U,20),"|") S STR=$P($P(LN,U,20),"|",I) D BABY($P(LN,U,3),STR)
  . . K ^TMP("DSIO01",$J)
@@ -129,7 +129,7 @@ UIEN(IEN) ; Update IEN
  ;
 BABY(PREG,LN) ; Update Baby
  N PG,FDA
- I $P(LN,";")["+" D PREG^DSIO15(.PG,PREG,DFN,,,,,,"+",,,1) Q:'$P(PG,U,2)  S $P(LN,";")=+$P(PG,U,2)
+ I $P(LN,";")["+" D PREG^DSIO15(.PG,PREG,DFN,,,,,,"+",,,,1) Q:'$P(PG,U,2)  S $P(LN,";")=+$P(PG,U,2)
  Q:'LN
  S FDA(19641.112,+LN_",",.05)=$P(LN,";",3)        ; GENDER
  S FDA(19641.112,+LN_",",.06)=$P(LN,";",4)        ; BIRTH WEIGHT
