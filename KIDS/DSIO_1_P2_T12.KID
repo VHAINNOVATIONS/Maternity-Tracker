@@ -1,11 +1,11 @@
-KIDS Distribution saved on Oct 07, 2015@16:15:07
-T11 - DSIO*1.0*2
+KIDS Distribution saved on Oct 09, 2015@16:53:01
+T12 - DSIO*1.0*2
 **KIDS**:DSIO*1.0*2^
 
 **INSTALL NAME**
 DSIO*1.0*2
 "BLD",9894,0)
-DSIO*1.0*2^^0^3151007^n
+DSIO*1.0*2^^0^3151009^n
 "BLD",9894,4,0)
 ^9.64PA^19641.01^23
 "BLD",9894,4,19641,0)
@@ -151,7 +151,7 @@ y^y^f^^^^n
 "BLD",9894,4,"B",19641.99,19641.99)
 
 "BLD",9894,6.3)
-13
+14
 "BLD",9894,"INI")
 PRE^DSIO0P
 "BLD",9894,"INIT")
@@ -203,7 +203,7 @@ DSIO03^^0^B2386538
 "BLD",9894,"KRN",9.8,"NM",11,0)
 DSIO0^^1^
 "BLD",9894,"KRN",9.8,"NM",12,0)
-DSIO01^^0^B35136717
+DSIO01^^0^B35102105
 "BLD",9894,"KRN",9.8,"NM",13,0)
 DSIO02^^0^B23434175
 "BLD",9894,"KRN",9.8,"NM",14,0)
@@ -7219,11 +7219,11 @@ D XPZ2^XPDIQ
 "RTN","DSIO0")
 1^11
 "RTN","DSIO01")
-0^12^B35136717
+0^12^B35102105
 "RTN","DSIO01",1,0)
 DSIO01 ;DSS/TFF - DSIO OCNT PUSH SUPPORT;06/28/2013 15:19
 "RTN","DSIO01",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO01",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO01",4,0)
@@ -7305,11 +7305,11 @@ DELV ; DSIO DDCS REPORT ITEM - NURSE POSTPARTUM-DELIVERY
 "RTN","DSIO01",42,0)
  . . K ^TMP("DSIO01",$J)
 "RTN","DSIO01",43,0)
- . I $P(LN,U,2)="C" D                               ; COMMENTS
+ . I $P(LN,U,2)="C",$G(BY) D                        ; COMMENTS
 "RTN","DSIO01",44,0)
  . . K ^TMP("DSIO01",$J) S ^TMP("DSIO01",$J,1)=$P(LN,U,4,99)
 "RTN","DSIO01",45,0)
- . . D WP^DIE(19641.112,$P(LN,U,3)_",",1,"A","^TMP(""DSIO01"",$J)")
+ . . D WP^DIE(19641.112,BY_",",1,"A","^TMP(""DSIO01"",$J)")
 "RTN","DSIO01",46,0)
  . . K ^TMP("DSIO01",$J)
 "RTN","DSIO01",47,0)
@@ -7597,7 +7597,7 @@ G(REL) ; Determine Gender by Relationship
 "RTN","DSIO02",1,0)
 DSIO02 ;DSS/TFF - DSIO FORM CONFIGURATION;06/28/2013 15:19
 "RTN","DSIO02",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO02",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO02",4,0)
@@ -7831,7 +7831,7 @@ WT() ; Convert the stored #lbs #oz (#g) to #|#|#
 "RTN","DSIO03",1,0)
 DSIO03 ;DSS/TFF - DSIO OBSERVATION PUSH;06/28/2013 15:19
 "RTN","DSIO03",2,0)
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 14
 "RTN","DSIO03",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO03",4,0)
@@ -7943,7 +7943,7 @@ PATIENT(FLD) ; Update Patient Element
 "RTN","DSIO0P",1,0)
 DSIO0P ;DSS/TFF - PRE INSTALL;06/28/2013 15:19
 "RTN","DSIO0P",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO0P",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO0P",4,0)
@@ -8159,7 +8159,7 @@ POST ; Post Install
 "RTN","DSIO1",1,0)
 DSIO1 ;DSS/TFF - DSIO GENERAL RPCS;06/28/2013 15:19
 "RTN","DSIO1",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO1",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO1",4,0)
@@ -9157,7 +9157,7 @@ PAR ; Check Parameters
 "RTN","DSIO10",1,0)
 DSIO10 ;DSS/TFF - DSIO OBSERVATION;06/28/2013 15:19
 "RTN","DSIO10",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO10",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO10",4,0)
@@ -9759,7 +9759,7 @@ SORT(SORT) ; Set Start and End
 "RTN","DSIO11",1,0)
 DSIO11 ;DSS/CMW - DSIO MCC CHECKLIST;07/28/2013 15:19
 "RTN","DSIO11",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO11",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO11",4,0)
@@ -10375,7 +10375,7 @@ SORTA(IN,OUT) ; CREATE PAGING (ARRAY)
 "RTN","DSIO12",1,0)
 DSIO12 ;DSS/CMW - DSIO CLINICAL RPCS;06/06/2014 15:19
 "RTN","DSIO12",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO12",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO12",4,0)
@@ -10633,7 +10633,7 @@ SORT(SORT) ; Set Start and End
 "RTN","DSIO13",1,0)
 DSIO13 ;DSS/CMW/TFF - DSIO ORDER RPCS;06/06/2014 15:19
 "RTN","DSIO13",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO13",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO13",4,0)
@@ -10769,7 +10769,7 @@ SORT(SORT) ; Set Start and End
 "RTN","DSIO14",1,0)
 DSIO14 ;DSS/TFF - DSIO IHE;06/28/2013 15:19
 "RTN","DSIO14",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO14",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO14",4,0)
@@ -11041,7 +11041,7 @@ SORT(SORT) ; Set Start and End
 "RTN","DSIO15",1,0)
 DSIO15 ;DSS/TFF - DSIO PREGNANCY;06/28/2013 15:19
 "RTN","DSIO15",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO15",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO15",4,0)
@@ -11557,7 +11557,7 @@ SORT(SORT) ; Set Start and End
 "RTN","DSIO2",1,0)
 DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;06/28/2013 15:19
 "RTN","DSIO2",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO2",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO2",4,0)
@@ -11991,7 +11991,7 @@ S(SORT) ; Set Start and End
 "RTN","DSIO3",1,0)
 DSIO3 ;DSS/TFF - DSIO TIU SUPPORT;06/28/2013 15:19
 "RTN","DSIO3",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO3",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO3",4,0)
@@ -12657,7 +12657,7 @@ UNLCK(IEN) ; TIU Unlock Record
 "RTN","DSIO4",1,0)
 DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;06/28/2013 15:19
 "RTN","DSIO4",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO4",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO4",4,0)
@@ -13113,7 +13113,7 @@ MH1(DFN,DATE) ; From DSIO PATIENT to WV PATIENT
 "RTN","DSIO5",1,0)
 DSIO5 ;DSS/TFF - DSIO TRIGGERS;06/28/2013 15:19
 "RTN","DSIO5",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO5",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO5",4,0)
@@ -13405,7 +13405,7 @@ CONSULT(RET) ; RPC: DSIO CHECK CONTROLLED CONSULTS
 "RTN","DSIO6",1,0)
 DSIO6 ;DSS/TFF - DSIO DISCREET DATA - DDCS;06/28/2013 15:19
 "RTN","DSIO6",2,0)
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 14
 "RTN","DSIO6",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO6",4,0)
@@ -13983,7 +13983,7 @@ TRIG ; Attempt to PUSH unPUSHed records
 "RTN","DSIO61",1,0)
 DSIO61 ;DSS/TFF - DSIO DDCS SPECIAL LOOKUP;06/28/2013 15:19
 "RTN","DSIO61",2,0)
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 14
 "RTN","DSIO61",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO61",4,0)
@@ -14281,7 +14281,7 @@ LH(IEN) ; LINK Help
 "RTN","DSIO62",1,0)
 DSIO62 ;DSS/TFF - DSIO DDCS SPECIAL LOOKUP;06/28/2013 15:19
 "RTN","DSIO62",2,0)
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 14
 "RTN","DSIO62",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO62",4,0)
@@ -14441,7 +14441,7 @@ IEN(NAM) ; Geta Control IEN for 19641.45
 "RTN","DSIO63",1,0)
 DSIO63 ;DSS/TFF - DSIO DDCS CONFIGURE AND REPORT;06/28/2013 15:19
 "RTN","DSIO63",2,0)
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 14
 "RTN","DSIO63",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO63",4,0)
@@ -15031,7 +15031,7 @@ DSCON(IEN,CON) ; Determine if a "restore as" form should use a control
 "RTN","DSIO64",1,0)
 DSIO64 ;DSS/TFF - DSIO DDCS DATA RETURN;06/28/2013 15:19
 "RTN","DSIO64",2,0)
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 14
 "RTN","DSIO64",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO64",4,0)
@@ -15367,7 +15367,7 @@ RESTD(RET,STRT,CON,OBJECT,INFACE,SIEN) ; Restore Saved Data (DIALOGS)
 "RTN","DSIO65",1,0)
 DSIO65 ;DSS/TFF - DSIO DDCS FORM SUPPORT;06/28/2013 15:19
 "RTN","DSIO65",2,0)
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 14
 "RTN","DSIO65",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO65",4,0)
@@ -16247,7 +16247,7 @@ EDDCAL(TYP) ; EDD Observation
 "RTN","DSIO66",1,0)
 DSIO66 ;DSS/TFF - DSIO DDCS DIALOG SUPPORT;06/28/2013 15:19
 "RTN","DSIO66",2,0)
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 14
 "RTN","DSIO66",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO66",4,0)
@@ -16419,7 +16419,7 @@ IMPORT(RET,UNIT,CLASS,CONTROLS) ; RPC: DSIO DDCS DIALOG IMPORT
 "RTN","DSIO7",1,0)
 DSIO7 ;DSS/TFF - DSIO VPR FOR IHE;06/28/2013 15:19
 "RTN","DSIO7",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO7",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO7",4,0)
@@ -17021,7 +17021,7 @@ XMLP(ITEM) ; -- Return patient family information data as XML in @VPR@(n)
 "RTN","DSIO8",1,0)
 DSIO8 ;DSS/KAR - DSIO EDUCATION RPCs;08/20/2014 15:19
 "RTN","DSIO8",2,0)
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 14
 "RTN","DSIO8",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO8",4,0)
@@ -17773,7 +17773,7 @@ TITLE ;
 "RTN","DSIO9",1,0)
 DSIO9 ;DSS/TFF - DSIO PERSON;06/28/2013 15:19
 "RTN","DSIO9",2,0)
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 13
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 14
 "RTN","DSIO9",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
 "RTN","DSIO9",4,0)
