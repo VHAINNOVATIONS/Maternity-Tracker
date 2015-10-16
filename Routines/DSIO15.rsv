@@ -1,5 +1,5 @@
-Routine DSIO15 saved using VFDXTRS routine on Oct 09, 2015 10:03
-DSIO15^INT^63830,47925^Oct 05, 2015@13:18
+Routine DSIO15 saved using VFDXTRS routine on Oct 16, 2015 14:49
+DSIO15^INT^63840,42716^Oct 15, 2015@11:51
 DSIO15 ;DSS/TFF - DSIO PREGNANCY;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 1
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -250,6 +250,16 @@ DELETE(IEN) ; Delete Pregnancy
  . S DA(1)=$QS(CT,4),DA=$QS(CT,5),DIK="^DSIO(19641.83,"_DA(1)_",1," D ^DIK
  ; *** DELETE the PREGNANCY
  S DIK="^DSIO(19641.13,",DA=+IEN D ^DIK S:'$D(^DSIO(19641.13,+IEN)) RET=1
+ Q
+ ;
+OPTION ; OPTION: DSIO DELETE PREGNANCY
+ N DIR,DA,X,Y,DIRUT
+ S DIR("A")="Select PREGNANCY HISTORY to DELETE"
+ S DIR(0)="PO^19641.13:AEQ" D ^DIR Q:$D(DIRUT)!(Y<1)
+ W !!,$$CJ^XLFSTR("****** ARE YOU SURE? THIS CANNOT BE UNDONE! ******",80),!!
+ S DIR("A")="I am sure that I want to DELETE this PREGNANCY HISTORY record"
+ S DIR(0)="Y",DIR("B")="NO" D ^DIR Q:$D(DIRUT)!(Y<1)
+ D DELETE(+Y)
  Q
  ;
  ; ---------------------------------- COMMON ----------------------------------

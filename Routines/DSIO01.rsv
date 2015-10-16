@@ -1,5 +1,5 @@
-Routine DSIO01 saved using VFDXTRS routine on Oct 09, 2015 10:03
-DSIO01^INT^63830,35732^Oct 05, 2015@09:55
+Routine DSIO01 saved using VFDXTRS routine on Oct 16, 2015 14:49
+DSIO01^INT^63840,58892^Oct 15, 2015@16:21
 DSIO01 ;DSS/TFF - DSIO OCNT PUSH SUPPORT;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -17,7 +17,7 @@ DSIO01 ;DSS/TFF - DSIO OCNT PUSH SUPPORT;06/28/2013 15:19
  ;   DFN, INTERFACE/FORM(DDCSFRM), ELEMENT IEN(DDCSE), ELEMENT NAME(DDCSEN)
  ; ----------------------------------------------------------------------------
  ;
-DELV ; DSIO DDCS REPORT ITEM - NURSE POSTPARTUM-DELIVERY
+DELV ; DSIO DDCS REPORT ITEM - NURSE POSTPARTUM - DELIVERY
  N PREG,IEN,OUT,BCT,CT,LN,PG,BY,FDA,BW,OBJ,DES,OB,NAM
  S PREG=$$PG^DSIO4($G(DFN)) Q:'PREG
  S IEN=$$IEN^DSIO62("LSTDELIVERY") Q:'IEN  D GETS^DSIO62(.OUT,IEN)
@@ -42,9 +42,9 @@ DELV ; DSIO DDCS REPORT ITEM - NURSE POSTPARTUM-DELIVERY
  . . K ^TMP("DSIO01",$J)
  . . D WP^DIE(19641.112,BY_",",1,"K","^TMP(""DSIO01"",$J)")
  . . K ^TMP("DSIO01",$J)
- . I $P(LN,U,2)="C" D                               ; COMMENTS
+ . I $P(LN,U,2)="C",$G(BY) D                        ; COMMENTS
  . . K ^TMP("DSIO01",$J) S ^TMP("DSIO01",$J,1)=$P(LN,U,4,99)
- . . D WP^DIE(19641.112,$P(LN,U,3)_",",1,"A","^TMP(""DSIO01"",$J)")
+ . . D WP^DIE(19641.112,BY_",",1,"A","^TMP(""DSIO01"",$J)")
  . . K ^TMP("DSIO01",$J)
  ; *** OBSERVATION
  ; Create an observation of number of babies for this pregnancy

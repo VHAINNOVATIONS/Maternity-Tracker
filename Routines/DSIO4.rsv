@@ -1,5 +1,5 @@
-Routine DSIO4 saved using VFDXTRS routine on Oct 09, 2015 10:03
-DSIO4^INT^63830,40927^Oct 05, 2015@11:22
+Routine DSIO4 saved using VFDXTRS routine on Oct 16, 2015 14:49
+DSIO4^INT^63840,54209^Oct 15, 2015@15:03
 DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 1
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -78,6 +78,14 @@ TRACK(DFN,FL) ; Get TRACKING STATUS of a patient
  N TR S TR=$O(^DSIO(19641.2,"S",DFN,""))
  Q:$D(FL) $S(TR="T":1,TR="F":2,1:0)
  Q $S(TR="T":"YES",TR="F":"FLAGGED",1:"NO")
+ ;
+HR(IEN) ; Return High Risk text
+ Q:'$G(IEN) ""
+ Q:'$P(^DSIO(19641.13,IEN,5,0),U,4) ""
+ N CT,STR
+ S CT=0 F  S CT=$O(^DSIO(19641.13,IEN,5,CT)) Q:'CT  D
+ . S STR=$S($D(STR):STR_" ",1:"")_^DSIO(19641.13,IEN,5,CT,0)
+ Q $G(STR)
  ;
  ;=============================================================================
  ;                         X - R E F  S U P P O R T

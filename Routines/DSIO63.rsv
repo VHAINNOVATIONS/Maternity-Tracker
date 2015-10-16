@@ -1,5 +1,5 @@
-Routine DSIO63 saved using VFDXTRS routine on Oct 09, 2015 10:03
-DSIO63^INT^63816,50105^Sep 21, 2015@13:55
+Routine DSIO63 saved using VFDXTRS routine on Oct 16, 2015 14:49
+DSIO63^INT^63841,42338^Oct 16, 2015@11:45
 DSIO63 ;DSS/TFF - DSIO DDCS CONFIGURE AND REPORT;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -138,7 +138,7 @@ CONTROL(FORM,PAGE) ; Add a Control to a Page
  W !,"  3. WORD PROCESSING",!
  K X,Y S DR="4;3;2" D ^DIE
  W !!,"CONTROL SETTINGS **These values will override the GUI defaults**",!
- K X,Y S DR="9.01:9.09" D ^DIE
+ K X,Y S DR="9.01:9.99" D ^DIE
  Q 1
  ;
 SHOW(FORM,PAGE) ; List the Controls on a Page

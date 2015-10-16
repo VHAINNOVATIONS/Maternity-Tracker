@@ -1,5 +1,5 @@
-Routine DSIO0P saved using VFDXTRS routine on Oct 09, 2015 10:03
-DSIO0P^INT^63819,44507^Sep 24, 2015@12:21
+Routine DSIO0P saved using VFDXTRS routine on Oct 16, 2015 14:49
+DSIO0P^INT^63840,41738^Oct 15, 2015@11:35
 DSIO0P ;DSS/TFF - PRE INSTALL;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -88,6 +88,7 @@ PRE ; PRE-INSTALL ACTIONS
  Q
  ;
 POST ; Post Install
+ D ^DSIO99
  N NAM,NAME,FLE,IEN,NEW,IPT,PACK
  S NAM=0 F  S NAM=$O(^DSIO(19641.4,"B",NAM)) Q:NAM=""  D
  . Q:$E(NAM)'="<"&($E($P(NAM,";"),$L($P(NAM,";")))'=">")

@@ -1,7 +1,7 @@
-Routine DSIO99 saved using VFDXTRS routine on Oct 09, 2015 10:03
-DSIO99^INT^63722,50356^Jun 19, 2015@13:59
+Routine DSIO99 saved using VFDXTRS routine on Oct 16, 2015 14:49
+DSIO99^INT^63839,46237^Oct 14, 2015@12:50
 DSIO99 ;DSS/TFF - DSIO IMPORT/EXPORT TIU TITLES;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1**;Feb 06, 2015;Build 3
+ ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 3
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
  ;
  ; External References      DBIA#
@@ -15,12 +15,12 @@ DSIO99 ;DSS/TFF - DSIO IMPORT/EXPORT TIU TITLES;06/28/2013 15:19
  ;   +MATERNITY TRACKER (DC) - OR OTHER DOCUMENT CLASS
  ;    TITLE <- SELECT AT THIS LEVEL
  ;
- D UPDATE,FIX
- Q
- ;
 UPDATE ; Start Auto Configuration
  N PATH,I,STR,TITLE,CAT,FILE,IEN,DIK
+ W !!,"*******************************************************************************"
+ W !,"Set the path where the TIU TITLE import files are located.",!
  S PATH=$$PATH($$DEFDIR^%ZISH)
+ W !!,"*******************************************************************************",!!
  F I=1:1 S STR=$P($T(TITLE+I),";;",2) Q:STR=""  D
  . S TITLE=$P(STR,U),CAT=$P(STR,U,2),FILE=$P(STR,U,3)
  . S IEN=$$IMPORT(TITLE,PATH,FILE) Q:'IEN
@@ -33,10 +33,14 @@ TITLE ; DSIO TIU TITLES
  ;;DASHBOARD CDA INCOMING^E^DSIO_TIU_TITLE_DASHBOARD_CDA_INCOMING.TXT
  ;;MCC DASHBOARD NOTE^E^DSIO_TIU_TITLE_MCC_DASHBOARD_NOTE.TXT
  ;;MCC PROVIDER CONTACT^T^DSIO_TIU_TITLE_MCC_PROVIDER_CONTACT.TXT
- ;;MD POSTPARTUM FOLLOWUP VISIT^E^DSIO_TIU_TITLE_MD_POSTPARTUM_FOLLOWUP.TXT
+ ;;MD POSTPARTUM FOLLOWUP VISIT^E^DSIO_TIU_TITLE_MD_POSTPARTUM_FOLLOWUP_VISIT.TXT
+ ;;NURSE POSTPARTUM - DELIVERY^E^DSIO_TIU_TITLE_NURSE_POSTPARTUM_DELIVERY.TXT
+ ;;NURSE POSTPARTUM - MATERNAL^E^DSIO_TIU_TITLE_NURSE_POSTPARTUM_MATERNAL.TXT
  ;;NURSE POSTPARTUM NOTE^E^DSIO_TIU_TITLE_NURSE_POSTPARTUM_NOTE.TXT
  ;;OB FOLLOWUP NOTE^E^DSIO_TIU_TITLE_OB_FOLLOWUP_NOTE.TXT
+ ;;OB H&P CONSULT^E^DSIO_TIU_TITLE_OB_HP_CONSULT.TXT
  ;;OB H&P INITIAL^E^DSIO_TIU_TITLE_OB_HP_INITIAL.TXT
+ ;;OB HISTORY NOTE^E^DSIO_TIU_TITLE_OB_HISTORY_NOTE.TXT
  ;;PHONE CALL #1 (FIRST CONTACT)^T^DSIO_TIU_TITLE_PHONE_CALL_1.TXT
  ;;PHONE CALL #2 (12 WEEKS)^T^DSIO_TIU_TITLE_PHONE_CALL_2.TXT
  ;;PHONE CALL #3 (20 WEEKS)^T^DSIO_TIU_TITLE_PHONE_CALL_3.TXT
@@ -150,50 +154,6 @@ CONTROL(IEN) ; Populate the DSIO DDCS CONTROL file (19641.4)
  D UPDATE^DIE(,"FDA")
  Q
  ;
- ; --------------------------------- MANUAL -----------------------------------
- ;
-FIX ; Correct the oCNT Configuration (19641.48)
- N IEN,ND,FLG,OUT,CT,XND,IPT
- S ^DSIO(19641.48,3,1,29,5,0)="^19641.4815IP^2^2"
- S ^DSIO(19641.48,3,1,29,5,1,0)="1^MEMOPRENATAL^"_$$FIND1^DIC(8925.1,,"X","OB H&P INITIAL")_"^^1"
- S ^DSIO(19641.48,3,1,29,5,2,0)="3^MEMOPRENATAL^"_$$FIND1^DIC(8925.1,,"X","OB FOLLOWUP NOTE")_"^^0"
- S ^DSIO(19641.48,3,1,29,5,"AB",1,1)=""
- S ^DSIO(19641.48,3,1,29,5,"AB",3,2)=""
- S ^DSIO(19641.48,3,1,29,5,"B",1,1)=""
- S ^DSIO(19641.48,3,1,29,5,"B",3,2)=""
- S ^DSIO(19641.48,3,1,29,5,"P",0,2)=""
- S ^DSIO(19641.48,3,1,29,5,"P",1,1)=""
- S ^DSIO(19641.48,3,1,31,5,0)="^19641.4815IP^2^2"
- S ^DSIO(19641.48,3,1,31,5,1,0)="1^CKLSTPROBLEMS^"_$$FIND1^DIC(8925.1,,"X","OB H&P INITIAL")_"^^1"
- S ^DSIO(19641.48,3,1,31,5,2,0)="3^CKLSTPROBLEMS^"_$$FIND1^DIC(8925.1,,"X","OB FOLLOWUP NOTE")_"^^0"
- S ^DSIO(19641.48,3,1,31,5,"AB",1,1)=""
- S ^DSIO(19641.48,3,1,31,5,"AB",3,2)=""
- S ^DSIO(19641.48,3,1,31,5,"B",1,1)=""
- S ^DSIO(19641.48,3,1,31,5,"B",3,2)=""
- S ^DSIO(19641.48,3,1,31,5,"P",0,2)=""
- S ^DSIO(19641.48,3,1,31,5,"P",1,1)=""
- S ^DSIO(19641.48,3,1,32,5,0)="^19641.4815IP^2^2"
- S ^DSIO(19641.48,3,1,32,5,1,0)="1^CKLSTEDUCATION^"_$$FIND1^DIC(8925.1,,"X","OB H&P INITIAL")_"^^1"
- S ^DSIO(19641.48,3,1,32,5,2,0)="3^CKLSTEDUCATION^"_$$FIND1^DIC(8925.1,,"X","OB FOLLOWUP NOTE")_"^^0"
- S ^DSIO(19641.48,3,1,32,5,"AB",1,1)=""
- S ^DSIO(19641.48,3,1,32,5,"AB",3,2)=""
- S ^DSIO(19641.48,3,1,32,5,"B",1,1)=""
- S ^DSIO(19641.48,3,1,32,5,"B",3,2)=""
- S ^DSIO(19641.48,3,1,32,5,"P",0,2)=""
- S ^DSIO(19641.48,3,1,32,5,"P",1,1)=""
- ; *** UPDATE 'GET DATA FROM'
- S IEN=$$FIND1^DIC(19641.48,,"X","oCNT_OBFollowUp.dll") Q:'IEN
- S ND="$S(FLG=""OCNT_OBHP.DLL"":$$FIND1^DIC(8925.1,,""X"",""OB H&P INITIAL""),"
- S ND=ND_"FLG=""OCNT_OBFOLLOWUP.DLL"":$$FIND1^DIC(8925.1,,""X"",""OB FOLLOWUP NOTE""),1:"""")"
- D GETS^DIQ(19641.48,IEN_",","1*","EN","OUT")
- S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
- . I $QS(CT,1)=19641.4815 D
- . . I $QS(CT,3)=.01 S FLG=$$UP^XLFSTR(@CT) Q
- . . I $QS(CT,3)=.03,$S(FLG="OCNT_OBHP.DLL"&(@CT="OB H&P INITIAL"):0,FLG="OCNT_OBFOLLOWUP.DLL"&(@CT="OB FOLLOWUP NOTE"):0,1:1) D
- . . . S XND="S IPT(19641.4815,"""_$QS(CT,2)_""",.03)="_ND X XND
- . . . D FILE^DIE(,"IPT") K IPT
- Q
- ;
  ; -------------------------------- UTILITIES ---------------------------------
  ;
 PATH(PATH) ; Default Path
@@ -227,71 +187,68 @@ EXPORT ; Collect TITLES and create XML EXPORT
  Q:'$D(BLD)
  S PATH=$$PATH($$DEFDIR^%ZISH)
  S CT=$NA(BLD) F  S CT=$Q(@CT) Q:CT=""  D
- .S FILE="DSIO_TIU_TITLE_"_$TR($$GET1^DIQ(8925.1,$QS(CT,1)_",",.01)," ","_")_".TXT"
- .;S FILE=FILE_"_EXPORT_"_$TR($$NOW^XLFDT,".","")_".TXT"
- .D OPEN^%ZISH("TIU",PATH,FILE,"W") Q:POP
- .U IO
- .; CLASS
- .W "<TIU_CLASS>",!
- .D GETFLDS(8925.1,$QS(CT,3),"LP",$O(^TIU(8925.1,$QS(CT,3),10,"B",$QS(CT,2),"")))
- .W "</TIU_CLASS>",!
- .; DOCUMENT CLASS
- .W "<TIU_DOCUMENT_CLASS>",!
- .D GETFLDS(8925.1,$QS(CT,2),"L",$O(^TIU(8925.1,$QS(CT,2),10,"B",$QS(CT,1),"")))
- .W "</TIU_DOCUMENT_CLASS>",!
- .; TITLE
- .W "<TIU_TITLE>",!
- .D GETFLDS(8925.1,$QS(CT,1))
- .W "</TIU_TITLE>",!
- .D CLOSE^%ZISH("TIU")
+ . S FILE="DSIO_TIU_TITLE_"_$TR($$GET1^DIQ(8925.1,$QS(CT,1)_",",.01)," ","_")_".TXT"
+ . D OPEN^%ZISH("TIU",PATH,FILE,"W") Q:POP
+ . U IO
+ . ; *** CLASS
+ . W "<TIU_CLASS>",!
+ . D GETFLDS(8925.1,$QS(CT,3),"LP",$O(^TIU(8925.1,$QS(CT,3),10,"B",$QS(CT,2),"")))
+ . W "</TIU_CLASS>",!
+ . ; *** DOCUMENT CLASS
+  .W "<TIU_DOCUMENT_CLASS>",!
+ . D GETFLDS(8925.1,$QS(CT,2),"L",$O(^TIU(8925.1,$QS(CT,2),10,"B",$QS(CT,1),"")))
+ . W "</TIU_DOCUMENT_CLASS>",!
+ . ; *** TITLE
+ . W "<TIU_TITLE>",!
+ . D GETFLDS(8925.1,$QS(CT,1))
+ . W "</TIU_TITLE>",!
+ . D CLOSE^%ZISH("TIU")
  Q
  ;
-GETFLDS(FLE,IEN,TYP,CHILD) ; GET FIELDS AND VALUES
+GET() ; Get Titles
+ N DIC,DA,X,Y W !
+ S:$D(TL) DIC("A")="ANOTHER: "
+ S DIC("S")="I $P(^(0),U,4)=""DOC"""   ; *** ONLY TITLES
+ S DIC="^TIU(8925.1,",DIC(0)="AEOQ" D ^DIC
+ I +Y>0 D DCLGET(+Y) Q 1
+ Q 0
+ ;
+GETFLDS(FLE,IEN,TYP,CHILD) ; Get fields and values
  N OUT,ERR,CT,FLG,SFLE,FLD
  D GETS^DIQ(FLE,IEN_",","**","E","OUT","ERR") Q:'$D(OUT)
  S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
- .I $G(TYP)["L",$QS(CT,1)=8925.14,$P($QS(CT,2),",")'=CHILD Q
- .I $G(TYP)["P",$QS(CT,1)'=FLE Q
- .I $G(TYP)["P",$QS(CT,1)=FLE,$QS(CT,3)'=.01 Q
- .I $QS(CT,1)'=FLE,$D(FLG) D
- ..; DIFFERENT SUB FILE OR DIFFERENT SUB FILE ENTRY
- ..I $QS(CT,1)'=$P(FLG,U)!($QS(CT,2)'=$P(FLG,U,2)) K FLG D  Q
- ...W "</"_$TR($O(^DD(SFLE,0,"NM",""))," ","_")_">",!
- .I $QS(CT,1)'=FLE,'$D(FLG) D
- ..S SFLE=$QS(CT,1),FLG=$QS(CT,1)_U_$QS(CT,2)_U_$QS(CT,3)
- ..W "<"_$TR($O(^DD(SFLE,0,"NM",""))," ","_")_" NAME='"
- ..W $O(^DD(SFLE,0,"NM",""))_"' SUB-FILE='"_SFLE_"'>",!
- .S FLD=$$GET1^DID($QS(CT,1),$QS(CT,3),,"LABEL") I @CT'="" D
- ..Q:$$GET1^DID($QS(CT,1),FLD,,"TYPE")="COMPUTED"
- ..W "<"_$TR(FLD," ","_")_" NAME='"_FLD_"' NUMBER='"_$QS(CT,3)_"'>",@CT
- ..W "</"_$TR(FLD," ","_")_">",!
+ . I $G(TYP)["L",$QS(CT,1)=8925.14,$P($QS(CT,2),",")'=CHILD Q
+ . I $G(TYP)["P",$QS(CT,1)'=FLE Q
+ . I $G(TYP)["P",$QS(CT,1)=FLE,$QS(CT,3)'=.01 Q
+ . I $QS(CT,1)'=FLE,$D(FLG) D
+ . . ;*** Different sub file or different sub file entry
+ . . I $QS(CT,1)'=$P(FLG,U)!($QS(CT,2)'=$P(FLG,U,2)) K FLG D  Q
+ . . . W "</"_$TR($O(^DD(SFLE,0,"NM",""))," ","_")_">",!
+ . I $QS(CT,1)'=FLE,'$D(FLG) D
+ . . S SFLE=$QS(CT,1),FLG=$QS(CT,1)_U_$QS(CT,2)_U_$QS(CT,3)
+ . . W "<"_$TR($O(^DD(SFLE,0,"NM",""))," ","_")_" NAME='"
+ . . W $O(^DD(SFLE,0,"NM",""))_"' SUB-FILE='"_SFLE_"'>",!
+ . S FLD=$$GET1^DID($QS(CT,1),$QS(CT,3),,"LABEL") I @CT'="" D
+ . . Q:$$GET1^DID($QS(CT,1),FLD,,"TYPE")="COMPUTED"
+ . . W "<"_$TR(FLD," ","_")_" NAME='"_FLD_"' NUMBER='"_$QS(CT,3)_"'>",@CT
+ . . W "</"_$TR(FLD," ","_")_">",!
  I $D(FLG) W "</"_$TR($O(^DD(SFLE,0,"NM",""))," ","_")_">",!
  Q
  ;
-GET() ; GET TITLES
- N DIC,DA,X,Y W !
- S:$D(TL) DIC("A")="ANOTHER: "
- S DIC("S")="I $P(^(0),U,4)=""DOC""" ;ONLY TITLES
- S DIC="^TIU(8925.1,",DIC(0)="AEOQ" D ^DIC
- I +Y>0 D DCLGET(+Y) Q 1
- ;I $$GET1^DIQ(8925.1,+Y_",",3.02,"I") D DCLGET(+Y) Q
- ;W !!,"**Not okay to distribute!**"
- Q 0
- ;
-SETUP(VAR) ; SET UP THE DC AND CL DIRECTORY TO FIND OWNERS
+SETUP(VAR) ; Set up the DC and CL directory to find owners
  N LIST,CT,SUB,EX
  D LIST^DIC(8925.1,,"@","P",,,,,"I $P(^(0),U,4)="""_VAR_"""",,"LIST","ERR")
  K LIST("DILIST",0) Q:'$D(LIST)
  S CT=$NA(LIST) F  S CT=$Q(@CT) Q:CT=""  D
- .K SUB D LIST^DIC(8925.14,","_@CT_",","@;.01I","P",,,,,,,"SUB","ERR")
- .K SUB("DILIST",0) I $D(SUB) S EX="M "_VAR_"(@CT)=SUB" X EX
+ . K SUB D LIST^DIC(8925.14,","_@CT_",","@;.01I","P",,,,,,,"SUB","ERR")
+ . K SUB("DILIST",0) I $D(SUB) S EX="M "_VAR_"(@CT)=SUB" X EX
  Q
  ;
-DCLGET(IEN) ; GET DOCUMENT CLASS(DC) OF TITLE(TL) OR CLASS(CL) OF DC
+DCLGET(IEN) ; Get document class(DC) of title(TL) or class(CL) of DC
  I '$D(FLG) N I F I="DC","CL" D SETUP(I) S FLG=1
  N DCT,CCT,DCIEN,CLIEN
  S DCT=$NA(DC) F  S DCT=$Q(@DCT) Q:DCT=""  D
- .I $P(@DCT,U,2)=IEN S DCIEN=$QS(DCT,1) D
- ..S CCT=$NA(CL) F  S CCT=$Q(@CCT) Q:CCT=""  D
- ...I $P(@CCT,U,2)=DCIEN S BLD(IEN,DCIEN,$QS(CCT,1))=""
+ . I $P(@DCT,U,2)=IEN S DCIEN=$QS(DCT,1) D
+ . . S CCT=$NA(CL) F  S CCT=$Q(@CCT) Q:CCT=""  D
+ . . . I $P(@CCT,U,2)=DCIEN S BLD(IEN,DCIEN,$QS(CCT,1))=""
  Q
