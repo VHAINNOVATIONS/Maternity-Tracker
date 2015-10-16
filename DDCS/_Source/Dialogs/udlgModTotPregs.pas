@@ -23,12 +23,13 @@ unit udlgModTotPregs;
 interface
 
 uses
-  Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, Buttons, ExtCtrls;
+  Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, Buttons, ExtCtrls,
+  udlgPregHist;
 
 type
   TdlgModTotPregs = class(TForm)
-    OKBtn: TButton;
-    CancelBtn: TButton;
+    OKBtn: TBitBtn;
+    CancelBtn: TBitBtn;
     Bevel1: TBevel;
     StaticText1: TStaticText;
     procedure OKBtnClick(Sender: TObject);
@@ -54,8 +55,13 @@ begin
     if dlgModTotPregsConfirm.ShowModal = mrOk then
     begin
       if dlgModTotPregsConfirm.LabeledEdit1.Text <> '' then
+      begin
         if not TryStrToInt(dlgModTotPregsConfirm.LabeledEdit1.Text,deletepage) then
+          ModalResult := mrCancel
+        else if deletepage > TdlgPregHist(Owner).pgcPregnancy.PageCount then
           ModalResult := mrCancel;
+      end else
+        ModalResult := mrCancel;
     end else
       ModalResult := mrCancel;
   finally

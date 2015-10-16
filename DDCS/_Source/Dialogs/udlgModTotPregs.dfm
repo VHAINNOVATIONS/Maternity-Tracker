@@ -20,7 +20,7 @@ object dlgModTotPregs: TdlgModTotPregs
     Height = 113
     Shape = bsFrame
   end
-  object OKBtn: TButton
+  object OKBtn: TBitBtn
     Left = 8
     Top = 135
     Width = 97
@@ -31,7 +31,7 @@ object dlgModTotPregs: TdlgModTotPregs
     TabOrder = 0
     OnClick = OKBtnClick
   end
-  object CancelBtn: TButton
+  object CancelBtn: TBitBtn
     Left = 176
     Top = 135
     Width = 97

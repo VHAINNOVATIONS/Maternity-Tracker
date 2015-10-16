@@ -124,9 +124,9 @@ begin
   for ptr := 0 to slPregs.Count - 1 do
   begin
     iItemIndex := TfrmPregHist(slPregs.Objects[ptr]).cxRadioGroup_PretermLabor.ItemIndex;
-    if iItemIndex = 0 then
+    if iItemIndex = 1 then
       Inc(iPremature)
-    else if iItemIndex = 1 then
+    else if iItemIndex = 0 then
       Inc(iFullTerm);
   end;
   
@@ -534,9 +534,13 @@ begin
     begin
       dlgModTotPregs := TdlgModTotPregs.Create(Self);
       try
-        if dlgModTotPregs.ShowModal <> mrOK then
-          TSpinEdit(Sender).Value := TSpinEdit(Sender).Value - 1
-        else
+        if dlgModTotPregs.ShowModal <> mrOk then
+        begin
+          if TWinControl(Sender).Name = 'edtTotPreg' then
+            TSpinEdit(Sender).Value := TSpinEdit(Sender).Value + 1
+          else
+            TSpinEdit(Sender).Value := TSpinEdit(Sender).Value - 1;
+        end else
         begin
           frmTmpPregHist := TfrmPregHist(GetForm(dlgModTotPregs.deletepage - 1));
           if frmTmpPregHist <> nil then
