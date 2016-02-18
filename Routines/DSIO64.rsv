@@ -1,5 +1,5 @@
-Routine DSIO64 saved using VFDXTRS routine on Oct 16, 2015 14:49
-DSIO64^INT^63809,48351^Sep 14, 2015@13:25
+Routine DSIO64 saved using VFDXTRS routine on Feb 18, 2016 15:58
+DSIO64^INT^63915,48601^Dec 29, 2015@13:30
 DSIO64 ;DSS/TFF - DSIO DDCS DATA RETURN;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -30,7 +30,7 @@ ELE(RET,OBJECT,INFACE,SIEN,ELE) ; RPC: DSIO DDCS GET CONTROL VALUE
  ;
  ; RETURN: 0^MESSAGE
  ;         Example:
- ;           RET(0)="101;VFD(21661,^MO_CLINICALCOMMENTS^03^^THESE "_$c(13,10)_"ARE VALUES."
+ ;           RET(0)="101;VFD(21661,^MO_CLINICALCOMMENTS^03^^THESE "_$C(13,10)_"ARE VALUES."
  ;
  S RET(0)="0^Nothing found."
  N NUM,CONTROL,DFLE,DFN,SHARE,DATA S NUM=1
@@ -101,14 +101,14 @@ VAL(IEN) ; Get Value
  ; There's an extra caret in the value wp for the storage of the index value.
  ;
  ; Example:
- ;   RET(10)="MO_CLINICALCOMMENTS^03^^THIS IS THE CONFIGURATION VALUES"_$c(13,10)_
- ;           "FOR A WP TYPE CONTROL."_$c(13,10)
+ ;   RET(10)="MO_CLINICALCOMMENTS^03^^THIS IS THE CONFIGURATION VALUES"_$C(13,10)_
+ ;           "FOR A WP TYPE CONTROL."_$C(13,10)
  ;
  N OUT,VAL,CT
  D GETS^DIQ(19641.45,IEN_",",1,,"OUT")
  S VAL="",CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
  . Q:$QL(CT)<4
- . S VAL=$S(VAL'="":VAL_$c(13,10),1:"")_@CT
+ . S VAL=$S(VAL'="":VAL_$C(13,10),1:"")_@CT
  Q VAL
  ;
 IMPORT(RET,INFACE,ELES) ; RPC: DSIO DDCS IMPORT FORM

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/02/17 15:48:27.000.884,C:\Users\DSSDeveloper\Documents\Embarcadero\Studio\Projects\ProjectGroup1.groupproj=C:\Users\DSSDeveloper\Desktop\Projects\_group\ProjectGroup1.groupproj</Transaction>
+    <Transaction>2016/02/18 11:10:33.149,C:\Users\DSSDeveloper\Desktop\Projects\_group\ProjectGroupDDCS.groupproj=C:\Users\DSSDeveloper\Desktop\Projects\_group\ProjectGroup1.groupproj</Transaction>
+  </Transactions>
+	<Default.Personality>
+		<Projects ActiveProject="C:\Users\DSSDeveloper\Desktop\Projects\DDCS\DDCSForm\DDCSFramework.dproj"/>
+	</Default.Personality>
+</BorlandProject>

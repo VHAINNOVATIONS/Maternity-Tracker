@@ -1,5 +1,5 @@
-Routine DSIO4 saved using VFDXTRS routine on Oct 16, 2015 14:49
-DSIO4^INT^63840,54209^Oct 15, 2015@15:03
+Routine DSIO4 saved using VFDXTRS routine on Feb 18, 2016 15:58
+DSIO4^INT^63922,50010^Jan 05, 2016@13:53
 DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 1
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -49,12 +49,68 @@ PGEL(DFN) ; Get last PREGNANCY HISTORY record with a live birth
  . . . S FLG=IEN
  Q $G(FLG)
  ;
-FC(DFN,PREG) ; Get fetus count for a pregnancy
- N IEN,VAL
- S IEN="" F  S IEN=$O(^DSIO(19641.12,"OBJ",PREG_";DSIO(19641.13,",IEN),-1) Q:IEN=""  D  Q:$D(VAL)
- . Q:$$GETCODE^DSIO10(OBS,"C",1)'="FetusBabyCount"
- . S VAL=$P($G(^DSIO(19641.12,IEN,4)),U,2)
- Q $G(VAL)
+GA(PREG,FLG) ; Return Gestational Age of Pregnancy
+ Q:'PREG ""
+ N AGE,EDC,EDD,END,DAYS
+ S AGE=$TR($$UP^XLFSTR($$GET1^DIQ(19641.13,PREG_",",3.1))," ") Q:AGE?.N1"W".N1"D" $S($G(FLG):$$G1(AGE),1:AGE)
+ S EDC=$$GET1^DIQ(19641.13,PREG_",",.02,"I")
+ S EDD=$$GET1^DIQ(19641.03,$$GET1^DIQ(19641.13,PREG_",",.06,"I")_",",.01,"I")
+ S END=$$GET1^DIQ(19641.13,PREG_",",.07,"I")
+ ; *** EDC, END
+ I EDC,END S DAYS=$$FMDIFF^XLFDT(END,EDC) Q:$G(FLG) DAYS
+ ; *** EDC, EDD
+ I EDC,EDD,'END S DAYS=$$FMDIFF^XLFDT(EDD,EDC) Q:$G(FLG) DAYS
+ ; *** EDD
+ I EDD,'EDC,'END S DAYS=$$FMDIFF^XLFDT(DT,$$FMADD^XLFDT(EDD,-266)) Q:$G(FLG) DAYS
+ Q:'$G(DAYS) ""
+ Q $$G2(DAYS)
+ ;
+G1(AGE) ; Convert #W#D to Numeric
+ Q:AGE?.N1"W".N1"D" +AGE*7+$P($P(AGE,"D"),"W",2)
+ Q:AGE?.N1"W" +AGE*7
+ Q:AGE?.N1"D" +AGE
+ Q ""
+ ;
+G2(DAYS) ; Convert # to #W#D
+ Q ((DAYS/7)\1)_"W"_(DAYS-(((DAYS/7)\1)*7))_"D"
+ ;
+TOTAL(DFN) ; Return TOTAL PREGNANCIES
+ N DATE,IEN,FLG Q:'$G(DFN) ""
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+ . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
+ . . S FLG=FLG+1
+ Q +$G(FLG)
+ ;
+STILL(DFN) ; Return STILLBIRTHS
+ N DATE,IEN,BABY,FLG Q:'$G(DFN) ""
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+ . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:'IEN  D
+ . . S BABY=0 F  S BABY=$O(^DSIO(19641.13,IEN,2,"B",BABY)) Q:'BABY  D
+ . . . I $$GET1^DIQ(19641.112,BABY_",",.07,"I") S FLG=FLG+1 Q
+ . . . I $$GET1^DIQ(19641.112,BABY_",",.011,"I")="D",+$$GA(IEN,1)>140 S FLG=FLG+1
+ Q +$G(FLG)
+ ;
+PRETM(DFN) ; Return PRETERM (including stillborn)
+ N DATE,IEN,GA,FLG Q:'$G(DFN) ""
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+ . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
+ . . S GA=+$$GA(IEN,1) I 'GA,$$GET1^DIQ(19641.13,IEN_",",3.5,"I") S FLG=FLG+1 Q
+ . . I GA,GA<259 S FLG=FLG+1
+ Q +$G(FLG)
+ ;
+LIVIG(DFN) ; Return LIVING
+ N DATE,IEN,BABY,FLG Q:'$G(DFN) ""
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+ . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:'IEN  D
+ . . S BABY=0 F  S BABY=$O(^DSIO(19641.13,IEN,2,"B",BABY)) Q:'BABY  D
+ . . . I $$GET1^DIQ(19641.112,BABY_",",.011,"I")="L" S FLG=FLG+1 Q
+ . . . I '$$GET1^DIQ(19641.112,BABY_",",.07,"I") S FLG=FLG+1
+ Q +$G(FLG)
+ ;
+FULLT(DFN) ; Return TERM BIRTHS (including stillborn)
+ N OUT
+ S OUT=$$LIVIG(DFN)-$$PRETM(DFN)
+ Q $S(OUT<0:0,1:OUT)
  ;
 EDDC(DFN) ; Get EDD for computed fields
  N PG,EDD
@@ -81,7 +137,7 @@ TRACK(DFN,FL) ; Get TRACKING STATUS of a patient
  ;
 HR(IEN) ; Return High Risk text
  Q:'$G(IEN) ""
- Q:'$P(^DSIO(19641.13,IEN,5,0),U,4) ""
+ Q:'$P($G(^DSIO(19641.13,IEN,5,0)),U,4) ""
  N CT,STR
  S CT=0 F  S CT=$O(^DSIO(19641.13,IEN,5,CT)) Q:'CT  D
  . S STR=$S($D(STR):STR_" ",1:"")_^DSIO(19641.13,IEN,5,CT,0)
@@ -135,9 +191,9 @@ STATUS(DFN,IEN) ; Update PREGNANCY HISTORY statuses to "H" if current is "C"
  . S DLAYGO=19641.13
  . S FDA(19641.13,CT_",",.04)="H" D UPDATE^DIE(,"FDA") K FDA
  . D HIS(DFN,CT)
- . S WVIEN=$$GET1^DIQ(19641.13,CT_",",99.1,"I") Q:'WVIEN
- . S DLAYGO=790
- . S FDA(790.16,WVIEN_","_DFN_",",2)=0 D UPDATE^DIE(,"FDA") K FDA
+ . ;S WVIEN=$$GET1^DIQ(19641.13,CT_",",99.1,"I") Q:'WVIEN
+ . ;S DLAYGO=790
+ . ;S FDA(790.16,WVIEN_","_DFN_",",2)=0 D UPDATE^DIE(,"FDA") K FDA
  Q
  ;
 EDD(EDD,IEN) ; Update WV,DSIO PATIENT files when EDD is future
@@ -150,12 +206,12 @@ EDD(EDD,IEN) ; Update WV,DSIO PATIENT files when EDD is future
  S:EDD'="@" ^DSIO(19641.13,"EDD",DFN,EDD,DA)="",EDD=$$GET1^DIQ(19641.03,EDD_",",.01,"I")
  Q:$D(DSIOSILENT)  N DSIOSILENT S DSIOSILENT=1
  Q:$$GET1^DIQ(19641.13,IEN_",",.04,"I")="H"
- N WVIEN,DLAYGO,FDA
- S WVIEN=$$GET1^DIQ(19641.13,IEN_",",99.1,"I")
- S DLAYGO=790
- S FDA(790.16,WVIEN_","_DFN_",",2)=1
- S FDA(790.16,WVIEN_","_DFN_",",3)=EDD
- D UPDATE^DIE(,"FDA") K FDA
+ ;N WVIEN,DLAYGO,FDA
+ ;S WVIEN=$$GET1^DIQ(19641.13,IEN_",",99.1,"I")
+ ;S DLAYGO=790
+ ;S FDA(790.16,WVIEN_","_DFN_",",2)=1
+ ;S FDA(790.16,WVIEN_","_DFN_",",3)=EDD
+ ;D UPDATE^DIE(,"FDA") K FDA
  D STATUS(DFN,IEN)
  Q
  ;
@@ -166,11 +222,11 @@ DELV(DATE,DFN,IEN) ; Update WV,DSIO PATIENT files when PREGNANCY END is set
  . N DLAYGO,FDA,WVIEN
  . S DLAYGO=19641.13,FDA(19641.13,IEN_",",.04)="H" D UPDATE^DIE(,"FDA") K FDA
  . K ^DSIO(19641.13,"EDD",DFN)
- . S DLAYGO=790,WVIEN=$$GET1^DIQ(19641.13,IEN_",",99.1,"I")
- . S FDA(790.16,WVIEN_","_DFN_",",2)=0
- . S FDA(790.16,WVIEN_","_DFN_",",3)=""
- . S FDA(790.16,WVIEN_","_DFN_",",4)=DATE
- . D UPDATE^DIE(,"FDA") K FDA D PTRK(DFN,0)
+ . ;S DLAYGO=790,WVIEN=$$GET1^DIQ(19641.13,IEN_",",99.1,"I")
+ . ;S FDA(790.16,WVIEN_","_DFN_",",2)=0
+ . ;S FDA(790.16,WVIEN_","_DFN_",",3)=""
+ . ;S FDA(790.16,WVIEN_","_DFN_",",4)=DATE
+ . ;D UPDATE^DIE(,"FDA") K FDA D PTRK(DFN,0)
  Q
  ;
  ; -------------------------- WV PATIENT - (NEW) ------------------------------

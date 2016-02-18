@@ -1,5 +1,5 @@
-Routine DSIO10 saved using VFDXTRS routine on Oct 16, 2015 14:49
-DSIO10^INT^63812,57189^Sep 17, 2015@15:53
+Routine DSIO10 saved using VFDXTRS routine on Feb 18, 2016 15:58
+DSIO10^INT^63936,60037^Jan 19, 2016@16:40
 DSIO10 ;DSS/TFF - DSIO OBSERVATION;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -36,7 +36,6 @@ OBS(RET,IEN,DFN,DATES,OBJECT,REF,REL,CAT,CODE,VAL,VALCD,NEG,QUAL,NAR,AB) ; RPC: 
  ;
  N OBSD,STRT,END,VTYP,VUNT,SYS,CDSV,CDIS,VALCDS,VALCDSV,VALCDIS,IENS,DIK
  N DA,X,Y,IPT,CT,%X,%Y
- I '$G(IEN),'$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
  S DATES=$G(DATES),OBSD=$P(DATES,U),STRT=$P(DATES,U,2),END=$P(DATES,U,3)
  S VAL=$G(VAL)
  S VTYP=$P(VAL,U)                                ; VALUE TYPE
@@ -62,6 +61,9 @@ OBS(RET,IEN,DFN,DATES,OBJECT,REF,REL,CAT,CODE,VAL,VALCD,NEG,QUAL,NAR,AB) ; RPC: 
  S VALCDSV=$P(VALCD,U,2)                         ; SYSTEM VALUE
  S VALCDIS=$P(VALCD,U,4)                         ; DISPLAY NAME
  S VALCD=$P(VALCD,U,3)                           ; CODE
+ ; *** Determine to Update or Create New
+ I '$G(IEN) S IEN=$$OIEN(CODE) I +IEN<0 S RET=IEN Q
+ I '$G(IEN),'$D(^DPT(+$G(DFN))) S RET="-1^Patient entry not found." Q
  I $G(IEN) S IENS=IEN_"," D  Q:$D(RET)
  . I $$GET1^DIQ(19641.12,IEN_",",.09,"I") D  Q
  . . S RET="-1^This observation was already pushed and cannot be changed."
@@ -84,8 +86,7 @@ OBS(RET,IEN,DFN,DATES,OBJECT,REF,REL,CAT,CODE,VAL,VALCD,NEG,QUAL,NAR,AB) ; RPC: 
  S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
  I SYS'="LOINC",SYS'="SNOMED-CT" D LCODE^DSIO2(CODE,SYS,IEN_";DSIO(19641.12,")
  ; *** OBJECTS OF OBSERVATION/OBJECTS OF REFERENCE
- S:'$G(DFN) DFN=$$GET1^DIQ(19641.12,IEN_",",.02,"I")
- D TOBJ(IEN,DFN,.OBJECT,.REF)
+ D TOBJ(IEN,.OBJECT,.REF)
  ; *** SAVE CODE AND VALUE CODE
  S IPT(19641.17,"?+1,"_IEN_",",.01)="C"                    ; CODE TYPE
  S IPT(19641.17,"?+1,"_IEN_",",1)=CODE                     ; CODE
@@ -112,7 +113,28 @@ OBS(RET,IEN,DFN,DATES,OBJECT,REF,REL,CAT,CODE,VAL,VALCD,NEG,QUAL,NAR,AB) ; RPC: 
  D OPUSH(DFN,IEN)
  Q
  ;
-TOBJ(IEN,DFN,OBJECT,REF) ; Transform Objects of Observation and Reference and Save
+OIEN(CODE) ; Find the Observation Push configuration record
+ ;           Is this Observation required to be updated?
+ ;           If it is then return the IEN of the last observation using the data supplied.
+ ;
+ N IEN,CT,I,OBJO,OUT,REC,DATE,FDA,MSG
+ Q:$G(CODE)="" ""
+ S IEN=$O(^DSIO(19641.123,"C",CODE,"")) Q:'IEN ""
+ Q:'$P($G(^DSIO(19641.123,IEN,0)),U,5) ""
+ S CT=$NA(OBJECT) F I=0:1 S CT=$Q(@CT) Q:CT=""  D
+ . S OBJO(I)=$$OBJECT(@CT)
+ D OBG(.OUT,,$G(DFN),.OBJO,,OBSD,,$G(REL),$G(CAT),SYS,CODE,"1,1")
+ I +$G(@OUT@(0))<0 S REC=@OUT@(0) K @OUT Q REC
+ S REC=$P($G(@OUT@(1,0)),U,2) K @OUT
+ S DATE=$$GET1^DIQ(19641.12,REC_",",.09,"I") I DATE'="" D  Q:$D(MSG) -1
+ . S FDA(19641.127,"?+1,"_REC_",",.01)=DATE
+ . D UPDATE^DIE(,"FDA",,"MSG") K FDA Q:$D(MSG)
+ . S FDA(19641.12,REC_",",.09)=""
+ . D UPDATE^DIE(,"FDA",,"MSG")
+ Q REC
+ ;       
+ ;
+TOBJ(IEN,OBJECT,REF) ; Transform Objects of Observation and Reference and Save
  ;
  ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
  ;          FB.IEN (FETUS/BABY)
@@ -132,17 +154,21 @@ TOBJ(IEN,DFN,OBJECT,REF) ; Transform Objects of Observation and Reference and Sa
  . D UPDATE^DIE(,"IPT") K IPT
  Q
  ;
-OBJECT(OBJECT) ; Transform External Object to Internal
- N OBJ,GL
- S OBJ=$P($G(OBJECT),".")
- S OBJ=$S(OBJ="FB":"DSIO(19641.112,",OBJ="PG":"DSIO(19641.13,",OBJ="TIU":"TIU(8925,",OBJ="IHE":"DSIO(19641.6,",1:"")
- I OBJ'="",$P($G(OBJECT),".",2) S GL=U_OBJ_$P($G(OBJECT),".",2)_")" Q:$D(@GL) $P($G(OBJECT),".",2)_";"_OBJ
+OBJECT(OBJECT) ; Transform External Object to Internal/ Validate Internal
+ N OBJ,IEN,GL
+ S (OBJ,IEN)=""
+ I $G(OBJECT)?.A1".".N D
+ . S OBJ=$P(OBJECT,"."),IEN=$P(OBJECT,".",2)
+ . S OBJ=$S(OBJ="FB":"DSIO(19641.112,",OBJ="PG":"DSIO(19641.13,",OBJ="TIU":"TIU(8925,",OBJ="IHE":"DSIO(19641.6,",1:"")
+ S:OBJ=""&($G(OBJECT)[";") OBJ=$P(OBJECT,";",2),IEN=+OBJECT
+ Q:OBJ=""!('IEN) ""
+ S GL=U_OBJ_+IEN_")" Q:$D(@GL) +IEN_";"_OBJ
  Q ""
  ;
 OPUSH(DFN,OIEN) ; Push Observation
  N CODE,X,VAL,IEN,INPUT,ROU,RET,IPT
  S CODE=$$GETCODE(OIEN,"C",1) Q:CODE=""
- S (X,VAL)=$$UP^XLFSTR($$GET1^DIQ(19641.12,OIEN_",",4.2)) Q:X=""
+ S (X,VAL)=$$UP^XLFSTR($$GET1^DIQ(19641.12,OIEN_",",4.2))
  Q:$$GET1^DIQ(19641.12,OIEN_",",.09,"I")'=""      ; *** ALREADY PUSHED
  S IEN=$O(^DSIO(19641.123,"C",CODE,"")) Q:IEN=""
  S INPUT=$$GET1^DIQ(19641.123,IEN_",",1)
@@ -202,14 +228,14 @@ OBG(RET,IEN,DFN,OBJECT,REF,FDT,TDT,REL,CAT,SYS,CODE,SORT) ; RPC: DSIO GET OBSERV
  N RCT,TS,DATE,STRT,END
  S RET=$NA(^TMP($J,"DSIO OBG")) K @RET S @RET@(0)="0^Nothing found."
  I $G(IEN) D FLDS(IEN,1) S:$D(@RET@(1)) @RET@(0)=1 Q
- I '$$CHECK^DSIO2($G(DFN)) S @RET@(0)="-1^Patient entry not found." Q
+ I '$D(^DPT(+$G(DFN))) S @RET@(0)="-1^Patient entry not found." Q
  D OBJL(.OBJECT),OBJL(.REF),SORT($G(SORT))
  ; *** RANGE
  S FDT=$S($G(FDT)'="":$$FMADD^XLFDT($$DT^DSIO2(FDT),,,,-1),1:"")
  S TDT=$$DT^DSIO2($G(TDT)) S:TDT="" TDT=$$NOW^XLFDT
  ; *** FILTERS
  S REL=$$UP^XLFSTR($G(REL)),CAT=$$UP^XLFSTR($G(CAT))
- S SYS=$$UP^XLFSTR($E($G(SYS))),CODE=$G(CODE)
+ S SYS=$$UP^XLFSTR($G(SYS)),CODE=$G(CODE)
  S SYS=$S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
  S (RCT,TS)=0,DATE=FDT
  F  S DATE=$O(^DSIO(19641.12,"P",DFN,DATE),-1) Q:DATE=""  Q:DATE>TDT  D

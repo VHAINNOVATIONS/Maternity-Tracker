@@ -1,5 +1,5 @@
-Routine DSIO03 saved using VFDXTRS routine on Oct 16, 2015 14:49
-DSIO03^INT^63826,55268^Oct 01, 2015@15:21
+Routine DSIO03 saved using VFDXTRS routine on Feb 18, 2016 15:58
+DSIO03^INT^63936,61781^Jan 19, 2016@17:09
 DSIO03 ;DSS/TFF - DSIO OBSERVATION PUSH;06/28/2013 15:19
  ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
@@ -28,7 +28,31 @@ CREATE(RET,NA,CD,SY,DL) ; Create Observation PUSH
  D UPDATE^DIE(,"FDA","IEN") S:$G(IEN(1)) RET=IEN(1)
  Q
  ;
- ; ----------------------------------------------------------------------------
+ ; OBSERVATION CREATION -------------------------------------------------------
+ ;
+O(DFN,OBJECT,REL,CAT,CODE,SYS,DIS,VAL,NEG,NAR) ; Generic Entry
+ ;
+ ;    DFN = PATIENT
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+ ;          FB.IEN (FETUS/BABY)
+ ;          PG.IEN (PREGNANCY)
+ ;    REL = RELATIONSHIP
+ ;    CAT = CATEGORY
+ ;   CODE = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+ ;    VAL = TYPE^UNIT^VALUE
+ ;    NEG = NEGATION (T/F)
+ ;    NAR = NARRATIVE (ARRAY OF TEXT)
+ ;  **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+ ;
+ Q:'$G(DFN)!($G(CODE)="")
+ N REF,OUT,CT
+ S REF(0)="TIU."_+DDCSR
+ S REL=$G(REL),CAT=$G(CAT),DIS=$G(DIS),VAL=$G(VAL),NEG=$G(NEG)
+ S SYS=$S($G(SYS)'="":SYS,1:"OTHER")
+ D OBS^DSIO10(.OUT,,DFN,$$NOW^XLFDT,.OBJECT,.REF,,CAT,SYS_"^^"_CODE_U_DIS,"^^"_VAL,,,,.NAR,1)
+ Q
+ ;
+ ; PUSH -----------------------------------------------------------------------
  ;
 LAS ; LACTATION STATUS (CODE: Lactating)
  ;
@@ -38,20 +62,162 @@ LAS ; LACTATION STATUS (CODE: Lactating)
  ;         .02  END DATE (D), [0;2]
  ;
  Q:$G(X)=""!('$G(DFN))
- N FLE,IPT,IENS S FLE=19641.04
+ N IPT,IENS
  I X="YES" D
  . Q:$$LACT^DSIO4(DFN)="YES"
- . S IPT(FLE,"?+1,"_DFN_",",.01)=$$NOW^XLFDT
+ . S IPT(19641.04,"?+1,"_DFN_",",.01)=$$NOW^XLFDT
  I X="NO" D
  . Q:$$LACT^DSIO4(DFN)="NO"
  . S IENS=$$LACE^DSIO4(DFN)_","_DFN_","
- . S:'IENS IENS="?+1,"_DFN_",",IPT(FLE,IENS,.01)=$$NOW^XLFDT
- . S IPT(FLE,IENS,.02)=$$NOW^XLFDT
+ . S:'IENS IENS="?+1,"_DFN_",",IPT(19641.04,IENS,.01)=$$NOW^XLFDT
+ . S IPT(19641.04,IENS,.02)=$$NOW^XLFDT
  D:$D(IPT) UPDATE^DIE(,"IPT")
  Q
  ;
 PATIENT(FLD) ; Update Patient Element
  Q:$G(X)=""!('$G(DFN))
- N DIE,DA,DR
- S DIE="^DSIO(19641,",DA=DFN,DR=FLD_"///"_X D ^DIE
+ N IPT
+ S IPT(19641,DFN_",",FLD)=X
+ D UPDATE^DIE("E","IPT")
  Q
+ ;
+BABY(FLD) ; Update Baby Information
+ Q:'$G(DFN)!('$G(OIEN))
+ N IEN,IPT
+ S IEN=$$OBJ("DSIO(19641.112,") Q:'IEN
+ S IPT(19641.112,IEN_",",FLD)=X
+ D UPDATE^DIE("E","IPT")
+ Q
+ ;
+PREG(FLD) ; Update Pregnancy Element
+ Q:$G(X)=""!('$G(DFN))
+ N IEN,IPT
+ I FLD=3.1,X?.N S X=$$G2^DSIO4(X)
+ S IEN=$$OBJ("DSIO(19641.13,") Q:'IEN
+ S IPT(19641.13,IEN_",",FLD)=X
+ D UPDATE^DIE("E","IPT")
+ Q
+ ;
+ODM(VAL) ; Validate and transform a obsteric delivery method
+ S VAL=$$UP^XLFSTR($G(VAL))
+ Q $S("^V^C^O^"[(U_VAL_U):VAL,VAL["VAGIN":"V",VAL["CESAR":"C",1:"O")
+ ;
+OUT ; Update Pregnancy Outcome
+ ;
+ ; OutcomeType
+ ;    Unknown                  U
+ ;    FullTermDelivery         F
+ ;    PretermDelivery          P
+ ;    SpontaneousAbortion      AS *** Spontaneous
+ ;    Stillbirth               S  *** Demise or Stillbirth
+ ;    PregnancyTermination     AI *** Induced
+ ;    Ectopic                  E
+ ;
+ ; VistA - DSIO PREGNANCY HISTORY - 3.6 (OUTCOME)
+ ;
+ Q:$G(X)=""!('$G(DFN))
+ N VAL
+ S X=$$UP^XLFSTR($G(X))
+ S VAL=$S("^E^AI^AS^S^F^U^P^"[(U_X_U):X,1:"")
+ S:VAL="" VAL=$S(X["UNKNOWN":"U",X["FULLTERM":"F",X["PRETERM":"P",X["SPONTANEOUS":"AS",1:"")
+ S:VAL="" VAL=$S(X["STILLBIRTH":"S",X["TERMINATION"!(X["INDUCED"):"AI",X["ECTOPIC":"E",1:"")
+ S X=VAL D PREG(3.6)
+ Q
+ ;
+GA(TYP) ; Update Gestational Age for Pregnancy
+ ;
+ ; TYP = "D" or "W"
+ ;
+ N PREG,FLD,FWK,FDY,IPT
+ S PREG=$$OBJ("DSIO(19641.13,") Q:'PREG
+ S FLD=$$UP^XLFSTR($$GET1^DIQ(19641.13,PREG_",",3.1))
+ S FWK=+$P(FLD,"W"),FDY=+$P($P(FLD,"D"),"W",2)
+ S IPT(19641.13,PREG_",",3.1)=$S(TYP="W":X_"W"_FDY_"D",TYP="D":FWK_"W"_X_"D",1:"")
+ D UPDATE^DIE(,"IPT")
+ Q
+ ;
+PTXT ; Add to the Pregnacy History Comments
+ D TXT(19641.13,4,"DSIO(19641.13,")
+ Q
+ ;
+BTXT ; Add to the Baby Comments
+ D TXT(19641.112,1,"DSIO(19641.112,")
+ Q
+ ;
+TXT(FLE,FLD,OBJ) ; Observation narrative as a value
+ N OUT,CT,I
+ D OBG^DSIO10(.OUT,OIEN) I '$D(@OUT@(0)) K @OUT Q
+ K ^TMP("DSIO03",$J)
+ S I=1,CT=$NA(@OUT) F  S CT=$Q(@CT) Q:CT=""  Q:$QS(CT,2)'="DSIO OBG"  D
+ . I $P(@CT,U)="C" S ^TMP("DSIO03",$J,I)=$P(@CT,U,3,99),I=I+1
+ D:I>1 WP^DIE(FLE,$$OBJ(OBJ)_",",FLD,,"^TMP(""DSIO03"",$J)")
+ K @OUT,^TMP($J,"DSIO OBG"),^TMP("DSIO03",$J)
+ Q
+ ;
+ ; EDD/LMP --------------------------------------------------------------------
+ ;
+EDD(TYP) ; EDD Observation
+ ;
+ ; EDD BY ECD              "ECD"   33067-0           LOINC    X: EVENT|ISFINAL|GA
+ ; EDD BY EMBRYO TRANSFER  "EMB"   EmbryoTransfer    OTHER    X: EVENT|ISFINAL|GA
+ ; EDD BY OTHER            "OTH"   OtherEdd          OTHER    X: EVENT|ISFINAL|GA
+ ; EDD BY ULTRASOUND       "ULT"   UltraSound        OTHER    X: EVENT|ISFINAL|GA
+ ;
+ ; EDD BY UNKNOWN          "EDD"   11778-8           LOINC    X: EDD|ISFINAL|GA
+ ; EDD BY LMP              "LMP"   11779-6           LOINC    X: EDD|ISFINAL|GA
+ ;
+ N PREG,ISF,DATE,PG,EDD,IED,FDA
+ S PREG=$$PG^DSIO4(DFN) Q:'PREG
+ S ISF=$$UP^XLFSTR($E($P($G(X),"|",2),1)) S ISF=$S(ISF="T"!(ISF="Y")!(ISF=1):1,1:0) Q:'ISF
+ S DATE=$$DT^DSIO2($P(X,"|")) Q:DATE=""
+ D:TYP="ECD" PREG^DSIO15(.PG,PREG,DFN,DATE,,,,,,,,,1)               ; ECD
+ ; *** Why not pass the EDD? Another delightful decision!
+ I TYP="EDD"!(TYP="LMP") S EDD=DATE
+ S:'$D(EDD) EDD=$$CAL(TYP,DATE,$P(X,"|",3)) Q:EDD=""
+ D PREG^DSIO15(.PG,PREG,DFN,"^^"_EDD,,,,,,,,,1)                     ; EDD
+ S IED=$$GET1^DIQ(19641.13,PREG_",",.06,"I") Q:'IED
+ S FDA(19641.03,IED_",",.02)=DFN                                    ; PATIENT
+ S FDA(19641.03,IED_",",.03)=DUZ                                    ; ENTERED BY
+ S FDA(19641.03,IED_",",.04)=$$NOW^XLFDT                            ; DATE ENTERED
+ S FDA(19641.03,IED_",",1.1)=$G(^DSIO(19641.12,+$G(OIEN),6,1,0))    ; METHOD OF CALCULATION
+ S FDA(19641.03,IED_",",1.2)=1                                      ; IS FINAL
+ S FDA(19641.03,IED_",",2.1)=PREG                                   ; DSIO PREGNANCY HISTORY
+ S FDA(19641.03,IED_",",2.2)=$G(OIEN)                               ; DSIO OBSERVATIONS
+ D FILE^DIE(,"FDA")
+ Q
+ ;
+CAL(TYP,DATE,GA) ; Calculate EDD (Again?)
+ ;                 * The M Developer does not agree with calculating EDD when it has already
+ ;                   been calculated and accepted by the user.
+ I TYP="ECD" Q $$FMADD^XLFDT(DATE,266)
+ I TYP="EMB" Q $$FMADD^XLFDT(DATE,262)
+ I GA["W"!(GA["D") S GA=$$G1^DSIO4(GA)
+ I TYP="OTH" Q $$FMADD^XLFDT(DATE,(280-GA))
+ I TYP="ULT" Q $$FMADD^XLFDT(DATE,(280-GA))
+ Q
+ ;
+LMP ; Push LMP
+ ;
+ ; Last Menstrual Period         8665-2            LOINC    X: EVENT|QUALIIER
+ ;
+ Q:$P($G(X),"|")=""
+ N DATE,FDA,LEN
+ S DATE=$$DT^DSIO2($P(X,"|")) Q:DATE=""
+ S FDA(19641.01,"?+1,",.01)=DATE                                    ; LAST MENSTRAL PERIOD
+ S FDA(19641.01,"?+1,",.02)=DFN                                     ; PATIENT
+ S FDA(19641.01,"?+1,",.03)=DUZ                                     ; ENTERED BY
+ S FDA(19641.01,"?+1,",.04)=$$NOW^XLFDT                             ; DATE ENTERED
+ S FDA(19641.01,"?+1,",.05)=$$UP^XLFSTR($E($P(X,"|",2),1))          ; QUALIFIER
+ D UPDATE^DIE(,"FDA","LEN") K FDA Q:'$G(LEN(1))
+ S FDA(19641,DFN_",",1.2)=LEN(1)
+ D UPDATE^DIE(,"FDA") K FDA
+ Q 
+ ;
+ ; UTILITIES ------------------------------------------------------------------
+ ;
+OBJ(TYP) ; Get Object of Observation IEN from Observation
+ N CT,IEN
+ S CT="" F  S CT=$O(^DSIO(19641.12,OIEN,1,"B",CT)) Q:CT=""  D  Q:$G(IEN)
+ . Q:CT'[TYP
+ . S IEN=+CT
+ Q +$G(IEN)
