@@ -1,0 +1,20 @@
+Some files not included here so here is what the directory looks like and other code that the Delphi environment expects.
+
+Last compiled using XE10 and expects Jedi components.
+
+_group
+_images
+  + vxVistA icon (.ico)
+_lib
+  + CPRS VA508Accessibility folder
+      (Find this in the CPRS source code not part of this project.)
+  + CPRSChart.exe
+      (Used to build the Type Library and to run as the host application for testing.)
+  + fBase508Form.dcu
+  + fBase508Form.pas
+      (Open and right click the form to "add to repository" to inherit from this form. All DDCS Forms inherit from the Base508Form.) (Find this in the CPRS source code not part of this project.)
+  + uHelpManager.dcu
+  + uHelpManager.pas
+_output
+DDCS
+  + Individual project folders

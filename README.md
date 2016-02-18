@@ -15,17 +15,14 @@ Normal KIDS install through Kernel Installation & Distribution System
 
 Post Installation
 -----------------
-* oCNTFramework.bpl is a Delphi package used for created new oCNTs. If you are not a developer and don’t plan on creating new oCNTs then you don’t need this package.
-
-Borlndmm.dll is required to work with CPRS, COM, and the form dlls – if this dll is not present next to the CPRS exe and at the minimum level as listed in this document then this program will not work appropriately.
+* DDCSFramework.bpl is a Delphi package used for created new DDCS Forms. If you are not a developer and don’t plan on creating new DDCS Forms then you don’t need this package.
 
 User Setup
 ==========
-Assign the Menu Context DSIO DDCS CONTEXT to users needing access to the DDCS Form Templates (oCNTs).
+Assign the Menu Context DSIO DDCS CONTEXT to users needing access to the DDCS Form Templates (DDCS Forms).
 Assign the Menu Context DSIO GUI CONTEXT to users needing access to the MCC Dashboard.
 
-Assign the Menu Context DSIO DDCS MAIN to users needing access to the VistA side configuration options.
-Assign the Menu Context DSIO TRIGGER ENTER/EDIT to users needing access to the VistA side configuration to add, delete, and edit entries to trigger to Maternity Tracker for Problems, Consults, and Lab Results.
+Assign the Menu Context DSIO MAIN to users needing access to the VistA side configuration options.
 
 From the “Systems Manager Menu” option…
 
