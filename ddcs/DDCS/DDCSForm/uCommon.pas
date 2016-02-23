@@ -111,7 +111,7 @@ begin
     else
       Result.Add(TRadioGroup(Sender).Name + '^^');
   end
-  else if Sender.ClassType = TSpinEdit then
+  else if (Sender.ClassType = TSpinEdit) or (Sender.ClassType = TJVSpinEdit) then
     Result.Add(TSpinEdit(Sender).Name + '^^' + TSpinEdit(Sender).Text + sVal)
   else if Sender.ClassType = TComboBox then
   begin

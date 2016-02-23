@@ -201,7 +201,15 @@ inherited Form1: TForm1
     TabHeight = 25
     TabOrder = 0
     OnChange = ofrm1Change
-    ReportCollection = <>
+    ReportCollection = <
+      item
+        Order = 0
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = E_LengthofLabor
+        Required = False
+      end>
     onFormShow = ofrm1FormShow
     onOverrideNote = Finished
     object oPage1: ToPage
@@ -209,7 +217,7 @@ inherited Form1: TForm1
       VitalsStatus = False
       DesignSize = (
         734
-        463)
+        460)
       object Label1: TLabel
         Left = 19
         Top = 19
@@ -431,7 +439,7 @@ inherited Form1: TForm1
         Left = 0
         Top = 40
         Width = 734
-        Height = 423
+        Height = 420
         ActivePage = TsBaby1
         Align = alClient
         TabOrder = 1
@@ -447,14 +455,14 @@ inherited Form1: TForm1
           object lblLB1: TLabel
             Left = 145
             Top = 66
-            Width = 14
+            Width = 8
             Height = 13
             Caption = 'lb'
           end
           object lblOz1: TLabel
             Left = 220
             Top = 66
-            Width = 23
+            Width = 11
             Height = 13
             Caption = 'oz'
           end
@@ -923,7 +931,7 @@ inherited Form1: TForm1
         Left = 0
         Top = 0
         Width = 734
-        Height = 463
+        Height = 460
         Align = alClient
         Columns = <>
         TabOrder = 0
