@@ -153,12 +153,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
-        <VerInfo_Release>0</VerInfo_Release>
+        <VerInfo_Release>1</VerInfo_Release>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
-        <VerInfo_Build>1</VerInfo_Build>
+        <VerInfo_Build>0</VerInfo_Build>
         <Debugger_HostApplication>C:\Users\DSSDeveloper\Desktop\Projects\_lib\CPRSChart.exe</Debugger_HostApplication>
-        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=Delphi DDCS Base Component;FileVersion=1.2.0.1;InternalName=oCNTFramework.bpl;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=1.2.0.1;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=Delphi DDCS Base Component;FileVersion=1.2.1.0;InternalName=oCNTFramework.bpl;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=1.2.1.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice32)'!=''">
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
@@ -167,10 +167,11 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
         <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_Release>14</VerInfo_Release>
-        <Debugger_HostApplication>C:\Users\DSSDeveloper\Desktop\CPRSChart.exe</Debugger_HostApplication>
+        <Debugger_HostApplication>C:\Users\DSSDeveloper\Desktop\Projects\_lib\CPRSChart.exe</Debugger_HostApplication>
         <VerInfo_Keys>CompanyName=Document Systems Systems, Inc.;FileDescription=;FileVersion=1.0.14.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.14.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>

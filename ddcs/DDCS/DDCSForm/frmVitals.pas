@@ -27,6 +27,8 @@ uses
   System.StrUtils, uCommon, uExtndComBroker;
 
 type
+  TEventType = (evLMP,evECD,evUlt,evEmT,evOth,evUkn);
+
   TfVitals = class(TFrame)
     fVitalsControl: TPageControl;
     PageMain: TTabSheet;
@@ -62,7 +64,6 @@ type
     FDiastolicdt: TStaticText;
     PageEDD: TTabSheet;
     PageLMP: TTabSheet;
-    btnHistory: TButton;
     edtContraceptionType: TComboBox;
     ckMensesYes: TCheckBox;
     ckDurationYes: TCheckBox;
@@ -87,28 +88,21 @@ type
     Label2: TLabel;
     sbtnGetDate1: TSpeedButton;
     Label1: TLabel;
-    Button1: TButton;
     StaticText2: TStaticText;
     edtCurrentEDD: TEdit;
     EDDGrid: TGridPanel;
     dtLMP: TDateTimePicker;
-    edtWeekLMP: TEdit;
-    edtDayLMP: TEdit;
     edtEDDLMP: TEdit;
     lblLMP: TLabel;
     lblECD: TLabel;
     lblUltra: TLabel;
     dtECD: TDateTimePicker;
-    edtWeekECD: TEdit;
-    edtDayECD: TEdit;
     edtEDDECD: TEdit;
     dtUltra: TDateTimePicker;
     spnWeekUltra: TSpinEdit;
     spnDayUltra: TSpinEdit;
     edtEDDUltra: TEdit;
     dtEmbryo: TDateTimePicker;
-    edtWeekEmbryo: TEdit;
-    edtDayEmbryo: TEdit;
     edtEDDEmbryo: TEdit;
     lblUnknown: TLabel;
     dtOther: TDateTimePicker;
@@ -132,32 +126,37 @@ type
     Label14: TLabel;
     Panel1: TPanel;
     lblEmbryo: TLabel;
-    spnTransferDay: TSpinEdit;
     ck_LMPQualifier: TCheckBox;
+    Label15: TLabel;
+    edtEDDGA: TEdit;
+    cbTransferDay: TComboBox;
+    // Calculation Rows --------------------------------------------------------
     procedure dtLMPChange(Sender: TObject);
-    procedure dtUltraChange(Sender: TObject);
+    procedure edtLMPChange(Sender: TObject);
     procedure dtECDChange(Sender: TObject);
+    procedure dtUltraChange(Sender: TObject);
     procedure spnWeekUltraChange(Sender: TObject);
     procedure spnDayUltraChange(Sender: TObject);
+    procedure dtEmbryoChange(Sender: TObject);
+    procedure spnTransferDayChange(Sender: TObject);
     procedure dtOtherChange(Sender: TObject);
     procedure spnWeekOtherChange(Sender: TObject);
     procedure spnDayOtherChange(Sender: TObject);
-    procedure dtEmbryoChange(Sender: TObject);
-    procedure IsFinalEDDClick(Sender: TObject);
     procedure lblOtherMouseEnter(Sender: TObject);
-    procedure spnTransferDayChange(Sender: TObject);
-    procedure edtLMPChange(Sender: TObject);
+    procedure lblOtherExit(Sender: TObject);
+    procedure dtEDDUnknownChange(Sender: TObject);
+    procedure IsFinalEDDClick(Sender: TObject);
+    // Menstrual History -------------------------------------------------------
     procedure sbtnGetDate1Click(Sender: TObject);
     procedure ckMensesYesClick(Sender: TObject);
-    procedure dtEDDUnknownChange(Sender: TObject);
+    procedure lblOtherChange(Sender: TObject);
   private
     FNote: TStringList;
-    function GetGestationalAge(FromDate: Extended): string;    // weeks^days
-    procedure SetDayWeek(edtWeek,edtDay: TEdit; wk,dy: string; addweek,adday: Integer);
-    procedure UpdateEDD;
-    procedure UpdateLMP;
+    function CalEDD(EventType: TEventType; EventDate: Extended): Extended;
+    function CalGestationalAge(EventType: TEventType; FromDate,ToDate: Extended): string;
     procedure LMPChangeEvents(Switch: Boolean);
-    procedure ToggleCB(cb1: TCheckBox; cb2: TCheckBox);
+    procedure UpdateLMP;
+    procedure ToggleCB(cb1,cb2: TCheckBox);
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -209,8 +208,92 @@ begin
     Align := alClient;
     Show;
   end;
-  FEDDLoad := True; FLMPLoad := True;
+  FEDDLoad := True;
+  FLMPLoad := True;
   Result := VitalForm;
+end;
+
+// Calculate Estimated Delivery Date -------------------------------------------
+
+function TfVitals.CalEDD(EventType: TEventType; EventDate: Extended): Extended;
+   //   1. LMP
+   //       EDD by LMP is calculated by adding 280 days (40 weeks) to the first day of
+   //       the last menstrual period.
+   //   2. ECD
+   //       EDD by Estimated Conception date by adding 266 days to the date of conception
+   //       which is 2 weeks in by the date of conception
+   //   3. Ultrasound
+   //       EDD by Ultrasound is taking the Ultrasound date and substracting the weeks/day
+   //       to get the start
+   //   4. Embryo Transfer
+   //       Date of 3-day embryo transfer is the date + 264
+   //       Date of 5-day embryo (blast) transfer is the date + 261
+   //   5. Other
+   //   6. Unknown
+begin
+  case EventType of
+    evLMP: Result := IncDay(EventDate, 280);
+    evECD: Result := IncDay(EventDate, 266);
+    evUlt: Result := IncDay(IncDay(EventDate, - ((spnWeekUltra.Value * 7) + spnDayUltra.Value)), 280);
+    evEmT: begin
+             if cbTransferDay.Text = '3' then
+               Result := IncDay(EventDate, 263)
+             else if cbTransferDay.Text = '5' then
+               Result := IncDay(EventDate, 261)
+             else
+               Result := IncDay(EventDate, 262);
+           end;
+    evOth: Result := IncDay(IncDay(EventDate, - ((spnWeekOther.Value * 7) + spnDayOther.Value)), 280);
+    evUkn: Result := dtEDDUnknown.Date;
+  end;
+end;
+
+// Gestational Age -------------------------------------------------------------
+
+function TfVitals.CalGestationalAge(EventType: TEventType; FromDate,ToDate: Extended): string;         // weeks^days
+var
+  GAgeDays,GAgeWeeks: Integer;
+begin
+  Result := '0^0';
+
+  case EventType of
+    evLMP: GAgeDays := DaysBetween(ToDate, FromDate);
+    evECD: GAgeDays := DaysBetween(ToDate, FromDate) + 14;
+    evUlt: GAgeDays := DaysBetween(ToDate, FromDate);
+    evEmT: begin
+             if cbTransferDay.Text = '3' then
+               GAgeDays := DaysBetween(ToDate, FromDate) + 17
+             else if cbTransferday.Text = '5' then
+               GAgeDays := DaysBetween(ToDate, FromDate) + 19
+             else
+               GAgeDays := DaysBetween(ToDate, FromDate) + 18;
+           end;
+    evOth: GAgeDays := DaysBetween(ToDate, FromDate);
+    else GAgeDays := 0;
+  end;
+
+  GAgeWeeks := Trunc(GAgeDays div 7);
+  Result := IntToStr(GAgeWeeks) + U + IntToStr(GAgeDays - Trunc(GAgeWeeks * 7));
+end;
+
+// Events ----------------------------------------------------------------------
+
+   // LMP ****
+procedure TfVitals.dtLMPChange(Sender: TObject);
+var
+  testDT: TDate;
+begin
+  ckFinalEDDLMP.Checked := False;
+  edtEDDLMP.Text := FormatDateTime('mm/dd/yyyy', CalEDD(evLMP, dtLMP.Date));
+
+  testDT := StrToDateDef(edtLMP.Text, 0);
+  if testDT <> dtLMP.Date then
+  begin
+    LMPChangeEvents(False);
+    edtLMP.Text := DateToStr(dtLMP.Date);
+    UpdateLMP;
+    LMPChangeEvents(True);
+  end;
 end;
 
 procedure TfVitals.LMPChangeEvents(Switch: Boolean);
@@ -226,96 +309,18 @@ begin
   end;
 end;
 
-// ESTIMATED DATE OF DELIVERY --------------------------------------------------
-
-// Gestational Age is the week/day difference from LMP to today
-function TfVitals.GetGestationalAge(FromDate: Extended): string;
-var
-  GAgeDays,GAgeWeeks: Integer;
-begin
-  Result := '';
-  GAgeDays := DaysBetween(Now, FromDate) + 1;  // added '+ 1' due to VA
-  GAgeWeeks := Trunc(GAgeDays div 7);
-  Result := IntToStr(GAgeWeeks) + U + IntToStr(GAgeDays - Trunc(GAgeWeeks * 7));
-end;
-
-procedure TfVitals.SetDayWeek(edtWeek,edtDay: TEdit; wk,dy: string; addweek,adday: Integer);
-var
-  wkI,dyI: Integer;
-begin
-  dyI := StrToIntDef(dy,0) + adday;
-  wkI := StrToIntDef(wk,0) + addweek;
-
-  if dyI > 6 then
-  begin
-    wkI := wkI + Trunc(dyI div 7);
-    dyI := dyI - (Trunc(dyI div 7) * 7);
-  end;
-
-  edtDay.Text := IntToStr(dyI);
-  edtWeek.Text := IntToStr(wkI);
-end;
-
-procedure TfVitals.spnTransferDayChange(Sender: TObject);
-begin
-  ckFinalEDDEmbryo.Checked := False;
-  dtEmbryoChange(Sender);
-end;
-
-procedure TfVitals.UpdateEDD;
-var
-  EDD: TDateTime;
-  Gstr: string;
-begin
-  EDD := IncDay(dtLMP.Date, 280);
-  edtEDDLMP.Text := DateToStr(EDD);
-  Gstr := GetGestationalAge(dtLMP.Date);
-
-  SetDayWeek(edtWeekLMP,edtDayLMP,Piece(Gstr,U,1),Piece(Gstr,U,2),0,0);
-end;
-
-// EDD by LMP is calculated by adding 280 days (40 weeks) to the first day of the last menstrual period.
-procedure TfVitals.dtLMPChange(Sender: TObject);
-begin
-  ckFinalEDDLMP.Checked := False;
-
-  UpdateEDD;
-
-  if ((edtLMP.Text = '') or (dtLMP.Date <> StrToDate(edtLMP.Text))) then
-  begin
-    LMPChangeEvents(False);
-    edtLMP.Text := DateToStr(dtLMP.Date);
-    UpdateLMP;
-    LMPChangeEvents(True);
-  end;
-end;
-
-// EDD by Estimated Conception date by adding 266 days to the date of conception which is 2 weeks in by
-// the date of conception
+   // ECD ****
 procedure TfVitals.dtECDChange(Sender: TObject);
-var
-  EDD: TDateTime;
-  Gstr: string;
 begin
   ckFinalEDDECD.Checked := False;
-
-  EDD := IncDay(dtECD.Date, 266);
-  edtEDDECD.Text := DateToStr(EDD);
-  Gstr := GetGestationalAge(dtECD.Date);
-  SetDayWeek(edtWeekECD,edtDayECD,Piece(Gstr,U,1),Piece(Gstr,U,2),2,0);
+  edtEDDECD.Text := FormatDateTime('mm/dd/yyyy', CalEDD(evECD, dtECD.Date));
 end;
 
-procedure TfVitals.dtEDDUnknownChange(Sender: TObject);
-begin
-  ckFinalEDDUnknown.Checked := False;
-end;
-
-// EDD by Ultrasound is taking the Ultrasound date and substracting the weeks/day to get the start
+   // Ultrasound ****
 procedure TfVitals.dtUltraChange(Sender: TObject);
 begin
   ckFinalEDDUltra.Checked := False;
-
-  edtEDDUltra.Text := DateToStr(IncDay(IncDay(dtUltra.Date, - ((spnWeekUltra.Value * 7) + spnDayUltra.Value)), 280));
+  edtEDDUltra.Text := FormatDateTime('mm/dd/yyyy', CalEDD(evUlt, dtUltra.Date));
 end;
 
 procedure TfVitals.spnWeekUltraChange(Sender: TObject);
@@ -338,54 +343,32 @@ begin
   if spnDayUltra.Value > 6 then
   begin
     spnWeekUltra.OnChange := nil;
-    spnWeekUltra.Value := spnWeekUltra.Value + Trunc(spnDayUltra.Value div 7);
-    spnDayUltra.Value := spnDayUltra.Value - (Trunc(spnDayUltra.Value div 7) * 7);
+    spnWeekUltra.Value := spnWeekUltra.Value + 1;
+    spnDayUltra.Value := 0;
     spnWeekUltra.OnChange := dtUltraChange;
   end;
 
   dtUltraChange(Sender);
 end;
 
-// Date of 3-day embryo transfer is the date + 264
-// Date of 5-day embryo (blast) transfer is the date + 261
+   // Embryo Transfer ****
 procedure TfVitals.dtEmbryoChange(Sender: TObject);
-var
-  EDD: TDateTime;
-  Gstr: string;
-  blast,wk,dy: Integer;
 begin
   ckFinalEDDEmbryo.Checked := False;
-
-  if spnTransferDay.Value = 3 then
-    blast := 2
-  else
-    blast := spnTransferDay.Value;
-
-  EDD := IncDay(dtEmbryo.Date, (267 - blast));
-  edtEDDEmbryo.Text := DateToStr(EDD);
-  Gstr := GetGestationalAge(dtEmbryo.Date);
-
-  dy := StrToIntDef(Piece(Gstr,U,2),0) + spnTransferDay.Value;
-//  if spnTransferDay.Value = 3 then       // Change due to the VA
-  dy := dy - 1;
-
-
-  wk := StrToIntDef(Piece(Gstr,U,1),0) + 2;
-  if dy > 6 then
-  begin
-    wk := wk + Trunc(dy div 7);
-    dy := dy - (Trunc(dy div 7) * 7);
-  end;
-
-  edtWeekEmbryo.Text := IntToStr(wk);
-  edtDayEmbryo.Text := IntToStr(dy);
+  edtEDDEmbryo.Text := FormatDateTime('mm/dd/yyyy', CalEDD(evEmT, dtEmbryo.Date));
 end;
 
+procedure TfVitals.spnTransferDayChange(Sender: TObject);
+begin
+  ckFinalEDDEmbryo.Checked := False;
+  dtEmbryoChange(Sender);
+end;
+
+   // Other ****
 procedure TfVitals.dtOtherChange(Sender: TObject);
 begin
   ckFinalEDDOther.Checked := False;
-
-  edtEDDOther.Text := DateToStr(IncDay(IncDay(dtOther.Date, - ((spnWeekOther.Value * 7) + spnDayOther.Value)), 280));
+  edtEDDOther.Text := FormatDateTime('mm/dd/yyyy', CalEDD(evOth, dtOther.Date));
 end;
 
 procedure TfVitals.spnWeekOtherChange(Sender: TObject);
@@ -408,24 +391,47 @@ begin
   if spnDayOther.Value > 6 then
   begin
     spnWeekOther.OnChange := nil;
-    spnWeekOther.Value := spnWeekOther.Value + Trunc(spnDayOther.Value div 7);
-    spnDayOther.Value := spnDayOther.Value - (Trunc(spnDayOther.Value div 7) * 7);
+    spnWeekOther.Value := spnWeekOther.Value + 1;
+    spnDayOther.Value := 0;
     spnWeekOther.OnChange := dtOtherChange;
   end;
 
   dtOtherChange(Sender);
 end;
 
+procedure TfVitals.lblOtherChange(Sender: TObject);
+begin
+  ckFinalEDDOther.Checked := False;
+end;
+
 procedure TfVitals.lblOtherMouseEnter(Sender: TObject);
 begin
   if lblOther.Text = 'Enter Other Criteria' then
+  begin
     lblOther.Text := '';
+    lblOther.SetFocus;
+  end;
 end;
+
+procedure TfVitals.lblOtherExit(Sender: TObject);
+begin
+  if lblOther.Text = '' then
+    lblOther.Text := 'Enter Other Criteria';
+end;
+
+   // Unknown ****
+procedure TfVitals.dtEDDUnknownChange(Sender: TObject);
+begin
+  ckFinalEDDUnknown.Checked := False;
+end;
+
+// Final -----------------------------------------------------------------------
 
 procedure TfVitals.IsFinalEDDClick(Sender: TObject);
 var
-  I,Row,daydiff: Integer;
   Checked: Boolean;
+  I,Row,GA,GAgeWeeks: Integer;
+  EDD: TDate;
 
   procedure StopChecked;
   var
@@ -443,61 +449,109 @@ var
       TCheckBox(EDDGrid.ControlCollection.Controls[5, Row]).OnClick := IsFinalEDDClick;
   end;
 
+  procedure UpdateEDDandGAHeader(EventType: TEventType; EDD,EventDate: Extended);
+  var
+    GA: string;
+  begin
+    edtCurrentEDD.Text := FormatDateTime('mm/dd/yyyy', EDD);
+
+    // EDD Gestational Age (or Current)
+    if EDD > Today then
+      GA := CalGestationalAge(EventType, EventDate, Now)
+    else
+      GA := CalGestationalAge(EventType, EventDate, EDD);
+    edtEDDGA.Text := Piece(GA,U,1) + 'w ' + Piece(GA,U,2) + 'd';
+
+    // Current Gestational Age (or after EDD)
+    GA := CalGestationalAge(EventType, EventDate, Now);
+    edtFinalGA.Text := Piece(GA,U,1) + 'w ' + Piece(GA,U,2) + 'd';
+  end;
+
 begin
   if not (Sender is TCheckBox) then
     Exit;
 
   StopChecked;
+  try
+    Checked := False;
 
-  Checked := False;
-
-  for I := 1 to 6 do
-  begin
-    if not (Sender = TCheckBox(EDDGrid.ControlCollection.Controls[5, I])) then
-      TCheckBox(EDDGrid.ControlCollection.Controls[5, I]).Checked := False
-    else
-      if TCheckBox(Sender).Checked then
+    for I := 1 to 6 do
+    begin
+      if not (Sender = TCheckBox(EDDGrid.ControlCollection.Controls[5, I])) then
+        TCheckBox(EDDGrid.ControlCollection.Controls[5, I]).Checked := False
+      else
       begin
-        Checked := True;
-        edtFinalGA.Text := '';
-        edtCurrentEDD.Text := '';
-
-        Row := EDDGrid.ControlCollection.Items[EDDGrid.ControlCollection.IndexOf(TControl(Sender))].Row;
-        if Row < 6 then
-          edtCurrentEDD.Text := TEdit(EDDGrid.ControlCollection.Controls[4, Row]).Text
-        else
-          edtCurrentEDD.Text := DateToStr(TDateTimePicker(EDDGrid.ControlCollection.Controls[4, Row]).Date);
-
-        // Final GA
-        if edtCurrentEDD.Text <> '' then
+        if TCheckBox(Sender).Checked then
         begin
-          // First get EDC then determine the Current GA with today's date
+          Checked := True;
+          edtFinalGA.Text := '';
+          edtCurrentEDD.Text := '';
+          edtEDDGA.Text := '';
+
+          Row := EDDGrid.ControlCollection.Items[EDDGrid.ControlCollection.IndexOf(TControl(Sender))].Row;
           case Row of
-            1: edtFinalGA.Text := edtWeekLMP.Text + 'w ' + edtDayLMP.Text + 'd';         // LMP
-            2: edtFinalGA.Text := edtWeekECD.Text + 'w ' + edtDayECD.Text + 'd';         // EDC
-            3: edtFinalGA.Text := spnWeekUltra.Text + 'w ' + spnDayUltra.Text + 'd';     // Ultrasound
-            4: edtFinalGA.Text := edtWeekEmbryo.Text + 'w ' + edtDayEmbryo.Text + 'd';   // Embryo Transfer
-            5: edtFinalGA.Text := spnWeekOther.Text + 'w ' + spnDayOther.Text + 'd';     // Other
-            6: begin                                                                     // Unknown
-                 daydiff := DaysBetween(Today, IncDay(dtEDDUnknown.Date, -281));    // 281 from 280 due to VA
-                 edtFinalGA.Text := IntToStr(Trunc(daydiff div 7)) + 'w ' + IntToStr(daydiff - (Trunc(daydiff div 7) * 7)) + 'd';
+            1: begin                                                            // LMP
+                 UpdateEDDandGAHeader(evLMP,
+                                      StrToDate(TEdit(EDDGrid.ControlCollection.Controls[4, Row]).Text),
+                                      TDateTimePicker(EDDGrid.ControlCollection.Controls[1, Row]).Date);
                end;
-          end;
+            2: begin                                                            // ECD
+                 UpdateEDDandGAHeader(evECD,
+                                      StrToDate(TEdit(EDDGrid.ControlCollection.Controls[4, Row]).Text),
+                                      TDateTimePicker(EDDGrid.ControlCollection.Controls[1, Row]).Date);
+               end;
+            3: begin                                                            // Ultrasound
+                 UpdateEDDandGAHeader(evUlt,
+                                      StrToDate(TEdit(EDDGrid.ControlCollection.Controls[4, Row]).Text),
+                                      IncDay(TDateTimePicker(EDDGrid.ControlCollection.Controls[1, Row]).Date,
+                                             -((spnWeekUltra.Value * 7) + spnDayUltra.Value)));
+               end;
+            4: begin                                                            // Embryo Transfer
+                 UpdateEDDandGAHeader(evEmT,
+                                      StrToDate(TEdit(EDDGrid.ControlCollection.Controls[4, Row]).Text),
+                                      TDateTimePicker(EDDGrid.ControlCollection.Controls[1, Row]).Date);
+               end;
+            5: begin                                                            // Other
+                 if lblOther.Text = 'Enter Other Criteria' then
+                   Checked := False
+                 else
+                   UpdateEDDandGAHeader(evOth,
+                                        StrToDate(TEdit(EDDGrid.ControlCollection.Controls[4, Row]).Text),
+                                        IncDay(TDateTimePicker(EDDGrid.ControlCollection.Controls[1, Row]).Date,
+                                               -((spnWeekOther.Value * 7) + spnDayOther.Value)));
+               end;
+            6: begin                                                            // Unknown
+                 EDD := TDateTimePicker(EDDGrid.ControlCollection.Controls[4, Row]).Date;
+                 edtCurrentEDD.Text := FormatDateTime('mm/dd/yyyy', EDD);
+
+                 if EDD > Today then
+                 begin
+//                   else
+//                   GA := 279 + DaysBetween(Now, EDD);
+                   GA := 279 - DaysBetween(EDD, Now);
+                   GAgeWeeks := Trunc(GA div 7);
+                   edtEDDGA.Text := IntToStr(GAgeWeeks) + 'w ' + IntToStr(GA - Trunc(GAgeWeeks * 7)) + 'd';
+                   edtFinalGA.Text := edtEDDGA.Text;
+                 end;
+               end;
+            end;
         end else
         begin
           edtFinalGA.Text := '';
           edtCurrentEDD.Text := '';
+          edtEDDGA.Text := '';
         end;
       end;
-  end;
+    end;
 
-  if not checked then
-  begin
-    edtFinalGA.Text := '';
-    edtCurrentEDD.Text := '';
+    if not checked then
+    begin
+      edtFinalGA.Text := '';
+      edtCurrentEDD.Text := '';
+    end;
+  finally
+    StartChecked;
   end;
-
-  StartChecked;
 end;
 
 // MENSTRAL HISTORY ------------------------------------------------------------
@@ -519,36 +573,36 @@ begin
   memLMP.Clear;
 end;
 
+Procedure TfVitals.ToggleCB(cb1:TCheckBox; cb2:TCheckBox);
+begin
+  if cb1.Checked then
+    cb2.Checked := False;
+end;
+
 procedure TfVitals.sbtnGetDate1Click(Sender: TObject);
 var
   dlgGetDate: TdlgDate;
 begin
   try
-    dlgGetDate := TdlgDate.Create( Nil );
+    dlgGetDate := TdlgDate.Create(nil);
     dlgGetDate.ShowModal;
+
     if dlgGetDate.ModalResult = mrOK then
     begin    // choices by tag
-    if(dlgGetDate.calMonth.Date) >  Now then
-      ShowDialog(Owner, 'No future dates', mtWarning)
-    else
-      case (Sender as TSpeedButton).Tag of
-        1 : edtLMP.Text := FormatDateTime('MM/dd/yyyy', dlgGetDate.calMonth.Date);
-        2 : edthcg.Text := FormatDateTime('MM/dd/yyyy', dlgGetDate.calMonth.Date);
-      end;
+      if(dlgGetDate.calMonth.Date) >  Now then
+        ShowDialog(Owner, 'No future dates', mtWarning)
+      else
+        case (Sender as TSpeedButton).Tag of
+          1 : edtLMP.Text := FormatDateTime('MM/dd/yyyy', dlgGetDate.calMonth.Date);
+          2 : edthcg.Text := FormatDateTime('MM/dd/yyyy', dlgGetDate.calMonth.Date);
+        end;
     end;
   finally
     dlgGetDate.Free;
   end;
 end;
 
-Procedure TfVitals.ToggleCB( cb1:TCheckBox; cb2:TCheckBox);
-begin
-  if cb1.Checked = True then
-    cb2.Checked := False;
-end;
-
 procedure TfVitals.ckMensesYesClick(Sender: TObject);
-{toggle check boxes }
 begin
   if (Sender is TCheckBox) and ((Sender as TCheckBox).Checked = True) then
   case (Sender as TCheckBox).Tag of
@@ -567,7 +621,7 @@ procedure TfVitals.edtLMPChange(Sender: TObject);
 var
   testDT: TDateTime;
 begin
-  if not TryStrToDate(edtLMP.Text,testDT) then
+  if not TryStrToDate(edtLMP.Text, testDT) then
   begin
     edtLMP.Text := '';
     Exit;
@@ -576,9 +630,8 @@ begin
   if ((edtLMP.Text <> '') and (StrToDate(edtLMP.Text) <> dtLMP.Date)) then
   begin
     LMPChangeEvents(False);
-    UpdateLMP;
     dtLMP.Date := StrToDate(edtLMP.Text);
-    UpdateEDD;
+    dtLMPChange(edtLMP);
     LMPChangeEvents(True);
   end;
 end;
@@ -613,7 +666,7 @@ begin
   dtUltraChange(nil);
   dtEmbryo.Format := 'MM/dd/yyyy';
   dtEmbryo.DateTime := Now;
-  spnTransferDay.Value := 5;
+  cbTransferDay.ItemIndex := 1;
   dtEmbryoChange(nil);
   dtOther.Format := 'MM/dd/yyyy';
   dtOther.DateTime := Now;
@@ -635,7 +688,8 @@ begin
         FNote.Add('VITAL SIGNS:');
         for I := 0 to sl.Count - 1 do
         begin
-          if ((I = 0) and (sl[I] = '-1')) then Break;
+          if ((I = 0) and (sl[I] = '-1')) then
+            Break;
 
           if Piece(sl[I],U,2) = 'T' then                                                          // Temperature
           begin
@@ -835,80 +889,34 @@ begin
   Result := TStringList.Create;
   Result.Clear;
 
-  if edtCurrentEDD.Text <> '' then
-    Result.Add('  Current EDD: ' + edtCurrentEDD.Text);
-  if edtFinalGA.Text <> '' then
-    Result.Add('   Current GA: ' + edtFinalGA.Text);
-  if edtEDDLMP.Text <> '' then
-  begin
-    Result.Add('   EDD Criteria of Last Menstrual Period');
-    Result.Add('    Event Date: ' + DateToStr(dtLMP.Date));
-    Result.Add('    Resulted in a gestational age of ' + edtWeekLMP.Text + ' wks and ' + edtDayLMP.Text + ' days.');
-    Result.Add('    The calculated EDD is ' + edtEDDLMP.Text);
-    if ckFinalEDDLMP.Checked then
-      Result[Result.Count - 1] := Result[Result.Count - 1] + ' and is Final.'
-    else
-      Result[Result.Count - 1] := Result[Result.Count - 1] + '.';
-  end;
-  if edtEDDECD.Text <> '' then
-  begin
-    Result.Add('   EDD Criteria of Estimated Conception Date');
-    Result.Add('    Event Date: ' + DateToStr(dtECD.Date));
-    Result.Add('    Resulted in a gestational age of ' + edtWeekECD.Text + ' wks and ' + edtDayECD.Text + ' days.');
-    Result.Add('    The calculated EDD is ' + edtEDDECD.Text);
-    if ckFinalEDDECD.Checked then
-      Result[Result.Count - 1] := Result[Result.Count - 1] + ' and is Final.'
-    else
-      Result[Result.Count - 1] := Result[Result.Count - 1] + '.';
-  end;
-  if edtEDDUltra.Text <> '' then
-  begin
-    Result.Add('   EDD Criteria of Ultrasound');
-    Result.Add('    Event Date: ' + DateToStr(dtUltra.Date));
-    Result.Add('    Resulted in a gestational age of ' + IntToStr(spnWeekUltra.Value) + ' wks and ' +
-                   IntToStr(spnDayUltra.Value) + ' days.');
-    Result.Add('    The calculated EDD is ' + edtEDDUltra.Text);
-    if ckFinalEDDUltra.Checked then
-      Result[Result.Count - 1] := Result[Result.Count - 1] + ' and is Final.'
-    else
-      Result[Result.Count - 1] := Result[Result.Count - 1] + '.';
-  end;
-  if edtEDDEmbryo.Text <> '' then
-  begin
-    Result.Add('   EDD Criteria of Embryo Transfer');
-    Result.Add('    Event Date: ' + IntToStr(spnTransferDay.Value) + '-day embryo transfer conducted on ' +
-                   DateToStr(dtEmbryo.Date));
-    Result.Add('    Resulted in a gestational age of ' + edtWeekEmbryo.Text + ' wks and ' + edtDayEmbryo.Text + ' days.');
-    Result.Add('    The calculated EDD is ' + edtEDDEmbryo.Text);
-    if ckFinalEDDEmbryo.Checked then
-      Result[Result.Count - 1] := Result[Result.Count - 1] + ' and is Final.'
-    else
-      Result[Result.Count - 1] := Result[Result.Count - 1] + '.';
-  end;
-  if ((edtEDDOther.Text <> '') and (lblOther.Text <> 'Enter Other Criteria')) then
-  begin
-    Result.Add('   EDD Criteria of ' + lblOther.Text);
-    Result.Add('    Event Date: ' + DateToStr(dtOther.Date));
-    Result.Add('    Resulted in a gestational age of ' + IntToStr(spnWeekOther.Value) + ' wks and ' +
-                   IntToStr(spnDayOther.Value) + ' days.');
-    Result.Add('    The calculated EDD is ' + edtEDDOther.Text);
-    if ckFinalEDDOther.Checked then
-      Result[Result.Count - 1] := Result[Result.Count - 1] + ' and is Final.'
-    else
-      Result[Result.Count - 1] := Result[Result.Count - 1] + '.';
-  end;
-  if ckFinalEDDUnknown.Checked then
-  begin
-    Result.Add('   It is unknown what methodology was used to determine EDD.');
-    Result.Add('    The calculated EDD is ' + DateToStr(dtEDDUnknown.Date));
-    if ckFinalEDDUnknown.Checked then
-      Result[Result.Count - 1] := Result[Result.Count - 1] + ' and is Final.'
-    else
-      Result[Result.Count - 1] := Result[Result.Count - 1] + '.';
-  end;
+  if edtCurrentEDD.Text = '' then
+    Exit;
 
-  if Result.Count > 0 then
-    Result.Insert(0,'ESTIMATED DELIVERY DATE:');
+  Result.Insert(0,'ESTIMATED DELIVERY DATE:');
+
+  Result.Add('  Final EDD: ' + edtCurrentEDD.Text);
+  if edtEDDGA.Text <> '' then
+    Result.Add('   Gestational Age for Final EDD: ' + edtEDDGA.Text);
+  if edtFinalGA.Text <> '' then
+    Result.Add('   Gestational Age Today: ' + edtFinalGA.Text);
+
+  if ckFinalEDDLMP.Checked then
+    Result.Add('   The current calculation is based on  a Last Menstrual Period of ' + DateToStr(dtLMP.Date) + '.')
+  else if ckFinalEDDECD.Checked then
+    Result.Add('   The current calculation is based on an Estimated Conception Date of ' + DateToStr(dtECD.Date) + '.')
+  else if ckFinalEDDUltra.Checked then
+    Result.Add('   The current calculation is based on an Ultrasound conducted on ' + DateToStr(dtUltra.Date) +
+               ' with an estimated gestational age of ' + IntToStr(spnWeekUltra.Value) + ' weeks and ' +
+               IntToStr(spnDayUltra.Value) + ' days.')
+  else if ckFinalEDDEmbryo.Checked then
+    Result.Add('   The current calculation is based on a ' + cbTransferDay.Text + '-day embryo transfer conducted on ' +
+               DateToStr(dtEmbryo.Date) + '.')
+  else if ckFinalEDDOther.Checked then
+    Result.Add('   The current calculation is based on an EDD Criteria of ' + lblOther.Text +
+               ' with an estimated gestational age of ' + IntToStr(spnWeekOther.Value) + ' weeks and ' +
+               IntToStr(spnDayOther.Value) + ' days.')
+  else if ckFinalEDDUnknown.Checked then
+    Result.Add('   The current methodology for calculation is unknown.');
 end;
 
 function TfVitals.GetCompleteNote;
@@ -955,14 +963,14 @@ begin
   sl := TStringList.Create;
   try
     // EDD
-    sl.Add('EDD^' + lblLMP.Caption + U + DateToStr(dtLMP.Date) + U + edtWeekLMP.Text + 'w' +
-                    edtDayLMP.Text + 'd^' + edtEDDLMP.Text + U + ckBool(ckFinalEDDLMP));
-    sl.Add('EDD^' + lblECD.Caption + U + DateToStr(dtECD.Date) + U + edtWeekECD.Text + 'w' +
-                    edtDayECD.Text + 'd^' + edtEDDECD.Text + U + ckBool(ckFinalEDDECD));
+//    sl.Add('EDD^' + lblLMP.Caption + U + DateToStr(dtLMP.Date) + U + edtWeekLMP.Text + 'w' +
+//                    edtDayLMP.Text + 'd^' + edtEDDLMP.Text + U + ckBool(ckFinalEDDLMP));
+//    sl.Add('EDD^' + lblECD.Caption + U + DateToStr(dtECD.Date) + U + edtWeekECD.Text + 'w' +
+//                    edtDayECD.Text + 'd^' + edtEDDECD.Text + U + ckBool(ckFinalEDDECD));
     sl.Add('EDD^' + lblUltra.Caption + U + DateToStr(dtUltra.Date) + U + spnWeekUltra.Text + 'w' +
                     spnDayUltra.Text + 'd^' + edtEDDUltra.Text + U + ckBool(ckFinalEDDUltra));
-    sl.Add('EDD^' + lblEmbryo.Caption + U + DateToStr(dtEmbryo.Date) + U + edtWeekEmbryo.Text + 'w' +
-                    edtDayEmbryo.Text + 'd^' + edtEDDEmbryo.Text + U + ckBool(ckFinalEDDEmbryo));
+//    sl.Add('EDD^' + lblEmbryo.Caption + U + DateToStr(dtEmbryo.Date) + U + edtWeekEmbryo.Text + 'w' +
+//                    edtDayEmbryo.Text + 'd^' + edtEDDEmbryo.Text + U + ckBool(ckFinalEDDEmbryo));
     sl.Add('EDD^' + lblOther.Text + U + DateToStr(dtOther.Date) + U + spnWeekOther.Text + 'w' +
                     spnDayOther.Text + 'd^' + edtEDDOther.Text + U + ckBool(ckFinalEDDOther));
     sl.Add('EDD^' + lblUnknown.Caption + '^^^' + DateToStr(dtEDDUnknown.Date) + U + ckBool(ckFinalEDDUnknown));

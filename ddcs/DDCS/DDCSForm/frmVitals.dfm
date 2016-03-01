@@ -293,12 +293,11 @@ object fVitals: TfVitals
         670
         370)
       object Label14: TLabel
-        Left = 284
+        Left = 10
         Top = 18
-        Width = 62
+        Width = 140
         Height = 13
-        Anchors = [akTop, akRight]
-        Caption = 'Current GA'
+        Caption = 'Gestational Age Today is'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -306,18 +305,23 @@ object fVitals: TfVitals
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Button1: TButton
-        Left = 10
-        Top = 13
-        Width = 75
-        Height = 25
-        Caption = 'History'
-        TabOrder = 0
-        Visible = False
+      object Label15: TLabel
+        Left = 555
+        Top = 18
+        Width = 16
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'GA'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object StaticText2: TStaticText
-        Left = 456
-        Top = 19
+        Left = 372
+        Top = 18
         Width = 61
         Height = 17
         Anchors = [akTop, akRight]
@@ -328,19 +332,19 @@ object fVitals: TfVitals
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 1
         TabStop = True
       end
       object edtCurrentEDD: TEdit
-        Left = 521
+        Left = 435
         Top = 15
-        Width = 121
+        Width = 103
         Height = 21
         Anchors = [akTop, akRight]
         Color = clSilver
         Enabled = False
         ReadOnly = True
-        TabOrder = 3
+        TabOrder = 2
       end
       object EDDGrid: TGridPanel
         Left = 10
@@ -376,16 +380,6 @@ object fVitals: TfVitals
             Row = 1
           end
           item
-            Column = 2
-            Control = edtWeekLMP
-            Row = 1
-          end
-          item
-            Column = 3
-            Control = edtDayLMP
-            Row = 1
-          end
-          item
             Column = 4
             Control = edtEDDLMP
             Row = 1
@@ -408,16 +402,6 @@ object fVitals: TfVitals
           item
             Column = 1
             Control = dtECD
-            Row = 2
-          end
-          item
-            Column = 2
-            Control = edtWeekECD
-            Row = 2
-          end
-          item
-            Column = 3
-            Control = edtDayECD
             Row = 2
           end
           item
@@ -448,16 +432,6 @@ object fVitals: TfVitals
           item
             Column = 1
             Control = dtEmbryo
-            Row = 4
-          end
-          item
-            Column = 2
-            Control = edtWeekEmbryo
-            Row = 4
-          end
-          item
-            Column = 3
-            Control = edtDayEmbryo
             Row = 4
           end
           item
@@ -584,7 +558,7 @@ object fVitals: TfVitals
           item
             Value = 14.232425607342590000
           end>
-        TabOrder = 4
+        TabOrder = 3
         DesignSize = (
           632
           289)
@@ -599,28 +573,6 @@ object fVitals: TfVitals
           TabOrder = 0
           OnChange = dtLMPChange
         end
-        object edtWeekLMP: TEdit
-          Left = 281
-          Top = 51
-          Width = 49
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          Enabled = False
-          ReadOnly = True
-          TabOrder = 1
-        end
-        object edtDayLMP: TEdit
-          Left = 330
-          Top = 51
-          Width = 48
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          Enabled = False
-          ReadOnly = True
-          TabOrder = 2
-        end
         object edtEDDLMP: TEdit
           Left = 403
           Top = 51
@@ -630,7 +582,7 @@ object fVitals: TfVitals
           Color = clSilver
           Enabled = False
           ReadOnly = True
-          TabOrder = 3
+          TabOrder = 1
         end
         object lblLMP: TLabel
           Left = 0
@@ -673,30 +625,8 @@ object fVitals: TfVitals
           Anchors = []
           Date = 41898.599563668990000000
           Time = 41898.599563668990000000
-          TabOrder = 5
+          TabOrder = 3
           OnChange = dtECDChange
-        end
-        object edtWeekECD: TEdit
-          Left = 281
-          Top = 92
-          Width = 49
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          Enabled = False
-          ReadOnly = True
-          TabOrder = 6
-        end
-        object edtDayECD: TEdit
-          Left = 330
-          Top = 92
-          Width = 48
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          Enabled = False
-          ReadOnly = True
-          TabOrder = 7
         end
         object edtEDDECD: TEdit
           Left = 403
@@ -707,7 +637,7 @@ object fVitals: TfVitals
           Color = clSilver
           Enabled = False
           ReadOnly = True
-          TabOrder = 8
+          TabOrder = 4
         end
         object dtUltra: TDateTimePicker
           Left = 165
@@ -717,7 +647,7 @@ object fVitals: TfVitals
           Anchors = []
           Date = 41898.600130277780000000
           Time = 41898.600130277780000000
-          TabOrder = 10
+          TabOrder = 6
           OnChange = dtUltraChange
         end
         object spnWeekUltra: TSpinEdit
@@ -728,7 +658,7 @@ object fVitals: TfVitals
           Anchors = []
           MaxValue = 0
           MinValue = 0
-          TabOrder = 11
+          TabOrder = 7
           Value = 0
           OnChange = spnWeekUltraChange
         end
@@ -740,7 +670,7 @@ object fVitals: TfVitals
           Anchors = []
           MaxValue = 0
           MinValue = 0
-          TabOrder = 12
+          TabOrder = 8
           Value = 0
           OnChange = spnDayUltraChange
         end
@@ -753,7 +683,7 @@ object fVitals: TfVitals
           Color = clSilver
           Enabled = False
           ReadOnly = True
-          TabOrder = 13
+          TabOrder = 9
         end
         object dtEmbryo: TDateTimePicker
           Left = 165
@@ -763,30 +693,8 @@ object fVitals: TfVitals
           Anchors = []
           Date = 41898.600587314820000000
           Time = 41898.600587314820000000
-          TabOrder = 16
+          TabOrder = 12
           OnChange = dtEmbryoChange
-        end
-        object edtWeekEmbryo: TEdit
-          Left = 281
-          Top = 174
-          Width = 49
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          Enabled = False
-          ReadOnly = True
-          TabOrder = 17
-        end
-        object edtDayEmbryo: TEdit
-          Left = 330
-          Top = 174
-          Width = 48
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          Enabled = False
-          ReadOnly = True
-          TabOrder = 18
         end
         object edtEDDEmbryo: TEdit
           Left = 403
@@ -797,7 +705,7 @@ object fVitals: TfVitals
           Color = clSilver
           Enabled = False
           ReadOnly = True
-          TabOrder = 19
+          TabOrder = 13
         end
         object lblUnknown: TLabel
           Left = 0
@@ -818,7 +726,7 @@ object fVitals: TfVitals
           Anchors = []
           Date = 41898.601366504630000000
           Time = 41898.601366504630000000
-          TabOrder = 22
+          TabOrder = 16
           OnChange = dtOtherChange
         end
         object spnWeekOther: TSpinEdit
@@ -829,7 +737,7 @@ object fVitals: TfVitals
           Anchors = []
           MaxValue = 0
           MinValue = 0
-          TabOrder = 23
+          TabOrder = 17
           Value = 0
           OnChange = spnWeekOtherChange
         end
@@ -841,7 +749,7 @@ object fVitals: TfVitals
           Anchors = []
           MaxValue = 0
           MinValue = 0
-          TabOrder = 24
+          TabOrder = 18
           Value = 0
           OnChange = spnDayOtherChange
         end
@@ -854,7 +762,7 @@ object fVitals: TfVitals
           Color = clSilver
           Enabled = False
           ReadOnly = True
-          TabOrder = 25
+          TabOrder = 19
         end
         object lblOther: TEdit
           Left = 0
@@ -862,8 +770,10 @@ object fVitals: TfVitals
           Width = 149
           Height = 21
           Anchors = []
-          TabOrder = 21
+          TabOrder = 15
           Text = 'Enter Other Criteria'
+          OnChange = lblOtherChange
+          OnExit = lblOtherExit
           OnMouseEnter = lblOtherMouseEnter
         end
         object Label9: TLabel
@@ -955,7 +865,7 @@ object fVitals: TfVitals
           Height = 17
           Hint = 'IsFinal'
           Anchors = []
-          TabOrder = 4
+          TabOrder = 2
           OnClick = IsFinalEDDClick
         end
         object ckFinalEDDECD: TCheckBox
@@ -966,7 +876,7 @@ object fVitals: TfVitals
           Height = 17
           Hint = 'IsFinal'
           Anchors = []
-          TabOrder = 9
+          TabOrder = 5
           OnClick = IsFinalEDDClick
         end
         object ckFinalEDDUltra: TCheckBox
@@ -977,7 +887,7 @@ object fVitals: TfVitals
           Height = 17
           Hint = 'IsFinal'
           Anchors = []
-          TabOrder = 14
+          TabOrder = 10
           OnClick = IsFinalEDDClick
         end
         object ckFinalEDDEmbryo: TCheckBox
@@ -988,7 +898,7 @@ object fVitals: TfVitals
           Height = 17
           Hint = 'IsFinal'
           Anchors = []
-          TabOrder = 20
+          TabOrder = 14
           OnClick = IsFinalEDDClick
         end
         object ckFinalEDDOther: TCheckBox
@@ -999,7 +909,7 @@ object fVitals: TfVitals
           Height = 17
           Hint = 'IsFinal'
           Anchors = []
-          TabOrder = 26
+          TabOrder = 20
           OnClick = IsFinalEDDClick
         end
         object ckFinalEDDUnknown: TCheckBox
@@ -1010,7 +920,7 @@ object fVitals: TfVitals
           Height = 17
           Hint = 'IsFinal'
           Anchors = []
-          TabOrder = 28
+          TabOrder = 22
           OnClick = IsFinalEDDClick
         end
         object dtEDDUnknown: TDateTimePicker
@@ -1021,7 +931,7 @@ object fVitals: TfVitals
           Anchors = []
           Date = 41898.630100775470000000
           Time = 41898.630100775470000000
-          TabOrder = 27
+          TabOrder = 21
           OnChange = dtEDDUnknownChange
         end
         object Panel1: TPanel
@@ -1031,7 +941,7 @@ object fVitals: TfVitals
           Height = 41
           Anchors = []
           BevelOuter = bvNone
-          TabOrder = 15
+          TabOrder = 11
           object lblEmbryo: TLabel
             Left = 0
             Top = 0
@@ -1043,35 +953,49 @@ object fVitals: TfVitals
             ExplicitWidth = 80
             ExplicitHeight = 13
           end
-          object spnTransferDay: TSpinEdit
-            Left = 87
+          object cbTransferDay: TComboBox
+            Left = 89
             Top = 10
-            Width = 63
-            Height = 22
-            Enabled = False
-            Increment = 2
-            MaxValue = 5
-            MinValue = 3
+            Width = 60
+            Height = 21
+            Style = csDropDownList
+            DropDownCount = 3
             TabOrder = 0
-            Value = 3
             OnChange = spnTransferDayChange
+            Items.Strings = (
+              '3'
+              '3-5'
+              '5')
           end
         end
       end
       object edtFinalGA: TEdit
-        Left = 355
+        Left = 159
+        Top = 15
+        Width = 65
+        Height = 21
+        Color = clSilver
+        Enabled = False
+        TabOrder = 0
+      end
+      object edtEDDGA: TEdit
+        Left = 577
         Top = 15
         Width = 65
         Height = 21
         Anchors = [akTop, akRight]
         Color = clSilver
         Enabled = False
-        TabOrder = 1
+        TabOrder = 4
       end
     end
     object PageLMP: TTabSheet
       Caption = 'Menstrual History'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label7: TLabel
         Left = 278
         Top = 137
@@ -1096,7 +1020,7 @@ object fVitals: TfVitals
       object SpeedButton1: TSpeedButton
         Tag = 2
         Left = 201
-        Top = 273
+        Top = 274
         Width = 25
         Height = 25
         Hint = 'Pick Date From Calendar'
@@ -1150,7 +1074,7 @@ object fVitals: TfVitals
       object sbtnGetDate1: TSpeedButton
         Tag = 1
         Left = 201
-        Top = 53
+        Top = 54
         Width = 25
         Height = 25
         Hint = 'Pick Date From Calendar'
@@ -1179,15 +1103,6 @@ object fVitals: TfVitals
         Width = 43
         Height = 13
         Caption = 'Menses: '
-      end
-      object btnHistory: TButton
-        Left = 15
-        Top = 12
-        Width = 75
-        Height = 25
-        Caption = 'History'
-        TabOrder = 15
-        Visible = False
       end
       object edtContraceptionType: TComboBox
         Left = 278

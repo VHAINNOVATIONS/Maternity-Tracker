@@ -40,10 +40,10 @@
     <Transaction>2014/09/18 13:40:04.000.052,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\AmethystKamri.vsf</Transaction>
     <Transaction>2014/09/18 13:40:04.000.458,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\SlateClassico.vsf</Transaction>
     <Transaction>2014/09/18 13:40:04.000.348,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\MetropolisUIDark.vsf</Transaction>
-    <Transaction>2014/09/18 13:40:04.000.152,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\CobaltXEMedia.vsf</Transaction>
     <Transaction>2014/09/18 13:40:04.000.496,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\TurquoiseGray.vsf</Transaction>
-    <Transaction>2014/09/18 13:40:04.000.295,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\Luna.vsf</Transaction>
     <Transaction>2014/09/18 13:40:04.000.385,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\Obsidian.vsf</Transaction>
+    <Transaction>2014/09/18 13:40:04.000.295,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\Luna.vsf</Transaction>
+    <Transaction>2014/09/18 13:40:04.000.152,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\CobaltXEMedia.vsf</Transaction>
     <Transaction>2014/09/18 13:40:04.000.168,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\CyanDusk.vsf</Transaction>
     <Transaction>2014/09/18 13:40:04.000.276,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\Light.vsf</Transaction>
     <Transaction>2014/09/18 14:32:33.000.699,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\SmokeyQuartzKamri.vsf=</Transaction>
@@ -51,9 +51,9 @@
     <Transaction>2014/09/18 14:32:33.000.681,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\IcebergClassico.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.713,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\CyanDusk.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.657,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\AquaGraphite.vsf=</Transaction>
+    <Transaction>2014/09/18 14:32:33.000.650,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\CobaltXEMedia.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.720,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\Obsidian.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.695,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\MetropolisUIBlack.vsf=</Transaction>
-    <Transaction>2014/09/18 14:32:33.000.650,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\CobaltXEMedia.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.745,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\GoldenGraphite.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.709,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\Amakrits.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.732,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\MetropolisUIBlue.vsf=</Transaction>
@@ -63,8 +63,8 @@
     <Transaction>2014/09/18 14:32:33.000.716,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\AmethystKamri.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.749,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\Silver.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.736,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\Light.vsf=</Transaction>
-    <Transaction>2014/09/18 14:32:33.000.676,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\SlateClassico.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.687,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\CyanNight.vsf=</Transaction>
+    <Transaction>2014/09/18 14:32:33.000.676,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\SlateClassico.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.703,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\CharcoalDarkSlate.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.691,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\MetropolisUIGreen.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.724,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\SapphireKamri.vsf=</Transaction>
@@ -73,8 +73,8 @@
     <Transaction>2014/09/18 14:32:33.000.752,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\Carbon.vsf=</Transaction>
     <Transaction>2014/09/18 14:32:33.000.666,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\RubyGraphite.vsf=</Transaction>
     <Transaction>2014/09/18 14:40:42.000.428,=C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\EmeraldLightSlate.vsf</Transaction>
-    <Transaction>2014/09/18 14:54:11.000.574,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\EmeraldLightSlate.vsf=</Transaction>
     <Transaction>2014/09/18 14:54:11.000.589,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\TurquoiseGray.vsf=</Transaction>
+    <Transaction>2014/09/18 14:54:11.000.574,C:\Program Files (x86)\Embarcadero\RAD Studio\11.0\Redist\styles\vcl\EmeraldLightSlate.vsf=</Transaction>
     <Transaction>2014/09/19 11:24:14.000.907,=C:\Users\DSSDeveloper\Desktop\oCNTFramework\oCNTFramework\OBHP oCNT\Vcl.Styles.ColorTabs.pas</Transaction>
     <Transaction>2014/09/19 11:27:48.000.964,C:\Users\DSSDeveloper\Desktop\oCNTFramework\oCNTFramework\OBHP oCNT\Vcl.Styles.ColorTabs.pas=</Transaction>
     <Transaction>2014/09/19 12:08:43.000.173,=C:\Users\DSSDeveloper\Desktop\oCNTFramework\oCNTFramework\OBHP oCNT\Vcl.Styles.ColorTabs.pas</Transaction>
