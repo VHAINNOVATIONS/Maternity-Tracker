@@ -97,9 +97,7 @@ type
     procedure SetVitals(Page: TTabSheet);
     procedure SetDisableSplash(const Value: Boolean);
     procedure SetNoteCollection(const Value: TDDCSNoteCollection);
-    //TCheckListbox
-    procedure CheckListBoxGetDialogDBClick(Sender: TObject);
-    //TListBox
+    //TCustomListBox   (TListBox and TCheckListBox)
     procedure ListBoxGetDialogDBClick(Sender: TObject);
     //TButton
     procedure ButtonGetDialogClick(Sender: TObject);
@@ -675,75 +673,40 @@ end;
 
 {$REGION 'Helpers'}
 
-procedure TDDCSForm.CheckListBoxGetDialogDBClick(Sender: TObject);
-var
-  ckBox: TCheckListBox;
-  Note: TDDCSNoteItem;
-  sl: TStringList;
-begin
-  inherited;
-
-  if not (Sender is TCheckListBox) then
-    Exit;
-  ckBox := TCheckListBox(Sender);
-  if ckBox.ItemIndex = -1 then
-    Exit;
-
-  Note := RCollection^.GetNoteItem(Self);
-  if Note = nil then
-    Exit;
-
-  sl := TStringList.Create;
-  try
-    try
-      sl.Text := DisplayDialog(@RPCBrokerV, Note.Configuration[ckBox.ItemIndex], False);
-    except
-    end;
-
-    ckBox.Checked[ckBox.ItemIndex] := True;
-
-    if Note.DialogReturn is TMemo then
-      TMemo(Note.DialogReturn).Lines.AddStrings(sl)
-    else
-      if Note.DialogReturn is TRichEdit then
-        TRichEdit(Note.DialogReturn).Lines.AddStrings(sl);
-  finally
-    sl.Free;
-  end;
-end;
+// What's a better way to use these click actions? If we use interceptor then the noteitem get seems a bit...off
+// Intercept TWinControl Click?
 
 procedure TDDCSForm.ListBoxGetDialogDBClick(Sender: TObject);
 var
-  lsBox: TListBox;
-  Note: TDDCSNoteItem;
+  ls: TCustomListBox;
+  nItem: TDDCSNoteItem;
   sl: TStringList;
 begin
   inherited;
 
-  if not (Sender is TListBox) then
-    Exit;
-  lsBox := TListBox(Sender);
-  if lsBox.ItemIndex = -1 then
+  if not Sender.InheritsFrom(TCustomListBox) then
     Exit;
 
-  Note := RCollection^.GetNoteItem(Self);
-  if Note = nil then
+  ls := TCustomListBox(Sender);
+  if ls.ItemIndex = -1 then
     Exit;
-  if Note.Configuration.Count < 1 then
+
+  nItem := FReportCollection.GetNoteItem(TWinControl(Sender));
+  if nItem = nil then
     Exit;
 
   sl := TStringList.Create;
   try
     try
-      sl.Text := DisplayDialog(@RPCBrokerV, Note.Configuration[lsBox.ItemIndex], False);
+      sl.Text := DisplayDialog(@RPCBrokerV, nItem.Configuration[ls.ItemIndex], False);
+
+      if Sender.InheritsFrom(TCheckListBox) then
+        TCheckListBox(Sender).Checked[ls.ItemIndex] := True;
+
+      if ((nItem.DialogReturn <> nil) and (nItem.DialogReturn.InheritsFrom(TCustomMemo))) then
+        TCustomMemo(nItem.DialogReturn).Lines.AddStrings(sl);
     except
     end;
-
-    if Note.DialogReturn is TMemo then
-      TMemo(Note.DialogReturn).Lines.AddStrings(sl)
-    else
-      if Note.DialogReturn is TRichEdit then
-        TRichEdit(Note.DialogReturn).Lines.AddStrings(sl);
   finally
     sl.Free;
   end;
@@ -751,30 +714,25 @@ end;
 
 procedure TDDCSForm.ButtonGetDialogClick(Sender: TObject);
 var
-  Note: TDDCSNoteItem;
+  nItem: TDDCSNoteItem;
   sl: TStringList;
 begin
   inherited;
 
-  if not (Sender is TButton) then
+  if not Sender.InheritsFrom(TButton) then
     Exit;
 
-  Note := RCollection^.GetNoteItem(Self);
-  if Note = nil then
-    Exit;
-  if Note.Configuration.Count < 1 then
+  nItem := FReportCollection.GetNoteItem(TWinControl(Sender));
+  if nItem = nil then
     Exit;
 
   sl := TStringList.Create;
   try
     try
-      sl.Text := DisplayDialog(@RPCBrokerV, Note.Configuration[0], False);
+      sl.Text := DisplayDialog(@RPCBrokerV, nItem.Configuration[0], False);
 
-      if Note.DialogReturn is TMemo then
-        TMemo(Note.DialogReturn).Lines.AddStrings(sl)
-      else
-        if Note.DialogReturn is TRichEdit then
-          TRichEdit(Note.DialogReturn).Lines.AddStrings(sl);
+      if ((nItem.DialogReturn <> nil) and (nItem.DialogReturn.InheritsFrom(TCustomMemo))) then
+        TCustomMemo(nItem.DialogReturn).Lines.AddStrings(sl);
     except
     end;
   finally
@@ -784,23 +742,20 @@ end;
 
 procedure TDDCSForm.cbAutoWidth(Sender: TObject);
 var
-  cbBox: TComboBox;
+  cb: TCustomComboBox;
   cbLength,I: Integer;
 begin
-  if not (Sender is TComboBox) then
+  if not Sender.InheritsFrom(TCustomComboBox) then
     Exit;
 
-  cbBox := TComboBox(Sender);
+  cb := TCustomComboBox(Sender);
 
-  cblength := cbBox.Width;
-  for I := 0 to cbBox.Items.Count - 1 do
-    if cbBox.Canvas.TextWidth(cbBox.Items[I]) > cblength then
-      cblength := cbBox.Canvas.TextWidth(cbBox.Items[I]);
+  cblength := cb.Width;
+  for I := 0 to cb.Items.Count - 1 do
+    if cb.Canvas.TextWidth(cb.Items[I]) > cblength then
+      cblength := cb.Canvas.TextWidth(cb.Items[I]) + GetSystemMetrics(SM_CXVSCROLL);
 
-  if cbBox.Items.Count > cbBox.DropDownCount then
-    cblength := cblength + GetSystemMetrics(SM_CXVSCROLL);
-
-  SendMessage(cbBox.Handle, CB_SETDROPPEDWIDTH, (cblength + 7), 0);
+  SendMessage(cb.Handle, CB_SETDROPPEDWIDTH, (cblength + 7), 0);
 end;
 
 {$ENDREGION}
@@ -835,10 +790,10 @@ procedure TDDCSForm.Notification(AComponent: TComponent; Operation: TOperation);
 var
   nItem: TDDCSNoteItem;
 begin
-  inherited Notification(AComponent, Operation);
+  inherited;
 
   if (FReportCollection = nil) or not (AComponent is TWinControl) or
-     (AComponent = Self) then
+    (AComponent = Self) then
     Exit;
 
   if ((csDesigning in ComponentState) and not (csLoading in ComponentState)) then
@@ -883,11 +838,11 @@ begin
 
     if Assigned(nItem.DialogReturn) then
     begin
-      if wControl is TCheckListBox then
-        TCheckListBox(wControl).OnDblClick := CheckListBoxGetDialogDBClick
-      else if wControl is TListBox then
+      if wControl.InheritsFrom(TCheckListBox) then
+        TCheckListBox(wControl).OnDblClick := ListBoxGetDialogDBClick
+      else if wControl.InheritsFrom(TListBox) then
         TListBox(wControl).OnDblClick := ListBoxGetDialogDBClick
-      else if wControl is TButton then
+      else if wControl.InheritsFrom(TButton) then
         TButton(wControl).OnClick := ButtonGetDialogClick;
     end;
   end;
@@ -1076,8 +1031,6 @@ begin
   Tasks := TStringList.Create;
   FReturnList := TStringList.Create;
 
-  FReportCollection := TDDCSNoteCollection.Create(Self, TDDCSNoteItem);
-
   FControlPanel := TDDCSHeaderControl.Create(Self);
   FControlPanel.Parent := Self;
 
@@ -1085,6 +1038,8 @@ begin
   FAutoSaveTimer.Interval := 60000;
   FAutoSaveTimer.OnTimer := OnAutoSaveTimer;
 
+  FReportCollection := TDDCSNoteCollection.Create(Self, TDDCSNoteItem);         // Create last to prevent adding ReportCollection Items we shouldn't have
+                                                                                // - components that are part of TDDCSForm
   if not (csDesigning in ComponentState) then
   begin
     TForm(AOwner).AlphaBlend := True;
@@ -1249,13 +1204,14 @@ begin
                   nItem.HideFromNote := StrToBool(vValue);
               end;
 
+
               if Assigned(nItem.DialogReturn) then
               begin
-                if wControl is TCheckListBox then
-                  TCheckListBox(wControl).OnDblClick := CheckListBoxGetDialogDBClick
-                else if wControl is TListBox then
+                if wControl.InheritsFrom(TCheckListBox) then
+                  TCheckListBox(wControl).OnDblClick := ListBoxGetDialogDBClick
+                else if wControl.InheritsFrom(TListBox) then
                   TListBox(wControl).OnDblClick := ListBoxGetDialogDBClick
-                else if wControl is TButton then
+                else if wControl.InheritsFrom(TButton) then
                   TButton(wControl).OnClick := ButtonGetDialogClick;
               end;
             end;
@@ -1346,6 +1302,7 @@ begin
   Tasks.Free;
   FReturnList.Free;
   SetLength(TabSeen, 0);
+  FReportCollection.Free;
 
   inherited;
 end;

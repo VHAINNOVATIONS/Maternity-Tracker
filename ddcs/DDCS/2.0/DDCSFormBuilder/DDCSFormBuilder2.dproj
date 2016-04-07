@@ -98,7 +98,7 @@
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
         <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
         <VerInfo_Keys>CompanyName=Document Storage Systems Inc.;FileDescription={A5B2B08E-7045-4C77-9233-32B52C6E5B25};FileVersion=2.0.0.0;InternalName=DDCSFormBuilder.dll;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.0.0.0;Comments=</VerInfo_Keys>
-        <DCC_ExeOutput>C:\Users\DSSDeveloper\Desktop\Projects\_output\v2\</DCC_ExeOutput>
+        <DCC_ExeOutput>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_output\v2\</DCC_ExeOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_DLL>true</VerInfo_DLL>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>

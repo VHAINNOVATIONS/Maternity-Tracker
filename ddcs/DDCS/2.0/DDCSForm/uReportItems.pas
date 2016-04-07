@@ -82,10 +82,6 @@ type
     function Insert(Index: Integer): TDDCSNoteItem;
     property Items[Index: Integer]: TDDCSNoteItem read GetItem write SetItem;
   end;
-  PCollection = ^TDDCSNoteCollection;
-
-var
-  RCollection: PCollection;
 
 implementation
 
