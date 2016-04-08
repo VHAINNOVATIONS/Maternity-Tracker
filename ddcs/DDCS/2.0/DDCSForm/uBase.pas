@@ -91,7 +91,6 @@ type
     procedure KeyPress(var Key: Char); override;
     procedure WMAfterCreate(var Message: TMessage); message WM_AFTER_CREATE;
     procedure WMShowSplash(var Message: TMessage); message WM_SHOW_SPLASH;
-    procedure WMConfigDev(var Message: TMessage); message WM_CONFIG_DEV;
     procedure WMSave(var Message: TMessage); message WM_SAVE;
     // Properties --------------------------------------------------------------
     procedure SetVitals(Page: TTabSheet);
@@ -160,7 +159,6 @@ begin
   RegisterClass(TDDCSNoteCollection);
   RegisterClass(TDDCSNoteItem);
   RegisterClass(TDDCSHeaderControl);
-  RegisterNoIcon([TDDCSVitals]);
   RegisterComponents('DDCSForm', [TDDCSForm]);
 end;
 
@@ -620,13 +618,6 @@ end;
 
 // Private ---------------------------------------------------------------------
 
-procedure TDDCSForm.WMConfigDev(var Message: TMessage);
-begin
-  inherited;
-
-  DDCSFormConfig := TDDCSFormConfig.Create(Self);
-end;
-
 procedure TDDCSForm.WMSave(var Message: TMessage);
 begin
   inherited;
@@ -636,10 +627,15 @@ end;
 
 procedure TDDCSForm.SetVitals(Page: TTabSheet);
 begin
-  if (Page <> nil) and (Page.PageControl <> Self) then
+  if ((Page <> nil) and ((Page.PageControl <> nil) and (Page.PageControl <> Self))) then
+    Exit;
+  if Page = FVitalsPage then
     Exit;
 
   FVitalsPage := Page;
+
+  if csLoading in ComponentState then
+    Exit;
 
   if Assigned(FVitalsForm) then
     FreeAndNil(FVitalsForm);
@@ -821,8 +817,6 @@ begin
         SetUpControl(TWinControl(wControl.Controls[I]));
   end else
   begin
-    DDCSFormConfig.FObjects.AddObject(wControl.Name, wControl);
-
     if wControl is TComboBox then
     begin
       wComboBox := TComboBox(wControl);
@@ -1095,7 +1089,7 @@ begin
     end;
   end;
 
-  DDCSFormConfig := TDDCSFormConfig.Create(Self);
+  DDCSFormConfig := TDDCSFormConfig.Create(Owner, Self);
 
   // We're going through all of the component's controls rather than just the report collection
   // because we're adding the TWinControls to the Configuration form and adding click methods to

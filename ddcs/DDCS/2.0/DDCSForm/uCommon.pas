@@ -32,8 +32,7 @@ const
   VALID_MESS      = 'Some required elements are incomplete and must be completed in order to generate the note.';
   WM_AFTER_CREATE = WM_USER + 260;
   WM_SHOW_SPLASH  = WM_USER + 270;
-  WM_CONFIG_DEV   = WM_USER + 280;
-  WM_SAVE         = WM_USER + 290;
+  WM_SAVE         = WM_USER + 280;
 
 type
   TScreenReader = class(TObject)
@@ -234,7 +233,7 @@ end;
 
 function ShowDialog(AOwner: TComponent; const Msg: string; DlgType: TMsgDlgType): Integer;
 var
-  pForm: TForm;
+  pForm: TCustomForm;
   iButtons: TMsgDlgButtons;
 
   // Confirmation
@@ -243,11 +242,14 @@ var
   //  Yes = 6
 
 begin
-  if AOwner is TForm then
-    pForm := TForm(AOwner)
-  else
-    if ((AOwner.Owner <> nil) and (AOwner.Owner is TForm)) then
-      pForm := TForm(AOwner.Owner);
+  pForm := nil;
+  if AOwner <> nil then
+  begin
+    if AOwner.InheritsFrom(TCustomForm) then
+      pForm := TCustomForm(AOwner)
+    else if ((AOwner.Owner <> nil) and (AOwner.Owner.InheritsFrom(TCustomForm))) then
+      pForm := TCustomForm(AOwner.Owner);
+  end;
 
   Result := -1;
 
@@ -258,10 +260,10 @@ begin
 
   with CreateMessageDialog(Msg, DlgType, iButtons) do
   try
-    if ((AOwner <> nil) and (AOwner is TCustomForm)) then
+    if pForm <> nil then
     begin
-      Left := TForm(AOwner).Left + (TForm(AOwner).Width - Width) div 2;
-      Top := TForm(AOwner).Top + (TForm(AOwner).Height - Height) div 2;
+      Left := pForm.Left + (pForm.Width - Width) div 2;
+      Top := pForm.Top + (pForm.Height - Height) div 2;
     end;
 
     ShowModal;

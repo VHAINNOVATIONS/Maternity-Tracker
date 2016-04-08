@@ -103,7 +103,7 @@ end;
 
 procedure TDDCSNoteItem.SetDialogReturn(Value: TWinControl);
 begin
-  if Value is TMemo or (Value is TRichEdit) then
+  if Value.InheritsFrom(TCustomMemo) then
     FReturn := Value
   else
     FReturn := nil;
@@ -574,7 +574,7 @@ begin
 
   for I := 0 to Count - 1 do
   begin
-    if Items[I].FObject = Value then
+    if Items[I].OwningObject = Value then
     begin
       Result := TDDCSNoteItem(Items[I]);
       Exit;

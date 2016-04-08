@@ -34,7 +34,7 @@ object DDCSFormConfig: TDDCSFormConfig
       DesignSize = (
         812
         516)
-      object lsvConfig: TListView
+      object lvConfig: TListView
         Left = 1
         Top = 3
         Width = 320
@@ -62,7 +62,7 @@ object DDCSFormConfig: TDDCSFormConfig
         ViewStyle = vsReport
         OnColumnClick = ListColumnClick
         OnCompare = ListCompare
-        OnDblClick = lsvConfigDblClick
+        OnDblClick = lvConfigDblClick
       end
       object btnUpdateConfig: TBitBtn
         Left = 1
@@ -109,7 +109,7 @@ object DDCSFormConfig: TDDCSFormConfig
       DesignSize = (
         812
         516)
-      object lvsReportItems: TListView
+      object lvReportItems: TListView
         Left = 1
         Top = 3
         Width = 399
@@ -147,7 +147,7 @@ object DDCSFormConfig: TDDCSFormConfig
         ViewStyle = vsReport
         OnColumnClick = ListColumnClick
         OnCompare = ListCompare
-        OnDblClick = lvsReportItemsDblClick
+        OnDblClick = lvReportItemsDblClick
       end
       object pnlReport: TPanel
         Left = 406
@@ -157,7 +157,6 @@ object DDCSFormConfig: TDDCSFormConfig
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 1
-        Visible = False
         object lbReportNotice: TLabel
           AlignWithMargins = True
           Left = 3
@@ -382,7 +381,7 @@ object DDCSFormConfig: TDDCSFormConfig
         TabOrder = 1
         OnDblClick = lsDialogDblClick
       end
-      object lsvDialogComponent: TListView
+      object lvDialogComponent: TListView
         Left = 192
         Top = 3
         Width = 234
@@ -406,7 +405,7 @@ object DDCSFormConfig: TDDCSFormConfig
         ViewStyle = vsReport
         OnColumnClick = ListColumnClick
         OnCompare = ListCompare
-        OnDblClick = lsvDialogComponentDblClick
+        OnDblClick = lvDialogComponentDblClick
       end
       object btnDialogShow: TBitBtn
         Left = 1
@@ -468,9 +467,6 @@ object DDCSFormConfig: TDDCSFormConfig
       NumGlyphs = 2
       TabOrder = 0
       OnClick = btnCancelClick
-      ExplicitLeft = 4
-      ExplicitTop = 35
-      ExplicitWidth = 75
     end
     object btnSave: TBitBtn
       Left = 0
@@ -500,9 +496,6 @@ object DDCSFormConfig: TDDCSFormConfig
       NumGlyphs = 2
       TabOrder = 1
       OnClick = btnSaveClick
-      ExplicitLeft = 4
-      ExplicitTop = 4
-      ExplicitWidth = 75
     end
     object btnDelete: TBitBtn
       Left = 0
@@ -588,8 +581,6 @@ object DDCSFormConfig: TDDCSFormConfig
       NumGlyphs = 2
       TabOrder = 4
       OnClick = btnCloseClick
-      ExplicitTop = 512
-      ExplicitWidth = 75
     end
   end
 end

@@ -23,16 +23,16 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Samples.Spin,
-  uBase, uCommon, uExtndComBroker;
+  uBase, uCommon, uReportItems, uExtndComBroker;
 
 type
   TDDCSFormConfig = class(TForm)
     Tabs: TPageControl;
     tabConfig: TTabSheet;
     tabDialog: TTabSheet;
-    lsvConfig: TListView;
+    lvConfig: TListView;
     tabReport: TTabSheet;
-    lvsReportItems: TListView;
+    lvReportItems: TListView;
     pnlReport: TPanel;
     ckHideFromNote: TCheckBox;
     ckRequired: TCheckBox;
@@ -40,7 +40,7 @@ type
     btnReloadDialogs: TBitBtn;
     btnUpdateDialogs: TBitBtn;
     lsDialog: TListBox;
-    lsvDialogComponent: TListView;
+    lvDialogComponent: TListView;
     btnDialogShow: TBitBtn;
     btnUpdateConfig: TBitBtn;
     pnlCommand: TPanel;
@@ -69,13 +69,13 @@ type
     procedure ListCompare(Sender: TObject; Item1, Item2: TListItem;
       Data: Integer; var Compare: Integer);
     // Configuration -----------------------------------------------------------
-    procedure lsvConfigDblClick(Sender: TObject);
+    procedure lvConfigDblClick(Sender: TObject);
     procedure btnUpdateConfigClick(Sender: TObject);
     // Report Items ------------------------------------------------------------
-    procedure lvsReportItemsDblClick(Sender: TObject);
+    procedure lvReportItemsDblClick(Sender: TObject);
     // Dialogs -----------------------------------------------------------------
     procedure lsDialogDblClick(Sender: TObject);
-    procedure lsvDialogComponentDblClick(Sender: TObject);
+    procedure lvDialogComponentDblClick(Sender: TObject);
     procedure ReloadDialogs(Sender: TObject);
     procedure btnDialogShowClick(Sender: TObject);
     procedure btnUpdateDialogsClick(Sender: TObject);
@@ -86,14 +86,16 @@ type
     procedure btnDeleteClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
   private
+    FDDCSForm: TDDCSForm;
+    FObjects: TStringList;
     Descending: Boolean;
     SortedColumn: Integer;
     procedure ClearConfigurationEditor;
     procedure ClearReportItemEditor;
+    procedure ClearReportItemInput;
     procedure ClearDialogEditor;
   public
-    FObjects: TStringList;
-    constructor Create(AOwner: TComponent); override;
+    constructor Create(AOwner: TComponent; DDCSForm: TDDCSForm); overload;
     destructor Destroy; override;
   end;
 
@@ -139,9 +141,9 @@ end;
 
 {$REGION 'Configuration'}
 
-procedure TDDCSFormConfig.lsvConfigDblClick(Sender: TObject);
+procedure TDDCSFormConfig.lvConfigDblClick(Sender: TObject);
 begin
-  if lsvConfig.ItemIndex < 0 then
+  if lvConfig.ItemIndex < 0 then
     Exit;
 end;
 
@@ -156,9 +158,9 @@ begin
   sl := TStringList.Create;
   try
     // page# ^ control_name ^ class
-    for I := 0 to lsvConfig.Items.Count - 1 do
-      sl.Add(lsvConfig.Items[I].SubItems.Strings[1] + U + lsvConfig.Items[I].Caption + U +
-             lsvConfig.Items[I].SubItems.Strings[0]);
+    for I := 0 to lvConfig.Items.Count - 1 do
+      sl.Add(lvConfig.Items[I].SubItems[1] + U + lvConfig.Items[I].Caption + U + lvConfig.Items[I].SubItems[0]);
+
     try
       RPCBrokerV.SetContext(MENU_CONTEXT);
       RPCBrokerV.CallV('DSIO DDCS IMPORT FORM', [RPCBrokerV.DDCSInterface, sl]);
@@ -175,9 +177,9 @@ end;
 
 {$REGION 'Report Items'}
 
-procedure TDDCSFormConfig.lvsReportItemsDblClick(Sender: TObject);
+procedure TDDCSFormConfig.lvReportItemsDblClick(Sender: TObject);
 begin
-  if lvsReportItems.ItemIndex < 0 then
+  if lvReportItems.ItemIndex < 0 then
     Exit;
 end;
 
@@ -191,9 +193,9 @@ begin
     Exit;
 end;
 
-procedure TDDCSFormConfig.lsvDialogComponentDblClick(Sender: TObject);
+procedure TDDCSFormConfig.lvDialogComponentDblClick(Sender: TObject);
 begin
-  if lsvDialogComponent.ItemIndex < 0 then
+  if lvDialogComponent.ItemIndex < 0 then
     Exit;
 end;
 
@@ -210,7 +212,7 @@ begin
   if lsDialog.ItemIndex < 0 then
     Exit;
 
-  dlgName := '||' + lsDialog.Items.Strings[lsDialog.ItemIndex];
+  dlgName := '||' + lsDialog.Items[lsDialog.ItemIndex];
 
   if DialogDLL <> 0 then
   begin
@@ -295,37 +297,50 @@ end;
 // Private ---------------------------------------------------------------------
 
 procedure TDDCSFormConfig.ClearConfigurationEditor;
-var
-  I: Integer;
 begin
-  for I := 0 to lsvConfig.Items.Count - 1 do
-    lsvConfig.Items.Item[I].Selected := False;
+  lvConfig.SortType := stNone;
+  lvConfig.Clear;
 end;
 
 procedure TDDCSFormConfig.ClearReportItemEditor;
-var
-  I: Integer;
 begin
-  for I := 0 to lsvConfig.Items.Count - 1 do
-    lsvConfig.Items.Item[I].Selected := False;
+  lvReportItems.SortType := stNone;
+  lvReportItems.Clear;
+  ClearReportItemInput;
+end;
+
+procedure TDDCSFormConfig.ClearReportItemInput;
+begin
+  spOrder.Value := 0;
+  edTitle.Clear;
+  edPrefix.Clear;
+  edSuffix.Clear;
+  ckDoNotSpace.Checked := False;
+  ckHideFromNote.Checked := False;
+  ckDoNotSave.Checked := False;
+  ckRequired.Checked := False;
+  cbDialogReturn.ItemIndex := -1;
 end;
 
 procedure TDDCSFormConfig.ClearDialogEditor;
 var
   I: Integer;
 begin
-  for I := 0 to lsDialog.Items.Count - 1 do
+  lsDialog.ItemIndex := -1;
+  for I := 0 to lsDialog.Count - 1 do
     lsDialog.Selected[I] := False;
 
-  lsvDialogComponent.Clear;
+  lvDialogComponent.SortType := stNone;
+  lvDialogComponent.Clear;
 end;
 
 // Public ----------------------------------------------------------------------
 
-constructor TDDCSFormConfig.Create(AOwner: TComponent);
+constructor TDDCSFormConfig.Create(AOwner: TComponent; DDCSForm: TDDCSForm);
 begin
-  inherited;
+  inherited Create(AOwner);
 
+  FDDCSForm := DDCSForm;
   FObjects := TStringList.Create;
 end;
 
@@ -338,13 +353,17 @@ end;
 
 procedure TDDCSFormConfig.FormShow(Sender: TObject);
 var
-  I: Integer;
+  I,J: Integer;
   wControl: TWinControl;
   lvItem: TListItem;
+  nItem: TDDCSNoteItem;
 
-  function GetPage(wControl: TWinControl): string;
+  function BoolAsStr(b: Boolean): string;
   begin
-    Result := '1';  // Need to Replace with a look for TTabSheet and get index + 1
+    Result := BoolToStr(b);
+    if Result = '-1' then
+      Result := 'True'
+    else Result := 'False';
   end;
 
 begin
@@ -354,15 +373,29 @@ begin
 
   Tabs.ActivePageIndex := 0;
 
-  for I := 0 to FObjects.Count - 1 do
-  begin
-    wControl := TWinControl(FObjects.Objects[I]);
+  for I := 0 to FDDCSForm.PageCount - 1 do
+    for J := 0 to FDDCSForm.Pages[I].ControlCount - 1 do
+      if FDDCSForm.Pages[I].Controls[J] is TWinControl then
+      begin
+        wControl := TWinControl(FDDCSForm.Pages[I].Controls[J]);
 
-    lvItem := lsvConfig.Items.Add;
-    lvItem.Caption := wControl.Name;
-    lvItem.SubItems.Add(wControl.ClassName);
-    lvItem.SubItems.Add(GetPage(wControl));
-  end;
+        lvItem := lvConfig.Items.Add;
+        lvItem.Caption := wControl.Name;
+        lvItem.SubItems.Add(wControl.ClassName);
+        lvItem.SubItems.Add(IntToStr(I+1));
+
+        lvItem := lvReportItems.Items.Add;
+        lvItem.Caption := wControl.Name;
+        lvItem.SubItems.Add(wControl.ClassName);
+        lvItem.SubItems.Add(IntToStr(I+1));
+
+        nItem := FDDCSForm.ReportCollection.GetNoteItem(wControl);
+        if nItem <> nil then
+        begin
+          lvItem.SubItems.Add(BoolAsStr(nItem.Required));
+          lvItem.SubItems.Add(IntToStr(nItem.Order));
+        end;
+      end;
 end;
 
 end.

@@ -22,14 +22,13 @@ interface
 
 uses
   System.Classes, Vcl.Dialogs, Vcl.ComCtrls, DesignIntf, DesignEditors, DesignMenus,
-  uBase, frmReportOrder, uReportItems;
+  uBase, frmReportOrder, uReportItems, frmVitals;
 
 type
   TDDCSPageEditor = class(TComponentEditor)
   protected
     function GetPageControl: TPageControl;
   public
-//    procedure PrepareItem(Index: Integer; const AItem: IMenuItem); override;
     procedure ExecuteVerb(Index: Integer); override;
     function GetVerbCount: Integer; override;
     function GetVerb(Index: Integer): string; override;
@@ -39,10 +38,15 @@ type
 
 implementation
 
+uses
+  TreeIntf;
+
 procedure Register;
 begin
   RegisterComponentEditor(TDDCSForm, TDDCSPageEditor);
   RegisterComponentEditor(TTabSheet, TDDCSPageEditor);
+  RegisterNoIcon([TDDCSVitals]);
+  RegisterSprigType(TDDCSVitals, TComponentSprig);
 end;
 
 function TDDCSPageEditor.GetPageControl: TPageControl;
@@ -61,14 +65,6 @@ begin
     if nComponent is TTabSheet then
       Result := TPageControl(TTabSheet(nComponent).PageControl);
 end;
-
-//procedure TDDCSPageEditor.PrepareItem(Index: Integer; const AItem: IMenuItem);
-//begin
-//  inherited PrepareItem(Index, AItem);
-//
-//  if (Index = 3) and Assigned(AItem) then
-//    AItem.Enabled := GetComponent is TTabSheet;
-//end;
 
 //Your actions from the popup menu of GetVerb
 procedure TDDCSPageEditor.ExecuteVerb(Index: Integer);

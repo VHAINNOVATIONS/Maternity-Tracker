@@ -884,6 +884,7 @@ destructor TDDCSVitals.Destroy;
 var
   mForm: TDDCSForm;
 begin
+  mForm := nil;
   if ((Parent <> nil) and (Parent is TTabSheet)) then
     if ((TTabSheet(Parent).PageControl <> nil) and (TTabSheet(Parent).PageControl is TDDCSForm)) then
        mForm := TDDCSForm(TTabSheet(Parent).PageControl);

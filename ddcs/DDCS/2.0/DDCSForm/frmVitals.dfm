@@ -20,10 +20,6 @@ object DDCSVitals: TDDCSVitals
     OnDrawTab = fVitalsDrawCheckTab
     object PageMain: TTabSheet
       Caption = 'Vitals'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object FAge: TStaticText
         Left = 32
         Top = 26
