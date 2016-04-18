@@ -21,10 +21,11 @@ unit uBase;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.ComCtrls, Vcl.Menus, Vcl.Themes, TypInfo, Contnrs, CheckLst,
-  uReportItems, frmVitals, uCommon, uDialog, uExtndComBroker;
+  Winapi.Windows, Winapi.Messages, Winapi.oleacc, System.SysUtils,
+  System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms,
+  Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, Vcl.Themes,
+  Vcl.Styles, Consts, TypInfo, Contnrs, CheckLst,
+  uReportItems, frmVitals, uCommon, uDialog;
 
 type
   TDDCSForm = class;
@@ -35,7 +36,8 @@ type
     FCommandMenu: TPopupMenu;
     FRememberSectionIndex: Integer;
     FSelectedSectionIndex: Integer;
-    procedure SpeakButtons;
+    procedure WMGetMSAAObject(var Message : TMessage); message WM_GETOBJECT;
+    procedure SpeakButtons(aText: string);
     procedure WMSetFocus(var Message: TWMSetFocus); message WM_SETFOCUS;
     procedure WMKillFocus(var Message: TWMKillFocus); message WM_KILLFOCUS;
     procedure KeyDown(var Key: Word; Shift: TShiftState); override;
@@ -151,7 +153,8 @@ type
 implementation
 
 uses
-  Vcl.Styles, Consts, frmSplash, frmPreview, frmReportOrder, frmConfiguration, frmAbout;
+  frmSplash, frmPreview, frmReportOrder, frmConfiguration, frmAbout,
+  VAUtils, uExtndComBroker;  //uExtndComBroker must come after VAUtils due to both having the Piece function
 
 procedure Register;
 begin
@@ -166,11 +169,26 @@ end;
 
 // Private ---------------------------------------------------------------------
 
-procedure TDDCSHeaderControl.SpeakButtons;
+procedure TDDCSHeaderControl.WMGetMSAAObject(var Message: TMessage);
+var
+  FAccessibleItem: IAccessible;
+begin
+  if (Message.Msg = WM_GETOBJECT) then
+  begin
+    // Tried to play nice, so we'll just eat the message and tell the reader what to say
+  end else
+    Message.Result := DefWindowProc(Handle, Message.Msg, Message.WParam, Message.LParam);
+end;
+
+procedure TDDCSHeaderControl.SpeakButtons(aText: string);
+var
+  SayText: string;
 begin
   if FSelectedSectionIndex = 0 then
-    ScreenReader.Say('Command Menu', False)
-  else ScreenReader.Say(Sections[FSelectedSectionIndex].Text, False);
+    SayText := 'Command Menu'
+  else SayText := Sections[FSelectedSectionIndex].Text;
+
+  ScreenReader.Say(SayText + aText + ', press space or enter to activate.', False);
 end;
 
 procedure TDDCSHeaderControl.WMSetFocus(var Message: TWMSetFocus);
@@ -181,7 +199,7 @@ begin
   if FSelectedSectionIndex = -1 then
     FSelectedSectionIndex := 0;
 
-  SpeakButtons;
+  SpeakButtons(', press the left or right arrows to navigate');
 
   Invalidate;
 end;
@@ -212,7 +230,7 @@ begin
     else
       FSelectedSectionIndex := Sections.Count - 1;
 
-    SpeakButtons;
+    SpeakButtons('');
   end;
 
   // Key 39 = Right Arrow
@@ -223,7 +241,7 @@ begin
     else
       FSelectedSectionIndex := 0;
 
-    SpeakButtons;
+    SpeakButtons('');
   end;
 
   // Enter or Spacebar
@@ -746,10 +764,10 @@ begin
 
   cb := TCustomComboBox(Sender);
 
-  cblength := cb.Width;
+  cbLength := cb.Width;
   for I := 0 to cb.Items.Count - 1 do
-    if cb.Canvas.TextWidth(cb.Items[I]) > cblength then
-      cblength := cb.Canvas.TextWidth(cb.Items[I]) + GetSystemMetrics(SM_CXVSCROLL);
+    if cb.Canvas.TextWidth(cb.Items[I]) > cbLength then
+      cbLength := cb.Canvas.TextWidth(cb.Items[I]) + GetSystemMetrics(SM_CXVSCROLL);
 
   SendMessage(cb.Handle, CB_SETDROPPEDWIDTH, (cblength + 7), 0);
 end;
@@ -820,7 +838,7 @@ begin
     if wControl is TComboBox then
     begin
       wComboBox := TComboBox(wControl);
-      if not Assigned(wComboBox.OnDragDrop) then
+      if not Assigned(wComboBox.OnDropDown) then
         wComboBox.OnDropDown := cbAutoWidth;
     end;
 
@@ -839,6 +857,17 @@ begin
       else if wControl.InheritsFrom(TButton) then
         TButton(wControl).OnClick := ButtonGetDialogClick;
     end;
+
+    // Accessibility
+
+
+
+
+
+
+
+
+
   end;
 end;
 
@@ -912,7 +941,7 @@ begin
     except
       on E: Exception do
       if not aSave then
-        ShowDialog(Owner, E.Message, mtError);
+        ShowMsg(E.Message, smiError, smbOK);
     end;
   finally
     sl.Free;
@@ -960,7 +989,7 @@ begin
         if not nItem.IsValid then
         begin
           FValidated := False;
-          ShowDialog(Owner, 'The "' + nItem.OwningObject.Name + '" is required but invalid.', mtWarning);
+          ShowMsg('The "' + nItem.OwningObject.Name + '" is required but invalid.', smiWarning, smbOK);
           Exit;
         end;
 
@@ -1010,6 +1039,8 @@ begin
   if not (AOwner is TForm) then
     raise Exception.Create('Component must be placed on a Form.');
 
+  ScreenReader := TScreenReader.Create;
+
   Align := alClient;                          // Hide
   TabStop := True;
   TabOrder := 0;
@@ -1018,8 +1049,6 @@ begin
   TabPosition := tpTop;                       // Hide
   OwnerDraw := True;                          // Hide
   OnDrawTab := DrawCheckTab;                  // Hide this from the developer
-
-  ScreenReader := TScreenReader.Create;
 
   DLLDialogList := TStringList.Create;
   Tasks := TStringList.Create;
@@ -1085,7 +1114,7 @@ begin
         PostMessage(Handle, WM_SHOW_SPLASH, 0, 0);
     except
       on E: Exception do
-      ShowDialog(Owner, E.Message, mtError);
+      ShowMsg(E.Message, smiError, smbOK);
     end;
   end;
 
@@ -1234,7 +1263,7 @@ begin
         end;
       except
         on E: Exception do
-        ShowDialog(Owner, E.Message, mtError);
+        ShowMsg(E.Message, smiError, smbOK);
       end;
     end;
   finally
@@ -1331,10 +1360,10 @@ end;
 
 procedure TDDCSForm.CloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-  if ShowDialog(Owner, 'Are you sure you want to exit?', mtConfirmation) <> 6 then
-    CanClose := False
+  if ShowMsg('Are you sure you want to exit?', smiWarning, smbYesNo) = smrYes then
+    CanClose := True
   else
-    CanClose := True;
+    CanClose := False;
 end;
 
 procedure TDDCSForm.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -1368,7 +1397,7 @@ begin
     if x = '1' then Result := True;
   except
     on E: Exception do
-    ShowDialog(Owner, E.Message, mtError);
+    ShowMsg(E.Message, smiError, smbOK);
   end;
 end;
 

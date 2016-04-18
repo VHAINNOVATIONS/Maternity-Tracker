@@ -21,8 +21,8 @@ unit frmAbout;
 interface
 
 uses
-  Windows, SysUtils, Forms, StdCtrls, ExtCtrls, JclFileUtils, Vcl.Imaging.pngimage,
-  Vcl.Controls, System.Classes, Vcl.Graphics, Vcl.Themes;
+  Windows, SysUtils, Forms, StdCtrls, ExtCtrls, JclFileUtils,
+  Vcl.Imaging.pngimage, Vcl.Controls, System.Classes, Vcl.Graphics, Vcl.Themes;
 
 type
   TDDCSAbout = class(TForm)

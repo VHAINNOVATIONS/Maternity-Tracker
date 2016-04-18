@@ -106,6 +106,10 @@ object DDCSFormConfig: TDDCSFormConfig
     object tabDialog: TTabSheet
       Caption = 'Report Items'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         812
         516)
@@ -161,7 +165,7 @@ object DDCSFormConfig: TDDCSFormConfig
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 400
+          Width = 357
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -175,7 +179,6 @@ object DDCSFormConfig: TDDCSFormConfig
           Font.Style = []
           ParentFont = False
           WordWrap = True
-          ExplicitWidth = 357
         end
         object lbOrder: TLabel
           Left = 16
@@ -318,6 +321,10 @@ object DDCSFormConfig: TDDCSFormConfig
     object tabReport: TTabSheet
       Caption = 'Dialog Editor'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         812
         516)

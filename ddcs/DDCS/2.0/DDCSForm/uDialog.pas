@@ -21,7 +21,7 @@ unit uDialog;
 interface
 
 uses
-  SysUtils, Classes, Controls, Forms, Dialogs, uCommon, uExtndComBroker;
+  SysUtils, Classes, Controls, Forms, Dialogs, uCommon, VAUtils, uExtndComBroker;
 
 Type
   TGetTmpStrList = function: TStringList of object;
@@ -116,7 +116,7 @@ begin
 
       except
         on E: Exception do
-        ShowDialog(Self, E.Message, mtError);
+        ShowMsg(E.Message, smiError, smbOK);
       end;
     finally
       sl.Free; dl.Free;
@@ -178,7 +178,7 @@ begin
     end;
   except
     on E: Exception do
-    ShowDialog(Self, E.Message, mtError);
+    ShowMsg(E.Message, smiError, smbOK);
   end;
 end;
 

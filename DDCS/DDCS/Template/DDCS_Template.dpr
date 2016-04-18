@@ -1,4 +1,4 @@
-unit udlgDATE;
+library DDCS_Template;
 
 {
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,39 +16,25 @@ unit udlgDATE;
      Developer: Theodore Fontana
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
-
-   v1.0.0.0
 }
 
-interface
-
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, StdCtrls, Buttons, ExtCtrls;
+  oCNTBase,
+  uExtndComBroker,
+  fBase508Form in '..\..\_lib\fBase508Form.pas' {frmBase508Form},
+  frmMain in 'frmMain.pas' {Form1};
 
-type
-  TdlgDate = class(TForm)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
-    bbtnOK: TBitBtn;
-    bbtnCancel: TBitBtn;
-    calMonth: TMonthCalendar;
-    procedure FormCreate(Sender: TObject);
-  private
-  public
-  end;
+{$R *.res}
 
-var
-  dlgDate: TdlgDate;
-
-implementation
-
-{$R *.dfm}
-
-procedure TdlgDate.FormCreate(Sender: TObject);
+function LaunchoCNT(Broker: PCPRSComBroker): Pointer; stdcall;
 begin
-  calMonth.Date := Date;                         { DEFAULT TO TODAY'S DATE }
+  RPCBrokerV := Broker^;             // set the broker first so the create method has access to VistA
+  Form1 := TForm1.Create(nil);       // nil - let the ComObject Free it
+  Result := @Form1;                  // the component uses caFree on Close of the form so it is freed
 end;
 
+exports
+  LaunchoCNT;
+
+begin
 end.

@@ -21,14 +21,17 @@ unit uReportItems;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.ComCtrls, Vcl.Menus, TypInfo, Contnrs, CheckLst, StrUtils, Grids,
-  uExtndComBroker;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, TypInfo, Contnrs,
+  CheckLst, StrUtils, Grids;
 
 type
   TDDCSNoteItem = class(TCollectionItem)
     private
+      FAccessibilityCaption: string;
+      FAccessibilityDescription: string;
+      FAccessibilityInstructions: string;
       FConfig: TStringList;
       FOrder: Integer;
       FTitle: string;
@@ -57,6 +60,9 @@ type
       property Configuration: TStringList read FConfig write FConfig;
       property Page: string read FInterface write FInterface;
     published
+      property AccessibilityCaption: string read FAccessibilityCaption write FAccessibilityCaption;
+      property AccessibilityDescription: string read FAccessibilityDescription write FAccessibilityDescription;
+      property AccessibilityInstructions: string read FAccessibilityInstructions write FAccessibilityInstructions;
       property Order: Integer read GetOrder write SetIndex;
       property Title: string read FTitle write FTitle;
       property Prefix: string read FPrefix write FPrefix;
@@ -84,6 +90,9 @@ type
   end;
 
 implementation
+
+uses
+  uExtndComBroker;
 
 {$REGION 'TDDCSNoteItem'}
 
@@ -145,6 +154,9 @@ begin
   if Source is TDDCSNoteItem then
   begin
     nItem := TDDCSNoteItem(Source);
+    AccessibilityCaption      := nItem.AccessibilityCaption;
+    AccessibilityDescription  := nItem.AccessibilityDescription;
+    AccessibilityInstructions := nItem.AccessibilityInstructions;
     Order        := nItem.Order;
     Title        := nItem.Title;
     Prefix       := nItem.Prefix;

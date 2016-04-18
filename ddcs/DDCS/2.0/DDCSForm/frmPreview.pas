@@ -21,8 +21,8 @@ unit frmPreview;
 interface
 
 uses
-  Vcl.Dialogs, System.SysUtils, System.Classes, Vcl.Forms, Vcl.Controls, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.ComCtrls, uCommon, uExtndComBroker;
+  Vcl.Dialogs, System.SysUtils, System.Classes, Vcl.Forms, Vcl.Controls,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uCommon;
 
 type
   TReviewNoteDlg = class(TForm)
@@ -46,6 +46,9 @@ var
 
 implementation
 
+uses
+  VAUtils, uExtndComBroker;
+
 {$R *.DFM}
 
 procedure TReviewNoteDlg.FormCreate(Sender: TObject);
@@ -68,7 +71,7 @@ begin
       NoteMemo.ReadOnly := StrToBool(tmp);
   except
     on E: Exception do
-    ShowDialog(Self, E.Message, mtError);
+    ShowMsg(E.Message, smiError, smbOK);
   end;
 end;
 

@@ -23,7 +23,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Samples.Spin,
-  uBase, uCommon, uReportItems, uExtndComBroker;
+  uBase, uCommon, uReportItems;
 
 type
   TDDCSFormConfig = class(TForm)
@@ -105,7 +105,7 @@ var
 implementation
 
 uses
-  frmConfigMultiItemAdd;
+  frmConfigMultiItemAdd, VAUtils, uExtndComBroker;
 
 {$R *.dfm}
 
@@ -166,7 +166,7 @@ begin
       RPCBrokerV.CallV('DSIO DDCS IMPORT FORM', [RPCBrokerV.DDCSInterface, sl]);
     except
       On E: Exception do
-      ShowDialog(Self, E.Message, mtError);
+      ShowMsg(E.Message, smiError, smbOK);
     end;
   finally
     sl.Free;
@@ -222,7 +222,7 @@ begin
         sl.Text := DisplayDialog(@RPCBrokerV, dlgName, True);
       except
         on E: Exception do
-        ShowDialog(Self, E.Message, mtError);
+        ShowMsg(E.Message, smiError, smbOK);
       end;
     finally
       sl.Free;
@@ -256,7 +256,7 @@ begin
       end;
     except
       on E: Exception do
-      ShowDialog(Self, E.Message, mtError);
+      ShowMsg(E.Message, smiError, smbOK);
     end;
   finally
     sl.Free;

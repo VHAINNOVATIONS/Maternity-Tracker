@@ -24,7 +24,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.ConvUtils, System.StdConvs,
   Vcl.Samples.Spin, Vcl.ComCtrls, Vcl.Buttons, Vcl.ExtCtrls, System.DateUtils,
-  System.StrUtils, Graphics, uCommon, uExtndComBroker;
+  System.StrUtils, Graphics, uCommon;
 
 type
   TEventType = (evLMP,evECD,evUlt,evEmT,evOth,evUkn);
@@ -178,7 +178,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uBase, udlgDATE;
+  uBase, udlgDATE, VAUtils, uExtndComBroker;
 
 function TDDCSVitals.GetPatientVitals: TStringList;
 // Array of vital ien^vital type^rate/value^date/time taken
@@ -622,7 +622,7 @@ begin
     if dlgGetDate.ModalResult = mrOK then
     begin    // choices by tag
       if(dlgGetDate.calMonth.Date) >  Now then
-        ShowDialog(Self, 'No future dates', mtWarning)
+        ShowMsg('No future dates.', smiWarning, smbOK)
       else
         case (Sender as TSpeedButton).Tag of
           1 : edtLMP.Text := FormatDateTime('MM/dd/yyyy', dlgGetDate.calMonth.Date);
@@ -864,7 +864,7 @@ begin
         end;
       except
         on E: Exception do
-        ShowDialog(Self, E.Message, mtError);
+        ShowMsg(E.Message, smiError, smbOK);
       end;
     finally
       sl.Free;
