@@ -120,7 +120,7 @@ end;
 
 function TDDCSNoteItem.GetDisplayName: string;
 begin
-  Result := '';
+  Result := ClassName;
 
   if FObject <> nil then
     Result := FObject.Name;

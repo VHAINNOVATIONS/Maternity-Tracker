@@ -21,11 +21,11 @@ unit uBase;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, Winapi.oleacc, System.SysUtils,
-  System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms,
-  Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, Vcl.Themes,
-  Vcl.Styles, Consts, TypInfo, Contnrs, CheckLst,
-  uReportItems, frmVitals, uCommon, uDialog;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, Vcl.Themes, Vcl.Styles,
+  Consts, TypInfo, Contnrs, CheckLst, uReportItems, frmVitals, uCommon, uDialog,
+  oleacc2;
 
 type
   TDDCSForm = class;
@@ -36,7 +36,7 @@ type
     FCommandMenu: TPopupMenu;
     FRememberSectionIndex: Integer;
     FSelectedSectionIndex: Integer;
-    procedure WMGetMSAAObject(var Message : TMessage); message WM_GETOBJECT;
+    procedure WMGetMSAAObject(var Message: TMessage); message WM_GETOBJECT;
     procedure SpeakButtons(aText: string);
     procedure WMSetFocus(var Message: TWMSetFocus); message WM_SETFOCUS;
     procedure WMKillFocus(var Message: TWMKillFocus); message WM_KILLFOCUS;
@@ -59,8 +59,6 @@ type
   private
   strict protected
     procedure DrawTab(Canvas: TCanvas; Index: Integer); override;
-  public
-    constructor Create(AControl: TWinControl); override;
   end;
 
   TpbSaveEvent = procedure(Sender: TObject; AutoSave: Boolean) of object;
@@ -69,6 +67,7 @@ type
 
   TDDCSForm = class(TPageControl)
   private
+    FAccessibleList: TStringList;
     // Components --------------------------------------------------------------
     FControlPanel: TDDCSHeaderControl;
     FAutoSaveTimer: TTimer;           // Make as a custom component
@@ -89,6 +88,7 @@ type
     FOnpbRestore: TpbCustomEvent;
     FOnpbFormShow: TpbCustomEvent;
     FOnpbOverrideNote: TpbCustomEvent;
+    procedure WMGetMSAAObject(var Message: TMessage); message WM_GETOBJECT;
     procedure KeyDown(var Key: Word; Shift: TShiftState); override;
     procedure KeyPress(var Key: Char); override;
     procedure WMAfterCreate(var Message: TMessage); message WM_AFTER_CREATE;
@@ -107,6 +107,7 @@ type
     // -------------------------------------------------------------------------
     procedure OnAutoSaveTimer(Sender: TObject);
     function ControlVisible(rControl: TWinControl): Boolean;
+//    function GetCustomAccessible(iControl: TWinControl): IAccessible;
   protected
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
     procedure SetUpControl(wControl: TWinControl);
@@ -170,13 +171,13 @@ end;
 // Private ---------------------------------------------------------------------
 
 procedure TDDCSHeaderControl.WMGetMSAAObject(var Message: TMessage);
-var
-  FAccessibleItem: IAccessible;
 begin
-  if (Message.Msg = WM_GETOBJECT) then
-  begin
-    // Tried to play nice, so we'll just eat the message and tell the reader what to say
-  end else
+  // If the window that receives the message does not implement IAccessible, it should return zero.
+  // If the window does not handle the WM_GETOBJECT message, the DefWindowProc function returns zero.
+
+  if Message.LParam = OBJID_CLIENT then
+    Message.Result := 0
+  else
     Message.Result := DefWindowProc(Handle, Message.Msg, Message.WParam, Message.LParam);
 end;
 
@@ -516,11 +517,6 @@ end;
 
 {$REGION 'TTabControlStyleHookCheck'}
 
-constructor TTabControlStyleHookCheck.Create(AControl: TWinControl);
-begin
-  inherited;
-end;
-
 // 03/28/2016 - This isn't right - don't use themes yet
 procedure TTabControlStyleHookCheck.DrawTab(Canvas: TCanvas; Index: Integer);
 var
@@ -798,6 +794,20 @@ begin
   end;
 end;
 
+//function TDDCSForm.GetCustomAccessible(iControl: TWinControl): IAccessible;
+//var
+//  I: Integer;
+//  myAcc: TDDCSAccessible;
+//begin
+//  Result := nil;
+//  if iControl = nil then
+//    Exit;
+//
+//  myAcc := (FAccessibleList.Objects[FAccessibleList.IndexOfObject(iControl)] as TDDCSAccessible);
+//  if myAcc <> nil then
+//    Result := myAcc as IAccessible;
+//end;
+
 // Protected -------------------------------------------------------------------
 
 procedure TDDCSForm.Notification(AComponent: TComponent; Operation: TOperation);
@@ -827,6 +837,8 @@ var
   wListBox: TListBox;
   wButton: TButton;
   nItem: TDDCSNoteItem;
+//  nItemAccess: TDDCSAccessible;
+//  pAcc: Pointer;
 begin
   if wControl.ControlCount > 0 then
   begin
@@ -859,15 +871,9 @@ begin
     end;
 
     // Accessibility
-
-
-
-
-
-
-
-
-
+//    CreateStdAccessibleObject(wControl.Handle, OBJID_CLIENT, IID_IAccessible, pAcc);
+//    nItemAccess := TDDCSAccessible.Create(wControl, IAccessible(pAcc), nItem);
+//    FAccessibleList.AddObject(wControl.Name, nItemAccess);
   end;
 end;
 
@@ -1040,6 +1046,7 @@ begin
     raise Exception.Create('Component must be placed on a Form.');
 
   ScreenReader := TScreenReader.Create;
+  FAccessibleList := TStringList.Create(True);
 
   Align := alClient;                          // Hide
   TabStop := True;
@@ -1320,6 +1327,8 @@ end;
 destructor TDDCSForm.Destroy;
 begin
   ScreenReader.Free;
+  FAccessibleList.Free;
+
   DLLDialogList.Free;
   FreeLibrary(DialogDLL);
   Tasks.Free;
@@ -1328,6 +1337,17 @@ begin
   FReportCollection.Free;
 
   inherited;
+end;
+
+procedure TDDCSForm.WMGetMSAAObject(var Message: TMessage);
+begin
+  // If the window that receives the message does not implement IAccessible, it should return zero.
+  // If the window does not handle the WM_GETOBJECT message, the DefWindowProc function returns zero.
+
+  if Message.LParam = OBJID_CLIENT then
+    Message.Result := 0
+  else
+    Message.Result := DefWindowProc(Handle, Message.Msg, Message.WParam, Message.LParam);
 end;
 
 procedure TDDCSForm.KeyDown(var Key: Word; Shift: TShiftState);
