@@ -1167,7 +1167,7 @@ begin
           if Piece(sl[I],U,1) = 'I' then
           begin
             // Set Properties
-            vPropertyList := Piece(sl[I],U,2,99);
+            vPropertyList := Pieces(sl[I],U,2,99);
             J := SubCount(vPropertyList,U) + 1;
 
             for P := 1 to J do
@@ -1206,7 +1206,7 @@ begin
               nItem := FReportCollection.GetNoteItemAddifNil(wControl);
 
               // Set Properties
-              vPropertyList := Piece(sl[I],U,3,99);
+              vPropertyList := Pieces(sl[I],U,3,99);
               J := SubCount(vPropertyList,U) + 1;
 
               for P := 1 to J do
@@ -1259,7 +1259,7 @@ begin
               nItem := FReportCollection.GetNoteItemAddifNil(wControl);
 
               if Piece(sl[I],U,3) = 'F' then
-                Fill(wControl, Piece(sl[I],U,4), Piece(sl[I],U,5,9999))
+                Fill(wControl, Piece(sl[I],U,4), Pieces(sl[I],U,5,9999))
               else if Piece(sl[I],U,3) = 'D' then
               begin
                 nItem.Configuration.Add(Piece(sl[I],U,4));

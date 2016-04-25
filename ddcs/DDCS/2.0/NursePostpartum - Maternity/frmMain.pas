@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.StdCtrls, Vcl.CheckLst, Vcl.ExtCtrls, Vcl.ComCtrls,
-  uExtndComBroker, uBase;
+  uExtndComBroker, uBase, ORCtrls;
 
 type
   TForm1 = class(TForm)
@@ -18,20 +18,23 @@ type
     lbContraceptiveMethod: TStaticText;
     lbComments: TStaticText;
     ckBreastMilk: TCheckBox;
-    cbContraceptiveMethod: TComboBox;
+    cbContraceptiveMethod: TCaptionComboBox;
     ckPreEclampsia: TCheckBox;
     ckInfection: TCheckBox;
     ckNone: TCheckBox;
-    ledMaternalComplicationsOther: TLabeledEdit;
-    ledOngoingChronicOther: TLabeledEdit;
+    ledMaternalComplicationsOther: TCaptionEdit;
+    ledOngoingChronicOther: TCaptionEdit;
     ckAsthma: TCheckBox;
-    ledContraceptiveMethodOther: TLabeledEdit;
+    ledContraceptiveMethodOther: TCaptionEdit;
     ckBottle: TCheckBox;
     ckFormula: TCheckBox;
     ckDiabetes: TCheckBox;
     ckHypertension: TCheckBox;
     ckPostpartumHemorrhage: TCheckBox;
-    meComments: TMemo;
+    meComments: TCaptionMemo;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    StaticText3: TStaticText;
     procedure MaternalComplicationsUpdate(Sender: TObject);
   private
     FCheck: Boolean;

@@ -108,8 +108,6 @@ type
   end;
   PCPRSComBroker = ^TCPRSComBroker;
 
-  function Piece(const s: string; Delim: Char; PieceNum: Integer): string; overload;
-  function Piece(const s: string; Delim: Char; PieceNum,UpTo: Integer): string; overload;
   function GetRPCCursor: TCursor;
   procedure FastAssign(source, destination: TStrings);
 
@@ -120,68 +118,10 @@ var
 
 implementation
 
+uses
+  VAUtils;
+
 { Helper Methods }
-
-function Piece(const S: string; Delim: char; PieceNum: Integer): string;
-{ returns the Nth piece (PieceNum) of a string delimited by Delim }
-var
-  I: Integer;
-  Strt, Next, Last: PChar;
-begin
-  I := 1;
-  Strt := PChar(S);
-  Next := StrScan(Strt, Delim);
-
-  while (I < PieceNum) and (Next <> nil) do
-  begin
-    Inc(I);
-    Strt := Next + 1;
-    Next := StrScan(Strt, Delim);
-  end;
-
-  if Next = nil then
-    Next := StrEnd(Strt);
-
-  if I < PieceNum then
-    Result := ''
-  else
-    SetString(Result, Strt, Next - Strt);
-end;
-
-function Piece(const S: string; Delim: char; PieceNum,UpTo: Integer): string;
-{ returns the Nth piece (PieceNum) of a string delimited by Delim }
-var
-  I: Integer;
-  Strt,Next,Last: PChar;
-begin
-  I := 1;
-  Strt := PChar(S);
-  Next := StrScan(Strt, Delim);
-
-  while (I < PieceNum) and (Next <> nil) do
-  begin
-    Inc(I);
-    Strt := Next + 1;
-    Next := StrScan(Strt, Delim);
-  end;
-
-  Last := Next;
-
-  while (I < UpTo) and (Next <> nil) do
-  begin
-    Inc(I);
-    Last := Next + 1;
-    Next := StrScan(Last, Delim);
-  end;
-
-  if Next = nil then
-    Last := StrEnd(Strt);
-
-  if I < PieceNum then
-    Result := ''
-  else
-    SetString(Result, Strt, Last - Strt);
-end;
 
 procedure FastAssign(source, destination: TStrings);
 // do not use this with RichEdit Lines unless source is RichEdit with PlainText

@@ -212,26 +212,6 @@
         </DCCReference>
         <DCCReference Include="dBaseEditor.pas"/>
         <DCCReference Include="uBase.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508AccessibilityCompileInfo.pas">
-            <Form>frmProgress</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\..\..\_lib\VA508AccessibilityCompiler.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508AccessibilityConst.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508AccessibilityManager.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508AccessibilityPE.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508AccessibilityRouter.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508Classes.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508DelphiCompatibility.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508ImageListLabeler.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508ImageListLabelerPE.pas">
-            <Form>frmImageListEditor</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\..\..\_lib\VA508MSAASupport.pas"/>
-        <DCCReference Include="..\..\..\_lib\VA508ScreenReaderDLLLinker.pas"/>
-        <DCCReference Include="..\..\..\_lib\VAClasses.pas"/>
-        <DCCReference Include="..\..\..\_lib\VAUtils.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

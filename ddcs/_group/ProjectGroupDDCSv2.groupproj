@@ -3,14 +3,17 @@
         <ProjectGuid>{68FA2F37-FD25-4BAD-9CEA-46E44EB4291E}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj">
-            <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj</Dependencies>
-        </Projects>
         <Projects Include="..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj">
+            <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj</Dependencies>
+        </Projects>
         <Projects Include="..\DDCS\2.0\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj">
             <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\DDCS\2.0\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj">
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -20,15 +23,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="DDCSFormBuilder2" DependsOnTargets="DDCSFramework2">
-        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj"/>
-    </Target>
-    <Target Name="DDCSFormBuilder2:Clean" DependsOnTargets="DDCSFramework2:Clean">
-        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="DDCSFormBuilder2:Make" DependsOnTargets="DDCSFramework2:Make">
-        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj" Targets="Make"/>
-    </Target>
     <Target Name="DDCSFramework2">
         <MSBuild Projects="..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj"/>
     </Target>
@@ -37,6 +31,15 @@
     </Target>
     <Target Name="DDCSFramework2:Make">
         <MSBuild Projects="..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DDCSFormBuilder2" DependsOnTargets="DDCSFramework2">
+        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj"/>
+    </Target>
+    <Target Name="DDCSFormBuilder2:Clean" DependsOnTargets="DDCSFramework2:Clean">
+        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DDCSFormBuilder2:Make" DependsOnTargets="DDCSFramework2:Make">
+        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj" Targets="Make"/>
     </Target>
     <Target Name="DDCSNursePostpartumMaternity" DependsOnTargets="DDCSFramework2">
         <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj"/>
@@ -47,14 +50,23 @@
     <Target Name="DDCSNursePostpartumMaternity:Make" DependsOnTargets="DDCSFramework2:Make">
         <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj" Targets="Make"/>
     </Target>
+    <Target Name="DDCSNursePostpartumDelivery">
+        <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj"/>
+    </Target>
+    <Target Name="DDCSNursePostpartumDelivery:Clean">
+        <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DDCSNursePostpartumDelivery:Make">
+        <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="DDCSFormBuilder2;DDCSFramework2;DDCSNursePostpartumMaternity"/>
+        <CallTarget Targets="DDCSFramework2;DDCSFormBuilder2;DDCSNursePostpartumMaternity;DDCSNursePostpartumDelivery"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DDCSFormBuilder2:Clean;DDCSFramework2:Clean;DDCSNursePostpartumMaternity:Clean"/>
+        <CallTarget Targets="DDCSFramework2:Clean;DDCSFormBuilder2:Clean;DDCSNursePostpartumMaternity:Clean;DDCSNursePostpartumDelivery:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DDCSFormBuilder2:Make;DDCSFramework2:Make;DDCSNursePostpartumMaternity:Make"/>
+        <CallTarget Targets="DDCSFramework2:Make;DDCSFormBuilder2:Make;DDCSNursePostpartumMaternity:Make;DDCSNursePostpartumDelivery:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

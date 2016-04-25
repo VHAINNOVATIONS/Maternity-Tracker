@@ -108,7 +108,7 @@ begin
               if ((Control <> nil) and (Control is TWinControl)) then
               begin
                 if Piece(sl[I],U,3) = 'F' then
-                  Fill(TWinControl(Control), Piece(sl[I],U,4), Piece(sl[I],U,5,9999));
+                  Fill(TWinControl(Control), Piece(sl[I],U,4), Pieces(sl[I],U,5,9999));
               end;
             end;
           end;

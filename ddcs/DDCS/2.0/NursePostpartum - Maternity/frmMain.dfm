@@ -382,6 +382,30 @@ object Form1: TForm1
         DoNotSave = False
         OwningObject = meComments
         Required = False
+      end
+      item
+        Order = 20
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = StaticText1
+        Required = False
+      end
+      item
+        Order = 21
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = StaticText2
+        Required = False
+      end
+      item
+        Order = 22
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = StaticText3
+        Required = False
       end>
     object TabSheet1: TTabSheet
       Caption = 'Overview'
@@ -458,7 +482,6 @@ object Form1: TForm1
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 18
-        TabStop = True
       end
       object ckBreastMilk: TCheckBox
         Left = 36
@@ -468,12 +491,13 @@ object Form1: TForm1
         Caption = 'Breast Milk'
         TabOrder = 1
       end
-      object cbContraceptiveMethod: TComboBox
+      object cbContraceptiveMethod: TCaptionComboBox
         Left = 377
         Top = 130
         Width = 304
         Height = 21
         TabOrder = 16
+        Caption = 'Contraceptive Method'
       end
       object ckPreEclampsia: TCheckBox
         Left = 212
@@ -502,28 +526,22 @@ object Form1: TForm1
         TabOrder = 10
         OnClick = MaternalComplicationsUpdate
       end
-      object ledMaternalComplicationsOther: TLabeledEdit
+      object ledMaternalComplicationsOther: TCaptionEdit
         Left = 64
         Top = 176
         Width = 245
         Height = 21
-        EditLabel.Width = 26
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Other'
-        LabelPosition = lpLeft
         TabOrder = 14
         OnChange = MaternalComplicationsUpdate
+        Caption = 'Maternal Complications Other'
       end
-      object ledOngoingChronicOther: TLabeledEdit
+      object ledOngoingChronicOther: TCaptionEdit
         Left = 410
         Top = 68
         Width = 271
         Height = 21
-        EditLabel.Width = 26
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Other'
-        LabelPosition = lpLeft
         TabOrder = 8
+        Caption = 'Ongoing Chronic Medical Conditions Other'
       end
       object ckAsthma: TCheckBox
         Left = 377
@@ -533,16 +551,13 @@ object Form1: TForm1
         Caption = 'Asthma'
         TabOrder = 5
       end
-      object ledContraceptiveMethodOther: TLabeledEdit
+      object ledContraceptiveMethodOther: TCaptionEdit
         Left = 410
         Top = 157
         Width = 271
         Height = 21
-        EditLabel.Width = 26
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Other'
-        LabelPosition = lpLeft
         TabOrder = 17
+        Caption = 'Contraceptive Method Other'
       end
       object ckBottle: TCheckBox
         Left = 36
@@ -585,7 +600,7 @@ object Form1: TForm1
         TabOrder = 11
         OnClick = MaternalComplicationsUpdate
       end
-      object meComments: TMemo
+      object meComments: TCaptionMemo
         Left = 20
         Top = 244
         Width = 661
@@ -594,6 +609,31 @@ object Form1: TForm1
         Anchors = [akLeft, akTop, akRight, akBottom]
         ScrollBars = ssVertical
         TabOrder = 19
+        Caption = 'Comments'
+      end
+      object StaticText1: TStaticText
+        Left = 374
+        Top = 72
+        Width = 30
+        Height = 17
+        Caption = 'Other'
+        TabOrder = 25
+      end
+      object StaticText2: TStaticText
+        Left = 28
+        Top = 180
+        Width = 30
+        Height = 17
+        Caption = 'Other'
+        TabOrder = 26
+      end
+      object StaticText3: TStaticText
+        Left = 374
+        Top = 161
+        Width = 30
+        Height = 17
+        Caption = 'Other'
+        TabOrder = 27
       end
     end
   end

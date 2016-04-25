@@ -52,7 +52,7 @@ var
 implementation
 
 uses
-  ComServ;
+  ComServ, VAUtils;
 
 // Legacy ----------------------------------------------------------------------
 

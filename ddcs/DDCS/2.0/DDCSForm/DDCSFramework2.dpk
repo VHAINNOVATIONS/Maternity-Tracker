@@ -46,20 +46,6 @@ contains
   uCommon in 'uCommon.pas',
   udlgDATE in 'udlgDATE.pas' {dlgDate},
   dBaseEditor in 'dBaseEditor.pas',
-  uBase in 'uBase.pas',
-  VA508AccessibilityCompileInfo in '..\..\..\_lib\VA508AccessibilityCompileInfo.pas' {frmProgress},
-  VA508AccessibilityCompiler in '..\..\..\_lib\VA508AccessibilityCompiler.pas',
-  VA508AccessibilityConst in '..\..\..\_lib\VA508AccessibilityConst.pas',
-  VA508AccessibilityManager in '..\..\..\_lib\VA508AccessibilityManager.pas',
-  VA508AccessibilityPE in '..\..\..\_lib\VA508AccessibilityPE.pas',
-  VA508AccessibilityRouter in '..\..\..\_lib\VA508AccessibilityRouter.pas',
-  VA508Classes in '..\..\..\_lib\VA508Classes.pas',
-  VA508DelphiCompatibility in '..\..\..\_lib\VA508DelphiCompatibility.pas',
-  VA508ImageListLabeler in '..\..\..\_lib\VA508ImageListLabeler.pas',
-  VA508ImageListLabelerPE in '..\..\..\_lib\VA508ImageListLabelerPE.pas' {frmImageListEditor},
-  VA508MSAASupport in '..\..\..\_lib\VA508MSAASupport.pas',
-  VA508ScreenReaderDLLLinker in '..\..\..\_lib\VA508ScreenReaderDLLLinker.pas',
-  VAClasses in '..\..\..\_lib\VAClasses.pas',
-  VAUtils in '..\..\..\_lib\VAUtils.pas';
+  uBase in 'uBase.pas';
 
 end.
