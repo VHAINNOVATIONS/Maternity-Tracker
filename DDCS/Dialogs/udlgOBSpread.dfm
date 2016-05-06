@@ -187,6 +187,7 @@ object dlgOBSpread: TdlgOBSpread
   OldCreateOrder = False
   Position = poScreenCenter
   Scaled = False
+  OnClose = DialogClose
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -934,13 +935,5 @@ object dlgOBSpread: TdlgOBSpread
       Visible = False
       OnClick = btnAddRowClick
     end
-  end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgOBSpread'
-        'Status = stsDefault'))
   end
 end

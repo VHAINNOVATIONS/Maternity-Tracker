@@ -84,6 +84,10 @@ object dlgSocial: TdlgSocial
     object TabSheet1: TTabSheet
       Caption = 'Lifestyle'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object gb1: TGroupBox
         Left = 0
         Top = 0
@@ -752,6 +756,10 @@ object dlgSocial: TdlgSocial
     object TabSheet2: TTabSheet
       Caption = 'Relationship && Sexual History'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object gbRelation: TGroupBox
         Left = 0
         Top = 0
@@ -978,6 +986,10 @@ object dlgSocial: TdlgSocial
     object TabSheet3: TTabSheet
       Caption = 'Tobacco'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object gb3: TGroupBox
         Left = 0
         Top = 0
@@ -1352,6 +1364,10 @@ object dlgSocial: TdlgSocial
     object TabSheet4: TTabSheet
       Caption = 'Alcohol && Drugs'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object gb4: TGroupBox
         Left = 0
         Top = 0

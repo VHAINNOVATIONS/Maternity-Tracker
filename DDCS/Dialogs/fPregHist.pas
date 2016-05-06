@@ -28,7 +28,7 @@ uses
   Mask, uDialog, uExtndComBroker, Vcl.Samples.Spin, VA508AccessibilityManager;
 
 type
-  TfrmPregHist = class(ToCNTDialog)
+  TfrmPregHist = class(TDDCSDialog)
     Panel_Pregnancy: TPanel;
     L_DateMonthYearOfDelivery: TLabel;
     L_GestationalAgeAtDelivery: TLabel;

@@ -9,7 +9,7 @@ uses
   VA508AccessibilityManager;
 
 type
-  TdlgHistory = class(ToCNTDialog)
+  TdlgHistory = class(TDDCSDialog)
     Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;

@@ -24,6 +24,7 @@ uses
   System.Classes,
   Vcl.Forms,
   Vcl.Controls,
+  VAUtils,
   uDialog,
   uCommon,
   uExtndComBroker,
@@ -112,48 +113,61 @@ end;
 
 function DisplayDialog(Broker: PCPRSComBroker; Build: WideString; DebugMode: Boolean): WideString; stdcall;
 var
-  sl: TStringList;
-  dlg: ToCNTDialog;
+  dlgP: TPersistentClass;
   dlgClass: TDialogClass;
+  dlg: TDDCSDialog;
 
   // Build = IEN | NAME | CLASS
 
 begin
-  sl := TStringList.Create;
+  Result := '';
+
+  if Piece(Build,'|',3) = '' then
+    Exit;
+  dlgP := FindClass(Piece(Build,'|',3));
+  if dlgP = nil then
+    Exit;
+  dlgClass := TDialogClass(dlgP);
+  if dlgClass = nil then
+    Exit;
+
+  dlg := dlgClass.Create(nil, Broker, DebugMode, Piece(Build,'|',1));
   try
-    dlgClass := TDialogClass(FindClass(Piece(Build,'|',3)));
-    dlg := dlgClass.Create(nil, Broker, DebugMode, Piece(Build,'|',1));
-    try
-      dlg.ShowModal;
-      if dlg.ModalResult = mrOK then
-        sl.AddStrings(dlg.TmpStrList);
-    finally
-      dlg.Free;
-    end;
+    dlg.ShowModal;
+
+    if dlg.ModalResult = mrOK then
+      Result := dlg.TmpStrList.Text;
   finally
-    Result := sl.Text;
-    sl.Free;
+    dlg.Free;
   end;
 end;
 
 function GetDialogComponents(dlgName: WideString): WideString; stdcall;
 var
-  sl: TStringList;
-  dlg: ToCNTDialog;
+  dlgP: TPersistentClass;
   dlgClass: TDialogClass;
+  dlg: TDDCSDialog;
+  sl: TStringList;
   I: Integer;
 begin
+  Result := '';
+
+  if dlgName = '' then
+    Exit;
+  dlgP := FindClass(dlgName);
+  if dlgP = nil then
+    Exit;
+  dlgClass := TDialogClass(dlgP);
+  if dlgClass = nil then
+    Exit;
+
   sl := TStringList.Create;
+  dlg := dlgClass.Create(nil);
   try
-    dlgClass := TDialogClass(FindClass(dlgName));
-    dlg := dlgClass.Create(nil);
-    try
-      for I := 0 to dlg.ComponentCount - 1 do
-        sl.Add(dlg.Components[I].Name + U + dlg.Components[I].ClassName);
-    finally
-      dlg.Free;
-    end;
+    for I := 0 to dlg.ComponentCount - 1 do
+      sl.Add(dlg.Components[I].Name + U + dlg.Components[I].ClassName);
   finally
+    dlg.Free;
     Result := sl.Text;
     sl.Free;
   end;

@@ -12,17 +12,17 @@ unit DDCSFormBuilder_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 2/17/2016 1:33:05 PM from Type Library described below.
+// File generated on 4/27/2016 5:26:36 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\Users\DSSDeveloper\Desktop\Projects\DDCS\DDCSFormBuilder\DDCSFormBuilder (1)
-// LIBID: {CDA57258-06B9-461D-8854-D94A63557EC6}
+// Type Lib: C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder (1)
+// LIBID: {46474042-D235-4388-AF75-0BFD7BBC0F2C}
 // LCID: 0
 // Helpfile:
 // HelpString:
 // DepndLst:
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
-//   (2) v1.0 CPRSChart, (C:\Users\DSSDeveloper\Desktop\Projects\_lib\CPRSChart.exe)
+//   (2) v1.0 CPRSChart, (C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe)
 // SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
@@ -49,10 +49,10 @@ const
   DDCSFormBuilderMajorVersion = 1;
   DDCSFormBuilderMinorVersion = 0;
 
-  LIBID_DDCSFormBuilder: TGUID = '{CDA57258-06B9-461D-8854-D94A63557EC6}';
+  LIBID_DDCSFormBuilder: TGUID = '{46474042-D235-4388-AF75-0BFD7BBC0F2C}';
 
-  IID_IDDCS: TGUID = '{535EAA9E-EDEF-4F00-A275-B5EF14E6ACA8}';
-  CLASS_DDCS: TGUID = '{F4401FE9-4F5C-4633-B409-E7CEC0CE863F}';
+  IID_IDDCS: TGUID = '{EFE41B95-30BF-47EA-86D3-B6183F167705}';
+  CLASS_DDCS: TGUID = '{A5B2B08E-7045-4C77-9233-32B52C6E5B25}';
 type
 
 // *********************************************************************//
@@ -71,19 +71,19 @@ type
 // *********************************************************************//
 // Interface: IDDCS
 // Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {535EAA9E-EDEF-4F00-A275-B5EF14E6ACA8}
+// GUID:      {EFE41B95-30BF-47EA-86D3-B6183F167705}
 // *********************************************************************//
   IDDCS = interface(IDispatch)
-    ['{535EAA9E-EDEF-4F00-A275-B5EF14E6ACA8}']
+    ['{EFE41B95-30BF-47EA-86D3-B6183F167705}']
   end;
 
 // *********************************************************************//
 // DispIntf:  IDDCSDisp
 // Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {535EAA9E-EDEF-4F00-A275-B5EF14E6ACA8}
+// GUID:      {EFE41B95-30BF-47EA-86D3-B6183F167705}
 // *********************************************************************//
   IDDCSDisp = dispinterface
-    ['{535EAA9E-EDEF-4F00-A275-B5EF14E6ACA8}']
+    ['{EFE41B95-30BF-47EA-86D3-B6183F167705}']
   end;
 
 // *********************************************************************//

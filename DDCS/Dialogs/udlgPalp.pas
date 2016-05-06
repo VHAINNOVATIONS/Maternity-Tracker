@@ -28,7 +28,7 @@ uses
   VA508AccessibilityManager;
 
 type
-  TdlgPalp = class(ToCNTDialog)
+  TdlgPalp = class(TDDCSDialog)
     Panel1: TPanel;
     lbltitle: TLabel;
     Panel2: TPanel;

@@ -28,7 +28,7 @@ uses
   VA508AccessibilityManager;
 
 type
-  TdlgGenetic = class(ToCNTDialog)
+  TdlgGenetic = class(TDDCSDialog)
     Panel1: TPanel;
     lbltitle: TLabel;
     Panel2: TPanel;

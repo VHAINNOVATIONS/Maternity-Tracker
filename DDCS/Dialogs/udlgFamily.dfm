@@ -487,12 +487,4 @@ object dlgFamily: TdlgFamily
       TabOrder = 1
     end
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 501
-    Top = 40
-    Data = (
-      (
-        'Component = dlgFamily'
-        'Status = stsDefault'))
-  end
 end

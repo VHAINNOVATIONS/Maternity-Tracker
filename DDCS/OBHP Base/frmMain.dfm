@@ -1,9 +1,17 @@
-inherited Form1: TForm1
+object Form1: TForm1
+  Left = 0
+  Top = 0
   Caption = 'OB History Consult'
   ClientHeight = 523
   ClientWidth = 742
+  Color = clBtnFace
   Constraints.MinHeight = 550
   Constraints.MinWidth = 750
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
   Icon.Data = {
     000001000200101000000000200068040000260000002020000000002000A810
     00008E0400002800000010000000200000000100200000000000400400000000
@@ -175,13 +183,13 @@ inherited Form1: TForm1
     0000000000000000000000000000000000000000000000000000000000000000
     0000000000000000000000000000000000000000000000000000000000000000
     00000000000000000000000000000000000000000000}
+  OldCreateOrder = True
   Position = poOwnerFormCenter
   OnDestroy = FormDestroy
-  ExplicitWidth = 750
-  ExplicitHeight = 550
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object ofrm1: ToForm [0]
+  object DDCSForm1: TDDCSForm
     Left = 0
     Top = 0
     Width = 742
@@ -199,108 +207,47 @@ inherited Form1: TForm1
     Style = tsButtons
     TabHeight = 25
     TabOrder = 0
+    TabStop = False
+    VitalsPage = oPage2
     ReportCollection = <
       item
-        Order = 2
+        Order = 0
         DoNotSpace = False
         HideFromNote = False
         DoNotSave = False
-        OwningObject = RadioGroup3
+        OwningObject = lbSummary
         Required = False
       end
       item
-        Order = 3
-        Title = 'CHIEF COMPLAINT'
+        Order = 1
+        IdentifyingName = 'Type of Service'
+        DoNotSpace = False
+        HideFromNote = True
+        DoNotSave = False
+        OwningObject = RadioGroup3
+        Required = True
+      end
+      item
+        Order = 2
+        IdentifyingName = 'Chief Complaint'
+        Title = 'Chief Complaint'
+        Prefix = '  '
         DoNotSpace = False
         HideFromNote = False
         DoNotSave = False
         OwningObject = memChief
+        Required = True
+      end
+      item
+        Order = 3
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = DDCSVitals
         Required = False
       end
       item
         Order = 4
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = oPage2.ofrm1vitals
-        Required = False
-      end
-      item
-        Order = 5
-        Title = 'ADDITIONAL COMPLAINTS / HISTORY OF PRESENT ILLNESS'
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = MemoComplaints
-        Required = False
-      end
-      item
-        Order = 6
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = memoAllergies
-        Required = False
-      end
-      item
-        Order = 7
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = memoActiveMedications
-        Required = False
-      end
-      item
-        Order = 8
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = MemoHistory
-        Required = False
-      end
-      item
-        Order = 9
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = MemoROS
-        Required = False
-      end
-      item
-        Order = 10
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = MemoPhysical
-        Required = False
-      end
-      item
-        Order = 11
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = MemoOBExam
-        Required = False
-      end
-      item
-        Order = 12
-        Title = 'ASSESSMENT AND PLAN:'
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = MemoPreNatal
-        Required = False
-      end
-      item
-        Order = 0
-        DoNotSpace = False
-        HideFromNote = True
-        DoNotSave = True
-        OwningObject = RadioGroupImport
-        Required = False
-      end
-      item
-        Order = 0
         DoNotSpace = False
         HideFromNote = True
         DoNotSave = False
@@ -309,7 +256,46 @@ inherited Form1: TForm1
         DialogReturn = MemoComplaints
       end
       item
-        Order = 0
+        Order = 5
+        IdentifyingName = 
+          'Additional Complints and or History of Present Illness Section N' +
+          'ote Text'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = MemoComplaints
+        Required = False
+      end
+      item
+        Order = 6
+        IdentifyingName = 'Imported Medical Data'
+        DoNotSpace = False
+        HideFromNote = True
+        DoNotSave = True
+        OwningObject = RadioGroupImport
+        Required = False
+      end
+      item
+        Order = 7
+        IdentifyingName = 'Active Medications Section Note Text'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = memoActiveMedications
+        Required = False
+      end
+      item
+        Order = 8
+        IdentifyingName = 'Allergies Section Note Text'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = memoAllergies
+        Required = False
+      end
+      item
+        Order = 9
+        IdentifyingName = 'History Categories'
         DoNotSpace = False
         HideFromNote = True
         DoNotSave = True
@@ -317,7 +303,7 @@ inherited Form1: TForm1
         Required = False
       end
       item
-        Order = 0
+        Order = 10
         DoNotSpace = False
         HideFromNote = True
         DoNotSave = False
@@ -326,16 +312,7 @@ inherited Form1: TForm1
         DialogReturn = MemoHistory
       end
       item
-        Order = 0
-        DoNotSpace = False
-        HideFromNote = True
-        DoNotSave = False
-        OwningObject = ListBoxSocialHist
-        Required = False
-        DialogReturn = MemoHistory
-      end
-      item
-        Order = 0
+        Order = 11
         DoNotSpace = False
         HideFromNote = True
         DoNotSave = False
@@ -344,7 +321,26 @@ inherited Form1: TForm1
         DialogReturn = MemoHistory
       end
       item
-        Order = 0
+        Order = 12
+        DoNotSpace = False
+        HideFromNote = True
+        DoNotSave = False
+        OwningObject = ListBoxSocialHist
+        Required = False
+        DialogReturn = MemoHistory
+      end
+      item
+        Order = 13
+        IdentifyingName = 'History Section Note Text'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = MemoHistory
+        Required = False
+      end
+      item
+        Order = 14
+        IdentifyingName = 'Review of Symptoms since Last Menstrual Period'
         DoNotSpace = False
         HideFromNote = False
         DoNotSave = False
@@ -353,7 +349,17 @@ inherited Form1: TForm1
         DialogReturn = MemoROS
       end
       item
-        Order = 0
+        Order = 15
+        IdentifyingName = 'Review of Symptoms since Last Menstrual Period Section Note Text'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = MemoROS
+        Required = False
+      end
+      item
+        Order = 16
+        IdentifyingName = 'Physical Exam'
         DoNotSpace = False
         HideFromNote = False
         DoNotSave = False
@@ -362,7 +368,17 @@ inherited Form1: TForm1
         DialogReturn = MemoPhysical
       end
       item
-        Order = 0
+        Order = 17
+        IdentifyingName = 'Physical Exam Section Note Text'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = MemoPhysical
+        Required = False
+      end
+      item
+        Order = 18
+        IdentifyingName = 'Pelvic Exam'
         DoNotSpace = False
         HideFromNote = False
         DoNotSave = False
@@ -371,7 +387,8 @@ inherited Form1: TForm1
         DialogReturn = MemoOBExam
       end
       item
-        Order = 0
+        Order = 19
+        IdentifyingName = 'Obstetrics and Gynecology Flow Sheet'
         DoNotSpace = False
         HideFromNote = False
         DoNotSave = False
@@ -380,7 +397,25 @@ inherited Form1: TForm1
         DialogReturn = MemoOBExam
       end
       item
-        Order = 0
+        Order = 20
+        IdentifyingName = 'Pelvic Exam Section Note Text'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = MemoOBExam
+        Required = False
+      end
+      item
+        Order = 21
+        DoNotSpace = False
+        HideFromNote = True
+        DoNotSave = False
+        OwningObject = cklstProblems
+        Required = False
+      end
+      item
+        Order = 22
+        IdentifyingName = 'Patient Education'
         DoNotSpace = False
         HideFromNote = False
         DoNotSave = False
@@ -389,903 +424,682 @@ inherited Form1: TForm1
         DialogReturn = MemoPreNatal
       end
       item
-        Order = 0
-        DoNotSpace = False
-        HideFromNote = True
-        DoNotSave = False
-        OwningObject = cklstProblems
-        Required = False
-      end
-      item
-        Order = 0
+        Order = 23
+        IdentifyingName = 'Return to Clinic Date'
         DoNotSpace = False
         HideFromNote = False
         DoNotSave = False
         OwningObject = ButtonPreNatalNormal
         Required = False
         DialogReturn = MemoPreNatal
+      end
+      item
+        Order = 24
+        IdentifyingName = 'Plan Section Note Text'
+        Title = 'ASSESSMENT AND PLAN:'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = MemoPreNatal
+        Required = False
       end>
-    onFormShow = FormShow
-    object oPage1: ToPage
+    object oPage1: TTabSheet
       Caption = 'Overview'
-      VitalsStatus = False
       object RadioGroup3: TRadioGroup
-        Left = 0
-        Top = 161
-        Width = 734
-        Height = 47
-        Align = alTop
-        Caption = 'TYPE OF SERVICE'
-        Columns = 3
+        Left = 551
+        Top = 25
+        Width = 169
+        Height = 101
+        Align = alCustom
+        Anchors = [akTop, akRight]
+        Caption = 'Type of Service'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
         Items.Strings = (
           'Established Patient'
           'New Patient'
           'Consult')
-        TabOrder = 0
-        TabStop = True
-        OnClick = RadioGroup3Click
-      end
-      object RadioReason: TGroupBox
-        Left = 0
-        Top = 208
-        Width = 734
-        Height = 252
-        Align = alClient
-        Caption = 'CHIEF COMPLAINT'
+        ParentFont = False
         TabOrder = 1
         TabStop = True
-        object memChief: TMemo
-          Left = 2
-          Top = 15
-          Width = 730
-          Height = 235
-          Align = alClient
-          TabOrder = 0
-        end
       end
-      object Panel1: TPanel
-        Left = 0
-        Top = 0
-        Width = 734
-        Height = 9
-        Align = alTop
-        BevelOuter = bvNone
+      object memChief: TCaptionMemo
+        Left = 19
+        Top = 175
+        Width = 701
+        Height = 266
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        ScrollBars = ssVertical
+        TabOrder = 3
+        Caption = 'Chief Complaint'
+      end
+      object lbSummary: TStaticText
+        Left = 19
+        Top = 30
+        Width = 508
+        Height = 96
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight]
+        AutoSize = False
+        BevelKind = bkFlat
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        TabStop = True
+      end
+      object StaticText1: TStaticText
+        Left = 19
+        Top = 158
+        Width = 92
+        Height = 17
+        Caption = 'Cheif Complaint'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 2
       end
-      object grpSummary: TGroupBox
-        Left = 0
-        Top = 9
-        Width = 734
-        Height = 152
-        Align = alTop
-        Caption = 'SUMMARY'
-        Color = clBtnFace
-        ParentBackground = False
-        ParentColor = False
-        TabOrder = 3
-        object lbSummary: TLabel
-          Left = 19
-          Top = 30
-          Width = 678
-          Height = 91
-          AutoSize = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'MS Sans Serif'
-          Font.Style = [fsBold]
-          ParentFont = False
-          WordWrap = True
-        end
-      end
     end
-    object oPage2: ToPage
+    object oPage2: TTabSheet
       Caption = 'Vitals'
-      VitalsStatus = True
-    end
-    object oPage3: ToPage
-      Caption = 'HPI'
-      VitalsStatus = False
-      object Panel14: TPanel
+      object DDCSVitals: TDDCSVitals
         Left = 0
         Top = 0
         Width = 734
-        Height = 154
-        Align = alTop
-        BevelOuter = bvNone
+        Height = 458
+        Align = alClient
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
         TabOrder = 0
-        object Label1: TStaticText
-          Left = 3
-          Top = 5
-          Width = 318
-          Height = 17
-          Caption = 'ADDITIONAL COMPLAINTS / HISTORY OF PRESENT ILLNESS'
+      end
+    end
+    object oPage3: TTabSheet
+      Caption = 'History of Present Illness'
+      object ListBoxComplaints: TCheckListBox
+        Left = 19
+        Top = 47
+        Width = 701
+        Height = 114
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight]
+        ItemHeight = 13
+        TabOrder = 1
+      end
+      object StaticText2: TStaticText
+        Left = 19
+        Top = 30
+        Width = 310
+        Height = 17
+        Caption = 'Additional Complaints and or History of Present Illness'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        TabStop = True
+      end
+      object ButtonComplaintClear: TButton
+        Tag = 1
+        Left = 648
+        Top = 185
+        Width = 72
+        Height = 25
+        Align = alCustom
+        Anchors = [akTop, akRight]
+        Caption = 'Clear Text'
+        TabOrder = 4
+        OnClick = ClearTextClick
+      end
+      object MemoComplaints: TCaptionMemo
+        Left = 19
+        Top = 216
+        Width = 701
+        Height = 223
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 3
+        Caption = 
+          'Additional Complints and or History of Present Illness Section N' +
+          'ote Text'
+      end
+      object StaticText3: TStaticText
+        Left = 20
+        Top = 199
+        Width = 107
+        Height = 17
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+      end
+    end
+    object oPage4: TTabSheet
+      Caption = 'Imports'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object RadioGroupImport: TRadioGroup
+        Left = 19
+        Top = 30
+        Width = 294
+        Height = 57
+        Caption = 'Imported Medical Data'
+        Columns = 2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ItemIndex = 0
+        Items.Strings = (
+          'Active Medications'
+          'Allergies')
+        ParentFont = False
+        TabOrder = 0
+        TabStop = True
+        OnClick = RadioGroupImportClick
+      end
+      object pnlSectionImports: TPanel
+        Left = 19
+        Top = 132
+        Width = 701
+        Height = 307
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        BevelOuter = bvNone
+        TabOrder = 3
+        object memoAllergies: TCaptionMemo
+          Left = 0
+          Top = 0
+          Width = 701
+          Height = 307
+          Align = alClient
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Courier New'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          ScrollBars = ssBoth
+          TabOrder = 1
+          Caption = 'Allergies Section Note Text'
+        end
+        object memoActiveMedications: TCaptionMemo
+          Left = 0
+          Top = 0
+          Width = 701
+          Height = 307
+          Align = alClient
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Courier New'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          ScrollBars = ssBoth
+          TabOrder = 0
+          Caption = 'Active Medications Section Note Text'
+        end
+      end
+      object ButtonReload: TButton
+        Left = 319
+        Top = 30
+        Width = 82
+        Height = 63
+        Caption = 'Reload Imported Information'
+        TabOrder = 1
+        WordWrap = True
+        OnClick = RadioGroupImportClick
+      end
+      object StaticText4: TStaticText
+        Left = 19
+        Top = 115
+        Width = 107
+        Height = 17
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+      end
+    end
+    object oPage5: TTabSheet
+      Caption = 'History'
+      object RadioGroupHistory: TRadioGroup
+        Left = 19
+        Top = 20
+        Width = 230
+        Height = 57
+        Caption = 'History Categories'
+        Columns = 3
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ItemIndex = 0
+        Items.Strings = (
+          'Medical'
+          'Family'
+          'Social')
+        ParentFont = False
+        TabOrder = 0
+        TabStop = True
+        OnClick = RadioGroupHistoryClick
+      end
+      object ButtonHistoryClear: TButton
+        Tag = 2
+        Left = 645
+        Top = 52
+        Width = 75
+        Height = 25
+        Align = alCustom
+        Anchors = [akTop, akRight]
+        Caption = 'Clear Text'
+        TabOrder = 4
+        OnClick = ClearTextClick
+      end
+      object pnlHistoryCategories: TPanel
+        Left = 19
+        Top = 83
+        Width = 231
+        Height = 356
+        Align = alCustom
+        Anchors = [akLeft, akTop, akBottom]
+        BevelOuter = bvNone
+        TabOrder = 1
+        object ListBoxSocialHist: TCheckListBox
+          Left = 0
+          Top = 0
+          Width = 231
+          Height = 356
+          Align = alClient
+          ItemHeight = 13
+          TabOrder = 2
+        end
+        object ListBoxFamilyHist: TCheckListBox
+          Left = 0
+          Top = 0
+          Width = 231
+          Height = 356
+          Align = alClient
+          ItemHeight = 13
           TabOrder = 0
         end
-        object Panel12: TPanel
-          Left = 530
+        object ListBoxMedicalHist: TCheckListBox
+          Left = 0
           Top = 0
-          Width = 204
-          Height = 154
-          Align = alRight
-          BevelOuter = bvNone
-          TabOrder = 2
-          DesignSize = (
-            204
-            154)
-          object ButtonComplaintClear: TButton
-            Tag = 1
-            Left = 130
-            Top = 116
-            Width = 72
-            Height = 32
-            Anchors = [akTop, akRight]
-            Caption = 'Clear Text'
-            TabOrder = 0
-            OnClick = ClearTextClick
-          end
-        end
-        object ListBoxComplaints: TCheckListBox
-          Left = 1
-          Top = 24
-          Width = 463
-          Height = 124
+          Width = 231
+          Height = 356
+          Align = alClient
           ItemHeight = 13
           TabOrder = 1
         end
       end
-      object Panel15: TPanel
-        Left = 0
-        Top = 154
-        Width = 734
-        Height = 306
-        Align = alClient
-        BevelOuter = bvNone
-        TabOrder = 1
-        object MemoComplaints: TMemo
-          Left = 0
-          Top = 0
-          Width = 734
-          Height = 306
-          Align = alClient
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ScrollBars = ssBoth
-          TabOrder = 0
-        end
+      object MemoHistory: TCaptionMemo
+        Left = 272
+        Top = 83
+        Width = 448
+        Height = 358
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 3
+        Caption = 'History Section Note Text'
+      end
+      object StaticText5: TStaticText
+        Left = 272
+        Top = 66
+        Width = 107
+        Height = 17
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
       end
     end
-    object oPage4: ToPage
-      Caption = 'Imports'
-      VitalsStatus = False
-      object Panel5: TPanel
-        Left = 0
-        Top = 0
-        Width = 734
-        Height = 93
-        Align = alTop
-        BevelOuter = bvNone
+    object oPage6: TTabSheet
+      Caption = 'Review of Symptoms'
+      DesignSize = (
+        734
+        458)
+      object ButtonROS: TButton
+        Left = 19
+        Top = 30
+        Width = 310
+        Height = 25
+        Caption = 'Review of Symptoms since Last Menstrual Period'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 0
-        object Panel11: TPanel
-          Left = 522
-          Top = 0
-          Width = 212
-          Height = 93
-          Align = alRight
-          BevelOuter = bvNone
-          TabOrder = 1
-          DesignSize = (
-            212
-            93)
-          object ButtonReload: TButton
-            Left = 31
-            Top = 54
-            Width = 179
-            Height = 25
-            Anchors = [akTop, akRight]
-            Caption = 'Reload Imported Information'
-            TabOrder = 0
-            OnClick = ButtonReloadClick
-          end
-        end
-        object Panel13: TPanel
-          Left = 0
-          Top = 0
-          Width = 442
-          Height = 93
-          Align = alLeft
-          BevelOuter = bvNone
-          TabOrder = 0
-          object RadioGroupImport: TRadioGroup
-            Left = 23
-            Top = 22
-            Width = 402
-            Height = 57
-            Align = alCustom
-            Anchors = [akLeft, akTop, akRight]
-            Caption = 'IMPORTED MEDICAL DATA'
-            Columns = 3
-            Items.Strings = (
-              'Allergies'
-              'Active Medications')
-            TabOrder = 0
-            TabStop = True
-            OnClick = RadioGroupImportClick
-          end
-        end
       end
-      object Panel6: TPanel
-        Left = 0
+      object ButtonROSClear: TButton
+        Tag = 3
+        Left = 645
+        Top = 62
+        Width = 75
+        Height = 25
+        Anchors = [akTop, akRight]
+        Caption = 'Clear Text'
+        TabOrder = 3
+        OnClick = ClearTextClick
+      end
+      object MemoROS: TCaptionMemo
+        Left = 19
         Top = 93
-        Width = 734
-        Height = 367
-        Align = alClient
-        BevelOuter = bvNone
+        Width = 701
+        Height = 346
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 2
+        Caption = 'Review of Symptoms since Last Menstrual Period Section Note Text'
+      end
+      object StaticText6: TStaticText
+        Left = 19
+        Top = 76
+        Width = 107
+        Height = 17
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 1
-        object memoActiveMedications: TMemo
-          Left = 0
-          Top = 0
-          Width = 734
-          Height = 367
-          Align = alClient
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ReadOnly = True
-          ScrollBars = ssBoth
-          TabOrder = 1
-        end
-        object memoAllergies: TMemo
-          Left = 0
-          Top = 0
-          Width = 734
-          Height = 367
-          Align = alClient
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ReadOnly = True
-          ScrollBars = ssBoth
-          TabOrder = 0
-        end
       end
     end
-    object oPage5: ToPage
-      Caption = 'History'
-      VitalsStatus = False
-      object pnlHistory: TPanel
-        Left = 0
-        Top = 0
-        Width = 734
-        Height = 148
-        Align = alTop
-        BevelOuter = bvNone
+    object oPage7: TTabSheet
+      Caption = 'Physical Exam'
+      DesignSize = (
+        734
+        458)
+      object ButtonPhysicalClear: TButton
+        Tag = 4
+        Left = 645
+        Top = 62
+        Width = 75
+        Height = 25
+        Anchors = [akTop, akRight]
+        Caption = 'Clear Text'
+        TabOrder = 3
+        OnClick = ClearTextClick
+      end
+      object ButtonPhysical: TButton
+        Left = 19
+        Top = 30
+        Width = 108
+        Height = 25
+        Caption = 'Physical Exam'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 0
-        object RadioGroupHistory: TRadioGroup
-          Left = 20
-          Top = 20
-          Width = 230
-          Height = 57
-          Caption = 'HISTORIES'
-          Columns = 3
-          Items.Strings = (
-            'Medical'
-            'Family'
-            'Social')
-          TabOrder = 0
-          TabStop = True
-          OnClick = RadioGroupHistoryClick
-        end
-        object ButtonHistoryClear: TButton
-          Tag = 2
-          Left = 20
-          Top = 104
-          Width = 75
-          Height = 25
-          Caption = 'Clear Text'
-          TabOrder = 1
-          OnClick = ClearTextClick
-        end
-        object Panel3: TPanel
-          Left = 338
-          Top = 0
-          Width = 396
-          Height = 148
-          Align = alRight
-          BevelOuter = bvNone
-          TabOrder = 2
-          object ListBoxFamilyHist: TCheckListBox
-            Left = 0
-            Top = 0
-            Width = 396
-            Height = 148
-            Align = alClient
-            ItemHeight = 13
-            TabOrder = 0
-          end
-          object ListBoxMedicalHist: TCheckListBox
-            Left = 0
-            Top = 0
-            Width = 396
-            Height = 148
-            Align = alClient
-            ItemHeight = 13
-            TabOrder = 1
-          end
-          object ListBoxSocialHist: TCheckListBox
-            Left = 0
-            Top = 0
-            Width = 396
-            Height = 148
-            Align = alClient
-            ItemHeight = 13
-            TabOrder = 2
-          end
-        end
       end
-      object Panel4: TPanel
-        Left = 0
-        Top = 148
-        Width = 734
-        Height = 312
-        Align = alClient
-        BevelOuter = bvNone
+      object MemoPhysical: TCaptionMemo
+        Left = 19
+        Top = 93
+        Width = 701
+        Height = 346
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 2
+        Caption = 'Physical Exam Section Note Text'
+      end
+      object StaticText7: TStaticText
+        Left = 19
+        Top = 76
+        Width = 107
+        Height = 17
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 1
-        object MemoHistory: TMemo
-          Left = 0
-          Top = 0
-          Width = 734
-          Height = 312
-          Align = alClient
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ScrollBars = ssBoth
-          TabOrder = 0
-        end
       end
     end
-    object oPage6: ToPage
-      Caption = 'ROS'
-      VitalsStatus = False
-      object Panel16: TPanel
-        Left = 0
-        Top = 0
-        Width = 734
-        Height = 65
-        Align = alTop
-        BevelOuter = bvNone
-        TabOrder = 0
-        object ButtonROS: TButton
-          Left = 27
-          Top = 24
-          Width = 178
-          Height = 25
-          Caption = 'ROS: Symptoms since LMP'
-          TabOrder = 0
-        end
-        object Panel10: TPanel
-          Left = 549
-          Top = 0
-          Width = 185
-          Height = 65
-          Align = alRight
-          BevelOuter = bvNone
-          TabOrder = 1
-          DesignSize = (
-            185
-            65)
-          object ButtonROSClear: TButton
-            Tag = 3
-            Left = 108
-            Top = 24
-            Width = 75
-            Height = 25
-            Anchors = [akTop, akRight]
-            Caption = 'Clear Text'
-            TabOrder = 0
-            OnClick = ClearTextClick
-          end
-        end
-      end
-      object Panel17: TPanel
-        Left = 0
-        Top = 65
-        Width = 734
-        Height = 395
-        Align = alClient
-        BevelOuter = bvNone
-        TabOrder = 1
-        object MemoROS: TMemo
-          Left = 0
-          Top = 0
-          Width = 734
-          Height = 395
-          Align = alClient
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ScrollBars = ssBoth
-          TabOrder = 0
-        end
-      end
-    end
-    object oPage7: ToPage
-      Caption = 'Phys Exam'
-      VitalsStatus = False
-      object Panel18: TPanel
-        Left = 0
-        Top = 0
-        Width = 734
-        Height = 65
-        Align = alTop
-        BevelOuter = bvNone
-        TabOrder = 0
-        object Panel9: TPanel
-          Left = 549
-          Top = 0
-          Width = 185
-          Height = 65
-          Align = alRight
-          BevelOuter = bvNone
-          TabOrder = 1
-          DesignSize = (
-            185
-            65)
-          object ButtonPhysicalClear: TButton
-            Tag = 4
-            Left = 108
-            Top = 24
-            Width = 75
-            Height = 25
-            Anchors = [akTop, akRight]
-            Caption = 'Clear Text'
-            TabOrder = 0
-            OnClick = ClearTextClick
-          end
-        end
-        object ButtonPhysical: TButton
-          Left = 27
-          Top = 24
-          Width = 92
-          Height = 25
-          Caption = 'Physical Exam'
-          TabOrder = 0
-        end
-      end
-      object Panel19: TPanel
-        Left = 0
-        Top = 65
-        Width = 734
-        Height = 395
-        Align = alClient
-        BevelOuter = bvNone
-        TabOrder = 1
-        object MemoPhysical: TMemo
-          Left = 0
-          Top = 0
-          Width = 734
-          Height = 395
-          Align = alClient
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ScrollBars = ssBoth
-          TabOrder = 0
-        end
-      end
-    end
-    object oPage8: ToPage
+    object oPage8: TTabSheet
       Caption = 'Pelvic Exam'
-      VitalsStatus = False
-      object Panel23: TPanel
-        Left = 0
-        Top = 0
-        Width = 734
-        Height = 65
-        Align = alTop
-        BevelOuter = bvNone
-        TabOrder = 0
-        object ButtonOBFlow: TButton
-          Left = 108
-          Top = 24
-          Width = 99
-          Height = 25
-          Caption = 'OB Flow Sheet'
-          TabOrder = 1
-        end
-        object ButtonOBExam: TButton
-          Left = 27
-          Top = 24
-          Width = 75
-          Height = 25
-          Caption = 'Pelvic Exam'
-          TabOrder = 0
-        end
-        object Panel7: TPanel
-          Left = 549
-          Top = 0
-          Width = 185
-          Height = 65
-          Align = alRight
-          BevelOuter = bvNone
-          TabOrder = 2
-          DesignSize = (
-            185
-            65)
-          object ButtonOBClear: TButton
-            Tag = 5
-            Left = 108
-            Top = 24
-            Width = 75
-            Height = 25
-            Anchors = [akTop, akRight]
-            Caption = 'Clear Text'
-            TabOrder = 0
-            OnClick = ClearTextClick
-          end
-        end
-      end
-      object Panel24: TPanel
-        Left = 0
-        Top = 65
-        Width = 734
-        Height = 395
-        Align = alClient
+      DesignSize = (
+        734
+        458)
+      object ButtonOBFlow: TButton
+        Left = 117
+        Top = 30
+        Width = 244
+        Height = 25
+        Caption = 'Obstetrics and Gynecology Flow Sheet'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 1
-        object MemoOBExam: TMemo
-          Left = 1
-          Top = 1
-          Width = 732
-          Height = 393
-          Align = alClient
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ScrollBars = ssBoth
-          TabOrder = 0
-        end
+      end
+      object ButtonOBExam: TButton
+        Left = 19
+        Top = 30
+        Width = 92
+        Height = 25
+        Caption = 'Pelvic Exam'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+      end
+      object ButtonOBClear: TButton
+        Tag = 5
+        Left = 645
+        Top = 62
+        Width = 75
+        Height = 25
+        Anchors = [akTop, akRight]
+        Caption = 'Clear Text'
+        TabOrder = 4
+        OnClick = ClearTextClick
+      end
+      object MemoOBExam: TCaptionMemo
+        Left = 19
+        Top = 93
+        Width = 701
+        Height = 346
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 3
+        Caption = 'Pelvic Exam Section Note Text'
+      end
+      object StaticText8: TStaticText
+        Left = 19
+        Top = 76
+        Width = 107
+        Height = 17
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
       end
     end
-    object oPage9: ToPage
+    object oPage9: TTabSheet
       Caption = 'Plan'
-      VitalsStatus = False
-      object Panel22: TPanel
-        Left = 0
-        Top = 0
-        Width = 734
-        Height = 161
-        Align = alTop
-        BevelOuter = bvNone
+      DesignSize = (
+        734
+        458)
+      object lblProblems: TStaticText
+        Left = 19
+        Top = 21
+        Width = 59
+        Height = 17
+        Caption = 'Problems:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 0
-        object Panel20: TPanel
-          Left = 0
-          Top = 0
-          Width = 516
-          Height = 169
-          Align = alCustom
-          BevelOuter = bvNone
-          TabOrder = 0
-          object lblProblems: TStaticText
-            Left = 1
-            Top = 21
-            Width = 50
-            Height = 17
-            Caption = 'Problems:'
-            TabOrder = 0
-          end
-          object cklstProblems: TCheckListBox
-            Left = 0
-            Top = 40
-            Width = 508
-            Height = 112
-            OnClickCheck = cklstProblemsClickCheck
-            Align = alCustom
-            Anchors = [akLeft, akTop, akRight]
-            ItemHeight = 13
-            TabOrder = 1
-          end
-        end
-        object Panel8: TPanel
-          Left = 522
-          Top = 0
-          Width = 212
-          Height = 161
-          Align = alRight
-          BevelOuter = bvNone
-          TabOrder = 1
-          DesignSize = (
-            212
-            161)
-          object btnEducation: TButton
-            Left = 11
-            Top = 40
-            Width = 187
-            Height = 25
-            Anchors = [akTop, akRight]
-            Caption = 'Patient Education'
-            TabOrder = 0
-          end
-          object ButtonPreNatalNormal: TButton
-            Left = 11
-            Top = 71
-            Width = 187
-            Height = 25
-            Anchors = [akTop, akRight]
-            Caption = 'Set Return to Clinic Date'
-            TabOrder = 1
-          end
-          object ButtonPlanClear: TButton
-            Tag = 6
-            Left = 123
-            Top = 127
-            Width = 75
-            Height = 25
-            Anchors = [akTop, akRight]
-            Caption = 'Clear Text'
-            TabOrder = 2
-            OnClick = ClearTextClick
-          end
-        end
+        TabStop = True
       end
-      object Panel21: TPanel
-        Left = 0
-        Top = 161
-        Width = 734
-        Height = 299
-        Align = alClient
-        BevelOuter = bvNone
+      object cklstProblems: TCheckListBox
+        Left = 19
+        Top = 38
+        Width = 508
+        Height = 112
+        OnClickCheck = cklstProblemsClickCheck
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight]
+        ItemHeight = 13
         TabOrder = 1
-        object MemoPreNatal: TMemo
-          Left = 0
-          Top = 0
-          Width = 734
-          Height = 299
-          Align = alClient
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ScrollBars = ssBoth
-          TabOrder = 0
-        end
+      end
+      object btnEducation: TButton
+        Left = 533
+        Top = 38
+        Width = 187
+        Height = 53
+        Anchors = [akTop, akRight]
+        Caption = 'Patient Education'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+      end
+      object ButtonPreNatalNormal: TButton
+        Left = 533
+        Top = 97
+        Width = 187
+        Height = 53
+        Anchors = [akTop, akRight]
+        Caption = 'Return to Clinic Date'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 3
+      end
+      object ButtonPlanClear: TButton
+        Tag = 6
+        Left = 645
+        Top = 162
+        Width = 75
+        Height = 25
+        Anchors = [akTop, akRight]
+        Caption = 'Clear Text'
+        TabOrder = 6
+        OnClick = ClearTextClick
+      end
+      object MemoPreNatal: TCaptionMemo
+        Left = 19
+        Top = 193
+        Width = 701
+        Height = 247
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 5
+        Caption = 'Plan Section Note Text'
+      end
+      object StaticText9: TStaticText
+        Left = 19
+        Top = 176
+        Width = 107
+        Height = 17
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 4
       end
     end
-  end
-  inherited amgrMain: TVA508AccessibilityManager
-    Left = 528
-    Top = 8
-    Data = (
-      (
-        'Component = Form1'
-        'Status = stsDefault')
-      (
-        'Component = ofrm1'
-        'Status = stsDefault')
-      (
-        'Component = oPage1'
-        'Status = stsDefault')
-      (
-        'Component = RadioGroup3'
-        'Status = stsDefault')
-      (
-        'Component = RadioReason'
-        'Status = stsDefault')
-      (
-        'Component = memChief'
-        'Status = stsDefault')
-      (
-        'Component = Panel1'
-        'Status = stsDefault')
-      (
-        'Component = grpSummary'
-        'Status = stsDefault')
-      (
-        'Component = oPage2'
-        'Status = stsDefault')
-      (
-        'Component = oPage3'
-        'Status = stsDefault')
-      (
-        'Component = Panel14'
-        'Status = stsDefault')
-      (
-        'Component = Label1'
-        'Status = stsDefault')
-      (
-        'Component = Panel12'
-        'Status = stsDefault')
-      (
-        'Component = ButtonComplaintClear'
-        'Status = stsDefault')
-      (
-        'Component = ListBoxComplaints'
-        'Status = stsDefault')
-      (
-        'Component = Panel15'
-        'Status = stsDefault')
-      (
-        'Component = MemoComplaints'
-        'Status = stsDefault')
-      (
-        'Component = oPage4'
-        'Status = stsDefault')
-      (
-        'Component = Panel5'
-        'Status = stsDefault')
-      (
-        'Component = Panel11'
-        'Status = stsDefault')
-      (
-        'Component = ButtonReload'
-        'Status = stsDefault')
-      (
-        'Component = Panel13'
-        'Status = stsDefault')
-      (
-        'Component = RadioGroupImport'
-        'Status = stsDefault')
-      (
-        'Component = Panel6'
-        'Status = stsDefault')
-      (
-        'Component = memoActiveMedications'
-        'Status = stsDefault')
-      (
-        'Component = memoAllergies'
-        'Status = stsDefault')
-      (
-        'Component = oPage5'
-        'Status = stsDefault')
-      (
-        'Component = pnlHistory'
-        'Status = stsDefault')
-      (
-        'Component = RadioGroupHistory'
-        'Status = stsDefault')
-      (
-        'Component = ButtonHistoryClear'
-        'Status = stsDefault')
-      (
-        'Component = Panel3'
-        'Status = stsDefault')
-      (
-        'Component = ListBoxFamilyHist'
-        'Status = stsDefault')
-      (
-        'Component = ListBoxMedicalHist'
-        'Status = stsDefault')
-      (
-        'Component = ListBoxSocialHist'
-        'Status = stsDefault')
-      (
-        'Component = Panel4'
-        'Status = stsDefault')
-      (
-        'Component = MemoHistory'
-        'Status = stsDefault')
-      (
-        'Component = oPage6'
-        'Status = stsDefault')
-      (
-        'Component = Panel16'
-        'Status = stsDefault')
-      (
-        'Component = ButtonROS'
-        'Status = stsDefault')
-      (
-        'Component = Panel10'
-        'Status = stsDefault')
-      (
-        'Component = ButtonROSClear'
-        'Status = stsDefault')
-      (
-        'Component = Panel17'
-        'Status = stsDefault')
-      (
-        'Component = MemoROS'
-        'Status = stsDefault')
-      (
-        'Component = oPage7'
-        'Status = stsDefault')
-      (
-        'Component = Panel18'
-        'Status = stsDefault')
-      (
-        'Component = Panel9'
-        'Status = stsDefault')
-      (
-        'Component = ButtonPhysicalClear'
-        'Status = stsDefault')
-      (
-        'Component = ButtonPhysical'
-        'Status = stsDefault')
-      (
-        'Component = Panel19'
-        'Status = stsDefault')
-      (
-        'Component = MemoPhysical'
-        'Status = stsDefault')
-      (
-        'Component = oPage8'
-        'Status = stsDefault')
-      (
-        'Component = Panel23'
-        'Status = stsDefault')
-      (
-        'Component = ButtonOBFlow'
-        'Status = stsDefault')
-      (
-        'Component = ButtonOBExam'
-        'Status = stsDefault')
-      (
-        'Component = Panel7'
-        'Status = stsDefault')
-      (
-        'Component = ButtonOBClear'
-        'Status = stsDefault')
-      (
-        'Component = Panel24'
-        'Status = stsDefault')
-      (
-        'Component = MemoOBExam'
-        'Status = stsDefault')
-      (
-        'Component = oPage9'
-        'Status = stsDefault')
-      (
-        'Component = Panel22'
-        'Status = stsDefault')
-      (
-        'Component = Panel20'
-        'Status = stsDefault')
-      (
-        'Component = lblProblems'
-        'Status = stsDefault')
-      (
-        'Component = cklstProblems'
-        'Status = stsDefault')
-      (
-        'Component = Panel8'
-        'Status = stsDefault')
-      (
-        'Component = btnEducation'
-        'Status = stsDefault')
-      (
-        'Component = ButtonPreNatalNormal'
-        'Status = stsDefault')
-      (
-        'Component = ButtonPlanClear'
-        'Status = stsDefault')
-      (
-        'Component = Panel21'
-        'Status = stsDefault')
-      (
-        'Component = MemoPreNatal'
-        'Status = stsDefault'))
   end
 end

@@ -28,7 +28,7 @@ uses
   VA508AccessibilityManager;
 
 type
-  TdlgHeadache = class(ToCNTDialog)
+  TdlgHeadache = class(TDDCSDialog)
     Panel1: TPanel;
     lbltitle: TLabel;
     Panel2: TPanel;

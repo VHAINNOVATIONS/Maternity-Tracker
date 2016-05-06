@@ -28,7 +28,7 @@ uses
   Vcl.Samples.Spin, VA508AccessibilityManager;
 
 type
-  TdlgSocial = class(ToCNTDialog)
+  TdlgSocial = class(TDDCSDialog)
     Panel1: TPanel;
     lbltitle: TLabel;
     Panel2: TPanel;

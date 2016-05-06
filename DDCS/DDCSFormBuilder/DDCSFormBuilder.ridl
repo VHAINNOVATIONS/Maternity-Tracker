@@ -6,10 +6,10 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 11/20/2015 4:22:10 PM (- $Rev: 12980 $, 5563156).
+// File generated on 4/1/2016 4:46:42 PM (- $Rev: 12980 $, 27177234).
 
 [
-  uuid(CDA57258-06B9-461D-8854-D94A63557EC6),
+  uuid(46474042-D235-4388-AF75-0BFD7BBC0F2C),
   version(1.0)
 
 ]
@@ -24,7 +24,7 @@ library DDCSFormBuilder
 
 
   [
-    uuid(535EAA9E-EDEF-4F00-A275-B5EF14E6ACA8),
+    uuid(EFE41B95-30BF-47EA-86D3-B6183F167705),
     helpstring("Dispatch interface for DDCS Object"),
     dual,
     oleautomation
@@ -34,7 +34,7 @@ library DDCSFormBuilder
   };
 
   [
-    uuid(F4401FE9-4F5C-4633-B409-E7CEC0CE863F),
+    uuid(A5B2B08E-7045-4C77-9233-32B52C6E5B25),
     helpstring("DDCS Object")
   ]
   coclass DDCS

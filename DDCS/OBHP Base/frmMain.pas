@@ -3,91 +3,74 @@ unit frmMain;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.CheckLst,
-  Vcl.ExtCtrls, Vcl.ComCtrls,
-  uExtndComBroker, oCNTBase, frmVitals,
-  fBase508Form, VA508AccessibilityManager;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Vcl.CheckLst, Vcl.ExtCtrls, Vcl.ComCtrls, ORCtrls,
+  VAUtils, uBase, frmVitals, uExtndComBroker;
 
 type
-  TForm1 = class(TfrmBase508Form)
-    ofrm1: ToForm;
-    oPage1: ToPage;
+  TForm1 = class(TForm)
+    DDCSForm1: TDDCSForm;
+    oPage1: TTabSheet;
     RadioGroup3: TRadioGroup;
-    RadioReason: TGroupBox;
-    memChief: TMemo;
-    Panel1: TPanel;
-    grpSummary: TGroupBox;
-    lbSummary: TLabel;
-    oPage2: ToPage;
-    oPage3: ToPage;
-    Panel14: TPanel;
-    Label1: TStaticText;
-    Panel12: TPanel;
-    ButtonComplaintClear: TButton;
+    memChief: TCaptionMemo;
+    lbSummary: TStaticText;
+    oPage2: TTabSheet;
+    DDCSVitals: TDDCSVitals;
+    oPage3: TTabSheet;
     ListBoxComplaints: TCheckListBox;
-    Panel15: TPanel;
-    MemoComplaints: TMemo;
-    oPage4: ToPage;
-    Panel5: TPanel;
-    Panel11: TPanel;
-    ButtonReload: TButton;
-    Panel13: TPanel;
+    MemoComplaints: TCaptionMemo;
+    oPage4: TTabSheet;
     RadioGroupImport: TRadioGroup;
-    Panel6: TPanel;
-    memoActiveMedications: TMemo;
-    memoAllergies: TMemo;
-    oPage5: ToPage;
-    pnlHistory: TPanel;
+    oPage5: TTabSheet;
     RadioGroupHistory: TRadioGroup;
     ButtonHistoryClear: TButton;
-    Panel3: TPanel;
+    pnlHistoryCategories: TPanel;
     ListBoxFamilyHist: TCheckListBox;
     ListBoxMedicalHist: TCheckListBox;
     ListBoxSocialHist: TCheckListBox;
-    Panel4: TPanel;
-    MemoHistory: TMemo;
-    oPage6: ToPage;
-    Panel16: TPanel;
+    MemoHistory: TCaptionMemo;
+    oPage6: TTabSheet;
     ButtonROS: TButton;
-    Panel10: TPanel;
     ButtonROSClear: TButton;
-    Panel17: TPanel;
-    MemoROS: TMemo;
-    oPage7: ToPage;
-    Panel18: TPanel;
-    Panel9: TPanel;
+    MemoROS: TCaptionMemo;
+    oPage7: TTabSheet;
     ButtonPhysicalClear: TButton;
     ButtonPhysical: TButton;
-    Panel19: TPanel;
-    MemoPhysical: TMemo;
-    oPage8: ToPage;
-    Panel23: TPanel;
+    MemoPhysical: TCaptionMemo;
+    oPage8: TTabSheet;
     ButtonOBFlow: TButton;
     ButtonOBExam: TButton;
-    Panel7: TPanel;
     ButtonOBClear: TButton;
-    Panel24: TPanel;
-    MemoOBExam: TMemo;
-    oPage9: ToPage;
-    Panel22: TPanel;
-    Panel20: TPanel;
+    MemoOBExam: TCaptionMemo;
+    oPage9: TTabSheet;
     lblProblems: TStaticText;
     cklstProblems: TCheckListBox;
-    Panel8: TPanel;
     btnEducation: TButton;
     ButtonPreNatalNormal: TButton;
     ButtonPlanClear: TButton;
-    Panel21: TPanel;
-    MemoPreNatal: TMemo;
+    MemoPreNatal: TCaptionMemo;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    ButtonComplaintClear: TButton;
+    StaticText3: TStaticText;
+    pnlSectionImports: TPanel;
+    memoAllergies: TCaptionMemo;
+    memoActiveMedications: TCaptionMemo;
+    ButtonReload: TButton;
+    StaticText4: TStaticText;
+    StaticText5: TStaticText;
+    StaticText6: TStaticText;
+    StaticText7: TStaticText;
+    StaticText8: TStaticText;
+    StaticText9: TStaticText;
     procedure ClearTextClick(Sender: TObject);
-    procedure ButtonReloadClick(Sender: TObject);
     procedure RadioGroupImportClick(Sender: TObject);
     procedure RadioGroupHistoryClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure cklstProblemsClickCheck(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure RadioGroup3Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     problemck: Boolean;
     problems: array of Boolean;
@@ -102,18 +85,15 @@ implementation
 
 {$R *.dfm}
 
-uses
-  VA508AccessibilityRouter;
-
 procedure TForm1.FormShow(Sender: TObject);
 begin
-  ButtonReloadClick(Sender);
-  RadioGroupImport.ItemIndex := 0;
-  RadioGroupHistory.ItemIndex := 0;
-
   oSummary := lbSummary.Caption;
+
   RadioGroup3.OnClick := RadioGroup3Click;
   RadioGroup3Click(Sender);
+
+  RadioGroupHistoryClick(RadioGroupHistory);
+  RadioGroupImportClick(RadioGroupImport);
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -130,7 +110,7 @@ begin
   if not (Sender is TButton) then
     Exit;
 
-  if MessageDlg('Are you sure you want to clear all the text?', mtWarning, mbYesNo, 0) = mrYes then
+  if ShowMsg('Are you sure you want to clear all the text?', smiWarning, smbYesNo) = smrYes  then
   begin
     problemck := False;
     SetLength(problems, 0);
@@ -184,54 +164,27 @@ end;
 
 procedure TForm1.RadioGroupImportClick(Sender: TObject);
 begin
-  if RadioGroupImport.ItemIndex = -1 then
-    Exit;
-
-  case RadioGroupImport.ItemIndex of
-    0: begin
-         MemoAllergies.BringToFront;
-         MemoActiveMedications.SendToBack;
-       end;
-    1: begin
-         MemoActiveMedications.BringToFront;
-         MemoAllergies.SendToBack;
-       end;
-  end;
-end;
-
-procedure TForm1.ButtonReloadClick(Sender: TObject);
-var
-  I,J: Integer;
-begin
-  for I := 0 to RadioGroupImport.Items.Count - 1 do
-  begin
-    case I of
+  try
+    case RadioGroupImport.ItemIndex of
       0: begin
-           MemoAllergies.Clear;
-           try
-             MemoAllergies.Lines.AddStrings(ofrm1.GetPatientAllergies);
-           except
-           end;
+           memoActiveMedications.Clear;
+           memoActiveMedications.BringToFront;
+           memoActiveMedications.Lines.AddStrings(DDCSForm1.GetPatientActiveMedications);
          end;
       1: begin
-           MemoActiveMedications.Clear;
-           try
-             MemoActiveMedications.Lines.AddStrings(ofrm1.GetPatientActiveMedications);
-           except
-           end;
+           memoAllergies.Clear;
+           memoAllergies.BringToFront;
+           memoAllergies.Lines.AddStrings(DDCSForm1.GetPatientAllergies);
          end;
     end;
+  except
   end;
-  RadioGroupImport.ItemIndex := 0;
 end;
 
 //-------------------------------------------------------------------- page 5
 
 procedure TForm1.RadioGroupHistoryClick(Sender: TObject);
 begin
-  if RadioGroupHistory.ItemIndex = -1 then
-    Exit;
-
   case RadioGroupHistory.ItemIndex of
     0: ListBoxMedicalHist.BringToFront;
     1: ListBoxFamilyHist.BringToFront;

@@ -21,13 +21,13 @@ unit frmConfigMultiItemAdd;
 interface
 
 uses
-  Forms, StdCtrls, Buttons, System.Classes, Vcl.Controls;
+   System.Classes, Vcl.Forms, Vcl.StdCtrls, Vcl.Buttons, Vcl.Controls, ORCtrls;
 
 type
   TAddItem = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    Edit1: TEdit;
+    btnOK: TBitBtn;
+    btnCancel: TBitBtn;
+    edText: TCaptionEdit;
     procedure FormShow(Sender: TObject);
   private
   public
@@ -42,7 +42,7 @@ implementation
 
 procedure TAddItem.FormShow(Sender: TObject);
 begin
-  Edit1.SetFocus;
+  edText.SetFocus;
 end;
 
 end.

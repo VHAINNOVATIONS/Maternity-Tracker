@@ -105,10 +105,6 @@
     <Transaction>2016/02/17 14:31:52.000.583,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\OBHP Base\frmMain.pas=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\OBHP Base\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="..\..\..\Projects"/>
-    <File Path="..\..\_lib"/>
-    <File Path="..\..\_lib\fBase508Form.pas"/>
-    <File Path="..\..\_lib\fBase508Form.dfm"/>
     <File Path="frmMain.pas"/>
     <File Path="frmMain.dfm"/>
   </ProjectSortOrder>

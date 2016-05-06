@@ -1,10 +1,10 @@
 object DDCSAbout: TDDCSAbout
   Left = 587
   Top = 334
+  ActiveControl = btnOk
   Anchors = []
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
-  Caption = 'About'
   ClientHeight = 472
   ClientWidth = 455
   Color = clBtnFace
@@ -23,7 +23,7 @@ object DDCSAbout: TDDCSAbout
     472)
   PixelsPerInch = 96
   TextHeight = 14
-  object Picture1: TImage
+  object imgDSS: TImage
     Left = 192
     Top = -4
     Width = 257
@@ -131,55 +131,7 @@ object DDCSAbout: TDDCSAbout
       1258A1C818FF02AE267ACE00ACD1750000000049454E44AE426082}
     Proportional = True
   end
-  object Label4: TLabel
-    Left = 200
-    Top = 123
-    Width = 240
-    Height = 16
-    Alignment = taCenter
-    Anchors = []
-    AutoSize = False
-    Caption = 'Document Storage Systems, Inc.'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -13
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object Label3: TLabel
-    Left = 200
-    Top = 145
-    Width = 240
-    Height = 16
-    Alignment = taCenter
-    Anchors = []
-    AutoSize = False
-    Caption = 'Apache License 2.0'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -13
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object Label2: TLabel
-    Left = 200
-    Top = 101
-    Width = 240
-    Height = 16
-    Alignment = taCenter
-    Anchors = []
-    AutoSize = False
-    Caption = 'Copyright '#169' 1995-2014'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -13
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object Image1: TImage
+  object imgVA: TImage
     Left = -19
     Top = 7
     Width = 244
@@ -5689,7 +5641,61 @@ object DDCSAbout: TDDCSAbout
       49454E44AE426082}
     Proportional = True
   end
-  object Panel1: TPanel
+  object lbCompany: TStaticText
+    Left = 200
+    Top = 122
+    Width = 240
+    Height = 16
+    Alignment = taCenter
+    Anchors = []
+    AutoSize = False
+    Caption = '<Company Name>'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    TabStop = True
+  end
+  object lbApache: TStaticText
+    Left = 200
+    Top = 145
+    Width = 240
+    Height = 16
+    Alignment = taCenter
+    Anchors = []
+    AutoSize = False
+    Caption = 'Apache License 2.0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    TabStop = True
+  end
+  object lbCopyright: TStaticText
+    Left = 200
+    Top = 101
+    Width = 240
+    Height = 16
+    Alignment = taCenter
+    Anchors = []
+    AutoSize = False
+    Caption = '<copyright>'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    TabStop = True
+  end
+  object pnlInfo: TPanel
     Left = 8
     Top = 176
     Width = 439
@@ -5698,31 +5704,42 @@ object DDCSAbout: TDDCSAbout
     BevelInner = bvRaised
     BevelOuter = bvLowered
     ParentColor = True
-    TabOrder = 1
+    TabOrder = 3
     DesignSize = (
       439
       261)
-    object lblWebAddress: TStaticText
-      Left = 8
-      Top = 236
-      Width = 122
+    object lbLicense: TStaticText
+      Left = 21
+      Top = 55
+      Width = 405
+      Height = 162
+      AutoSize = False
+      Caption = '<license>'
+      TabOrder = 1
+      TabStop = True
+    end
+    object lbWebDSS: TStaticText
+      Left = 307
+      Top = 235
+      Width = 119
       Height = 18
       Cursor = crHandPoint
       Anchors = []
-      Caption = 'http://www.dssinc.com/'
+      Caption = 'http://www.dssinc.com'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlue
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
-      OnClick = lblWebAddressClick
+      TabOrder = 3
+      TabStop = True
+      OnClick = HyperLinkClick
     end
-    object lblAppName: TStaticText
+    object lbAppName: TStaticText
       Left = 11
       Top = 22
-      Width = 249
+      Width = 415
       Height = 17
       AutoSize = False
       Caption = 'Application'
@@ -5733,44 +5750,26 @@ object DDCSAbout: TDDCSAbout
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      TabStop = True
       IsControl = True
     end
-    object Memo1: TMemo
-      Left = 8
-      Top = 62
-      Width = 423
-      Height = 160
-      TabStop = False
+    object lbWebVA: TStaticText
+      Left = 11
+      Top = 235
+      Width = 97
+      Height = 18
+      Cursor = crHandPoint
       Anchors = []
-      BevelInner = bvNone
-      BevelOuter = bvNone
-      BorderStyle = bsNone
-      Color = clBtnFace
-      Lines.Strings = (
-        
-          '   Licensed under the Apache License, Version 2.0 (the "License"' +
-          ');'
-        
-          '   you may not use this file except in compliance with the Licen' +
-          'se.'
-        '   You may obtain a copy of the License at'
-        ''
-        '       http://www.apache.org/licenses/LICENSE-2.0'
-        ''
-        
-          '   Unless required by applicable law or agreed to in writing, so' +
-          'ftware'
-        
-          '   distributed under the License is distributed on an "AS IS" BA' +
-          'SIS,'
-        
-          '   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express ' +
-          'or implied.'
-        
-          '   See the License for the specific language governing permissio' +
-          'ns and'
-        '   limitations under the License.')
+      Caption = 'http://www.va.gov'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlue
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 2
+      TabStop = True
+      OnClick = HyperLinkClick
     end
   end
   object btnOk: TButton
@@ -5782,6 +5781,6 @@ object DDCSAbout: TDDCSAbout
     Caption = '&OK'
     Default = True
     ModalResult = 1
-    TabOrder = 0
+    TabOrder = 4
   end
 end

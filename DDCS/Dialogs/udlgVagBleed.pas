@@ -28,7 +28,7 @@ uses
   VA508AccessibilityManager;
 
 type
-  TdlgVagBleed = class(ToCNTDialog)
+  TdlgVagBleed = class(TDDCSDialog)
     Panel1: TPanel;
     lbltitle: TLabel;
     Panel2: TPanel;

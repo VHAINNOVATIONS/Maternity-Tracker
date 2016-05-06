@@ -8,7 +8,7 @@ uses
   Vcl.Controls, uDialog, uExtndComBroker, VA508AccessibilityManager;
 
 type
-  TdlgEducation = class(ToCNTDialog)
+  TdlgEducation = class(TDDCSDialog)
     Panel1: TPanel;
     lbltitle: TLabel;
     Panel2: TPanel;

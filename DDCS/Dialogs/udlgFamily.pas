@@ -25,10 +25,10 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls, Buttons, Vcl.Samples.Spin, Vcl.ComCtrls, system.StrUtils,
-  uDialog, uCommon, uExtndComBroker, VA508AccessibilityManager;
+  uDialog, uCommon, uExtndComBroker;
 
 type
-  TdlgFamily = class(ToCNTDialog)
+  TdlgFamily = class(TDDCSDialog)
     Panel1: TPanel;
     lbltitle: TLabel;
     Panel2: TPanel;
@@ -63,7 +63,6 @@ type
     lblName: TStaticText;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
-    amgrMain: TVA508AccessibilityManager;
     procedure bbtnOKClick(Sender: TObject);
     procedure btnDAddClick(Sender: TObject);
     procedure btnDDeleteClick(Sender: TObject);
@@ -90,7 +89,7 @@ var
 implementation
 
 uses
-   udlgDATE, fFamilyAdd;
+   VAUtils, udlgDATE, fFamilyAdd;
 
 {$R *.dfm}
 
@@ -328,6 +327,16 @@ procedure TdlgFamily.bbtnOKClick(Sender: TObject);
 var
   I,J: Integer;
   val: string;
+
+  function SubCount(str: string; d: Char): Integer;
+  var
+    I: Integer;
+  begin
+    Result := 0;
+    for I := 0 to Length(str) - 1 do
+      if str[I] = d then
+        inc(Result);
+  end;
 
   // IEN^NAME^SEX^DOB^EDUCATION^STREET1^STREET2^STREET3^CITY^STATE^ZIP^PHONE HOME^
   // PHONE WORK^PHONE CELL^PHONE FAX^PATIENT^DFN^RELATIONSHIP^STATUS^DIAGNOSIS^COMMENTS

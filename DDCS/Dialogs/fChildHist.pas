@@ -28,7 +28,7 @@ uses
   uDialog, uExtndComBroker, JvExMask, JvSpin, VA508AccessibilityManager;
 
 type
-  TfrmChildHist = class(ToCNTDialog)
+  TfrmChildHist = class(TDDCSDialog)
     Panel40: TPanel;
     Label305: TLabel;
     rgbxChildGender: TRadioGroup;

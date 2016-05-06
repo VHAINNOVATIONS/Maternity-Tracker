@@ -1,9 +1,19 @@
-inherited Form1: TForm1
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  ActiveControl = lbFeedingMethod
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Nurse Postpartum - Maternal'
-  ClientHeight = 523
-  ClientWidth = 742
-  Constraints.MinHeight = 550
-  Constraints.MinWidth = 750
+  ClientHeight = 443
+  ClientWidth = 712
+  Color = clBtnFace
+  Constraints.MinHeight = 470
+  Constraints.MinWidth = 720
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -7
+  Font.Name = 'Tahoma'
+  Font.Style = []
   Icon.Data = {
     000001000200101000000000200068040000260000002020000000002000A810
     00008E0400002800000010000000200000000100200000000000400400000000
@@ -175,442 +185,454 @@ inherited Form1: TForm1
     0000000000000000000000000000000000000000000000000000000000000000
     0000000000000000000000000000000000000000000000000000000000000000
     00000000000000000000000000000000000000000000}
+  OldCreateOrder = True
   Position = poOwnerFormCenter
-  ExplicitWidth = 750
-  ExplicitHeight = 550
   PixelsPerInch = 96
-  TextHeight = 13
-  object ofrm1: ToForm [0]
+  TextHeight = 8
+  object DDCSForm1: TDDCSForm
     Left = 0
     Top = 0
-    Width = 742
-    Height = 523
-    ActivePage = oPage1
+    Width = 712
+    Height = 443
+    ActivePage = TabSheet1
     Align = alClient
+    DoubleBuffered = True
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     OwnerDraw = True
+    ParentDoubleBuffered = False
     ParentFont = False
     Style = tsButtons
     TabHeight = 25
     TabOrder = 0
+    TabStop = False
     ReportCollection = <
       item
-        Order = 1
-        Title = 'FEEDING METHOD'
+        Order = 0
+        IdentifyingName = 'Feeding Method'
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = True
-        OwningObject = LB_FEEDING_METHOD
+        OwningObject = lbFeedingMethod
+        Required = False
+      end
+      item
+        Order = 1
+        IdentifyingName = 'Breast Milk'
+        Prefix = '   '
+        DoNotSpace = True
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = ckBreastMilk
         Required = False
       end
       item
         Order = 2
+        IdentifyingName = 'Bottle'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = CK_BREAST_MILK
+        OwningObject = ckBottle
         Required = False
       end
       item
         Order = 3
+        IdentifyingName = 'Formula'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = CK_BOTTLE
+        OwningObject = ckFormula
         Required = False
       end
       item
         Order = 4
-        Prefix = '   '
+        IdentifyingName = 'Ongoing Chronic Medical Conditions'
         DoNotSpace = True
         HideFromNote = False
-        DoNotSave = False
-        OwningObject = CK_FORMULA
+        DoNotSave = True
+        OwningObject = lbOngoingChronic
         Required = False
       end
       item
         Order = 5
-        Title = 'ONGOING CHRONIC MEDICAL CONDITIONS'
+        IdentifyingName = 'Asthma'
+        Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
-        DoNotSave = True
-        OwningObject = LB_ONGOING_CHRONIC_MEDICAL_CONDITIONS
+        DoNotSave = False
+        OwningObject = ckAsthma
         Required = False
       end
       item
         Order = 6
+        IdentifyingName = 'Diabetes'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = CK_ASTHMA
+        OwningObject = ckDiabetes
         Required = False
       end
       item
         Order = 7
+        IdentifyingName = 'Hypertension'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = CK_DIABETES
+        OwningObject = ckHypertension
         Required = False
       end
       item
         Order = 8
-        Prefix = '   '
+        IdentifyingName = 'Ongoing Chronic Medical Conditions Other'
+        Prefix = '   Other: '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = CK_HYPERTENSION
+        OwningObject = ledOngoingChronicOther
         Required = False
       end
       item
         Order = 9
-        Prefix = '   Other: '
+        IdentifyingName = 'Maternal Complications'
         DoNotSpace = True
         HideFromNote = False
-        DoNotSave = False
-        OwningObject = ED_ONGOING_OTHER
+        DoNotSave = True
+        OwningObject = lbMaternalComplications
         Required = False
       end
       item
         Order = 10
-        Title = 'MATERNAL COMPLICATIONS'
+        IdentifyingName = 'None'
+        Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
-        DoNotSave = True
-        OwningObject = LB_MATERNAL_COMPLICATIONS
+        DoNotSave = False
+        OwningObject = ckNone
         Required = False
       end
       item
         Order = 11
+        IdentifyingName = 'Postpartum Hemorrhage'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = CK_NONE
+        OwningObject = ckPostpartumHemorrhage
         Required = False
       end
       item
         Order = 12
+        IdentifyingName = 'Infection'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = CK_POSTPARTUM_HEMORRHAGE
+        OwningObject = ckInfection
         Required = False
       end
       item
         Order = 13
+        IdentifyingName = 'Pre-eclampsia'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = CK_PRE_ECLAMPSIA
+        OwningObject = ckPreEclampsia
         Required = False
       end
       item
         Order = 14
-        Prefix = '   '
+        IdentifyingName = 'Maternal Complications Other'
+        Prefix = '   Other: '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = CK_INFECTION
+        OwningObject = ledMaternalComplicationsOther
         Required = False
       end
       item
         Order = 15
-        Prefix = '   Other: '
+        IdentifyingName = 'Contraceptive Method'
         DoNotSpace = True
         HideFromNote = False
-        DoNotSave = False
-        OwningObject = ED_MATERNAL_OTHER
+        DoNotSave = True
+        OwningObject = lbContraceptiveMethod
         Required = False
       end
       item
         Order = 16
-        Title = 'CONTRACEPTIVE METHOD'
+        IdentifyingName = 'Contraceptive Method'
+        Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
-        DoNotSave = True
-        OwningObject = LB_CONTRACEPTIVE_METHOD
+        DoNotSave = False
+        OwningObject = cbContraceptiveMethod
         Required = False
       end
       item
         Order = 17
-        Prefix = '   '
-        DoNotSpace = True
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = CB_CONTRACEPTIVE_METHOD
-        Required = False
-      end
-      item
-        Order = 18
+        IdentifyingName = 'Contraceptive Method Other'
         Prefix = '   Other: '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = ED_CONTRACEPTIVE_OTHER
+        OwningObject = ledContraceptiveMethodOther
+        Required = False
+      end
+      item
+        Order = 18
+        IdentifyingName = 'Comments'
+        DoNotSpace = True
+        HideFromNote = False
+        DoNotSave = True
+        OwningObject = lbComments
         Required = False
       end
       item
         Order = 19
-        Title = 'COMMENTS'
+        IdentifyingName = 'Comments'
         Prefix = '   '
-        DoNotSpace = False
+        DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
-        OwningObject = MO_NARRATIVE
-        Required = False
-      end
-      item
-        Order = 0
-        DoNotSpace = False
-        HideFromNote = True
-        DoNotSave = True
-        OwningObject = LB_COMMENTS
+        OwningObject = meComments
         Required = False
       end>
-    ExplicitLeft = 8
-    ExplicitWidth = 640
-    object oPage1: ToPage
+    object TabSheet1: TTabSheet
       Caption = 'Overview'
-      VitalsStatus = False
-      ExplicitWidth = 632
-      object LB_FEEDING_METHOD: TLabel
+      object lbFeedingMethod: TStaticText
         Left = 20
-        Top = 15
-        Width = 77
-        Height = 13
+        Top = 5
+        Width = 95
+        Height = 17
         Caption = 'Feeding Method'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        TabStop = True
       end
-      object LB_ONGOING_CHRONIC_MEDICAL_CONDITIONS: TLabel
-        Left = 316
-        Top = 15
-        Width = 171
-        Height = 13
+      object lbOngoingChronic: TStaticText
+        Left = 355
+        Top = 5
+        Width = 209
+        Height = 17
         Caption = 'Ongoing Chronic Medical Conditions'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 4
+        TabStop = True
       end
-      object LB_MATERNAL_COMPLICATIONS: TLabel
+      object lbMaternalComplications: TStaticText
         Left = 20
-        Top = 74
-        Width = 109
-        Height = 13
+        Top = 111
+        Width = 135
+        Height = 17
         Caption = 'Maternal Complications'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 10
+        TabStop = True
       end
-      object LB_CONTRACEPTIVE_METHOD: TLabel
-        Left = 20
-        Top = 154
-        Width = 105
-        Height = 13
+      object lbContraceptiveMethod: TStaticText
+        Left = 355
+        Top = 111
+        Width = 129
+        Height = 17
         Caption = 'Contraceptive Method'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 17
+        TabStop = True
       end
-      object LB_COMMENTS: TLabel
+      object lbComments: TStaticText
         Left = 20
-        Top = 237
-        Width = 52
-        Height = 13
-        Caption = 'Comments:'
+        Top = 225
+        Width = 61
+        Height = 17
+        Caption = 'Comments'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 21
       end
-      object CK_BREAST_MILK: TCheckBox
-        Left = 20
-        Top = 34
-        Width = 97
+      object ckBreastMilk: TCheckBox
+        Left = 36
+        Top = 24
+        Width = 81
         Height = 17
         Caption = 'Breast Milk'
-        TabOrder = 0
+        TabOrder = 1
       end
-      object CB_CONTRACEPTIVE_METHOD: TComboBox
-        Left = 20
-        Top = 173
-        Width = 293
+      object cbContraceptiveMethod: TCaptionComboBox
+        Left = 377
+        Top = 130
+        Width = 304
         Height = 21
-        TabOrder = 12
+        TabOrder = 18
+        Caption = 'Contraceptive Method'
       end
-      object CK_PRE_ECLAMPSIA: TCheckBox
-        Left = 238
-        Top = 93
+      object ckPreEclampsia: TCheckBox
+        Left = 212
+        Top = 153
         Width = 97
         Height = 17
         Caption = 'Pre-eclampsia'
-        TabOrder = 9
+        TabOrder = 14
+        OnClick = MaternalComplicationsUpdate
       end
-      object CK_INFECTION: TCheckBox
-        Left = 341
-        Top = 93
+      object ckInfection: TCheckBox
+        Left = 212
+        Top = 130
         Width = 65
         Height = 17
         Caption = 'Infection'
-        TabOrder = 10
+        TabOrder = 13
+        OnClick = MaternalComplicationsUpdate
       end
-      object CK_NONE: TCheckBox
-        Left = 20
-        Top = 93
+      object ckNone: TCheckBox
+        Left = 36
+        Top = 130
         Width = 97
         Height = 17
         Caption = 'None'
-        TabOrder = 7
-        OnClick = CK_NONEClick
-      end
-      object ED_MATERNAL_OTHER: TLabeledEdit
-        Left = 49
-        Top = 116
-        Width = 564
-        Height = 21
-        EditLabel.Width = 26
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Other'
-        LabelPosition = lpLeft
         TabOrder = 11
+        OnClick = MaternalComplicationsUpdate
       end
-      object ED_ONGOING_OTHER: TLabeledEdit
-        Left = 348
-        Top = 57
-        Width = 265
+      object ledMaternalComplicationsOther: TCaptionEdit
+        Left = 68
+        Top = 176
+        Width = 245
         Height = 21
-        EditLabel.Width = 26
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Other'
-        LabelPosition = lpLeft
-        TabOrder = 6
+        TabOrder = 16
+        OnChange = MaternalComplicationsUpdate
+        Caption = 'Maternal Complications Other'
       end
-      object CK_ASTHMA: TCheckBox
-        Left = 316
-        Top = 34
+      object ledOngoingChronicOther: TCaptionEdit
+        Left = 410
+        Top = 68
+        Width = 271
+        Height = 21
+        TabOrder = 9
+        Caption = 'Ongoing Chronic Medical Conditions Other'
+      end
+      object ckAsthma: TCheckBox
+        Left = 377
+        Top = 24
         Width = 97
         Height = 17
         Caption = 'Asthma'
-        TabOrder = 3
+        TabOrder = 5
       end
-      object ED_CONTRACEPTIVE_OTHER: TLabeledEdit
-        Left = 51
-        Top = 200
-        Width = 562
+      object ledContraceptiveMethodOther: TCaptionEdit
+        Left = 410
+        Top = 157
+        Width = 271
         Height = 21
-        EditLabel.Width = 26
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Other'
-        LabelPosition = lpLeft
-        TabOrder = 13
+        TabOrder = 20
+        Caption = 'Contraceptive Method Other'
       end
-      object CK_BOTTLE: TCheckBox
-        Left = 113
-        Top = 34
-        Width = 97
+      object ckBottle: TCheckBox
+        Left = 36
+        Top = 47
+        Width = 56
         Height = 17
         Caption = 'Bottle'
-        TabOrder = 1
-      end
-      object CK_FORMULA: TCheckBox
-        Left = 181
-        Top = 34
-        Width = 97
-        Height = 17
-        Caption = 'Formula'
         TabOrder = 2
       end
-      object CK_DIABETES: TCheckBox
-        Left = 396
-        Top = 34
+      object ckFormula: TCheckBox
+        Left = 36
+        Top = 70
+        Width = 67
+        Height = 17
+        Caption = 'Formula'
+        TabOrder = 3
+      end
+      object ckDiabetes: TCheckBox
+        Left = 377
+        Top = 45
         Width = 97
         Height = 17
         Caption = 'Diabetes'
-        TabOrder = 4
+        TabOrder = 6
       end
-      object CK_HYPERTENSION: TCheckBox
-        Left = 476
-        Top = 34
+      object ckHypertension: TCheckBox
+        Left = 536
+        Top = 24
         Width = 97
         Height = 17
         Caption = 'Hypertension'
-        TabOrder = 5
+        TabOrder = 7
       end
-      object CK_POSTPARTUM_HEMORRHAGE: TCheckBox
-        Left = 86
-        Top = 93
+      object ckPostpartumHemorrhage: TCheckBox
+        Left = 36
+        Top = 153
         Width = 146
         Height = 17
         Caption = 'Postpartum Hemorrhage'
-        TabOrder = 8
-        OnClick = CK_POSTPARTUM_HEMORRHAGEClick
+        TabOrder = 12
+        OnClick = MaternalComplicationsUpdate
       end
-      object MO_NARRATIVE: TMemo
+      object meComments: TCaptionMemo
         Left = 20
-        Top = 256
-        Width = 695
-        Height = 188
+        Top = 244
+        Width = 661
+        Height = 117
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
         ScrollBars = ssVertical
-        TabOrder = 14
-        ExplicitWidth = 593
+        TabOrder = 22
+        Caption = 'Comments'
+      end
+      object lbOngoingOther: TStaticText
+        Left = 377
+        Top = 72
+        Width = 30
+        Height = 17
+        Caption = 'Other'
+        TabOrder = 8
+      end
+      object lbMaternalOther: TStaticText
+        Left = 36
+        Top = 180
+        Width = 30
+        Height = 17
+        Caption = 'Other'
+        TabOrder = 15
+      end
+      object lbContraceptiveOther: TStaticText
+        Left = 377
+        Top = 161
+        Width = 30
+        Height = 17
+        Caption = 'Other'
+        TabOrder = 19
       end
     end
-  end
-  inherited amgrMain: TVA508AccessibilityManager
-    Left = 648
-    Top = 24
-    Data = (
-      (
-        'Component = Form1'
-        'Status = stsDefault')
-      (
-        'Component = ofrm1'
-        'Status = stsDefault')
-      (
-        'Component = oPage1'
-        'Status = stsDefault')
-      (
-        'Component = CK_BREAST_MILK'
-        'Status = stsDefault')
-      (
-        'Component = CB_CONTRACEPTIVE_METHOD'
-        'Status = stsDefault')
-      (
-        'Component = CK_PRE_ECLAMPSIA'
-        'Status = stsDefault')
-      (
-        'Component = CK_INFECTION'
-        'Status = stsDefault')
-      (
-        'Component = CK_NONE'
-        'Status = stsDefault')
-      (
-        'Component = ED_MATERNAL_OTHER'
-        'Status = stsDefault')
-      (
-        'Component = ED_ONGOING_OTHER'
-        'Status = stsDefault')
-      (
-        'Component = CK_ASTHMA'
-        'Status = stsDefault')
-      (
-        'Component = ED_CONTRACEPTIVE_OTHER'
-        'Status = stsDefault')
-      (
-        'Component = CK_BOTTLE'
-        'Status = stsDefault')
-      (
-        'Component = CK_FORMULA'
-        'Status = stsDefault')
-      (
-        'Component = CK_DIABETES'
-        'Status = stsDefault')
-      (
-        'Component = CK_HYPERTENSION'
-        'Status = stsDefault')
-      (
-        'Component = CK_POSTPARTUM_HEMORRHAGE'
-        'Status = stsDefault')
-      (
-        'Component = MO_NARRATIVE'
-        'Status = stsDefault'))
   end
 end

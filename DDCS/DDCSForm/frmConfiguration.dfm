@@ -1,9 +1,9 @@
-object oCNTConfiguration: ToCNTConfiguration
+object DDCSFormConfig: TDDCSFormConfig
   Left = 0
   Top = 0
   Caption = 'Configuration and Report Item Editor'
-  ClientHeight = 555
-  ClientWidth = 860
+  ClientHeight = 556
+  ClientWidth = 911
   Color = clBtnFace
   Constraints.MinHeight = 555
   Constraints.MinWidth = 860
@@ -186,464 +186,35 @@ object oCNTConfiguration: ToCNTConfiguration
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
-  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
+  object Tabs: TPageControl
     Left = 0
     Top = 0
-    Width = 860
-    Height = 13
-    Align = alTop
-    TabOrder = 0
-    Visible = False
-  end
-  object Panel2: TPanel
-    Left = 0
-    Top = 520
-    Width = 860
-    Height = 35
-    Align = alBottom
-    BevelOuter = bvNone
-    TabOrder = 1
-    DesignSize = (
-      860
-      35)
-    object btnCloseMain: TBitBtn
-      Left = 780
-      Top = 6
-      Width = 75
-      Height = 25
-      Anchors = [akRight, akBottom]
-      Cancel = True
-      Caption = 'Close'
-      Glyph.Data = {
-        DE010000424DDE01000000000000760000002800000024000000120000000100
-        0400000000006801000000000000000000001000000000000000000000000000
-        80000080000000808000800000008000800080800000C0C0C000808080000000
-        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-        3333333333333FFFFF333333000033333388888833333333333F888888FFF333
-        000033338811111188333333338833FFF388FF33000033381119999111833333
-        38F338888F338FF30000339119933331111833338F388333383338F300003391
-        13333381111833338F8F3333833F38F3000039118333381119118338F38F3338
-        33F8F38F000039183333811193918338F8F333833F838F8F0000391833381119
-        33918338F8F33833F8338F8F000039183381119333918338F8F3833F83338F8F
-        000039183811193333918338F8F833F83333838F000039118111933339118338
-        F3833F83333833830000339111193333391833338F33F8333FF838F300003391
-        11833338111833338F338FFFF883F83300003339111888811183333338FF3888
-        83FF83330000333399111111993333333388FFFFFF8833330000333333999999
-        3333333333338888883333330000333333333333333333333333333333333333
-        0000}
-      NumGlyphs = 2
-      TabOrder = 0
-      OnClick = btnCloseMainClick
-    end
-  end
-  object PageControl1: TPageControl
-    Left = 0
-    Top = 13
-    Width = 860
-    Height = 507
-    ActivePage = TabSheet1
+    Width = 820
+    Height = 556
+    ActivePage = tabConfig
     Align = alClient
     MultiLine = True
     Style = tsButtons
     TabHeight = 30
-    TabOrder = 2
-    OnChange = PageControl1Change
-    object TabSheet1: TTabSheet
+    TabOrder = 0
+    object tabConfig: TTabSheet
       Caption = 'Configuration'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
-        852
-        467)
-      object Label1: TLabel
-        Left = 15
-        Top = 10
-        Width = 106
-        Height = 13
-        Caption = 'Form Components:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object configDisclaimer: TLabel
-        Left = 680
-        Top = 10
-        Width = 154
-        Height = 48
-        Anchors = [akTop, akRight]
-        Caption = 
-          'Changing the information here will permanently alter the configu' +
-          'ration setup.'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        Visible = False
-        WordWrap = True
-        ExplicitLeft = 650
-      end
-      object lblConfigSelected: TLabel
-        Left = 336
-        Top = 10
-        Width = 4
-        Height = 16
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object configWP: TGroupBox
-        Left = 344
-        Top = 124
-        Width = 460
-        Height = 238
-        Caption = 'Type - Word Processing'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 3
-        Visible = False
-        object Memo2: TMemo
-          Left = 24
-          Top = 32
-          Width = 409
-          Height = 185
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-        end
-      end
-      object ItemEditor: TGroupBox
-        Left = 344
-        Top = 124
-        Width = 460
-        Height = 238
-        Caption = 'Type - Multiple - Items'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 7
-        Visible = False
-        object btnMultiListItemsDown: TBitBtn
-          Tag = 1
-          Left = 413
-          Top = 135
-          Width = 20
-          Height = 25
-          Caption = '-'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 2
-          OnClick = lstDownClick
-        end
-        object btnMultiListItemsUp: TBitBtn
-          Tag = 1
-          Left = 413
-          Top = 58
-          Width = 20
-          Height = 25
-          Caption = '+'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 1
-          OnClick = lstUpClick
-        end
-        object lstMultiListItems: TListBox
-          Tag = 1
-          Left = 24
-          Top = 39
-          Width = 383
-          Height = 147
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemHeight = 13
-          ParentFont = False
-          TabOrder = 0
-          OnDblClick = lstMultiListItemsDblClick
-        end
-        object btnAddMultiItem: TBitBtn
-          Tag = 1
-          Left = 24
-          Top = 192
-          Width = 75
-          Height = 25
-          Caption = 'Add'
-          Default = True
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            3333333333333333333333330000333333333333333333333333F33333333333
-            00003333344333333333333333388F3333333333000033334224333333333333
-            338338F3333333330000333422224333333333333833338F3333333300003342
-            222224333333333383333338F3333333000034222A22224333333338F338F333
-            8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
-            33333338F83338F338F33333000033A33333A222433333338333338F338F3333
-            0000333333333A222433333333333338F338F33300003333333333A222433333
-            333333338F338F33000033333333333A222433333333333338F338F300003333
-            33333333A222433333333333338F338F00003333333333333A22433333333333
-            3338F38F000033333333333333A223333333333333338F830000333333333333
-            333A333333333333333338330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 3
-          OnClick = btnAddMultiItemClick
-        end
-        object btnDeleteMultiItem: TBitBtn
-          Tag = 1
-          Left = 105
-          Top = 192
-          Width = 75
-          Height = 25
-          Cancel = True
-          Caption = 'Delete'
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            333333333333333333333333000033338833333333333333333F333333333333
-            0000333911833333983333333388F333333F3333000033391118333911833333
-            38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
-            911118111118333338F3338F833338F3000033333911111111833333338F3338
-            3333F8330000333333911111183333333338F333333F83330000333333311111
-            8333333333338F3333383333000033333339111183333333333338F333833333
-            00003333339111118333333333333833338F3333000033333911181118333333
-            33338333338F333300003333911183911183333333383338F338F33300003333
-            9118333911183333338F33838F338F33000033333913333391113333338FF833
-            38F338F300003333333333333919333333388333338FFF830000333333333333
-            3333333333333333333888330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 4
-          OnClick = btnDeleteMultiItemClick
-        end
-      end
-      object pnlIntro: TPanel
-        Left = 336
-        Top = 27
-        Width = 495
-        Height = 417
+        812
+        516)
+      object lvConfig: TListView
+        Left = 1
+        Top = 3
+        Width = 320
+        Height = 479
         Anchors = [akLeft, akTop, akRight, akBottom]
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 9
-        object Memo1: TMemo
-          Left = 40
-          Top = 173
-          Width = 383
-          Height = 60
-          Align = alCustom
-          Alignment = taCenter
-          BevelInner = bvNone
-          BevelOuter = bvNone
-          BorderStyle = bsNone
-          Color = clBtnFace
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          Lines.Strings = (
-            'Changing the Information here will '
-            'permanently alter the configuration setup.')
-          ParentFont = False
-          TabOrder = 0
-        end
-      end
-      object DialogEditor: TGroupBox
-        Left = 344
-        Top = 124
-        Width = 460
-        Height = 238
-        Caption = 'Type - Multiple - Dialog List'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 4
-        Visible = False
-        object DialogConLst: TComboBox
-          Left = 16
-          Top = 32
-          Width = 180
-          Height = 21
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-          Text = 'Select Dialog Container'
-        end
-        object DialogLst: TListBox
-          Left = 16
-          Top = 72
-          Width = 180
-          Height = 145
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemHeight = 13
-          ParentFont = False
-          TabOrder = 1
-          OnDblClick = ShowDllDialog
-        end
-        object lstMultiDialogItems: TListBox
-          Tag = 2
-          Left = 235
-          Top = 72
-          Width = 180
-          Height = 145
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemHeight = 13
-          ParentFont = False
-          TabOrder = 2
-          OnDblClick = ShowDllDialog
-        end
-        object btnConMulDiAdd: TBitBtn
-          Left = 202
-          Top = 98
-          Width = 27
-          Height = 25
-          Caption = '>'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 3
-          OnClick = btnConMulDiAddClick
-        end
-        object btnConMulDiDelete: TBitBtn
-          Left = 202
-          Top = 166
-          Width = 27
-          Height = 25
-          Caption = '<'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 4
-          OnClick = btnConMulDiDeleteClick
-        end
-        object btnMultiDialogItemsUp: TBitBtn
-          Tag = 2
-          Left = 421
-          Top = 105
-          Width = 20
-          Height = 25
-          Caption = '+'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 5
-          OnClick = lstUpClick
-        end
-        object btnMultiDialogItemsDown: TBitBtn
-          Tag = 2
-          Left = 421
-          Top = 166
-          Width = 20
-          Height = 25
-          Caption = '-'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 6
-          OnClick = lstDownClick
-        end
-        object btnConMulDiDeleteAll: TBitBtn
-          Left = 202
-          Top = 192
-          Width = 27
-          Height = 25
-          Caption = '<<'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 7
-          OnClick = btnConMulDiDeleteAllClick
-        end
-        object btnConMulDiAddAll: TBitBtn
-          Left = 202
-          Top = 72
-          Width = 27
-          Height = 25
-          Caption = '>>'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 8
-          OnClick = btnConMulDiAddAllClick
-        end
-      end
-      object ConfigList: TListView
-        Left = 15
-        Top = 29
-        Width = 300
-        Height = 394
-        Anchors = [akLeft, akTop, akBottom]
         Columns = <
           item
             AutoSize = True
@@ -651,13 +222,11 @@ object oCNTConfiguration: ToCNTConfiguration
             MinWidth = 150
           end
           item
-            AutoSize = True
             Caption = 'Class'
-            MaxWidth = 80
             MinWidth = 80
+            Width = 80
           end
           item
-            AutoSize = True
             Caption = 'Page'
             MaxWidth = 50
             MinWidth = 50
@@ -668,124 +237,11 @@ object oCNTConfiguration: ToCNTConfiguration
         ViewStyle = vsReport
         OnColumnClick = ListColumnClick
         OnCompare = ListCompare
-        OnDblClick = ConfigListDblClick
+        OnDblClick = lvConfigDblClick
       end
-      object edtSingTextDisp: TLabeledEdit
-        Left = 344
-        Top = 91
-        Width = 273
-        Height = 21
-        EditLabel.Width = 85
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Text to Display'
-        EditLabel.Font.Charset = DEFAULT_CHARSET
-        EditLabel.Font.Color = clWindowText
-        EditLabel.Font.Height = -11
-        EditLabel.Font.Name = 'Tahoma'
-        EditLabel.Font.Style = [fsBold]
-        EditLabel.ParentFont = False
-        TabOrder = 6
-        Visible = False
-      end
-      object Panel3: TPanel
-        Left = 660
-        Top = 387
-        Width = 174
-        Height = 65
-        Anchors = [akRight, akBottom]
-        BevelOuter = bvNone
-        TabOrder = 8
-        Visible = False
-        DesignSize = (
-          174
-          65)
-        object btnConfigOK: TBitBtn
-          Left = 8
-          Top = 27
-          Width = 75
-          Height = 25
-          Anchors = [akRight, akBottom]
-          Caption = 'OK'
-          Default = True
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            3333333333333333333333330000333333333333333333333333F33333333333
-            00003333344333333333333333388F3333333333000033334224333333333333
-            338338F3333333330000333422224333333333333833338F3333333300003342
-            222224333333333383333338F3333333000034222A22224333333338F338F333
-            8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
-            33333338F83338F338F33333000033A33333A222433333338333338F338F3333
-            0000333333333A222433333333333338F338F33300003333333333A222433333
-            333333338F338F33000033333333333A222433333333333338F338F300003333
-            33333333A222433333333333338F338F00003333333333333A22433333333333
-            3338F38F000033333333333333A223333333333333338F830000333333333333
-            333A333333333333333338330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 0
-          OnClick = btnOKConfigClick
-        end
-        object btnConfigCancel: TBitBtn
-          Left = 89
-          Top = 27
-          Width = 75
-          Height = 25
-          Anchors = [akRight, akBottom]
-          Cancel = True
-          Caption = 'Cancel'
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            333333333333333333333333000033338833333333333333333F333333333333
-            0000333911833333983333333388F333333F3333000033391118333911833333
-            38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
-            911118111118333338F3338F833338F3000033333911111111833333338F3338
-            3333F8330000333333911111183333333338F333333F83330000333333311111
-            8333333333338F3333383333000033333339111183333333333338F333833333
-            00003333339111118333333333333833338F3333000033333911181118333333
-            33338333338F333300003333911183911183333333383338F338F33300003333
-            9118333911183333338F33838F338F33000033333913333391113333338FF833
-            38F338F300003333333333333919333333388333338FFF830000333333333333
-            3333333333333333333888330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 1
-          OnClick = btnCloseConfigClick
-        end
-        object Panel9: TPanel
-          Left = 8
-          Top = 5
-          Width = 156
-          Height = 16
-          Anchors = [akRight, akBottom]
-          BevelOuter = bvNone
-          Caption = 'Save Changes?'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 2
-        end
-      end
-      object cbConfigButton: TComboBox
-        Left = 344
-        Top = 91
-        Width = 229
-        Height = 21
-        TabOrder = 2
-        Text = 'Select Dialog'
-        Visible = False
-      end
-      object btnoCNTImport: TBitBtn
-        Left = 15
-        Top = 429
+      object btnUpdateConfig: TBitBtn
+        Left = 1
+        Top = 488
         Width = 130
         Height = 25
         Anchors = [akLeft, akBottom]
@@ -810,29 +266,19 @@ object oCNTConfiguration: ToCNTConfiguration
           0000}
         NumGlyphs = 2
         TabOrder = 1
-        OnClick = btnoCNTImportClick
+        OnClick = btnUpdateConfigClick
       end
-      object DialogType: TRadioGroup
-        Left = 376
-        Top = 51
-        Width = 89
-        Height = 61
-        Caption = 'Dialog Type?'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        Items.Strings = (
-          'Yes'
-          'No')
-        ParentFont = False
-        TabOrder = 5
-        Visible = False
-        OnClick = DialogTypeClick
+      object pnlConfig: TPanel
+        Left = 327
+        Top = 0
+        Width = 485
+        Height = 516
+        Align = alRight
+        BevelOuter = bvNone
+        TabOrder = 2
       end
     end
-    object TabSheet2: TTabSheet
+    object tabDialog: TTabSheet
       Caption = 'Report Items'
       ImageIndex = 1
       ExplicitLeft = 0
@@ -840,64 +286,14 @@ object oCNTConfiguration: ToCNTConfiguration
       ExplicitWidth = 0
       ExplicitHeight = 0
       DesignSize = (
-        852
-        467)
-      object Label2: TLabel
-        Left = 15
-        Top = 10
-        Width = 106
-        Height = 13
-        Caption = 'Form Components:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label4: TLabel
-        Left = 450
-        Top = 29
-        Width = 324
-        Height = 48
-        Alignment = taCenter
-        Anchors = [akLeft, akTop, akRight]
-        Caption = 
-          'Changing the information here will override Report Item configur' +
-          'ation. To restore original behavior delete the override.'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object lblRISelected: TLabel
-        Left = 450
-        Top = 104
-        Width = 4
-        Height = 16
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object lblRISelectedTyp: TLabel
-        Left = 624
-        Top = 104
-        Width = 3
-        Height = 13
-        Visible = False
-      end
-      object ReportItemlst: TListView
-        Left = 15
-        Top = 29
-        Width = 394
-        Height = 415
-        Anchors = [akLeft, akTop, akBottom]
+        812
+        516)
+      object lvReportItems: TListView
+        Left = 1
+        Top = 3
+        Width = 399
+        Height = 510
+        Anchors = [akLeft, akTop, akRight, akBottom]
         Columns = <
           item
             AutoSize = True
@@ -930,322 +326,226 @@ object oCNTConfiguration: ToCNTConfiguration
         ViewStyle = vsReport
         OnColumnClick = ListColumnClick
         OnCompare = ListCompare
-        OnDblClick = ReportItemlstDblClick
+        OnDblClick = lvReportItemsDblClick
       end
-      object Panel5: TPanel
-        Left = 434
-        Top = 134
-        Width = 381
-        Height = 202
-        Anchors = [akLeft, akTop, akRight]
+      object pnlReport: TPanel
+        Left = 406
+        Top = 0
+        Width = 406
+        Height = 516
+        Align = alRight
         BevelOuter = bvNone
         TabOrder = 1
-        Visible = False
-        object RITitle: TLabeledEdit
-          Left = 16
-          Top = 21
-          Width = 328
-          Height = 21
-          EditLabel.Width = 28
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Title:'
-          EditLabel.Font.Charset = DEFAULT_CHARSET
-          EditLabel.Font.Color = clWindowText
-          EditLabel.Font.Height = -11
-          EditLabel.Font.Name = 'Tahoma'
-          EditLabel.Font.Style = [fsBold]
-          EditLabel.ParentFont = False
-          TabOrder = 0
-        end
-        object RIPrefex: TLabeledEdit
-          Left = 16
-          Top = 72
-          Width = 160
-          Height = 21
-          EditLabel.Width = 36
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Prefix:'
-          EditLabel.Font.Charset = DEFAULT_CHARSET
-          EditLabel.Font.Color = clWindowText
-          EditLabel.Font.Height = -11
-          EditLabel.Font.Name = 'Tahoma'
-          EditLabel.Font.Style = [fsBold]
-          EditLabel.ParentFont = False
-          TabOrder = 1
-        end
-        object RIVistalabel: TLabeledEdit
-          Left = 16
-          Top = 124
-          Width = 160
-          Height = 21
-          EditLabel.Width = 65
-          EditLabel.Height = 13
-          EditLabel.Caption = 'VistA Label:'
-          EditLabel.Font.Charset = DEFAULT_CHARSET
-          EditLabel.Font.Color = clWindowText
-          EditLabel.Font.Height = -11
-          EditLabel.Font.Name = 'Tahoma'
-          EditLabel.Font.Style = [fsBold]
-          EditLabel.ParentFont = False
-          TabOrder = 3
-        end
-        object RIHide: TCheckBox
-          Left = 215
-          Top = 150
-          Width = 97
-          Height = 17
-          Caption = 'Hide From Note'
-          TabOrder = 5
-        end
-        object RISuffix: TLabeledEdit
-          Left = 184
-          Top = 72
-          Width = 160
-          Height = 21
-          EditLabel.Width = 35
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Suffix:'
-          EditLabel.Font.Charset = DEFAULT_CHARSET
-          EditLabel.Font.Color = clWindowText
-          EditLabel.Font.Height = -11
-          EditLabel.Font.Name = 'Tahoma'
-          EditLabel.Font.Style = [fsBold]
-          EditLabel.ParentFont = False
-          TabOrder = 2
-        end
-        object RIRequired: TCheckBox
-          Left = 215
-          Top = 174
-          Width = 97
-          Height = 17
-          Caption = 'Required'
-          TabOrder = 6
-        end
-        object RIDoNotSave: TCheckBox
-          Left = 215
-          Top = 126
-          Width = 132
-          Height = 17
-          Caption = 'Do Not Save to VistA'
-          TabOrder = 4
-        end
-        object btnRIDelete: TBitBtn
-          Left = 16
-          Top = 166
-          Width = 75
-          Height = 25
-          Caption = 'Delete'
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            333333333333333333333333000033338833333333333333333F333333333333
-            0000333911833333983333333388F333333F3333000033391118333911833333
-            38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
-            911118111118333338F3338F833338F3000033333911111111833333338F3338
-            3333F8330000333333911111183333333338F333333F83330000333333311111
-            8333333333338F3333383333000033333339111183333333333338F333833333
-            00003333339111118333333333333833338F3333000033333911181118333333
-            33338333338F333300003333911183911183333333383338F338F33300003333
-            9118333911183333338F33838F338F33000033333913333391113333338FF833
-            38F338F300003333333333333919333333388333338FFF830000333333333333
-            3333333333333333333888330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 7
-          OnClick = btnRIDeleteClick
-        end
-      end
-      object Panel4: TPanel
-        Left = 660
-        Top = 377
-        Width = 174
-        Height = 75
-        Anchors = [akRight, akBottom]
-        BevelOuter = bvNone
-        TabOrder = 2
-        Visible = False
-        DesignSize = (
-          174
-          75)
-        object btnRIOK: TBitBtn
-          Left = 8
-          Top = 37
-          Width = 75
-          Height = 25
-          Anchors = [akRight, akBottom]
-          Caption = 'OK'
-          Default = True
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            3333333333333333333333330000333333333333333333333333F33333333333
-            00003333344333333333333333388F3333333333000033334224333333333333
-            338338F3333333330000333422224333333333333833338F3333333300003342
-            222224333333333383333338F3333333000034222A22224333333338F338F333
-            8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
-            33333338F83338F338F33333000033A33333A222433333338333338F338F3333
-            0000333333333A222433333333333338F338F33300003333333333A222433333
-            333333338F338F33000033333333333A222433333333333338F338F300003333
-            33333333A222433333333333338F338F00003333333333333A22433333333333
-            3338F38F000033333333333333A223333333333333338F830000333333333333
-            333A333333333333333338330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 0
-          OnClick = btnRIOKClick
-        end
-        object btnRICancel: TBitBtn
-          Left = 89
-          Top = 37
-          Width = 75
-          Height = 25
-          Anchors = [akRight, akBottom]
-          Cancel = True
-          Caption = 'Cancel'
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            333333333333333333333333000033338833333333333333333F333333333333
-            0000333911833333983333333388F333333F3333000033391118333911833333
-            38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
-            911118111118333338F3338F833338F3000033333911111111833333338F3338
-            3333F8330000333333911111183333333338F333333F83330000333333311111
-            8333333333338F3333383333000033333339111183333333333338F333833333
-            00003333339111118333333333333833338F3333000033333911181118333333
-            33338333338F333300003333911183911183333333383338F338F33300003333
-            9118333911183333338F33838F338F33000033333913333391113333338FF833
-            38F338F300003333333333333919333333388333338FFF830000333333333333
-            3333333333333333333888330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 1
-          OnClick = btnRICancelClick
-        end
-        object Panel8: TPanel
-          Left = 8
-          Top = 15
-          Width = 156
-          Height = 16
-          Anchors = [akRight, akBottom]
-          BevelOuter = bvNone
-          Caption = 'Save Changes?'
+        object lbReportNotice: TStaticText
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 400
+          Height = 46
+          Align = alTop
+          Alignment = taCenter
+          AutoSize = False
+          Caption = 
+            'Changing the information here will override Report Item configur' +
+            'ation. To restore original behavior delete the override.'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -11
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TabStop = True
+        end
+        object lbOrder: TStaticText
+          Left = 16
+          Top = 81
+          Width = 41
+          Height = 20
+          Caption = 'Order'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 2
+          TabStop = True
+        end
+        object lbTitle: TStaticText
+          Left = 16
+          Top = 109
+          Width = 31
+          Height = 20
+          Caption = 'Title'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 4
+        end
+        object lbPrefix: TStaticText
+          Left = 16
+          Top = 136
+          Width = 41
+          Height = 20
+          Caption = 'Prefix'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 6
+        end
+        object lbSuffix: TStaticText
+          Left = 16
+          Top = 163
+          Width = 40
+          Height = 20
+          Caption = 'Suffix'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 8
+        end
+        object lbDialogReturn: TStaticText
+          Left = 16
+          Top = 314
+          Width = 92
+          Height = 20
+          Caption = 'Dialog Return'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 15
+        end
+        object ckHideFromNote: TCheckBox
+          Left = 89
+          Top = 218
+          Width = 97
+          Height = 17
+          Caption = 'Hide from Note'
+          TabOrder = 11
+        end
+        object ckRequired: TCheckBox
+          Left = 89
+          Top = 285
+          Width = 97
+          Height = 17
+          Caption = 'Required'
+          TabOrder = 14
+        end
+        object ckDoNotSave: TCheckBox
+          Left = 89
+          Top = 241
+          Width = 132
+          Height = 17
+          Caption = 'Do not Save'
+          TabOrder = 12
+        end
+        object spOrder: TSpinEdit
+          Left = 89
+          Top = 80
+          Width = 64
+          Height = 22
+          MaxValue = 0
+          MinValue = 0
+          TabOrder = 3
+          Value = 0
+        end
+        object edTitle: TCaptionEdit
+          Left = 89
+          Top = 108
+          Width = 288
+          Height = 21
+          TabOrder = 5
+          Caption = 'Title'
+        end
+        object edPrefix: TCaptionEdit
+          Left = 89
+          Top = 135
+          Width = 288
+          Height = 21
+          TabOrder = 7
+          Caption = 'Prefix'
+        end
+        object edSuffix: TCaptionEdit
+          Left = 89
+          Top = 162
+          Width = 288
+          Height = 21
+          TabOrder = 9
+          Caption = 'Suffix'
+        end
+        object ckDoNotSpace: TCheckBox
+          Left = 89
+          Top = 195
+          Width = 97
+          Height = 17
+          Caption = 'Do not Space'
+          TabOrder = 10
+        end
+        object cbDialogReturn: TCaptionComboBox
+          Left = 125
+          Top = 313
+          Width = 252
+          Height = 21
+          Style = csDropDownList
+          TabOrder = 16
+          Caption = 'Dialog Return'
+        end
+        object CheckBox1: TCheckBox
+          Left = 89
+          Top = 263
+          Width = 97
+          Height = 17
+          Caption = 'Do not Restore'
+          TabOrder = 13
+        end
+        object lbReportControl: TStaticText
+          Left = 0
+          Top = 52
+          Width = 406
+          Height = 4
+          Align = alTop
+          Alignment = taCenter
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 1
+          TabStop = True
+          ExplicitWidth = 4
         end
       end
     end
-    object TabSheet3: TTabSheet
+    object tabReport: TTabSheet
       Caption = 'Dialog Editor'
       ImageIndex = 2
-      OnShow = TabSheet3Show
       ExplicitLeft = 0
       ExplicitTop = 0
       ExplicitWidth = 0
       ExplicitHeight = 0
       DesignSize = (
-        852
-        467)
-      object Label5: TLabel
-        Left = 220
-        Top = 29
-        Width = 112
-        Height = 13
-        Caption = 'Dialog Components:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label6: TLabel
-        Left = 680
-        Top = 10
-        Width = 154
-        Height = 48
-        Anchors = [akTop, akRight]
-        Caption = 
-          'Changing the information here will permanently alter the configu' +
-          'ration setup.'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        Visible = False
-        WordWrap = True
-        ExplicitLeft = 650
-      end
-      object lblDialogCompSelected: TLabel
-        Left = 471
-        Top = 48
-        Width = 4
-        Height = 16
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object lblDialogSelected: TLabel
-        Left = 471
-        Top = 20
-        Width = 4
-        Height = 16
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object GroupBox2: TGroupBox
-        Left = 471
-        Top = 108
-        Width = 343
-        Height = 245
-        Caption = 'Type - Word Processing'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 6
-        Visible = False
-        object Memo3: TMemo
-          Left = 24
-          Top = 32
-          Width = 295
-          Height = 185
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-        end
-      end
-      object BitBtn1: TBitBtn
-        Left = 15
-        Top = 17
+        812
+        516)
+      object btnReloadDialogs: TBitBtn
+        Left = 1
+        Top = 3
         Width = 186
         Height = 25
-        Caption = 'ReLoad Dialogs from DLL'
+        Caption = 'Reload Dialogs from DLL'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -1253,12 +553,12 @@ object oCNTConfiguration: ToCNTConfiguration
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        OnClick = ReLoadDialogs
+        OnClick = ReloadDialogs
       end
-      object btnUpdateVistADialogs: TBitBtn
-        Left = 88
-        Top = 427
-        Width = 113
+      object btnUpdateDialogs: TBitBtn
+        Left = 57
+        Top = 488
+        Width = 129
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'Update VistA'
@@ -1288,24 +588,24 @@ object oCNTConfiguration: ToCNTConfiguration
         NumGlyphs = 2
         ParentFont = False
         TabOrder = 3
-        OnClick = btnUpdateVistADialogsClick
+        OnClick = btnUpdateDialogsClick
       end
-      object DialogEditList: TListBox
-        Left = 15
-        Top = 48
+      object lsDialog: TListBox
+        Left = 0
+        Top = 34
         Width = 186
-        Height = 373
+        Height = 448
         Anchors = [akLeft, akTop, akBottom]
         ItemHeight = 13
         TabOrder = 1
-        OnDblClick = DialogEditListDblClick
+        OnDblClick = lsDialogDblClick
       end
-      object dialogcomplist: TListView
-        Left = 220
-        Top = 48
+      object lvDialogComponent: TListView
+        Left = 192
+        Top = 3
         Width = 234
-        Height = 373
-        Anchors = [akLeft, akTop, akBottom]
+        Height = 510
+        Anchors = [akLeft, akTop, akRight, akBottom]
         Columns = <
           item
             AutoSize = True
@@ -1324,251 +624,182 @@ object oCNTConfiguration: ToCNTConfiguration
         ViewStyle = vsReport
         OnColumnClick = ListColumnClick
         OnCompare = ListCompare
-        OnDblClick = dialogcomplistDblClick
-      end
-      object Panel7: TPanel
-        Left = 660
-        Top = 377
-        Width = 174
-        Height = 75
-        Anchors = [akRight, akBottom]
-        BevelOuter = bvNone
-        TabOrder = 8
-        Visible = False
-        DesignSize = (
-          174
-          75)
-        object btnDialogOK: TBitBtn
-          Left = 8
-          Top = 37
-          Width = 75
-          Height = 25
-          Anchors = [akRight, akBottom]
-          Caption = 'OK'
-          Default = True
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            3333333333333333333333330000333333333333333333333333F33333333333
-            00003333344333333333333333388F3333333333000033334224333333333333
-            338338F3333333330000333422224333333333333833338F3333333300003342
-            222224333333333383333338F3333333000034222A22224333333338F338F333
-            8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
-            33333338F83338F338F33333000033A33333A222433333338333338F338F3333
-            0000333333333A222433333333333338F338F33300003333333333A222433333
-            333333338F338F33000033333333333A222433333333333338F338F300003333
-            33333333A222433333333333338F338F00003333333333333A22433333333333
-            3338F38F000033333333333333A223333333333333338F830000333333333333
-            333A333333333333333338330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 0
-          OnClick = btnDialogOKClick
-        end
-        object btnDialogCancel: TBitBtn
-          Left = 89
-          Top = 37
-          Width = 75
-          Height = 25
-          Anchors = [akRight, akBottom]
-          Cancel = True
-          Caption = 'Cancel'
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            333333333333333333333333000033338833333333333333333F333333333333
-            0000333911833333983333333388F333333F3333000033391118333911833333
-            38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
-            911118111118333338F3338F833338F3000033333911111111833333338F3338
-            3333F8330000333333911111183333333338F333333F83330000333333311111
-            8333333333338F3333383333000033333339111183333333333338F333833333
-            00003333339111118333333333333833338F3333000033333911181118333333
-            33338333338F333300003333911183911183333333383338F338F33300003333
-            9118333911183333338F33838F338F33000033333913333391113333338FF833
-            38F338F300003333333333333919333333388333338FFF830000333333333333
-            3333333333333333333888330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 1
-          OnClick = btnDialogCancelClick
-        end
-        object Panel6: TPanel
-          Left = 8
-          Top = 15
-          Width = 156
-          Height = 16
-          Anchors = [akRight, akBottom]
-          BevelOuter = bvNone
-          Caption = 'Save Changes?'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 2
-        end
+        OnDblClick = lvDialogComponentDblClick
       end
       object btnDialogShow: TBitBtn
-        Left = 15
-        Top = 427
+        Left = 1
+        Top = 488
         Width = 50
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'Show'
         TabOrder = 2
-        OnClick = ShowDllDialog
+        OnClick = btnDialogShowClick
       end
-      object GroupBox1: TGroupBox
-        Left = 471
-        Top = 108
-        Width = 363
-        Height = 263
-        Anchors = [akLeft, akTop, akRight, akBottom]
-        Caption = 'Type - Multiple - Items'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
+      object pnlDialog: TPanel
+        Left = 432
+        Top = 0
+        Width = 380
+        Height = 516
+        Align = alRight
+        BevelOuter = bvNone
         TabOrder = 5
-        Visible = False
-        DesignSize = (
-          363
-          263)
-        object btnDialogMultiDown: TBitBtn
-          Tag = 3
-          Left = 320
-          Top = 160
-          Width = 20
-          Height = 25
-          Anchors = [akRight, akBottom]
-          Caption = '-'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 2
-          OnClick = lstDownClick
-        end
-        object btnDialogMultiUp: TBitBtn
-          Tag = 3
-          Left = 320
-          Top = 58
-          Width = 20
-          Height = 25
-          Anchors = [akTop, akRight]
-          Caption = '+'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 1
-          OnClick = lstUpClick
-        end
-        object lstDialogMulti: TListBox
-          Tag = 3
-          Left = 21
-          Top = 39
-          Width = 293
-          Height = 147
-          Anchors = [akLeft, akTop, akRight]
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemHeight = 13
-          ParentFont = False
-          TabOrder = 0
-          OnDblClick = lstMultiListItemsDblClick
-        end
-        object btnDialogMultiAdd: TBitBtn
-          Tag = 3
-          Left = 21
-          Top = 192
-          Width = 75
-          Height = 25
-          Caption = 'Add'
-          Default = True
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            3333333333333333333333330000333333333333333333333333F33333333333
-            00003333344333333333333333388F3333333333000033334224333333333333
-            338338F3333333330000333422224333333333333833338F3333333300003342
-            222224333333333383333338F3333333000034222A22224333333338F338F333
-            8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
-            33333338F83338F338F33333000033A33333A222433333338333338F338F3333
-            0000333333333A222433333333333338F338F33300003333333333A222433333
-            333333338F338F33000033333333333A222433333333333338F338F300003333
-            33333333A222433333333333338F338F00003333333333333A22433333333333
-            3338F38F000033333333333333A223333333333333338F830000333333333333
-            333A333333333333333338330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 3
-          OnClick = btnAddMultiItemClick
-        end
-        object btnDialogMultiDelete: TBitBtn
-          Tag = 3
-          Left = 102
-          Top = 192
-          Width = 75
-          Height = 25
-          Cancel = True
-          Caption = 'Delete'
-          Glyph.Data = {
-            DE010000424DDE01000000000000760000002800000024000000120000000100
-            0400000000006801000000000000000000001000000000000000000000000000
-            80000080000000808000800000008000800080800000C0C0C000808080000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-            333333333333333333333333000033338833333333333333333F333333333333
-            0000333911833333983333333388F333333F3333000033391118333911833333
-            38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
-            911118111118333338F3338F833338F3000033333911111111833333338F3338
-            3333F8330000333333911111183333333338F333333F83330000333333311111
-            8333333333338F3333383333000033333339111183333333333338F333833333
-            00003333339111118333333333333833338F3333000033333911181118333333
-            33338333338F333300003333911183911183333333383338F338F33300003333
-            9118333911183333338F33838F338F33000033333913333391113333338FF833
-            38F338F300003333333333333919333333388333338FFF830000333333333333
-            3333333333333333333888330000333333333333333333333333333333333333
-            0000}
-          NumGlyphs = 2
-          TabOrder = 4
-          OnClick = btnDeleteMultiItemClick
-        end
       end
-      object LabeledEdit1: TLabeledEdit
-        Left = 471
-        Top = 123
-        Width = 363
-        Height = 21
-        Anchors = [akLeft, akTop, akRight]
-        EditLabel.Width = 85
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Text to Display'
-        EditLabel.Font.Charset = DEFAULT_CHARSET
-        EditLabel.Font.Color = clWindowText
-        EditLabel.Font.Height = -11
-        EditLabel.Font.Name = 'Tahoma'
-        EditLabel.Font.Style = [fsBold]
-        EditLabel.ParentFont = False
-        TabOrder = 7
-        Visible = False
-      end
+    end
+  end
+  object pnlCommand: TPanel
+    Left = 820
+    Top = 0
+    Width = 91
+    Height = 556
+    Align = alRight
+    BevelKind = bkFlat
+    BevelOuter = bvNone
+    BorderStyle = bsSingle
+    TabOrder = 1
+    object btnCancel: TBitBtn
+      Left = 0
+      Top = 25
+      Width = 83
+      Height = 25
+      Align = alTop
+      Cancel = True
+      Caption = '&Cancel'
+      Enabled = False
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        333333333333333333333333000033338833333333333333333F333333333333
+        0000333911833333983333333388F333333F3333000033391118333911833333
+        38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
+        911118111118333338F3338F833338F3000033333911111111833333338F3338
+        3333F8330000333333911111183333333338F333333F83330000333333311111
+        8333333333338F3333383333000033333339111183333333333338F333833333
+        00003333339111118333333333333833338F3333000033333911181118333333
+        33338333338F333300003333911183911183333333383338F338F33300003333
+        9118333911183333338F33838F338F33000033333913333391113333338FF833
+        38F338F300003333333333333919333333388333338FFF830000333333333333
+        3333333333333333333888330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+      TabOrder = 0
+      OnClick = btnCancelClick
+    end
+    object btnSave: TBitBtn
+      Left = 0
+      Top = 0
+      Width = 83
+      Height = 25
+      Align = alTop
+      Caption = '&Save'
+      Enabled = False
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333330000333333333333333333333333F33333333333
+        00003333344333333333333333388F3333333333000033334224333333333333
+        338338F3333333330000333422224333333333333833338F3333333300003342
+        222224333333333383333338F3333333000034222A22224333333338F338F333
+        8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
+        33333338F83338F338F33333000033A33333A222433333338333338F338F3333
+        0000333333333A222433333333333338F338F33300003333333333A222433333
+        333333338F338F33000033333333333A222433333333333338F338F300003333
+        33333333A222433333333333338F338F00003333333333333A22433333333333
+        3338F38F000033333333333333A223333333333333338F830000333333333333
+        333A333333333333333338330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+      TabOrder = 1
+      OnClick = btnSaveClick
+    end
+    object btnDelete: TBitBtn
+      Left = 0
+      Top = 157
+      Width = 83
+      Height = 25
+      Caption = 'Delete'
+      Enabled = False
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        333333333333333333333333000033338833333333333333333F333333333333
+        0000333911833333983333333388F333333F3333000033391118333911833333
+        38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
+        911118111118333338F3338F833338F3000033333911111111833333338F3338
+        3333F8330000333333911111183333333338F333333F83330000333333311111
+        8333333333338F3333383333000033333339111183333333333338F333833333
+        00003333339111118333333333333833338F3333000033333911181118333333
+        33338333338F333300003333911183911183333333383338F338F33300003333
+        9118333911183333338F33838F338F33000033333913333391113333338FF833
+        38F338F300003333333333333919333333388333338FFF830000333333333333
+        3333333333333333333888330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+      TabOrder = 2
+      OnClick = btnDeleteClick
+    end
+    object btnClear: TBitBtn
+      Left = 0
+      Top = 131
+      Width = 83
+      Height = 25
+      Caption = 'Clear'
+      Enabled = False
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        333333333333333333333333000033338833333333333333333F333333333333
+        0000333911833333983333333388F333333F3333000033391118333911833333
+        38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
+        911118111118333338F3338F833338F3000033333911111111833333338F3338
+        3333F8330000333333911111183333333338F333333F83330000333333311111
+        8333333333338F3333383333000033333339111183333333333338F333833333
+        00003333339111118333333333333833338F3333000033333911181118333333
+        33338333338F333300003333911183911183333333383338F338F33300003333
+        9118333911183333338F33838F338F33000033333913333391113333338FF833
+        38F338F300003333333333333919333333388333338FFF830000333333333333
+        3333333333333333333888330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+      TabOrder = 3
+      OnClick = btnClearClick
+    end
+    object btnClose: TBitBtn
+      Left = 0
+      Top = 523
+      Width = 83
+      Height = 25
+      Align = alBottom
+      Cancel = True
+      Caption = 'Close'
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333FFFFF333333000033333388888833333333333F888888FFF333
+        000033338811111188333333338833FFF388FF33000033381119999111833333
+        38F338888F338FF30000339119933331111833338F388333383338F300003391
+        13333381111833338F8F3333833F38F3000039118333381119118338F38F3338
+        33F8F38F000039183333811193918338F8F333833F838F8F0000391833381119
+        33918338F8F33833F8338F8F000039183381119333918338F8F3833F83338F8F
+        000039183811193333918338F8F833F83333838F000039118111933339118338
+        F3833F83333833830000339111193333391833338F33F8333FF838F300003391
+        11833338111833338F338FFFF883F83300003339111888811183333338FF3888
+        83FF83330000333399111111993333333388FFFFFF8833330000333333999999
+        3333333333338888883333330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+      TabOrder = 4
+      OnClick = btnCloseClick
     end
   end
 end

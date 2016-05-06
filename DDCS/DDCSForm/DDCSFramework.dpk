@@ -23,35 +23,31 @@ package DDCSFramework;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
+{$DEFINE DDCS}
 {$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
 {$IMPLICITBUILD ON}
 
 requires
-  DesignIDE,
-  vclimg,
   VclSmp,
+  VA_All_XE8,
   Jcl,
   JvCore,
-  JvStdCtrls,
-  rtl,
-  vcl,
-  VA_All_XE8,
-  Tee;
+  JvStdCtrls;
 
 contains
   frmAbout in 'frmAbout.pas' {DDCSAbout},
   frmSplash in 'frmSplash.pas' {DDCSSplash},
-  frmNoteRvw in 'frmNoteRvw.pas' {ReviewNoteDlg},
-  oCNTBase in 'oCNTBase.pas',
+  frmPreview in 'frmPreview.pas' {ReviewNoteDlg},
   uExtndComBroker in 'uExtndComBroker.pas',
-  oCNTBaseEditor in 'oCNTBaseEditor.pas',
-  frmConfiguration in 'frmConfiguration.pas' {oCNTConfiguration},
+  frmConfiguration in 'frmConfiguration.pas' {DDCSConfiguration},
   frmConfigMultiItemAdd in 'frmConfigMultiItemAdd.pas' {AddItem},
   uReportItems in 'uReportItems.pas',
-  frmVitals in 'frmVitals.pas' {fVitals: TFrame},
+  frmVitals in 'frmVitals.pas' {DDCSVitals: TFrame},
   uDialog in 'uDialog.pas',
   uCommon in 'uCommon.pas',
-  udlgDATE in '..\Dialogs\udlgDATE.pas' {dlgDate};
+  dBaseEditor in 'dBaseEditor.pas',
+  uBase in 'uBase.pas';
 
 end.
+

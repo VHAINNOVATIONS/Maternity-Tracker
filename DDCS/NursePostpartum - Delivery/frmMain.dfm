@@ -1,9 +1,18 @@
-inherited Form1: TForm1
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  ActiveControl = dtDelivery
   Caption = 'Nurse Postpartum - Delivery'
-  ClientHeight = 523
+  ClientHeight = 463
   ClientWidth = 742
-  Constraints.MinHeight = 550
+  Color = clBtnFace
+  Constraints.MinHeight = 490
   Constraints.MinWidth = 750
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
   Icon.Data = {
     000001000200101000000000200068040000260000002020000000002000A810
     00008E0400002800000010000000200000000100200000000000400400000000
@@ -175,19 +184,18 @@ inherited Form1: TForm1
     0000000000000000000000000000000000000000000000000000000000000000
     0000000000000000000000000000000000000000000000000000000000000000
     00000000000000000000000000000000000000000000}
+  OldCreateOrder = True
   Position = poOwnerFormCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnResize = FormResize
-  ExplicitWidth = 750
-  ExplicitHeight = 550
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object ofrm1: ToForm [0]
+  object DDCSForm1: TDDCSForm
     Left = 0
     Top = 0
     Width = 742
-    Height = 523
+    Height = 463
     ActivePage = oPage1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -200,639 +208,647 @@ inherited Form1: TForm1
     Style = tsButtons
     TabHeight = 25
     TabOrder = 0
-    OnChange = ofrm1Change
+    TabStop = False
     ReportCollection = <
       item
         Order = 0
+        IdentifyingName = 'Gender'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = True
+        OwningObject = rgSex1
+        Required = False
+      end
+      item
+        Order = 1
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = True
+        OwningObject = spnLb1
+        Required = False
+      end
+      item
+        Order = 2
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = True
+        OwningObject = spnOz1
+        Required = False
+      end
+      item
+        Order = 3
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = True
+        OwningObject = spng1
+        Required = False
+      end
+      item
+        Order = 4
+        IdentifyingName = 'A P G A R Score one minute after birth'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = True
+        OwningObject = edAPGARone1
+        Required = False
+      end
+      item
+        Order = 5
+        IdentifyingName = 'A P G A R Score five minutes after birth'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = True
+        OwningObject = edAPGARfive1
+        Required = False
+      end
+      item
+        Order = 6
+        IdentifyingName = 'Neonatal Intensive Care Unit Admission (NICU)'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = True
+        OwningObject = ckNICU1
+        Required = False
+      end
+      item
+        Order = 7
+        IdentifyingName = 'Complications and or Anomalies'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = True
+        OwningObject = meComplications1
+        Required = False
+      end
+      item
+        Order = 8
+        IdentifyingName = 'Living'
         DoNotSpace = False
         HideFromNote = False
         DoNotSave = False
-        OwningObject = E_LengthofLabor
+        OwningObject = ckLiving1
+        Required = False
+      end
+      item
+        Order = 9
+        IdentifyingName = 'Demise'
+        DoNotSpace = False
+        HideFromNote = False
+        DoNotSave = False
+        OwningObject = ckDemise1
         Required = False
       end>
-    onFormShow = ofrm1FormShow
-    onOverrideNote = Finished
-    object oPage1: ToPage
+    OnOverrideNote = Finished
+    object oPage1: TTabSheet
       Caption = 'Delivery Details'
-      VitalsStatus = False
       DesignSize = (
         734
-        460)
-      object Label1: TLabel
+        398)
+      object lbDeliveryDate: TStaticText
         Left = 19
         Top = 19
-        Width = 64
-        Height = 13
+        Width = 81
+        Height = 17
         Caption = 'Delivery Date'
-      end
-      object Label2: TLabel
-        Left = 19
-        Top = 50
-        Width = 121
-        Height = 13
-        Caption = 'Maternal Discharge  Date'
-      end
-      object Label3: TLabel
-        Left = 19
-        Top = 81
-        Width = 161
-        Height = 13
-        Caption = 'Days in Hospital following Delivery'
-      end
-      object Label4: TLabel
-        Left = 256
-        Top = 80
-        Width = 40
-        Height = 13
-        Caption = '(# Days)'
-      end
-      object Label8: TLabel
-        Left = 19
-        Top = 142
-        Width = 52
-        Height = 13
-        Caption = 'Anesthesia'
-      end
-      object lblLabor: TLabel
-        Left = 395
-        Top = 72
-        Width = 27
-        Height = 13
-        Caption = 'Labor'
-      end
-      object lbDeliveryNotes: TLabel
-        Left = 19
-        Top = 205
-        Width = 69
-        Height = 13
-        Caption = 'Delivery Notes'
-      end
-      object L_GestationalAgeAtDelivery: TLabel
-        Left = 19
-        Top = 111
-        Width = 75
-        Height = 13
-        Caption = 'Gestational Age'
-      end
-      object L_LengthofLabor: TLabel
-        Left = 395
-        Top = 102
-        Width = 75
-        Height = 13
-        Caption = 'Length of Labor'
-      end
-      object Label5: TLabel
-        Left = 239
-        Top = 111
-        Width = 22
-        Height = 13
-        Caption = 'Wks'
-      end
-      object Label6: TLabel
-        Left = 320
-        Top = 111
-        Width = 24
-        Height = 13
-        Caption = 'Days'
-      end
-      object Label287: TLabel
-        Left = 563
-        Top = 102
-        Width = 14
-        Height = 13
-        Caption = 'hrs'
-      end
-      object Label7: TLabel
-        Left = 395
-        Top = 197
-        Width = 80
-        Height = 13
-        Caption = 'Place of Delivery'
-      end
-      object Label9: TLabel
-        Left = 395
-        Top = 142
-        Width = 43
-        Height = 13
-        Caption = 'Outcome'
-      end
-      object dtDelivery: TDateTimePicker
-        Left = 187
-        Top = 15
-        Width = 124
-        Height = 21
-        Date = 39503.200650671300000000
-        Time = 39503.200650671300000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 0
       end
-      object dtMaternal: TDateTimePicker
+      object dtDelivery: TORDateBox
+        Left = 187
+        Top = 15
+        Width = 166
+        Height = 21
+        TabOrder = 1
+        DateOnly = True
+        RequireTime = False
+        Caption = 'Delivery Date'
+      end
+      object lbDischargeDate: TStaticText
+        Left = 19
+        Top = 50
+        Width = 145
+        Height = 17
+        Caption = 'Maternal Discharge Date'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+      end
+      object lbDaysIn: TStaticText
+        Left = 19
+        Top = 79
+        Width = 200
+        Height = 17
+        Caption = 'Days in Hospital following Delivery'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 4
+      end
+      object lbAnesthesia: TStaticText
+        Left = 19
+        Top = 142
+        Width = 66
+        Height = 17
+        Caption = 'Anesthesia'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 9
+      end
+      object lbLabor: TStaticText
+        Left = 395
+        Top = 79
+        Width = 36
+        Height = 17
+        Caption = 'Labor'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 12
+      end
+      object lbDeliveryNotes: TStaticText
+        Left = 19
+        Top = 209
+        Width = 87
+        Height = 17
+        Caption = 'Delivery Notes'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 20
+      end
+      object lbGestationalAge: TStaticText
+        Left = 19
+        Top = 111
+        Width = 151
+        Height = 17
+        Caption = 'Gestational Age in Weeks'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 6
+      end
+      object lbLaborLength: TStaticText
+        Left = 395
+        Top = 111
+        Width = 143
+        Height = 17
+        Caption = 'Length of Labor in hours'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 14
+      end
+      object lbDeliveryPlace: TStaticText
+        Left = 19
+        Top = 178
+        Width = 101
+        Height = 17
+        Caption = 'Place of Delivery'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 18
+      end
+      object lbOutcome: TStaticText
+        Left = 395
+        Top = 142
+        Width = 54
+        Height = 17
+        Caption = 'Outcome'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 16
+      end
+      object dtMaternal: TORDateBox
         Left = 187
         Top = 46
-        Width = 124
+        Width = 166
         Height = 21
-        Date = 39503.200689733800000000
-        Time = 39503.200689733800000000
-        TabOrder = 1
+        TabOrder = 3
+        DateOnly = False
+        RequireTime = False
+        Caption = 'Maternal Discharge Date'
       end
       object edtDeliveryAt: TSpinEdit
-        Left = 187
-        Top = 77
-        Width = 62
+        Left = 225
+        Top = 75
+        Width = 50
         Height = 22
         MaxValue = 0
         MinValue = 0
-        TabOrder = 2
+        TabOrder = 5
         Value = 0
-        OnChange = edtDeliveryAtChange
+        OnChange = SpinCheck
       end
-      object cbAnesthesia: TComboBox
+      object cbAnesthesia: TCaptionComboBox
         Left = 187
         Top = 139
-        Width = 167
+        Width = 166
         Height = 21
         Style = csDropDownList
-        TabOrder = 5
+        TabOrder = 10
+        Caption = 'Anesthesia'
       end
-      object cbLabor: TComboBox
-        Left = 450
-        Top = 69
-        Width = 167
+      object cbLabor: TCaptionComboBox
+        Left = 455
+        Top = 76
+        Width = 162
         Height = 21
         Style = csDropDownList
-        TabOrder = 7
+        TabOrder = 13
+        Caption = 'Labor'
       end
-      object memoDeliveryNotes: TMemo
-        Left = 19
-        Top = 221
-        Width = 694
-        Height = 219
-        Align = alCustom
-        Anchors = [akLeft, akTop, akRight, akBottom]
-        ScrollBars = ssVertical
-        TabOrder = 11
-      end
-      object cxRadioGroup_PretermLabor: TRadioGroup
+      object rgPretermDelivery: TRadioGroup
         Left = 395
         Top = 15
         Width = 222
         Height = 45
         Caption = 'Preterm Delivery'
         Columns = 2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
         Items.Strings = (
           'No'
           'Yes')
-        TabOrder = 6
+        ParentFont = False
+        TabOrder = 11
         TabStop = True
+        OnEnter = RadioGroupEnter
       end
-      object E_LengthofLabor: TJvSpinEdit
-        Left = 481
-        Top = 99
-        Width = 80
-        Height = 21
-        ValueType = vtFloat
+      object spnLaborLength: TSpinEdit
+        Left = 544
+        Top = 107
+        Width = 73
+        Height = 22
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 15
+        Value = 0
+        OnChange = SpinCheck
+      end
+      object spnGADays: TSpinEdit
+        Left = 303
+        Top = 107
+        Width = 50
+        Height = 22
+        MaxValue = 0
+        MinValue = 0
         TabOrder = 8
-        OnChange = E_LengthofLaborChange
-      end
-      object SPN_GADays: TSpinEdit
-        Left = 268
-        Top = 108
-        Width = 50
-        Height = 22
-        MaxValue = 0
-        MinValue = 0
-        TabOrder = 4
         Value = 0
-        OnChange = SPN_GADaysChange
+        OnChange = spnGADaysChange
       end
-      object SPN_GAWeeks: TSpinEdit
+      object spnGAWeeks: TSpinEdit
         Left = 187
-        Top = 108
+        Top = 107
         Width = 50
         Height = 22
         MaxValue = 0
         MinValue = 0
-        TabOrder = 3
+        TabOrder = 7
         Value = 0
-        OnChange = SPN_GAWeeksChange
+        OnChange = SpinCheck
       end
-      object CB_PlaceofDelivery: TComboBox
-        Left = 483
-        Top = 194
-        Width = 230
+      object cbDeliveryPlace: TCaptionComboBox
+        Left = 132
+        Top = 174
+        Width = 485
         Height = 21
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 10
+        TabOrder = 19
+        Caption = 'Place of Delivery'
       end
-      object cbOutcomeType: TComboBox
-        Left = 450
+      object cbOutcome: TCaptionComboBox
+        Left = 455
         Top = 138
-        Width = 167
+        Width = 162
         Height = 21
         Style = csDropDownList
-        TabOrder = 9
+        TabOrder = 17
+        Caption = 'Outcome'
+      end
+      object StaticText1: TStaticText
+        Left = 242
+        Top = 111
+        Width = 57
+        Height = 17
+        Caption = 'and Days'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 29
+      end
+      object meDeliveryNotes: TCaptionMemo
+        Left = 19
+        Top = 226
+        Width = 694
+        Height = 154
+        Align = alCustom
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        ScrollBars = ssVertical
+        TabOrder = 21
+        Caption = 'Delivery Notes'
       end
     end
-    object oPage2: ToPage
+    object oPage2: TTabSheet
       Caption = 'Neonatal Information'
-      VitalsStatus = False
-      object pgCtrlBaby: TPageControl
-        Left = 0
-        Top = 40
-        Width = 734
-        Height = 420
-        ActivePage = TsBaby1
-        Align = alClient
-        TabOrder = 1
-        object TsBaby1: TTabSheet
-          Caption = 'Baby 1'
-          object lblBirthweight1: TLabel
-            Left = 19
-            Top = 66
-            Width = 58
-            Height = 13
-            Caption = 'Birth Weight'
-          end
-          object lblLB1: TLabel
-            Left = 145
-            Top = 66
-            Width = 8
-            Height = 13
-            Caption = 'lb'
-          end
-          object lblOz1: TLabel
-            Left = 220
-            Top = 66
-            Width = 11
-            Height = 13
-            Caption = 'oz'
-          end
-          object lblComplications1: TLabel
-            Left = 19
-            Top = 149
-            Width = 118
-            Height = 13
-            Caption = 'Complications/Anomalies'
-          end
-          object lblg1: TLabel
-            Left = 336
-            Top = 66
-            Width = 28
-            Height = 13
-            Caption = 'grams'
-          end
-          object rgSex1: TRadioGroup
-            Left = 19
-            Top = 14
-            Width = 236
-            Height = 33
-            Caption = 'Gender'
-            Columns = 3
-            Items.Strings = (
-              'Male'
-              'Female'
-              'Unknown')
-            TabOrder = 0
-            TabStop = True
-          end
-          object edtLb1: TJvSpinEdit
-            Left = 90
-            Top = 63
-            Width = 54
-            Height = 21
-            Decimal = 0
-            ValueType = vtFloat
-            TabOrder = 1
-            OnChange = edtLb1Change
-          end
-          object edtOz1: TJvSpinEdit
-            Left = 165
-            Top = 63
-            Width = 54
-            Height = 21
-            Decimal = 0
-            ValueType = vtFloat
-            TabOrder = 2
-            OnChange = edtOz1Change
-          end
-          object memComplications1: TMemo
-            Left = 19
-            Top = 168
-            Width = 690
-            Height = 209
-            Align = alCustom
-            Anchors = [akLeft, akTop, akRight, akBottom]
-            ScrollBars = ssVertical
-            TabOrder = 7
-          end
-          object edtAPGAR1: TLabeledEdit
-            Left = 90
-            Top = 103
-            Width = 54
-            Height = 21
-            EditLabel.Width = 68
-            EditLabel.Height = 13
-            EditLabel.Caption = 'APGAR Score'
-            LabelPosition = lpLeft
-            TabOrder = 4
-          end
-          object ckNICU1: TCheckBox
-            Left = 252
-            Top = 105
-            Width = 156
-            Height = 17
-            Caption = 'NICU Admission'
-            TabOrder = 6
-          end
-          object edtAPGARs1: TEdit
-            Left = 165
-            Top = 103
-            Width = 54
-            Height = 21
-            TabOrder = 5
-          end
-          object edtg1: TJvSpinEdit
-            Left = 252
-            Top = 63
-            Width = 81
-            Height = 21
-            Decimal = 0
-            ValueType = vtFloat
-            TabOrder = 3
-            OnChange = UpdateLBOZ
-          end
-          object GroupBox1: TGroupBox
-            Left = 275
-            Top = 14
-            Width = 143
-            Height = 33
-            TabOrder = 8
-            object rbLiving1: TRadioButton
-              Left = 8
-              Top = 11
-              Width = 65
-              Height = 17
-              Caption = 'Living'
-              TabOrder = 0
-              TabStop = True
-            end
-            object rbDemised1: TRadioButton
-              Left = 79
-              Top = 11
-              Width = 56
-              Height = 17
-              Caption = 'Demise'
-              TabOrder = 1
-            end
-          end
-        end
-      end
-      object Panel2: TPanel
+      object pnlBirthCount: TPanel
         Left = 0
         Top = 0
         Width = 734
         Height = 40
         Align = alTop
-        BevelOuter = bvNone
+        BorderStyle = bsSingle
         TabOrder = 0
-        object Panel3: TPanel
-          Left = 271
-          Top = 12
-          Width = 196
+        object spnBirthCount: TSpinEdit
+          Left = 156
+          Top = 7
+          Width = 41
           Height = 22
-          AutoSize = True
-          BevelOuter = bvNone
+          MaxValue = 0
+          MinValue = 0
+          TabOrder = 1
+          Value = 1
+          OnChange = spnBirthCountChange
+        end
+        object lbBirthCount: TStaticText
+          Left = 19
+          Top = 11
+          Width = 131
+          Height = 17
+          Caption = 'Total Number of Births'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
           TabOrder = 0
-          object rbSingleton: TRadioButton
-            Left = 0
-            Top = 2
-            Width = 73
+        end
+      end
+      object pnlSpacer: TPanel
+        Left = 0
+        Top = 40
+        Width = 734
+        Height = 10
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 2
+      end
+      object pgBaby: TPageControl
+        Left = 0
+        Top = 50
+        Width = 734
+        Height = 348
+        ActivePage = TsBaby1
+        Align = alClient
+        Style = tsFlatButtons
+        TabOrder = 1
+        object TsBaby1: TTabSheet
+          Caption = 'Baby 1'
+          object lbBirthWeight1: TStaticText
+            Left = 19
+            Top = 80
+            Width = 133
             Height = 17
-            Caption = 'Singleton'
-            Checked = True
+            Caption = 'Birth Weight in pounds'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 3
+          end
+          object lbComplications1: TStaticText
+            Left = 19
+            Top = 159
+            Width = 145
+            Height = 17
+            Caption = 'Complications/Anomalies'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 13
+          end
+          object lbg1: TStaticText
+            Left = 396
+            Top = 80
+            Width = 128
+            Height = 17
+            Caption = 'Total Weight in grams'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 7
+          end
+          object rgSex1: TRadioGroup
+            Left = 19
+            Top = 3
+            Width = 270
+            Height = 54
+            Caption = 'Gender'
+            Columns = 3
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Male'
+              'Female'
+              'Unknown')
+            ParentFont = False
             TabOrder = 0
             TabStop = True
-            OnClick = rbSingletonClick
+            OnEnter = RadioGroupEnter
           end
-          object rbMultiple: TRadioButton
-            Left = 95
-            Top = 2
-            Width = 74
-            Height = 17
-            Caption = 'Multiple'
-            TabOrder = 1
-            OnClick = rbMultipleClick
-          end
-          object edtNumBabies: TSpinEdit
-            Left = 155
-            Top = 0
-            Width = 41
+          object spnLb1: TSpinEdit
+            Left = 158
+            Top = 75
+            Width = 54
             Height = 22
-            MaxValue = 8
-            MinValue = 2
+            MaxValue = 0
+            MinValue = 0
+            TabOrder = 4
+            Value = 0
+            OnChange = spnLb1Change
+          end
+          object spnOz1: TSpinEdit
+            Left = 298
+            Top = 75
+            Width = 54
+            Height = 22
+            MaxValue = 0
+            MinValue = 0
+            TabOrder = 6
+            Value = 0
+            OnChange = spnOz1Change
+          end
+          object meComplications1: TCaptionMemo
+            Left = 19
+            Top = 176
+            Width = 690
+            Height = 128
+            Align = alCustom
+            Anchors = [akLeft, akTop, akRight, akBottom]
+            ScrollBars = ssVertical
+            TabOrder = 14
+            Caption = 'Complications and or Anomalies'
+          end
+          object edAPGARone1: TCaptionEdit
+            Left = 71
+            Top = 117
+            Width = 54
+            Height = 21
+            NumbersOnly = True
+            TabOrder = 10
+            Caption = 'A P G A R Score one minute after birth'
+          end
+          object ckNICU1: TCheckBox
+            Left = 229
+            Top = 122
+            Width = 295
+            Height = 17
+            Caption = 'Neonatal Intensive Care Unit Admission (NICU)'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 12
+          end
+          object edAPGARfive1: TCaptionEdit
+            Left = 131
+            Top = 117
+            Width = 54
+            Height = 21
+            NumbersOnly = True
+            TabOrder = 11
+            Caption = 'A P G A R Score five minutes after birth'
+          end
+          object spng1: TSpinEdit
+            Left = 530
+            Top = 75
+            Width = 81
+            Height = 22
+            MaxValue = 0
+            MinValue = 0
+            TabOrder = 8
+            Value = 0
+            OnChange = UpdateLBOZ
+          end
+          object lbAPGAR1: TStaticText
+            Left = 19
+            Top = 121
+            Width = 46
+            Height = 17
+            Caption = 'APGAR'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 9
+          end
+          object lbOz1: TStaticText
+            Left = 222
+            Top = 80
+            Width = 70
+            Height = 17
+            Caption = 'and ounces'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 5
+          end
+          object ckLiving1: TCheckBox
+            Tag = 1
+            Left = 329
+            Top = 25
+            Width = 72
+            Height = 17
+            Caption = 'Living'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 1
+            OnClick = CheckBoxCheckClick
+          end
+          object ckDemise1: TCheckBox
+            Tag = 2
+            Left = 412
+            Top = 25
+            Width = 97
+            Height = 17
+            Caption = 'Demise'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
             TabOrder = 2
-            Value = 2
-            Visible = False
-            OnChange = edtNumBabiesChange
-            OnKeyDown = edtNumBabiesKeyDown
+            OnClick = CheckBoxCheckClick
           end
         end
       end
     end
-    object oPage3: ToPage
+    object oPage3: TTabSheet
       Caption = 'Delivery Method'
-      VitalsStatus = False
-      object gbCesarean: TGroupBox
-        Left = 244
-        Top = 19
-        Width = 475
-        Height = 233
-        Caption = 'Cesarean'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 1
-        object lbCesareanReasons: TLabel
-          Left = 19
-          Top = 101
-          Width = 118
-          Height = 13
-          Caption = 'Indications for Cesarean'
-        end
-        object lbReasonsCPrimary: TLabel
-          Left = 19
-          Top = 120
-          Width = 36
-          Height = 13
-          Caption = 'Primary'
-        end
-        object lbReasonsCSecondary: TLabel
-          Left = 19
-          Top = 147
-          Width = 51
-          Height = 13
-          Caption = 'Secondary'
-        end
-        object lblReasonforCOther: TLabel
-          Left = 275
-          Top = 101
-          Width = 28
-          Height = 13
-          Caption = 'Other'
-        end
-        object chkCPrimaryFor: TCheckBox
-          Left = 19
-          Top = 30
-          Width = 70
-          Height = 17
-          Caption = 'Primary'
-          TabOrder = 0
-        end
-        object edtCPrimaryFor: TEdit
-          Left = 88
-          Top = 28
-          Width = 366
-          Height = 21
-          TabOrder = 1
-        end
-        object chkCUnsuccessfulVBAC: TCheckBox
-          Left = 19
-          Top = 74
-          Width = 289
-          Height = 17
-          Caption = 'Repeat - Unsuccessful Vaginal Birth at Cesarean'
-          TabOrder = 3
-        end
-        object rgincision: TRadioGroup
-          Left = 19
-          Top = 173
-          Width = 435
-          Height = 44
-          Caption = 'Uterine Incision'
-          Columns = 3
-          Items.Strings = (
-            'Low Transverse'
-            'Low Vertical'
-            'Classical')
-          TabOrder = 8
-          TabStop = True
-        end
-        object ckRepeatwoLabor: TCheckBox
-          Left = 19
-          Top = 52
-          Width = 169
-          Height = 17
-          Caption = 'Repeat without Labor'
-          TabOrder = 2
-        end
-        object cbReasonsCPrimary: TComboBox
-          Left = 74
-          Top = 117
-          Width = 195
-          Height = 21
-          Style = csDropDownList
-          TabOrder = 4
-        end
-        object cbReasonsCSecondary: TComboBox
-          Left = 74
-          Top = 144
-          Width = 195
-          Height = 21
-          Style = csDropDownList
-          TabOrder = 6
-        end
-        object edtReasonsCOthPrimary: TEdit
-          Left = 275
-          Top = 117
-          Width = 179
-          Height = 21
-          TabOrder = 5
-        end
-        object edtReasonsCOthSecondary: TEdit
-          Left = 275
-          Top = 144
-          Width = 179
-          Height = 21
-          TabOrder = 7
-        end
-      end
-      object gbOtherProcedures: TGroupBox
-        Left = 14
-        Top = 259
-        Width = 705
-        Height = 122
-        Caption = 'Other Procedures done during same Hospitalization'
-        TabOrder = 2
-        object edtProceduresOther: TLabeledEdit
-          Left = 334
-          Top = 89
-          Width = 257
-          Height = 21
-          EditLabel.Width = 29
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Other:'
-          LabelPosition = lpLeft
-          TabOrder = 7
-        end
-        object ckProUterineCurettage: TCheckBox
-          Left = 23
-          Top = 67
-          Width = 121
-          Height = 17
-          Caption = 'Uterine Curettage'
-          TabOrder = 2
-        end
-        object ckProTubalLigationatCesarean: TCheckBox
-          Left = 23
-          Top = 43
-          Width = 158
-          Height = 17
-          Caption = 'Tubal Ligation at Cesarean'
-          TabOrder = 1
-        end
-        object ckProPostpartumTubalLigation: TCheckBox
-          Left = 23
-          Top = 91
-          Width = 153
-          Height = 17
-          Caption = 'Postpartum Tubal Ligation'
-          TabOrder = 3
-        end
-        object ckProPostpartumHysterectomy: TCheckBox
-          Left = 301
-          Top = 20
-          Width = 153
-          Height = 17
-          Caption = 'Postpartum Hysterectomy'
-          TabOrder = 4
-        end
-        object ckNexplanonImplant: TCheckBox
-          Left = 23
-          Top = 19
-          Width = 138
-          Height = 19
-          Caption = 'Nexplanon Implant'
-          TabOrder = 0
-        end
-        object ckIUDInsertion: TCheckBox
-          Left = 301
-          Top = 43
-          Width = 97
-          Height = 17
-          Caption = 'IUD Insertion'
-          TabOrder = 5
-        end
-        object ckBakri: TCheckBox
-          Left = 301
-          Top = 67
-          Width = 149
-          Height = 17
-          Caption = 'Bakri Balloon Placement'
-          TabOrder = 6
-        end
-      end
       object gbVaginal: TGroupBox
         Left = 14
         Top = 19
@@ -843,64 +859,416 @@ inherited Form1: TForm1
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Tahoma'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
-        object chkVagVacuum: TCheckBox
-          Left = 15
-          Top = 55
-          Width = 97
-          Height = 17
-          Caption = 'Vacuum'
-          TabOrder = 1
-        end
-        object chkVagForceps: TCheckBox
-          Left = 15
-          Top = 77
-          Width = 97
-          Height = 17
-          Caption = 'Forceps'
-          TabOrder = 2
-        end
-        object chkVagEpisiotomy: TCheckBox
-          Left = 15
-          Top = 99
-          Width = 97
-          Height = 17
-          Caption = 'Episiotomy'
-          TabOrder = 3
-        end
-        object chkVagLacerations: TCheckBox
-          Left = 15
-          Top = 121
-          Width = 97
-          Height = 17
-          Caption = 'Lacerations'
-          TabOrder = 4
-        end
-        object chkVagVBAC: TCheckBox
-          Left = 15
-          Top = 143
-          Width = 177
-          Height = 17
-          Caption = 'Vaginal Birth after Cesarean'
-          TabOrder = 5
-        end
-        object chkVagSVD: TCheckBox
+        TabStop = True
+        object ckVagSVD: TCheckBox
           Left = 15
           Top = 30
           Width = 200
           Height = 17
           Caption = 'Normal Spontaneous Vaginal Delivery'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
         end
-        object chkAKRI: TCheckBox
+        object ckVagVacuum: TCheckBox
           Left = 15
-          Top = 165
+          Top = 53
           Width = 97
           Height = 17
-          Caption = 'AKRI'
+          Caption = 'Vacuum'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+        end
+        object ckVagForceps: TCheckBox
+          Left = 15
+          Top = 76
+          Width = 97
+          Height = 17
+          Caption = 'Forceps'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 2
+        end
+        object ckVagEpisiotomy: TCheckBox
+          Left = 15
+          Top = 98
+          Width = 97
+          Height = 17
+          Caption = 'Episiotomy'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+        end
+        object ckVagLacerations: TCheckBox
+          Left = 15
+          Top = 121
+          Width = 97
+          Height = 17
+          Caption = 'Lacerations'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 4
+        end
+        object ckVagVBAC: TCheckBox
+          Left = 15
+          Top = 143
+          Width = 177
+          Height = 17
+          Caption = 'Vaginal Birth after Cesarean'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 5
+        end
+      end
+      object gbCesarean: TGroupBox
+        Left = 244
+        Top = 19
+        Width = 475
+        Height = 233
+        Caption = 'Cesarean'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 1
+        TabStop = True
+        object lbCesareanReasons: TStaticText
+          Left = 19
+          Top = 101
+          Width = 142
+          Height = 17
+          Caption = 'Indications for Cesarean'
+          TabOrder = 4
+        end
+        object lbReasonsCPrimary: TStaticText
+          Left = 19
+          Top = 120
+          Width = 40
+          Height = 17
+          Caption = 'Primary'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 6
+        end
+        object lbReasonsCSecondary: TStaticText
+          Left = 19
+          Top = 147
+          Width = 55
+          Height = 17
+          Caption = 'Secondary'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 9
+        end
+        object lbReasonforCOther: TStaticText
+          Left = 275
+          Top = 101
+          Width = 36
+          Height = 17
+          Caption = 'Other'
+          TabOrder = 5
+        end
+        object ckCPrimaryFor: TCheckBox
+          Left = 19
+          Top = 30
+          Width = 63
+          Height = 17
+          Caption = 'Primary'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+        end
+        object edCPrimaryFor: TCaptionEdit
+          Left = 78
+          Top = 28
+          Width = 376
+          Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          Caption = 'Primary'
+        end
+        object ckCUnsuccessfulVBAC: TCheckBox
+          Left = 19
+          Top = 74
+          Width = 289
+          Height = 17
+          Caption = 'Repeat - Unsuccessful Vaginal Birth at Cesarean'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+        end
+        object rgIncision: TRadioGroup
+          Left = 19
+          Top = 173
+          Width = 435
+          Height = 44
+          Caption = 'Uterine Incision'
+          Columns = 3
+          Items.Strings = (
+            'Low Transverse'
+            'Low Vertical'
+            'Classical')
+          TabOrder = 12
+          TabStop = True
+          OnEnter = RadioGroupEnter
+        end
+        object ckRepeatwoLabor: TCheckBox
+          Left = 19
+          Top = 52
+          Width = 169
+          Height = 17
+          Caption = 'Repeat without Labor'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 2
+        end
+        object cbReasonsCPrimary: TCaptionComboBox
+          Left = 74
+          Top = 117
+          Width = 195
+          Height = 21
+          Style = csDropDownList
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 7
+          Caption = 'Primary Indications for Cesarean'
+        end
+        object cbReasonsCSecondary: TCaptionComboBox
+          Left = 74
+          Top = 144
+          Width = 195
+          Height = 21
+          Style = csDropDownList
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 10
+          Caption = 'Secondary Indications for Cesarean'
+        end
+        object edReasonsCOthPrimary: TCaptionEdit
+          Left = 275
+          Top = 117
+          Width = 179
+          Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 8
+          Caption = 'Other Primary Indications for Cesarean'
+        end
+        object edReasonsCOthSecondary: TCaptionEdit
+          Left = 275
+          Top = 144
+          Width = 179
+          Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 11
+          Caption = 'Other Secondary Indications for Cesarean'
+        end
+      end
+      object gbOtherProcedures: TGroupBox
+        Left = 14
+        Top = 259
+        Width = 705
+        Height = 122
+        Caption = 'Other Procedures done during same Hospitalization'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+        TabStop = True
+        object ckProUterineCurettage: TCheckBox
+          Left = 23
+          Top = 67
+          Width = 121
+          Height = 17
+          Caption = 'Uterine Curettage'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 2
+        end
+        object ckProTubalLigationatCesarean: TCheckBox
+          Left = 23
+          Top = 43
+          Width = 158
+          Height = 17
+          Caption = 'Tubal Ligation at Cesarean'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+        end
+        object ckProPostpartumTubalLigation: TCheckBox
+          Left = 23
+          Top = 91
+          Width = 153
+          Height = 17
+          Caption = 'Postpartum Tubal Ligation'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+        end
+        object ckProPostpartumHysterectomy: TCheckBox
+          Left = 301
+          Top = 20
+          Width = 153
+          Height = 17
+          Caption = 'Postpartum Hysterectomy'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 4
+        end
+        object ckNexplanonImplant: TCheckBox
+          Left = 23
+          Top = 19
+          Width = 138
+          Height = 19
+          Caption = 'Nexplanon Implant'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+        end
+        object ckIUDInsertion: TCheckBox
+          Left = 301
+          Top = 43
+          Width = 97
+          Height = 17
+          Caption = 'IUD Insertion'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 5
+        end
+        object ckBakri: TCheckBox
+          Left = 301
+          Top = 67
+          Width = 149
+          Height = 17
+          Caption = 'Bakri Balloon Placement'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 6
+        end
+        object lbProceduresOther: TStaticText
+          Left = 301
+          Top = 92
+          Width = 35
+          Height = 17
+          Caption = 'Other'
+          TabOrder = 7
+        end
+        object edProceduresOther: TCaptionEdit
+          Left = 342
+          Top = 88
+          Width = 342
+          Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 8
+          Caption = 'Other'
         end
       end
       object ckDeliveryMethodV: TCheckBox
@@ -924,14 +1292,18 @@ inherited Form1: TForm1
         Visible = False
       end
     end
-    object oPage4: ToPage
+    object oPage4: TTabSheet
       Caption = 'Data Control'
-      VitalsStatus = False
+      TabVisible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lstDelivery: TListView
         Left = 0
         Top = 0
         Width = 734
-        Height = 460
+        Height = 398
         Align = alClient
         Columns = <>
         TabOrder = 0
@@ -939,208 +1311,5 @@ inherited Form1: TForm1
         ViewStyle = vsReport
       end
     end
-  end
-  inherited amgrMain: TVA508AccessibilityManager
-    Left = 656
-    Top = 24
-    Data = (
-      (
-        'Component = Form1'
-        'Status = stsDefault')
-      (
-        'Component = ofrm1'
-        'Status = stsDefault')
-      (
-        'Component = oPage1'
-        'Status = stsDefault')
-      (
-        'Component = dtDelivery'
-        'Status = stsDefault')
-      (
-        'Component = dtMaternal'
-        'Status = stsDefault')
-      (
-        'Component = edtDeliveryAt'
-        'Status = stsDefault')
-      (
-        'Component = cbAnesthesia'
-        'Status = stsDefault')
-      (
-        'Component = cbLabor'
-        'Status = stsDefault')
-      (
-        'Component = memoDeliveryNotes'
-        'Status = stsDefault')
-      (
-        'Component = cxRadioGroup_PretermLabor'
-        'Status = stsDefault')
-      (
-        'Component = E_LengthofLabor'
-        'Status = stsDefault')
-      (
-        'Component = SPN_GADays'
-        'Status = stsDefault')
-      (
-        'Component = SPN_GAWeeks'
-        'Status = stsDefault')
-      (
-        'Component = CB_PlaceofDelivery'
-        'Status = stsDefault')
-      (
-        'Component = cbOutcomeType'
-        'Status = stsDefault')
-      (
-        'Component = oPage2'
-        'Status = stsDefault')
-      (
-        'Component = pgCtrlBaby'
-        'Status = stsDefault')
-      (
-        'Component = TsBaby1'
-        'Status = stsDefault')
-      (
-        'Component = rgSex1'
-        'Status = stsDefault')
-      (
-        'Component = edtLb1'
-        'Status = stsDefault')
-      (
-        'Component = edtOz1'
-        'Status = stsDefault')
-      (
-        'Component = memComplications1'
-        'Status = stsDefault')
-      (
-        'Component = edtAPGAR1'
-        'Status = stsDefault')
-      (
-        'Component = ckNICU1'
-        'Status = stsDefault')
-      (
-        'Component = edtAPGARs1'
-        'Status = stsDefault')
-      (
-        'Component = edtg1'
-        'Status = stsDefault')
-      (
-        'Component = Panel2'
-        'Status = stsDefault')
-      (
-        'Component = Panel3'
-        'Status = stsDefault')
-      (
-        'Component = rbSingleton'
-        'Status = stsDefault')
-      (
-        'Component = rbMultiple'
-        'Status = stsDefault')
-      (
-        'Component = edtNumBabies'
-        'Status = stsDefault')
-      (
-        'Component = oPage3'
-        'Status = stsDefault')
-      (
-        'Component = gbCesarean'
-        'Status = stsDefault')
-      (
-        'Component = chkCPrimaryFor'
-        'Status = stsDefault')
-      (
-        'Component = edtCPrimaryFor'
-        'Status = stsDefault')
-      (
-        'Component = chkCUnsuccessfulVBAC'
-        'Status = stsDefault')
-      (
-        'Component = rgincision'
-        'Status = stsDefault')
-      (
-        'Component = ckRepeatwoLabor'
-        'Status = stsDefault')
-      (
-        'Component = cbReasonsCPrimary'
-        'Status = stsDefault')
-      (
-        'Component = cbReasonsCSecondary'
-        'Status = stsDefault')
-      (
-        'Component = edtReasonsCOthPrimary'
-        'Status = stsDefault')
-      (
-        'Component = edtReasonsCOthSecondary'
-        'Status = stsDefault')
-      (
-        'Component = gbOtherProcedures'
-        'Status = stsDefault')
-      (
-        'Component = edtProceduresOther'
-        'Status = stsDefault')
-      (
-        'Component = ckProUterineCurettage'
-        'Status = stsDefault')
-      (
-        'Component = ckProTubalLigationatCesarean'
-        'Status = stsDefault')
-      (
-        'Component = ckProPostpartumTubalLigation'
-        'Status = stsDefault')
-      (
-        'Component = ckProPostpartumHysterectomy'
-        'Status = stsDefault')
-      (
-        'Component = ckNexplanonImplant'
-        'Status = stsDefault')
-      (
-        'Component = ckIUDInsertion'
-        'Status = stsDefault')
-      (
-        'Component = ckBakri'
-        'Status = stsDefault')
-      (
-        'Component = gbVaginal'
-        'Status = stsDefault')
-      (
-        'Component = chkVagVacuum'
-        'Status = stsDefault')
-      (
-        'Component = chkVagForceps'
-        'Status = stsDefault')
-      (
-        'Component = chkVagEpisiotomy'
-        'Status = stsDefault')
-      (
-        'Component = chkVagLacerations'
-        'Status = stsDefault')
-      (
-        'Component = chkVagVBAC'
-        'Status = stsDefault')
-      (
-        'Component = chkVagSVD'
-        'Status = stsDefault')
-      (
-        'Component = chkAKRI'
-        'Status = stsDefault')
-      (
-        'Component = ckDeliveryMethodV'
-        'Status = stsDefault')
-      (
-        'Component = ckDeliveryMethodC'
-        'Status = stsDefault')
-      (
-        'Component = oPage4'
-        'Status = stsDefault')
-      (
-        'Component = lstDelivery'
-        'Status = stsDefault')
-      (
-        'Component = GroupBox1'
-        'Status = stsDefault')
-      (
-        'Component = rbLiving1'
-        'Status = stsDefault')
-      (
-        'Component = rbDemised1'
-        'Status = stsDefault'))
   end
 end

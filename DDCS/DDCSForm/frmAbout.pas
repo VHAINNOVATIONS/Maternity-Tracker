@@ -21,27 +21,27 @@ unit frmAbout;
 interface
 
 uses
-  Windows, SysUtils, Forms, StdCtrls, ExtCtrls, JclFileUtils, Vcl.Imaging.pngimage,
-  Vcl.Controls, System.Classes;
+  Winapi.Windows, System.Classes, System.SysUtils, Vcl.Forms, Vcl.Controls,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage, Vcl.Graphics, JclFileUtils;
 
 type
   TDDCSAbout = class(TForm)
-    Panel1: TPanel;
-    lblAppName: TStaticText;
+    pnlInfo: TPanel;
+    lbAppName: TStaticText;
     btnOk: TButton;
-    lblWebAddress: TStaticText;
-    Picture1: TImage;
-    Image1: TImage;
-    Memo1: TMemo;
-    Label4: TLabel;
-    Label3: TLabel;
-    Label2: TLabel;
+    lbWebDSS: TStaticText;
+    imgDSS: TImage;
+    imgVA: TImage;
+    lbCompany: TStaticText;
+    lbApache: TStaticText;
+    lbCopyright: TStaticText;
+    lbLicense: TStaticText;
+    lbWebVA: TStaticText;
     procedure FormShow(Sender: TObject);
-    procedure lblWebAddressClick(Sender: TObject);
+    procedure HyperLinkClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
   public
-    procedure ShowCompany(Sender: TObject);
   end;
 
 var
@@ -65,30 +65,30 @@ var
 begin
   vi := TJclFileVersionInfo.Create(HInstance);
   try
-    lblAppName.Caption := vi.ProductName + ' ' + vi.ProductVersion;
-    Label2.Caption := 'Copyright ' + Chr(169) + ' 2000 - ' + IntToStr(YearOf(Now));
+    lbAppName.Caption := vi.ProductName + ' version ' + vi.ProductVersion;
+    lbCopyRight.Caption := 'Copyright ' + Chr(169) + ' 1995 - ' + IntToStr(YearOf(Now));
+    lbCompany.Caption := vi.CompanyName;
+
+    lbLicense.Caption := 'Licensed under the Apache License, Version 2.0 (the "License");' + #13#10 +
+                         'you may not use this file except in compliance with the License.' + #13#10 +
+                         'You may obtain a copy of the License at' + #13#10 +
+                         '' + #13#10 +
+                         '   http://www.apache.org/licenses/LICENSE-2.0' + #13#10 +
+                         '' + #13#10 +
+                         'Unless required by applicable law or agreed to in writing, software' + #13#10 +
+                         'distributed under the License is distributed on an "AS IS" BASIS,' + #13#10 +
+                         'WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.' + #13#10 +
+                         'See the License for the specific language governing permissions and' + #13#10 +
+                         'limitations under the License.'
+
   finally
     vi.Free;
   end;
 end;
 
-procedure TDDCSAbout.ShowCompany(Sender: TObject);
+procedure TDDCSAbout.HyperLinkClick(Sender: TObject);
 begin
-  FormShow(Sender);
-  Image1.Visible := False;
-  Picture1.Width := (Width div 2) - (Picture1.Width div 2);
-  Label2.Left := (Width div 2) - (Label2.Width div 2);
-  Label4.Left := (Width div 2) - (Label4.Width div 2);
-  Label3.Left := (Width div 2) - (Label3.Width div 2);
-  Show;
-end;
-
-procedure TDDCSAbout.lblWebAddressClick(Sender: TObject);
-var
-  TempString: array[0..79] of Char;
-begin
-  StrPCopy(TempString, lblWebAddress.Caption);
-  ShellExecute(0, nil, TempString, nil, nil, SW_NORMAL);
+  ShellExecute(Application.Handle, PChar('open'), PChar(TStaticText(Sender).Caption), nil, nil, SW_SHOWNORMAL);
 end;
 
 end.

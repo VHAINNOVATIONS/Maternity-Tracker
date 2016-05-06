@@ -28,7 +28,7 @@ uses
   uDialog, uCommon, uExtndComBroker, VA508AccessibilityManager;
 
 type
-  TdlgPregHist = class(ToCNTDialog)
+  TdlgPregHist = class(TDDCSDialog)
     Panel1: TPanel;
     lbltitle: TLabel;
     Panel2: TPanel;
@@ -62,7 +62,7 @@ type
   private
     slPregs: TStringList;
     spnTotPreg,spnAbInduced,spnAbSpont,spnEctopic: Integer;
-    function AddPage(Sender: TObject; iIEN: string): ToCNTDialog;
+    function AddPage(Sender: TObject; iIEN: string): TDDCSDialog;
   protected
   public
     procedure CalculateMultiPregs;
@@ -79,7 +79,7 @@ var
 implementation
 
 uses
-  udlgDATE, fPregHist, fChildHist, udlgModTotPregs;
+  VAUtils, udlgDATE, fPregHist, fChildHist, udlgModTotPregs;
 
 {$R *.dfm}
 
@@ -144,6 +144,16 @@ var
   pg: TfrmPregHist;
   pgChild: TfrmChildHist;
   val: string;
+
+  function SubCount(str: string; d: Char): Integer;
+  var
+    I: Integer;
+  begin
+    Result := 0;
+    for I := 0 to Length(str) - 1 do
+      if str[I] = d then
+        inc(Result);
+  end;
 
   function getPregForm(iVal: string): TfrmPregHist;
   var
@@ -520,7 +530,7 @@ begin
   ModalResult := mrOK;
 end;
 
-function TdlgPregHist.AddPage(Sender: TObject; iIEN: string): ToCNTDialog;
+function TdlgPregHist.AddPage(Sender: TObject; iIEN: string): TDDCSDialog;
 var
   tabControl: TTabSheet;
   lvitem: TListItem;

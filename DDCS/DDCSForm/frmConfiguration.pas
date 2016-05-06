@@ -21,919 +21,101 @@ unit frmConfiguration;
 interface
 
 uses
-  SysUtils, Classes, Controls, Forms, Dialogs, ComCtrls, ExtCtrls, StdCtrls, Buttons,
-  oCNTBase, uCommon, uExtndComBroker;
+  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Samples.Spin,
+  ORCtrls, uBase, uCommon, uReportItems;
 
 type
-  ToCNTConfiguration = class(TForm)
-    Panel1: TPanel;
-    Panel2: TPanel;
-    PageControl1: TPageControl;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    ConfigList: TListView;
-    btnCloseMain: TBitBtn;
-    Label1: TLabel;
-    edtSingTextDisp: TLabeledEdit;
-    TabSheet3: TTabSheet;
-    DialogType: TRadioGroup;
-    DialogEditor: TGroupBox;
-    DialogConLst: TComboBox;
-    DialogLst: TListBox;
-    lstMultiDialogItems: TListBox;
-    btnConMulDiAdd: TBitBtn;
-    btnConMulDiDelete: TBitBtn;
-    btnMultiDialogItemsUp: TBitBtn;
-    btnMultiDialogItemsDown: TBitBtn;
-    configDisclaimer: TLabel;
-    ItemEditor: TGroupBox;
-    btnMultiListItemsDown: TBitBtn;
-    btnMultiListItemsUp: TBitBtn;
-    lstMultiListItems: TListBox;
-    btnAddMultiItem: TBitBtn;
-    btnDeleteMultiItem: TBitBtn;
-    pnlIntro: TPanel;
-    Memo1: TMemo;
-    ReportItemlst: TListView;
-    Label2: TLabel;
-    Label4: TLabel;
-    Panel5: TPanel;
-    RITitle: TLabeledEdit;
-    RIPrefex: TLabeledEdit;
-    RIVistalabel: TLabeledEdit;
-    RIHide: TCheckBox;
-    RISuffix: TLabeledEdit;
-    RIRequired: TCheckBox;
-    RIDoNotSave: TCheckBox;
-    btnRIDelete: TBitBtn;
-    BitBtn1: TBitBtn;
-    btnUpdateVistADialogs: TBitBtn;
-    DialogEditList: TListBox;
-    dialogcomplist: TListView;
-    Label5: TLabel;
-    GroupBox1: TGroupBox;
-    btnDialogMultiDown: TBitBtn;
-    btnDialogMultiUp: TBitBtn;
-    lstDialogMulti: TListBox;
-    btnDialogMultiAdd: TBitBtn;
-    btnDialogMultiDelete: TBitBtn;
-    LabeledEdit1: TLabeledEdit;
-    Label6: TLabel;
-    Panel7: TPanel;
-    btnDialogOK: TBitBtn;
-    btnDialogCancel: TBitBtn;
-    Panel6: TPanel;
-    Panel4: TPanel;
-    btnRIOK: TBitBtn;
-    btnRICancel: TBitBtn;
-    Panel8: TPanel;
-    Panel3: TPanel;
-    btnConfigOK: TBitBtn;
-    btnConfigCancel: TBitBtn;
-    Panel9: TPanel;
-    configWP: TGroupBox;
-    Memo2: TMemo;
-    btnConMulDiDeleteAll: TBitBtn;
-    btnConMulDiAddAll: TBitBtn;
-    cbConfigButton: TComboBox;
-    GroupBox2: TGroupBox;
-    Memo3: TMemo;
-    lblConfigSelected: TLabel;
-    lblRISelected: TLabel;
-    lblDialogCompSelected: TLabel;
-    lblDialogSelected: TLabel;
+  TDDCSFormConfig = class(TForm)
+    Tabs: TPageControl;
+    tabConfig: TTabSheet;
+    tabDialog: TTabSheet;
+    lvConfig: TListView;
+    tabReport: TTabSheet;
+    lvReportItems: TListView;
+    pnlReport: TPanel;
+    ckHideFromNote: TCheckBox;
+    ckRequired: TCheckBox;
+    ckDoNotSave: TCheckBox;
+    btnReloadDialogs: TBitBtn;
+    btnUpdateDialogs: TBitBtn;
+    lsDialog: TListBox;
+    lvDialogComponent: TListView;
     btnDialogShow: TBitBtn;
-    btnoCNTImport: TBitBtn;
-    lblRISelectedTyp: TLabel;
-    procedure FormCreate(Sender: TObject);
-    procedure ConfigListDblClick(Sender: TObject);
-    procedure DialogTypeClick(Sender: TObject);
-    procedure btnCloseMainClick(Sender: TObject);
+    btnUpdateConfig: TBitBtn;
+    pnlCommand: TPanel;
+    btnCancel: TBitBtn;
+    btnSave: TBitBtn;
+    btnDelete: TBitBtn;
+    lbReportNotice: TStaticText;
+    spOrder: TSpinEdit;
+    lbOrder: TStaticText;
+    lbTitle: TStaticText;
+    lbPrefix: TStaticText;
+    lbSuffix: TStaticText;
+    edTitle: TCaptionEdit;
+    edPrefix: TCaptionEdit;
+    edSuffix: TCaptionEdit;
+    ckDoNotSpace: TCheckBox;
+    cbDialogReturn: TCaptionComboBox;
+    lbDialogReturn: TStaticText;
+    pnlConfig: TPanel;
+    pnlDialog: TPanel;
+    btnClear: TBitBtn;
+    btnClose: TBitBtn;
+    CheckBox1: TCheckBox;
+    lbReportControl: TStaticText;
     procedure FormShow(Sender: TObject);
-    procedure btnCloseConfigClick(Sender: TObject);
-    procedure btnAddMultiItemClick(Sender: TObject);
-    procedure btnDeleteMultiItemClick(Sender: TObject);
-    procedure lstUpClick(Sender: TObject);
-    procedure lstDownClick(Sender: TObject);
-    procedure btnOKConfigClick(Sender: TObject);
-    procedure lstMultiListItemsDblClick(Sender: TObject);
-    procedure btnRIDeleteClick(Sender: TObject);
-    procedure btnRIOKClick(Sender: TObject);
-    procedure ReportItemlstDblClick(Sender: TObject);
+    // ListBox -----------------------------------------------------------------
+    procedure ListColumnClick(Sender: TObject; Column: TListColumn);
     procedure ListCompare(Sender: TObject; Item1, Item2: TListItem;
       Data: Integer; var Compare: Integer);
-    procedure ListColumnClick(Sender: TObject; Column: TListColumn);
-    procedure ReLoadDialogs(Sender: TObject);
-    procedure DialogEditListDblClick(Sender: TObject);
-    procedure dialogcomplistDblClick(Sender: TObject);
-    procedure btnRICancelClick(Sender: TObject);
-    procedure btnDialogOKClick(Sender: TObject);
-    procedure btnDialogCancelClick(Sender: TObject);
-    procedure btnConMulDiAddClick(Sender: TObject);
-    procedure btnConMulDiDeleteClick(Sender: TObject);
-    procedure btnConMulDiAddAllClick(Sender: TObject);
-    procedure btnConMulDiDeleteAllClick(Sender: TObject);
-    procedure PageControl1Change(Sender: TObject);
-    procedure btnUpdateVistADialogsClick(Sender: TObject);
-    procedure ShowDllDialog(Sender: TObject);
-    procedure TabSheet3Show(Sender: TObject);
-    procedure btnoCNTImportClick(Sender: TObject);
+    // Configuration -----------------------------------------------------------
+    procedure lvConfigDblClick(Sender: TObject);
+    procedure btnUpdateConfigClick(Sender: TObject);
+    // Report Items ------------------------------------------------------------
+    procedure lvReportItemsDblClick(Sender: TObject);
+    // Dialogs -----------------------------------------------------------------
+    procedure lsDialogDblClick(Sender: TObject);
+    procedure lvDialogComponentDblClick(Sender: TObject);
+    procedure ReloadDialogs(Sender: TObject);
+    procedure btnDialogShowClick(Sender: TObject);
+    procedure btnUpdateDialogsClick(Sender: TObject);
+    // Command
+    procedure btnSaveClick(Sender: TObject);
+    procedure btnCancelClick(Sender: TObject);
+    procedure btnClearClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure btnCloseClick(Sender: TObject);
   private
+    FDDCSForm: TDDCSForm;
+    FObjects: TStringList;
     Descending: Boolean;
     SortedColumn: Integer;
-    procedure ClearConfiguration;
-    procedure ClearConfigurationforMain;
-    procedure ClearReportItem;
-    procedure ClearReportforMain;
+    procedure ClearConfigurationEditor;
+    procedure ClearReportItemEditor;
+    procedure ClearReportItemInput;
     procedure ClearDialogEditor;
-    procedure ClearDialogforMain;
-    procedure ClearDialogforSecondary;
-    procedure UpdateToDialogType(CompDialog,CompContainer: string);
   public
+    constructor Create(AOwner: TComponent; DDCSForm: TDDCSForm); overload;
+    destructor Destroy; override;
   end;
 
 var
-  oCNTConfiguration: ToCNTConfiguration;
+  DDCSFormConfig: TDDCSFormConfig;
 
 implementation
 
 uses
-  frmConfigMultiItemAdd;
+  frmConfigMultiItemAdd, VAUtils, uExtndComBroker;
 
 {$R *.dfm}
 
-//------------------------------ Dialog Support -------------------------------
+// -----------------------------------------------------------------------------
 
-procedure ToCNTConfiguration.ReLoadDialogs(Sender: TObject);
-var
-  sl: TStringList;
-  I: Integer;
-  str: string;
-begin
-  if not (csDesigning in ComponentState) then
-  begin
-    sl := TStringList.Create;
-    try
-      DialogDLL := LoadDialogs;
-      if DialogDLL <> 0 then
-      begin
-        DLLDialogList.Clear;
-        DLLDialogList.Text := RegisterDialogs;
-//        DLLDialogList.AddStrings(RegisterDialogs);
+{$REGION 'ListView'}
 
-        DialogEditList.Clear;
-        cbConfigButton.Items.Clear;
-        DialogLst.Clear;
-
-        for I := 0 to DLLDialogList.Count - 1 do
-        begin
-          str := Piece(DLLDialogList[I],U,1);
-          DialogEditList.Items.Add(str);
-          cbConfigButton.Items.Add(str);
-          DialogLst.Items.Add(str);
-        end;
-
-        if DialogEditList.Count > 0 then
-          btnUpdateVistADialogs.Enabled := True;
-      end;
-    finally
-      sl.Free;
-    end;
-  end;
-end;
-
-//------------------------------ Initial Setup -------------------------------
-
-procedure ToCNTConfiguration.FormCreate(Sender: TObject);
-var
-  I,ctI: Integer;
-  str: string;
-  base: ToForm;
-
-  procedure setLists(Control: TWincontrol; pgIndex: string);
-  var
-    cLst,rLst: TListItem;
-  begin
-    //Configuration List Box
-    cLst := ConfigList.Items.Add;
-    cLst.Caption := Control.Name;
-    cLst.SubItems.Add(Control.ClassName);
-    cLst.SubItems.Add(pgIndex);
-    //Report Item List Box
-    rLst := ReportItemlst.Items.Add;
-    rLst.Caption := Control.Name;
-    rLst.SubItems.Add(Control.ClassName);
-    rLst.SubItems.Add(pgIndex);
-  end;
-
-  procedure loopin(Control: TWinControl; pgIndex: Integer);
-  var
-    I,ctI: Integer;
-  begin
-    if (Control.ClassType = TPanel) or (Control.ClassType = TGroupBox) then
-    begin
-      for I := 0 to Control.ControlCount - 1 do
-        loopin(TWinControl(Control.Controls[I]),pgIndex);
-    end else if Control.ClassType = TPageControl then
-    begin
-      for I := 0 to TPageControl(Control).PageCount - 1 do
-        for ctI := 0 to TPageControl(Control).Pages[I].ControlCount - 1 do
-          loopin(TWinControl(TPageControl(Control).Pages[I].Controls[ctI]),pgIndex);
-    end else if Control.ClassType <> TBoundLabel then
-      setLists(Control,IntToStr(pgIndex));
-  end;
-
-begin
-  for I := 0 to DLLDialogList.Count - 1 do
-  begin
-    str := Piece(DLLDialogList[I],U,1);
-    DialogEditList.Items.Add(str);
-    cbConfigButton.Items.Add(str);
-    DialogLst.Items.Add(str);
-  end;
-
-  base := ToForm(TForm(Owner).FindComponent('ofrm1'));
-
-  for I := 0 to base.PageCount - 1 do
-    for ctI := 0 to base.Pages[I].ControlCount - 1 do
-      loopin(TWinControl(base.Pages[I].Controls[ctI]),I+1);
-end;
-
-//--------------------------- Regular Form Movement ----------------------------
-
-procedure ToCNTConfiguration.FormShow(Sender: TObject);
-begin
-  ClearConfiguration;
-  ClearReportItem;
-  ClearDialogEditor;
-  PageControl1.ActivePageIndex := 0;
-
-  configDisclaimer.Visible := False;
-  pnlIntro.Visible := True;
-  pnlIntro.BringToFront;
-end;
-
-procedure ToCNTConfiguration.PageControl1Change(Sender: TObject);
-begin
-  ClearConfiguration;
-  ClearReportItem;
-  ClearDialogEditor;
-end;
-
-procedure ToCNTConfiguration.btnCloseMainClick(Sender: TObject);
-begin
-  Close;
-end;
-
-//---------------------------- Configuration Page -----------------------------
-
-procedure ToCNTConfiguration.ClearConfiguration;
-var
-  I: Integer;
-begin
-  for I := 0 to ConfigList.Items.Count - 1 do
-    ConfigList.Items.Item[I].Selected := False;
-
-  ClearConfigurationforMain;
-  Panel9.Visible := False;
-  configDisclaimer.Visible := False;
-  pnlIntro.Visible := True;
-  pnlIntro.BringToFront;
-end;
-
-procedure ToCNTConfiguration.ClearConfigurationforMain;
-begin
-  lblConfigSelected.Caption := '';
-
-  //Single Type
-  edtSingTextDisp.Clear;
-  edtSingTextDisp.Visible := False;
-
-  //Button Type
-  cbConfigButton.ItemIndex := -1;
-  cbConfigButton.Visible := False;
-
-  DialogType.ItemIndex := -1;
-  DialogType.Visible := False;
-
-  //Dialog Editor Group
-  DialogConLst.ItemIndex := -1;
-  DialogLst.Clear;
-  DialogLst.Items.AddStrings(DLLDialogList);
-  lstMultiDialogItems.Clear;
-  DialogEditor.Visible := False;
-
-  //Multi Item Group
-  lstMultiListItems.Clear;
-  ItemEditor.Visible := False;
-
-  //Word Processing Type
-  Memo2.Clear;
-  configWP.Visible := False;
-
-  Panel3.Visible := False;
-end;
-
-procedure ToCNTConfiguration.ConfigListDblClick(Sender: TObject);
-begin
-  if ConfigList.ItemIndex < 0 then Exit;
-
-  ClearConfigurationforMain;
-
-  pnlIntro.Visible := False;
-  pnlIntro.SendToBack;
-  configDisclaimer.Visible := True;
-
-  lblConfigSelected.Caption := ConfigList.Items.Item[ConfigList.ItemIndex].Caption;
-
-  if (ConfigList.Items.Item[ConfigList.ItemIndex].SubItems[0] = 'Multi') or
-  (ConfigList.Items.Item[ConfigList.ItemIndex].SubItems[0] = 'Dialog List') then
-  begin
-    DialogType.Visible := True;
-    edtSingTextDisp.Visible := False;
-    cbConfigButton.Visible := False;
-    ItemEditor.Visible := False;
-    DialogEditor.Visible := False;
-    configWP.Visible := False;
-  end
-  else if (ConfigList.Items.Item[ConfigList.ItemIndex].SubItems[0] = 'Word Processing') or
-  (ConfigList.Items.Item[ConfigList.ItemIndex].SubItems[0] = 'Dialog Container') then
-  begin
-    configWP.Visible := True;
-    DialogType.Visible := False;
-    edtSingTextDisp.Visible := False;
-    cbConfigButton.Visible := False;
-    ItemEditor.Visible := False;
-    DialogEditor.Visible := False;
-  end
-  else if ConfigList.Items.Item[ConfigList.ItemIndex].SubItems[0] = 'Button' then
-  begin
-    cbConfigButton.Visible := True;
-    DialogType.Visible := False;
-    edtSingTextDisp.Visible := False;
-    ItemEditor.Visible := False;
-    DialogEditor.Visible := False;
-    configWP.Visible := False;
-  end
-  else
-  begin
-    edtSingTextDisp.Visible := True;
-    DialogType.Visible := False;
-    cbConfigButton.Visible := False;
-    ItemEditor.Visible := False;
-    DialogEditor.Visible := False;
-    configWP.Visible := False;
-  end;
-  Panel3.Visible := True;
-end;
-
-procedure ToCNTConfiguration.DialogTypeClick(Sender: TObject);
-begin
-  if DialogType.ItemIndex = 0 then
-  begin
-    if Owner.FindComponent(lblConfigSelected.Caption).ClassName <> 'TCheckListBox' then
-    begin
-      ShowDialog(Self, 'Only TCheckListBoxes can be of the Dialog Type.', mtError);
-      DialogType.ItemIndex := 1;
-      DialogEditor.Visible := False;
-      ItemEditor.Visible := True;
-    end else
-    begin
-      DialogEditor.Visible := True;
-      ItemEditor.Visible := False;
-    end;
-  end
-  else
-  begin
-    DialogEditor.Visible := False;
-    ItemEditor.Visible := True;
-  end;
-end;
-
-procedure ToCNTConfiguration.btnConMulDiAddAllClick(Sender: TObject);
-begin
-  lstMultiDialogItems.Items.AddStrings(DialogLst.Items);
-  DialogLst.Clear;
-end;
-
-procedure ToCNTConfiguration.btnConMulDiAddClick(Sender: TObject);
-begin
-  if DialogLst.ItemIndex < 0 then Exit;
-
-  lstMultiDialogItems.Items.Add(DialogLst.Items.Strings[DialogLst.ItemIndex]);
-  DialogLst.Items.Delete(DialogLst.ItemIndex);
-end;
-
-procedure ToCNTConfiguration.btnConMulDiDeleteAllClick(Sender: TObject);
-begin
-  DialogLst.Items.AddStrings(lstMultiDialogItems.Items);
-  lstMultiDialogItems.Clear;
-end;
-
-procedure ToCNTConfiguration.btnConMulDiDeleteClick(Sender: TObject);
-begin
-  if lstMultiDialogItems.ItemIndex < 0 then Exit;
-
-  DialogLst.Items.Add(lstMultiDialogItems.Items.Strings[lstMultiDialogItems.ItemIndex]);
-  lstMultiDialogItems.Items.Delete(lstMultiDialogItems.ItemIndex);
-end;
-
-procedure ToCNTConfiguration.btnOKConfigClick(Sender: TObject);
-begin
-  // Component is a Dialog Type
-  if DialogType.ItemIndex = 0 then
-  begin
-    if DialogConLst.ItemIndex = -1 then
-    begin
-      ShowDialog(Self, 'Dialog types must have a dialog container.', mtWarning);
-      DialogConLst.SetFocus;
-      Exit;
-    end
-    else
-    begin
-      // Update lists with the new Component Type and its container
-      UpdateToDialogType(lblConfigSelected.Caption, DialogConLst.Items.Strings[DialogConLst.ItemIndex]);
-    end;
-  end;
-
-  // RPC - Save Configuration
-
-  ClearConfigurationforMain;
-end;
-
-procedure ToCNTConfiguration.btnCloseConfigClick(Sender: TObject);
-begin
-  ClearConfigurationforMain;
-end;
-
-procedure ToCNTConfiguration.btnoCNTImportClick(Sender: TObject);
-var
-  sl: TStringList;
-  I: Integer;
-begin
-  sl := TStringList.Create;
-  try
-    // page# ^ control_name ^ class
-    for I := 0 to ConfigList.Items.Count - 1 do
-      sl.Add(ConfigList.Items[I].SubItems.Strings[1] + U + ConfigList.Items[I].Caption + U +
-             ConfigList.Items[I].SubItems.Strings[0]);
-    try
-      RPCBrokerV.SetContext(MENU_CONTEXT);
-      RPCBrokerV.CallV('DSIO DDCS IMPORT FORM', [RPCBrokerV.DDCSInterface, sl]);
-    except
-      On E: Exception do
-      ShowDialog(Self, E.Message, mtError);
-    end;
-  finally
-    sl.Free;
-  end;
-end;
-
-//----------------------------- Report Item Page ------------------------------
-
-procedure ToCNTConfiguration.ClearReportItem;
-var
-  I: Integer;
-begin
-  for I := 0 to ReportItemlst.Items.Count - 1 do
-  ReportItemlst.Items.Item[I].Selected := False;
-
-  ClearReportforMain;
-  Panel5.Visible := False;
-  Panel4.Visible := False;
-end;
-
-procedure ToCNTConfiguration.ClearReportforMain;
-begin
-  lblRISelected.Caption := '';
-  lblRISelectedTyp.Caption := '';
-
-  RITitle.Clear;
-  RIPrefex.Clear;
-  RISuffix.Clear;
-  RIVistalabel.Clear;
-  RIDoNotSave.Checked := False;
-  RIHide.Checked := False;
-  RIRequired.Checked := False;
-end;
-
-procedure ToCNTConfiguration.ReportItemlstDblClick(Sender: TObject);
-var
-  sl: TStringList;
-  I: Integer;
-begin
-  if ReportItemlst.ItemIndex < 0 then Exit;
-
-  ClearReportforMain;
-  if ReportItemlst.Items.Item[ReportItemlst.ItemIndex].SubItems[0] = 'Dialog List' then
-  begin
-    ShowDialog(Self, 'Dialog Lists cannot be a Report Item.', mtWarning);
-    Exit;
-  end;
-
-  lblRISelected.Caption := ReportItemlst.Items.Item[ReportItemlst.ItemIndex].Caption;
-  lblRISelectedTyp.Caption := ReportItemlst.Items.Item[ReportItemlst.ItemIndex].SubItems[0];
-  Panel5.Visible := True;
-  Panel4.Visible := True;
-
-  sl := TStringList.Create;
-  try
-    try
-      RPCBrokerV.SetContext(MENU_CONTEXT);
-//      RPCBrokerV.tCallV(sl, 'DSIO OCNT GET REPORT ITEM', [oCNT, lblRISelected.Caption, lblRISelectedTyp.Caption]);
-
-      if sl.Count > 0 then
-      begin
-        for I := 0 to sl.Count - 1 do
-        begin
-          if Piece(sl[I],U,1) = '3.5' then
-          RITitle.Text := Piece(sl[I],U,2)
-          else if Piece(sl[I],U,1) = '3.3' then
-          RIPrefex.Text := Piece(sl[I],U,2)
-          else if Piece(sl[I],U,1) = '3.4' then
-          RISuffix.Text := Piece(sl[I],U,2)
-          else if Piece(sl[I],U,1) = '3.2' then
-          RIVistalabel.Text := Piece(sl[I],U,2)
-          else if Piece(sl[I],U,1) = '3.8' then
-          begin
-            if Piece(sl[I],U,2) = 'TRUE' then
-            RIDoNotSave.Checked := True;
-          end
-          else if Piece(sl[I],U,1) = '3.9' then
-          begin
-            if Piece(sl[I],U,2) = 'TRUE' then
-            RIHide.Checked := True;
-          end
-          else if Piece(sl[I],U,1) = '3.7' then
-          begin
-            if Piece(sl[I],U,2) = 'TRUE' then
-            RIRequired.Checked := True;
-          end;
-        end;
-      end;
-    except
-      on E: Exception do
-      ShowDialog(Self, E.Message, mtError);
-    end;
-  finally
-    sl.Free;
-  end;
-end;
-
-procedure ToCNTConfiguration.btnRIDeleteClick(Sender: TObject);
-var
-  sl: TStringList;
-  str: string;
-begin
-  sl := TStringList.Create;
-  try
-    try
-      sl.Add('3.5^');
-      sl.Add('3.3^');
-      sl.Add('3.4^');
-      sl.Add('3.2^');
-      sl.Add('3.8^');
-      sl.Add('3.9^');
-      sl.Add('3.7^');
-
-      RPCBrokerV.SetContext(MENU_CONTEXT);
-//      str := RPCBrokerV.sCallV('DSIO OCNT SAVE REPORT ITEM', [oCNT, lblRISelected.Caption, lblRISelectedTyp.Caption, sl]);
-
-      if Piece(str,U,1) = '-1' then
-        ShowDialog(Self, Piece(str,U,2), mtWarning);
-    except
-      on E: Exception do
-      ShowDialog(Self, E.Message, mtError);
-    end;
-  finally
-    sl.Free;
-    ClearReportforMain;
-  end;
-end;
-
-procedure ToCNTConfiguration.btnRIOKClick(Sender: TObject);
-var
-  sl: TStringList;
-  str: string;
-begin
-  sl := TStringList.Create;
-  try
-    try
-      sl.Add('3.5^' + RITitle.Text);
-      sl.Add('3.3^' + RIPrefex.Text);
-      sl.Add('3.4^' + RISuffix.Text);
-      sl.Add('3.2^' + RIVistalabel.Text);
-      sl.Add('3.8^' + BoolToStr(RIDoNotSave.Checked));
-      sl.Add('3.9^' + BoolToStr(RIHide.Checked));
-      sl.Add('3.7^' + BoolToStr(RIRequired.Checked));
-
-      RPCBrokerV.SetContext(MENU_CONTEXT);
-//      str := RPCBrokerV.sCallV('DSIO OCNT SAVE REPORT ITEM', [oCNT, lblRISelected.Caption, lblRISelectedTyp.Caption, sl]);
-
-      if Piece(str,U,1) = '-1' then
-        ShowDialog(Self, Piece(str,U,2), mtWarning);
-    except
-      on E: Exception do
-      ShowDialog(Self, E.Message, mtError);
-    end;
-  finally
-    sl.Free;
-    ClearReportforMain;
-  end;
-end;
-
-procedure ToCNTConfiguration.btnRICancelClick(Sender: TObject);
-begin
-  ClearReportforMain;
-end;
-
-//---------------------------- Dialog Editor Page ------------------------------
-
-procedure ToCNTConfiguration.TabSheet3Show(Sender: TObject);
-begin
-  if DialogEditList.Count = 0 then
-    btnUpdateVistADialogs.Enabled := False;
-end;
-
-procedure ToCNTConfiguration.ClearDialogEditor;
-var
-  I: Integer;
-begin
-  for I := 0 to DialogEditList.Items.Count - 1 do
-    DialogEditList.Selected[I] := False;
-
-  ClearDialogforMain;
-  Label6.Visible := False;
-end;
-
-procedure ToCNTConfiguration.ClearDialogforMain;
-begin
-  lblDialogSelected.Caption := '';
-
-  dialogcomplist.Items.Clear;
-  ClearDialogforSecondary;
-end;
-
-procedure ToCNTConfiguration.ClearDialogforSecondary;
-begin
-  lblDialogCompSelected.Caption := '';
-
-  LabeledEdit1.Clear;
-  LabeledEdit1.Visible := False;
-  lstDialogMulti.Clear;
-  GroupBox1.Visible := False;
-  Memo3.Clear;
-  GroupBox2.Visible := False;
-  Panel7.Visible := False;
-end;
-
-procedure ToCNTConfiguration.DialogEditListDblClick(Sender: TObject);
-var
-  sl: TStringList;
-  I: Integer;
-  dlst: TListItem;
-begin
-  if DialogEditList.ItemIndex < 0 then
-    Exit;
-
-  ClearDialogforMain;
-  lblDialogCompSelected.Caption := '';
-  lblDialogSelected.Caption := DialogEditList.Items.Strings[DialogEditList.ItemIndex];
-
-  sl := TStringList.Create;
-  try
-    try
-      sl.Text := GetDialogComponents(DialogEditList.Items.Strings[DialogEditList.ItemIndex]);
-      for I := 0 to sl.Count - 1 do
-      begin
-        dlst := dialogcomplist.Items.Add;
-        dlst.Caption := Piece(sl[I],U,1);
-        dlst.SubItems.Add(Piece(sl[I],U,2));
-      end;
-    except
-    end;
-  finally
-    sl.Free;
-  end;
-end;
-
-procedure ToCNTConfiguration.dialogcomplistDblClick(Sender: TObject);
-begin
-  if dialogcomplist.ItemIndex < 0 then
-    Exit;
-
-  Label6.Visible := True;
-  ClearDialogforSecondary;
-
-  lblDialogCompSelected.Caption := dialogcomplist.Items.Item[dialogcomplist.ItemIndex].Caption;
-
-  if dialogcomplist.Items.Item[dialogcomplist.ItemIndex].SubItems[0] = 'Multi' then
-  begin
-    GroupBox1.Visible := True;
-    GroupBox1.BringToFront;
-    GroupBox2.Visible := False;
-    LabeledEdit1.Visible := False;
-  end
-  else if dialogcomplist.Items.Item[dialogcomplist.ItemIndex].SubItems[0] = 'Word Processing' then
-  begin
-    GroupBox2.Visible := True;
-    GroupBox2.BringToFront;
-    GroupBox1.Visible := False;
-    LabeledEdit1.Visible := False;
-  end
-  else
-  begin
-    LabeledEdit1.Visible := True;
-    LabeledEdit1.BringToFront;
-    GroupBox1.Visible := False;
-    GroupBox2.Visible := False;
-  end;
-  Panel7.Visible := True;
-end;
-
-procedure ToCNTConfiguration.btnUpdateVistADialogsClick(Sender: TObject);
-var
-  sl: TStringList;
-  I: Integer;
-begin
-  sl := TStringList.Create;
-  try
-    for I := 0 to DLLDialogList.Count - 1 do
-    begin
-      sl.Clear;
-      try
-        sl.Text := GetDialogComponents(Piece(DLLDialogList[I],U,1));
-
-        RPCBrokerV.SetContext(MENU_CONTEXT);
-        RPCBrokerV.CallV('DSIO DDCS DIALOG IMPORT', [Piece(DLLDialogList[I],U,2), Piece(DLLDialogList[I],U,1), sl]);
-      except
-      end;
-    end;
-  finally
-    sl.Free;
-  end;
-end;
-
-procedure ToCNTConfiguration.btnDialogOKClick(Sender: TObject);
-begin
-  //RPC Save
-  ClearDialogforSecondary;
-end;
-
-procedure ToCNTConfiguration.btnDialogCancelClick(Sender: TObject);
-begin
-  ClearDialogforSecondary;
-end;
-
-//------------------------------ Shared Methods -------------------------------
-
-procedure ToCNTConfiguration.UpdateToDialogType(CompDialog,CompContainer: string);
-var
-  I: Integer;
-begin
-  //Update the Configuration List
-  for I := 0 to ConfigList.Items.Count - 1 do
-  begin
-    if ConfigList.Items.Item[I].Caption = CompDialog then
-      ConfigList.Items.Item[I].SubItems[0] := 'Dialog List';
-    if ConfigList.Items.Item[I].Caption = CompContainer then
-      ConfigList.Items.Item[I].SubItems[0] := 'Dialog Container';
-  end;
-
-  //Update the ReportItem List
-  for I := 0 to ReportItemlst.Items.Count - 1 do
-  begin
-    if ReportItemlst.Items.Item[I].Caption = CompDialog then
-      ReportItemlst.Items.Item[I].SubItems[0] := 'Dialog List';
-    if ReportItemlst.Items.Item[I].Caption = CompContainer then
-      ReportItemlst.Items.Item[I].SubItems[0] := 'Dialog Container';
-  end;
-end;
-
-procedure ToCNTConfiguration.lstUpClick(Sender: TObject);
-var
-  I: Integer;
-  lstBox: TListBox;
-begin
-  if not (Sender is TBitBtn) then
-    Exit;
-
-  case TBitBtn(Sender).Tag of
-    1 : lstBox := lstMultiListItems;
-    2 : lstBox := lstMultiDialogItems;
-    3 : lstBox := lstDialogMulti;
-  end;
-
-  if lstBox = nil then
-    Exit;
-  if lstBox.ItemIndex < 0 then
-    Exit;
-
-  I := lstBox.ItemIndex;
-  if I > 0 then
-  begin
-    lstBox.Items.Exchange(I, I - 1);
-    lstBox.ItemIndex := I - 1;
-  end;
-end;
-
-procedure ToCNTConfiguration.lstDownClick(Sender: TObject);
-var
-  I: Integer;
-  lstBox: TListBox;
-begin
-  if not (Sender is TBitBtn) then
-    Exit;
-
-  case TBitBtn(Sender).Tag of
-    1 : lstBox := lstMultiListItems;
-    2 : lstBox := lstMultiDialogItems;
-    3 : lstBox := lstDialogMulti;
-  end;
-
-  if lstBox = nil then
-    Exit;
-  if lstBox.ItemIndex < 0 then
-    Exit;
-
-  I := lstBox.ItemIndex;
-  if I < lstBox.Items.Count - 1 then
-  begin
-    lstBox.Items.Exchange(I, I + 1);
-    lstBox.ItemIndex := I + 1;
-  end;
-end;
-
-procedure ToCNTConfiguration.btnAddMultiItemClick(Sender: TObject);
-var
-  lstBox: TListBox;
-begin
-  if not (Sender is TBitBtn) then
-    Exit;
-
-  case TBitBtn(Sender).Tag of
-    1 : lstBox := lstMultiListItems;
-    3 : lstBox := lstDialogMulti;
-  end;
-  if lstBox = nil then
-    Exit;
-
-  AddItem := TAddItem.Create(Self);
-  try
-    AddItem.ShowModal;
-    if AddItem.ModalResult = mrOk then
-      lstBox.Items.Add(AddItem.Edit1.Text);
-  finally
-    AddItem.Free;
-  end;
-end;
-
-procedure ToCNTConfiguration.btnDeleteMultiItemClick(Sender: TObject);
-var
-  lstBox: TListBox;
-begin
-  if not (Sender is TBitBtn) then
-    Exit;
-
-  case TBitBtn(Sender).Tag of
-    1 : lstBox := lstMultiListItems;
-    3 : lstBox := lstDialogMulti;
-  end;
-  if lstBox = nil then
-    Exit;
-  if lstBox.ItemIndex < 0 then
-    Exit;
-
-  if MessageDlgPos('Are you sure you want to delete this entry?' + #13#13 + '"' + lstBox.Items.Strings[lstbox.ItemIndex] + '"',
-                   mtWarning,[mbYes,mbNo],0,
-                  (TForm(Owner).Left + (TForm(Owner).Width div 2) - 100),
-                  (TForm(Owner).Top + (TForm(Owner).Height div 2)) - 60) = mrYes then
-    lstBox.Items.Delete(lstBox.ItemIndex);
-end;
-
-procedure ToCNTConfiguration.lstMultiListItemsDblClick(Sender: TObject);
-begin
-  if not (Sender is TListBox) then
-    Exit;
-
-  if TListBox(Sender).ItemIndex < 0 then
-    Exit;
-
-  AddItem := TAddItem.Create(Self);
-  try
-    AddItem.Edit1.Text := TListBox(Sender).Items.Strings[TListBox(Sender).ItemIndex];
-    AddItem.ShowModal;
-    if AddItem.ModalResult = mrOk then
-    begin
-      TListBox(Sender).Items.Delete(TListBox(Sender).ItemIndex);
-      TListBox(Sender).Items.Add(AddItem.Edit1.Text);
-    end;
-  finally
-    AddItem.Free;
-  end;
-end;
-
-procedure ToCNTConfiguration.ListColumnClick(Sender: TObject; Column: TListColumn);
+procedure TDDCSFormConfig.ListColumnClick(Sender: TObject; Column: TListColumn);
 begin
   TListView(Sender).SortType := stNone;
   if Column.Index <> SortedColumn then
@@ -945,35 +127,97 @@ begin
   TListView(Sender).SortType := stText;
 end;
 
-procedure ToCNTConfiguration.ListCompare(Sender: TObject; Item1,
+procedure TDDCSFormConfig.ListCompare(Sender: TObject; Item1,
   Item2: TListItem; Data: Integer; var Compare: Integer);
 begin
   if SortedColumn = 0 then
     Compare := CompareText(Item1.Caption, Item2.Caption)
   else if SortedColumn <> 0 then
-    Compare := CompareText(Item1.SubItems[SortedColumn-1], Item2.SubItems[SortedColumn-1]);
+    Compare := CompareText(Item1.SubItems[SortedColumn - 1], Item2.SubItems[SortedColumn - 1]);
 
   if Descending then
     Compare := -Compare;
 end;
 
-procedure ToCNTConfiguration.ShowDllDialog(Sender: TObject);
+{$ENDREGION}
+
+{$REGION 'Configuration'}
+
+procedure TDDCSFormConfig.lvConfigDblClick(Sender: TObject);
+begin
+  if lvConfig.ItemIndex < 0 then
+    Exit;
+end;
+
+procedure TDDCSFormConfig.btnUpdateConfigClick(Sender: TObject);
 var
-  lstbox: TListBox;
+  sl: TStringList;
+  I: Integer;
+begin
+  if RPCBrokerV = nil then
+    Exit;
+
+  sl := TStringList.Create;
+  try
+    // page# ^ control_name ^ class
+    for I := 0 to lvConfig.Items.Count - 1 do
+      sl.Add(lvConfig.Items[I].SubItems[1] + U + lvConfig.Items[I].Caption + U + lvConfig.Items[I].SubItems[0]);
+
+    try
+      if UpdateContext(MENU_CONTEXT) then
+        CallV('DSIO DDCS IMPORT FORM', [RPCBrokerV.DDCSInterface, sl]);
+    except
+      On E: Exception do
+      ShowMsg(E.Message, smiError, smbOK);
+    end;
+  finally
+    sl.Free;
+  end;
+end;
+
+{$ENDREGION}
+
+{$REGION 'Report Items'}
+
+procedure TDDCSFormConfig.lvReportItemsDblClick(Sender: TObject);
+begin
+  lbReportControl.Caption := '';
+  if lvReportItems.ItemIndex < 0 then
+    Exit;
+
+  lbReportControl.Caption := lvReportItems.Items[lvReportItems.ItemIndex].Caption;
+end;
+
+{$ENDREGION}
+
+{$REGION 'Dialogs'}
+
+procedure TDDCSFormConfig.lsDialogDblClick(Sender: TObject);
+begin
+  if lsDialog.ItemIndex < 0 then
+    Exit;
+end;
+
+procedure TDDCSFormConfig.lvDialogComponentDblClick(Sender: TObject);
+begin
+  if lvDialogComponent.ItemIndex < 0 then
+    Exit;
+end;
+
+procedure TDDCSFormConfig.ReloadDialogs(Sender: TObject);
+begin
+  DialogDLL := LoadDialogs;
+end;
+
+procedure TDDCSFormConfig.btnDialogShowClick(Sender: TObject);
+var
   dlgName: string;
   sl: TStringList;
 begin
-  if Sender is TListBox then
-    lstbox := TListBox(Sender)
-  else if Sender is TBitBtn then
-    lstbox := DialogEditList
-  else
+  if lsDialog.ItemIndex < 0 then
     Exit;
 
-  if lstbox.ItemIndex < 0 then
-    Exit;
-
-  dlgName := '||' + lstbox.Items.Strings[lstbox.ItemIndex];
+  dlgName := '||' + lsDialog.Items[lsDialog.ItemIndex];
 
   if DialogDLL <> 0 then
   begin
@@ -983,12 +227,197 @@ begin
         sl.Text := DisplayDialog(@RPCBrokerV, dlgName, True);
       except
         on E: Exception do
-        ShowDialog(Self, E.Message, mtError);
+        ShowMsg(E.Message, smiError, smbOK);
       end;
     finally
       sl.Free;
     end;
   end;
+end;
+
+procedure TDDCSFormConfig.btnUpdateDialogsClick(Sender: TObject);
+var
+  sl: TStringList;
+  I: Integer;
+begin
+  if RPCBrokerV = nil then
+    Exit;
+
+  sl := TStringList.Create;
+  try
+    try
+      for I := 0 to DLLDialogList.Count - 1 do
+      begin
+        sl.Clear;
+
+        if DialogDLL <> 0 then
+          sl.Text := GetDialogComponents(Piece(DLLDialogList[I],U,1));
+
+        if sl.Count > 0 then
+        begin
+          if UpdateContext(MENU_CONTEXT) then
+            CallV('DSIO DDCS DIALOG IMPORT', [Piece(DLLDialogList[I],U,2), Piece(DLLDialogList[I],U,1), sl]);
+        end;
+      end;
+    except
+      on E: Exception do
+      ShowMsg(E.Message, smiError, smbOK);
+    end;
+  finally
+    sl.Free;
+  end;
+end;
+
+{$ENDREGION}
+
+{$REGION 'Command'}
+
+procedure TDDCSFormConfig.btnSaveClick(Sender: TObject);
+begin
+//
+end;
+
+procedure TDDCSFormConfig.btnCancelClick(Sender: TObject);
+begin
+//
+end;
+
+procedure TDDCSFormConfig.btnClearClick(Sender: TObject);
+begin
+//
+end;
+
+procedure TDDCSFormConfig.btnDeleteClick(Sender: TObject);
+begin
+//
+end;
+
+procedure TDDCSFormConfig.btnCloseClick(Sender: TObject);
+begin
+  Close;
+end;
+
+{$ENDREGION}
+
+// Private ---------------------------------------------------------------------
+
+procedure TDDCSFormConfig.ClearConfigurationEditor;
+begin
+  lvConfig.SortType := stNone;
+  lvConfig.Clear;
+end;
+
+procedure TDDCSFormConfig.ClearReportItemEditor;
+begin
+  lvReportItems.SortType := stNone;
+  lvReportItems.Clear;
+  ClearReportItemInput;
+end;
+
+procedure TDDCSFormConfig.ClearReportItemInput;
+begin
+  spOrder.Value := 0;
+  edTitle.Clear;
+  edPrefix.Clear;
+  edSuffix.Clear;
+  ckDoNotSpace.Checked := False;
+  ckHideFromNote.Checked := False;
+  ckDoNotSave.Checked := False;
+  ckRequired.Checked := False;
+  cbDialogReturn.ItemIndex := -1;
+end;
+
+procedure TDDCSFormConfig.ClearDialogEditor;
+var
+  I: Integer;
+begin
+  lsDialog.ItemIndex := -1;
+  for I := 0 to lsDialog.Count - 1 do
+    lsDialog.Selected[I] := False;
+
+  lvDialogComponent.SortType := stNone;
+  lvDialogComponent.Clear;
+end;
+
+// Public ----------------------------------------------------------------------
+
+constructor TDDCSFormConfig.Create(AOwner: TComponent; DDCSForm: TDDCSForm);
+begin
+  inherited Create(AOwner);
+
+  FDDCSForm := DDCSForm;
+  FObjects := TStringList.Create;
+end;
+
+destructor TDDCSFormConfig.Destroy;
+begin
+  FObjects.Free;
+
+  inherited;
+end;
+
+procedure TDDCSFormConfig.FormShow(Sender: TObject);
+var
+  I,J: Integer;
+
+  procedure ProcessControls(iPage: string; wControl: TWinControl);
+  var
+    I: Integer;
+    lvItem: TListItem;
+    nItem: TDDCSNoteItem;
+
+    function BoolAsStr(b: Boolean): string;
+    begin
+      Result := 'False';
+      if b then
+        Result := 'True'
+    end;
+
+  begin
+    if wControl.Name = '' then Exit;
+    if wControl is TStaticText then Exit;
+
+    for I := 0 to wControl.ControlCount - 1 do
+      if wControl.Controls[I] is TWinControl then
+        ProcessControls(iPage, TWinControl(wControl.Controls[I]));
+
+    lvItem := lvConfig.Items.Add;
+    lvItem.Caption := wControl.Name;
+    lvItem.SubItems.Add(wControl.ClassName);
+    lvItem.SubItems.Add(iPage);
+
+    lvItem := lvReportItems.Items.Add;
+    lvItem.Caption := wControl.Name;
+    lvItem.SubItems.Add(wControl.ClassName);
+    lvItem.SubItems.Add(iPage);
+
+    // We don't want to create new note items that would unless necessary
+    nItem := FDDCSForm.ReportCollection.GetNoteItem(wControl);
+    if nItem <> nil then
+    begin
+      lvItem.SubItems.Add(BoolAsStr(nItem.Required));
+      lvItem.SubItems.Add(IntToStr(nItem.Order));
+    end else
+    begin
+      lvItem.SubItems.Add('');
+      lvItem.SubItems.Add('');
+    end;
+
+    if wControl.InheritsFrom(TCustomMemo) then
+      cbDialogReturn.Items.AddObject(wControl.Name, wControl);
+  end;
+
+begin
+  ClearConfigurationEditor;
+  ClearReportItemEditor;
+  ClearDialogEditor;
+
+  Tabs.ActivePageIndex := 0;
+
+  for I := 0 to FDDCSForm.PageCount - 1 do
+    for J := 0 to FDDCSForm.Pages[I].ControlCount - 1 do
+      if FDDCSForm.Pages[I].Controls[J] is TWinControl then
+        ProcessControls(IntToStr(I + 1), TWinControl(FDDCSForm.Pages[I].Controls[J]));
 end;
 
 end.

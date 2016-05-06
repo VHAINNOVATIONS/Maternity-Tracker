@@ -3,7 +3,7 @@ object AddItem: TAddItem
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Add Item Text'
-  ClientHeight = 93
+  ClientHeight = 64
   ClientWidth = 423
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,12 +17,12 @@ object AddItem: TAddItem
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object BitBtn1: TBitBtn
+  object btnOK: TBitBtn
     Left = 259
-    Top = 64
+    Top = 33
     Width = 75
     Height = 25
-    Caption = 'OK'
+    Caption = '&OK'
     Default = True
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
@@ -43,22 +43,24 @@ object AddItem: TAddItem
       0000}
     ModalResult = 1
     NumGlyphs = 2
-    TabOrder = 0
-  end
-  object BitBtn2: TBitBtn
-    Left = 340
-    Top = 64
-    Width = 75
-    Height = 25
-    Kind = bkCancel
-    NumGlyphs = 2
     TabOrder = 1
   end
-  object Edit1: TEdit
+  object btnCancel: TBitBtn
+    Left = 340
+    Top = 33
+    Width = 75
+    Height = 25
+    Caption = '&Cancel'
+    Kind = bkCancel
+    NumGlyphs = 2
+    TabOrder = 2
+  end
+  object edText: TCaptionEdit
     Left = 6
-    Top = 24
+    Top = 6
     Width = 409
     Height = 21
-    TabOrder = 2
+    TabOrder = 0
+    Caption = 'Add Item Text'
   end
 end

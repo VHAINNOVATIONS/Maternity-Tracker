@@ -101,6 +101,10 @@ object dlgMedical: TdlgMedical
     OnChange = PageControl1Change
     object TabSheet1: TTabSheet
       Caption = 'Page1'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label2: TLabel
         Left = 10
         Top = 31
@@ -685,6 +689,10 @@ object dlgMedical: TdlgMedical
     object TabSheet2: TTabSheet
       Caption = 'Page2'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label16: TLabel
         Left = 10
         Top = 34

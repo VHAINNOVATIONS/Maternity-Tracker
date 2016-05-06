@@ -21,23 +21,23 @@ unit frmSplash;
 interface
 
 uses
-  Windows, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, Vcl.Imaging.pngimage,
-  System.Classes;
+  Winapi.Windows, System.Classes, System.SysUtils, Vcl.Forms, Vcl.Controls,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage, JclFileUtils;
 
 type
   TDDCSSplash = class(TForm)
-    Panel1: TPanel;
-    Image1: TImage;
-    img1: TImage;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
+    pnlBody: TPanel;
+    imgDSS: TImage;
+    imgVA: TImage;
+    lbLoading: TStaticText;
+    lbCopyright: TLabel;
+    lbApache: TLabel;
+    lbCompany: TLabel;
     procedure FormCreate(Sender: TObject);
-  private
+    procedure FormShow(Sender: TObject);
+  protected
     procedure CreateParams(var Params: TCreateParams); override;
   public
-    procedure ShowCompany;
   end;
 
 var
@@ -52,25 +52,29 @@ uses
 
 procedure TDDCSSplash.CreateParams(var Params: TCreateParams);
 begin
-  inherited CreateParams(Params);
-  with Params do Style := WS_POPUP;
+  inherited;
+
+  Params.Style := WS_POPUP;
 end;
 
 procedure TDDCSSplash.FormCreate(Sender: TObject);
 begin
   SetWindowLong(Handle, GWL_EXSTYLE, getWindowLong(Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
-  Label2.Caption := 'Copyright © 1995-' + IntToStr(YearOf(Now));
 end;
 
-procedure TDDCSSplash.ShowCompany;
+procedure TDDCSSplash.FormShow(Sender: TObject);
+var
+  vi: TJclFileVersionInfo;
 begin
-  img1.Visible := False;
-  Width := Width div 2;
-  Image1.Left := (Width div 2) - (Image1.Width div 2);
-  Label2.Left := (Width div 2) - (Label2.Width div 2);
-  Label4.Left := (Width div 2) - (Label4.Width div 2);
-  Label3.Left := (Width div 2) - (Label3.Width div 2);
-  Show;
+  lbLoading.SetFocus;
+
+  vi := TJclFileVersionInfo.Create(HInstance);
+  try
+    lbCopyRight.Caption := 'Copyright ' + Chr(169) + ' 1995 - ' + IntToStr(YearOf(Now));
+    lbCompany.Caption := vi.CompanyName;
+  finally
+    vi.Free;
+  end;
 end;
 
 end.

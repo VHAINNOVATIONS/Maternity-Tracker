@@ -17,40 +17,43 @@ unit udlgAbdomPain;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0   - Visual and 508 Update only
 }
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.Buttons, ORCtrls, uDialog, uExtndComBroker;
 
 type
-  TdlgAbdomPain = class(ToCNTDialog)
+  TdlgAbdomPain = class(TDDCSDialog)
     Panel1: TPanel;
-    lbltitle: TLabel;
+    lbltitle: TStaticText;
     Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leLocat: TLabeledEdit;
-    leFreq: TLabeledEdit;
-    leDur: TLabeledEdit;
-    Label3: TLabel;
+    leOnset: TCaptionEdit;
+    leLocat: TCaptionEdit;
+    leFreq: TCaptionEdit;
+    leDur: TCaptionEdit;
+    Label3: TStaticText;
     cbContYes: TCheckBox;
     cbContNo: TCheckBox;
-    Label1: TLabel;
+    Label1: TStaticText;
     cbNausYes: TCheckBox;
     cbNausNo: TCheckBox;
-    Label4: TLabel;
+    Label4: TStaticText;
     cbAppYes: TCheckBox;
     cbAppNo: TCheckBox;
-    Label5: TLabel;
+    Label5: TStaticText;
     cbFevYes: TCheckBox;
     cbFevNo: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
+    StaticText1: TStaticText;
+    lbFreq: TStaticText;
+    lbDur: TStaticText;
+    StaticText4: TStaticText;
     procedure bbtnOKClick(Sender: TObject);
     procedure cbContYesClick(Sender: TObject);
   private
@@ -107,7 +110,9 @@ begin
       cbContNo.Checked := FALSE;
       cbContYes.Checked := TRUE;
       leFreq.Visible := TRUE;
+      lbFreq.Visible := True;
       leDur.Visible := TRUE;
+      lbDur.Visible := True;
       leFreq.SetFocus;
     end
     else if (Sender as TCheckBox).Checked = FALSE then
@@ -122,7 +127,9 @@ begin
   begin   {No}
     cbContYes.Checked := FALSE;
     leFreq.Visible := FALSE;
+    lbFreq.Visible := False;
     leDur.Visible := FALSE;
+    lbDur.Visible := False;
     leFreq.Clear;
     leDur.Clear;
   end

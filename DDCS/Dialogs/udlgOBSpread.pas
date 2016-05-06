@@ -29,7 +29,7 @@ uses
   uDialog, uCommon, uExtndComBroker, VA508AccessibilityManager;
 
 type
-  TdlgOBSpread = class(ToCNTDialog)
+  TdlgOBSpread = class(TDDCSDialog)
     lblFetalActivity: TLabel;
     lblUrineProtien: TLabel;
     lblUrineSugar: TLabel;
@@ -98,7 +98,6 @@ type
     bbtnCancel: TBitBtn;
     btnEditMode: TBitBtn;
     btnAddRow: TBitBtn;
-    amgrMain: TVA508AccessibilityManager;
     procedure FormCreate(Sender: TObject);
     procedure cmbHeartChange(Sender: TObject);
     procedure jvspnbtnDosageBottomClick(Sender: TObject);
@@ -123,6 +122,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnAddRowClick(Sender: TObject);
     procedure bbtnOKClick(Sender: TObject);
+    procedure DialogClose(Sender: TObject; var Action: TCloseAction);
   private
     AscendingS,AscendingD: Boolean;
     procedure SetValuesForDate(Date: string);
@@ -131,7 +131,6 @@ type
     procedure HideCustom;
     procedure GetNoteText(var NoteText: TStringList);
     procedure SaveRow;
-    procedure DialogClose(Sender: TObject);
     function CustomColumn(cText,cVal: string): Boolean;
     function ValidateSave: boolean;
     function IsColumnEmpty(Grid: TJvStringGrid; Ic: Integer): Boolean;
@@ -146,11 +145,14 @@ implementation
 
 {$R *.dfm}
 
+uses
+  VAUtils;
+
 procedure TdlgOBSpread.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
-  onDialogClose := DialogClose;
+//  onDialogClose := DialogClose;
 
   rdgrbxStandardExamDate.ItemIndex := 0;
   rdgrbxDiabeticExamDate.ItemIndex := 0;
@@ -592,7 +594,7 @@ begin
   end;
 end;
 
-procedure TdlgOBSpread.DialogClose(Sender: TObject);
+procedure TdlgOBSpread.DialogClose(Sender: TObject; var Action: TCloseAction);
 begin
   if btnEditMode.Caption <> 'Enable Edit Mode' then
     btnEditModeClick(Sender)
