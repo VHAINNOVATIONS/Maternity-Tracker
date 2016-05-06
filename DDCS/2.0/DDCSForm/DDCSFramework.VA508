@@ -1,0 +1,37 @@
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCS\2.0\DDCSForm\frmAbout.dfm
+407090/1218274518
+0
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCS\2.0\DDCSForm\frmSplash.dfm
+180896/1218136620
+2
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCS\2.0\DDCSForm\frmPreview.dfm
+996/1218071677
+4
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCS\2.0\DDCSForm\frmConfiguration.dfm
+32922/1218272257
+6
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCS\2.0\DDCSForm\frmConfigMultiItemAdd.dfm
+2074/1218136514
+8
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCS\2.0\DDCSForm\frmVitals.dfm
+35295/1218868211
+10
+2
+|EOINDEX|
+5786
+object DDCSAbout: TDDCSAbout
+1
+ÿ
+1
+ÿ
+805
+object DDCSFormConfig: TDDCSFormConfig
+66
+object AddItem: TAddItem
+1406
+object DDCSVitals: TDDCSVitals

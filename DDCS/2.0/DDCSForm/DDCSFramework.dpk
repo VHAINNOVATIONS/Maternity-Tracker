@@ -1,0 +1,53 @@
+package DDCSFramework;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DDCS}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  VclSmp,
+  VA_All_XE8,
+  Jcl,
+  JvCore,
+  JvStdCtrls;
+
+contains
+  frmAbout in 'frmAbout.pas' {DDCSAbout},
+  frmSplash in 'frmSplash.pas' {DDCSSplash},
+  frmPreview in 'frmPreview.pas' {ReviewNoteDlg},
+  uExtndComBroker in 'uExtndComBroker.pas',
+  frmConfiguration in 'frmConfiguration.pas' {DDCSConfiguration},
+  frmConfigMultiItemAdd in 'frmConfigMultiItemAdd.pas' {AddItem},
+  uReportItems in 'uReportItems.pas',
+  frmVitals in 'frmVitals.pas' {DDCSVitals: TFrame},
+  uDialog in 'uDialog.pas',
+  uCommon in 'uCommon.pas',
+  dBaseEditor in 'dBaseEditor.pas',
+  uBase in 'uBase.pas';
+
+end.
+
