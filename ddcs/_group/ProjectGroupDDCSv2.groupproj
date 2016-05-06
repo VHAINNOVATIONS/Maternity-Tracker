@@ -3,17 +3,23 @@
         <ProjectGuid>{68FA2F37-FD25-4BAD-9CEA-46E44EB4291E}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj">
+        <Projects Include="..\DDCS\2.0\DDCSForm\DDCSFramework.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj">
-            <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj</Dependencies>
+        <Projects Include="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder.dproj">
+            <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework.dproj</Dependencies>
         </Projects>
         <Projects Include="..\DDCS\2.0\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj">
-            <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj</Dependencies>
+            <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework.dproj</Dependencies>
         </Projects>
         <Projects Include="..\DDCS\2.0\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj">
-            <Dependencies/>
+            <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\DDCS\2.0\OBHP Base\DDCSOBInitialBase.dproj">
+            <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\DDCS\2.0\Dialogs\DDCSDialogs.dproj">
+            <Dependencies>..\DDCS\2.0\DDCSForm\DDCSFramework.dproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -23,50 +29,68 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="DDCSFramework2">
-        <MSBuild Projects="..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj"/>
+    <Target Name="DDCSFramework">
+        <MSBuild Projects="..\DDCS\2.0\DDCSForm\DDCSFramework.dproj"/>
     </Target>
-    <Target Name="DDCSFramework2:Clean">
-        <MSBuild Projects="..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj" Targets="Clean"/>
+    <Target Name="DDCSFramework:Clean">
+        <MSBuild Projects="..\DDCS\2.0\DDCSForm\DDCSFramework.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="DDCSFramework2:Make">
-        <MSBuild Projects="..\DDCS\2.0\DDCSForm\DDCSFramework2.dproj" Targets="Make"/>
+    <Target Name="DDCSFramework:Make">
+        <MSBuild Projects="..\DDCS\2.0\DDCSForm\DDCSFramework.dproj" Targets="Make"/>
     </Target>
-    <Target Name="DDCSFormBuilder2" DependsOnTargets="DDCSFramework2">
-        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj"/>
+    <Target Name="DDCSFormBuilder" DependsOnTargets="DDCSFramework">
+        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder.dproj"/>
     </Target>
-    <Target Name="DDCSFormBuilder2:Clean" DependsOnTargets="DDCSFramework2:Clean">
-        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj" Targets="Clean"/>
+    <Target Name="DDCSFormBuilder:Clean" DependsOnTargets="DDCSFramework:Clean">
+        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="DDCSFormBuilder2:Make" DependsOnTargets="DDCSFramework2:Make">
-        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder2.dproj" Targets="Make"/>
+    <Target Name="DDCSFormBuilder:Make" DependsOnTargets="DDCSFramework:Make">
+        <MSBuild Projects="..\DDCS\2.0\DDCSFormBuilder\DDCSFormBuilder.dproj" Targets="Make"/>
     </Target>
-    <Target Name="DDCSNursePostpartumMaternity" DependsOnTargets="DDCSFramework2">
+    <Target Name="DDCSNursePostpartumMaternity" DependsOnTargets="DDCSFramework">
         <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj"/>
     </Target>
-    <Target Name="DDCSNursePostpartumMaternity:Clean" DependsOnTargets="DDCSFramework2:Clean">
+    <Target Name="DDCSNursePostpartumMaternity:Clean" DependsOnTargets="DDCSFramework:Clean">
         <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="DDCSNursePostpartumMaternity:Make" DependsOnTargets="DDCSFramework2:Make">
+    <Target Name="DDCSNursePostpartumMaternity:Make" DependsOnTargets="DDCSFramework:Make">
         <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj" Targets="Make"/>
     </Target>
-    <Target Name="DDCSNursePostpartumDelivery">
+    <Target Name="DDCSNursePostpartumDelivery" DependsOnTargets="DDCSFramework">
         <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj"/>
     </Target>
-    <Target Name="DDCSNursePostpartumDelivery:Clean">
+    <Target Name="DDCSNursePostpartumDelivery:Clean" DependsOnTargets="DDCSFramework:Clean">
         <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="DDCSNursePostpartumDelivery:Make">
+    <Target Name="DDCSNursePostpartumDelivery:Make" DependsOnTargets="DDCSFramework:Make">
         <MSBuild Projects="..\DDCS\2.0\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj" Targets="Make"/>
     </Target>
+    <Target Name="DDCSOBInitialBase" DependsOnTargets="DDCSFramework">
+        <MSBuild Projects="..\DDCS\2.0\OBHP Base\DDCSOBInitialBase.dproj"/>
+    </Target>
+    <Target Name="DDCSOBInitialBase:Clean" DependsOnTargets="DDCSFramework:Clean">
+        <MSBuild Projects="..\DDCS\2.0\OBHP Base\DDCSOBInitialBase.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DDCSOBInitialBase:Make" DependsOnTargets="DDCSFramework:Make">
+        <MSBuild Projects="..\DDCS\2.0\OBHP Base\DDCSOBInitialBase.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DDCSDialogs" DependsOnTargets="DDCSFramework">
+        <MSBuild Projects="..\DDCS\2.0\Dialogs\DDCSDialogs.dproj"/>
+    </Target>
+    <Target Name="DDCSDialogs:Clean" DependsOnTargets="DDCSFramework:Clean">
+        <MSBuild Projects="..\DDCS\2.0\Dialogs\DDCSDialogs.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DDCSDialogs:Make" DependsOnTargets="DDCSFramework:Make">
+        <MSBuild Projects="..\DDCS\2.0\Dialogs\DDCSDialogs.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="DDCSFramework2;DDCSFormBuilder2;DDCSNursePostpartumMaternity;DDCSNursePostpartumDelivery"/>
+        <CallTarget Targets="DDCSFramework;DDCSFormBuilder;DDCSNursePostpartumMaternity;DDCSNursePostpartumDelivery;DDCSOBInitialBase;DDCSDialogs"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DDCSFramework2:Clean;DDCSFormBuilder2:Clean;DDCSNursePostpartumMaternity:Clean;DDCSNursePostpartumDelivery:Clean"/>
+        <CallTarget Targets="DDCSFramework:Clean;DDCSFormBuilder:Clean;DDCSNursePostpartumMaternity:Clean;DDCSNursePostpartumDelivery:Clean;DDCSOBInitialBase:Clean;DDCSDialogs:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DDCSFramework2:Make;DDCSFormBuilder2:Make;DDCSNursePostpartumMaternity:Make;DDCSNursePostpartumDelivery:Make"/>
+        <CallTarget Targets="DDCSFramework:Make;DDCSFormBuilder:Make;DDCSNursePostpartumMaternity:Make;DDCSNursePostpartumDelivery:Make;DDCSOBInitialBase:Make;DDCSDialogs:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

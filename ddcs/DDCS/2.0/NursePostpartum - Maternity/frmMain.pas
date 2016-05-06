@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, Vcl.CheckLst, Vcl.ExtCtrls, Vcl.ComCtrls,
-  uExtndComBroker, uBase, ORCtrls;
+  Vcl.StdCtrls, Vcl.CheckLst, Vcl.ExtCtrls, Vcl.ComCtrls, ORCtrls, uBase,
+  uExtndComBroker;
 
 type
   TForm1 = class(TForm)
@@ -32,9 +32,9 @@ type
     ckHypertension: TCheckBox;
     ckPostpartumHemorrhage: TCheckBox;
     meComments: TCaptionMemo;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
-    StaticText3: TStaticText;
+    lbOngoingOther: TStaticText;
+    lbMaternalOther: TStaticText;
+    lbContraceptiveOther: TStaticText;
     procedure MaternalComplicationsUpdate(Sender: TObject);
   private
     FCheck: Boolean;

@@ -21,8 +21,8 @@ unit frmAbout;
 interface
 
 uses
-  Windows, SysUtils, Forms, StdCtrls, ExtCtrls, JclFileUtils,
-  Vcl.Imaging.pngimage, Vcl.Controls, System.Classes, Vcl.Graphics, Vcl.Themes;
+  Winapi.Windows, System.Classes, System.SysUtils, Vcl.Forms, Vcl.Controls,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage, Vcl.Graphics, JclFileUtils;
 
 type
   TDDCSAbout = class(TForm)
@@ -32,10 +32,10 @@ type
     lbWebDSS: TStaticText;
     imgDSS: TImage;
     imgVA: TImage;
-    lbCompany: TLabel;
-    lbApache: TLabel;
-    lbCopyright: TLabel;
-    lbLicense: TLabel;
+    lbCompany: TStaticText;
+    lbApache: TStaticText;
+    lbCopyright: TStaticText;
+    lbLicense: TStaticText;
     lbWebVA: TStaticText;
     procedure FormShow(Sender: TObject);
     procedure HyperLinkClick(Sender: TObject);
@@ -65,7 +65,7 @@ var
 begin
   vi := TJclFileVersionInfo.Create(HInstance);
   try
-    lbAppName.Caption := vi.ProductName + ' ' + vi.ProductVersion;
+    lbAppName.Caption := vi.ProductName + ' version ' + vi.ProductVersion;
     lbCopyRight.Caption := 'Copyright ' + Chr(169) + ' 1995 - ' + IntToStr(YearOf(Now));
     lbCompany.Caption := vi.CompanyName;
 

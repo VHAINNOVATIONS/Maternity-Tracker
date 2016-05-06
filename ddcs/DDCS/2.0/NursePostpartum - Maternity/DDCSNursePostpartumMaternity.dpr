@@ -27,8 +27,11 @@ uses
 function Launch(Broker: PCPRSComBroker): Pointer; stdcall;
 begin
   RPCBrokerV := Broker^;             // set the broker first so the create method has access to VistA
+
   Form1 := TForm1.Create(nil);       // nil - let the ComObject Free it
-  Result := @Form1.DDCSForm1;        // the component uses caFree on Close of the form so it is freed
+  if Form1 <> nil then
+    Result := @Form1.DDCSForm1       // the component uses caFree on Close of the form so it is freed
+  else Result := nil;
 end;
 
 exports

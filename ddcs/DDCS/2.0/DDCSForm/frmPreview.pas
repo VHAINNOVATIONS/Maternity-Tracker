@@ -21,15 +21,15 @@ unit frmPreview;
 interface
 
 uses
-  Vcl.Dialogs, System.SysUtils, System.Classes, Vcl.Forms, Vcl.Controls,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uCommon;
+  System.SysUtils, System.Classes, Vcl.Dialogs, Vcl.Forms, Vcl.Controls,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, ORCtrls;
 
 type
   TReviewNoteDlg = class(TForm)
     pnlControl: TPanel;
     btnAccept: TButton;
     btnReturn: TButton;
-    NoteMemo: TMemo;
+    NoteMemo: TCaptionMemo;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -47,7 +47,7 @@ var
 implementation
 
 uses
-  VAUtils, uExtndComBroker;
+  VAUtils, uCommon, uExtndComBroker;
 
 {$R *.DFM}
 
@@ -61,14 +61,17 @@ begin
     Exit;
 
   try
-    tmp := RPCBrokerV.sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'PREVIEW TITLE']);
-    if tmp <> '' then
-      Caption := tmp;
+    if UpdateContext(MENU_CONTEXT) then
+    begin
+      tmp := sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'PREVIEW TITLE']);
+      if tmp <> '' then
+        Caption := tmp;
 
-    tmp := '';
-    tmp := RPCBrokerV.sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'PREVIEW READONLY']);
-    if tmp <> '' then
-      NoteMemo.ReadOnly := StrToBool(tmp);
+      tmp := '';
+      tmp := sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'PREVIEW READONLY']);
+      if tmp <> '' then
+        NoteMemo.ReadOnly := StrToBool(tmp);
+    end;
   except
     on E: Exception do
     ShowMsg(E.Message, smiError, smbOK);

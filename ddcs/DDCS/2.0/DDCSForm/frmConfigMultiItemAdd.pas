@@ -21,13 +21,13 @@ unit frmConfigMultiItemAdd;
 interface
 
 uses
-  Vcl.Forms, StdCtrls, Buttons, System.Classes, Vcl.Controls;
+   System.Classes, Vcl.Forms, Vcl.StdCtrls, Vcl.Buttons, Vcl.Controls, ORCtrls;
 
 type
   TAddItem = class(TForm)
     btnOK: TBitBtn;
     btnCancel: TBitBtn;
-    edText: TEdit;
+    edText: TCaptionEdit;
     procedure FormShow(Sender: TObject);
   private
   public

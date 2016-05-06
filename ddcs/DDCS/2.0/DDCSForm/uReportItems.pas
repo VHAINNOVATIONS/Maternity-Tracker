@@ -22,18 +22,15 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, TypInfo, Contnrs,
-  CheckLst, StrUtils, Grids;
+  System.TypInfo, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms,
+  Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, Vcl.Grids,
+  Vcl.CheckLst, ORCtrls, ORDtTm, uCommon;
 
 type
   TDDCSNoteItem = class(TCollectionItem)
     private
-      FAccessibilityCaption: string;
-      FAccessibilityDescription: string;
-      FAccessibilityInstructions: string;
       FConfig: TStringList;
-      FOrder: Integer;
+      FIDName: string;
       FTitle: string;
       FPrefix: string;
       FSuffix: string;
@@ -43,12 +40,13 @@ type
       FObject: TWinControl;
       FRequired: Boolean;
       FReturn: TWinControl;
-      FInterface: string;
     protected
       procedure SetObject(Value: TWinControl);
       procedure SetDialogReturn(Value: TWinControl);
       function GetDisplayName: string; override;
+      function GetIDName: string;
       function GetOrder: Integer;
+      function GetPage: TTabSheet;
     public
       constructor Create(Collection: TCollection); override;
       destructor Destroy; override;
@@ -57,13 +55,11 @@ type
       function IsValid: Boolean;
       function GetValueNote: TStringList;
       function GetValueSave: TStringList;
+      property Page: TTabSheet read GetPage;
       property Configuration: TStringList read FConfig write FConfig;
-      property Page: string read FInterface write FInterface;
     published
-      property AccessibilityCaption: string read FAccessibilityCaption write FAccessibilityCaption;
-      property AccessibilityDescription: string read FAccessibilityDescription write FAccessibilityDescription;
-      property AccessibilityInstructions: string read FAccessibilityInstructions write FAccessibilityInstructions;
       property Order: Integer read GetOrder write SetIndex;
+      property IdentifyingName: string read GetIDName write FIDName;
       property Title: string read FTitle write FTitle;
       property Prefix: string read FPrefix write FPrefix;
       property Suffix: string read FSuffix write FSuffix;
@@ -79,11 +75,11 @@ type
   private
     procedure SetItem(Index: Integer; Value: TDDCSNoteItem);
     function GetItem(Index: Integer): TDDCSNoteItem; overload;
-  protected
   public
     procedure DeleteNoteItem(Value: TWinControl);
     function GetNoteItemAddifNil(Value: TWinControl): TDDCSNoteItem;
     function GetNoteItem(Value: TWinControl): TDDCSNoteItem;
+    function GetAControl(Value: string): TWinControl;
     function Add: TDDCSNoteItem; overload;
     function Insert(Index: Integer): TDDCSNoteItem;
     property Items[Index: Integer]: TDDCSNoteItem read GetItem write SetItem;
@@ -92,7 +88,7 @@ type
 implementation
 
 uses
-  uExtndComBroker;
+  uBase, frmVitals, uExtndComBroker;
 
 {$REGION 'TDDCSNoteItem'}
 
@@ -126,9 +122,34 @@ begin
     Result := FObject.Name;
 end;
 
+function TDDCSNoteItem.GetIDName: string;
+begin
+  if ((FObject <> nil) and (IsPublishedProp(FObject, 'Caption'))) then
+    FIDName := GetPropValue(FObject, 'Caption');
+  Result := FIDName;
+end;
+
 function TDDCSNoteItem.GetOrder;
 begin
   Result := Index;
+end;
+
+function TDDCSNoteItem.GetPage: TTabSheet;
+var
+  wControl: TWinControl;
+begin
+  Result := nil;
+
+  if FObject = nil then
+    Exit;
+
+  wControl := FObject;
+  Repeat
+    wControl := wControl.Parent;
+  Until ((wControl is TTabSheet) and (wControl.Parent is TDDCSForm)) or (wControl.Parent = nil);
+
+  if ((wControl is TTabSheet) and (wControl.Parent is TDDCSForm)) then
+    Result := TTabSheet(wControl);
 end;
 
 // Public ----------------------------------------------------------------------
@@ -154,19 +175,17 @@ begin
   if Source is TDDCSNoteItem then
   begin
     nItem := TDDCSNoteItem(Source);
-    AccessibilityCaption      := nItem.AccessibilityCaption;
-    AccessibilityDescription  := nItem.AccessibilityDescription;
-    AccessibilityInstructions := nItem.AccessibilityInstructions;
-    Order        := nItem.Order;
-    Title        := nItem.Title;
-    Prefix       := nItem.Prefix;
-    Suffix       := nItem.Suffix;
-    DoNotSpace   := nItem.DoNotSpace;
-    HideFromNote := nItem.HideFromNote;
-    DoNotSave    := nItem.DoNotSave;
-    OwningObject := nItem.OwningObject;
-    Required     := nItem.Required;
-    DialogReturn := nItem.DialogReturn;
+    IdentifyingName    := nItem.IdentifyingName;
+    Order              := nItem.Order;
+    Title              := nItem.Title;
+    Prefix             := nItem.Prefix;
+    Suffix             := nItem.Suffix;
+    DoNotSpace         := nItem.DoNotSpace;
+    HideFromNote       := nItem.HideFromNote;
+    DoNotSave          := nItem.DoNotSave;
+    OwningObject       := nItem.OwningObject;
+    Required           := nItem.Required;
+    DialogReturn       := nItem.DialogReturn;
   end else inherited;
 end;
 
@@ -177,7 +196,6 @@ end;
 
 function TDDCSNoteItem.IsValid: Boolean;
 var
-  iClass: TClass;
   I: Integer;
   lb: TCustomListBox;
 begin
@@ -186,43 +204,58 @@ begin
   if not FRequired then
     Exit;
 
-  iClass := FObject.ClassType;
   try
-    if iClass.InheritsFrom(TDateTimePicker) then
+    // TStaticText is not normally part of the NoteItems but can be manually created
+    // and if it is we want to use it but we wouldn't want to normally.
+    if FObject is TStaticText then
+    begin
+      if TStaticText(FObject).Caption = '' then
+        Result := False;
+    end
+    else if FObject.InheritsFrom(TORDateBox) then
+      Result := TORDateBox(FObject).IsValid
+    else if FObject.InheritsFrom(TCustomLabel) then
+    begin
+      if TCustomLabel(FObject).Caption = '' then
+        Result := False;
+    end
+    else if FObject is TORDateBox then
+      Result := TORDateBox(FObject).IsValid
+    else if FObject.InheritsFrom(TDateTimePicker) then
     begin
       if TDateTimePicker(FObject).Format = ' ' then
         Result := False;
     end
-    else if iClass.InheritsFrom(TCustomMemo) then
+    else if FObject.InheritsFrom(TCustomMemo) then          // Must come before TCustomEdit
     begin
       if TCustomMemo(FObject).Lines.Count < 1 then
         Result := False;
     end
-    else if iClass.InheritsFrom(TCustomEdit) then
+    else if FObject.InheritsFrom(TCustomEdit) then
     begin
       if TCustomEdit(FObject).Text = '' then
         Result := False;
     end
-    else if iClass.InheritsFrom(TCheckBox) then
+    else if FObject.InheritsFrom(TCheckBox) then
     begin
       if not TCheckBox(FObject).Checked then
         Result := False;
     end
-    else if iClass.InheritsFrom(TRadioButton) then
+    else if FObject.InheritsFrom(TRadioButton) then
     begin
       if not TRadioButton(FObject).Checked then
         Result := False;
     end
-    else if iClass.InheritsFrom(TRadioGroup) then
+    else if FObject.InheritsFrom(TRadioGroup) then
     begin
       if TRadioGroup(FObject).ItemIndex = -1 then
         Result := False;
     end
-    else if iClass.InheritsFrom(TCustomComboBox) then
+    else if FObject.InheritsFrom(TCustomComboBox) then
     begin
       if TCustomComboBox(FObject).ItemIndex = -1 then
       begin
-        if iClass.InheritsFrom(TComboBox) then
+        if FObject.InheritsFrom(TComboBox) then
         begin
           if ((TComboBox(FObject).Style = csDropDown) and (TComboBox(FObject).Text = '')) then
             Result := False
@@ -230,13 +263,13 @@ begin
           Result := False;
       end;
     end
-    else if iClass.InheritsFrom(TCustomListBox) then
+    else if FObject.InheritsFrom(TCustomListBox) then
     begin
       Result := False;
 
       lb := TCustomListBox(FObject);
 
-      if iClass.InheritsFrom(TCheckListBox) then
+      if FObject.InheritsFrom(TCheckListBox) then
       begin
         for I := 0 to TCheckListBox(FObject).Count - 1 do
         begin
@@ -264,14 +297,11 @@ end;
 
 function TDDCSNoteItem.GetValueNote: TStringList;
 var
-  iClass: TClass;
   I,J: Integer;
   ck: TCheckBox;
   rb: TRadioButton;
   lb: TCustomListBox;
   lv: TListView;
-  lvitem: TListItem;
-  lvcolumn: TListColumn;
   sg: TStringGrid;
   str: string;
 begin
@@ -283,26 +313,34 @@ begin
   if FTitle <> '' then
     Result.Add(FTitle);
 
-  iClass := FObject.ClassType;
   try
     try
-      if iClass.InheritsFrom(TStaticText) then
+      // TStaticText is not normally part of the NoteItems but can be manually created
+      // and if it is we want to use it but we wouldn't want to normally.
+      if FObject is TStaticText then
         Result.Add(FPrefix + TStaticText(FObject).Caption + FSuffix)
-      else if iClass.InheritsFrom(TCustomLabel) then
+      else if FObject.InheritsFrom(TORDateBox) then
+        Result.Add(FPrefix + TORDateBox(FObject).Text + FSuffix)
+      else if FObject.InheritsFrom(TCustomLabel) then
         Result.Add(FPrefix + TCustomLabel(FObject).Caption + FSuffix)
-      else if iClass.InheritsFrom(TDateTimePicker) then
+      else if FObject is TORDateBox then
+      begin
+        if TORDateBox(FObject).IsValid then
+          Result.Add(FPrefix + TORDateBox(FObject).Text + FSuffix);
+      end
+      else if FObject.InheritsFrom(TDateTimePicker) then
       begin
         if TDateTimePicker(FObject).Format <> ' ' then
           Result.Add(FPrefix + DateToStr(TDateTimePicker(FObject).DateTime) + FSuffix);
       end
-      else if iClass.InheritsFrom(TCustomMemo) then
+      else if FObject.InheritsFrom(TCustomMemo) then                       // Must come before TCustomEdit
       begin
         for I := 0 to TCustomMemo(FObject).Lines.Count - 1 do
           Result.Add(FPrefix + TCustomMemo(FObject).Lines[I] + FSuffix);
       end
-      else if iClass.InheritsFrom(TCustomEdit) then
+      else if FObject.InheritsFrom(TCustomEdit) then
         Result.Add(FPrefix + TCustomEdit(FObject).Text + FSuffix)
-      else if iClass.InheritsFrom(TCheckBox) then
+      else if FObject.InheritsFrom(TCheckBox) then
       begin
         ck := TCheckBox(FObject);
 
@@ -314,7 +352,7 @@ begin
             Result.Add(FPrefix + ck.Hint + FSuffix)
         end;
       end
-      else if iClass.InheritsFrom(TRadioButton) then
+      else if FObject.InheritsFrom(TRadioButton) then
       begin
         rb := TRadioButton(FObject);
 
@@ -326,14 +364,14 @@ begin
             Result.Add(FPrefix + rb.Hint + FSuffix)
         end;
       end
-      else if iClass.InheritsFrom(TRadioGroup) then
+      else if FObject.InheritsFrom(TRadioGroup) then
       begin
         if TRadioGroup(FObject).ItemIndex <> -1 then
           Result.Add(FPrefix + TRadioGroup(FObject).Items.Strings[TRadioGroup(FObject).ItemIndex] + FSuffix);
       end
-      else if iClass.InheritsFrom(TCustomComboBox) then
+      else if FObject.InheritsFrom(TCustomComboBox) then
       begin
-        if iClass.InheritsFrom(TComboBox) then
+        if FObject.InheritsFrom(TComboBox) then
         begin
           if TComboBox(FObject).Text <> '' then
             Result.Add(FPrefix + TComboBox(FObject).Text + FSuffix);
@@ -341,11 +379,11 @@ begin
         if TCustomComboBox(FObject).ItemIndex <> -1 then
           Result.Add(FPrefix + TCustomComboBox(FObject).Items[TCustomComboBox(FObject).ItemIndex] + FSuffix);
       end
-      else if iClass.InheritsFrom(TCustomListBox) then
+      else if FObject.InheritsFrom(TCustomListBox) then
       begin
         lb := TCustomListBox(FObject);
 
-        if iClass.InheritsFrom(TCheckListBox) then
+        if FObject.InheritsFrom(TCheckListBox) then
         begin
           for I := 0 to TCheckListBox(FObject).Count - 1 do
           begin
@@ -361,7 +399,7 @@ begin
           end;
         end;
       end
-      else if iClass.InheritsFrom(TListView) then
+      else if FObject.InheritsFrom(TListView) then
       begin
         lv := TListView(FObject);
 
@@ -385,25 +423,26 @@ begin
           Result.Add(str);
         end;
       end
-      else if iClass.InheritsFrom(TStringGrid) then
+      else if FObject.InheritsFrom(TStringGrid) then
       begin
         sg := TStringGrid(FObject);
 
         for I := 0 to sg.RowCount - 1 do
           for J := 0 to sg.ColCount - 1 do
             Result.Add(FPrefix + sg.Cells[J,I] + FSuffix)
-      end;
+      end
+      else if FObject is TDDCSVitals then
+        Result.AddStrings(TDDCSVitals(FObject).GetCompleteNote);
     except
     end;
   finally
-    if not FSpace then
+    if ((Result.Count > 0) and (not FSpace)) then
       Result.Add('');
   end;
 end;
 
 function TDDCSNoteItem.GetValueSave: TStringList;
 var
-  iClass: TClass;
   ck: TCheckBox;
   rb: TRadioButton;
   rg: TRadioGroup;
@@ -417,22 +456,30 @@ var
 begin
   Result := TStringList.Create;
 
-  iClass := FObject.ClassType;
   try
     try
-      if iClass.InheritsFrom(TDateTimePicker) then
+      // TStaticText is not normally part of the NoteItems but can be manually created
+      // and if it is we want to use it but we wouldn't want to normally.
+      if FObject is TStaticText then
+        Result.Add(FObject.Name + '^^' + TStaticText(FObject).Caption)
+      else if FObject is TORDateBox then
+      begin
+        if TORDateBox(FObject).IsValid then
+          Result.Add(FObject.Name + '^^' + FloatToStr(TORDateBox(FObject).FMDateTime));
+      end
+      else if FObject.InheritsFrom(TDateTimePicker) then
       begin
         if TDateTimePicker(FObject).Format <> ' ' then
           Result.Add(FObject.Name + '^^' + DateToStr(TDateTimePicker(FObject).DateTime));
       end
-      else if iClass.InheritsFrom(TCustomMemo) then
+      else if FObject.InheritsFrom(TCustomMemo) then                          // Must come before TCustomEdit
       begin
         for I := 0 to TCustomMemo(FObject).Lines.Count - 1 do
           Result.Add(FObject.Name + '^^' + TCustomMemo(FObject).Lines[I]);
       end
-      else if iClass.InheritsFrom(TCustomEdit) then
+      else if FObject.InheritsFrom(TCustomEdit) then
         Result.Add(FObject.Name + '^^' + TCustomEdit(FObject).Text)
-      else if iClass.InheritsFrom(TCheckBox) then
+      else if FObject.InheritsFrom(TCheckBox) then
       begin
         ck := TCheckBox(FObject);
 
@@ -444,7 +491,7 @@ begin
             Result.Add(FObject.Name + '^TRUE^' + ck.Hint)
         end;
       end
-      else if iClass.InheritsFrom(TRadioButton) then
+      else if FObject.InheritsFrom(TRadioButton) then
       begin
         rb := TRadioButton(FObject);
 
@@ -456,14 +503,14 @@ begin
             Result.Add(FObject.Name + '^TRUE^' + rb.Hint)
         end;
       end
-      else if iClass.InheritsFrom(TRadioGroup) then
+      else if FObject.InheritsFrom(TRadioGroup) then
       begin
         rg := TRadioGroup(FObject);
 
         if rg.ItemIndex <> -1 then
           Result.Add(FObject.Name + U + IntToStr(rg.ItemIndex) + U + rg.Items.Strings[rg.ItemIndex]);
       end
-      else if iClass.InheritsFrom(TCustomComboBox) then
+      else if FObject.InheritsFrom(TCustomComboBox) then
       begin
         cb := TCustomComboBox(FObject);
 
@@ -471,14 +518,14 @@ begin
           Result.Add(FObject.Name + U + IntToStr(cb.ItemIndex) + 'TRUE^' + cb.Items[cb.ItemIndex])
         else
         begin
-          if iClass.InheritsFrom(TComboBox) then
+          if FObject.InheritsFrom(TComboBox) then
             if TComboBox(FObject).Text <> '' then
               Result.Add(FObject.Name + '^^' + TComboBox(FObject).Text);
         end;
       end
-      else if iClass.InheritsFrom(TCustomListBox) then
+      else if FObject.InheritsFrom(TCustomListBox) then
       begin
-        if iClass.InheritsFrom(TCheckListBox) then
+        if FObject.InheritsFrom(TCheckListBox) then
         begin
           clb := TCheckListBox(FObject);
 
@@ -502,7 +549,7 @@ begin
           end;
         end;
       end
-      else if iClass.InheritsFrom(TListView) then
+      else if FObject.InheritsFrom(TListView) then
       begin
         lv := TListView(FObject);
 
@@ -526,7 +573,7 @@ begin
           Result.Add(FObject.Name + U + IntToStr(I) + U + str);
         end;
       end
-      else if iClass.InheritsFrom(TStringGrid) then
+      else if FObject.InheritsFrom(TStringGrid) then
       begin
         sg := TStringGrid(FObject);
 
@@ -571,7 +618,7 @@ function TDDCSNoteCollection.GetNoteItemAddifNil(Value: TWinControl): TDDCSNoteI
 begin
   Result := GetNoteItem(Value);
 
-  if Result = nil then
+  if ((Result = nil) and (Value <> nil)) then
   begin
     Result := Add;
     Result.OwningObject := Value;
@@ -585,13 +632,26 @@ begin
   Result := nil;
 
   for I := 0 to Count - 1 do
-  begin
     if Items[I].OwningObject = Value then
     begin
-      Result := TDDCSNoteItem(Items[I]);
+      Result := Items[I];
       Exit;
     end;
-  end;
+end;
+
+function TDDCSNoteCollection.GetAControl(Value: string): TWinControl;
+var
+  I: Integer;
+begin
+  Result := nil;
+
+  for I := 0 to Count - 1 do
+    if Items[I].OwningObject <> nil then
+      if AnsiCompareText(Items[I].OwningObject.Name, Value) = 0 then
+      begin
+        Result := Items[I].OwningObject;
+        Exit;
+      end;
 end;
 
 function TDDCSNoteCollection.Add: TDDCSNoteItem;

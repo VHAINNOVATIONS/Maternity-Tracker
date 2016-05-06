@@ -14,18 +14,17 @@ object DDCSVitals: TDDCSVitals
     ActivePage = PageMain
     Align = alClient
     MultiLine = True
-    OwnerDraw = True
     TabOrder = 0
     TabPosition = tpRight
-    OnDrawTab = fVitalsDrawCheckTab
+    OnChange = fVitalsControlChange
     object PageMain: TTabSheet
       Caption = 'Vitals'
       object FAge: TStaticText
-        Left = 32
+        Left = 40
         Top = 26
-        Width = 39
+        Width = 35
         Height = 20
-        Caption = 'Age: '
+        Caption = 'Age:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -33,29 +32,13 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
-        TabStop = True
       end
       object FSex: TStaticText
-        Left = 32
+        Left = 43
         Top = 52
-        Width = 36
+        Width = 32
         Height = 20
-        Caption = 'Sex: '
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 1
-        TabStop = True
-      end
-      object FBMI: TStaticText
-        Left = 32
-        Top = 80
-        Width = 37
-        Height = 20
-        Caption = 'BMI: '
+        Caption = 'Sex:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -63,38 +46,54 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 2
-        TabStop = True
       end
-      object FTemps: TEdit
+      object FBMI: TStaticText
+        Left = 42
+        Top = 80
+        Width = 33
+        Height = 20
+        Caption = 'BMI:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 4
+      end
+      object FTemps: TCaptionEdit
         Left = 77
         Top = 116
         Width = 103
         Height = 21
         ReadOnly = True
-        TabOrder = 4
+        TabOrder = 7
+        Caption = 'Temperature in Fahrenheit'
       end
-      object FHeights: TEdit
+      object FHeights: TCaptionEdit
         Left = 77
         Top = 187
         Width = 103
         Height = 21
         ReadOnly = True
-        TabOrder = 14
+        TabOrder = 11
+        Caption = 'Height in Inches'
       end
-      object FWeights: TEdit
+      object FWeights: TCaptionEdit
         Left = 77
         Top = 261
         Width = 103
         Height = 21
         ReadOnly = True
-        TabOrder = 24
+        TabOrder = 15
+        Caption = 'Weight in Pounds'
       end
       object FTempdt: TStaticText
         Left = 77
         Top = 143
         Width = 4
         Height = 4
-        TabOrder = 6
+        TabOrder = 9
         TabStop = True
       end
       object FHeightdt: TStaticText
@@ -102,7 +101,7 @@ object DDCSVitals: TDDCSVitals
         Top = 214
         Width = 4
         Height = 4
-        TabOrder = 16
+        TabOrder = 13
         TabStop = True
       end
       object FWeightdt: TStaticText
@@ -110,201 +109,269 @@ object DDCSVitals: TDDCSVitals
         Top = 288
         Width = 4
         Height = 4
-        TabOrder = 26
+        TabOrder = 17
         TabStop = True
       end
       object FTempl: TStaticText
-        Left = 34
-        Top = 119
-        Width = 34
+        Left = 36
+        Top = 120
+        Width = 36
         Height = 17
-        Caption = 'Temp:'
-        TabOrder = 3
-        TabStop = True
+        Caption = 'Temp'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 6
       end
       object FHeightl: TStaticText
-        Left = 34
+        Left = 31
         Top = 191
-        Width = 39
+        Width = 41
         Height = 17
-        Caption = 'Height:'
-        TabOrder = 13
-        TabStop = True
+        Caption = 'Height'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 10
       end
       object FWeightl: TStaticText
-        Left = 34
+        Left = 28
         Top = 265
-        Width = 42
+        Width = 44
         Height = 17
-        Caption = 'Weight:'
-        TabOrder = 23
-        TabStop = True
+        Caption = 'Weight'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 14
       end
-      object FTempe: TEdit
+      object FTempe: TCaptionEdit
         Left = 183
         Top = 116
         Width = 49
         Height = 21
         ReadOnly = True
-        TabOrder = 5
+        TabOrder = 8
+        Caption = 'Temperature in Celsius'
       end
-      object FHeighte: TEdit
+      object FHeighte: TCaptionEdit
         Left = 183
         Top = 187
         Width = 49
         Height = 21
         ReadOnly = True
-        TabOrder = 15
+        TabOrder = 12
+        Caption = 'Height in Centimeters'
       end
-      object FWeighte: TEdit
+      object FWeighte: TCaptionEdit
         Left = 183
         Top = 261
         Width = 49
         Height = 21
         ReadOnly = True
-        TabOrder = 25
+        TabOrder = 16
+        Caption = 'Weight in Kilograms'
       end
-      object FPulses: TEdit
+      object FPulses: TCaptionEdit
         Left = 298
         Top = 116
         Width = 103
         Height = 21
         ReadOnly = True
-        TabOrder = 8
+        TabOrder = 19
+        Caption = 'Pulse'
       end
       object FPulsedt: TStaticText
         Left = 298
         Top = 143
         Width = 4
         Height = 4
-        TabOrder = 9
+        TabOrder = 20
         TabStop = True
       end
       object FPulsel: TStaticText
-        Left = 264
+        Left = 259
         Top = 120
-        Width = 33
+        Width = 34
         Height = 17
-        Caption = 'Pulse:'
-        TabOrder = 7
-        TabStop = True
+        Caption = 'Pulse'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 18
       end
-      object FResps: TEdit
+      object FResps: TCaptionEdit
         Left = 298
         Top = 187
         Width = 103
         Height = 21
         ReadOnly = True
-        TabOrder = 18
+        TabOrder = 22
+        Caption = 'Respiration'
       end
       object FRespl: TStaticText
-        Left = 264
+        Left = 261
         Top = 191
         Width = 32
         Height = 17
-        Caption = 'Resp:'
-        TabOrder = 17
-        TabStop = True
+        Caption = 'Resp'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 21
       end
       object FRespdt: TStaticText
         Left = 298
         Top = 214
         Width = 4
         Height = 4
-        TabOrder = 19
+        TabOrder = 23
         TabStop = True
       end
-      object FPains: TEdit
+      object FPains: TCaptionEdit
         Left = 298
         Top = 261
         Width = 103
         Height = 21
         ReadOnly = True
-        TabOrder = 28
+        TabOrder = 25
+        Caption = 'Pain'
       end
       object FPainl: TStaticText
-        Left = 264
+        Left = 265
         Top = 265
         Width = 28
         Height = 17
-        Caption = 'Pain:'
-        TabOrder = 27
-        TabStop = True
+        Caption = 'Pain'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 24
       end
       object FPaindt: TStaticText
         Left = 298
         Top = 288
         Width = 4
         Height = 4
-        TabOrder = 29
+        TabOrder = 26
         TabStop = True
       end
-      object FSystolics: TEdit
+      object FSystolics: TCaptionEdit
         Left = 487
         Top = 116
         Width = 103
         Height = 21
         ReadOnly = True
-        TabOrder = 11
+        TabOrder = 28
+        Caption = 'Blood Pressure Systolic'
       end
       object FSystolicl: TStaticText
         Left = 434
         Top = 120
-        Width = 44
+        Width = 48
         Height = 17
-        Caption = 'Systolic:'
-        TabOrder = 10
-        TabStop = True
+        Caption = 'Systolic'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 27
       end
       object FSystolicdt: TStaticText
         Left = 487
         Top = 143
         Width = 4
         Height = 4
-        TabOrder = 12
+        TabOrder = 29
         TabStop = True
       end
-      object FDiastolics: TEdit
+      object FDiastolics: TCaptionEdit
         Left = 487
         Top = 187
         Width = 103
         Height = 21
         ReadOnly = True
-        TabOrder = 21
+        TabOrder = 31
+        Caption = 'Blood Pressure Diastolic'
       end
       object FDiastolicl: TStaticText
-        Left = 434
+        Left = 430
         Top = 191
-        Width = 47
+        Width = 52
         Height = 17
-        Caption = 'Diastolic:'
-        TabOrder = 20
-        TabStop = True
+        Caption = 'Diastolic'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 30
       end
       object FDiastolicdt: TStaticText
         Left = 487
         Top = 214
         Width = 4
         Height = 4
-        TabOrder = 22
+        TabOrder = 32
+        TabStop = True
+      end
+      object FAgeValue: TStaticText
+        Left = 77
+        Top = 29
+        Width = 4
+        Height = 4
+        TabOrder = 1
+        TabStop = True
+      end
+      object FSexValue: TStaticText
+        Left = 77
+        Top = 55
+        Width = 4
+        Height = 4
+        TabOrder = 3
+        TabStop = True
+      end
+      object FBMIValue: TStaticText
+        Left = 77
+        Top = 83
+        Width = 4
+        Height = 4
+        TabOrder = 5
         TabStop = True
       end
     end
     object PageEDD: TTabSheet
       Caption = 'Estimated Delivery Date'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         670
         370)
-      object Label14: TLabel
+      object Label14: TStaticText
         Left = 10
         Top = 18
-        Width = 140
-        Height = 13
+        Width = 144
+        Height = 17
         Caption = 'Gestational Age Today is'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -312,12 +379,13 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        TabOrder = 0
       end
-      object Label15: TLabel
+      object Label15: TStaticText
         Left = 555
         Top = 18
-        Width = 16
-        Height = 13
+        Width = 20
+        Height = 17
         Anchors = [akTop, akRight]
         Caption = 'GA'
         Font.Charset = DEFAULT_CHARSET
@@ -326,6 +394,7 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        TabOrder = 4
       end
       object StaticText2: TStaticText
         Left = 372
@@ -340,19 +409,18 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 1
-        TabStop = True
+        TabOrder = 2
       end
-      object edtCurrentEDD: TEdit
+      object edtCurrentEDD: TCaptionEdit
         Left = 435
         Top = 15
         Width = 103
         Height = 21
         Anchors = [akTop, akRight]
         Color = clSilver
-        Enabled = False
         ReadOnly = True
-        TabOrder = 2
+        TabOrder = 3
+        Caption = 'Final Estimated Delivery Date'
       end
       object EDDGrid: TGridPanel
         Left = 10
@@ -542,6 +610,26 @@ object DDCSVitals: TDDCSVitals
             Column = 0
             Control = Panel1
             Row = 4
+          end
+          item
+            Column = 2
+            Row = 1
+          end
+          item
+            Column = 3
+            Row = 1
+          end
+          item
+            Column = 2
+            Row = 2
+          end
+          item
+            Column = 3
+            Row = 2
+          end
+          item
+            Column = 2
+            Row = 4
           end>
         ExpandStyle = emAddColumns
         RowCollection = <
@@ -566,31 +654,33 @@ object DDCSVitals: TDDCSVitals
           item
             Value = 14.232425607342590000
           end>
-        TabOrder = 3
+        TabOrder = 6
         DesignSize = (
           632
           289)
-        object dtLMP: TDateTimePicker
+        object dtLMP: TORDateBox
           Left = 165
           Top = 51
           Width = 100
           Height = 21
           Anchors = []
-          Date = 41898.498752974530000000
-          Time = 41898.498752974530000000
           TabOrder = 0
+          Text = 'Today'
           OnChange = dtLMPChange
+          DateOnly = True
+          RequireTime = False
+          Caption = 'Last Menstrual Period Event Date'
         end
-        object edtEDDLMP: TEdit
+        object edtEDDLMP: TCaptionEdit
           Left = 403
           Top = 51
           Width = 103
           Height = 21
           Anchors = []
           Color = clSilver
-          Enabled = False
           ReadOnly = True
           TabOrder = 1
+          Caption = 'Last Menstrual Period Estimated Delivery Date'
         end
         object lblLMP: TLabel
           Left = 0
@@ -625,38 +715,42 @@ object DDCSVitals: TDDCSVitals
           ExplicitWidth = 52
           ExplicitHeight = 13
         end
-        object dtECD: TDateTimePicker
+        object dtECD: TORDateBox
           Left = 165
           Top = 92
           Width = 100
           Height = 21
           Anchors = []
-          Date = 41898.599563668990000000
-          Time = 41898.599563668990000000
           TabOrder = 3
+          Text = 'Today'
           OnChange = dtECDChange
+          DateOnly = True
+          RequireTime = False
+          Caption = 'Estimated Conception Date Event Date'
         end
-        object edtEDDECD: TEdit
+        object edtEDDECD: TCaptionEdit
           Left = 403
           Top = 92
           Width = 103
           Height = 21
           Anchors = []
           Color = clSilver
-          Enabled = False
           ReadOnly = True
           TabOrder = 4
+          Caption = 'Estimated Conception Date Estimated Delivery Date'
         end
-        object dtUltra: TDateTimePicker
+        object dtUltra: TORDateBox
           Left = 165
           Top = 133
           Width = 100
           Height = 21
           Anchors = []
-          Date = 41898.600130277780000000
-          Time = 41898.600130277780000000
           TabOrder = 6
+          Text = 'Today'
           OnChange = dtUltraChange
+          DateOnly = True
+          RequireTime = False
+          Caption = 'Ultrasound Event Date'
         end
         object spnWeekUltra: TSpinEdit
           Left = 281
@@ -682,38 +776,40 @@ object DDCSVitals: TDDCSVitals
           Value = 0
           OnChange = spnDayUltraChange
         end
-        object edtEDDUltra: TEdit
+        object edtEDDUltra: TCaptionEdit
           Left = 403
           Top = 133
           Width = 103
           Height = 21
           Anchors = []
           Color = clSilver
-          Enabled = False
           ReadOnly = True
           TabOrder = 9
+          Caption = 'Ultrasound Estimated Delivery Date'
         end
-        object dtEmbryo: TDateTimePicker
+        object dtEmbryo: TORDateBox
           Left = 165
           Top = 174
           Width = 100
           Height = 21
           Anchors = []
-          Date = 41898.600587314820000000
-          Time = 41898.600587314820000000
           TabOrder = 12
+          Text = 'Today'
           OnChange = dtEmbryoChange
+          DateOnly = True
+          RequireTime = False
+          Caption = 'Embryo Transfer Event Date'
         end
-        object edtEDDEmbryo: TEdit
+        object edtEDDEmbryo: TCaptionEdit
           Left = 403
           Top = 174
           Width = 103
           Height = 21
           Anchors = []
           Color = clSilver
-          Enabled = False
           ReadOnly = True
           TabOrder = 13
+          Caption = 'Embryo Transfer Estimated Delivery Date'
         end
         object lblUnknown: TLabel
           Left = 0
@@ -726,16 +822,18 @@ object DDCSVitals: TDDCSVitals
           ExplicitWidth = 44
           ExplicitHeight = 13
         end
-        object dtOther: TDateTimePicker
+        object dtOther: TORDateBox
           Left = 165
           Top = 215
           Width = 100
           Height = 21
           Anchors = []
-          Date = 41898.601366504630000000
-          Time = 41898.601366504630000000
           TabOrder = 16
+          Text = 'Today'
           OnChange = dtOtherChange
+          DateOnly = True
+          RequireTime = False
+          Caption = 'Entrer Other Criteria Event Date'
         end
         object spnWeekOther: TSpinEdit
           Left = 281
@@ -761,18 +859,18 @@ object DDCSVitals: TDDCSVitals
           Value = 0
           OnChange = spnDayOtherChange
         end
-        object edtEDDOther: TEdit
+        object edtEDDOther: TCaptionEdit
           Left = 403
           Top = 215
           Width = 103
           Height = 21
           Anchors = []
           Color = clSilver
-          Enabled = False
           ReadOnly = True
           TabOrder = 19
+          Caption = 'Enter Other Criteria Estimated Delivery Date'
         end
-        object lblOther: TEdit
+        object lblOther: TCaptionEdit
           Left = 0
           Top = 215
           Width = 149
@@ -783,6 +881,7 @@ object DDCSVitals: TDDCSVitals
           OnChange = lblOtherChange
           OnExit = lblOtherExit
           OnMouseEnter = lblOtherMouseEnter
+          Caption = 'Enter Other Criteria'
         end
         object Label9: TLabel
           Left = 39
@@ -797,8 +896,8 @@ object DDCSVitals: TDDCSVitals
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 46
-          ExplicitTop = 7
+          ExplicitLeft = 38
+          ExplicitTop = 12
         end
         object Label10: TLabel
           Left = 183
@@ -813,8 +912,8 @@ object DDCSVitals: TDDCSVitals
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 173
-          ExplicitTop = 7
+          ExplicitLeft = 181
+          ExplicitTop = 12
         end
         object Label11: TLabel
           Left = 281
@@ -829,7 +928,6 @@ object DDCSVitals: TDDCSVitals
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           ParentFont = False
-          Layout = tlCenter
           ExplicitWidth = 91
           ExplicitHeight = 26
         end
@@ -846,8 +944,8 @@ object DDCSVitals: TDDCSVitals
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 490
-          ExplicitTop = 7
+          ExplicitLeft = 440
+          ExplicitTop = 12
         end
         object Label13: TLabel
           Left = 553
@@ -862,8 +960,8 @@ object DDCSVitals: TDDCSVitals
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 558
-          ExplicitTop = 13
+          ExplicitLeft = 551
+          ExplicitTop = 12
         end
         object ckFinalEDDLMP: TCheckBox
           Tag = 9
@@ -931,16 +1029,17 @@ object DDCSVitals: TDDCSVitals
           TabOrder = 22
           OnClick = IsFinalEDDClick
         end
-        object dtEDDUnknown: TDateTimePicker
+        object dtEDDUnknown: TORDateBox
           Left = 403
           Top = 257
           Width = 104
           Height = 21
           Anchors = []
-          Date = 41898.630100775470000000
-          Time = 41898.630100775470000000
           TabOrder = 21
           OnChange = dtEDDUnknownChange
+          DateOnly = True
+          RequireTime = False
+          Caption = 'Unknown Estimated Delivery Date'
         end
         object Panel1: TPanel
           Left = 0
@@ -961,7 +1060,7 @@ object DDCSVitals: TDDCSVitals
             ExplicitWidth = 80
             ExplicitHeight = 13
           end
-          object cbTransferDay: TComboBox
+          object cbTransferDay: TCaptionComboBox
             Left = 89
             Top = 10
             Width = 60
@@ -974,292 +1073,333 @@ object DDCSVitals: TDDCSVitals
               '3'
               '3-5'
               '5')
+            Caption = 'Embryo Transfer Blastocyst Transfer'
           end
         end
       end
-      object edtFinalGA: TEdit
+      object edtFinalGA: TCaptionEdit
         Left = 159
         Top = 15
         Width = 65
         Height = 21
         Color = clSilver
-        Enabled = False
-        TabOrder = 0
+        ReadOnly = True
+        TabOrder = 1
+        Caption = 'Gestational Age Today is'
       end
-      object edtEDDGA: TEdit
+      object edtEDDGA: TCaptionEdit
         Left = 577
         Top = 15
         Width = 65
         Height = 21
         Anchors = [akTop, akRight]
         Color = clSilver
-        Enabled = False
-        TabOrder = 4
+        ReadOnly = True
+        TabOrder = 5
+        Caption = 'Gestational Age'
       end
     end
     object PageLMP: TTabSheet
       Caption = 'Menstrual History'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
-      object Label7: TLabel
+      object Label7: TStaticText
         Left = 278
         Top = 137
-        Width = 295
-        Height = 13
+        Width = 299
+        Height = 17
         Caption = 'What type(s) of contraception were you using most recently?'
+        TabOrder = 23
       end
-      object Label6: TLabel
+      object Label6: TStaticText
         Left = 278
-        Top = 195
-        Width = 54
-        Height = 13
-        Caption = 'Comments:'
+        Top = 199
+        Width = 65
+        Height = 17
+        Caption = 'Comments'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 25
       end
-      object Label8: TLabel
-        Left = 278
-        Top = 73
-        Width = 45
-        Height = 13
-        Caption = 'Duration:'
+      object Label8: TStaticText
+        Left = 333
+        Top = 72
+        Width = 53
+        Height = 17
+        Caption = 'Duration'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 17
+        TabStop = True
       end
-      object SpeedButton1: TSpeedButton
-        Tag = 2
-        Left = 201
-        Top = 274
-        Width = 25
-        Height = 25
-        Hint = 'Pick Date From Calendar'
-        Flat = True
-        Glyph.Data = {
-          76010000424D7601000000000000760000002800000020000000100000000100
-          04000000000000010000120B0000120B00001000000000000000000000000000
-          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-          33333FFFFFFFFFFFFFFF000000000000000077777777777777770FF7FF7FF7FF
-          7FF07FF7FF7FF7F37F3709F79F79F7FF7FF077F77F77F7FF7FF7077777777777
-          777077777777777777770FF7FF7FF7FF7FF07FF7FF7FF7FF7FF709F79F79F79F
-          79F077F77F77F77F77F7077777777777777077777777777777770FF7FF7FF7FF
-          7FF07FF7FF7FF7FF7FF709F79F79F79F79F077F77F77F77F77F7077777777777
-          777077777777777777770FFFFF7FF7FF7FF07F33337FF7FF7FF70FFFFF79F79F
-          79F07FFFFF77F77F77F700000000000000007777777777777777CCCCCC8888CC
-          CCCC777777FFFF777777CCCCCCCCCCCCCCCC7777777777777777}
-        NumGlyphs = 2
-        ParentShowHint = False
-        ShowHint = True
-        OnClick = sbtnGetDate1Click
-      end
-      object Label5: TLabel
-        Left = 278
+      object Label5: TStaticText
+        Left = 284
         Top = 105
-        Width = 89
-        Height = 13
-        Caption = 'On Contraception:'
+        Width = 102
+        Height = 17
+        Caption = 'On Contraception'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 20
+        TabStop = True
       end
-      object Label4: TLabel
-        Left = 278
-        Top = 41
-        Width = 41
-        Height = 13
-        Caption = 'Amount:'
+      object Label4: TStaticText
+        Left = 337
+        Top = 40
+        Width = 49
+        Height = 17
+        Caption = 'Amount'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 14
+        TabStop = True
       end
-      object Label3: TLabel
-        Left = 80
-        Top = 241
-        Width = 95
-        Height = 13
+      object Label3: TStaticText
+        Left = 90
+        Top = 254
+        Width = 99
+        Height = 17
         Caption = '(Fill in age of onset)'
+        TabOrder = 11
       end
-      object Label2: TLabel
-        Left = 80
-        Top = 178
-        Width = 68
-        Height = 13
+      object Label2: TStaticText
+        Left = 90
+        Top = 194
+        Width = 72
+        Height = 17
         Caption = '(Fill in # days)'
+        TabOrder = 8
       end
-      object sbtnGetDate1: TSpeedButton
-        Tag = 1
-        Left = 201
-        Top = 54
-        Width = 25
-        Height = 25
-        Hint = 'Pick Date From Calendar'
-        Flat = True
-        Glyph.Data = {
-          76010000424D7601000000000000760000002800000020000000100000000100
-          04000000000000010000120B0000120B00001000000000000000000000000000
-          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-          33333FFFFFFFFFFFFFFF000000000000000077777777777777770FF7FF7FF7FF
-          7FF07FF7FF7FF7F37F3709F79F79F7FF7FF077F77F77F7FF7FF7077777777777
-          777077777777777777770FF7FF7FF7FF7FF07FF7FF7FF7FF7FF709F79F79F79F
-          79F077F77F77F77F77F7077777777777777077777777777777770FF7FF7FF7FF
-          7FF07FF7FF7FF7FF7FF709F79F79F79F79F077F77F77F77F77F7077777777777
-          777077777777777777770FFFFF7FF7FF7FF07F33337FF7FF7FF70FFFFF79F79F
-          79F07FFFFF77F77F77F700000000000000007777777777777777CCCCCC8888CC
-          CCCC777777FFFF777777CCCCCCCCCCCCCCCC7777777777777777}
-        NumGlyphs = 2
-        ParentShowHint = False
-        ShowHint = True
-        OnClick = sbtnGetDate1Click
+      object Label1: TStaticText
+        Left = 34
+        Top = 125
+        Width = 47
+        Height = 17
+        Caption = 'Menses'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 3
+        TabStop = True
       end
-      object Label1: TLabel
-        Left = 31
-        Top = 116
-        Width = 43
-        Height = 13
-        Caption = 'Menses: '
-      end
-      object edtContraceptionType: TComboBox
+      object edtContraceptionType: TCaptionComboBox
         Left = 278
         Top = 156
         Width = 358
         Height = 21
         Style = csDropDownList
-        TabOrder = 13
+        TabOrder = 24
+        Caption = 
+          'What type or types of contraception were you using most recently' +
+          '?'
       end
       object ckMensesYes: TCheckBox
         Tag = 1
-        Left = 80
-        Top = 115
+        Left = 90
+        Top = 125
         Width = 63
         Height = 17
         Caption = 'Normal'
-        TabOrder = 2
-        OnClick = ckMensesYesClick
+        TabOrder = 4
+        OnClick = ToggleCheckBoxes
       end
       object ckDurationYes: TCheckBox
         Tag = 7
-        Left = 393
+        Left = 401
         Top = 72
         Width = 64
         Height = 17
         Caption = 'Normal'
-        TabOrder = 9
-        OnClick = ckMensesYesClick
+        TabOrder = 18
+        OnClick = ToggleCheckBoxes
       end
       object ckAmountYes: TCheckBox
         Tag = 3
-        Left = 393
+        Left = 401
         Top = 40
         Width = 63
         Height = 17
         Caption = 'Normal'
-        TabOrder = 7
-        OnClick = ckMensesYesClick
+        TabOrder = 15
+        OnClick = ToggleCheckBoxes
       end
-      object memLMP: TMemo
+      object memLMP: TCaptionMemo
         Left = 278
         Top = 214
         Width = 358
         Height = 131
         ScrollBars = ssVertical
-        TabOrder = 14
+        TabOrder = 26
+        Caption = 'Comments'
       end
       object ckDurationNo: TCheckBox
         Tag = 8
-        Left = 483
+        Left = 474
         Top = 72
         Width = 82
         Height = 17
         Caption = 'Abnormal'
-        TabOrder = 10
-        OnClick = ckMensesYesClick
-      end
-      object edthcg: TLabeledEdit
-        Left = 80
-        Top = 277
-        Width = 115
-        Height = 21
-        EditLabel.Width = 28
-        EditLabel.Height = 13
-        EditLabel.Caption = 'hCG+'
-        LabelPosition = lpLeft
-        TabOrder = 6
+        TabOrder = 19
+        OnClick = ToggleCheckBoxes
       end
       object ckContraceptionNo: TCheckBox
         Tag = 6
-        Left = 483
+        Left = 474
         Top = 104
         Width = 37
         Height = 17
         Caption = 'No'
-        TabOrder = 12
-        OnClick = ckMensesYesClick
+        TabOrder = 22
+        OnClick = ToggleCheckBoxes
       end
       object ckContraceptionYes: TCheckBox
         Tag = 5
-        Left = 393
+        Left = 401
         Top = 104
         Width = 52
         Height = 17
         Caption = 'Yes'
-        TabOrder = 11
-        OnClick = ckMensesYesClick
+        TabOrder = 21
+        OnClick = ToggleCheckBoxes
       end
       object ckAmountNo: TCheckBox
         Tag = 4
-        Left = 483
+        Left = 474
         Top = 40
         Width = 82
         Height = 17
         Caption = 'Abnormal'
-        TabOrder = 8
-        OnClick = ckMensesYesClick
+        TabOrder = 16
+        OnClick = ToggleCheckBoxes
       end
-      object edtMenarche: TLabeledEdit
-        Left = 80
-        Top = 214
-        Width = 115
+      object edtMenarche: TCaptionEdit
+        Left = 90
+        Top = 231
+        Width = 136
         Height = 21
-        EditLabel.Width = 51
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Menarche:'
-        LabelPosition = lpLeft
-        TabOrder = 5
+        TabOrder = 10
+        Caption = 'Menarche as age of onset'
       end
-      object edtFrequency: TLabeledEdit
-        Left = 80
-        Top = 152
-        Width = 115
+      object edtFrequency: TCaptionEdit
+        Left = 90
+        Top = 171
+        Width = 136
         Height = 21
-        EditLabel.Width = 55
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Frequency:'
-        LabelPosition = lpLeft
-        TabOrder = 4
+        TabOrder = 7
+        Caption = 'Frequency in number of days'
       end
       object ckMensesNo: TCheckBox
         Tag = 2
-        Left = 149
-        Top = 115
-        Width = 75
+        Left = 158
+        Top = 125
+        Width = 68
         Height = 17
         Caption = 'Abnormal'
-        TabOrder = 3
-        OnClick = ckMensesYesClick
-      end
-      object edtLMP: TLabeledEdit
-        Left = 80
-        Top = 57
-        Width = 115
-        Height = 21
-        EditLabel.Width = 23
-        EditLabel.Height = 13
-        EditLabel.Caption = 'LMP:'
-        LabelPosition = lpLeft
-        TabOrder = 0
-        OnChange = edtLMPChange
+        TabOrder = 5
+        OnClick = ToggleCheckBoxes
       end
       object ck_LMPQualifier: TCheckBox
-        Left = 80
-        Top = 84
+        Left = 22
+        Top = 83
         Width = 97
         Height = 17
         Caption = 'Approximate'
+        TabOrder = 2
+      end
+      object edthcg: TORDateBox
+        Left = 90
+        Top = 289
+        Width = 136
+        Height = 21
+        TabOrder = 13
+        DateOnly = False
+        RequireTime = False
+        Caption = 'Human Chorionic Gonadotropin'
+      end
+      object StaticText1: TStaticText
+        Left = 46
+        Top = 293
+        Width = 35
+        Height = 17
+        Caption = 'hCG+'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 12
+      end
+      object StaticText3: TStaticText
+        Left = 22
+        Top = 40
+        Width = 127
+        Height = 17
+        Caption = 'Last Menstrual Period'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+      end
+      object StaticText4: TStaticText
+        Left = 18
+        Top = 175
+        Width = 63
+        Height = 17
+        Caption = 'Frequency'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 6
+      end
+      object StaticText5: TStaticText
+        Left = 21
+        Top = 235
+        Width = 60
+        Height = 17
+        Caption = 'Menarche'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 9
+      end
+      object edtLMP: TORDateBox
+        Left = 22
+        Top = 56
+        Width = 204
+        Height = 21
         TabOrder = 1
+        OnChange = edtLMPChange
+        DateOnly = True
+        RequireTime = False
+        Caption = 'Last Menstrual Period'
       end
     end
   end

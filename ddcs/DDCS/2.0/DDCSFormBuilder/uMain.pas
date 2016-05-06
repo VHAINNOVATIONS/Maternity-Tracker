@@ -24,12 +24,8 @@ interface
 
 uses
   Windows, ActiveX, Classes, ComObj, DDCSFormBuilder_TLB, CPRSChart_TLB,
-  Forms, SysUtils, Vcl.Dialogs, Vcl.Controls, StrUtils, StdVcl,
-  uExtndComBroker, uBase;
-
-const
-  U = '^';
-  MENU_CONTEXT    = 'DSIO DDCS CONTEXT';
+  Forms, SysUtils, Vcl.Dialogs, Vcl.Controls, StrUtils, StdVcl, uBase, uCommon,
+  uExtndComBroker;
 
 type
   TDDCS = class(TAutoObject, IDDCS, ICPRSExtension)
@@ -81,7 +77,6 @@ end;
 function TDDCS.Execute(const CPRSBroker: ICPRSBroker; const CPRSState: ICPRSState;
           const Param1, Param2, Param3: WideString; var Data1, Data2: WideString): WordBool;
 var
-  sl: TStringList;
   Controlled,vPropertyList,Config: string;
   IEN,I,J: Integer;
 
@@ -117,7 +112,6 @@ begin
 
   end else
   begin
-
     RPCBrokerV := TCPRSComBroker.Create(nil);
     RPCBrokerV.COMBroker  := CPRSBroker;
     RPCBrokerV.CPRSState  := CPRSState;
@@ -136,8 +130,8 @@ begin
           Controlled := Param2;
         end;
 
-        RPCBrokerV.SetContext(MENU_CONTEXT);
-        Controlled := RPCBrokerV.sCallV('DSIO DDCS CONTROLLED', [Controlled]);
+        if UpdateContext(MENU_CONTEXT) then
+          Controlled := sCallV('DSIO DDCS CONTROLLED', [Controlled]);
 
         // Don't want to annoy the user with a popup for every order not found a control object
         if not TryStrToInt(Piece(Controlled,U,1),IEN) or (IEN < 1) then
@@ -158,20 +152,18 @@ begin
             RPCBrokerV.DDCSInterfacePages.Add(Piece(vPropertyList,'|',I));
         end;
 
-        RPCBrokerV.SetContext(MENU_CONTEXT);
-        Config := RPCBrokerV.sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'WARNING MESSAGE']);
+        if UpdateContext(MENU_CONTEXT) then
+          Config := sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'WARNING MESSAGE']);
 
         if Config <> '' then
-        begin
-          if MessageDlg(Config + ' Select YES to continue.',mtWarning,[mbYes,mbNo],0) <> mrYes then
+          if ShowMsg(Config + ' Select YES to continue.', smiWarning, smbYesNo) <> smrYes then
             Exit;
-        end;
 
         New(MainFormP);
 
         Config := '';
-        RPCBrokerV.SetContext(MENU_CONTEXT);
-        Config := RPCBrokerV.sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'LOCATION']);
+        if UpdateContext(MENU_CONTEXT) then
+          Config := sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'LOCATION']);
 
         if Config <> '' then
         begin
@@ -188,8 +180,8 @@ begin
               RPCBrokerV.Owner := MainFormP^;
 
               Config := '';
-              RPCBrokerV.SetContext(MENU_CONTEXT);
-              Config := RPCBrokerV.sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'HOLD ON SHOW']);
+              if UpdateContext(MENU_CONTEXT) then
+                Config := sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'HOLD ON SHOW']);
 
               if ((Config <> '') and (StrToBool(Config))) then
               begin

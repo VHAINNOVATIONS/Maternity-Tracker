@@ -22,7 +22,7 @@ object AddItem: TAddItem
     Top = 33
     Width = 75
     Height = 25
-    Caption = 'OK'
+    Caption = '&OK'
     Default = True
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
@@ -43,22 +43,24 @@ object AddItem: TAddItem
       0000}
     ModalResult = 1
     NumGlyphs = 2
-    TabOrder = 0
+    TabOrder = 1
   end
   object btnCancel: TBitBtn
     Left = 340
     Top = 33
     Width = 75
     Height = 25
+    Caption = '&Cancel'
     Kind = bkCancel
     NumGlyphs = 2
-    TabOrder = 1
+    TabOrder = 2
   end
-  object edText: TEdit
+  object edText: TCaptionEdit
     Left = 6
     Top = 6
     Width = 409
     Height = 21
-    TabOrder = 2
+    TabOrder = 0
+    Caption = 'Add Item Text'
   end
 end

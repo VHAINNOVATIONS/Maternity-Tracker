@@ -3,10 +3,10 @@ unit frmMain;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.CheckLst,
-  Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Samples.Spin, Vcl.Mask, JvExMask, JvSpin,
-  System.ConvUtils, System.StdConvs, ORCtrls, ORDtTm, uBase, uExtndComBroker;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Vcl.CheckLst, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Samples.Spin,
+  Vcl.Mask, System.ConvUtils, System.StdConvs, ORCtrls, ORDtTm, uBase;
 
 type
   TForm1 = class(TForm)
@@ -18,44 +18,38 @@ type
     lbDeliveryDate: TStaticText;
     lbDischargeDate: TStaticText;
     lbDaysIn: TStaticText;
-    lbDaysInSuffix: TStaticText;
     lbAnesthesia: TStaticText;
     lbLabor: TStaticText;
     lbDeliveryNotes: TStaticText;
     lbGestationalAge: TStaticText;
     lbLaborLength: TStaticText;
-    lbGestationalWksSuffix: TStaticText;
-    lbGestationalDaysSuffix: TStaticText;
-    lbLaborLengthhrsSuffix: TStaticText;
     lbDeliveryPlace: TStaticText;
     lbOutcome: TStaticText;
     dtDelivery: TORDateBox;
     dtMaternal: TORDateBox;
-    edtDeliveryAt: TJvSpinEdit;
+    edtDeliveryAt: TSpinEdit;
     cbAnesthesia: TCaptionComboBox;
     cbLabor: TCaptionComboBox;
     meDeliveryNotes: TCaptionMemo;
     rgPretermDelivery: TRadioGroup;
-    spnLaborLength: TJvSpinEdit;
-    spnGADays: TJvSpinEdit;
-    spnGAWeeks: TJvSpinEdit;
+    spnLaborLength: TSpinEdit;
+    spnGADays: TSpinEdit;
+    spnGAWeeks: TSpinEdit;
     cbDeliveryPlace: TCaptionComboBox;
     cbOutcome: TCaptionComboBox;
     pgBaby: TPageControl;
     TsBaby1: TTabSheet;
     lbBirthWeight1: TStaticText;
-    lbLB1: TStaticText;
-    lbOz1: TStaticText;
     lbComplications1: TStaticText;
     lbg1: TStaticText;
     rgSex1: TRadioGroup;
-    spnLb1: TJvSpinEdit;
-    spnOz1: TJvSpinEdit;
+    spnLb1: TSpinEdit;
+    spnOz1: TSpinEdit;
     meComplications1: TCaptionMemo;
     edAPGARone1: TCaptionEdit;
     ckNICU1: TCheckBox;
     edAPGARfive1: TCaptionEdit;
-    spng1: TJvSpinEdit;
+    spng1: TSpinEdit;
     pnlBirthCount: TPanel;
     gbCesarean: TGroupBox;
     lbCesareanReasons: TStaticText;
@@ -91,24 +85,28 @@ type
     ckDeliveryMethodC: TCheckBox;
     lstDelivery: TListView;
     lbAPGAR1: TStaticText;
-    spnBirthCount: TJvSpinEdit;
+    spnBirthCount: TSpinEdit;
     lbBirthCount: TStaticText;
-    rbLiving1: TRadioButton;
-    rbDemised1: TRadioButton;
     lbProceduresOther: TStaticText;
     pnlSpacer: TPanel;
+    StaticText1: TStaticText;
+    lbOz1: TStaticText;
+    ckLiving1: TCheckBox;
+    ckDemise1: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure SpinCheck(Sender: TObject);
+    procedure RadioGroupEnter(Sender: TObject);
     procedure spnGADaysChange(Sender: TObject);
     procedure spnBirthCountChange(Sender: TObject);
     procedure spnLb1Change(Sender: TObject);
     procedure spnOz1Change(Sender: TObject);
     procedure UpdateLBOZ(Sender: TObject);
+    procedure CheckBoxCheckClick(Sender: TObject);
     procedure Finished(Sender: TObject);
   private
-    rgSexlist,rbLivingList,rbDemisedList,spnLBList,spnOzList,spnGList: TList;
+    rgSexlist,ckLivingList,ckDemisedList,spnLBList,spnOzList,spnGList: TList;
     edAPGARoneList,edAPGARfiveList,ckNICUList,meComplicationsList: Tlist;
     BirthCount: Integer;
     pgIENs: array of string;
@@ -129,13 +127,11 @@ implementation
 {$R *.dfm}
 
 uses
-  VAUtils;
+  VAUtils, uExtndComBroker;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   BirthCount := 1;
-
-  oPage4.TabVisible := False;
 
   Rebuild;
 end;
@@ -143,11 +139,10 @@ end;
 procedure TForm1.FormShow(Sender: TObject);
 var
   I,J,pgct,pgx,tVal: Integer;
-  pg: TTabSheet;
   pageplace: array of string;
   val: string;
 begin
-
+  oPage4.TabVisible := False;
   //  ID^IEN^NUMBER^NAME^GENDER^BIRTH WEIGHT^STILLBORN^APGAR1^APGAR2^STATUS^NICU
 
   for I := 0 to lstDelivery.Items.Count - 1 do
@@ -172,7 +167,6 @@ begin
       spnBirthCount.Value := pgct;
 
       pgx := pgBaby.PageCount - 1;
-       pg := pgBaby.Pages[pgx];
       SetLength(pgIENs, pgBaby.PageCount);
 
       for J := 0 to lstDelivery.Items.Item[I].SubItems.Count - 1 do
@@ -194,21 +188,21 @@ begin
             4 : begin                                                           // Birth Weight in grams
                   OnChangeNil(pgx);
 
-                  if TryStrToInt(val,tVal) then
-                    TJvSpinEdit(spnGList[pgx]).Value := tVal;
+                  if TryStrToInt(val, tVal) then
+                    TSpinEdit(spnGList[pgx]).Value := tVal;
 
                   OnChangeRestore(pgx);
-                  UpdateLBOZ(TJvSpinEdit(spnGList[pgx]));
+                  UpdateLBOZ(TSpinEdit(spnGList[pgx]));
                 end;
             5 : if val = '1' then                                               // StillBorn
-                  TRadioButton(rbDemisedList[pgx]).Checked := True;
+                  TCheckBox(ckDemisedList[pgx]).Checked := True;
             6 : TLabeledEdit(edAPGARoneList[pgx]).Text := val;                  // APGAR1
             7 : TLabeledEdit(edAPGARfiveList[pgx]).Text := val;                 // APGAR2
             8 : begin                                                           // Status
                   if val = 'L' then
-                    TRadioButton(rbLivingList[pgx]).Checked := True
+                    TCheckBox(ckLivingList[pgx]).Checked := True
                   else if val = 'D' then
-                    TRadioButton(rbDemisedList[pgx]).Checked := True;
+                    TCheckBox(ckDemisedList[pgx]).Checked := True;
                 end;
             9 : if val = '1' then
                   TCheckBox(ckNICUList[pgx]).Checked := True;                   // NICU
@@ -220,9 +214,8 @@ begin
       begin
         if pageplace[J] = lstDelivery.Items.Item[I].SubItems[0] then
         begin
-          pg := pgBaby.Pages[J];
-          if pg <> nil then
-            TMemo(meComplicationsList[J]).Lines.Add(lstDelivery.Items.Item[I].SubItems[1]);
+          if J <= pgBaby.PageCount - 1 then
+            TCaptionMemo(meComplicationsList[J]).Lines.Add(lstDelivery.Items.Item[I].SubItems[1]);
 
           Break;
         end;
@@ -237,8 +230,8 @@ procedure TForm1.FormDestroy(Sender: TObject);
 begin
   SetLength(pgIENs, 0);
   rgSexList.Free;
-  rbLivingList.Free;
-  rbDemisedList.Free;
+  ckLivingList.Free;
+  ckDemisedList.Free;
   spnLBList.Free;
   spnOzList.Free;
   spnGList.Free;
@@ -250,11 +243,23 @@ end;
 
 procedure TForm1.SpinCheck(Sender: TObject);
 begin
-  if not (Sender is TJvSpinEdit) then
+  if not (Sender is TSpinEdit) then
     Exit;
 
-  if TJvSpinEdit(Sender).Value < 0 then
-    TJvSpinEdit(Sender).Value := 0;
+  if TSpinEdit(Sender).Value < 0 then
+    TSpinEdit(Sender).Value := 0;
+end;
+
+procedure TForm1.RadioGroupEnter(Sender: TObject);
+begin
+  if not (Sender is TRadioGroup) then
+    Exit;
+
+  if TRadioGroup(Sender).ItemIndex = -1 then
+  begin
+    TRadioGroup(Sender).ItemIndex := 0;
+    TRadioButton(TRadioGroup(Sender).Controls[0]).SetFocus;
+  end;
 end;
 
 procedure TForm1.spnGADaysChange(Sender: TObject);
@@ -278,66 +283,94 @@ begin
     Exit;
   end;
 
+  if spnBirthCount.Value = BirthCount then
+    Exit;
+
   if spnBirthCount.Value > BirthCount then
     AddBaby
   else RemoveBaby;
 
-  BirthCount := Trunc(spnBirthCount.Value);
+  BirthCount := spnBirthCount.Value;
 end;
 
 procedure TForm1.spnLb1Change(Sender: TObject);
+var
+  I: Integer;
 begin
+  I := TTabSheet(TSpinEdit(Sender).Parent).PageIndex;
+  OnChangeNil(I);
   SpinCheck(Sender);
-
-  UpdateGrams(TTabSheet(TJvSpinEdit(Sender).Parent).PageIndex);
+  UpdateGrams(TTabSheet(TSpinEdit(Sender).Parent).PageIndex);
+  OnChangeRestore(I);
 end;
 
 procedure TForm1.spnOz1Change(Sender: TObject);
 var
   I: Integer;
-  lb,lb2,oz: double;
+  lb: double;
 begin
+  I := TTabSheet(TSpinEdit(Sender).Parent).PageIndex;
+  OnChangeNil(I);
   SpinCheck(Sender);
 
-  I := TTabSheet(TJvSpinEdit(Sender).Parent).PageIndex;
-
-  lb := Convert(TJvSpinEdit(spnOzList[I]).Value, muOunces, muPounds);
+  lb := Convert(TSpinEdit(spnOzList[I]).Value, muOunces, muPounds);
   if lb >= 1 then
   begin
-    lb2 := Convert(Trunc(lb), muPounds, muOunces);
-     oz := TJvSpinEdit(spnOzList[I]).Value - lb2;
-     lb := Convert(lb2, muOunces, muPounds);
-
-    TJvSpinEdit(spnLBList[I]).Value := TJvSpinEdit(spnLBList[I]).Value + lb;
-    TJvSpinEdit(spnOzList[I]).Value := oz;
+    TSpinEdit(spnLBList[I]).Value := TSpinEdit(spnLBList[I]).Value + Trunc(lb);
+    TSpinEdit(spnOzList[I]).Value := 0;
   end;
 
   UpdateGrams(I);
+  OnChangeRestore(I);
 end;
 
 procedure TForm1.UpdateLBOZ(Sender: TObject);
 var
   I: Integer;
-  lb,lb2,oz: double;
+  lb: double;
 begin
+  I := TTabSheet(TSpinEdit(Sender).Parent).PageIndex;
+  OnChangeNil(I);
   SpinCheck(Sender);
 
-  I := TTabSheet(TJvSpinEdit(Sender).Parent).PageIndex;
-  OnChangeNil(I);
-
-  oz := Convert(TJvSpinEdit(spnGList[I]).Value, muGrams, muOunces);
-  lb := Convert(TJvSpinEdit(spnGList[I]).Value, muGrams, muPounds);
+  lb := Convert(TSpinEdit(spnGList[I]).Value, muGrams, muPounds);
   if lb >= 1 then
   begin
-    lb2 := Convert(Trunc(lb), muPounds, muOunces);
-     oz := oz - lb2;
-
-    TJvSpinEdit(spnLBList[I]).Value := Convert(lb2, muOunces, muPounds);
-    TJvSpinEdit(spnOzList[I]).Value := oz;
+    TSpinEdit(spnLBList[I]).Value := Trunc(lb);
+    TSpinEdit(spnOzList[I]).Value := Trunc(Convert(lb - Trunc(lb), muPounds, muOunces));
   end else
   begin
-    TJvSpinEdit(spnOzList[I]).Value := oz;
-    TJvSpinEdit(spnLBList[I]).Value := 0;
+    TSpinEdit(spnLBList[I]).Value := 0;
+    TSpinEdit(spnOzList[I]).Value := Trunc(Convert(TSpinEdit(spnGList[I]).Value, muGrams, muOunces));
+  end;
+
+  OnChangeRestore(I);
+end;
+
+procedure TForm1.UpdateGrams(I: Integer);
+var
+  lbs,ozs: double;
+begin
+  OnChangeNil(I);
+
+  lbs := Convert(TSpinEdit(spnLBList[I]).Value, muPounds, muGrams);
+  ozs := Convert(TSpinEdit(spnOzList[I]).Value, muOunces, muGrams);
+  TSpinEdit(spnGList[I]).Value := Trunc(lbs + ozs);
+
+  OnChangeRestore(I);
+end;
+
+procedure TForm1.CheckBoxCheckClick(Sender: TObject);
+var
+  I: Integer;
+begin
+  I := TTabSheet(TCheckBox(Sender).Parent).PageIndex;
+
+  OnChangeNil(I);
+
+  case TCheckBox(Sender).Tag of
+    1: TCheckBox(ckDemisedList[I]).Checked := False;
+    2: TCheckBox(ckLivingList[I]).Checked := False;
   end;
 
   OnChangeRestore(I);
@@ -347,7 +380,7 @@ procedure TForm1.Finished(Sender: TObject);
 var
   tmpstr,IEN: string;
   I,J: Integer;
-  sl: TStringList;
+  sl,tl: TStringList;
   lvitem: TListItem;
 
   procedure CleanLv(Lv: TListView);
@@ -369,8 +402,8 @@ begin
 
   DDCSForm1.TmpStrList.Add('Delivery Details:');
   DDCSForm1.TmpStrList.Add('  Delivery Date: ' + dtDelivery.Text);
-  DDCSForm1.TmpStrList.Add('  Maternal Date: ' + dtMAternal.Text);
-  DDCSForm1.TmpStrList.Add('  Days to Delivery at '+ edtDeliveryAt.text);
+  DDCSForm1.TmpStrList.Add('  Maternal Date: ' + dtMaternal.Text);
+  DDCSForm1.TmpStrList.Add('  Days in Hospital following Delivery '+ edtDeliveryAt.text);
   DDCSForm1.TmpStrList.Add('  Gestational Age: ' + spnGAWeeks.Text + ' Weeks ' + spnGADays.Text + ' Days');
 
   if cbAnesthesia.ItemIndex <> -1 then
@@ -406,9 +439,9 @@ begin
   for I := 0 to pgbaby.PageCount - 1 do
   begin
     tmpstr := '  Baby ' + IntTostr(I + 1);
-    if TRadioButton(rbLivingList[I]).Checked then
+    if TCheckBox(ckLivingList[I]).Checked then
       tmpstr := tmpstr + ' (Living):'
-    else if TRadioButton(rbDemisedList[I]).Checked then
+    else if TCheckBox(ckDemisedList[I]).Checked then
       tmpstr := tmpstr + ' (Demise):';
 
     DDCSForm1.TmpStrList.Add(tmpstr);
@@ -422,28 +455,25 @@ begin
       DDCSForm1.TmpStrList.Add('   Gender: Unknown');
 
     tmpstr := '';
-    if TJvSpinEdit(spnLBList[I]).Value > 0 then
-      tmpstr := FloatToStr(TJvSpinEdit(spnLBList[I]).Value) + ' Lb';
-    if TJvSpinEdit(spnOZList[I]).Value > 0 then
+    if TSpinEdit(spnLBList[I]).Value > 0 then
+      tmpstr := FloatToStr(TSpinEdit(spnLBList[I]).Value) + ' lb';
+    if TSpinEdit(spnOZList[I]).Value > 0 then
     begin
       if tmpstr <> '' then
         tmpstr := tmpstr + ' ';
 
-      tmpstr := tmpstr + FloatToStr(TJvSpinEdit(spnOZList[I]).Value) + ' Oz';
+      tmpstr := tmpstr + FloatToStr(TSpinEdit(spnOZList[I]).Value) + ' oz';
     end;
     if tmpstr <> '' then
     begin
-      tmpstr := '   Weight: ' + tmpstr + ' (' + TJvSpinEdit(spnGList[I]).Text + 'g)';
+      tmpstr := '   Weight: ' + tmpstr + ' (' + TSpinEdit(spnGList[I]).Text + 'g)';
       DDCSForm1.TmpStrList.Add(tmpstr);
     end;
 
-    tmpstr := '';
     if Trim(TCaptionEdit(edAPGARoneList[I]).Text) <> '' then
-      tmpstr := '   APGAR Score (one minute): ' + TCaptionEdit(edAPGARoneList[I]).Text;
+      DDCSForm1.TmpStrList.Add('   APGAR Score (one minute): ' + TCaptionEdit(edAPGARoneList[I]).Text);
     if Trim(TCaptionEdit(edAPGARfiveList[I]).Text) <> '' then
-      tmpstr := tmpstr + '   APGAR Score (five minute): ' + TCaptionEdit(edAPGARfiveList[I]).Text;
-    if tmpstr <> '' then
-      DDCSForm1.TmpStrList.Add(tmpstr);
+      DDCSForm1.TmpStrList.Add('   APGAR Score (five minute): ' + TCaptionEdit(edAPGARfiveList[I]).Text);
 
     if TCheckBox(ckNICUList[I]).Checked then
       DDCSForm1.TmpStrList.Add('   NICU Admission: Yes')
@@ -460,6 +490,7 @@ begin
   end;
 
   sl := TStringList.Create;
+  tl := TStringList.Create;
   try
     if ckVagSVD.Checked then
       sl.Add('  - Normal Spontaneous Vaginal Delivery');
@@ -489,11 +520,27 @@ begin
     if ckCUnsuccessfulVBAC.Checked then
       sl.Add('  Repeat - Unsuccessful Vaginal Birth at Cesarean');
 
-    sl.Add('  Indications for Cesarean:');
-    sl.Add('     Primary: ' + cbReasonsCPrimary.Text);
-    sl.Add('       Other: ' + edReasonsCOthPrimary.Text);
-    sl.Add('   Secondary: ' + cbReasonsCSecondary.Text);
-    sl.Add('       Other: ' + edReasonsCOthSecondary.Text);
+    if cbReasonsCPrimary.ItemIndex <> -1 then
+    begin
+      tl.Add('     Primary: ' + cbReasonsCPrimary.Text);
+
+      if Trim(edReasonsCOthPrimary.Text) <> '' then
+        tl.Add('       Other: ' + edReasonsCOthPrimary.Text);
+    end;
+
+    if cbReasonsCSecondary.ItemIndex <> -1 then
+    begin
+      tl.Add('   Secondary: ' + cbReasonsCSecondary.Text);
+
+      if Trim(edReasonsCOthSecondary.Text) <> '' then
+        tl.Add('       Other: ' + edReasonsCOthSecondary.Text);
+    end;
+
+    if tl.Count > 0 then
+    begin
+      sl.Add('  Indications for Cesarean:');
+      sl.AddStrings(tl);
+    end;
 
     if rgIncision.ItemIndex <> -1 then
     begin
@@ -514,27 +561,34 @@ begin
       DDCSForm1.TmpStrList.AddStrings(sl);
       ckDeliveryMethodC.Checked := True;
     end;
+    sl.Clear;
+
+    if ckNexplanonImplant.Checked then
+      sl.Add('  - ' + ckNexplanonImplant.Caption);
+    if ckProTubalLigationatCesarean.Checked then
+      sl.Add('  - ' + ckProTubalLigationatCesarean.Caption);
+    if ckProUterineCurettage.Checked then
+      sl.Add('  - ' + ckProUterineCurettage.Caption);
+    if ckProPostpartumTubalLigation.Checked then
+      sl.Add('  - ' + ckProPostpartumTubalLigation.Caption);
+    if ckProPostpartumHysterectomy.Checked then
+      sl.Add('  - ' + ckProPostpartumHysterectomy.Caption);
+    if ckIUDInsertion.Checked then
+      sl.Add('  - ' + ckIUDInsertion.Caption);
+    if ckBakri.Checked then
+      sl.Add('  - ' + ckBakri.Caption);
+    if Trim(edProceduresOther.Text) <> '' then
+      sl.Add('  - Other: ' + edProceduresOther.Text);
+
+    if sl.Count > 0 then
+    begin
+      DDCSForm1.TmpStrList.Add('Other Procedures done during same Hospitalization:');
+      DDCSForm1.TmpStrList.AddStrings(sl);
+    end;
   finally
     sl.Free;
+    tl.Free;
   end;
-
-  DDCSForm1.TmpStrList.Add('Other Procedures done during same Hospitalization:');
-  if ckNexplanonImplant.Checked then
-    DDCSForm1.TmpStrList.Add('  - ' + ckNexplanonImplant.Caption);
-  if ckProTubalLigationatCesarean.Checked then
-    DDCSForm1.TmpStrList.Add('  - ' + ckProTubalLigationatCesarean.Caption);
-  if ckProUterineCurettage.Checked then
-    DDCSForm1.TmpStrList.Add('  - ' + ckProUterineCurettage.Caption);
-  if ckProPostpartumTubalLigation.Checked then
-    DDCSForm1.TmpStrList.Add('  - ' + ckProPostpartumTubalLigation.Caption);
-  if ckProPostpartumHysterectomy.Checked then
-    DDCSForm1.TmpStrList.Add('  - ' + ckProPostpartumHysterectomy.Caption);
-  if ckIUDInsertion.Checked then
-    DDCSForm1.TmpStrList.Add('  - ' + ckIUDInsertion.Caption);
-  if ckBakri.Checked then
-    DDCSForm1.TmpStrList.Add('  - ' + ckBakri.Caption);
-  if Trim(edProceduresOther.Text) <> '' then
-    DDCSForm1.TmpStrList.Add('  - Other: ' + edProceduresOther.Text);
 
   CleanLv(lstDelivery);
 
@@ -557,19 +611,19 @@ begin
       2 : lvitem.SubItems[3] := 'U';
     end;
 
-    lvitem.SubItems[4] := TJvSpinEdit(spnGList[I]).Text;                               // Birth Weight
+    lvitem.SubItems[4] := TSpinEdit(spnGList[I]).Text;                                 // Birth Weight
     lvitem.SubItems[6] := TCaptionEdit(edAPGARoneList[I]).Text;                        // APGAR one
     lvitem.SubItems[7] := TCaptionEdit(edAPGARfiveList[I]).Text;                       // APGAR five
 
-    if TRadioButton(rbLivingList[I]).Checked then                                      // Status
+    if TCheckBox(ckLivingList[I]).Checked then                                         // Status
       lvitem.SubItems[8] := 'L'
-    else if TRadioButton(rbDemisedList[I]).Checked then
+    else if TCheckBox(ckDemisedList[I]).Checked then
       lvitem.SubItems[8] := 'D';
 
     if TCheckBox(ckNICUList[I]).Checked then                                           // NICU
       lvitem.SubItems[9] := '1';
 
-    if TCaptionMemo(meComplicationsList[I]).Lines.Count > 0 then                              //COMMENTS
+    if TCaptionMemo(meComplicationsList[I]).Lines.Count > 0 then                       //COMMENTS
     begin
       for J := 0 to TCaptionMemo(meComplicationsList[I]).Lines.Count - 1 do
       begin
@@ -591,15 +645,15 @@ begin
     rgSexlist := TList.Create;
     rgSexList.Add(rgSex1);
   end;
-  if rbLivingList = nil then
+  if ckLivingList = nil then
   begin
-    rbLivingList := TList.Create;
-    rbLivingList.Add(rbLiving1);
+    ckLivingList := TList.Create;
+    ckLivingList.Add(ckLiving1);
   end;
-  if rbDemisedList = nil then
+  if ckDemisedList = nil then
   begin
-    rbDemisedList := TList.Create;
-    rbDemisedList.Add(rbDemised1);
+    ckDemisedList := TList.Create;
+    ckDemisedList.Add(ckDemise1);
   end;
   if spnLBList = nil then
   begin
@@ -643,9 +697,8 @@ var
   vTabsheet: TTabsheet;
   vPN: string;
   rgx: TRadioGroup;
-  rbx: TRadioButton;
   lbx: TStaticText;
-  spx: TJvSpinEdit;
+  spx: TSpinEdit;
   edx: TCaptionEdit;
   ckx: TCheckBox;
   mex: TCaptionMemo;
@@ -662,6 +715,7 @@ begin
   rgx := TRadioGroup.Create(vTabsheet);
   rgx.Name := 'rgSex' + vPN;
   rgx.Parent := vTabsheet;
+  rgx.Font.Style := [fsbold];
   rgx.Caption := rgSex1.Caption;
   rgx.Top:= rgSex1.Top;
   rgx.Left := rgSex1.Left;
@@ -671,40 +725,46 @@ begin
   rgx.Items.Add('Female');
   rgx.Items.Add('Unknown');
   rgx.Columns := 3;
+  rgx.OnEnter := RadioGroupEnter;
   rgx.TabOrder := 0;
   rgx.TabStop := True;
   rgSexList.Add(rgx);
 
   //Living
-  rbx := TRadioButton.Create(vTabsheet);
-  rbx.Name := 'rbLiving' + vPN;
-  rbx.Parent := vTabsheet;
-  rbx.Caption := rbLiving1.Caption;
-  rbx.Top := rbLiving1.Top;
-  rbx.Left := rbLiving1.Left;
-  rbx.Height := rbLiving1.Height;
-  rbx.Width := rbLiving1.Width;
-  rbx.TabOrder := 1;
-  rbx.TabStop := True;
-  rbLivingList.Add(rbx);
+  ckx := TCheckBox.Create(vTabsheet);
+  ckx.Name := 'ckLiving' + vPN;
+  ckx.Parent := vTabsheet;
+  ckx.Font.Style := [fsbold];
+  ckx.Caption := ckLiving1.Caption;
+  ckx.Top := ckLiving1.Top;
+  ckx.Left := ckLiving1.Left;
+  ckx.Height := ckLiving1.Height;
+  ckx.Width := ckLiving1.Width;
+  ckx.OnClick := CheckBoxCheckClick;
+  ckx.TabOrder := 1;
+  ckx.TabStop := True;
+  ckLivingList.Add(ckx);
 
   //Demised
-  rbx := TRadioButton.Create(vTabsheet);
-  rbx.Name := 'rbDemised' + vPN;
-  rbx.Parent := vTabsheet;
-  rbx.Caption := rbDemised1.Caption;
-  rbx.Top := rbDemised1.Top;
-  rbx.Left := rbDemised1.Left;
-  rbx.Height := rbDemised1.Height;
-  rbx.Width := rbDemised1.Width;
-  rbx.TabOrder := 2;
-  rbx.TabStop := False;
-  rbDemisedList.Add(rbx);
+  ckx := TCheckBox.Create(vTabsheet);
+  ckx.Name := 'ckDemise' + vPN;
+  ckx.Parent := vTabsheet;
+  ckx.Font.Style := [fsbold];
+  ckx.Caption := ckDemise1.Caption;
+  ckx.Top := ckDemise1.Top;
+  ckx.Left := ckDemise1.Left;
+  ckx.Height := ckDemise1.Height;
+  ckx.Width := ckDemise1.Width;
+  ckx.OnClick := CheckBoxCheckClick;
+  ckx.TabOrder := 2;
+  ckx.TabStop := False;
+  ckDemisedList.Add(ckx);
 
   //Birth Weight Label
   lbx := TStaticText.Create(vTabSheet);
   lbx.Name := 'lbBirthWeight' + vPN;
   lbx.Parent := vTabSheet;
+  lbx.Font.Style := [fsbold];
   lbx.Caption := lbBirthWeight1.Caption;
   lbx.Top := lbBirthWeight1.Top;
   lbx.Left := lbBirthWeight1.Left;
@@ -714,12 +774,10 @@ begin
   lbx.TabStop := True;
 
   //Birth Weight SpinEdit LBS
-  spx := TJvSpinEdit.Create(vTabSheet);
-  spx.Name := 'edtLB' + vPN;
+  spx := TSpinEdit.Create(vTabSheet);
+  spx.Name := 'spnLb' + vPN;
   spx.Parent := vTabSheet;
-  spx.ValueType := vtFloat;
   spx.Value := 0;
-  spx.Decimal := 0;
   spx.Top := spnLB1.Top;
   spx.Left := spnLB1.Left;
   spx.Height := spnLB1.Height;
@@ -729,25 +787,24 @@ begin
   spx.TabStop := True;
   spnLBList.Add(spx);
 
-  //Birth Weight lbs Label
+  //Birth Weight ozs Label
   lbx := TStaticText.Create(vTabSheet);
-  lbx.Name := 'lbLB' + vPN;
+  lbx.Name := 'lbOz' + vPN;
   lbx.Parent := vTabSheet;
-  lbx.Caption := lbLB1.Caption;
-  lbx.Top := lbLB1.Top;
-  lbx.Left := lbLB1.Left;
-  lbx.Height := lbLB1.Height;
-  lbx.Width := lbLB1.Width;
-  lbx.TabOrder := 5;
+  lbx.Font.Style := [fsbold];
+  lbx.Caption := lbOz1.Caption;
+  lbx.Top := lbOz1.Top;
+  lbx.Left := lbOz1.Left;
+  lbx.Height := lbOz1.Height;
+  lbx.Width := lbOz1.Width;
+  lbx.TabOrder := 7;
   lbx.TabStop := True;
 
   //Birth Weight SpinEdit OZS
-  spx := TJvSpinEdit.Create(vTabSheet);
+  spx := TSpinEdit.Create(vTabSheet);
   spx.Name := 'spnOZ' + vPN;
   spx.Parent := vTabSheet;
-  spx.ValueType := vtFloat;
   spx.Value := 0;
-  spx.Decimal := 0;
   spx.Top := spnOZ1.Top;
   spx.Left := spnOZ1.Left;
   spx.Height := spnOZ1.Height;
@@ -757,23 +814,23 @@ begin
   spx.TabStop := True;
   spnOZList.Add(spx);
 
-  //Birth Weight ozs Label
+  //Birth Weight grams Label
   lbx := TStaticText.Create(vTabSheet);
-  lbx.Name := 'lbOz' + vPN;
+  lbx.Name := 'lbg' + vPN;
   lbx.Parent := vTabSheet;
-  lbx.Caption := lbOz1.Caption;
-  lbx.Top := lbOz1.Top;
-  lbx.Left := lbOz1.Left;
-  lbx.Height := lbOz1.Height;
-  lbx.Width := lbOz1.Width;
-  lbx.TabOrder := 7;
+  lbx.Font.Style := [fsbold];
+  lbx.Caption := lbg1.Caption;
+  lbx.Top := lbg1.Top;
+  lbx.Left := lbg1.Left;
+  lbx.Height := lbg1.Height;
+  lbx.Width := lbg1.Width;
+  lbx.TabOrder := 9;
   lbx.TabStop := True;
 
   //Birth Weight grams spinedit
-  spx := TJvSpinEdit.Create(vTabsheet);
-  spx.Name := 'edtg' + vPN;
+  spx := TSpinEdit.Create(vTabsheet);
+  spx.Name := 'spng' + vPN;
   spx.Parent := vTabsheet;
-  spx.ValueType := vtFloat;
   spx.Value := 0;
   spx.Top := spng1.Top;
   spx.Left := spng1.Left;
@@ -784,22 +841,11 @@ begin
   spx.TabStop := True;
   spnGList.Add(spx);
 
-  //Birth Weight grams Label
-  lbx := TStaticText.Create(vTabSheet);
-  lbx.Name := 'lbg' + vPN;
-  lbx.Parent := vTabSheet;
-  lbx.Caption := lbg1.Caption;
-  lbx.Top := lbg1.Top;
-  lbx.Left := lbg1.Left;
-  lbx.Height := lbg1.Height;
-  lbx.Width := lbg1.Width;
-  lbx.TabOrder := 9;
-  lbx.TabStop := True;
-
   //APGAR Label
   lbx := TStaticText.Create(vTabSheet);
   lbx.Name := 'lbAPGAR' + vPN;
   lbx.Parent := vTabSheet;
+  lbx.Font.Style := [fsbold];
   lbx.Caption := lbAPGAR1.Caption;
   lbx.Top := lbAPGAR1.Top;
   lbx.Left := lbAPGAR1.Left;
@@ -813,6 +859,7 @@ begin
   edx.Name := 'edAPGARone' + vPN;
   edx.Parent := vTabsheet;
   edx.Text := '';
+  edx.NumbersOnly := True;
   edx.Caption := edAPGARone1.Caption;
   edx.Top := edAPGARone1.Top;
   edx.Left := edAPGARone1.Left;
@@ -827,6 +874,7 @@ begin
   edx.Name := 'edAPGARfive' + vPN;
   edx.Parent := vTabsheet;
   edx.Text := '';
+  edx.NumbersOnly := True;
   edx.Caption := edAPGARfive1.Caption;
   edx.Top := edAPGARfive1.Top;
   edx.Left := edAPGARfive1.Left;
@@ -840,6 +888,7 @@ begin
   ckx := TCheckBox.Create(vTabsheet);
   ckx.Name := 'ckNICU' + vPN;
   ckx.Parent := vTabsheet;
+  ckx.Font.Style := [fsbold];
   ckx.Caption := ckNICU1.Caption;
   ckx.Top := ckNICU1.Top;
   ckx.Left := ckNICU1.Left;
@@ -853,6 +902,7 @@ begin
   lbx := TStaticText.Create(vTabSheet);
   lbx.Name := 'lbComplications' + vPN;
   lbx.Parent := vTabSheet;
+  lbx.Font.Style := [fsbold];
   lbx.Caption := lbComplications1.Caption;
   lbx.Top := lbComplications1.Top;
   lbx.Left := lbComplications1.Left;
@@ -882,41 +932,24 @@ begin
   pgBaby.Pages[pgBaby.PageCount - 1].Free;
 end;
 
-procedure TForm1.UpdateGrams(I: Integer);
-var
-  lbs,ozs: double;
-begin
-  OnChangeNil(I);
-
-  lbs := Convert(TJvSpinEdit(spnLBList[I]).Value, muPounds, muGrams);
-  ozs := Convert(TJvSpinEdit(spnOzList[I]).Value, muOunces, muGrams);
-  TJvSpinEdit(spnGList[I]).Value := lbs + ozs;
-
-  OnChangeRestore(I);
-end;
-
 procedure TForm1.OnChangeNil(I: Integer);
-var
-  lbc,ozc,gc: TJvSpinEdit;
 begin
-  lbc := TJvSpinEdit(spnLBList[I]);
-  ozc := TJvSpinEdit(spnOzList[I]);
-   gc := TJvSpinEdit(spnGList[I]);
-  lbc.OnChange := nil;
-  ozc.OnChange := nil;
-   gc.OnChange := nil;
+  TSpinEdit(spnLBList[I]).OnChange := nil;
+  TSpinEdit(spnOzList[I]).OnChange := nil;
+  TSpinEdit(spnGList[I]).OnChange := nil;
+
+  TCheckBox(ckLivingList[I]).OnClick := nil;
+  TCheckBox(ckDemisedList[I]).OnClick := nil;
 end;
 
 procedure TForm1.OnChangeRestore(I: Integer);
-var
-  lbc,ozc,gc: TJvSpinEdit;
 begin
-  lbc := TJvSpinEdit(spnLBList[I]);
-  ozc := TJvSpinEdit(spnOzList[I]);
-   gc := TJvSpinEdit(spnGList[I]);
-  lbc.OnChange := spnLb1Change;
-  ozc.OnChange := spnOz1Change;
-   gc.OnChange := UpdateLBOZ;
+  TSpinEdit(spnLBList[I]).OnChange := spnLb1Change;
+  TSpinEdit(spnOzList[I]).OnChange := spnOz1Change;
+  TSpinEdit(spnGList[I]).OnChange := UpdateLBOZ;
+
+  TCheckBox(ckLivingList[I]).OnClick := CheckBoxCheckClick;
+  TCheckBox(ckDemisedList[I]).OnClick := CheckBoxCheckClick;
 end;
 
 end.

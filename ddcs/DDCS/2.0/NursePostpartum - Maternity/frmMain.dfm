@@ -1,6 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
+  ActiveControl = lbFeedingMethod
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Nurse Postpartum - Maternal'
   ClientHeight = 443
@@ -207,9 +208,11 @@ object Form1: TForm1
     Style = tsButtons
     TabHeight = 25
     TabOrder = 0
+    TabStop = False
     ReportCollection = <
       item
         Order = 0
+        IdentifyingName = 'Feeding Method'
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = True
@@ -218,6 +221,7 @@ object Form1: TForm1
       end
       item
         Order = 1
+        IdentifyingName = 'Breast Milk'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -227,6 +231,7 @@ object Form1: TForm1
       end
       item
         Order = 2
+        IdentifyingName = 'Bottle'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -236,6 +241,7 @@ object Form1: TForm1
       end
       item
         Order = 3
+        IdentifyingName = 'Formula'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -245,6 +251,7 @@ object Form1: TForm1
       end
       item
         Order = 4
+        IdentifyingName = 'Ongoing Chronic Medical Conditions'
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = True
@@ -253,6 +260,7 @@ object Form1: TForm1
       end
       item
         Order = 5
+        IdentifyingName = 'Asthma'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -262,6 +270,7 @@ object Form1: TForm1
       end
       item
         Order = 6
+        IdentifyingName = 'Diabetes'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -271,6 +280,7 @@ object Form1: TForm1
       end
       item
         Order = 7
+        IdentifyingName = 'Hypertension'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -280,6 +290,7 @@ object Form1: TForm1
       end
       item
         Order = 8
+        IdentifyingName = 'Ongoing Chronic Medical Conditions Other'
         Prefix = '   Other: '
         DoNotSpace = True
         HideFromNote = False
@@ -289,6 +300,7 @@ object Form1: TForm1
       end
       item
         Order = 9
+        IdentifyingName = 'Maternal Complications'
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = True
@@ -297,6 +309,7 @@ object Form1: TForm1
       end
       item
         Order = 10
+        IdentifyingName = 'None'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -306,6 +319,7 @@ object Form1: TForm1
       end
       item
         Order = 11
+        IdentifyingName = 'Postpartum Hemorrhage'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -315,6 +329,7 @@ object Form1: TForm1
       end
       item
         Order = 12
+        IdentifyingName = 'Infection'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -324,6 +339,7 @@ object Form1: TForm1
       end
       item
         Order = 13
+        IdentifyingName = 'Pre-eclampsia'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -333,6 +349,7 @@ object Form1: TForm1
       end
       item
         Order = 14
+        IdentifyingName = 'Maternal Complications Other'
         Prefix = '   Other: '
         DoNotSpace = True
         HideFromNote = False
@@ -342,6 +359,7 @@ object Form1: TForm1
       end
       item
         Order = 15
+        IdentifyingName = 'Contraceptive Method'
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = True
@@ -350,6 +368,7 @@ object Form1: TForm1
       end
       item
         Order = 16
+        IdentifyingName = 'Contraceptive Method'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
@@ -359,6 +378,7 @@ object Form1: TForm1
       end
       item
         Order = 17
+        IdentifyingName = 'Contraceptive Method Other'
         Prefix = '   Other: '
         DoNotSpace = True
         HideFromNote = False
@@ -368,6 +388,7 @@ object Form1: TForm1
       end
       item
         Order = 18
+        IdentifyingName = 'Comments'
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = True
@@ -376,35 +397,12 @@ object Form1: TForm1
       end
       item
         Order = 19
+        IdentifyingName = 'Comments'
         Prefix = '   '
         DoNotSpace = True
         HideFromNote = False
         DoNotSave = False
         OwningObject = meComments
-        Required = False
-      end
-      item
-        Order = 20
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = StaticText1
-        Required = False
-      end
-      item
-        Order = 21
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = StaticText2
-        Required = False
-      end
-      item
-        Order = 22
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = False
-        OwningObject = StaticText3
         Required = False
       end>
     object TabSheet1: TTabSheet
@@ -451,7 +449,7 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 10
         TabStop = True
       end
       object lbContraceptiveMethod: TStaticText
@@ -466,7 +464,7 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 15
+        TabOrder = 17
         TabStop = True
       end
       object lbComments: TStaticText
@@ -481,7 +479,7 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 18
+        TabOrder = 21
       end
       object ckBreastMilk: TCheckBox
         Left = 36
@@ -496,7 +494,7 @@ object Form1: TForm1
         Top = 130
         Width = 304
         Height = 21
-        TabOrder = 16
+        TabOrder = 18
         Caption = 'Contraceptive Method'
       end
       object ckPreEclampsia: TCheckBox
@@ -505,7 +503,7 @@ object Form1: TForm1
         Width = 97
         Height = 17
         Caption = 'Pre-eclampsia'
-        TabOrder = 13
+        TabOrder = 14
         OnClick = MaternalComplicationsUpdate
       end
       object ckInfection: TCheckBox
@@ -514,7 +512,7 @@ object Form1: TForm1
         Width = 65
         Height = 17
         Caption = 'Infection'
-        TabOrder = 12
+        TabOrder = 13
         OnClick = MaternalComplicationsUpdate
       end
       object ckNone: TCheckBox
@@ -523,15 +521,15 @@ object Form1: TForm1
         Width = 97
         Height = 17
         Caption = 'None'
-        TabOrder = 10
+        TabOrder = 11
         OnClick = MaternalComplicationsUpdate
       end
       object ledMaternalComplicationsOther: TCaptionEdit
-        Left = 64
+        Left = 68
         Top = 176
         Width = 245
         Height = 21
-        TabOrder = 14
+        TabOrder = 16
         OnChange = MaternalComplicationsUpdate
         Caption = 'Maternal Complications Other'
       end
@@ -540,7 +538,7 @@ object Form1: TForm1
         Top = 68
         Width = 271
         Height = 21
-        TabOrder = 8
+        TabOrder = 9
         Caption = 'Ongoing Chronic Medical Conditions Other'
       end
       object ckAsthma: TCheckBox
@@ -556,7 +554,7 @@ object Form1: TForm1
         Top = 157
         Width = 271
         Height = 21
-        TabOrder = 17
+        TabOrder = 20
         Caption = 'Contraceptive Method Other'
       end
       object ckBottle: TCheckBox
@@ -597,7 +595,7 @@ object Form1: TForm1
         Width = 146
         Height = 17
         Caption = 'Postpartum Hemorrhage'
-        TabOrder = 11
+        TabOrder = 12
         OnClick = MaternalComplicationsUpdate
       end
       object meComments: TCaptionMemo
@@ -608,32 +606,32 @@ object Form1: TForm1
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
         ScrollBars = ssVertical
-        TabOrder = 19
+        TabOrder = 22
         Caption = 'Comments'
       end
-      object StaticText1: TStaticText
-        Left = 374
+      object lbOngoingOther: TStaticText
+        Left = 377
         Top = 72
         Width = 30
         Height = 17
         Caption = 'Other'
-        TabOrder = 25
+        TabOrder = 8
       end
-      object StaticText2: TStaticText
-        Left = 28
+      object lbMaternalOther: TStaticText
+        Left = 36
         Top = 180
         Width = 30
         Height = 17
         Caption = 'Other'
-        TabOrder = 26
+        TabOrder = 15
       end
-      object StaticText3: TStaticText
-        Left = 374
+      object lbContraceptiveOther: TStaticText
+        Left = 377
         Top = 161
         Width = 30
         Height = 17
         Caption = 'Other'
-        TabOrder = 27
+        TabOrder = 19
       end
     end
   end

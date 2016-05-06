@@ -22,29 +22,18 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, TypInfo, Contnrs,
-  CheckLst, StrUtils, Grids, ComObj, VAUtils, uExtndComBroker, uReportItems,
-  FSAPILib_TLB,
-  ActiveX, oleacc2, MSAAConstants, ImgList, VAClasses,
-  VA508AccessibilityConst, VA508MSAASupport;
+  System.Classes, System.StrUtils, System.Win.ComObj, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.ComCtrls, Vcl.Menus, Vcl.CheckLst, Vcl.Grids, FSAPILib_TLB,
+  ORDtTm, ORCtrls, uExtndComBroker;
 
 const
   U = '^';
   MENU_CONTEXT    = 'DSIO DDCS CONTEXT';
-  VALID_MESS      = 'Some required elements are incomplete and must be completed in order to generate the note.';
-  WM_AFTER_CREATE = WM_USER + 260;
   WM_SHOW_SPLASH  = WM_USER + 270;
   WM_SAVE         = WM_USER + 280;
 
 type
-  // MSAA (Microsoft Active Accessibility) - IAccessible
-  //  https://msdn.microsoft.com/en-us/library/windows/desktop/cc514820.aspx
-  //  https://msdn.microsoft.com/en-us/library/ms971352.aspx#msaa_sa_owncntrls
-  //  http://stackoverflow.com/questions/16320914/creating-accessible-ui-components-in-delphi
-  //  http://stackoverflow.com/questions/22043582/iaccessible-implementation-accessible-name-only-in-control-window
-  //  https://support.smartbear.com/viewarticle/68910/
-
   TScreenReader = class(TObject)
   private
     FActive: Boolean;
@@ -54,16 +43,18 @@ type
     function IsObjectRegistered: Boolean;
   public
     constructor Create;
-    destructor Destroy; override;
     procedure Say(txt: string; stop: Boolean);
   end;
 
-  TDisplayDialog = function(Broker: PCPRSComBroker; dlgName: WideString; DebugMode: Boolean): WideString; stdcall;
-  TRegisterDialogs = function: WideString; stdcall;
+        TDisplayDialog = function(Broker: PCPRSComBroker; dlgName: WideString; DebugMode: Boolean): WideString; stdcall;
+      TRegisterDialogs = function: WideString; stdcall;
   TGetDialogComponents = function(dlgName: WideString): WideString; stdcall;
 
   procedure Fill(wControl: TWinControl; iIndex,iValue: string);
   function LoadDialogs: THandle;
+
+  // Using VAUtils will return up to LastNum of delimiter even if the pieces didn't exist in the string
+  function Pieces(const S: string; Delim: char; FirstNum, LastNum: Integer): string;
 
 var
   ScreenReader: TScreenReader;
@@ -74,6 +65,9 @@ var
   DisplayDialog: TDisplayDialog;
 
 implementation
+
+uses
+  ORFn, VAUtils, uReportItems;
 
 {$REGION 'TScreenReader'}
 
@@ -106,13 +100,7 @@ begin
   inherited;
 
   ObjGUID := StringToGUID('{CCE5B1E5-B2ED-45D5-B09F-8EC54B75ABF4}');     // Change this to an entry in OE/RR?
-
   FActive := IsObjectRegistered;
-end;
-
-destructor TScreenReader.Destroy;
-begin
-  inherited;
 end;
 
 procedure TScreenReader.Say(txt: string; stop: Boolean);
@@ -131,7 +119,6 @@ end;
 // Used by both the DDCSForm Component and the DDCSDialog Class
 procedure Fill(wControl: TWinControl; iIndex,iValue: string);
 var
-  iClass: TClass;
   I: Integer;
   cb: TCustomComboBox;
   lb: TCustomListBox;
@@ -144,19 +131,27 @@ begin
   if iValue = '' then
     Exit;
 
-  iClass := wControl.ClassType;
   try
-    if iClass.InheritsFrom(TDateTimePicker) then
+    // TStaticText is not normally part of the NoteItems but can be manually created
+    // and if it is we want to use it but we wouldn't want to normally.
+    if wControl is TStaticText then
+      TStaticText(wControl).Caption := iValue
+    else
+    if wControl.InheritsFrom(TORDateBox) then
+      TORDateBox(wControl).Text := iValue
+    else if wControl.InheritsFrom(TDateTimePicker) then
       TDateTimePicker(wControl).DateTime := StrToDate(iValue)
-    else if iClass.InheritsFrom(TCustomEdit) then
+    else if wControl.InheritsFrom(TCustomMemo) then          // Must come before TCustomEdit
+      TCustomMemo(wControl).Lines.Add(iValue)
+    else if wControl.InheritsFrom(TCustomEdit) then
       TCustomEdit(wControl).Text := iValue
-    else if iClass.InheritsFrom(TCheckBox) then
+    else if wControl.InheritsFrom(TCheckBox) then
       TCheckBox(wControl).Checked := True
-    else if iClass.InheritsFrom(TRadioButton) then
+    else if wControl.InheritsFrom(TRadioButton) then
       TRadioButton(wControl).Checked := True
-    else if iClass.InheritsFrom(TRadioGroup) then
+    else if wControl.InheritsFrom(TRadioGroup) then
       TRadioGroup(wControl).ItemIndex := StrToInt(iIndex)
-    else if iClass.InheritsFrom(TCustomComboBox) then
+    else if wControl.InheritsFrom(TCustomComboBox) then
     begin
       cb := TCustomComboBox(wControl);
 
@@ -171,7 +166,8 @@ begin
             Break;
           end;
       end;
-    end else if iClass.InheritsFrom(TCustomListBox) then
+    end
+    else if wControl.InheritsFrom(TCustomListBox) then
     begin
       lb := TCustomListBox(wControl);
 
@@ -179,18 +175,19 @@ begin
 
       if AnsiContainsText(iIndex, 'TRUE') then
       begin
-        if iClass.InheritsFrom(TCheckListBox) then
+        if wControl.InheritsFrom(TCheckListBox) then
           TCheckListBox(wControl).Checked[TCheckListBox(wControl).Items.IndexOf(iValue)] := True
         else
           lb.Selected[lb.Items.Count - 1] := True;
       end;
-    end else if iClass.InheritsFrom(TListView) then
+    end
+    else if wControl.InheritsFrom(TListView) then
     begin
       lv := TListView(wControl);
 
       sl := TStringList.Create;
       try
-        sl.Delimiter := '^';
+        sl.Delimiter := U;
         sl.StrictDelimiter := True;
         sl.DelimitedText := iValue;
 
@@ -220,9 +217,8 @@ begin
       finally
         sl.Free;
       end;
-    end else if iClass.InheritsFrom(TCustomMemo) then
-      TCustomMemo(wControl).Lines.Add(iValue)
-    else if iClass.InheritsFrom(TStringGrid) then
+    end
+    else if wControl.InheritsFrom(TStringGrid) then
     begin
       sg := TStringGrid(wControl);
 
@@ -240,11 +236,13 @@ begin
   end;
 end;
 
+// Used by both the DDCSForm Component and directly from the configuration forms
 function LoadDialogs: THandle;
 var
-  Path,tmp: string;
+  Path,tmp,messtxt: string;
   PathLen,I: Integer;
 begin
+  Result := 0;
   Path := ExtractFilePath(GetModuleName(HInstance));
 
   if FileExists(Path + 'DDCSDialogs.dll') then
@@ -275,18 +273,57 @@ begin
       GetDialogComponents := GetProcAddress(Result, 'GetDialogComponents');
 
       DLLDialogList.Text := RegisterDialogs;
-    end else if RPCBrokerV <> nil then
+    end else
     begin
-      RPCBrokerV.SetContext(MENU_CONTEXT);
-      tmp := RPCBrokerV.sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'DIALOGS REQUIRED']);
+      if RPCBrokerV <> nil then
+      begin
+        if UpdateContext(MENU_CONTEXT) then
+        begin
+          tmp := sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'DIALOGS REQUIRED']);
 
-      if ((tmp <> '') and (StrToBool(tmp))) then
-        raise Exception.Create('This interface requires DDCSDialogs.dll to be present.' + #10#13 +
-                               'This interface may not work correctly.');
+          if ((tmp <> '') and (StrToBool(tmp))) then
+            messtxt := 'This interface requires the DDCSDialogs.dll to be present but was not found.';
+        end;
+      end;
+
+      ShowMsg(messtxt + 'Once the DDCSDialogs.dll is in place you can attempt to reload it via the "Load Dialogs" ' +
+                        'open accessed from the commend menu.', smiWarning, smbOK);
     end;
   except
     on E: Exception do
     ShowMsg(E.Message, smiError, smbOK);
+  end;
+end;
+
+function Pieces(const S: string; Delim: char; FirstNum, LastNum: Integer): string;
+{ returns several contiguous pieces without extra delimiters}
+var
+  sl: TStringList;
+  I: Integer;
+begin
+  Result := '';
+
+  sl := TStringList.Create;
+  try
+    sl.Delimiter := Delim;
+    sl.StrictDelimiter := True;
+    sl.DelimitedText := S;
+
+    if FirstNum > sl.Count then
+      Exit;
+
+    for I := FirstNum - 1 to sl.Count - 1 do
+    begin
+      Result := Result + U + sl[I];
+
+      if I = LastNum - 1 then
+        Break;
+    end;
+
+    if Length(Result) > 0 then
+      Delete(Result, 1, 1);
+  finally
+    sl.Free;
   end;
 end;
 

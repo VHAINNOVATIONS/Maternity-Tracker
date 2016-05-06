@@ -21,8 +21,8 @@ unit dBaseEditor;
 interface
 
 uses
-  System.Classes, Vcl.Dialogs, Vcl.ComCtrls, DesignIntf, DesignEditors, DesignMenus,
-  uBase, frmReportOrder, uReportItems, frmVitals;
+  System.Classes, Vcl.Dialogs, Vcl.ComCtrls, DesignIntf, DesignEditors,
+  DesignMenus;
 
 type
   TDDCSPageEditor = class(TComponentEditor)
@@ -39,7 +39,7 @@ type
 implementation
 
 uses
-  TreeIntf;
+  TreeIntf, uBase, frmVitals;
 
 procedure Register;
 begin

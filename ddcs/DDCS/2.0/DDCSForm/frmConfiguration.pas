@@ -23,7 +23,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Samples.Spin,
-  uBase, uCommon, uReportItems;
+  ORCtrls, uBase, uCommon, uReportItems;
 
 type
   TDDCSFormConfig = class(TForm)
@@ -47,22 +47,24 @@ type
     btnCancel: TBitBtn;
     btnSave: TBitBtn;
     btnDelete: TBitBtn;
-    lbReportNotice: TLabel;
+    lbReportNotice: TStaticText;
     spOrder: TSpinEdit;
-    lbOrder: TLabel;
-    lbTitle: TLabel;
-    lbPrefix: TLabel;
-    lbSuffix: TLabel;
-    edTitle: TEdit;
-    edPrefix: TEdit;
-    edSuffix: TEdit;
+    lbOrder: TStaticText;
+    lbTitle: TStaticText;
+    lbPrefix: TStaticText;
+    lbSuffix: TStaticText;
+    edTitle: TCaptionEdit;
+    edPrefix: TCaptionEdit;
+    edSuffix: TCaptionEdit;
     ckDoNotSpace: TCheckBox;
-    cbDialogReturn: TComboBox;
-    lbDialogReturn: TLabel;
+    cbDialogReturn: TCaptionComboBox;
+    lbDialogReturn: TStaticText;
     pnlConfig: TPanel;
     pnlDialog: TPanel;
     btnClear: TBitBtn;
     btnClose: TBitBtn;
+    CheckBox1: TCheckBox;
+    lbReportControl: TStaticText;
     procedure FormShow(Sender: TObject);
     // ListBox -----------------------------------------------------------------
     procedure ListColumnClick(Sender: TObject; Column: TListColumn);
@@ -131,7 +133,7 @@ begin
   if SortedColumn = 0 then
     Compare := CompareText(Item1.Caption, Item2.Caption)
   else if SortedColumn <> 0 then
-    Compare := CompareText(Item1.SubItems[SortedColumn-1], Item2.SubItems[SortedColumn-1]);
+    Compare := CompareText(Item1.SubItems[SortedColumn - 1], Item2.SubItems[SortedColumn - 1]);
 
   if Descending then
     Compare := -Compare;
@@ -162,8 +164,8 @@ begin
       sl.Add(lvConfig.Items[I].SubItems[1] + U + lvConfig.Items[I].Caption + U + lvConfig.Items[I].SubItems[0]);
 
     try
-      RPCBrokerV.SetContext(MENU_CONTEXT);
-      RPCBrokerV.CallV('DSIO DDCS IMPORT FORM', [RPCBrokerV.DDCSInterface, sl]);
+      if UpdateContext(MENU_CONTEXT) then
+        CallV('DSIO DDCS IMPORT FORM', [RPCBrokerV.DDCSInterface, sl]);
     except
       On E: Exception do
       ShowMsg(E.Message, smiError, smbOK);
@@ -179,8 +181,11 @@ end;
 
 procedure TDDCSFormConfig.lvReportItemsDblClick(Sender: TObject);
 begin
+  lbReportControl.Caption := '';
   if lvReportItems.ItemIndex < 0 then
     Exit;
+
+  lbReportControl.Caption := lvReportItems.Items[lvReportItems.ItemIndex].Caption;
 end;
 
 {$ENDREGION}
@@ -250,8 +255,8 @@ begin
 
         if sl.Count > 0 then
         begin
-          RPCBrokerV.SetContext(MENU_CONTEXT);
-          RPCBrokerV.CallV('DSIO DDCS DIALOG IMPORT', [Piece(DLLDialogList[I],U,2), Piece(DLLDialogList[I],U,1), sl]);
+          if UpdateContext(MENU_CONTEXT) then
+            CallV('DSIO DDCS DIALOG IMPORT', [Piece(DLLDialogList[I],U,2), Piece(DLLDialogList[I],U,1), sl]);
         end;
       end;
     except
@@ -354,16 +359,52 @@ end;
 procedure TDDCSFormConfig.FormShow(Sender: TObject);
 var
   I,J: Integer;
-  wControl: TWinControl;
-  lvItem: TListItem;
-  nItem: TDDCSNoteItem;
 
-  function BoolAsStr(b: Boolean): string;
+  procedure ProcessControls(iPage: string; wControl: TWinControl);
+  var
+    I: Integer;
+    lvItem: TListItem;
+    nItem: TDDCSNoteItem;
+
+    function BoolAsStr(b: Boolean): string;
+    begin
+      Result := 'False';
+      if b then
+        Result := 'True'
+    end;
+
   begin
-    Result := BoolToStr(b);
-    if Result = '-1' then
-      Result := 'True'
-    else Result := 'False';
+    if wControl.Name = '' then Exit;
+    if wControl is TStaticText then Exit;
+
+    for I := 0 to wControl.ControlCount - 1 do
+      if wControl.Controls[I] is TWinControl then
+        ProcessControls(iPage, TWinControl(wControl.Controls[I]));
+
+    lvItem := lvConfig.Items.Add;
+    lvItem.Caption := wControl.Name;
+    lvItem.SubItems.Add(wControl.ClassName);
+    lvItem.SubItems.Add(iPage);
+
+    lvItem := lvReportItems.Items.Add;
+    lvItem.Caption := wControl.Name;
+    lvItem.SubItems.Add(wControl.ClassName);
+    lvItem.SubItems.Add(iPage);
+
+    // We don't want to create new note items that would unless necessary
+    nItem := FDDCSForm.ReportCollection.GetNoteItem(wControl);
+    if nItem <> nil then
+    begin
+      lvItem.SubItems.Add(BoolAsStr(nItem.Required));
+      lvItem.SubItems.Add(IntToStr(nItem.Order));
+    end else
+    begin
+      lvItem.SubItems.Add('');
+      lvItem.SubItems.Add('');
+    end;
+
+    if wControl.InheritsFrom(TCustomMemo) then
+      cbDialogReturn.Items.AddObject(wControl.Name, wControl);
   end;
 
 begin
@@ -376,26 +417,7 @@ begin
   for I := 0 to FDDCSForm.PageCount - 1 do
     for J := 0 to FDDCSForm.Pages[I].ControlCount - 1 do
       if FDDCSForm.Pages[I].Controls[J] is TWinControl then
-      begin
-        wControl := TWinControl(FDDCSForm.Pages[I].Controls[J]);
-
-        lvItem := lvConfig.Items.Add;
-        lvItem.Caption := wControl.Name;
-        lvItem.SubItems.Add(wControl.ClassName);
-        lvItem.SubItems.Add(IntToStr(I+1));
-
-        lvItem := lvReportItems.Items.Add;
-        lvItem.Caption := wControl.Name;
-        lvItem.SubItems.Add(wControl.ClassName);
-        lvItem.SubItems.Add(IntToStr(I+1));
-
-        nItem := FDDCSForm.ReportCollection.GetNoteItem(wControl);
-        if nItem <> nil then
-        begin
-          lvItem.SubItems.Add(BoolAsStr(nItem.Required));
-          lvItem.SubItems.Add(IntToStr(nItem.Order));
-        end;
-      end;
+        ProcessControls(IntToStr(I + 1), TWinControl(FDDCSForm.Pages[I].Controls[J]));
 end;
 
 end.

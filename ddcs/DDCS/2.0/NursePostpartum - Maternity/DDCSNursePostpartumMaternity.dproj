@@ -84,9 +84,10 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
-        <Debugger_HostApplication>C:\Users\DSSDeveloper\Desktop\Projects\_lib\CPRSChart.exe</Debugger_HostApplication>
-        <DCC_ExeOutput>C:\Users\DSSDeveloper\Desktop\Projects\_output\v2\</DCC_ExeOutput>
+        <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
+        <DCC_ExeOutput>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_output\v2\</DCC_ExeOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>None</Manifest_File>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -99,10 +100,12 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
+        <VerInfo_Release>1</VerInfo_Release>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
-        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=DDCS Form for Nurse Postpartum Maternity;FileVersion=2.0.0.0;InternalName=NursePostpartumMaternity.dll;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=DDCS Form for Nurse Postpartum Maternity;FileVersion=2.0.1.0;InternalName=NursePostpartumMaternity.dll;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.0.1.0;Comments=</VerInfo_Keys>
         <VerInfo_DLL>true</VerInfo_DLL>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_ExeOutput>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_output\v2\</DCC_ExeOutput>
@@ -178,7 +181,9 @@
                 <Source>
                     <Source Name="MainSource">DDCSNursePostpartumMaternity.dpr</Source>
                 </Source>
-                <Excluded_Packages/>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\VA_Start.bpl">(untitled)</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="2">
                 <DeployFile LocalName="..\..\..\_output\v2\DDCSNursePostpartumMaternity.dll" Configuration="Release" Class="ProjectOutput">

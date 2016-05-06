@@ -21,21 +21,21 @@ unit frmSplash;
 interface
 
 uses
-  Windows, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, Vcl.Imaging.pngimage,
-  System.Classes, JclFileUtils;
+  Winapi.Windows, System.Classes, System.SysUtils, Vcl.Forms, Vcl.Controls,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage, JclFileUtils;
 
 type
   TDDCSSplash = class(TForm)
     pnlBody: TPanel;
     imgDSS: TImage;
     imgVA: TImage;
-    lbLoading: TLabel;
+    lbLoading: TStaticText;
     lbCopyright: TLabel;
     lbApache: TLabel;
     lbCompany: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-  private
+  protected
     procedure CreateParams(var Params: TCreateParams); override;
   public
   end;
@@ -52,9 +52,9 @@ uses
 
 procedure TDDCSSplash.CreateParams(var Params: TCreateParams);
 begin
-  inherited CreateParams(Params);
+  inherited;
 
-  with Params do Style := WS_POPUP;
+  Params.Style := WS_POPUP;
 end;
 
 procedure TDDCSSplash.FormCreate(Sender: TObject);
@@ -66,6 +66,8 @@ procedure TDDCSSplash.FormShow(Sender: TObject);
 var
   vi: TJclFileVersionInfo;
 begin
+  lbLoading.SetFocus;
+
   vi := TJclFileVersionInfo.Create(HInstance);
   try
     lbCopyRight.Caption := 'Copyright ' + Chr(169) + ' 1995 - ' + IntToStr(YearOf(Now));

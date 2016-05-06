@@ -21,164 +21,229 @@ unit uDialog;
 interface
 
 uses
-  SysUtils, Classes, Controls, Forms, Dialogs, uCommon, VAUtils, uExtndComBroker;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uReportItems,
+  uExtndComBroker;
 
 Type
   TGetTmpStrList = function: TStringList of object;
 
-  TpbOnDialogClose = procedure(Sender: TObject) of object;
-
-  { Dialog Custom Form }
   TDDCSDialog = class(TForm)
   private
+    FReportCollection: TDDCSNoteCollection;
     FReturnList: TStringList;
+    FConfiguration: TStringList;
     FDebugMode: Boolean;
     FIEN: string;
-    FConfiguration: TStringList;
     FOnGetTmpStrList: TGetTmpStrList;
-    FpbDialogClose: TpbOnDialogClose;
+    procedure SetNoteCollection(const Value: TDDCSNoteCollection);
+    procedure cbAutoWidth(Sender: TObject);
   protected
+    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
   public
     constructor Create(AOwner: TComponent; Broker: PCPRSComBroker; DebugMode: Boolean; iIEN: string); overload;
     destructor Destroy; override;
     procedure Save;
-    procedure DialogClose(Sender: TObject; var Action: TCloseAction);
     property TmpStrList: TStringList read FReturnList write FReturnList;
     property DebugMode: Boolean read FDebugMode write FDebugMode;
     property IEN: string read FIEN write FIEN;
     property Configuration: TStringList read FConfiguration write FConfiguration;
   published
+    property ReportCollection: TDDCSNoteCollection read FReportCollection write SetNoteCollection;
     property OnGetTmpStrList: TGetTmpStrList read FOnGetTmpStrList write FOnGetTmpStrList;
-    property OnDialogClose: TpbOnDialogClose read FpbDialogClose write FpbDialogClose;
   end;
 
   TDialogClass = class of TDDCSDialog;
 
-  procedure Register;
-
 implementation
 
-procedure Register;
+uses
+  VAUtils, uCommon;
+
+// Private ---------------------------------------------------------------------
+
+procedure TDDCSDialog.SetNoteCollection(const Value: TDDCSNoteCollection);
 begin
-  RegisterClass(TDDCSDialog);
+  FReportCollection.Assign(Value);
 end;
+
+procedure TDDCSDialog.cbAutoWidth(Sender: TObject);
+var
+  cb: TCustomComboBox;
+  cbLength,I: Integer;
+begin
+  if not Sender.InheritsFrom(TCustomComboBox) then
+    Exit;
+
+  cb := TCustomComboBox(Sender);
+
+  cbLength := cb.Width;
+  for I := 0 to cb.Items.Count - 1 do
+    if cb.Canvas.TextWidth(cb.Items[I]) > cbLength then
+      cbLength := cb.Canvas.TextWidth(cb.Items[I]) + GetSystemMetrics(SM_CXVSCROLL);
+
+  SendMessage(cb.Handle, CB_SETDROPPEDWIDTH, (cblength + 7), 0);
+end;
+
+// Protected -------------------------------------------------------------------
+
+procedure TDDCSDialog.Notification(AComponent: TComponent; Operation: TOperation);
+begin
+  inherited;
+
+  if (FReportCollection = nil) or not (AComponent is TWinControl) or
+    (AComponent = Self) then
+    Exit;
+  if AComponent is TStaticText then
+    Exit;
+
+  if ((csDesigning in ComponentState) and not (csLoading in ComponentState)) then
+  begin
+    if Operation = opInsert then
+      FReportCollection.GetNoteItemAddifNil(TWinControl(AComponent))
+    else if Operation = opRemove then
+      FReportCollection.DeleteNoteItem(TWinControl(AComponent));
+  end;
+end;
+
+// Public ----------------------------------------------------------------------
 
 constructor TDDCSDialog.Create(AOwner: TComponent; Broker: PCPRSComBroker; DebugMode: Boolean; iIEN: string);
 var
   sl,dl: TStringList;
-  I,ctI: Integer;
-  Control: TComponent;
-  Controlled,vPropertyList,vProp,vValue: string;
+  I: Integer;
+  wControl: TWinControl;
+
+  procedure SetUpControl(wControl: TWinControl);
+  var
+    I: Integer;
+    wComboBox: TComboBox;
+  begin
+    if wControl is TStaticText then
+      Exit;
+
+    if wControl.ControlCount > 0 then
+    begin
+      for I := 0 to wControl.ControlCount - 1 do
+        if wControl.Controls[I] is TWinControl then
+          SetUpControl(TWinControl(wControl.Controls[I]));
+    end else
+    begin
+      if wControl is TComboBox then
+      begin
+        wComboBox := TComboBox(wControl);
+        if not Assigned(wComboBox.OnDropDown) then
+          wComboBox.OnDropDown := cbAutoWidth;
+      end;
+
+      FReportCollection.GetNoteItemAddifNil(wControl);
+    end;
+  end;
+
 begin
   inherited Create(AOwner);
 
   RPCBrokerV := Broker^;
   FDebugMode := DebugMode;
   FIEN := iIEN;
-  Self.OnClose := Self.DialogClose;
+
   FReturnList := TStringList.Create;
   FConfiguration := TStringList.Create;
 
-  if FIEN = '' then
+  FReportCollection := TDDCSNoteCollection.Create(Self, TDDCSNoteItem);
+
+  for I := 0 to ComponentCount - 1 do
+    if Components[I] is TWinControl then
+      SetUpControl(TWinControl(Components[I]));
+
+  if RPCBrokerV = nil then
+    Exit;
+
+  sl := TStringList.Create;
+  dl := TStringList.Create;
+  try
     try
-      RPCBrokerV.SetContext(MENU_CONTEXT);
-      FIEN := RPCBrokerV.sCallV('DSIO DDCS DIALOG LOOKUP', [ClassName]);
-    except
-    end;
-
-  if StrToInt(IEN) > 0 then
-  begin
-    sl := TStringList.Create; dl := TStringList.Create;
-    try
-      dl.Add(IEN + ';DSIO(19641.49,');
-      try
-        RPCBrokerV.SetContext(MENU_CONTEXT);
-        RPCBrokerV.tCallV(sl, 'DSIO DDCS BUILD FORM', [dl, RPCBrokerV.ControlObject, RPCBrokerV.Source.IEN]);
-
-        if sl.Count > 0 then
-        begin
-          for I := 0 to sl.Count - 1 do
-          begin
-
-            // Control Value --------------------------------------------------
-            //               CV^NAME^F^(INDEXED^VALUE)
-            if Piece(sl[I],'^',1)='CV' then
-            begin
-              Control := FindComponent(Piece(sl[I],U,2));
-              if ((Control <> nil) and (Control is TWinControl)) then
-              begin
-                if Piece(sl[I],U,3) = 'F' then
-                  Fill(TWinControl(Control), Piece(sl[I],U,4), Pieces(sl[I],U,5,9999));
-              end;
-            end;
-          end;
-        end;
-
-      except
-        on E: Exception do
-        ShowMsg(E.Message, smiError, smbOK);
+      if FIEN = '' then
+      begin
+        if UpdateContext(MENU_CONTEXT) then
+          FIEN := sCallV('DSIO DDCS DIALOG LOOKUP', [ClassName]);
       end;
-    finally
-      sl.Free; dl.Free;
+
+      if StrToIntDef(FIEN, 0) < 1 then
+        Exit;
+
+      dl.Add(IEN + ';DSIO(19641.49,');
+
+      if UpdateContext(MENU_CONTEXT) then
+        tCallV(sl, 'DSIO DDCS BUILD FORM', [dl, RPCBrokerV.ControlObject, RPCBrokerV.Source.IEN]);
+
+      for I := 0 to sl.Count - 1 do
+      begin
+        // Control Value --------------------------------------------------
+        //               CV^NAME^F^(INDEXED^VALUE)
+        if Piece(sl[I],U,1) = 'CV' then
+        begin
+          wControl := FReportCollection.GetAControl(Piece(sl[I],U,2));
+
+          if ((wControl <> nil) and (Piece(sl[I],U,3) = 'F')) then
+            Fill(wControl, Piece(sl[I],U,4), Pieces(sl[I],U,5,9999));
+        end;
+      end;
+    except
+      on E: Exception do
+      ShowMsg(E.Message, smiError, smbOK);
     end;
+  finally
+    sl.Free;
+    dl.Free;
   end;
 end;
 
 destructor TDDCSDialog.Destroy;
 begin
-  FConfiguration.Free;
-  FReturnList.Free;
-  inherited Destroy;
-end;
-
-procedure TDDCSDialog.DialogClose(Sender: TObject; var Action: TCloseAction);
-begin
   if ModalResult <> mrCancel then
-  begin
     if not DebugMode then
       Save;
-  end;
 
-  Action := caFree;
+  FReturnList.Free;
+  FConfiguration.Free;
+  FReportCollection.Free;
 
-  if Assigned(FpbDialogClose) then
-    FpbDialogClose(Self);
+  inherited;
 end;
 
 procedure TDDCSDialog.Save;
 var
-  Note,Build: TStringList;
+  sl: TStringList;
   I: Integer;
+  nItem: TDDCSNoteItem;
 begin
-  try
-    if StrToInt(IEN) > 0 then
-    begin
-      Note := TStringList.Create;
-      for I := 0 to ComponentCount - 1 do
-      begin
-        Build := TStringList.Create;
-        try
-//          Build := BuildDiscreetData(TWinControl(Components[I]),'');
-          if Build.Count > 0 then
-            Note.AddStrings(Build);
-        finally
-          Build.Free;
-        end;
-      end;
+  if (StrToIntDef(IEN, 0) < 1) or (RPCBrokerV = nil) then
+    Exit;
 
-      if Note.Count > 0 then
-      begin
-        try
-          RPCBrokerV.SetContext(MENU_CONTEXT);
-          RPCBrokerV.CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.Source.IEN, IEN + ';DSIO(19641.49,', Note]);
-        except
-        end;
-      end;
-      Note.Free;
+  sl := TStringList.Create;
+  try
+    for I := 0 to ReportCollection.Count - 1 do
+    begin
+      nItem := ReportCollection.Items[I];
+
+      // Data format -----------------------------------------------------------
+      //   CONTROL^(INDEXED^VALUE)
+
+      if not nItem.DoNotSave then
+        sl.AddStrings(nItem.GetValueSave);
     end;
-  except
-    on E: Exception do
-    ShowMsg(E.Message, smiError, smbOK);
+
+    if sl.Count > 0 then
+    try
+      if UpdateContext(MENU_CONTEXT) then
+        CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.Source.IEN, FIEN + ';DSIO(19641.49,', sl]);
+    except
+      on E: Exception do
+      ShowMsg(E.Message, smiError, smbOK);
+    end;
+  finally
+    sl.Free;
   end;
 end;
 
