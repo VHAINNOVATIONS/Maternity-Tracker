@@ -357,12 +357,4 @@ object dlgPreNatal: TdlgPreNatal
       TabOrder = 0
     end
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgPreNatal'
-        'Status = stsDefault'))
-  end
 end

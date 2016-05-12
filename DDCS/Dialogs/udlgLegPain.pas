@@ -17,26 +17,24 @@ unit udlgLegPain;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgLegPain = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leDur: TLabeledEdit;
-    amgrMain: TVA508AccessibilityManager;
+    leOnset: TCaptionEdit;
+    leDur: TCaptionEdit;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
   private
   public
@@ -54,7 +52,7 @@ procedure TdlgLegPain.bbtnOKClick(Sender: TObject);
 begin
   if (leOnset.Text <> '') or (leDur.Text <> '') then
   begin
-    TmpStrList.Add('Leg pain/swelling:');
+    TmpStrList.Add('Leg Pain and Swelling:');
     if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
     if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
   end;

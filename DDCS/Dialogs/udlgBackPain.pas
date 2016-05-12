@@ -17,37 +17,38 @@ unit udlgBackPain;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker, ORCtrls;
 
 type
   TdlgBackPain = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
+    pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leChar: TLabeledEdit;
-    leLocat: TLabeledEdit;
-    leDur: TLabeledEdit;
-    leUrin: TLabeledEdit;
-    Label3: TLabel;
+    leOnset: TCaptionEdit;
+    leChar: TCaptionEdit;
+    leLocat: TCaptionEdit;
+    leDur: TCaptionEdit;
+    leUrin: TCaptionEdit;
+    Label3: TStaticText;
     cbDysY: TCheckBox;
     cbDysN: TCheckBox;
-    Label1: TLabel;
+    Label1: TStaticText;
     cbFeverY: TCheckBox;
     cbFeverN: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    StaticText3: TStaticText;
+    StaticText4: TStaticText;
+    StaticText5: TStaticText;
     procedure bbtnOKClick(Sender: TObject);
-    procedure cbDysYClick(Sender: TObject);
+    procedure checkboxClick(Sender: TObject);
   private
   public
   end;
@@ -72,15 +73,15 @@ begin
    if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
    if leLocat.Text  <> '' then TmpStrList.Add('  Location: ' + leLocat.Text);
    if leChar.Text  <> '' then TmpStrList.Add('  Character: ' + leChar.Text);
-   if leUrin.Text  <> '' then TmpStrList.Add('  Urinary frequency/urgency: ' + leUrin.Text);
+   if leUrin.Text  <> '' then TmpStrList.Add('  Urinary frequency and or urgency: ' + leUrin.Text);
    if cbDysY.Checked then TmpStrList.Add('  Dysuria? Yes');
    if cbDysN.Checked then TmpStrList.Add('  Dysuria? No');
-   if cbFeverY.Checked then TmpStrList.Add('  Fever/chills? Yes');
-   if cbFeverN.Checked then TmpStrList.Add('  Fever/chills? No');
+   if cbFeverY.Checked then TmpStrList.Add('  Fever and or Chills? Yes');
+   if cbFeverN.Checked then TmpStrList.Add('  Fever and or Chills? No');
   end;
 end;
 
-procedure TdlgBackPain.cbDysYClick(Sender: TObject);
+procedure TdlgBackPain.checkboxClick(Sender: TObject);
 begin
  if (Sender is TCheckBox) and ((Sender as TCheckBox).Checked = TRUE) then
  begin   {cb6-9 - toggle 4 checkboxes}

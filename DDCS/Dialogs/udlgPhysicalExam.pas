@@ -153,7 +153,6 @@ type
     Edit14: TEdit;
     CheckBox55: TCheckBox;
     CheckBox56: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
     procedure BitBtn1Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure bbtnOKClick(Sender: TObject);

@@ -17,29 +17,29 @@ unit udlgPalp;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgPalp = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
+    pnlfooter: TPanel;
     bbtnOK: TBitBtn;
-    bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leDur: TLabeledEdit;
-    leAssoc: TLabeledEdit;
-    leFreq: TLabeledEdit;
+    leOnset: TCaptionEdit;
+    leDur: TCaptionEdit;
+    leAssoc: TCaptionEdit;
+    leFreq: TCaptionEdit;
     Label1: TLabel;
-    amgrMain: TVA508AccessibilityManager;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    StaticText3: TStaticText;
+    StaticText4: TStaticText;
+    bbtnCancel: TBitBtn;
     procedure bbtnOKClick(Sender: TObject);
   private
   public
@@ -62,7 +62,7 @@ begin
    if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
    if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
    if leFreq.Text  <> '' then TmpStrList.Add('  Frequency: ' + leFreq.Text);
-   if leAssoc.Text  <> '' then TmpStrList.Add('  Associated symptoms: ' + leAssoc.Text);
+   if leAssoc.Text  <> '' then TmpStrList.Add('  Associated Symptoms: ' + leAssoc.Text);
   end;
 end;
 

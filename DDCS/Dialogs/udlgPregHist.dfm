@@ -258,12 +258,4 @@ object dlgPregHist: TdlgPregHist
     ReadOnly = True
     TabOrder = 2
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 549
-    Top = 64
-    Data = (
-      (
-        'Component = dlgPregHist'
-        'Status = stsDefault'))
-  end
 end

@@ -29,9 +29,7 @@ uses
 
 type
   TdlgAbdomPain = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TStaticText;
-    Panel2: TPanel;
+    pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
     leOnset: TCaptionEdit;
@@ -78,7 +76,7 @@ begin
      (cbFevYes.Checked) or (cbFevNo.Checked) or (leLocat.Text <> '')
      then
   begin
-   TmpStrList.Add('Abdominal Pain/Cramping:');
+   TmpStrList.Add('Abdominal Pain and Cramping:');
    if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
    if cbContYes.Checked  then
    begin
@@ -91,12 +89,12 @@ begin
    else if cbContNo.Checked  then
      TmpStrList.Add('  Contractions? No');
 
-   if cbNausYes.Checked then TmpStrList.Add('  Nausea/Vomiting/Diarrhea? Yes');
-   if cbNausNo.Checked then TmpStrList.Add('  Nausea/Vomiting/Diarrhea? No');
+   if cbNausYes.Checked then TmpStrList.Add('  Nausea, Vomiting, Diarrhea? Yes');
+   if cbNausNo.Checked then TmpStrList.Add('  Nausea, Vomiting, Diarrhea? No');
    if cbAppYes.Checked then TmpStrList.Add('  Appetite? Yes');
    if cbAppNo.Checked then TmpStrList.Add('  Appetite? No');
-   if cbFevYes.Checked then TmpStrList.Add('  Fever? Yes');
-   if cbFevNo.Checked then TmpStrList.Add('  Fever? No');
+   if cbFevYes.Checked then TmpStrList.Add('  Fever and or Chills? Yes');
+   if cbFevNo.Checked then TmpStrList.Add('  Fever and or Chills? No');
    if leLocat.Text  <> '' then TmpStrList.Add('  Location: ' + leLocat.Text);
   end;
 end;
@@ -105,33 +103,38 @@ procedure TdlgAbdomPain.cbContYesClick(Sender: TObject);
 begin
   if (Sender as TCheckBox).Tag = 1 then
   begin  {Yes}
-    if (Sender as TCheckBox).Checked = TRUE then
+    if (Sender as TCheckBox).Checked then
     begin  {Yes}
-      cbContNo.Checked := FALSE;
-      cbContYes.Checked := TRUE;
-      leFreq.Visible := TRUE;
+      cbContNo.OnClick := nil;
+      cbContNo.Checked := False;
+      cbContNo.OnClick := cbContYesClick;
+
       lbFreq.Visible := True;
-      leDur.Visible := TRUE;
+      leFreq.Visible := True;
       lbDur.Visible := True;
+      leDur.Visible := True;
       leFreq.SetFocus;
-    end
-    else if (Sender as TCheckBox).Checked = FALSE then
+    end else
     begin  {Yes - unchecked}
-      leFreq.Visible := FALSE;
-      leDur.Visible := FALSE;
       leFreq.Clear;
+      lbFreq.Visible := False;
+      leFreq.Visible := False;
       leDur.Clear;
+      lbDur.Visible := False;
+      leDur.Visible := False;
     end;
-  end
-  else if (Sender as TCheckBox).Tag = 2 then
+  end else if (Sender as TCheckBox).Tag = 2 then
   begin   {No}
-    cbContYes.Checked := FALSE;
-    leFreq.Visible := FALSE;
-    lbFreq.Visible := False;
-    leDur.Visible := FALSE;
-    lbDur.Visible := False;
+    cbContYes.OnClick := nil;
+    cbContYes.Checked := False;
+    cbContYes.OnClick := cbContYesClick;
+
     leFreq.Clear;
+    lbFreq.Visible := False;
+    leFreq.Visible := False;
     leDur.Clear;
+    lbDur.Visible := False;
+    leDur.Visible := False;
   end
   else if ((Sender as TCheckBox).Tag = 3) and ((Sender as TCheckBox).Checked = TRUE) then
     cbNausNo.Checked := FALSE
@@ -145,7 +148,6 @@ begin
     cbFevNo.Checked := FALSE
   else if ((Sender as TCheckBox).Tag = 8) and ((Sender as TCheckBox).Checked = TRUE) then
     cbFevYes.Checked := FALSE;
-
 end;
 
 end.

@@ -22,6 +22,30 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCS\2.0\DDCSForm\
 35295/1218868211
 10
 2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCSForm\frmAbout.dfm
+407090/1218274518
+12
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCSForm\frmSplash.dfm
+180896/1218136620
+14
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCSForm\frmPreview.dfm
+996/1218071677
+16
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCSForm\frmConfiguration.dfm
+39714/1219260015
+18
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCSForm\frmConfigMultiItemAdd.dfm
+2074/1218136514
+20
+2
+C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCSForm\frmVitals.dfm
+35295/1218868211
+22
+2
 |EOINDEX|
 5786
 object DDCSAbout: TDDCSAbout
@@ -30,6 +54,18 @@ object DDCSAbout: TDDCSAbout
 1
 ÿ
 805
+object DDCSFormConfig: TDDCSFormConfig
+66
+object AddItem: TAddItem
+1406
+object DDCSVitals: TDDCSVitals
+5786
+object DDCSAbout: TDDCSAbout
+1
+ÿ
+1
+ÿ
+1025
 object DDCSFormConfig: TDDCSFormConfig
 66
 object AddItem: TAddItem

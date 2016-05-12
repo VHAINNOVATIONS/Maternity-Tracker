@@ -17,35 +17,34 @@ unit udlgVagBleed;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgVagBleed = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leAmt: TLabeledEdit;
-    leDur: TLabeledEdit;
-    Label3: TLabel;
+    leOnset: TCaptionEdit;
+    leAmt: TCaptionEdit;
+    leDur: TCaptionEdit;
+    Label3: TStaticText;
     cbCrampY: TCheckBox;
     cbCrampN: TCheckBox;
-    Label1: TLabel;
+    Label1: TStaticText;
     cbLeakY: TCheckBox;
     cbLeakN: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    StaticText3: TStaticText;
+    pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
-    procedure cbCrampYClick(Sender: TObject);
+    procedure checkboxClick(Sender: TObject);
   private
   public
   end;
@@ -64,18 +63,18 @@ begin
      (cbCrampY.Checked) or (cbCrampN.Checked) or
      (cbLeakY.Checked) or (cbLeakN.Checked) then
   begin
-   TmpStrList.Add('Vaginal bleeding:');
+   TmpStrList.Add('Vaginal Bleeding:');
    if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
    if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
    if leAmt.Text  <> '' then TmpStrList.Add('  Amount: ' + leAmt.Text);
-   if cbCrampY.Checked then TmpStrList.Add('  Associated with cramping/contractions? Yes');
-   if cbCrampN.Checked then TmpStrList.Add('  Associated with cramping/contractions? No');
+   if cbCrampY.Checked then TmpStrList.Add('  Associated with cramping and or contractions? Yes');
+   if cbCrampN.Checked then TmpStrList.Add('  Associated with cramping and or contractions? No');
    if cbLeakY.Checked then TmpStrList.Add('  Leakage of fluid? Yes');
    if cbLeakN.Checked then TmpStrList.Add('  Leakage of fluid? No');
   end;
 end;
 
-procedure TdlgVagBleed.cbCrampYClick(Sender: TObject);
+procedure TdlgVagBleed.checkboxClick(Sender: TObject);
 begin
   if (Sender as TCheckBox).Checked = TRUE then
   begin

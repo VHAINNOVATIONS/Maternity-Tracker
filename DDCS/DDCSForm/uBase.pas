@@ -795,7 +795,7 @@ begin
     try
       sl.Text := DisplayDialog(@RPCBrokerV, nItem.Configuration[ls.ItemIndex], False);
 
-      if Sender.InheritsFrom(TCheckListBox) then
+      if ((Sender.InheritsFrom(TCheckListBox)) and (sl.Count > 0)) then
         TCheckListBox(Sender).Checked[ls.ItemIndex] := True;
 
       if nItem.DialogReturn <> nil then

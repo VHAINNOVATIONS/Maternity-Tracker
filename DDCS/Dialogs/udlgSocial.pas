@@ -201,10 +201,8 @@ type
     Label44: TLabel;
     Edit1: TEdit;
     Edit2: TEdit;
-    amgrMain: TVA508AccessibilityManager;
     procedure FormCreate(Sender: TObject);
     procedure bbtnOKClick(Sender: TObject);
-    procedure sbtnGetDate1Click(Sender: TObject);
     procedure cbalcoholyesClick(Sender: TObject);
     procedure cbalcoholnoClick(Sender: TObject);
     procedure cbdrugsyesClick(Sender: TObject);
@@ -235,37 +233,11 @@ var
 
 implementation
 
-uses
-   udlgDATE;
-
 {$R *.dfm}
 
 procedure TdlgSocial.FormCreate(Sender: TObject);
 begin
   PageControl1.ActivePageIndex := 0;
-end;
-
-procedure TdlgSocial.sbtnGetDate1Click(Sender: TObject);
-var
-  TmpForm : TdlgDate;
-begin
-  try
-    TmpForm := TdlgDate.Create( Nil );
-    TmpForm.ShowModal;
-    if TmpForm.ModalResult = mrOK then
-     begin
-      if(TmpForm.calMonth.Date) >  Now then
-        showmessage('No future dates')
-      else
-      case (Sender as TSpeedButton).Tag of
-        1: leddate.Text        := DateToStr(TmpForm.calMonth.Date);
-        2: leddatealcohol.Text := DateToStr(TmpForm.calMonth.Date);
-        3: leddatedrugs.Text   := DateToStr(TmpForm.calMonth.Date);
-      end;
-    end;
-  finally
-    TmpForm.Free;
-  end;
 end;
 
 procedure TdlgSocial.SpinEditChange(Sender: TObject);

@@ -95,16 +95,12 @@ object dlgMedical: TdlgMedical
     Top = 33
     Width = 652
     Height = 606
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 1
     OnChange = PageControl1Change
     object TabSheet1: TTabSheet
       Caption = 'Page1'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label2: TLabel
         Left = 10
         Top = 31
@@ -689,10 +685,6 @@ object dlgMedical: TdlgMedical
     object TabSheet2: TTabSheet
       Caption = 'Page2'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label16: TLabel
         Left = 10
         Top = 34
@@ -793,32 +785,6 @@ object dlgMedical: TdlgMedical
         ParentColor = False
         Transparent = False
         Layout = tlCenter
-      end
-      object SpeedButton1: TSpeedButton
-        Tag = 2
-        Left = 605
-        Top = 252
-        Width = 25
-        Height = 25
-        Hint = 'Pick Date From Calendar'
-        Flat = True
-        Glyph.Data = {
-          76010000424D7601000000000000760000002800000020000000100000000100
-          04000000000000010000120B0000120B00001000000000000000000000000000
-          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-          33333FFFFFFFFFFFFFFF000000000000000077777777777777770FF7FF7FF7FF
-          7FF07FF7FF7FF7F37F3709F79F79F7FF7FF077F77F77F7FF7FF7077777777777
-          777077777777777777770FF7FF7FF7FF7FF07FF7FF7FF7FF7FF709F79F79F79F
-          79F077F77F77F77F77F7077777777777777077777777777777770FF7FF7FF7FF
-          7FF07FF7FF7FF7FF7FF709F79F79F79F79F077F77F77F77F77F7077777777777
-          777077777777777777770FFFFF7FF7FF7FF07F33337FF7FF7FF70FFFFF79F79F
-          79F07FFFFF77F77F77F700000000000000007777777777777777CCCCCC8888CC
-          CCCC777777FFFF777777CCCCCCCCCCCCCCCC7777777777777777}
-        NumGlyphs = 2
-        ParentShowHint = False
-        ShowHint = True
-        OnClick = LastPAPDate
       end
       object Label24: TLabel
         Left = 10
@@ -1136,17 +1102,6 @@ object dlgMedical: TdlgMedical
         Height = 22
         TabOrder = 26
       end
-      object LabeledEdit2: TLabeledEdit
-        Left = 493
-        Top = 254
-        Width = 106
-        Height = 22
-        EditLabel.Width = 81
-        EditLabel.Height = 14
-        EditLabel.Caption = 'Date of Last PAP'
-        LabelPosition = lpLeft
-        TabOrder = 27
-      end
       object CheckBox45: TCheckBox
         Tag = 45
         Left = 184
@@ -1156,7 +1111,7 @@ object dlgMedical: TdlgMedical
         Hint = 'POS'
         Color = clMoneyGreen
         ParentColor = False
-        TabOrder = 28
+        TabOrder = 27
         OnClick = CheckBox1Click
       end
       object CheckBox46: TCheckBox
@@ -1168,7 +1123,7 @@ object dlgMedical: TdlgMedical
         Hint = 'NEG'
         Color = clMoneyGreen
         ParentColor = False
-        TabOrder = 29
+        TabOrder = 28
         OnClick = CheckBox1Click
       end
       object Edit22: TEdit
@@ -1176,7 +1131,7 @@ object dlgMedical: TdlgMedical
         Top = 282
         Width = 378
         Height = 22
-        TabOrder = 30
+        TabOrder = 29
       end
       object CheckBox47: TCheckBox
         Tag = 47
@@ -1185,7 +1140,7 @@ object dlgMedical: TdlgMedical
         Width = 21
         Height = 17
         Hint = 'POS'
-        TabOrder = 31
+        TabOrder = 30
       end
       object CheckBox48: TCheckBox
         Tag = 48
@@ -1194,14 +1149,14 @@ object dlgMedical: TdlgMedical
         Width = 21
         Height = 17
         Hint = 'NEG'
-        TabOrder = 32
+        TabOrder = 31
       end
       object Edit19: TEdit
         Left = 252
         Top = 310
         Width = 378
         Height = 22
-        TabOrder = 33
+        TabOrder = 32
       end
       object CheckBox49: TCheckBox
         Tag = 49
@@ -1212,7 +1167,7 @@ object dlgMedical: TdlgMedical
         Hint = 'POS'
         Color = clMoneyGreen
         ParentColor = False
-        TabOrder = 34
+        TabOrder = 33
       end
       object CheckBox50: TCheckBox
         Tag = 50
@@ -1223,14 +1178,14 @@ object dlgMedical: TdlgMedical
         Hint = 'NEG'
         Color = clMoneyGreen
         ParentColor = False
-        TabOrder = 35
+        TabOrder = 34
       end
       object Edit20: TEdit
         Left = 252
         Top = 338
         Width = 378
         Height = 22
-        TabOrder = 36
+        TabOrder = 35
       end
       object CheckBox51: TCheckBox
         Tag = 51
@@ -1239,7 +1194,7 @@ object dlgMedical: TdlgMedical
         Width = 21
         Height = 17
         Hint = 'POS'
-        TabOrder = 37
+        TabOrder = 36
       end
       object CheckBox52: TCheckBox
         Tag = 52
@@ -1248,14 +1203,14 @@ object dlgMedical: TdlgMedical
         Width = 21
         Height = 17
         Hint = 'NEG'
-        TabOrder = 38
+        TabOrder = 37
       end
       object Edit23: TEdit
         Left = 252
         Top = 366
         Width = 378
         Height = 22
-        TabOrder = 39
+        TabOrder = 38
       end
       object CheckBox53: TCheckBox
         Tag = 53
@@ -1266,7 +1221,7 @@ object dlgMedical: TdlgMedical
         Hint = 'POS'
         Color = clMoneyGreen
         ParentColor = False
-        TabOrder = 40
+        TabOrder = 39
       end
       object CheckBox54: TCheckBox
         Tag = 54
@@ -1277,14 +1232,14 @@ object dlgMedical: TdlgMedical
         Hint = 'NEG'
         Color = clMoneyGreen
         ParentColor = False
-        TabOrder = 41
+        TabOrder = 40
       end
       object Edit28: TEdit
         Left = 252
         Top = 394
         Width = 378
         Height = 22
-        TabOrder = 42
+        TabOrder = 41
       end
       object LabeledEdit1: TLabeledEdit
         Left = 49
@@ -1295,16 +1250,19 @@ object dlgMedical: TdlgMedical
         EditLabel.Height = 14
         EditLabel.Caption = 'Other:'
         LabelPosition = lpLeft
+        TabOrder = 42
+      end
+      object ORDateBox1: TORDateBox
+        Left = 464
+        Top = 256
+        Width = 121
+        Height = 22
         TabOrder = 43
+        Text = 'ORDateBox1'
+        DateOnly = False
+        RequireTime = False
+        Caption = ''
       end
     end
-  end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 501
-    Top = 40
-    Data = (
-      (
-        'Component = dlgMedical'
-        'Status = stsDefault'))
   end
 end

@@ -2,8 +2,9 @@ object dlgVagBleed: TdlgVagBleed
   Left = 217
   Top = 135
   BorderStyle = bsDialog
-  ClientHeight = 176
-  ClientWidth = 481
+  Caption = 'Vaginal Bleeding'
+  ClientHeight = 138
+  ClientWidth = 513
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,156 +16,173 @@ object dlgVagBleed: TdlgVagBleed
   Scaled = False
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TLabel
-    Left = 251
-    Top = 51
-    Width = 193
-    Height = 14
-    Caption = 'Associated wth cramping/contractions?'
-  end
-  object Label1: TLabel
-    Left = 251
-    Top = 115
-    Width = 83
-    Height = 14
-    Caption = 'Leakage of fluid?'
-  end
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 481
-    Height = 33
-    Align = alTop
-    Color = clWhite
+  object Label3: TStaticText
+    Left = 241
+    Top = 14
+    Width = 262
+    Height = 18
+    Caption = 'Associated wth cramping and or contractions?'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 0
-    object lbltitle: TLabel
-      Left = 4
-      Top = 4
-      Width = 136
-      Height = 20
-      Caption = 'Vaginal Bleeding'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -16
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
+    TabOrder = 6
+    TabStop = True
   end
-  object Panel2: TPanel
+  object Label1: TStaticText
+    Left = 241
+    Top = 62
+    Width = 99
+    Height = 18
+    Caption = 'Leakage of fluid?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 9
+    TabStop = True
+  end
+  object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 147
-    Width = 481
+    Top = 109
+    Width = 513
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 8
+    TabOrder = 12
     object bbtnOK: TBitBtn
-      Left = 323
-      Top = 2
+      Left = 356
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkOK
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 404
-      Top = 2
+      Left = 437
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
     end
   end
-  object leOnset: TLabeledEdit
-    Left = 56
-    Top = 54
+  object leOnset: TCaptionEdit
+    Left = 73
+    Top = 14
     Width = 145
     Height = 22
-    EditLabel.Width = 32
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Onset:'
-    LabelPosition = lpLeft
     TabOrder = 1
+    Caption = 'Onset'
   end
-  object leAmt: TLabeledEdit
-    Left = 56
-    Top = 112
+  object leAmt: TCaptionEdit
+    Left = 73
+    Top = 76
     Width = 145
     Height = 22
-    EditLabel.Width = 40
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Amount:'
-    LabelPosition = lpLeft
+    TabOrder = 5
+    Caption = 'Amount'
+  end
+  object leDur: TCaptionEdit
+    Left = 73
+    Top = 45
+    Width = 145
+    Height = 22
     TabOrder = 3
-  end
-  object leDur: TLabeledEdit
-    Left = 56
-    Top = 83
-    Width = 145
-    Height = 22
-    EditLabel.Width = 43
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Duration:'
-    LabelPosition = lpLeft
-    TabOrder = 2
+    Caption = 'Duration'
   end
   object cbCrampY: TCheckBox
     Tag = 1
-    Left = 342
-    Top = 69
+    Left = 241
+    Top = 30
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 4
-    OnClick = cbCrampYClick
+    TabOrder = 7
+    OnClick = checkboxClick
   end
   object cbCrampN: TCheckBox
     Tag = 2
-    Left = 391
-    Top = 69
+    Left = 290
+    Top = 30
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 5
-    OnClick = cbCrampYClick
+    TabOrder = 8
+    OnClick = checkboxClick
   end
   object cbLeakY: TCheckBox
     Tag = 3
-    Left = 342
-    Top = 115
+    Left = 241
+    Top = 77
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 6
-    OnClick = cbCrampYClick
+    TabOrder = 10
+    OnClick = checkboxClick
   end
   object cbLeakN: TCheckBox
     Tag = 4
-    Left = 391
-    Top = 115
+    Left = 290
+    Top = 77
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 7
-    OnClick = cbCrampYClick
+    TabOrder = 11
+    OnClick = checkboxClick
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgVagBleed'
-        'Status = stsDefault'))
+  object StaticText1: TStaticText
+    Left = 17
+    Top = 80
+    Width = 48
+    Height = 18
+    Caption = 'Amount'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+  end
+  object StaticText2: TStaticText
+    Left = 17
+    Top = 49
+    Width = 50
+    Height = 18
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+  end
+  object StaticText3: TStaticText
+    Left = 17
+    Top = 18
+    Width = 37
+    Height = 18
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
   end
 end

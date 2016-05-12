@@ -52,7 +52,6 @@ type
     edMultipleBirths: TEdit;
     edPremature: TEdit;
     edFullTerm: TEdit;
-    amgrMain: TVA508AccessibilityManager;
     procedure FormDestroy(Sender: TObject);
     procedure bbtnOKClick(Sender: TObject);
     procedure edtTotPregChange(Sender: TObject);
@@ -79,7 +78,7 @@ var
 implementation
 
 uses
-  VAUtils, udlgDATE, fPregHist, fChildHist, udlgModTotPregs;
+  VAUtils, fPregHist, fChildHist, udlgModTotPregs;
 
 {$R *.dfm}
 
@@ -170,7 +169,7 @@ var
   end;
 
 begin
-  slPregs := TStringList.Create;
+  slPregs := TStringList.Create(True);
 
   edtTotPreg.OnChange   := nil;
   edtAbInduced.OnChange := nil;
@@ -219,8 +218,6 @@ begin
                       if ((pg.Components[T].ClassType <> TForm) and (pg.Components[T].ClassType <> TPanel) and
                          (pg.Components[T].ClassType <> TMemo)) then
                       TWinControl(pg.Components[T]).Enabled := False;
-
-                  pg.SpeedButton11.Enabled := False;
                 end;
             5 : ;                                                              //FOF|(IEN OR IDENTIFIER)
             6 : ;                                                              //EDD
@@ -370,18 +367,8 @@ end;
 
 procedure TdlgPregHist.FormDestroy(Sender: TObject);
 begin
-  try
-    try
-      while slPregs.Count > 0 do
-      begin
-       TfrmPregHist(slPregs.Objects[0]).Free;
-       slPregs.Delete(0);
-      end;
-    except
-    end;
-  finally
+  if Assigned(slPregs) then
     slPregs.Free;
-  end;
 end;
 
 procedure TdlgPregHist.pgcPregnancyChange(Sender: TObject);

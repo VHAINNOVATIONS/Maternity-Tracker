@@ -2,7 +2,8 @@ object dlgAbdomPain: TdlgAbdomPain
   Left = 217
   Top = 135
   BorderStyle = bsDialog
-  ClientHeight = 214
+  Caption = 'Abdominal Pain and Cramping'
+  ClientHeight = 179
   ClientWidth = 537
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +18,7 @@ object dlgAbdomPain: TdlgAbdomPain
   TextHeight = 14
   object Label3: TStaticText
     Left = 21
-    Top = 83
+    Top = 51
     Width = 82
     Height = 18
     Caption = 'Contractions?'
@@ -27,25 +28,25 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
   end
   object Label1: TStaticText
     Left = 260
-    Top = 52
-    Width = 153
+    Top = 20
+    Width = 159
     Height = 18
-    Caption = 'Nausea/Vomiting/Diarrhea?'
+    Caption = 'Nausea, Vomiting, Diarrhea?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 10
+    TabOrder = 9
   end
   object Label4: TStaticText
     Left = 260
-    Top = 76
+    Top = 44
     Width = 58
     Height = 18
     Caption = 'Appetite?'
@@ -55,76 +56,49 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 13
+    TabOrder = 12
   end
   object Label5: TStaticText
     Left = 260
-    Top = 100
-    Width = 74
+    Top = 68
+    Width = 114
     Height = 18
-    Caption = 'Fever/chills?'
+    Caption = 'Fever and or Chills?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 16
+    TabOrder = 15
   end
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 537
-    Height = 33
-    Align = alTop
-    Color = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 0
-    object lbltitle: TStaticText
-      Left = 4
-      Top = 4
-      Width = 209
-      Height = 24
-      Caption = 'Abdominal Pain/Cramping'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -16
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 0
-      TabStop = True
-    end
-  end
-  object Panel2: TPanel
+  object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 185
+    Top = 150
     Width = 537
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 21
+    TabOrder = 20
     object bbtnOK: TBitBtn
-      Left = 378
+      Left = 379
       Top = 2
       Width = 75
       Height = 25
+      Align = alCustom
       Kind = bkOK
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 459
+      Left = 460
       Top = 2
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
@@ -132,121 +106,121 @@ object dlgAbdomPain: TdlgAbdomPain
   end
   object leOnset: TCaptionEdit
     Left = 64
-    Top = 50
+    Top = 18
     Width = 163
     Height = 22
-    TabOrder = 2
+    TabOrder = 1
     Caption = 'Onset'
   end
   object leLocat: TCaptionEdit
     Left = 317
-    Top = 144
+    Top = 96
     Width = 186
     Height = 22
-    TabOrder = 20
+    TabOrder = 19
     Caption = 'Location'
   end
   object leFreq: TCaptionEdit
     Left = 89
-    Top = 109
+    Top = 77
     Width = 138
     Height = 22
-    TabOrder = 7
+    TabOrder = 6
     Visible = False
     Caption = 'Frequency'
   end
   object leDur: TCaptionEdit
-    Left = 77
-    Top = 144
-    Width = 150
+    Left = 89
+    Top = 112
+    Width = 138
     Height = 22
-    TabOrder = 9
+    TabOrder = 8
     Visible = False
     Caption = 'Duration'
   end
   object cbContYes: TCheckBox
     Tag = 1
     Left = 109
-    Top = 84
+    Top = 52
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = cbContYesClick
   end
   object cbContNo: TCheckBox
     Tag = 2
     Left = 171
-    Top = 84
+    Top = 52
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 5
+    TabOrder = 4
     OnClick = cbContYesClick
   end
   object cbNausYes: TCheckBox
     Tag = 3
     Left = 419
-    Top = 53
+    Top = 21
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 11
+    TabOrder = 10
     OnClick = cbContYesClick
   end
   object cbNausNo: TCheckBox
     Tag = 4
     Left = 467
-    Top = 53
+    Top = 21
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 12
+    TabOrder = 11
     OnClick = cbContYesClick
   end
   object cbAppYes: TCheckBox
     Tag = 5
     Left = 419
-    Top = 77
+    Top = 45
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 14
+    TabOrder = 13
     OnClick = cbContYesClick
   end
   object cbAppNo: TCheckBox
     Tag = 6
     Left = 467
-    Top = 77
+    Top = 45
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 15
+    TabOrder = 14
     OnClick = cbContYesClick
   end
   object cbFevYes: TCheckBox
     Tag = 7
     Left = 419
-    Top = 101
+    Top = 69
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 17
+    TabOrder = 16
     OnClick = cbContYesClick
   end
   object cbFevNo: TCheckBox
     Tag = 8
     Left = 467
-    Top = 101
+    Top = 69
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 18
+    TabOrder = 17
     OnClick = cbContYesClick
   end
   object StaticText1: TStaticText
     Left = 21
-    Top = 53
+    Top = 21
     Width = 37
     Height = 18
     Caption = 'Onset'
@@ -256,11 +230,11 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 0
   end
   object lbFreq: TStaticText
     Left = 21
-    Top = 113
+    Top = 81
     Width = 62
     Height = 18
     Caption = 'Frequency'
@@ -270,12 +244,12 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
     Visible = False
   end
   object lbDur: TStaticText
     Left = 21
-    Top = 148
+    Top = 116
     Width = 50
     Height = 18
     Caption = 'Duration'
@@ -285,12 +259,12 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 7
     Visible = False
   end
   object StaticText4: TStaticText
     Left = 260
-    Top = 148
+    Top = 100
     Width = 51
     Height = 18
     Caption = 'Location'
@@ -300,6 +274,6 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 19
+    TabOrder = 18
   end
 end

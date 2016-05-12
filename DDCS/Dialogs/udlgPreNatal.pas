@@ -66,7 +66,6 @@ type
     cb8: TCheckBox;
     ledMedical: TLabeledEdit;
     Memo1: TMemo;
-    amgrMain: TVA508AccessibilityManager;
     procedure bbtnOKClick(Sender: TObject);
     procedure cb1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);

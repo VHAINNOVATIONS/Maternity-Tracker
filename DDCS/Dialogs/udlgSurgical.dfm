@@ -550,12 +550,4 @@ object dlgSurgical: TdlgSurgical
     TabOrder = 29
     OnClick = CheckBox37Click
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgSurgical'
-        'Status = stsDefault'))
-  end
 end

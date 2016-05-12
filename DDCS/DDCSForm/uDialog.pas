@@ -22,8 +22,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uReportItems,
-  uExtndComBroker;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.ComCtrls, VAUtils, uCommon, uReportItems, uExtndComBroker;
 
 Type
   TGetTmpStrList = function: TStringList of object;
@@ -38,6 +38,7 @@ Type
     FOnGetTmpStrList: TGetTmpStrList;
     procedure SetNoteCollection(const Value: TDDCSNoteCollection);
     procedure cbAutoWidth(Sender: TObject);
+    procedure RadioGroupEnter(Sender: TObject);
   protected
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
   public
@@ -56,9 +57,6 @@ Type
   TDialogClass = class of TDDCSDialog;
 
 implementation
-
-uses
-  VAUtils, uCommon;
 
 // Private ---------------------------------------------------------------------
 
@@ -83,6 +81,21 @@ begin
       cbLength := cb.Canvas.TextWidth(cb.Items[I]) + GetSystemMetrics(SM_CXVSCROLL);
 
   SendMessage(cb.Handle, CB_SETDROPPEDWIDTH, (cblength + 7), 0);
+end;
+
+procedure TDDCSDialog.RadioGroupEnter(Sender: TObject);
+var
+  rg: TRadioGroup;
+begin
+  if not Sender.InheritsFrom(TRadioGroup) then
+    Exit;
+
+  rg := TRadioGroup(Sender);
+  if rg.ItemIndex = -1 then
+  begin
+    rg.ItemIndex := 0;
+    TRadioButton(rg.Controls[0]).SetFocus;
+  end;
 end;
 
 // Protected -------------------------------------------------------------------
@@ -118,22 +131,33 @@ var
   var
     I: Integer;
     wComboBox: TComboBox;
+    wRadioGroup: TRadioGroup;
+    nItem: TDDCSNoteItem;
   begin
-    if wControl is TStaticText then
-      Exit;
-
-    if wControl.ControlCount > 0 then
+    if (((wControl.InheritsFrom(TCustomPanel)) or (wControl.InheritsFrom(TCustomGroupBox)) or
+         (wControl.InheritsFrom(TCustomTabControl))) and (not wControl.InheritsFrom(TRadioGroup)) and
+       (wControl.ControlCount > 0)) then
     begin
       for I := 0 to wControl.ControlCount - 1 do
         if wControl.Controls[I] is TWinControl then
           SetUpControl(TWinControl(wControl.Controls[I]));
     end else
     begin
-      if wControl is TComboBox then
+      if wControl is TStaticText then
+        Exit;
+
+      if wControl.InheritsFrom(TComboBox) then
       begin
         wComboBox := TComboBox(wControl);
         if not Assigned(wComboBox.OnDropDown) then
           wComboBox.OnDropDown := cbAutoWidth;
+      end;
+
+      if wControl.InheritsFrom(TRadioGroup) then
+      begin
+        wRadioGroup := TRadioGroup(wControl);
+        if not Assigned(wRadioGroup.OnEnter) then
+          wRadioGroup.OnEnter :=  RadioGroupEnter;
       end;
 
       FReportCollection.GetNoteItemAddifNil(wControl);

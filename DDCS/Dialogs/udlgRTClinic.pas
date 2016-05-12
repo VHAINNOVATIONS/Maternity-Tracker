@@ -17,27 +17,24 @@ unit udlgRTClinic;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons, ExtCtrls, ComCtrls, Spin, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  Dialogs, StdCtrls, Buttons, ExtCtrls, ComCtrls, Spin, ORCtrls,
+  uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgRTClinic = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    Label3: TLabel;
+    Label3: TStaticText;
     edtRTCWeeks: TSpinEdit;
     cbTimeUnit: TComboBox;
-    amgrMain: TVA508AccessibilityManager;
+    pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
     procedure edtRTCWeeksChange(Sender: TObject);
   private
@@ -54,13 +51,13 @@ implementation
 procedure TdlgRTClinic.bbtnOKClick(Sender: TObject);
 begin
   if edtRTCWeeks.Value > 0 then
-  tmpstrlist.add ('Return to clinic in ' + IntToStr(edtRTCWeeks.Value) + ' '+ cbTimeUnit.Text);
+    tmpstrlist.add ('Return to clinic in ' + IntToStr(edtRTCWeeks.Value) + ' '+ cbTimeUnit.Text);
 end;
 
 procedure TdlgRTClinic.edtRTCWeeksChange(Sender: TObject);
 begin
-  if edtRTCWeeks.Value < 0 or Pos('-', edtRTCWeeks.Text) then
-  edtRTCWeeks.Value := 0;
+  if (edtRTCWeeks.Value < 0) or (Pos('-', edtRTCWeeks.Text) > 0) then
+    edtRTCWeeks.Value := 0;
 end;
 
 end.

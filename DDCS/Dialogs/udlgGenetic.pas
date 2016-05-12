@@ -98,7 +98,6 @@ type
     CheckBox39: TCheckBox;
     CheckBox40: TCheckBox;
     Label21: TLabel;
-    amgrMain: TVA508AccessibilityManager;
     procedure bbtnOKClick(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);

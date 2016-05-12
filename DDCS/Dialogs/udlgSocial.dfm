@@ -78,16 +78,12 @@ object dlgSocial: TdlgSocial
     Top = 33
     Width = 632
     Height = 600
-    ActivePage = TabSheet1
+    ActivePage = TabSheet4
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Lifestyle'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object gb1: TGroupBox
         Left = 0
         Top = 0
@@ -756,10 +752,6 @@ object dlgSocial: TdlgSocial
     object TabSheet2: TTabSheet
       Caption = 'Relationship && Sexual History'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object gbRelation: TGroupBox
         Left = 0
         Top = 0
@@ -986,10 +978,6 @@ object dlgSocial: TdlgSocial
     object TabSheet3: TTabSheet
       Caption = 'Tobacco'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object gb3: TGroupBox
         Left = 0
         Top = 0
@@ -1364,10 +1352,6 @@ object dlgSocial: TdlgSocial
     object TabSheet4: TTabSheet
       Caption = 'Alcohol && Drugs'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object gb4: TGroupBox
         Left = 0
         Top = 0
@@ -1826,13 +1810,5 @@ object dlgSocial: TdlgSocial
         end
       end
     end
-  end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgSocial'
-        'Status = stsDefault'))
   end
 end

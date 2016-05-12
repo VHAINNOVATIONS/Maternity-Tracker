@@ -17,44 +17,47 @@ unit udlgFetalMov;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORDtTm, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgFetalMov = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
+    pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leCharFetal: TLabeledEdit;
-    leLastMov: TLabeledEdit;
-    leFreq: TLabeledEdit;
-    leOnset1: TLabeledEdit;
-    Label3: TLabel;
+    leOnset: TCaptionEdit;
+    Label3: TStaticText;
     cbFetMovY: TCheckBox;
     cbFetMovN: TCheckBox;
-    Label1: TLabel;
+    lbContractions: TStaticText;
     cbContY: TCheckBox;
     cbContN: TCheckBox;
-    Label2: TLabel;
+    Label2: TStaticText;
     cbVagBleY: TCheckBox;
     cbVagBleN: TCheckBox;
-    Label4: TLabel;
+    Label4: TStaticText;
     cbLeakY: TCheckBox;
     cbLeakN: TCheckBox;
-    leDur: TLabeledEdit;
-    amgrMain: TVA508AccessibilityManager;
+    StaticText1: TStaticText;
+    leLastMov: TORDateBox;
+    leCharFetal: TCaptionEdit;
+    StaticText2: TStaticText;
+    StaticText3: TStaticText;
+    leFreq: TCaptionEdit;
+    leDur: TCaptionEdit;
+    leOnset1: TCaptionEdit;
+    lbFreq: TStaticText;
+    lbDur: TStaticText;
+    lbOnset1: TStaticText;
     procedure bbtnOKClick(Sender: TObject);
-    procedure cbFetMovYClick(Sender: TObject);
+    procedure checkboxClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -65,6 +68,9 @@ var
 implementation
 
 {$R *.dfm}
+
+var
+  hdiff: Integer;
 
 procedure TdlgFetalMov.bbtnOKClick(Sender: TObject);
 { User pressed OK. }
@@ -78,7 +84,7 @@ begin
    TmpStrList.Add('Change in fetal movement:');
    if cbFetMovY.Checked then TmpStrList.Add('  Fetal movement present? Yes');
    if cbFetMovN.Checked then TmpStrList.Add('  Fetal movement present? No');
-   if leLastMov.Text  <> '' then TmpStrList.Add('  Date/time of last perceived movement: ' + leLastMov.Text);
+   if leLastMov.Text  <> '' then TmpStrList.Add('  Date and time of last perceived movement: ' + leLastMov.Text);
    if leCharFetal.Text  <> '' then TmpStrList.Add('  Character of fetal movements: ' + leCharFetal.Text);
    if cbVagBleY.Checked then TmpStrList.Add('  Vaginal bleeding? Yes');
    if cbVagBleN.Checked then TmpStrList.Add('  Vaginal bleeding? No');
@@ -97,7 +103,7 @@ begin
   end;
 end;
 
-procedure TdlgFetalMov.cbFetMovYClick(Sender: TObject);
+procedure TdlgFetalMov.checkboxClick(Sender: TObject);
 begin
   if ((Sender as TCheckBox).Tag = 1) and ((Sender as TCheckBox).Checked = TRUE) then
     cbFetMovN.Checked := FALSE
@@ -113,36 +119,71 @@ begin
     cbLeakY.Checked := FALSE
   else if (Sender as TCheckBox).Tag = 7 then
   begin
-    if (Sender as TCheckBox).Checked = TRUE then
+    if (Sender as TCheckBox).Checked then
     begin
-      cbContN.Checked := FALSE;
-      cbContY.Checked := TRUE;
-      leFreq.Visible := TRUE;
-      leDur.Visible := TRUE;
-      leOnset1.Visible := TRUE;
+      cbContN.OnClick := nil;
+      cbContN.Checked := False;
+      cbContN.OnClick := checkboxClick;
+
+      Height := Height + hdiff;
+
+      lbFreq.Visible := True;
+      leFreq.Visible := True;
+      lbDur.Visible := True;
+      leDur.Visible := True;
+      lbOnset1.Visible := True;
+      leOnset1.Visible := True;
+
       leFreq.SetFocus;
-    end
-    else
+    end else
     begin
-      cbContY.Checked := FALSE;
-      leFreq.Visible := FALSE;
-      leDur.Visible := FALSE;
-      leOnset1.Visible := FALSE;
-      leFreq.Clear;
-      leDur.Clear;
-      leOnset1.Clear;
+      cbContY.OnClick := nil;
+      cbContY.Checked := False;
+      cbContY.OnClick := checkboxClick;
+
+      if lbFreq.Visible then
+      begin
+        lbFreq.Visible := False;
+        leFreq.Clear;
+        leFreq.Visible := False;
+        lbDur.Visible := False;
+        leDur.Clear;
+        leDur.Visible := False;
+        lbOnset1.Visible := False;
+        leOnset1.Clear;
+        leOnset1.Visible := False;
+
+        Height := Height - hdiff;
+      end;
     end;
   end
   else if (Sender as TCheckBox).Tag = 8 then
   begin
-    cbContY.Checked := FALSE;
-    leFreq.Visible := FALSE;
-    leDur.Visible := FALSE;
-    leOnset1.Visible := FALSE;
-    leFreq.Clear;
-    leDur.Clear;
-    leOnset1.Clear;
+    cbContY.OnClick := nil;
+    cbContY.Checked := False;
+    cbContY.OnClick := checkboxClick;
+
+    if lbFreq.Visible then
+    begin
+      lbFreq.Visible := False;
+      leFreq.Clear;
+      leFreq.Visible := False;
+      lbDur.Visible := False;
+      leDur.Clear;
+      leDur.Visible := False;
+      lbOnset1.Visible := False;
+      leOnset1.Clear;
+      leOnset1.Visible := False;
+
+      Height := Height - hdiff;
+    end;
   end;
+end;
+
+procedure TdlgFetalMov.FormCreate(Sender: TObject);
+begin
+  hdiff := lbOnset1.Top - lbContractions.Top;
+  Height := Height - hdiff;
 end;
 
 end.

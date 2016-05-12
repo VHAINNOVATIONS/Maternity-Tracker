@@ -863,12 +863,4 @@ object dlgGenetic: TdlgGenetic
     TabOrder = 41
     OnClick = CheckBox1Click
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgGenetic'
-        'Status = stsDefault'))
-  end
 end

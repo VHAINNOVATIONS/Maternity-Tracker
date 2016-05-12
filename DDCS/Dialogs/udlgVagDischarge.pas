@@ -17,34 +17,32 @@ unit udlgVagDischarge;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgVagDischarge = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leColor: TLabeledEdit;
-    Label3: TLabel;
+    leOnset: TCaptionEdit;
+    leColor: TCaptionEdit;
+    Label3: TStaticText;
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
-    Label1: TLabel;
+    Label1: TStaticText;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
+    procedure CheckBoxClick(Sender: TObject);
   private
   public
   end;
@@ -71,7 +69,7 @@ begin
   end;
 end;
 
-procedure TdlgVagDischarge.CheckBox1Click(Sender: TObject);
+procedure TdlgVagDischarge.CheckBoxClick(Sender: TObject);
 begin
  if (Sender is TCheckBox) and ((Sender as TCheckBox).Checked = TRUE) then
  begin   {cb6-9 - toggle 4 checkboxes}

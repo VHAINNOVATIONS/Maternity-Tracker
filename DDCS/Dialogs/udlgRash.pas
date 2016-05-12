@@ -17,31 +17,29 @@ unit udlgRash;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgRash = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leLocat: TLabeledEdit;
-    Label3: TLabel;
+    leOnset: TCaptionEdit;
+    leLocat: TCaptionEdit;
+    Label3: TStaticText;
     cbItchY: TCheckBox;
     cbItchN: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
-    procedure cbItchYClick(Sender: TObject);
+    procedure checkboxClick(Sender: TObject);
   private
   public
   end;
@@ -59,7 +57,7 @@ begin
   if (leOnset.Text <> '') or (leLocat.Text <> '') or
      (cbItchY.Checked) or (cbItchN.Checked) then
   begin
-   TmpStrList.Add('Rash/Itching:');
+   TmpStrList.Add('Rash and Itching:');
    if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
    if leLocat.Text  <> '' then TmpStrList.Add('  Location: ' + leLocat.Text);
    if cbItchY.Checked then TmpStrList.Add('  Itching? Yes');
@@ -67,7 +65,7 @@ begin
   end;
 end;
 
-procedure TdlgRash.cbItchYClick(Sender: TObject);
+procedure TdlgRash.checkboxClick(Sender: TObject);
 begin
   if (Sender as TCheckBox).Checked = TRUE then
     begin

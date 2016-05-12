@@ -2,8 +2,9 @@ object dlgBackPain: TdlgBackPain
   Left = 217
   Top = 135
   BorderStyle = bsDialog
-  ClientHeight = 200
-  ClientWidth = 558
+  Caption = 'Back Pain'
+  ClientHeight = 172
+  ClientWidth = 500
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,178 +16,217 @@ object dlgBackPain: TdlgBackPain
   Scaled = False
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TLabel
-    Left = 233
-    Top = 86
-    Width = 43
-    Height = 14
+  object Label3: TStaticText
+    Left = 286
+    Top = 64
+    Width = 52
+    Height = 18
     Caption = 'Dysuria?'
-  end
-  object Label1: TLabel
-    Left = 234
-    Top = 114
-    Width = 61
-    Height = 14
-    Caption = 'Fever/chills?'
-  end
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 558
-    Height = 33
-    Align = alTop
-    Color = clWhite
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 0
-    object lbltitle: TLabel
-      Left = 4
-      Top = 4
-      Width = 80
-      Height = 20
-      Caption = 'Back pain'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -16
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
+    TabOrder = 10
+    TabStop = True
   end
-  object Panel2: TPanel
+  object Label1: TStaticText
+    Left = 286
+    Top = 89
+    Width = 112
+    Height = 18
+    Caption = 'Fever and or chills?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 13
+    TabStop = True
+  end
+  object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 171
-    Width = 558
+    Top = 143
+    Width = 500
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 10
+    TabOrder = 16
     object bbtnOK: TBitBtn
-      Left = 400
-      Top = 2
+      Left = 343
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkOK
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 481
-      Top = 2
+      Left = 424
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
     end
   end
-  object leOnset: TLabeledEdit
-    Left = 63
-    Top = 50
-    Width = 137
+  object leOnset: TCaptionEdit
+    Left = 76
+    Top = 11
+    Width = 190
     Height = 22
-    EditLabel.Width = 32
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Onset:'
-    LabelPosition = lpLeft
     TabOrder = 1
+    Caption = 'Onset'
   end
-  object leChar: TLabeledEdit
-    Left = 63
-    Top = 134
-    Width = 137
+  object leChar: TCaptionEdit
+    Left = 76
+    Top = 110
+    Width = 190
     Height = 22
-    EditLabel.Width = 51
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Character:'
-    LabelPosition = lpLeft
-    TabOrder = 4
+    TabOrder = 7
+    Caption = 'Character'
   end
-  object leLocat: TLabeledEdit
-    Left = 63
-    Top = 106
-    Width = 137
+  object leLocat: TCaptionEdit
+    Left = 76
+    Top = 77
+    Width = 190
     Height = 22
-    EditLabel.Width = 44
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Location:'
-    LabelPosition = lpLeft
-    TabOrder = 3
-  end
-  object leDur: TLabeledEdit
-    Left = 63
-    Top = 78
-    Width = 137
-    Height = 22
-    EditLabel.Width = 43
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Duration:'
-    LabelPosition = lpLeft
-    TabOrder = 2
-  end
-  object leUrin: TLabeledEdit
-    Left = 371
-    Top = 50
-    Width = 156
-    Height = 22
-    EditLabel.Width = 134
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Urinary frequency/urgency:'
-    LabelPosition = lpLeft
     TabOrder = 5
+    Caption = 'Location'
+  end
+  object leDur: TCaptionEdit
+    Left = 76
+    Top = 44
+    Width = 190
+    Height = 22
+    TabOrder = 3
+    Caption = 'Duration'
+  end
+  object leUrin: TCaptionEdit
+    Left = 286
+    Top = 30
+    Width = 200
+    Height = 22
+    TabOrder = 9
+    Caption = 'Urinary Frequency and or Urgency'
   end
   object cbDysY: TCheckBox
     Tag = 1
-    Left = 332
-    Top = 85
+    Left = 401
+    Top = 64
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 6
-    OnClick = cbDysYClick
+    TabOrder = 11
+    OnClick = checkboxClick
   end
   object cbDysN: TCheckBox
     Tag = 2
-    Left = 380
-    Top = 85
+    Left = 450
+    Top = 64
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 7
-    OnClick = cbDysYClick
+    TabOrder = 12
+    OnClick = checkboxClick
   end
   object cbFeverY: TCheckBox
     Tag = 3
-    Left = 332
-    Top = 113
+    Left = 401
+    Top = 89
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 8
-    OnClick = cbDysYClick
+    TabOrder = 14
+    OnClick = checkboxClick
   end
   object cbFeverN: TCheckBox
     Tag = 4
-    Left = 380
-    Top = 113
+    Left = 450
+    Top = 89
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 9
-    OnClick = cbDysYClick
+    TabOrder = 15
+    OnClick = checkboxClick
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 501
-    Top = 40
-    Data = (
-      (
-        'Component = dlgBackPain'
-        'Status = stsDefault'))
+  object StaticText1: TStaticText
+    Left = 16
+    Top = 114
+    Width = 58
+    Height = 18
+    Caption = 'Character'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 6
+  end
+  object StaticText2: TStaticText
+    Left = 16
+    Top = 81
+    Width = 51
+    Height = 18
+    Caption = 'Location'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+  end
+  object StaticText3: TStaticText
+    Left = 16
+    Top = 48
+    Width = 50
+    Height = 18
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+  end
+  object StaticText4: TStaticText
+    Left = 16
+    Top = 15
+    Width = 37
+    Height = 18
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+  end
+  object StaticText5: TStaticText
+    Left = 286
+    Top = 11
+    Width = 190
+    Height = 18
+    Caption = 'Urinary Frequency and or Urgency'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 8
   end
 end

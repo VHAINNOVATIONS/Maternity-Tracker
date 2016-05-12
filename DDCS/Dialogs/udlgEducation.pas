@@ -1,21 +1,38 @@
 unit udlgEducation;
 
+{
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+     Developer: Theodore Fontana
+       Company: Document Storage Systems Inc.
+   VA Contract: TAC-13-06464
+
+   v2.0.0.0
+}
+
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Forms,
   Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
-  Vcl.Controls, uDialog, uExtndComBroker, VA508AccessibilityManager;
+  Vcl.Controls, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgEducation = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
+    pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
     educationListView: TListView;
-    amgrMain: TVA508AccessibilityManager;
     procedure bbtnOKClick(Sender: TObject);
     procedure educationListViewColumnClick(Sender: TObject;
       Column: TListColumn);

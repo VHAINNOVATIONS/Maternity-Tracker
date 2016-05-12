@@ -5,15 +5,14 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.ExtCtrls, udlgFamily, fBase508Form, VA508AccessibilityManager;
+  Vcl.ExtCtrls, udlgFamily, fBase508Form;
 
 type
-  TfrmFamilyAdd = class(TfrmBase508Form)
+  TfrmFamilyAdd = class(TForm)
     Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
     LabeledEdit1: TLabeledEdit;
-    amgrMain: TVA508AccessibilityManager;
     procedure bbtnOKClick(Sender: TObject);
   private
   public

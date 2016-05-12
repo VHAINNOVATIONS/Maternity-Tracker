@@ -17,52 +17,38 @@ unit udlgROS;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0  (full rewrite)
 }
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons, ExtCtrls, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker, ORDtTm;
 
 type
   TdlgROS = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
-    bbtnOK: TBitBtn;
-    bbtnCancel: TBitBtn;
-    BitBtn1: TBitBtn;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
-    Edit10: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
-    Edit13: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
+    pnlfooter: TPanel;
+    btnNeg: TBitBtn;
+    btnOK: TBitBtn;
+    btnCancel: TBitBtn;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    Label1: TStaticText;
+    Label2: TStaticText;
+    Label3: TStaticText;
+    Label4: TStaticText;
+    Label5: TStaticText;
+    Label6: TStaticText;
+    Label7: TStaticText;
+    Label8: TStaticText;
+    Label9: TStaticText;
+    Label10: TStaticText;
+    Label11: TStaticText;
+    Label12: TStaticText;
+    Label13: TStaticText;
+    lbOther: TStaticText;
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
@@ -89,14 +75,39 @@ type
     CheckBox24: TCheckBox;
     CheckBox25: TCheckBox;
     CheckBox26: TCheckBox;
-    Label29: TLabel;
-    LabeledEdit1: TLabeledEdit;
-    amgrMain: TVA508AccessibilityManager;
-    procedure BitBtn1Click(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
-    procedure bbtnOKClick(Sender: TObject);
+    ORDateBox1: TORDateBox;
+    ORDateBox2: TORDateBox;
+    ORDateBox3: TORDateBox;
+    ORDateBox4: TORDateBox;
+    ORDateBox5: TORDateBox;
+    ORDateBox6: TORDateBox;
+    ORDateBox7: TORDateBox;
+    ORDateBox8: TORDateBox;
+    ORDateBox9: TORDateBox;
+    ORDateBox10: TORDateBox;
+    ORDateBox11: TORDateBox;
+    ORDateBox12: TORDateBox;
+    ORDateBox13: TORDateBox;
+    dtOther: TORDateBox;
+    Edit1: TCaptionEdit;
+    Edit2: TCaptionEdit;
+    Edit3: TCaptionEdit;
+    Edit4: TCaptionEdit;
+    Edit5: TCaptionEdit;
+    Edit6: TCaptionEdit;
+    Edit7: TCaptionEdit;
+    Edit8: TCaptionEdit;
+    Edit9: TCaptionEdit;
+    Edit10: TCaptionEdit;
+    Edit11: TCaptionEdit;
+    Edit12: TCaptionEdit;
+    Edit13: TCaptionEdit;
+    edOther: TCaptionEdit;
+    edOtherComments: TCaptionEdit;
+    procedure CheckBoxClick(Sender: TObject);
+    procedure btnNegClick(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
   private
-    procedure ToggleCB( cb1:TCheckBox; cb2:TCheckBox);
   public
   end;
 
@@ -107,146 +118,150 @@ implementation
 
 {$R *.dfm}
 
-procedure TdlgROS.BitBtn1Click(Sender: TObject);
+procedure TdlgROS.CheckBoxClick(Sender: TObject);
 var
   I: Integer;
-begin   {Negative for all}
-  for I := 0 to ComponentCount -1 do
-  if (Components[I] is TCheckBox) then
-  if Odd((TCheckBox(Components[I]).Tag)) = False then
-  TCheckBox(Components[I]).Checked := True;
-end;
-
-procedure TdlgROS.CheckBox1Click(Sender: TObject);
+  ick,ck: TCheckBox;
+  ce: TCaptionEdit;
+  cd: TORDateBox;
 begin
- if (Sender is TCheckBox) then
-  case (Sender as TCheckBox).Tag of
-     1: ToggleCB(CheckBox1,CheckBox2);
-     2: ToggleCB(CheckBox2,CheckBox1);
-     3: ToggleCB(CheckBox3,CheckBox4);
-     4: ToggleCB(CheckBox4,CheckBox3);
-     5: ToggleCB(CheckBox5,CheckBox6);
-     6: ToggleCB(CheckBox6,CheckBox5);
-     7: ToggleCB(CheckBox7,CheckBox8);
-     8: ToggleCB(CheckBox8,CheckBox7);
-     9: ToggleCB(CheckBox9,CheckBox10);
-    10: ToggleCB(CheckBox10,CheckBox9);
-    11: ToggleCB(CheckBox11,CheckBox12);
-    12: ToggleCB(CheckBox12,CheckBox11);
-    13: ToggleCB(CheckBox13,CheckBox14);
-    14: ToggleCB(CheckBox14,CheckBox13);
-    15: ToggleCB(CheckBox15,CheckBox16);
-    16: ToggleCB(CheckBox16,CheckBox15);
-    17: ToggleCB(CheckBox17,CheckBox18);
-    18: ToggleCB(CheckBox18,CheckBox17);
-    19: ToggleCB(CheckBox19,CheckBox20);
-    20: ToggleCB(CheckBox20,CheckBox19);
-    21: ToggleCB(CheckBox21,CheckBox22);
-    22: ToggleCB(CheckBox22,CheckBox21);
-    23: ToggleCB(CheckBox23,CheckBox24);
-    24: ToggleCB(CheckBox24,CheckBox23);
-    25: ToggleCB(CheckBox25,CheckBox26);
-    26: ToggleCB(CheckBox26,CheckBox25);
-  end;
-end;
+  ick := TCheckBox(Sender);
 
-procedure TdlgROS.ToggleCB( cb1:TCheckBox; cb2:TCheckBox);
-begin
-  if cb1.Checked = True then
-  cb2.Checked := False;
-end;
-
-procedure TdlgROS.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
-var
-  I: integer;
-  TmpStr: string;
-
-  function Check4True: Boolean;
-  {Check for at least 1 checkbox = True }
-  var
-    J: Integer;
+  for I := 0 to ControlCount - 1 do
   begin
-    for J := 0 to ComponentCount - 1 do
+    if Controls[I] is TCheckbox then
     begin
-      if (Components[J] is TCheckBox) and ((Components[J] as TCheckBox).Checked = True) then
+      ck := TCheckBox(Controls[I]);
+      if ((ck <> ick) and (ck.Tag = ick.Tag)) then
       begin
-        Result := True;
-        Exit;
+        ck.OnClick := nil;
+        ck.Checked := False;
+        ck.OnClick := CheckBoxClick;
       end;
     end;
-    Result := False;
+    if Controls[I] is TCaptionEdit then
+      if TCaptionEdit(Controls[I]).Tag = ick.Tag then
+      begin
+        ce := TCaptionEdit(Controls[I]);
+        if ick.Caption = 'No' then
+        begin
+          ce.Clear;
+          ce.Enabled := False;
+        end else
+          ce.Enabled := True;
+      end;
+    if Controls[I] is TORDateBox then
+      if TORDateBox(Controls[I]).Tag = ick.Tag then
+      begin
+        cd := TORDateBox(Controls[I]);
+        if ick.Caption = 'No' then
+        begin
+          cd.Clear;
+          cd.Enabled := False;
+        end else
+          cd.Enabled := True;
+      end;
+  end;
+end;
+
+procedure TdlgROS.btnNegClick(Sender: TObject);
+var
+  I: Integer;
+  ck: TCheckBox;
+begin
+  for I := 0 to ControlCount - 1 do
+  begin
+    if Controls[I] is TCheckbox then
+    begin
+      ck := TCheckBox(Controls[I]);
+      if ck.Caption = 'No' then
+        ck.Checked := True;
+    end;
+  end;
+end;
+
+procedure TdlgROS.btnOKClick(Sender: TObject);
+var
+  I: Integer;
+  ck: TCheckBox;
+  tmp: string;
+
+  function GetQuestion(iTag: Integer): string;
+  var
+    I: Integer;
+  begin
+    Result := '';
+    for I := 0 to ControlCount - 1 do
+      if Controls[I] is TStaticText then
+        if TStaticText(Controls[I]).Tag = iTag then
+        begin
+          Result := TStaticText(Controls[I]).Caption + ': ';
+          Break;
+        end;
+  end;
+
+  function GetDate(iTag: Integer): string;
+  var
+    I: Integer;
+  begin
+    Result := '';
+    for I := 0 to ControlCount - 1 do
+      if Controls[I] is TORDateBox then
+        if TORDateBox(Controls[I]).Tag = iTag then
+          if TORDateBox(Controls[I]).IsValid then
+          begin
+            Result := TORDateBox(Controls[I]).Text;
+            Break;
+          end;
+  end;
+
+  function GetNarrative(iTag: Integer): string;
+  var
+    I: Integer;
+  begin
+    Result := '';
+    for I := 0 to ControlCount - 1 do
+      if Controls[I] is TCaptionEdit then
+        if TCaptionEdit(Controls[I]).Tag = iTag then
+        begin
+          Result := TCaptionEdit(Controls[I]).Text;
+          Break;
+        end;
   end;
 
 begin
-  if Check4True then
-  begin
-    TmpStrList.Add('Review of Symptoms since Last Menstrual Period:');
-
-    for I := 0 to ComponentCount - 1 do
-    if (Components[I] is TCheckBox) and ((Components[I] as TCheckBox).Checked = True) then
+  for I := 0 to ControlCount - 1 do
+    if Controls[I] is TCheckbox then
     begin
-      TmpStr := '';
-      case (Components[I] as TCheckBox).Tag of
-         1: begin TmpStr := '  Mood: Yes'; if Edit1.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit1.Text; end;
-         2: begin TmpStr := '  Mood: No'; if Edit1.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit1.Text; end;
-         3: begin TmpStr := '  Headaches: Yes'; if Edit2.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit2.Text; end;
-         4: begin TmpStr := '  Headaches: No'; if Edit2.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit2.Text; end;
-         5: begin TmpStr := '  Weight Loss (-) / Weight Gain (+): Yes'; if Edit3.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit3.Text; end;
-         6: begin TmpStr := '  Weight Loss (-) / Weight Gain (+): No'; if Edit3.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit3.Text; end;
-         7: begin TmpStr := '  Visual Changes: Yes'; if Edit4.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit4.Text; end;
-         8: begin TmpStr := '  Visual Changes: No'; if Edit4.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit4.Text; end;
-         9: begin TmpStr := '  Ears/Nose/Throat: Abnormal'; if Edit5.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit5.Text; end;
-        10: begin TmpStr := '  Ears/Nose/Throat: Normal'; if Edit5.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit5.Text; end;
-        11: begin TmpStr := '  Chest Pain / Palpitation: Yes'; if Edit6.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit6.Text; end;
-        12: begin TmpStr := '  Chest Pain / Palpitation: No'; if Edit6.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit6.Text; end;
-        13: begin TmpStr := '  Dyspnea / Cough / Hemoptysis: Yes'; if Edit7.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit7.Text; end;
-        14: begin TmpStr := '  Dyspnea / Cough / Hemoptysis: No'; if Edit7.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit7.Text; end;
-        15: begin TmpStr := '  GI Symptoms: Nausea / Vomiting: Yes'; if Edit8.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit8.Text; end;
-        16: begin TmpStr := '  GI Symptoms: Nausea / Vomiting: No'; if Edit8.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit8.Text; end;
-        17: begin TmpStr := '  GU Symptoms: Burning / Pain / Blood: Yes'; if Edit9.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit9.Text; end;
-        18: begin TmpStr := '  GU Symptoms: Burning / Pain / Blood: No'; if Edit9.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit9.Text; end;
-        19: begin TmpStr := '  Bone or Joint Pain / Joint Swelling: Yes'; if Edit10.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit10.Text; end;
-        20: begin TmpStr := '  Bone or Joint Pain / Joint Swelling: No'; if Edit10.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit10.Text; end;
-        21: begin TmpStr := '  Vaginal Bleeding / Discharge: Yes'; if Edit11.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit11.Text; end;
-        22: begin TmpStr := '  Vaginal Bleeding / Discharge: No'; if Edit11.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit11.Text; end;
-        23: begin TmpStr := '  Skin Rash / Itch: Yes'; if Edit12.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit12.Text; end;
-        24: begin TmpStr := '  Skin Rash / Itch: No'; if Edit12.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit12.Text; end;
-        25: begin TmpStr := '  Heat / Cold Intolerance: Yes'; if Edit13.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit13.Text; end;
-        26: begin TmpStr := '  Heat / Cold Intolerance: No'; if Edit13.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit13.Text; end;
+      ck := TCheckBox(Controls[I]);
+
+      if ck.Checked then
+      begin
+        TmpStrList.Add('  ' + GetQuestion(ck.Tag) + ' ' + ck.Caption);
+        if ck.Caption <> 'No' then
+        begin
+          tmp := GetDate(ck.Tag);
+          if tmp <> '' then
+            TmpStrList.Add('    Treatment Date: ' + tmp);
+          tmp := GetNarrative(ck.Tag);
+          if tmp <> '' then
+            TmpStrList.Add('    Narrative: ' + tmp);
+        end;
       end;
-      TmpStrList.Add(TmpStr);
     end;
 
-    if Trim(LabeledEdit1.Text) <> '' then
-    TmpStrList.Add('  Other: ' + LabeledEdit1.Text);
+  if Trim(edOther.Text) <> '' then
+  begin
+    TmpStrList.Add('  ' + edOther.Text);
+
+    if dtOther.Text <> '' then
+      TmpStrList.Add('    Treatment Date: ' + dtOther.Text);
+    if edOtherComments.Text <> '' then
+      TmpStrList.Add('    Narrative: ' + edOtherComments.Text);
   end;
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Review of Symptoms since Last Menstrual Period: ');
 end;
 
 end.

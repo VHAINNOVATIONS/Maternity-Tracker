@@ -1,3 +1,5 @@
+*.dcu
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -49,3 +51,4 @@ _help
 ProjectGroupAOE.groupproj.local
 __history
 ProjectGroupAOE.groupproj
+__recovery

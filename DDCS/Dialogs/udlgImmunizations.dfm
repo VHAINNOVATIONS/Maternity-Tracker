@@ -408,12 +408,4 @@ object dlgImmunizations: TdlgImmunizations
     Height = 21
     TabOrder = 10
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgImmunizations'
-        'Status = stsDefault'))
-  end
 end

@@ -17,47 +17,45 @@ unit udlgCoughCongest;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgCoughCongest = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
+    pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leColor: TLabeledEdit;
-    Label3: TLabel;
+    leOnset: TCaptionEdit;
+    leColor: TCaptionEdit;
+    Label3: TStaticText;
     cbProdCY: TCheckBox;
     cbProdCN: TCheckBox;
-    lbBlood: TLabel;
+    lbBlood: TStaticText;
     cbBloodY: TCheckBox;
     cbBloodN: TCheckBox;
-    Label5: TLabel;
+    Label5: TStaticText;
     cbNasalY: TCheckBox;
     cbNasalN: TCheckBox;
-    Label1: TLabel;
+    Label1: TStaticText;
     cbSinusY: TCheckBox;
     cbSinusN: TCheckBox;
-    Label2: TLabel;
+    Label2: TStaticText;
     cbRhinY: TCheckBox;
     cbRhinN: TCheckBox;
-    Label6: TLabel;
+    Label6: TStaticText;
     cbFeverY: TCheckBox;
     cbFeverN: TCheckBox;
-    Label7: TLabel;
+    Label7: TStaticText;
     cbSOBY: TCheckBox;
     cbSOBN: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
+    lbColor: TStaticText;
+    StaticText2: TStaticText;
     procedure bbtnOKClick(Sender: TObject);
     procedure cbProdCYClick(Sender: TObject);
     procedure cbBloodYClick(Sender: TObject);
@@ -85,7 +83,7 @@ begin
      (cbFeverY.Checked) or (cbFeverN.Checked) or (cbSOBY.Checked) or
      (cbSOBN.Checked) then
   begin
-   TmpStrList.Add('Cough/Congestion:');
+   TmpStrList.Add('Cough and Congestion:');
    if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
    if cbProdCY.Checked then
    begin
@@ -104,8 +102,8 @@ begin
    else if cbSinusN.Checked then TmpStrList.Add('  Sinus Pain? No');
    if cbRhinY.Checked then TmpStrList.Add('  Rhinorrhea? Yes')
    else if cbRhinN.Checked then TmpStrList.Add('  Rhinorrhea? No');
-   if cbFeverY.Checked then TmpStrList.Add('  Fever/Chills? Yes')
-   else if cbFeverN.Checked then TmpStrList.Add('  Fever/Chills? No');
+   if cbFeverY.Checked then TmpStrList.Add('  Fever and or Chills? Yes')
+   else if cbFeverN.Checked then TmpStrList.Add('  Fever and or Chills? No');
    if cbSOBY.Checked then TmpStrList.Add('  Shortness of Breath? Yes')
    else if cbSOBN.Checked then TmpStrList.Add('  Shortness of Breath? No');
  end;
@@ -115,38 +113,37 @@ procedure TdlgCoughCongest.cbProdCYClick(Sender: TObject);
 begin
   if (Sender as TCheckBox).Tag = 1 then
   begin
-    if ((Sender as TCheckBox).Checked = TRUE) then
+    if (Sender as TCheckBox).Checked then
     begin {Yes}
-      cbProdCY.Checked := TRUE;
-      cbProdCN.Checked := FALSE;
-      leColor.Visible := TRUE;
-      lbBlood.Visible := TRUE;
-      cbBloodY.Visible := TRUE;
-      cbBloodN.Visible := TRUE;
+      cbProdCN.Checked := False;
+
+      lbColor.Visible := True;
+      leColor.Visible := True;
+      lbBlood.Visible := True;
+      cbBloodY.Visible := True;
+      cbBloodN.Visible := True;
       leColor.SetFocus;
     end
-    else if ((Sender as TCheckBox).Checked = FALSE) then
+    else if not (Sender as TCheckBox).Checked then
     begin {Yes - unchecked}
-      //cbProdCY.Checked := FALSE;
-      leColor.Visible := FALSE;
-      lbBlood.Visible := FALSE;
-      cbBloodY.Visible := FALSE;
-      cbBloodN.Visible := FALSE;
-      cbBloodY.Checked := FALSE;
-      cbBloodN.Checked := FALSE;
       leColor.Clear;
+      lbColor.Visible := False;
+      leColor.Visible := False;
+      lbBlood.Visible := False;
+      cbBloodY.Visible := False;
+      cbBloodN.Visible := False;
     end;
   end
-  else if ((Sender as TCheckBox).Tag = 2) and ((Sender as TCheckBox).Checked = TRUE) then
+  else if ((Sender as TCheckBox).Tag = 2) and ((Sender as TCheckBox).Checked) then
     begin
-      cbProdCY.Checked := FALSE;
-      leColor.Visible := FALSE;
-      lbBlood.Visible := FALSE;
-      cbBloodY.Visible := FALSE;
-      cbBloodN.Visible := FALSE;
-      cbBloodY.Checked := FALSE;
-      cbBloodN.Checked := FALSE;
+      cbProdCY.Checked := False;
+
       leColor.Clear;
+      lbColor.Visible := False;
+      leColor.Visible := False;
+      lbBlood.Visible := False;
+      cbBloodY.Visible := False;
+      cbBloodN.Visible := False;
     end;
 end;
 

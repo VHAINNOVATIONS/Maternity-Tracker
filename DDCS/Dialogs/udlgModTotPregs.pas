@@ -36,7 +36,6 @@ type
     Bevel2: TBevel;
     SpinEdit1: TSpinEdit;
     Label1: TLabel;
-    amgrMain: TVA508AccessibilityManager;
     procedure OKBtnClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpinEdit1Change(Sender: TObject);

@@ -100,10 +100,6 @@ object dlgPhysicalExam: TdlgPhysicalExam
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Page1'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label13: TLabel
         Left = 19
         Top = 61
@@ -779,10 +775,6 @@ object dlgPhysicalExam: TdlgPhysicalExam
     object TabSheet2: TTabSheet
       Caption = 'Page2'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label23: TLabel
         Left = 151
         Top = 13
@@ -1203,13 +1195,5 @@ object dlgPhysicalExam: TdlgPhysicalExam
         OnClick = CheckBox1Click
       end
     end
-  end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgPhysicalExam'
-        'Status = stsDefault'))
   end
 end

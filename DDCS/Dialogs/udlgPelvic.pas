@@ -17,57 +17,51 @@ unit udlgPelvic;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, ComCtrls, Vcl.CheckLst, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgPelvic = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
-    bbtnOK: TBitBtn;
-    bbtnCancel: TBitBtn;
-    Label9: TLabel;
+    Label9: TStaticText;
+    Label13: TStaticText;
+    Label15: TStaticText;
+    Label16: TStaticText;
+    Label11: TStaticText;
+    Label1: TStaticText;
+    Label2: TStaticText;
+    Label3: TStaticText;
     cbVulvNorm: TCheckBox;
     cbVulvCond: TCheckBox;
     cbVulvLes: TCheckBox;
     cbVagNorm: TCheckBox;
     cbVagInflam: TCheckBox;
     cbVagDisc: TCheckBox;
-    Label11: TLabel;
     cbCervNorm: TCheckBox;
     cbCervInflam: TCheckBox;
     cbCervLes: TCheckBox;
-    Label13: TLabel;
     cbAdnNorm: TCheckBox;
     cbAdnMas: TCheckBox;
-    edUterSize: TLabeledEdit;
     cbUterAbn: TCheckBox;
     cbUterNorm: TCheckBox;
-    Label15: TLabel;
-    Label16: TLabel;
     cbPelDimAde: TCheckBox;
     cbPelDimBor: TCheckBox;
     cbPelDimCon: TCheckBox;
-    memPelvimetry: TMemo;
-    Label1: TLabel;
-    memComments: TMemo;
-    Label2: TLabel;
-    Label3: TLabel;
-    amgrMain: TVA508AccessibilityManager;
-    procedure bbtnOKClick(Sender: TObject);
+    edUterSize: TCaptionEdit;
+    memPelvimetry: TCaptionMemo;
+    memComments: TCaptionMemo;
+    pnlfooter: TPanel;
+    btnOK: TBitBtn;
+    btnCancel: TBitBtn;
     procedure cbSwitch(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
   private
-    procedure ToggleCB(cb1: TCheckBox; cb2: TCheckBox);
-    procedure ClickNil(cb1,cb2,cb3: TCheckBox);
-    procedure ClickSet(cb1,cb2,cb3: TCheckBox);
   public
   end;
 
@@ -78,165 +72,29 @@ implementation
 
 {$R *.dfm}
 
-procedure TdlgPelvic.bbtnOKClick(Sender: TObject);
-var
-  TmpStr: string;
-  I: Integer;
-begin
-  if (cbVulvNorm.Checked = False) and (cbVulvCond.Checked = False) and
-     (cbVulvLes.Checked = False) then
-  begin
-    MessageDlg('You did not check anything for VULVA.', mtInformation, [mbOK], 0);
-    ModalResult := mrNone;
-    Exit;
-  end;
-  if (cbVagNorm.Checked = False) and (cbVagInflam.Checked = False) and
-     (cbVagDisc.Checked = False) then
-  begin
-    MessageDlg('You did not check anything for VAGINA.', mtInformation, [mbOK], 0);
-    ModalResult := mrNone;
-    Exit;
-  end;
-  if (cbCervNorm.Checked = False) and (cbCervInflam.Checked = False) and
-     (cbCervLes.Checked = False) then
-  begin
-    MessageDlg('You did not check anything for CERVIX.', mtInformation, [mbOK], 0);
-    ModalResult := mrNone;
-    Exit;
-  end;
-  if (cbAdnNorm.Checked = False) and (cbAdnMas.Checked = False) then
-  begin
-    MessageDlg('You did not check anything for ADNEXA.', mtInformation, [mbOK], 0);
-    ModalResult := mrNone;
-    Exit;
-  end;
-  if (cbUterNorm.Checked = False) and (cbUterAbn.Checked = False) then
-  begin
-    MessageDlg('You did not check anything for UTERUS.', mtInformation, [mbOK], 0);
-    ModalResult := mrNone;
-    Exit;
-  end;
-  if (cbUterAbn.Checked = True) and (edUterSize.Text = '') then
-  begin
-    MessageDlg('You did not enter anything for UTERUS Size.', mtInformation, [mbOK], 0);
-    ModalResult := mrNone;
-    Exit;
-  end;
-  if ((not cbPelDimAde.Checked) and (not cbPelDimBor.Checked) and (not cbPelDimCon.Checked)) then
-  begin
-    MessageDlg('You did not enter anything for Pelvis DIMENSIONS.', mtInformation, [mbOK], 0);
-    ModalResult := mrNone;
-    Exit;
-  end;
-
-  TmpStrList.Add('Pelvic Exam');
-
-  if (cbVulvNorm.Checked) or (cbVulvCond.Checked) or (cbVulvLes.Checked) then
-  begin
-    TmpStr := '  Vulva: ';
-    if cbVulvNorm.Checked then
-      TmpStr := TmpStr + 'Normal';
-
-    if cbVulvCond.Checked then
-      TmpStr := TmpStr  + 'Condyloma';
-
-    if cbVulvLes.Checked then
-    begin
-      if cbVulvCond.Checked then
-        TmpStr := TmpStr + ', Lesions'
-      else
-        TmpStr := TmpStr + 'Lesions';
-    end;
-
-    TmpStrList.Add(TmpStr);
-  end;
-
- if (cbVagNorm.Checked) or (cbVagInflam.Checked) or (cbVagDisc.Checked) then
-  begin
-    TmpStr := '  Vagina: ';
-    if cbVagNorm.Checked then
-      TmpStr := TmpStr + 'Normal';
-
-    if cbVagInflam.Checked then
-      TmpStr := TmpStr  + 'Inflammation';
-
-    if cbVagDisc.Checked then
-    begin
-      if cbVagInflam.Checked then
-        TmpStr := TmpStr + ', Discharge'
-      else
-        TmpStr := TmpStr + 'Discharge';
-    end;
-
-    TmpStrList.Add(TmpStr);
-  end;
-
- if (cbCervNorm.Checked) or (cbCervInflam.Checked) or (cbCervLes.Checked) then
-  begin
-    TmpStr := '  Cervix: ';
-    if cbCervNorm.Checked then
-      TmpStr := TmpStr + 'Normal';
-
-    if cbCervInflam.Checked then
-      TmpStr := TmpStr  + 'Inflammation';
-
-    if cbCervLes.Checked then
-    begin
-      if cbCervInflam.Checked then
-        TmpStr := TmpStr + ', Lesions'
-      else
-        TmpStr := TmpStr + 'Lesions';
-    end;
-
-    TmpStrList.Add(TmpStr);
-  end;
-
-  if cbAdnNorm.Checked then
-    TmpStrList.Add('  Adnexa: Normal');
-  if cbAdnMas.Checked then
-    TmpStrList.Add('  Adnexa: Mass');
-
-  if cbUterNorm.Checked then
-  begin
-    TmpStrList.Add('  Uterus: Normal');
-    if edUterSize.Text <> '' then
-      TmpStrList.Add('   Size: ' + edUterSize.Text + ' Weeks');
-  end else if cbUterAbn.Checked then
-  begin
-    TmpStrList.Add('  Uterus: Abnormal');
-    if edUterSize.Text <> '' then
-      TmpStrList.Add('   Size: ' + edUterSize.Text + ' Weeks');
-  end;
-
-  if memComments.Lines.Count > 0 then
-  begin
-    TmpStrList.Add('  Comments:');
-    for I := 0 to memComments.Lines.Count - 1 do
-      TmpStrList.Add('   ' + memComments.Lines[I]);
-  end;
-
-  TmpStrList.Add('Clinical Pelvimetry Assessment');
-
-  if cbPelDimAde.Checked then
-    TmpStrList.Add('  Pelvis Dimensions: Adequate')
-  else if cbPelDimBor.Checked then
-    TmpStrList.Add('  Pelvis Dimensions: Borderline')
-  else if cbPelDimCon.Checked then
-    TmpStrList.Add('  Pelvis Dimensions: Inadequate');
-
-  if memPelvimetry.Lines.Count > 0 then
-  begin
-    TmpStrList.Add('  Comments:');
-    for I := 0 to memPelvimetry.Lines.Count - 1 do
-      TmpStrList.Add('   ' + memPelvimetry.Lines[I]);
-  end;
-end;
-
 procedure TdlgPelvic.cbSwitch(Sender: TObject);
-begin
-  if not (Sender is TCheckBox) then
-    Exit;
 
+  procedure ClickNil(cb1,cb2,cb3: TCheckBox);
+  begin
+    cb1.OnClick := nil;
+    cb2.OnClick := nil;
+    cb3.OnClick := nil;
+  end;
+
+  procedure ClickSet(cb1,cb2,cb3: TCheckBox);
+  begin
+    cb1.OnClick := cbSwitch;
+    cb2.OnClick := cbSwitch;
+    cb3.OnClick := cbSwitch;
+  end;
+
+  procedure ToggleCB(cb1,cb2: TCheckBox);
+  begin
+    if cb1.Checked = True then
+      cb2.Checked := False;
+  end;
+
+begin
   case TCheckBox(Sender).Tag of
     1: begin
          ClickNil(cbVulvNorm, cbVulvCond, cbVulvLes);
@@ -312,24 +170,116 @@ begin
   end;
 end;
 
-procedure TdlgPelvic.ToggleCB(cb1: TCheckBox; cb2: TCheckBox);
+procedure TdlgPelvic.btnOKClick(Sender: TObject);
+var
+  TmpStr: string;
+  I: Integer;
 begin
-  if cb1.Checked = True then
-    cb2.Checked := False;
-end;
+  if (cbVulvNorm.Checked) or (cbVulvCond.Checked) or (cbVulvLes.Checked) then
+  begin
+    TmpStr := '  Vulva: ';
+    if cbVulvNorm.Checked then
+      TmpStr := TmpStr + 'Normal';
 
-procedure TdlgPelvic.ClickNil(cb1: TCheckBox; cb2: TCheckBox; cb3: TCheckBox);
-begin
-  cb1.OnClick := nil;
-  cb2.OnClick := nil;
-  cb3.OnClick := nil;
-end;
+    if cbVulvCond.Checked then
+      TmpStr := TmpStr  + 'Condyloma';
 
-procedure TdlgPelvic.ClickSet(cb1: TCheckBox; cb2: TCheckBox; cb3: TCheckBox);
-begin
-  cb1.OnClick := cbSwitch;
-  cb2.OnClick := cbSwitch;
-  cb3.OnClick := cbSwitch;
+    if cbVulvLes.Checked then
+    begin
+      if cbVulvCond.Checked then
+        TmpStr := TmpStr + ', Lesions'
+      else
+        TmpStr := TmpStr + 'Lesions';
+    end;
+
+    TmpStrList.Add(TmpStr);
+  end;
+
+  if (cbVagNorm.Checked) or (cbVagInflam.Checked) or (cbVagDisc.Checked) then
+  begin
+    TmpStr := '  Vagina: ';
+    if cbVagNorm.Checked then
+      TmpStr := TmpStr + 'Normal';
+
+    if cbVagInflam.Checked then
+      TmpStr := TmpStr  + 'Inflammation';
+
+    if cbVagDisc.Checked then
+    begin
+      if cbVagInflam.Checked then
+        TmpStr := TmpStr + ', Discharge'
+      else
+        TmpStr := TmpStr + 'Discharge';
+    end;
+
+    TmpStrList.Add(TmpStr);
+  end;
+
+  if (cbCervNorm.Checked) or (cbCervInflam.Checked) or (cbCervLes.Checked) then
+  begin
+    TmpStr := '  Cervix: ';
+    if cbCervNorm.Checked then
+      TmpStr := TmpStr + 'Normal';
+
+    if cbCervInflam.Checked then
+      TmpStr := TmpStr  + 'Inflammation';
+
+    if cbCervLes.Checked then
+    begin
+      if cbCervInflam.Checked then
+        TmpStr := TmpStr + ', Lesions'
+      else
+        TmpStr := TmpStr + 'Lesions';
+    end;
+
+    TmpStrList.Add(TmpStr);
+  end;
+
+  if cbAdnNorm.Checked then
+    TmpStrList.Add('  Adnexa: Normal');
+  if cbAdnMas.Checked then
+    TmpStrList.Add('  Adnexa: Mass');
+
+  if cbUterNorm.Checked then
+  begin
+    TmpStrList.Add('  Uterus: Normal');
+    if edUterSize.Text <> '' then
+      TmpStrList.Add('   Size: ' + edUterSize.Text + ' Weeks');
+  end else if cbUterAbn.Checked then
+  begin
+    TmpStrList.Add('  Uterus: Abnormal');
+    if edUterSize.Text <> '' then
+      TmpStrList.Add('   Size: ' + edUterSize.Text + ' Weeks');
+  end;
+
+  if memComments.Lines.Count > 0 then
+  begin
+    TmpStrList.Add('  Comments:');
+    for I := 0 to memComments.Lines.Count - 1 do
+      TmpStrList.Add('   ' + memComments.Lines[I]);
+  end;
+
+  if (cbPelDimAde.Checked) or (cbPelDimBor.Checked) or (cbPelDimCon.Checked) then
+  begin
+    TmpStrList.Add('Clinical Pelvimetry Assessment');
+
+    if cbPelDimAde.Checked then
+      TmpStrList.Add('  Pelvis Dimensions: Adequate')
+    else if cbPelDimBor.Checked then
+      TmpStrList.Add('  Pelvis Dimensions: Borderline')
+    else if cbPelDimCon.Checked then
+      TmpStrList.Add('  Pelvis Dimensions: Inadequate');
+
+    if memPelvimetry.Lines.Count > 0 then
+    begin
+      TmpStrList.Add('  Comments:');
+      for I := 0 to memPelvimetry.Lines.Count - 1 do
+        TmpStrList.Add('   ' + memPelvimetry.Lines[I]);
+    end;
+  end;
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Pelvic Exam: ');
 end;
 
 end.

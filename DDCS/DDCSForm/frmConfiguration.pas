@@ -39,7 +39,6 @@ type
     ckDoNotSave: TCheckBox;
     btnReloadDialogs: TBitBtn;
     btnUpdateDialogs: TBitBtn;
-    lsDialog: TListBox;
     lvDialogComponent: TListView;
     btnDialogShow: TBitBtn;
     btnUpdateConfig: TBitBtn;
@@ -60,11 +59,33 @@ type
     cbDialogReturn: TCaptionComboBox;
     lbDialogReturn: TStaticText;
     pnlConfig: TPanel;
-    pnlDialog: TPanel;
     btnClear: TBitBtn;
     btnClose: TBitBtn;
-    CheckBox1: TCheckBox;
+    ckDoNotRestore: TCheckBox;
     lbReportControl: TStaticText;
+    lvDialog: TListView;
+    pgDialogOutput: TPageControl;
+    TabSheet1: TTabSheet;
+    pnlDialog: TPanel;
+    StaticText1: TStaticText;
+    StaticText2: TStaticText;
+    StaticText3: TStaticText;
+    StaticText4: TStaticText;
+    StaticText5: TStaticText;
+    StaticText6: TStaticText;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    SpinEdit1: TSpinEdit;
+    CaptionEdit1: TCaptionEdit;
+    CaptionEdit2: TCaptionEdit;
+    CaptionEdit3: TCaptionEdit;
+    CheckBox4: TCheckBox;
+    CaptionComboBox1: TCaptionComboBox;
+    CheckBox5: TCheckBox;
+    StaticText7: TStaticText;
+    TabSheet2: TTabSheet;
+    meDialogOutput: TMemo;
     procedure FormShow(Sender: TObject);
     // ListBox -----------------------------------------------------------------
     procedure ListColumnClick(Sender: TObject; Column: TListColumn);
@@ -76,7 +97,7 @@ type
     // Report Items ------------------------------------------------------------
     procedure lvReportItemsDblClick(Sender: TObject);
     // Dialogs -----------------------------------------------------------------
-    procedure lsDialogDblClick(Sender: TObject);
+    procedure lvDialogDblClick(Sender: TObject);
     procedure lvDialogComponentDblClick(Sender: TObject);
     procedure ReloadDialogs(Sender: TObject);
     procedure btnDialogShowClick(Sender: TObject);
@@ -180,22 +201,67 @@ end;
 {$REGION 'Report Items'}
 
 procedure TDDCSFormConfig.lvReportItemsDblClick(Sender: TObject);
+var
+  cControl: TComponent;
+  nItem: TDDCSNoteItem;
 begin
   lbReportControl.Caption := '';
   if lvReportItems.ItemIndex < 0 then
     Exit;
 
   lbReportControl.Caption := lvReportItems.Items[lvReportItems.ItemIndex].Caption;
+
+  cControl := FDDCSForm.Owner.FindComponent(lbReportControl.Caption);
+  if cControl <> nil then
+  begin
+    nItem := FDDCSForm.ReportCollection.GetNoteItem(TWinControl(cControl));
+
+    if nItem <> nil then
+    begin
+      spOrder.Value := nItem.Order;
+      edTitle.Text := nItem.Title;
+      edPrefix.Text := nItem.Prefix;
+      edSuffix.Text := nItem.Suffix;
+      ckDoNotSpace.Checked := nItem.DoNotSpace;
+      ckHideFromNote.Checked := nItem.HideFromNote;
+      ckDoNotSave.Checked := nItem.DoNotSave;
+//      ckDoNotRestore.Checked := nItem.DoNotRestore;
+      ckRequired.Checked := nItem.Required;
+      if nItem.DialogReturn <> nil then
+        cbDialogReturn.ItemIndex := cbDialogReturn.Items.IndexOf(nItem.DialogReturn.Name);
+    end;
+  end;
 end;
 
 {$ENDREGION}
 
 {$REGION 'Dialogs'}
 
-procedure TDDCSFormConfig.lsDialogDblClick(Sender: TObject);
+procedure TDDCSFormConfig.lvDialogDblClick(Sender: TObject);
+var
+  sl: TStringList;
+  I: Integer;
+  lvItem: TListItem;
 begin
-  if lsDialog.ItemIndex < 0 then
+  lvDialogComponent.SortType := stNone;
+  lvDialogComponent.Clear;
+
+  if lvDialog.ItemIndex < 0 then
     Exit;
+
+  sl := TStringList.Create;
+  try
+    sl.Text := GetDialogComponents(lvDialog.Items[lvDialog.ItemIndex].Caption);
+
+    for I := 0 to sl.Count - 1 do
+    begin
+      lvItem := lvDialogComponent.Items.Add;
+      lvItem.Caption := Piece(sl[I],U,2);
+      lvItem.SubItems.Add(Piece(sl[I],u,3));
+    end;
+  finally
+    sl.Free;
+  end;
 end;
 
 procedure TDDCSFormConfig.lvDialogComponentDblClick(Sender: TObject);
@@ -205,31 +271,48 @@ begin
 end;
 
 procedure TDDCSFormConfig.ReloadDialogs(Sender: TObject);
+var
+  I: Integer;
+  lvItem: TListItem;
 begin
+  lvDialog.SortType := stNone;
+  lvDialog.Clear;
+
   DialogDLL := LoadDialogs;
+
+  if Assigned(DLLDialogList) then
+    for I := 0 to DLLDialogList.Count - 1 do
+    begin
+      lvItem := lvDialog.Items.Add;
+      lvItem.Caption := Piece(DLLDialogList[I],U,1);
+      lvItem.SubItems.Add(Piece(DLLDialogList[I],u,2));
+    end;
 end;
 
 procedure TDDCSFormConfig.btnDialogShowClick(Sender: TObject);
 var
-  dlgName: string;
   sl: TStringList;
 begin
-  if lsDialog.ItemIndex < 0 then
+  if lvDialog.ItemIndex < 0 then
     Exit;
-
-  dlgName := '||' + lsDialog.Items[lsDialog.ItemIndex];
 
   if DialogDLL <> 0 then
   begin
     sl := TStringList.Create;
     try
       try
-        sl.Text := DisplayDialog(@RPCBrokerV, dlgName, True);
+        sl.Text := DisplayDialog(@RPCBrokerV, '||' + lvDialog.Items[lvDialog.ItemIndex].Caption, True);
       except
         on E: Exception do
         ShowMsg(E.Message, smiError, smbOK);
       end;
     finally
+      if sl.Count > 0 then
+      begin
+        meDialogOutput.Clear;
+        pgDialogOutput.ActivePageIndex := 1;
+        meDialogOutput.Lines.Text := sl.Text;
+      end;
       sl.Free;
     end;
   end;
@@ -246,17 +329,22 @@ begin
   sl := TStringList.Create;
   try
     try
-      for I := 0 to DLLDialogList.Count - 1 do
+      for I := 0 to lvDialog.Items.Count - 1 do
       begin
         sl.Clear;
 
         if DialogDLL <> 0 then
-          sl.Text := GetDialogComponents(Piece(DLLDialogList[I],U,1));
-
-        if sl.Count > 0 then
         begin
-          if UpdateContext(MENU_CONTEXT) then
-            CallV('DSIO DDCS DIALOG IMPORT', [Piece(DLLDialogList[I],U,2), Piece(DLLDialogList[I],U,1), sl]);
+          sl.Text := GetDialogComponents(lvDialog.Items[I].Caption);
+
+          // Need to collect changes made in this form and apply them to the
+          // return of the existing configuration
+
+          if sl.Count > 0 then
+          begin
+            if UpdateContext(MENU_CONTEXT) then
+              CallV('DSIO DDCS DIALOG IMPORT', [Piece(DLLDialogList[I],U,2), Piece(DLLDialogList[I],U,1), sl]);
+          end;
         end;
       end;
     except
@@ -323,6 +411,7 @@ begin
   ckDoNotSpace.Checked := False;
   ckHideFromNote.Checked := False;
   ckDoNotSave.Checked := False;
+  ckDoNotRestore.Checked := False;
   ckRequired.Checked := False;
   cbDialogReturn.ItemIndex := -1;
 end;
@@ -331,9 +420,9 @@ procedure TDDCSFormConfig.ClearDialogEditor;
 var
   I: Integer;
 begin
-  lsDialog.ItemIndex := -1;
-  for I := 0 to lsDialog.Count - 1 do
-    lsDialog.Selected[I] := False;
+  lvDialog.ItemIndex := -1;
+  for I := 0 to lvDialog.Items.Count - 1 do
+    lvDialog.Items[I].Selected := False;
 
   lvDialogComponent.SortType := stNone;
   lvDialogComponent.Clear;
@@ -342,11 +431,22 @@ end;
 // Public ----------------------------------------------------------------------
 
 constructor TDDCSFormConfig.Create(AOwner: TComponent; DDCSForm: TDDCSForm);
+var
+  I: Integer;
+  lvItem: TListItem;
 begin
   inherited Create(AOwner);
 
   FDDCSForm := DDCSForm;
   FObjects := TStringList.Create;
+
+  if Assigned(DLLDialogList) then
+    for I := 0 to DLLDialogList.Count - 1 do
+    begin
+      lvItem := lvDialog.Items.Add;
+      lvItem.Caption := Piece(DLLDialogList[I],U,1);
+      lvItem.SubItems.Add(Piece(DLLDialogList[I],u,2));
+    end;
 end;
 
 destructor TDDCSFormConfig.Destroy;

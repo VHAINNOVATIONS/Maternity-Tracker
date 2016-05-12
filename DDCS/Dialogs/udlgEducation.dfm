@@ -2,6 +2,7 @@ object dlgEducation: TdlgEducation
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
+  Caption = 'Education'
   ClientHeight = 354
   ClientWidth = 828
   Color = clBtnFace
@@ -186,35 +187,7 @@ object dlgEducation: TdlgEducation
   Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 828
-    Height = 33
-    Align = alTop
-    Color = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 0
-    object lbltitle: TLabel
-      Left = 4
-      Top = 4
-      Width = 82
-      Height = 20
-      Caption = 'Education'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -16
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-  end
-  object Panel2: TPanel
+  object pnlfooter: TPanel
     Tag = 19641
     Left = 0
     Top = 325
@@ -222,15 +195,13 @@ object dlgEducation: TdlgEducation
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 2
-    DesignSize = (
-      828
-      29)
+    TabOrder = 1
     object bbtnOK: TBitBtn
-      Left = 670
-      Top = 2
+      Left = 672
+      Top = 4
       Width = 75
       Height = 25
+      Align = alCustom
       Anchors = [akTop, akRight]
       Kind = bkOK
       NumGlyphs = 2
@@ -238,10 +209,11 @@ object dlgEducation: TdlgEducation
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 751
-      Top = 2
+      Left = 753
+      Top = 4
       Width = 75
       Height = 25
+      Align = alCustom
       Anchors = [akTop, akRight]
       Kind = bkCancel
       NumGlyphs = 2
@@ -250,25 +222,17 @@ object dlgEducation: TdlgEducation
   end
   object educationListView: TListView
     Left = 0
-    Top = 33
+    Top = 0
     Width = 828
-    Height = 292
+    Height = 325
     Align = alClient
     Checkboxes = True
     Columns = <>
     ReadOnly = True
     RowSelect = True
-    TabOrder = 1
+    TabOrder = 0
     ViewStyle = vsReport
     OnColumnClick = educationListViewColumnClick
     OnCompare = educationListViewCompare
-  end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgEducation'
-        'Status = stsDefault'))
   end
 end

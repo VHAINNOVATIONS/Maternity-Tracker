@@ -34,7 +34,6 @@ type
     L_GestationalAgeAtDelivery: TLabel;
     L_LengthofLabor: TLabel;
     L_TypeofDelivery: TLabel;
-    SpeedButton11: TSpeedButton;
     Label287: TLabel;
     edtDateOfDelivery: TEdit;
     E_TypeofDelivery: TComboBox;
@@ -58,12 +57,10 @@ type
     cbAnesthesia: TComboBox;
     CB_PlaceofDelivery: TComboBox;
     Label7: TLabel;
-    amgrMain: TVA508AccessibilityManager;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure cxRadioGroupBirthTypeClick(Sender: TObject);
     procedure JvSpinEdit1Change(Sender: TObject);
-    procedure SpeedButton11Click(Sender: TObject);
     procedure pgcChildNumberChange(Sender: TObject);
     procedure cxRadioGroup_PretermLaborClick(Sender: TObject);
     procedure gaWeekChange(Sender: TObject);
@@ -88,7 +85,7 @@ var
 implementation
 
 uses
-  Math, udlgDATE, udlgPregHist;
+  Math, udlgPregHist;
 
 {$R *.dfm}
 
@@ -291,28 +288,6 @@ procedure TfrmPregHist.pgcChildNumberChange(Sender: TObject);
 begin
   TfrmChildHist(slChildHist.Objects[pgcChildNumber.ActivePageIndex]).rgbxChildGender.SetFocus;
   TfrmChildHist(slChildHist.Objects[pgcChildNumber.ActivePageIndex]).bNotViewed := False;
-end;
-
-procedure TfrmPregHist.SpeedButton11Click(Sender: TObject);
-var
-  dlgGetDate : TdlgDate;
-begin
-  try
-    dlgGetDate := TdlgDate.Create(nil);
-    dlgGetDate.ShowModal;
-    if dlgGetDate.ModalResult = mrOK then
-    begin
-      if(dlgGetDate.calMonth.Date) >  Now then
-        ShowMessage('No future dates')
-      else
-        if lblStatus.Caption = '*** CURRENT ***' then
-          ShowMessage('Cannot close out the ACTIVE pregnancy here.')
-        else
-          edtDateOfDelivery.Text := DateToStr(dlgGetDate.calMonth.Date);
-    end;
-  finally
-    dlgGetDate.Free;
-  end;
 end;
 
 procedure TfrmPregHist.SpinMin(Sender: TObject);

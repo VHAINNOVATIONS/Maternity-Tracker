@@ -198,6 +198,7 @@ function TDDCSNoteItem.IsValid: Boolean;
 var
   I: Integer;
   lb: TCustomListBox;
+  lbo: TORListBox;
 begin
   Result := True;
 
@@ -205,92 +206,96 @@ begin
     Exit;
 
   try
-    // TStaticText is not normally part of the NoteItems but can be manually created
-    // and if it is we want to use it but we wouldn't want to normally.
-    if FObject is TStaticText then
-    begin
-      if TStaticText(FObject).Caption = '' then
-        Result := False;
-    end
-    else if FObject.InheritsFrom(TORDateBox) then
-      Result := TORDateBox(FObject).IsValid
-    else if FObject.InheritsFrom(TCustomLabel) then
-    begin
-      if TCustomLabel(FObject).Caption = '' then
-        Result := False;
-    end
-    else if FObject is TORDateBox then
-      Result := TORDateBox(FObject).IsValid
-    else if FObject.InheritsFrom(TDateTimePicker) then
-    begin
-      if TDateTimePicker(FObject).Format = ' ' then
-        Result := False;
-    end
-    else if FObject.InheritsFrom(TCustomMemo) then          // Must come before TCustomEdit
-    begin
-      if TCustomMemo(FObject).Lines.Count < 1 then
-        Result := False;
-    end
-    else if FObject.InheritsFrom(TCustomEdit) then
-    begin
-      if TCustomEdit(FObject).Text = '' then
-        Result := False;
-    end
-    else if FObject.InheritsFrom(TCheckBox) then
-    begin
-      if not TCheckBox(FObject).Checked then
-        Result := False;
-    end
-    else if FObject.InheritsFrom(TRadioButton) then
-    begin
-      if not TRadioButton(FObject).Checked then
-        Result := False;
-    end
-    else if FObject.InheritsFrom(TRadioGroup) then
-    begin
-      if TRadioGroup(FObject).ItemIndex = -1 then
-        Result := False;
-    end
-    else if FObject.InheritsFrom(TCustomComboBox) then
-    begin
-      if TCustomComboBox(FObject).ItemIndex = -1 then
+    // TOR ---------------------------------------------------------------------
+      if FObject is TORDateBox then
+        Result := TORDateBox(FObject).IsValid
+      else if FObject is TORCheckBox then
+        Result := TORCheckBox(FObject).Checked
+      else if FObject is TORComboBox then
+        Result := not (TORComboBox(FObject).Text = '')
+      else if FObject is TORListBox then
       begin
-        if FObject.InheritsFrom(TComboBox) then
+        Result := False;
+        lbo := TORListBox(FObject);
+        if lbo.CheckBoxes then
         begin
-          if ((TComboBox(FObject).Style = csDropDown) and (TComboBox(FObject).Text = '')) then
-            Result := False
+          for I := 0 to lbo.Count - 1 do
+          begin
+            if lbo.Checked[I] then
+            begin
+              Result := True;
+              Break;
+            end;
+          end;
         end else
-          Result := False;
-      end;
-    end
-    else if FObject.InheritsFrom(TCustomListBox) then
-    begin
-      Result := False;
-
-      lb := TCustomListBox(FObject);
-
-      if FObject.InheritsFrom(TCheckListBox) then
-      begin
-        for I := 0 to TCheckListBox(FObject).Count - 1 do
         begin
-          if TCheckListBox(FObject).Checked[I] then
+          for I := 0 to lbo.Count - 1 do
           begin
-            Result := True;
-            Break;
-          end;
-        end;
-      end else
-      begin
-        for I := 0 to lb.Count - 1 do
-        begin
-          if lb.Selected[I] then
-          begin
-            Result := True;
-            Break;
+            if lbo.Selected[I] then
+            begin
+              Result := True;
+              Break;
+            end;
           end;
         end;
       end;
-    end;
+    // -------------------------------------------------------------------------
+    // Legacy ------------------------------------------------------------------
+      // TStaticText is not normally part of the NoteItems but can be manually created
+      // and if it is we want to use it but we wouldn't want to normally.
+      if FObject is TStaticText then
+        Result := not (TStaticText(FObject).Caption = '')
+      else if FObject.InheritsFrom(TDateTimePicker) then
+        Result := not (TDateTimePicker(FObject).Format = ' ')
+      else if FObject.InheritsFrom(TCustomMemo) then          // Must come before TCustomEdit
+        Result := not (TCustomMemo(FObject).Lines.Count < 1)
+      else if FObject.InheritsFrom(TCustomEdit) then
+        Result := not (TCustomEdit(FObject).Text = '')
+      else if FObject.InheritsFrom(TCheckBox) then
+        Result := TCheckBox(FObject).Checked
+      else if FObject.InheritsFrom(TRadioButton) then
+        Result := TRadioButton(FObject).Checked
+      else if FObject.InheritsFrom(TRadioGroup) then
+        Result := not (TRadioGroup(FObject).ItemIndex = -1)
+      else if FObject.InheritsFrom(TCustomComboBox) then
+      begin
+        if TCustomComboBox(FObject).ItemIndex = -1 then
+        begin
+          if FObject.InheritsFrom(TComboBox) then
+          begin
+            if ((TComboBox(FObject).Style = csDropDown) and (TComboBox(FObject).Text = '')) then
+              Result := False
+          end else
+            Result := False;
+        end;
+      end
+      else if FObject.InheritsFrom(TCustomListBox) then
+      begin
+        Result := False;
+        lb := TCustomListBox(FObject);
+        if FObject.InheritsFrom(TCheckListBox) then
+        begin
+          for I := 0 to TCheckListBox(FObject).Count - 1 do
+          begin
+            if TCheckListBox(FObject).Checked[I] then
+            begin
+              Result := True;
+              Break;
+            end;
+          end;
+        end else
+        begin
+          for I := 0 to lb.Count - 1 do
+          begin
+            if lb.Selected[I] then
+            begin
+              Result := True;
+              Break;
+            end;
+          end;
+        end;
+      end;
+    // -------------------------------------------------------------------------
   except
   end;
 end;
@@ -299,9 +304,12 @@ function TDDCSNoteItem.GetValueNote: TStringList;
 var
   I,J: Integer;
   ck: TCheckBox;
+  cko: TORCheckBox;
   rb: TRadioButton;
   lb: TCustomListBox;
+  lbo: TORListBox;
   lv: TListView;
+  lvo: TORListView;
   sg: TStringGrid;
   str: string;
 begin
@@ -315,19 +323,68 @@ begin
 
   try
     try
-      // TStaticText is not normally part of the NoteItems but can be manually created
-      // and if it is we want to use it but we wouldn't want to normally.
-      if FObject is TStaticText then
-        Result.Add(FPrefix + TStaticText(FObject).Caption + FSuffix)
-      else if FObject.InheritsFrom(TORDateBox) then
-        Result.Add(FPrefix + TORDateBox(FObject).Text + FSuffix)
-      else if FObject.InheritsFrom(TCustomLabel) then
-        Result.Add(FPrefix + TCustomLabel(FObject).Caption + FSuffix)
-      else if FObject is TORDateBox then
+    // TOR ---------------------------------------------------------------------
+      if FObject is TORDateBox then
       begin
         if TORDateBox(FObject).IsValid then
           Result.Add(FPrefix + TORDateBox(FObject).Text + FSuffix);
       end
+      else if FObject is TORCheckBox then
+      begin
+        cko := TORCheckBox(FObject);
+        if cko.Checked then
+        begin
+          if cko.Caption <> '' then
+            Result.Add(FPrefix + cko.Caption + FSuffix)
+          else
+            Result.Add(FPrefix + cko.Hint + FSuffix)
+        end;
+      end
+      else if FObject is TORComboBox then
+      begin
+        if TORComboBox(FObject).Text <> '' then
+          Result.Add(FPrefix + TORComboBox(FObject).Text + FSuffix);
+      end
+      else if FObject is TORListBox then
+      begin
+        lbo := TORListBox(FObject);
+        if lbo.CheckBoxes then
+        begin
+          for I := 0 to lbo.Count - 1 do
+            if lbo.Checked[I] then
+              Result.Add(FPrefix + lbo.Items[I] + FSuffix);
+        end else
+        begin
+          for I := 0 to lbo.Count - 1 do
+            if lbo.Selected[I] then
+              Result.Add(FPrefix + lb.Items[I] + FSuffix);
+        end;
+      end
+      else if FObject is TORListView then
+      begin
+        lvo := TORListView(FObject);
+        // Need to space based on the the length of the values
+        if lvo.ViewStyle = vsReport then
+          for I := 0 to lvo.Columns.Count - 1 do
+            if str <> '' then
+              str := str + ' | ' + lvo.Column[I].Caption
+            else
+              str := lvo.Column[I].Caption;
+        Result.Add(str);
+        for I := 0 to lvo.Items.Count - 1 do
+        begin
+          str := lvo.Items.Item[I].Caption;
+          for J := 0 to lvo.Items.Item[I].SubItems.Count - 1 do
+            str := str + ' | ' + lvo.Items[I].SubItems[J];
+          Result.Add(str);
+        end;
+      end;
+    // -------------------------------------------------------------------------
+    // Legacy ------------------------------------------------------------------
+      // TStaticText is not normally part of the NoteItems but can be manually created
+      // and if it is we want to use it but we wouldn't want to normally.
+      if FObject is TStaticText then
+        Result.Add(FPrefix + TStaticText(FObject).Caption + FSuffix)
       else if FObject.InheritsFrom(TDateTimePicker) then
       begin
         if TDateTimePicker(FObject).Format <> ' ' then
@@ -343,7 +400,6 @@ begin
       else if FObject.InheritsFrom(TCheckBox) then
       begin
         ck := TCheckBox(FObject);
-
         if ck.Checked then
         begin
           if ck.Caption <> '' then
@@ -355,7 +411,6 @@ begin
       else if FObject.InheritsFrom(TRadioButton) then
       begin
         rb := TRadioButton(FObject);
-
         if rb.Checked then
         begin
           if rb.Caption <> '' then
@@ -382,27 +437,21 @@ begin
       else if FObject.InheritsFrom(TCustomListBox) then
       begin
         lb := TCustomListBox(FObject);
-
         if FObject.InheritsFrom(TCheckListBox) then
         begin
           for I := 0 to TCheckListBox(FObject).Count - 1 do
-          begin
             if TCheckListBox(FObject).Checked[I] then
               Result.Add(FPrefix + TCheckListBox(FObject).Items[I] + FSuffix);
-          end;
         end else
         begin
           for I := 0 to lb.Count - 1 do
-          begin
             if lb.Selected[I] then
               Result.Add(FPrefix + lb.Items[I] + FSuffix);
-          end;
         end;
       end
       else if FObject.InheritsFrom(TListView) then
       begin
         lv := TListView(FObject);
-
         // Need to space based on the the length of the values
         if lv.ViewStyle = vsReport then
           for I := 0 to lv.Columns.Count - 1 do
@@ -410,29 +459,25 @@ begin
               str := str + ' | ' + lv.Column[I].Caption
             else
               str := lv.Column[I].Caption;
-
         Result.Add(str);
-
         for I := 0 to lv.Items.Count - 1 do
         begin
           str := lv.Items.Item[I].Caption;
-
           for J := 0 to lv.Items.Item[I].SubItems.Count - 1 do
             str := str + ' | ' + lv.Items[I].SubItems[J];
-
           Result.Add(str);
         end;
       end
       else if FObject.InheritsFrom(TStringGrid) then
       begin
         sg := TStringGrid(FObject);
-
         for I := 0 to sg.RowCount - 1 do
           for J := 0 to sg.ColCount - 1 do
             Result.Add(FPrefix + sg.Cells[J,I] + FSuffix)
       end
       else if FObject is TDDCSVitals then
         Result.AddStrings(TDDCSVitals(FObject).GetCompleteNote);
+    // -------------------------------------------------------------------------
     except
     end;
   finally
@@ -444,12 +489,15 @@ end;
 function TDDCSNoteItem.GetValueSave: TStringList;
 var
   ck: TCheckBox;
+  cko: TORCheckBox;
   rb: TRadioButton;
   rg: TRadioGroup;
   cb: TCustomComboBox;
   lb: TCustomListBox;
+  lbo: TORListBox;
   clb: TCheckListBox;
   lv: TListView;
+  lvo: TORListView;
   sg: TStringGrid;
   I,J: Integer;
   str: string;
@@ -458,15 +506,76 @@ begin
 
   try
     try
-      // TStaticText is not normally part of the NoteItems but can be manually created
-      // and if it is we want to use it but we wouldn't want to normally.
-      if FObject is TStaticText then
-        Result.Add(FObject.Name + '^^' + TStaticText(FObject).Caption)
-      else if FObject is TORDateBox then
+    // TOR ---------------------------------------------------------------------
+      if FObject is TORDateBox then
       begin
         if TORDateBox(FObject).IsValid then
           Result.Add(FObject.Name + '^^' + FloatToStr(TORDateBox(FObject).FMDateTime));
       end
+      else if FObject is TORCheckBox then
+      begin
+        cko := TORCheckBox(FObject);
+        if cko.Checked then
+        begin
+          if cko.Caption <> '' then
+            Result.Add(FObject.Name + '^TRUE^' + cko.Caption)
+          else
+            Result.Add(FObject.Name + '^TRUE^' + cko.Hint)
+        end;
+      end
+      else if FObject is TORComboBox then
+      begin
+        if TORComboBox(FObject).Text <> '' then
+          Result.Add(FObject.Name + '^^' + TORComboBox(FObject).Text);
+      end
+      else if FObject is TORListBox then
+      begin
+        lbo := TORListBox(FObject);
+        if lbo.CheckBoxes then
+        begin
+          for I := 0 to lbo.Count - 1 do
+          begin
+            if lbo.Checked[I] then
+              Result.Add(FObject.Name + U + IntToStr(I) + 'TRUE^' + lbo.Items[I])
+            else
+              Result.Add(FObject.Name + '^^' + lbo.Items[I]);
+          end;
+        end else
+        begin
+          for I := 0 to lbo.Count - 1 do
+          begin
+            if lbo.Selected[I] then
+              Result.Add(FObject.Name + U + IntToStr(I) + 'TRUE^' + lbo.Items[I])
+            else
+              Result.Add(FObject.Name + U + IntToStr(I) + U + lbo.Items[I]);
+          end;
+        end;
+      end
+      else if FObject is TORListView then
+      begin
+        lvo := TORListView(FObject);
+        // Need to space based on the the length of the values
+        if lvo.ViewStyle = vsReport then
+          for I := 0 to lvo.Columns.Count - 1 do
+            if str <> '' then
+              str := str + ' | ' + lvo.Column[I].Caption
+            else
+              str := lvo.Column[I].Caption;
+        Result.Add(FObject.Name + '^0^' + str);
+        for I := 0 to lvo.Items.Count - 1 do
+        begin
+          str := lvo.Items.Item[I].Caption;
+          for J := 0 to lvo.Items.Item[I].SubItems.Count - 1 do
+            str := str + ' | ' + lvo.Items[I].SubItems[J];
+          Result.Add(FObject.Name + U + IntToStr(I) + U + str);
+        end;
+      end;
+    // -------------------------------------------------------------------------
+    // Legacy ------------------------------------------------------------------
+      // TStaticText is not normally part of the NoteItems but can be manually created
+      // and if it is we want to use it but we wouldn't want to normally.
+      if FObject is TStaticText then
+        Result.Add(FObject.Name + '^^' + TStaticText(FObject).Caption)
       else if FObject.InheritsFrom(TDateTimePicker) then
       begin
         if TDateTimePicker(FObject).Format <> ' ' then
@@ -482,7 +591,6 @@ begin
       else if FObject.InheritsFrom(TCheckBox) then
       begin
         ck := TCheckBox(FObject);
-
         if ck.Checked then
         begin
           if ck.Caption <> '' then
@@ -494,7 +602,6 @@ begin
       else if FObject.InheritsFrom(TRadioButton) then
       begin
         rb := TRadioButton(FObject);
-
         if rb.Checked then
         begin
           if rb.Caption <> '' then
@@ -506,21 +613,19 @@ begin
       else if FObject.InheritsFrom(TRadioGroup) then
       begin
         rg := TRadioGroup(FObject);
-
         if rg.ItemIndex <> -1 then
           Result.Add(FObject.Name + U + IntToStr(rg.ItemIndex) + U + rg.Items.Strings[rg.ItemIndex]);
       end
       else if FObject.InheritsFrom(TCustomComboBox) then
       begin
-        cb := TCustomComboBox(FObject);
-
-        if cb.ItemIndex <> -1 then
-          Result.Add(FObject.Name + U + IntToStr(cb.ItemIndex) + 'TRUE^' + cb.Items[cb.ItemIndex])
-        else
+        if FObject.InheritsFrom(TComboBox) then
         begin
-          if FObject.InheritsFrom(TComboBox) then
-            if TComboBox(FObject).Text <> '' then
-              Result.Add(FObject.Name + '^^' + TComboBox(FObject).Text);
+          if TComboBox(FObject).Text <> '' then
+            Result.Add(FObject.Name + '^^' + TComboBox(FObject).Text);
+        end else if TCustomComboBox(FObject).ItemIndex <> -1 then
+        begin
+          cb := TCustomComboBox(FObject);
+          Result.Add(FObject.Name + U + IntToStr(cb.ItemIndex) + 'TRUE^' + cb.Items[cb.ItemIndex])
         end;
       end
       else if FObject.InheritsFrom(TCustomListBox) then
@@ -528,7 +633,6 @@ begin
         if FObject.InheritsFrom(TCheckListBox) then
         begin
           clb := TCheckListBox(FObject);
-
           for I := 0 to clb.Count - 1 do
           begin
             if clb.Checked[I] then
@@ -539,7 +643,6 @@ begin
         end else
         begin
           lb := TCustomListBox(FObject);
-
           for I := 0 to lb.Count - 1 do
           begin
             if lb.Selected[I] then
@@ -552,7 +655,6 @@ begin
       else if FObject.InheritsFrom(TListView) then
       begin
         lv := TListView(FObject);
-
         // Need to space based on the the length of the values
         if lv.ViewStyle = vsReport then
           for I := 0 to lv.Columns.Count - 1 do
@@ -560,27 +662,23 @@ begin
               str := str + ' | ' + lv.Column[I].Caption
             else
               str := lv.Column[I].Caption;
-
         Result.Add(FObject.Name + '^0^' + str);
-
         for I := 0 to lv.Items.Count - 1 do
         begin
           str := lv.Items.Item[I].Caption;
-
           for J := 0 to lv.Items.Item[I].SubItems.Count - 1 do
             str := str + ' | ' + lv.Items[I].SubItems[J];
-
           Result.Add(FObject.Name + U + IntToStr(I) + U + str);
         end;
       end
       else if FObject.InheritsFrom(TStringGrid) then
       begin
         sg := TStringGrid(FObject);
-
         for I := 0 to sg.RowCount - 1 do
           for J := 0 to sg.ColCount - 1 do
             Result.Add(FObject.Name + U + IntToStr(J) + ',' + IntToStr(I) + U + sg.Cells[J,I])
       end;
+    // -------------------------------------------------------------------------
     except
     end;
   finally

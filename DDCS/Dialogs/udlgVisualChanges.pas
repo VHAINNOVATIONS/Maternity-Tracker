@@ -17,34 +17,30 @@ unit udlgVisualChanges;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgVisualChanges = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leOther: TLabeledEdit;
-    leDur: TLabeledEdit;
-    cmbChar: TComboBox;
-    Label2: TLabel;
-    cmbLoc: TComboBox;
-    Label3: TLabel;
-    Label1: TLabel;
-    cbVisCh: TCheckBox;
-    cbNaus: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
+    leOnset: TCaptionEdit;
+    cmbChar: TORComboBox;
+    Label2: TStaticText;
+    cmbLoc: TORComboBox;
+    Label3: TStaticText;
+    Label1: TStaticText;
+    StaticText1: TStaticText;
+    pnlfooter: TPanel;
+    leAssociatedSymp: TCaptionEdit;
+    leDur: TCaptionEdit;
+    StaticText3: TStaticText;
     procedure bbtnOKClick(Sender: TObject);
   private
   public
@@ -63,21 +59,18 @@ var
   I : Integer;
 begin
   if (leOnset.Text <> '') or (cmbChar.Text <> '') or (cmbLoc.Text <> '') or
-    (cbVisCh.Checked) or (cbNaus.Checked) or (leOther.Text <> '') or
     (leDur.Text <> '') then
   begin
-   TmpStrList.Add('Visual changes:');
+   TmpStrList.Add('Visual Changes:');
    if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
    if cmbChar.Text  <> '' then TmpStrList.Add('  Character: ' + cmbChar.Text);
    if cmbLoc.Text  <> '' then TmpStrList.Add('  Location: ' + cmbLoc.Text);
-   if (cbVisCh.Checked) or (cbNaus.Checked) or (leOther.Text  <> '' ) then
+   if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
+   if leAssociatedSymp.Text <> '' then
    begin
      TmpStrList.Add('  Associated Symptoms:');
-     if cbVisCh.Checked then TmpStrList.Add('    Visual Changes');
-     if cbNaus.Checked then TmpStrList.Add('    Nausea');
-     if leOther.Text  <> '' then TmpStrList.Add('    Other: ' + leOther.Text);
+     TmpStrList.Add('    ' + leAssociatedSymp.Text);
    end;
-   if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
  end;
 end;
 

@@ -56,9 +56,7 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    amgrMain: TVA508AccessibilityManager;
     procedure bbtnOKClick(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
   private
   public
   end;
@@ -67,9 +65,6 @@ var
   dlgImmunizations: TdlgImmunizations;
 
 implementation
-
-uses
-   udlgDATE;
 
 {$R *.dfm}
 
@@ -108,33 +103,6 @@ begin
 
   if TmpStrList.Count > 0 then
   TmpStrList.Insert(0, 'Immunization History:');
-end;
-
-procedure TdlgImmunizations.SpeedButton1Click(Sender: TObject);
-var
-  TmpForm : TdlgDate;
-begin
-  try
-    TmpForm := TdlgDate.Create(nil);
-    TmpForm.ShowModal;
-    if TmpForm.ModalResult = mrOK then
-     begin
-      if(TmpForm.calMonth.Date) >  Now then
-      showmessage('No future dates')
-      else
-      case (Sender as TSpeedButton).Tag of
-        1: LabeledEdit1.Text := DateToStr(TmpForm.calMonth.Date);
-        2: LabeledEdit2.Text := DateToStr(TmpForm.calMonth.Date);
-        3: LabeledEdit3.Text := DateToStr(TmpForm.calMonth.Date);
-        4: LabeledEdit4.Text := DateToStr(TmpForm.calMonth.Date);
-        5: Edit1.Text := DateToStr(TmpForm.calMonth.Date);
-        6: Edit2.Text := DateToStr(TmpForm.calMonth.Date);
-        7: Edit3.Text := DateToStr(TmpForm.calMonth.Date);
-      end;
-    end;
-  finally
-    TmpForm.Free;
-  end;
 end;
 
 end.

@@ -80,7 +80,6 @@ type
     Edit4: TEdit;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
     procedure BitBtn1Click(Sender: TObject);
     procedure bbtnOKClick(Sender: TObject);
     procedure CheckBox37Click(Sender: TObject);

@@ -121,8 +121,11 @@ procedure Fill(wControl: TWinControl; iIndex,iValue: string);
 var
   I: Integer;
   cb: TCustomComboBox;
+  cbo: TORComboBox;
   lb: TCustomListBox;
+  lbo: TORListBox;
   lv: TListView;
+  lvo: TORListView;
   lvitem: TListItem;
   lvcolumn: TListColumn;
   sl: TStringList;
@@ -132,106 +135,154 @@ begin
     Exit;
 
   try
-    // TStaticText is not normally part of the NoteItems but can be manually created
-    // and if it is we want to use it but we wouldn't want to normally.
-    if wControl is TStaticText then
-      TStaticText(wControl).Caption := iValue
-    else
-    if wControl.InheritsFrom(TORDateBox) then
-      TORDateBox(wControl).Text := iValue
-    else if wControl.InheritsFrom(TDateTimePicker) then
-      TDateTimePicker(wControl).DateTime := StrToDate(iValue)
-    else if wControl.InheritsFrom(TCustomMemo) then          // Must come before TCustomEdit
-      TCustomMemo(wControl).Lines.Add(iValue)
-    else if wControl.InheritsFrom(TCustomEdit) then
-      TCustomEdit(wControl).Text := iValue
-    else if wControl.InheritsFrom(TCheckBox) then
-      TCheckBox(wControl).Checked := True
-    else if wControl.InheritsFrom(TRadioButton) then
-      TRadioButton(wControl).Checked := True
-    else if wControl.InheritsFrom(TRadioGroup) then
-      TRadioGroup(wControl).ItemIndex := StrToInt(iIndex)
-    else if wControl.InheritsFrom(TCustomComboBox) then
-    begin
-      cb := TCustomComboBox(wControl);
-
-      cb.Items.Add(iValue);
-
-      if AnsiContainsText(iIndex, 'TRUE') then
+    // TOR ---------------------------------------------------------------------
+      if wControl is TORDateBox then
+        TORDateBox(wControl).Text := iValue
+      else if wControl is TORCheckBox then
+        TORCheckBox(wControl).Checked := True
+      else if wControl is TORComboBox then
       begin
-        for I := 0 to cb.Items.Count do
-          if cb.Items[I] = iValue then
-          begin
-            cb.ItemIndex := I;
-            Break;
-          end;
-      end;
-    end
-    else if wControl.InheritsFrom(TCustomListBox) then
-    begin
-      lb := TCustomListBox(wControl);
-
-      lb.Items.Add(iValue);
-
-      if AnsiContainsText(iIndex, 'TRUE') then
-      begin
-        if wControl.InheritsFrom(TCheckListBox) then
-          TCheckListBox(wControl).Checked[TCheckListBox(wControl).Items.IndexOf(iValue)] := True
-        else
-          lb.Selected[lb.Items.Count - 1] := True;
-      end;
-    end
-    else if wControl.InheritsFrom(TListView) then
-    begin
-      lv := TListView(wControl);
-
-      sl := TStringList.Create;
-      try
-        sl.Delimiter := U;
-        sl.StrictDelimiter := True;
-        sl.DelimitedText := iValue;
-
-        if iIndex = '0' then
-        begin
-          lv.ViewStyle := vsReport;
-
-          for I := 0 to sl.Count - 1 do
-          begin
-            lvcolumn := lv.Columns.Add;
-            lvcolumn.AutoSize := True;
-            lvcolumn.Caption := sl[I];
-          end;
-          Exit;
-        end;
-
-        lvitem := lv.Items.Add;
-        lvitem.Caption := sl[0];
-
-        if sl.Count > 1 then
-          for I := 1 to sl.Count - 1 do
-            lvitem.SubItems.Add(sl[I]);
-
+        cbo := TORComboBox(wControl);
+        cbo.Items.Add(iValue);
         if AnsiContainsText(iIndex, 'TRUE') then
-          lvitem.Checked := True;
-
-      finally
-        sl.Free;
+        begin
+          for I := 0 to cbo.Items.Count do
+            if cbo.Items[I] = iValue then
+            begin
+              cbo.ItemIndex := I;
+              Break;
+            end;
+        end;
+      end
+      else if wControl is TORListBox then
+      begin
+        lbo := TORListBox(wControl);
+        lbo.Items.Add(iValue);
+        if AnsiContainsText(iIndex, 'TRUE') then
+        begin
+          if lbo.CheckBoxes then
+            lbo.Checked[lbo.Items.IndexOf(iValue)] := True
+          else
+            lb.Selected[lb.Items.Count - 1] := True;
+        end;
+      end
+      else if wControl is TORListView then
+      begin
+        lvo := TORListView(wControl);
+        sl := TStringList.Create;
+        try
+          sl.Delimiter := U;
+          sl.StrictDelimiter := True;
+          sl.DelimitedText := iValue;
+          if iIndex = '0' then
+          begin
+            lvo.ViewStyle := vsReport;
+            for I := 0 to sl.Count - 1 do
+            begin
+              lvcolumn := lvo.Columns.Add;
+              lvcolumn.AutoSize := True;
+              lvcolumn.Caption := sl[I];
+            end;
+            Exit;
+          end;
+          lvitem := lvo.Items.Add;
+          lvitem.Caption := sl[0];
+          if sl.Count > 1 then
+            for I := 1 to sl.Count - 1 do
+              lvitem.SubItems.Add(sl[I]);
+          if AnsiContainsText(iIndex, 'TRUE') then
+            lvitem.Checked := True;
+        finally
+          sl.Free;
+        end;
       end;
-    end
-    else if wControl.InheritsFrom(TStringGrid) then
-    begin
-      sg := TStringGrid(wControl);
+    // -------------------------------------------------------------------------
+    // Legacy ------------------------------------------------------------------
+      // TStaticText is not normally part of the NoteItems but can be manually created
+      // and if it is we want to use it but we wouldn't want to normally.
+      if wControl is TStaticText then
+        TStaticText(wControl).Caption := iValue
+      else if wControl.InheritsFrom(TDateTimePicker) then
+        TDateTimePicker(wControl).DateTime := StrToDate(iValue)
+      else if wControl.InheritsFrom(TCustomMemo) then             // Must come before TCustomEdit
+        TCustomMemo(wControl).Lines.Add(iValue)
+      else if wControl.InheritsFrom(TCustomEdit) then
+        TCustomEdit(wControl).Text := iValue
+      else if wControl.InheritsFrom(TCheckBox) then
+        TCheckBox(wControl).Checked := True
+      else if wControl.InheritsFrom(TRadioButton) then
+        TRadioButton(wControl).Checked := True
+      else if wControl.InheritsFrom(TRadioGroup) then
+        TRadioGroup(wControl).ItemIndex := StrToInt(iIndex)
+      else if wControl.InheritsFrom(TCustomComboBox) then
+      begin
+        cb := TCustomComboBox(wControl);
+        cb.Items.Add(iValue);
+        if AnsiContainsText(iIndex, 'TRUE') then
+        begin
+          for I := 0 to cb.Items.Count do
+            if cb.Items[I] = iValue then
+            begin
+              cb.ItemIndex := I;
+              Break;
+            end;
+        end;
+      end
+      else if wControl.InheritsFrom(TCustomListBox) then
+      begin
+        lb := TCustomListBox(wControl);
+        lb.Items.Add(iValue);
+        if AnsiContainsText(iIndex, 'TRUE') then
+        begin
+          if wControl.InheritsFrom(TCheckListBox) then
+            TCheckListBox(wControl).Checked[TCheckListBox(wControl).Items.IndexOf(iValue)] := True
+          else
+            lb.Selected[lb.Items.Count - 1] := True;
+        end;
+      end
+      else if wControl.InheritsFrom(TListView) then
+      begin
+        lv := TListView(wControl);
+        sl := TStringList.Create;
+        try
+          sl.Delimiter := U;
+          sl.StrictDelimiter := True;
+          sl.DelimitedText := iValue;
+          if iIndex = '0' then
+          begin
+            lv.ViewStyle := vsReport;
 
-      // Columns
-      if StrToInt(Piece(iIndex,',',1)) > sg.ColCount - 1 then
-        sg.ColCount := (StrToInt(Piece(iIndex,',',1)) - (sg.ColCount - 1));
-
-      // Rows
-      if StrToInt(Piece(iIndex,',',2)) > sg.RowCount - 1 then
-        sg.RowCount := (StrToInt(Piece(iIndex,',',2)) - (sg.RowCount - 1));
-
-      sg.Cells[StrToInt(Piece(iIndex,',',1)), StrToInt(Piece(iIndex,',',2))] := iValue;
-    end;
+            for I := 0 to sl.Count - 1 do
+            begin
+              lvcolumn := lv.Columns.Add;
+              lvcolumn.AutoSize := True;
+              lvcolumn.Caption := sl[I];
+            end;
+            Exit;
+          end;
+          lvitem := lv.Items.Add;
+          lvitem.Caption := sl[0];
+          if sl.Count > 1 then
+            for I := 1 to sl.Count - 1 do
+              lvitem.SubItems.Add(sl[I]);
+          if AnsiContainsText(iIndex, 'TRUE') then
+            lvitem.Checked := True;
+        finally
+          sl.Free;
+        end;
+      end
+      else if wControl.InheritsFrom(TStringGrid) then
+      begin
+        sg := TStringGrid(wControl);
+        // Columns
+        if StrToInt(Piece(iIndex,',',1)) > sg.ColCount - 1 then
+          sg.ColCount := (StrToInt(Piece(iIndex,',',1)) - (sg.ColCount - 1));
+        // Rows
+        if StrToInt(Piece(iIndex,',',2)) > sg.RowCount - 1 then
+          sg.RowCount := (StrToInt(Piece(iIndex,',',2)) - (sg.RowCount - 1));
+        sg.Cells[StrToInt(Piece(iIndex,',',1)), StrToInt(Piece(iIndex,',',2))] := iValue;
+      end;
+    // -------------------------------------------------------------------------
   except
   end;
 end;

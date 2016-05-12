@@ -25,7 +25,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls, Buttons, ComCtrls, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  VA508AccessibilityManager, ORDtTm;
 
 type
   TdlgMedical = class(TDDCSDialog)
@@ -122,8 +122,6 @@ type
     Label26: TLabel;
     CheckBox998: TCheckBox;
     CheckBox999: TCheckBox;
-    LabeledEdit2: TLabeledEdit;
-    SpeedButton1: TSpeedButton;
     Label24: TLabel;
     Label25: TLabel;
     Label28: TLabel;
@@ -160,13 +158,12 @@ type
     memNarrative: TMemo;
     Label1: TLabel;
     BitBtn2: TBitBtn;
-    amgrMain: TVA508AccessibilityManager;
+    ORDateBox1: TORDateBox;
     procedure FormCreate(Sender: TObject);
     procedure bbtnOKClick(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
-    procedure LastPAPDate(Sender: TObject);
   private
     VisitedTab2 : Boolean;
     VisitedTab3 : Boolean;
@@ -178,9 +175,6 @@ var
   dlgMedical: TdlgMedical;
 
 implementation
-
-uses
-   udlgDATE;
 
 {$R *.dfm}
 
@@ -349,14 +343,14 @@ begin
                    TmpStr := TmpStr + ' - Comments: ' + Edit17.Text; end;
               42 : begin TmpStr := '  Breast Disease: NEG'; if Edit17.Text  <> '' then
                    TmpStr := TmpStr + ' - Comments: ' + Edit17.Text; end;
-              43 : begin TmpStr := '  History of abnormal PAP: POS';
-                     if Edit21.Text  <> '' then TmpStr := TmpStr + ' - Comments: ' + Edit21.Text;
-                     if LabeledEdit2.Text <> '' then TmpStr := TmpStr + ' Date of Last PAP: ' + LabeledEdit2.Text;
-                   end;
-              44 : begin TmpStr := '  History of abnormal PAP: NEG';
-                     if Edit21.Text  <> '' then TmpStr := TmpStr + ' - Comments: ' + Edit21.Text;
-                     if LabeledEdit2.Text <> '' then TmpStr := TmpStr + ' Date of Last PAP: ' + LabeledEdit2.Text;
-                   end;
+//              43 : begin TmpStr := '  History of abnormal PAP: POS';
+//                     if Edit21.Text  <> '' then TmpStr := TmpStr + ' - Comments: ' + Edit21.Text;
+//                     if LabeledEdit2.Text <> '' then TmpStr := TmpStr + ' Date of Last PAP: ' + LabeledEdit2.Text;
+//                   end;
+//              44 : begin TmpStr := '  History of abnormal PAP: NEG';
+//                     if Edit21.Text  <> '' then TmpStr := TmpStr + ' - Comments: ' + Edit21.Text;
+//                     if LabeledEdit2.Text <> '' then TmpStr := TmpStr + ' Date of Last PAP: ' + LabeledEdit2.Text;
+//                   end;
               45 : begin TmpStr := '  Uterine Anomaly/DE: POS'; if Edit22.Text  <> '' then
                    TmpStr := TmpStr + ' - Comments: ' + Edit22.Text; end;
               46 : begin TmpStr := '  Uterine Anomaly/DES: NEG'; if Edit22.Text  <> '' then
@@ -393,25 +387,6 @@ begin
         for I := 0 to memNarrative.Lines.Count - 1 do
           TmpStrList.Add('   ' + memNarrative.Lines[I]);
       end;
-end;
-
-procedure TdlgMedical.LastPAPDate(Sender: TObject);
-var
-  dlgGetDate : TdlgDate;
-begin
-  try
-    dlgGetDate := TdlgDate.Create( Nil );
-    dlgGetDate.ShowModal;
-    if dlgGetDate.ModalResult = mrOK then
-      begin    // choices by tag
-      if(dlgGetDate.calMonth.Date) >  Now then
-        showmessage('No future dates')
-      else
-        LabeledEdit2.Text := DateToStr(dlgGetDate.calMonth.Date);
-      end;
-  finally
-    dlgGetDate.Free;
-  end;
 end;
 
 procedure TdlgMedical.CheckBox1Click(Sender: TObject);

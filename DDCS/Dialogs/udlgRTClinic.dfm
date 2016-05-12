@@ -2,8 +2,9 @@ object dlgRTClinic: TdlgRTClinic
   Left = 368
   Top = 174
   BorderStyle = bsDialog
-  ClientHeight = 144
-  ClientWidth = 307
+  Caption = 'Return to Clinic Time Span'
+  ClientHeight = 75
+  ClientWidth = 268
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,73 +16,57 @@ object dlgRTClinic: TdlgRTClinic
   Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
-  object Label3: TLabel
-    Left = 40
-    Top = 72
-    Width = 76
-    Height = 13
+  object Label3: TStaticText
+    Left = 16
+    Top = 16
+    Width = 96
+    Height = 17
     Caption = 'Return To Clinic'
-  end
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 307
-    Height = 33
-    Align = alTop
-    Color = clWhite
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'MS Sans Serif'
-    Font.Style = []
+    Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
-    object lbltitle: TLabel
-      Left = 4
-      Top = 4
-      Width = 215
-      Height = 20
-      Caption = 'Return to Clinic Time Span'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -16
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
+    TabStop = True
   end
-  object Panel2: TPanel
+  object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 115
-    Width = 307
+    Top = 46
+    Width = 268
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 3
     object bbtnOK: TBitBtn
-      Left = 149
-      Top = 2
+      Left = 111
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkOK
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 230
-      Top = 2
+      Left = 192
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
     end
   end
   object edtRTCWeeks: TSpinEdit
-    Left = 125
-    Top = 69
+    Left = 118
+    Top = 11
     Width = 49
     Height = 22
     MaxValue = 0
@@ -91,8 +76,8 @@ object dlgRTClinic: TdlgRTClinic
     OnChange = edtRTCWeeksChange
   end
   object cbTimeUnit: TComboBox
-    Left = 180
-    Top = 69
+    Left = 173
+    Top = 11
     Width = 82
     Height = 21
     Style = csDropDownList
@@ -104,13 +89,5 @@ object dlgRTClinic: TdlgRTClinic
       'Week(s)'
       'Month(s)'
       'Year(s)')
-  end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgRTClinic'
-        'Status = stsDefault'))
   end
 end

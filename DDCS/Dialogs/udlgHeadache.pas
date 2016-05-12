@@ -17,35 +17,35 @@ unit udlgHeadache;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgHeadache = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
+    pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leChar: TLabeledEdit;
-    leLocat: TLabeledEdit;
-    Label1: TLabel;
-    leDur: TLabeledEdit;
-    leAssoc: TLabeledEdit;
-    Label2: TLabel;
-    leWhat: TLabeledEdit;
-    Label3: TLabel;
+    leOnset: TCaptionEdit;
+    leChar: TCaptionEdit;
+    leLocat: TCaptionEdit;
+    leDur: TCaptionEdit;
+    leAssoc: TCaptionEdit;
+    leWhat: TCaptionEdit;
+    Label3: TStaticText;
     cbTreatYes: TCheckBox;
     cbTreatNo: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
+    lbWhat: TStaticText;
+    StaticText2: TStaticText;
+    StaticText3: TStaticText;
+    StaticText4: TStaticText;
+    StaticText5: TStaticText;
+    StaticText6: TStaticText;
     procedure bbtnOKClick(Sender: TObject);
     procedure cbTreatYesClick(Sender: TObject);
   private
@@ -60,53 +60,61 @@ implementation
 {$R *.dfm}
 
 procedure TdlgHeadache.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
 var
-  I : Integer;
+  I: Integer;
 begin
   if (leOnset.Text <> '') or (leChar.Text <> '') or (leLocat.Text <> '') or
     (leDur.Text <> '') or (leAssoc.Text <> '') or (cbTreatYes.Checked) or
     (cbTreatNo.Checked) then
   begin
-   TmpStrList.Add('Headache:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Time of Onset: ' + leOnset.Text);
-   if leChar.Text  <> '' then TmpStrList.Add('  Character: ' + leChar.Text);
-   if leLocat.Text  <> '' then TmpStrList.Add('  Localization: ' + leLocat.Text);
-   if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
-   if leAssoc.Text  <> '' then TmpStrList.Add('  Associated symptoms: ' + leAssoc.Text);
-   if cbTreatYes.Checked  then
-   begin
-     TmpStrList.Add('  Treatments? Yes');
-     if leWhat.Text  <> '' then TmpStrList.Add('    What used? Effectiveness? ' + leWhat.Text);
-   end
-   else if cbTreatNo.Checked  then
-     TmpStrList.Add('  Treatments? No');
- end;
+    TmpStrList.Add('Headache:');
+    if leOnset.Text  <> '' then
+      TmpStrList.Add('  Onset: ' + leOnset.Text);
+    if leChar.Text  <> '' then
+      TmpStrList.Add('  Character: ' + leChar.Text);
+    if leLocat.Text  <> '' then
+      TmpStrList.Add('  Localization: ' + leLocat.Text);
+    if leDur.Text  <> '' then
+      TmpStrList.Add('  Duration: ' + leDur.Text);
+    if leAssoc.Text  <> '' then
+      TmpStrList.Add('  Associated Symptoms: ' + leAssoc.Text);
+    if cbTreatYes.Checked  then
+    begin
+      TmpStrList.Add('  Treatments? Yes');
+      if leWhat.Text  <> '' then TmpStrList.Add('    What was used? What was the effectiveness? ' + leWhat.Text);
+    end else if cbTreatNo.Checked then
+      TmpStrList.Add('  Treatments? No');
+  end;
 end;
 
 procedure TdlgHeadache.cbTreatYesClick(Sender: TObject);
 begin
-  if ((Sender as TCheckBox).Tag = 1) then
+  if (Sender as TCheckBox).Tag = 1 then
   begin {Yes}
-    if ((Sender as TCheckBox).Checked = TRUE) then
+    if (Sender as TCheckBox).Checked then
     begin
-      cbTreatNo.Checked := FALSE;
-      cbTreatYes.Checked := TRUE;
-      leWhat.Visible := TRUE;
+      cbTreatNo.OnClick := nil;
+      cbTreatNo.Checked := False;
+      cbTreatNo.OnClick := cbTreatYesClick;
+
+      lbWhat.Visible := True;
+      leWhat.Visible := True;
       leWhat.SetFocus;
-    end
-    else
+    end else
     begin
-      cbTreatYes.Checked := FALSE;
-      leWhat.Visible := FALSE;
+      lbWhat.Visible := False;
       leWhat.Clear;
+      leWhat.Visible := False;
     end;
-  end
-  else if ((Sender as TCheckBox).Tag = 2) then
+  end else if (Sender as TCheckBox).Tag = 2 then
   begin  {No}
-    cbTreatYes.Checked := FALSE;
-    leWhat.Visible := FALSE;
+    cbTreatYes.OnClick := nil;
+    cbTreatYes.Checked := False;
+    cbTreatYes.OnClick := cbTreatYesClick;
+
+    lbWhat.Visible := False;
     leWhat.Clear;
+    leWhat.Visible := False;
   end;
 end;
 

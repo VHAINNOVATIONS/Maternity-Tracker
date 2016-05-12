@@ -96,12 +96,4 @@ object dlgModTotPregs: TdlgModTotPregs
       OnChange = SpinEdit1Change
     end
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgModTotPregs'
-        'Status = stsDefault'))
-  end
 end

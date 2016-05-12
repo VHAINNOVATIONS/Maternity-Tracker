@@ -66,7 +66,6 @@ type
     procedure bbtnOKClick(Sender: TObject);
     procedure btnDAddClick(Sender: TObject);
     procedure btnDDeleteClick(Sender: TObject);
-    procedure spDateSelectClick(Sender: TObject);
     procedure ToggleCB(Sender: TObject);
     procedure spnEducationChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -89,7 +88,7 @@ var
 implementation
 
 uses
-   VAUtils, udlgDATE, fFamilyAdd;
+   VAUtils, fFamilyAdd;
 
 {$R *.dfm}
 
@@ -377,25 +376,6 @@ begin
 
       TmpStrList.Add('   Comments: ' + lvPersonList.Items.Item[I].SubItems[19]);
     end;
-  end;
-end;
-
-procedure TdlgFamily.spDateSelectClick(Sender: TObject);
-var
-  TmpForm: TdlgDate;
-begin
-  TmpForm := TdlgDate.Create(nil);
-  try
-    TmpForm.ShowModal;
-    if TmpForm.ModalResult = mrOK then
-    begin
-      if(TmpForm.calMonth.Date) >  Now then
-        showmessage('No future dates')
-      else
-        leddatebirth.Text := DateToStr(TmpForm.calMonth.Date);
-    end;
-  finally
-    TmpForm.Free;
   end;
 end;
 

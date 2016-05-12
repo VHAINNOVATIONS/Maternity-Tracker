@@ -64,12 +64,4 @@ object frmFamilyAdd: TfrmFamilyAdd
     EditLabel.ParentFont = False
     TabOrder = 0
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = frmFamilyAdd'
-        'Status = stsDefault'))
-  end
 end

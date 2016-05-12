@@ -2,8 +2,9 @@ object dlgCoughCongest: TdlgCoughCongest
   Left = 217
   Top = 135
   BorderStyle = bsDialog
-  ClientHeight = 215
-  ClientWidth = 528
+  Caption = 'Cough and Congestion'
+  ClientHeight = 169
+  ClientWidth = 475
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,284 +16,331 @@ object dlgCoughCongest: TdlgCoughCongest
   Scaled = False
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TLabel
-    Left = 9
-    Top = 85
-    Width = 91
-    Height = 14
+  object Label3: TStaticText
+    Left = 19
+    Top = 46
+    Width = 109
+    Height = 18
     Caption = 'Productive Cough?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    TabStop = True
   end
-  object lbBlood: TLabel
-    Left = 66
-    Top = 147
-    Width = 33
-    Height = 14
+  object lbBlood: TStaticText
+    Left = 19
+    Top = 111
+    Width = 42
+    Height = 18
     Caption = 'Blood?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 7
+    TabStop = True
     Visible = False
   end
-  object Label5: TLabel
-    Left = 286
-    Top = 50
-    Width = 80
-    Height = 14
+  object Label5: TStaticText
+    Left = 244
+    Top = 15
+    Width = 94
+    Height = 18
     Caption = 'Post-Nasal Drip?'
-  end
-  object Label1: TLabel
-    Left = 286
-    Top = 73
-    Width = 56
-    Height = 14
-    Caption = 'Sinus Pain?'
-  end
-  object Label2: TLabel
-    Left = 286
-    Top = 96
-    Width = 59
-    Height = 14
-    Caption = 'Rhinorrhea?'
-  end
-  object Label6: TLabel
-    Left = 286
-    Top = 121
-    Width = 62
-    Height = 14
-    Caption = 'Fever/Chills?'
-  end
-  object Label7: TLabel
-    Left = 286
-    Top = 145
-    Width = 104
-    Height = 14
-    Caption = 'Shortness of Breath?'
-  end
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 528
-    Height = 33
-    Align = alTop
-    Color = clWhite
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 0
-    object lbltitle: TLabel
-      Left = 4
-      Top = 4
-      Width = 149
-      Height = 20
-      Caption = 'Cough/Congestion'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -16
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
+    TabOrder = 10
+    TabStop = True
   end
-  object Panel2: TPanel
+  object Label1: TStaticText
+    Left = 244
+    Top = 39
+    Width = 68
+    Height = 18
+    Caption = 'Sinus Pain?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 13
+    TabStop = True
+  end
+  object Label2: TStaticText
+    Left = 244
+    Top = 63
+    Width = 72
+    Height = 18
+    Caption = 'Rhinorrhea?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 16
+    TabStop = True
+  end
+  object Label6: TStaticText
+    Left = 244
+    Top = 87
+    Width = 114
+    Height = 18
+    Caption = 'Fever and or Chills?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 19
+    TabStop = True
+  end
+  object Label7: TStaticText
+    Left = 244
+    Top = 111
+    Width = 122
+    Height = 18
+    Caption = 'Shortness of Breath?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 22
+    TabStop = True
+  end
+  object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 186
-    Width = 528
+    Top = 140
+    Width = 475
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 17
+    TabOrder = 25
     object bbtnOK: TBitBtn
-      Left = 370
-      Top = 2
+      Left = 318
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkOK
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 451
-      Top = 2
+      Left = 399
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
     end
   end
-  object leOnset: TLabeledEdit
-    Left = 45
-    Top = 50
+  object leOnset: TCaptionEdit
+    Left = 62
+    Top = 11
     Width = 161
     Height = 22
-    EditLabel.Width = 32
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Onset:'
-    LabelPosition = lpLeft
     TabOrder = 1
+    Caption = 'Onset'
   end
-  object leColor: TLabeledEdit
-    Left = 45
-    Top = 112
+  object leColor: TCaptionEdit
+    Left = 62
+    Top = 75
     Width = 161
     Height = 22
-    EditLabel.Width = 28
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Color:'
-    LabelPosition = lpLeft
-    TabOrder = 4
+    TabOrder = 6
     Visible = False
+    Caption = 'Color'
   end
   object cbProdCY: TCheckBox
     Tag = 1
-    Left = 105
-    Top = 85
+    Left = 138
+    Top = 46
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 2
+    TabOrder = 3
     OnClick = cbProdCYClick
   end
   object cbProdCN: TCheckBox
     Tag = 2
-    Left = 158
-    Top = 85
+    Left = 187
+    Top = 46
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 3
+    TabOrder = 4
     OnClick = cbProdCYClick
   end
   object cbBloodY: TCheckBox
     Tag = 1
-    Left = 105
-    Top = 147
+    Left = 138
+    Top = 111
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 5
+    TabOrder = 8
     Visible = False
     OnClick = cbBloodYClick
   end
   object cbBloodN: TCheckBox
     Tag = 2
-    Left = 158
-    Top = 147
+    Left = 187
+    Top = 111
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 6
+    TabOrder = 9
     Visible = False
     OnClick = cbBloodYClick
   end
   object cbNasalY: TCheckBox
     Tag = 1
-    Left = 407
-    Top = 50
-    Width = 43
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 7
-    OnClick = cbNasalYClick
-  end
-  object cbNasalN: TCheckBox
-    Tag = 2
-    Left = 460
-    Top = 50
-    Width = 36
-    Height = 17
-    Caption = 'No'
-    TabOrder = 8
-    OnClick = cbNasalYClick
-  end
-  object cbSinusY: TCheckBox
-    Tag = 3
-    Left = 407
-    Top = 73
-    Width = 43
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 9
-    OnClick = cbNasalYClick
-  end
-  object cbSinusN: TCheckBox
-    Tag = 4
-    Left = 460
-    Top = 73
-    Width = 36
-    Height = 17
-    Caption = 'No'
-    TabOrder = 10
-    OnClick = cbNasalYClick
-  end
-  object cbRhinY: TCheckBox
-    Tag = 5
-    Left = 407
-    Top = 96
+    Left = 375
+    Top = 15
     Width = 43
     Height = 17
     Caption = 'Yes'
     TabOrder = 11
     OnClick = cbNasalYClick
   end
-  object cbRhinN: TCheckBox
-    Tag = 6
-    Left = 460
-    Top = 96
+  object cbNasalN: TCheckBox
+    Tag = 2
+    Left = 428
+    Top = 15
     Width = 36
     Height = 17
     Caption = 'No'
     TabOrder = 12
     OnClick = cbNasalYClick
   end
-  object cbFeverY: TCheckBox
-    Tag = 7
-    Left = 407
-    Top = 121
+  object cbSinusY: TCheckBox
+    Tag = 3
+    Left = 375
+    Top = 39
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 13
+    TabOrder = 14
+    OnClick = cbNasalYClick
+  end
+  object cbSinusN: TCheckBox
+    Tag = 4
+    Left = 428
+    Top = 39
+    Width = 36
+    Height = 17
+    Caption = 'No'
+    TabOrder = 15
+    OnClick = cbNasalYClick
+  end
+  object cbRhinY: TCheckBox
+    Tag = 5
+    Left = 375
+    Top = 63
+    Width = 43
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 17
+    OnClick = cbNasalYClick
+  end
+  object cbRhinN: TCheckBox
+    Tag = 6
+    Left = 428
+    Top = 63
+    Width = 36
+    Height = 17
+    Caption = 'No'
+    TabOrder = 18
+    OnClick = cbNasalYClick
+  end
+  object cbFeverY: TCheckBox
+    Tag = 7
+    Left = 375
+    Top = 87
+    Width = 43
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 20
     OnClick = cbNasalYClick
   end
   object cbFeverN: TCheckBox
     Tag = 8
-    Left = 460
-    Top = 121
+    Left = 428
+    Top = 87
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 14
+    TabOrder = 21
     OnClick = cbNasalYClick
   end
   object cbSOBY: TCheckBox
     Tag = 9
-    Left = 407
-    Top = 145
+    Left = 375
+    Top = 111
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 15
+    TabOrder = 23
     OnClick = cbNasalYClick
   end
   object cbSOBN: TCheckBox
     Tag = 10
-    Left = 460
-    Top = 145
+    Left = 428
+    Top = 111
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 16
+    TabOrder = 24
     OnClick = cbNasalYClick
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 500
-    Top = 40
-    Data = (
-      (
-        'Component = dlgCoughCongest'
-        'Status = stsDefault'))
+  object lbColor: TStaticText
+    Left = 19
+    Top = 79
+    Width = 34
+    Height = 18
+    Caption = 'Color'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
+    Visible = False
+  end
+  object StaticText2: TStaticText
+    Left = 19
+    Top = 15
+    Width = 37
+    Height = 18
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
   end
 end

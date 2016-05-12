@@ -2,8 +2,9 @@ object dlgFetalMov: TdlgFetalMov
   Left = 197
   Top = 176
   BorderStyle = bsDialog
-  ClientHeight = 300
-  ClientWidth = 506
+  Caption = 'Change in Fetal Movement'
+  ClientHeight = 384
+  ClientWidth = 285
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,246 +14,320 @@ object dlgFetalMov: TdlgFetalMov
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TLabel
+  object Label3: TStaticText
     Left = 16
-    Top = 52
-    Width = 121
-    Height = 14
+    Top = 12
+    Width = 147
+    Height = 18
     Caption = 'Fetal movement present?'
-  end
-  object Label1: TLabel
-    Left = 291
-    Top = 52
-    Width = 67
-    Height = 14
-    Caption = 'Contractions?'
-  end
-  object Label2: TLabel
-    Left = 16
-    Top = 179
-    Width = 84
-    Height = 14
-    Caption = 'Vaginal bleeding?'
-  end
-  object Label4: TLabel
-    Left = 16
-    Top = 202
-    Width = 83
-    Height = 14
-    Caption = 'Leakage of fluid?'
-  end
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 506
-    Height = 33
-    Align = alTop
-    Color = clWhite
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
-    object lbltitle: TLabel
-      Left = 4
-      Top = 4
-      Width = 210
-      Height = 20
-      Caption = 'Change in fetal movement'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -16
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
+    TabStop = True
   end
-  object Panel2: TPanel
+  object lbContractions: TStaticText
+    Left = 16
+    Top = 235
+    Width = 82
+    Height = 18
+    Caption = 'Contractions?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 14
+    TabStop = True
+  end
+  object Label2: TStaticText
+    Left = 16
+    Top = 144
+    Width = 102
+    Height = 18
+    Caption = 'Vaginal bleeding?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 7
+    TabStop = True
+  end
+  object Label4: TStaticText
+    Left = 16
+    Top = 171
+    Width = 99
+    Height = 18
+    Caption = 'Leakage of fluid?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 10
+    TabStop = True
+  end
+  object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 271
-    Width = 506
+    Top = 355
+    Width = 285
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 15
+    TabOrder = 23
     object bbtnOK: TBitBtn
-      Left = 347
-      Top = 2
+      Left = 128
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkOK
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 428
-      Top = 2
+      Left = 209
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
     end
   end
-  object leOnset: TLabeledEdit
-    Left = 51
-    Top = 227
-    Width = 186
+  object leOnset: TCaptionEdit
+    Left = 58
+    Top = 198
+    Width = 211
     Height = 22
-    EditLabel.Width = 32
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Onset:'
-    LabelPosition = lpLeft
-    TabOrder = 9
-  end
-  object leCharFetal: TLabeledEdit
-    Left = 16
-    Top = 142
-    Width = 222
-    Height = 22
-    EditLabel.Width = 146
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Character of fetal movements:'
-    TabOrder = 4
-  end
-  object leLastMov: TLabeledEdit
-    Left = 16
-    Top = 95
-    Width = 222
-    Height = 22
-    EditLabel.Width = 183
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Date/time of last perceived movement:'
-    TabOrder = 3
-  end
-  object leFreq: TLabeledEdit
-    Left = 332
-    Top = 75
-    Width = 148
-    Height = 22
-    EditLabel.Width = 55
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Frequency:'
-    LabelPosition = lpLeft
-    TabOrder = 12
-    Visible = False
-  end
-  object leOnset1: TLabeledEdit
-    Left = 332
-    Top = 131
-    Width = 148
-    Height = 22
-    EditLabel.Width = 32
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Onset:'
-    LabelPosition = lpLeft
-    TabOrder = 14
-    Visible = False
+    TabOrder = 13
+    Caption = 'Onset'
   end
   object cbFetMovY: TCheckBox
     Tag = 1
-    Left = 149
-    Top = 52
+    Left = 184
+    Top = 12
     Width = 43
     Height = 17
     Caption = 'Yes'
     TabOrder = 1
-    OnClick = cbFetMovYClick
+    OnClick = checkboxClick
   end
   object cbFetMovN: TCheckBox
     Tag = 2
-    Left = 201
-    Top = 52
+    Left = 233
+    Top = 12
     Width = 36
     Height = 17
     Caption = 'No'
     TabOrder = 2
-    OnClick = cbFetMovYClick
+    OnClick = checkboxClick
   end
   object cbContY: TCheckBox
     Tag = 7
-    Left = 375
-    Top = 52
+    Left = 184
+    Top = 236
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 10
-    OnClick = cbFetMovYClick
+    TabOrder = 15
+    OnClick = checkboxClick
   end
   object cbContN: TCheckBox
     Tag = 8
-    Left = 444
-    Top = 52
+    Left = 233
+    Top = 236
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 11
-    OnClick = cbFetMovYClick
+    TabOrder = 16
+    OnClick = checkboxClick
   end
   object cbVagBleY: TCheckBox
     Tag = 3
-    Left = 138
-    Top = 178
+    Left = 184
+    Top = 144
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 5
-    OnClick = cbFetMovYClick
+    TabOrder = 8
+    OnClick = checkboxClick
   end
   object cbVagBleN: TCheckBox
     Tag = 4
-    Left = 191
-    Top = 178
+    Left = 233
+    Top = 144
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 6
-    OnClick = cbFetMovYClick
+    TabOrder = 9
+    OnClick = checkboxClick
   end
   object cbLeakY: TCheckBox
     Tag = 5
-    Left = 138
-    Top = 201
+    Left = 184
+    Top = 171
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 7
-    OnClick = cbFetMovYClick
+    TabOrder = 11
+    OnClick = checkboxClick
   end
   object cbLeakN: TCheckBox
     Tag = 6
-    Left = 191
-    Top = 201
+    Left = 233
+    Top = 171
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 8
-    OnClick = cbFetMovYClick
+    TabOrder = 12
+    OnClick = checkboxClick
   end
-  object leDur: TLabeledEdit
-    Left = 332
-    Top = 103
-    Width = 148
+  object StaticText1: TStaticText
+    Left = 16
+    Top = 39
+    Width = 244
+    Height = 18
+    Caption = 'Date and time of last perceived movement?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 3
+  end
+  object leLastMov: TORDateBox
+    Left = 16
+    Top = 58
+    Width = 211
     Height = 22
-    EditLabel.Width = 43
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Duration:'
-    LabelPosition = lpLeft
-    TabOrder = 13
+    TabOrder = 4
+    DateOnly = False
+    RequireTime = False
+    Caption = 'Date/time of last perceived movement'
+  end
+  object leCharFetal: TCaptionEdit
+    Left = 16
+    Top = 109
+    Width = 211
+    Height = 22
+    TabOrder = 6
+    Caption = 'Character of fetal movements'
+  end
+  object StaticText2: TStaticText
+    Left = 16
+    Top = 89
+    Width = 176
+    Height = 18
+    Caption = 'Character of fetal movements?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
+  end
+  object StaticText3: TStaticText
+    Left = 16
+    Top = 202
+    Width = 37
+    Height = 18
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 27
+  end
+  object leFreq: TCaptionEdit
+    Left = 109
+    Top = 268
+    Width = 121
+    Height = 22
+    TabOrder = 18
+    Visible = False
+    Caption = 'Frequency'
+  end
+  object leDur: TCaptionEdit
+    Left = 109
+    Top = 296
+    Width = 121
+    Height = 22
+    TabOrder = 20
+    Visible = False
+    Caption = 'Duration'
+  end
+  object leOnset1: TCaptionEdit
+    Left = 109
+    Top = 324
+    Width = 121
+    Height = 22
+    TabOrder = 22
+    Visible = False
+    Caption = 'Onset'
+  end
+  object lbFreq: TStaticText
+    Left = 41
+    Top = 272
+    Width = 62
+    Height = 18
+    Caption = 'Frequency'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 17
     Visible = False
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 478
-    Top = 40
-    Data = (
-      (
-        'Component = dlgFetalMov'
-        'Status = stsDefault'))
+  object lbDur: TStaticText
+    Left = 53
+    Top = 300
+    Width = 50
+    Height = 18
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 19
+    Visible = False
+  end
+  object lbOnset1: TStaticText
+    Left = 66
+    Top = 328
+    Width = 37
+    Height = 18
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 21
+    Visible = False
   end
 end

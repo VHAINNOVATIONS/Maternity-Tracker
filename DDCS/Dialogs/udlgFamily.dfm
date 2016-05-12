@@ -42,7 +42,6 @@ object dlgFamily: TdlgFamily
     ParentShowHint = False
     ShowHint = True
     Visible = False
-    OnClick = spDateSelectClick
   end
   object Label2: TLabel
     Left = 50

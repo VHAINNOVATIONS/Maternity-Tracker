@@ -17,32 +17,32 @@ unit udlgWheezing;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgWheezing = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TLabeledEdit;
-    leAssocSym: TLabeledEdit;
-    leDur: TLabeledEdit;
-    Label3: TLabel;
+    leOnset: TCaptionEdit;
+    leAssocSym: TCaptionEdit;
+    leDur: TCaptionEdit;
+    Label3: TStaticText;
     cbSOBY: TCheckBox;
     cbSOBN: TCheckBox;
-    amgrMain: TVA508AccessibilityManager;
+    lbDur: TStaticText;
+    lbAssociatedSymp: TStaticText;
+    StaticText3: TStaticText;
+    pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
-    procedure cbSOBYClick(Sender: TObject);
+    procedure checkboxClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -54,46 +54,77 @@ implementation
 
 {$R *.dfm}
 
+var
+  hdiff: Integer;
+
 procedure TdlgWheezing.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
 var
   I : Integer;
 begin
   if (leOnset.Text <> '') or (cbSOBY.Checked) or (cbSOBN.Checked) or
      (leDur.Text <> '') or (leAssocSym.Text <> '') then
   begin
-   TmpStrList.Add('Wheezing:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if cbSOBY.Checked then TmpStrList.Add('  Shortness of breath: Yes');
-   if cbSOBN.Checked then TmpStrList.Add('  Shortness of breath: No');
-   if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
-   if leAssocSym.Text  <> '' then TmpStrList.Add('  Associated symptoms: ' + leAssocSym.Text);
- end;
+    TmpStrList.Add('Wheezing:');
+    if leOnset.Text  <> '' then
+      TmpStrList.Add('  Onset: ' + leOnset.Text);
+    if cbSOBY.Checked then
+      TmpStrList.Add('  Shortness of breath?: Yes');
+    if cbSOBN.Checked then
+      TmpStrList.Add('  Shortness of breath?: No');
+    if leDur.Text  <> '' then
+      TmpStrList.Add('  Duration: ' + leDur.Text);
+    if leAssocSym.Text  <> '' then
+      TmpStrList.Add('  Associated Symptoms: ' + leAssocSym.Text);
+  end;
 end;
 
-procedure TdlgWheezing.cbSOBYClick(Sender: TObject);
+procedure TdlgWheezing.checkboxClick(Sender: TObject);
 begin
   if (Sender as TCheckBox).Tag = 1 then
   begin {Yes}
-    if (Sender as TCheckBox).Checked = TRUE then
+    if (Sender as TCheckBox).Checked then
     begin
-      cbSOBN.Checked := FALSE;
-      cbSOBY.Checked := TRUE;
-      leDur.Visible := TRUE;
+      cbSOBN.OnClick := nil;
+      cbSOBN.Checked := False;
+      cbSOBN.OnClick := checkboxClick;
+
+      Height := Height + hdiff;
+
+      lbDur.Visible := True;
+      leDur.Visible := True;
       leDur.SetFocus;
-    end
-    else
+    end else
     begin
-      leDur.Visible := FALSE;
-      leDur.Clear;
+      if lbDur.Visible then
+      begin
+        lbDur.Visible := False;
+        leDur.Clear;
+        leDur.Visible := False;
+
+        Height := Height - hdiff;
+      end;
     end;
-  end
-  else
+  end else if (Sender as TCheckBox).Tag = 2 then
   begin
-    cbSOBY.Checked := FALSE;
-    leDur.Visible := FALSE;
-    leDur.Clear;
+    cbSOBY.OnClick := nil;
+    cbSOBY.Checked := False;
+    cbSOBY.OnClick := checkboxClick;
+
+    if lbDur.Visible then
+    begin
+      lbDur.Visible := False;
+      leDur.Clear;
+      leDur.Visible := False;
+
+      Height := Height - hdiff;
+    end;
   end;
+end;
+
+procedure TdlgWheezing.FormCreate(Sender: TObject);
+begin
+  hdiff := lbAssociatedSymp.Top - leDur.Top;
+  Height := Height - hdiff;
 end;
 
 end.

@@ -31,7 +31,6 @@ uses
   udlgAbdomPain in 'udlgAbdomPain.pas' {dlgAbdomPain},
   udlgBackPain in 'udlgBackPain.pas' {dlgBackPain},
   udlgCoughCongest in 'udlgCoughCongest.pas' {dlgCoughCongest},
-  udlgDATE in 'udlgDATE.pas' {dlgDate},
   udlgFamily in 'udlgFamily.pas' {dlgFamily},
   udlgFetalMov in 'udlgFetalMov.pas' {dlgFetalMov},
   udlgHeadache in 'udlgHeadache.pas' {dlgHeadache},
@@ -59,7 +58,6 @@ uses
   udlgImmunizations in 'udlgImmunizations.pas' {dlgImmunizations},
   udlgROS in 'udlgROS.pas' {dlgROS},
   udlgPhysicalExam in 'udlgPhysicalExam.pas' {dlgPhysicalExam},
-  udlgHistory in 'udlgHistory.pas' {dlgHistory},
   udlgEducation in 'udlgEducation.pas' {dlgEducation},
   fFamilyAdd in 'fFamilyAdd.pas' {frmFamilyAdd};
 
@@ -71,40 +69,38 @@ var
 begin
   sl := TStringList.Create;
   try
-    RegisterClass(TdlgAbdomPain);              sl.Add('TdlgAbdomPain^udlgAbdomPain');
-    RegisterClass(TdlgBackPain);               sl.Add('TdlgBackPain^udlgBackPain');
-    RegisterClass(TdlgCoughCongest);           sl.Add('TdlgCoughCongest^udlgCoughCongest');
-    RegisterClass(TdlgDate);                   sl.Add('TdlgDate^udlgDate');
-    RegisterClass(TdlgFamily);                 sl.Add('TdlgFamily^udlgFamily');
-    RegisterClass(TdlgFetalMov);               sl.Add('TdlgFetalMov^udlgFetalMov');
+    RegisterClass(TdlgAbdomPain);              sl.Add('TdlgAbdomPain^udlgAbdomPain');              // v2
+    RegisterClass(TdlgBackPain);               sl.Add('TdlgBackPain^udlgBackPain');                // v2
+    RegisterClass(TdlgCoughCongest);           sl.Add('TdlgCoughCongest^udlgCoughCongest');        // v2
+    RegisterClass(TdlgFamily);                 sl.Add('TdlgFamily^udlgFamily');                    // broken
+    RegisterClass(TdlgFetalMov);               sl.Add('TdlgFetalMov^udlgFetalMov');                // v2
     RegisterClass(TdlgGenetic);                sl.Add('TdlgGenetic^udlgGenetic');
-    RegisterClass(TdlgHeadache);               sl.Add('TdlgHeadache^udlgHeadache');
-    RegisterClass(TdlgInfectHist);             sl.Add('TdlgInfectHist^udlgInfectHist');
-    RegisterClass(TdlgLegPain);                sl.Add('TdlgLegPain^udlgLegPain');
-    RegisterClass(TdlgMedical);                sl.Add('TdlgMedical^udlgMedical');
-    RegisterClass(TdlgNausea);                 sl.Add('TdlgNausea^udlgNausea');
-    RegisterClass(TdlgPelvic);                 sl.Add('TdlgPelvic^udlgPelvic');
+    RegisterClass(TdlgHeadache);               sl.Add('TdlgHeadache^udlgHeadache');                // v2
+    RegisterClass(TdlgInfectHist);             sl.Add('TdlgInfectHist^udlgInfectHist');            // v2
+    RegisterClass(TdlgLegPain);                sl.Add('TdlgLegPain^udlgLegPain');                  // v2
+    RegisterClass(TdlgMedical);                sl.Add('TdlgMedical^udlgMedical');                  // broken
+    RegisterClass(TdlgNausea);                 sl.Add('TdlgNausea^udlgNausea');                    // v2
+    RegisterClass(TdlgPelvic);                 sl.Add('TdlgPelvic^udlgPelvic');                    // v2
     RegisterClass(TdlgOBSpread);               sl.Add('TdlgOBSpread^udlgOBSpread');
-    RegisterClass(TdlgPalp);                   sl.Add('TdlgPalp^udlgPalp');
-    // Pregnancy History ----------------------------------------------------------------------
-    RegisterClass(TdlgPregHist);               sl.Add('TdlgPregHist^udlgPregHist');
-    RegisterClass(TfrmPregHist);               sl.Add('TdlgPregHist^udlgPregHist');
-    RegisterClass(TfrmChildHist);              sl.Add('TdlgPregHist^udlgPregHist');
-    // ----------------------------------------------------------------------------------------
+    RegisterClass(TdlgPalp);                   sl.Add('TdlgPalp^udlgPalp');                        // v2
+    // Pregnancy History ------------------------------------------------------------------------- // broken
+    RegisterClass(TdlgPregHist);               sl.Add('TdlgPregHist^udlgPregHist');                // -
+    RegisterClass(TfrmPregHist);               sl.Add('TdlgPregHist^udlgPregHist');                // - build into parent
+    RegisterClass(TfrmChildHist);              sl.Add('TdlgPregHist^udlgPregHist');                // - build into parent
+    // ------------------------------------------------------------------------------------------- // -
     RegisterClass(TdlgPreNatal);               sl.Add('TdlgPreNatal^udlgPreNatal');
-    RegisterClass(TdlgRash);                   sl.Add('TdlgRash^udlgRash');
-    RegisterClass(TdlgRTClinic);               sl.Add('TdlgRTClinic^udlgRTClinic');
-    RegisterClass(TdlgSocial);                 sl.Add('TdlgSocial^udlgSocial');
+    RegisterClass(TdlgRash);                   sl.Add('TdlgRash^udlgRash');                        // v2
+    RegisterClass(TdlgRTClinic);               sl.Add('TdlgRTClinic^udlgRTClinic');                // v2
+    RegisterClass(TdlgSocial);                 sl.Add('TdlgSocial^udlgSocial');                    // broken
     RegisterClass(TdlgSurgical);               sl.Add('TdlgSurgical^udlgSurgical');
-    RegisterClass(TdlgVagBleed);               sl.Add('TdlgVagBleed^udlgVagBleed');
-    RegisterClass(TdlgVagDischarge);           sl.Add('TdlgVagDischarge^udlgVagDischarge');
-    RegisterClass(TdlgVisualChanges);          sl.Add('TdlgVisualChanges^udlgVisualChanges');
-    RegisterClass(TdlgWheezing);               sl.Add('TdlgWheezing^udlgWheezing');
-    RegisterClass(TdlgImmunizations);          sl.Add('TdlgImmunizations^udlgImmunizations');
+    RegisterClass(TdlgVagBleed);               sl.Add('TdlgVagBleed^udlgVagBleed');                // v2
+    RegisterClass(TdlgVagDischarge);           sl.Add('TdlgVagDischarge^udlgVagDischarge');        // v2
+    RegisterClass(TdlgVisualChanges);          sl.Add('TdlgVisualChanges^udlgVisualChanges');      // v2
+    RegisterClass(TdlgWheezing);               sl.Add('TdlgWheezing^udlgWheezing');                // v2
+    RegisterClass(TdlgImmunizations);          sl.Add('TdlgImmunizations^udlgImmunizations');      // broken
     RegisterClass(TdlgPhysicalExam);           sl.Add('TdlgPhysicalExam^udlgPhysicalExam');
-    RegisterClass(TdlgROS);                    sl.Add('TdlgROS^udlgROS');
-    RegisterClass(TdlgHistory);                sl.Add('TdlgHistory^udlgHistory');
-    RegisterClass(TdlgEducation);              sl.Add('TdlgEducation^udlgEducation');
+    RegisterClass(TdlgROS);                    sl.Add('TdlgROS^udlgROS');                          // v2
+    RegisterClass(TdlgEducation);              sl.Add('TdlgEducation^udlgEducation');              // v2
   finally
     Result := sl.Text;
     sl.Free;
@@ -149,6 +145,10 @@ var
   dlg: TDDCSDialog;
   sl: TStringList;
   I: Integer;
+
+  // Return --------------------------------------------------------------------
+  //   (H) - CONTROL ^ CONTROL_NAME ^ CONTROL_CLASS ^ PUSH ^ ID ^ OBSERVATION
+
 begin
   Result := '';
 
@@ -165,7 +165,12 @@ begin
   dlg := dlgClass.Create(nil);
   try
     for I := 0 to dlg.ComponentCount - 1 do
-      sl.Add(dlg.Components[I].Name + U + dlg.Components[I].ClassName);
+    begin
+      sl.Add('H^' + dlg.Components[I].Name + U + dlg.Components[I].ClassName);
+      // sl.Add('C^' + dlg.Components[I].Name + U);    // This would be updated by DDCSFramework configuration
+      // sl.Add('P^' + dlg.Components[I].Name + U);    // Not setup for dialogs on the GUI side
+      // sl.Add('R^' + dlg.Components[I].Name + U);    // Once this is enabled you will be able to pass it to VistA
+    end;
   finally
     dlg.Free;
     Result := sl.Text;

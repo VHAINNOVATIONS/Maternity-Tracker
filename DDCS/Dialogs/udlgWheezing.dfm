@@ -2,8 +2,9 @@ object dlgWheezing: TdlgWheezing
   Left = 217
   Top = 135
   BorderStyle = bsDialog
-  ClientHeight = 228
-  ClientWidth = 284
+  Caption = 'Wheezing'
+  ClientHeight = 176
+  ClientWidth = 265
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,131 +14,147 @@ object dlgWheezing: TdlgWheezing
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TLabel
-    Left = 10
-    Top = 81
-    Width = 103
-    Height = 14
+  object Label3: TStaticText
+    Left = 13
+    Top = 41
+    Width = 122
+    Height = 18
     Caption = 'Shortness of breath?'
-  end
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 284
-    Height = 33
-    Align = alTop
-    Color = clWhite
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 0
-    object lbltitle: TLabel
-      Left = 4
-      Top = 4
-      Width = 80
-      Height = 20
-      Caption = 'Wheezing'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -16
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
+    TabOrder = 2
+    TabStop = True
   end
-  object Panel2: TPanel
+  object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 199
-    Width = 284
+    Top = 147
+    Width = 265
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 6
+    TabOrder = 9
     object bbtnOK: TBitBtn
-      Left = 126
-      Top = 2
+      Left = 108
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkOK
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 207
-      Top = 2
+      Left = 189
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
     end
   end
-  object leOnset: TLabeledEdit
-    Left = 75
-    Top = 50
+  object leOnset: TCaptionEdit
+    Left = 66
+    Top = 8
     Width = 187
     Height = 22
-    EditLabel.Width = 32
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Onset:'
-    LabelPosition = lpLeft
     TabOrder = 1
+    Caption = 'Onset'
   end
-  object leAssocSym: TLabeledEdit
-    Left = 16
-    Top = 160
-    Width = 246
+  object leAssocSym: TCaptionEdit
+    Left = 13
+    Top = 118
+    Width = 240
     Height = 22
-    EditLabel.Width = 111
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Associated Symptoms:'
-    TabOrder = 5
+    Align = alCustom
+    Anchors = [akLeft, akBottom]
+    TabOrder = 8
+    Caption = 'Associated Symptoms'
   end
-  object leDur: TLabeledEdit
-    Left = 75
-    Top = 110
+  object leDur: TCaptionEdit
+    Left = 66
+    Top = 67
     Width = 187
     Height = 22
-    EditLabel.Width = 43
-    EditLabel.Height = 14
-    EditLabel.Caption = 'Duration:'
-    LabelPosition = lpLeft
-    TabOrder = 4
+    TabOrder = 6
     Visible = False
+    Caption = 'Duration'
   end
   object cbSOBY: TCheckBox
     Tag = 1
-    Left = 126
-    Top = 81
+    Left = 158
+    Top = 41
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 2
-    OnClick = cbSOBYClick
+    TabOrder = 3
+    OnClick = checkboxClick
   end
   object cbSOBN: TCheckBox
     Tag = 2
-    Left = 178
-    Top = 81
+    Left = 207
+    Top = 41
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 3
-    OnClick = cbSOBYClick
+    TabOrder = 4
+    OnClick = checkboxClick
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 253
-    Top = 40
-    Data = (
-      (
-        'Component = dlgWheezing'
-        'Status = stsDefault'))
+  object lbDur: TStaticText
+    Left = 13
+    Top = 71
+    Width = 50
+    Height = 18
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
+    Visible = False
+  end
+  object lbAssociatedSymp: TStaticText
+    Left = 13
+    Top = 100
+    Width = 129
+    Height = 18
+    Align = alCustom
+    Anchors = [akLeft, akBottom]
+    Caption = 'Associated Symptoms'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 7
+  end
+  object StaticText3: TStaticText
+    Left = 13
+    Top = 12
+    Width = 37
+    Height = 18
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
   end
 end
