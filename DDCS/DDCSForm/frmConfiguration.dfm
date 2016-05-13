@@ -194,93 +194,20 @@ object DDCSFormConfig: TDDCSFormConfig
     Top = 0
     Width = 891
     Height = 528
-    ActivePage = tabReport
+    ActivePage = tabDialog
     Align = alClient
     MultiLine = True
     Style = tsButtons
     TabHeight = 30
     TabOrder = 0
-    object tabConfig: TTabSheet
-      Caption = 'Configuration'
-      DesignSize = (
-        883
-        488)
-      object lvConfig: TListView
-        Left = 1
-        Top = 3
-        Width = 391
-        Height = 451
-        Anchors = [akLeft, akTop, akRight, akBottom]
-        Columns = <
-          item
-            AutoSize = True
-            Caption = 'Name'
-            MinWidth = 150
-          end
-          item
-            Caption = 'Class'
-            MinWidth = 80
-            Width = 80
-          end
-          item
-            Caption = 'Page'
-            MaxWidth = 50
-            MinWidth = 50
-          end>
-        ReadOnly = True
-        RowSelect = True
-        TabOrder = 0
-        ViewStyle = vsReport
-        OnColumnClick = ListColumnClick
-        OnCompare = ListCompare
-        OnDblClick = lvConfigDblClick
-      end
-      object btnUpdateConfig: TBitBtn
-        Left = 1
-        Top = 460
-        Width = 130
-        Height = 25
-        Anchors = [akLeft, akBottom]
-        Caption = 'Update VistA'
-        Default = True
-        Glyph.Data = {
-          DE010000424DDE01000000000000760000002800000024000000120000000100
-          0400000000006801000000000000000000001000000000000000000000000000
-          80000080000000808000800000008000800080800000C0C0C000808080000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-          3333333333333333333333330000333333333333333333333333F33333333333
-          00003333344333333333333333388F3333333333000033334224333333333333
-          338338F3333333330000333422224333333333333833338F3333333300003342
-          222224333333333383333338F3333333000034222A22224333333338F338F333
-          8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
-          33333338F83338F338F33333000033A33333A222433333338333338F338F3333
-          0000333333333A222433333333333338F338F33300003333333333A222433333
-          333333338F338F33000033333333333A222433333333333338F338F300003333
-          33333333A222433333333333338F338F00003333333333333A22433333333333
-          3338F38F000033333333333333A223333333333333338F830000333333333333
-          333A333333333333333338330000333333333333333333333333333333333333
-          0000}
-        NumGlyphs = 2
-        TabOrder = 1
-        OnClick = btnUpdateConfigClick
-      end
-      object pnlConfig: TPanel
-        Left = 398
-        Top = 0
-        Width = 485
-        Height = 488
-        Align = alRight
-        BevelOuter = bvNone
-        TabOrder = 2
-      end
-    end
+    OnChange = TabsChange
     object tabDialog: TTabSheet
-      Caption = 'Report Items'
+      Caption = 'Configuration && Reporting'
       ImageIndex = 1
       DesignSize = (
         883
         488)
-      object lvReportItems: TListView
+      object lvDDCSForm: TListView
         Left = 1
         Top = 3
         Width = 470
@@ -318,7 +245,7 @@ object DDCSFormConfig: TDDCSFormConfig
         ViewStyle = vsReport
         OnColumnClick = ListColumnClick
         OnCompare = ListCompare
-        OnDblClick = lvReportItemsDblClick
+        OnDblClick = lvDDCSFormDblClick
       end
       object pnlReport: TPanel
         Left = 477
@@ -366,7 +293,7 @@ object DDCSFormConfig: TDDCSFormConfig
         end
         object lbTitle: TStaticText
           Left = 16
-          Top = 109
+          Top = 156
           Width = 31
           Height = 20
           Caption = 'Title'
@@ -380,7 +307,7 @@ object DDCSFormConfig: TDDCSFormConfig
         end
         object lbPrefix: TStaticText
           Left = 16
-          Top = 136
+          Top = 183
           Width = 41
           Height = 20
           Caption = 'Prefix'
@@ -394,7 +321,7 @@ object DDCSFormConfig: TDDCSFormConfig
         end
         object lbSuffix: TStaticText
           Left = 16
-          Top = 163
+          Top = 210
           Width = 40
           Height = 20
           Caption = 'Suffix'
@@ -408,7 +335,7 @@ object DDCSFormConfig: TDDCSFormConfig
         end
         object lbDialogReturn: TStaticText
           Left = 16
-          Top = 314
+          Top = 325
           Width = 92
           Height = 20
           Caption = 'Dialog Return'
@@ -422,15 +349,15 @@ object DDCSFormConfig: TDDCSFormConfig
         end
         object ckHideFromNote: TCheckBox
           Left = 89
-          Top = 218
+          Top = 269
           Width = 97
           Height = 17
           Caption = 'Hide from Note'
           TabOrder = 11
         end
         object ckRequired: TCheckBox
-          Left = 89
-          Top = 285
+          Left = 225
+          Top = 269
           Width = 97
           Height = 17
           Caption = 'Required'
@@ -438,7 +365,7 @@ object DDCSFormConfig: TDDCSFormConfig
         end
         object ckDoNotSave: TCheckBox
           Left = 89
-          Top = 241
+          Top = 292
           Width = 132
           Height = 17
           Caption = 'Do not Save'
@@ -455,53 +382,52 @@ object DDCSFormConfig: TDDCSFormConfig
           Value = 0
         end
         object edTitle: TCaptionEdit
-          Left = 89
-          Top = 108
-          Width = 288
+          Left = 72
+          Top = 156
+          Width = 313
           Height = 21
           TabOrder = 5
           Caption = 'Title'
         end
         object edPrefix: TCaptionEdit
-          Left = 89
-          Top = 135
-          Width = 288
+          Left = 72
+          Top = 183
+          Width = 313
           Height = 21
           TabOrder = 7
           Caption = 'Prefix'
         end
         object edSuffix: TCaptionEdit
-          Left = 89
-          Top = 162
-          Width = 288
+          Left = 72
+          Top = 210
+          Width = 313
           Height = 21
           TabOrder = 9
           Caption = 'Suffix'
         end
         object ckDoNotSpace: TCheckBox
           Left = 89
-          Top = 195
+          Top = 246
           Width = 97
           Height = 17
           Caption = 'Do not Space'
           TabOrder = 10
         end
         object cbDialogReturn: TCaptionComboBox
-          Left = 125
-          Top = 313
-          Width = 252
+          Left = 114
+          Top = 325
+          Width = 271
           Height = 21
           Style = csDropDownList
           TabOrder = 16
           Caption = 'Dialog Return'
         end
         object ckDoNotRestore: TCheckBox
-          Left = 89
-          Top = 263
+          Left = 225
+          Top = 246
           Width = 97
           Height = 17
           Caption = 'Do not Restore'
-          Enabled = False
           TabOrder = 13
         end
         object lbReportControl: TStaticText
@@ -519,6 +445,53 @@ object DDCSFormConfig: TDDCSFormConfig
           ParentFont = False
           TabOrder = 1
           TabStop = True
+        end
+        object edIdentifyingName: TCaptionEdit
+          Left = 16
+          Top = 129
+          Width = 369
+          Height = 21
+          TabOrder = 21
+          Caption = 'Identifying Name'
+        end
+        object StaticText8: TStaticText
+          Left = 16
+          Top = 108
+          Width = 113
+          Height = 20
+          Caption = 'Identifying Name'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 23
+          TabStop = True
+        end
+        object Memo1: TMemo
+          Left = 16
+          Top = 384
+          Width = 369
+          Height = 89
+          Enabled = False
+          ScrollBars = ssVertical
+          TabOrder = 24
+        end
+        object StaticText9: TStaticText
+          Left = 16
+          Top = 363
+          Width = 126
+          Height = 20
+          Caption = 'Configuration Data'
+          Enabled = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 25
         end
       end
     end
@@ -904,7 +877,7 @@ object DDCSFormConfig: TDDCSFormConfig
         3333333333333333333888330000333333333333333333333333333333333333
         0000}
       NumGlyphs = 2
-      TabOrder = 0
+      TabOrder = 1
       OnClick = btnCancelClick
     end
     object btnSave: TBitBtn
@@ -933,7 +906,7 @@ object DDCSFormConfig: TDDCSFormConfig
         333A333333333333333338330000333333333333333333333333333333333333
         0000}
       NumGlyphs = 2
-      TabOrder = 1
+      TabOrder = 0
       OnClick = btnSaveClick
     end
     object btnDelete: TBitBtn
@@ -961,7 +934,7 @@ object DDCSFormConfig: TDDCSFormConfig
         3333333333333333333888330000333333333333333333333333333333333333
         0000}
       NumGlyphs = 2
-      TabOrder = 2
+      TabOrder = 3
       OnClick = btnDeleteClick
     end
     object btnClear: TBitBtn
@@ -989,7 +962,7 @@ object DDCSFormConfig: TDDCSFormConfig
         3333333333333333333888330000333333333333333333333333333333333333
         0000}
       NumGlyphs = 2
-      TabOrder = 3
+      TabOrder = 2
       OnClick = btnClearClick
     end
     object btnClose: TBitBtn
@@ -1018,8 +991,35 @@ object DDCSFormConfig: TDDCSFormConfig
         3333333333338888883333330000333333333333333333333333333333333333
         0000}
       NumGlyphs = 2
-      TabOrder = 4
+      TabOrder = 5
       OnClick = btnCloseClick
+    end
+    object btnUpdateReport: TBitBtn
+      Left = 0
+      Top = 264
+      Width = 83
+      Height = 25
+      Caption = 'Update'
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333330000333333333333333333333333F33333333333
+        00003333344333333333333333388F3333333333000033334224333333333333
+        338338F3333333330000333422224333333333333833338F3333333300003342
+        222224333333333383333338F3333333000034222A22224333333338F338F333
+        8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
+        33333338F83338F338F33333000033A33333A222433333338333338F338F3333
+        0000333333333A222433333333333338F338F33300003333333333A222433333
+        333333338F338F33000033333333333A222433333333333338F338F300003333
+        33333333A222433333333333338F338F00003333333333333A22433333333333
+        3338F38F000033333333333333A223333333333333338F830000333333333333
+        333A333333333333333338330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+      TabOrder = 4
+      OnClick = btnUpdateReportClick
     end
   end
 end

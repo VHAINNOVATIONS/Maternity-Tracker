@@ -35,8 +35,9 @@ type
       FPrefix: string;
       FSuffix: string;
       FSpace: Boolean;
-      FHide: Boolean;
       FSave: Boolean;
+      FRestore: Boolean;
+      FHide: Boolean;
       FObject: TWinControl;
       FRequired: Boolean;
       FReturn: TWinControl;
@@ -64,8 +65,9 @@ type
       property Prefix: string read FPrefix write FPrefix;
       property Suffix: string read FSuffix write FSuffix;
       property DoNotSpace: Boolean read FSpace write FSpace;
-      property HideFromNote: Boolean read FHide write FHide;
       property DoNotSave: Boolean read FSave write FSave;
+      property DoNotRestore: Boolean read FRestore write FRestore;
+      property HideFromNote: Boolean read FHide write FHide;
       property OwningObject: TWinControl read  FObject write SetObject;
       property Required: Boolean read FRequired write FRequired;
       property DialogReturn: TWinControl read FReturn write SetDialogReturn;
@@ -124,9 +126,11 @@ end;
 
 function TDDCSNoteItem.GetIDName: string;
 begin
-  if ((FObject <> nil) and (IsPublishedProp(FObject, 'Caption'))) then
-    FIDName := GetPropValue(FObject, 'Caption');
   Result := FIDName;
+
+  if Result = '' then
+    if ((FObject <> nil) and (IsPublishedProp(FObject, 'Caption'))) then
+      Result := GetPropValue(FObject, 'Caption');
 end;
 
 function TDDCSNoteItem.GetOrder;
@@ -181,8 +185,9 @@ begin
     Prefix             := nItem.Prefix;
     Suffix             := nItem.Suffix;
     DoNotSpace         := nItem.DoNotSpace;
-    HideFromNote       := nItem.HideFromNote;
     DoNotSave          := nItem.DoNotSave;
+    DoNotRestore       := nItem.DoNotRestore;
+    HideFromNote       := nItem.HideFromNote;
     OwningObject       := nItem.OwningObject;
     Required           := nItem.Required;
     DialogReturn       := nItem.DialogReturn;

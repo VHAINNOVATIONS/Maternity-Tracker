@@ -168,7 +168,6 @@ begin
     begin
       sl.Add('H^' + dlg.Components[I].Name + U + dlg.Components[I].ClassName);
       // sl.Add('C^' + dlg.Components[I].Name + U);    // This would be updated by DDCSFramework configuration
-      // sl.Add('P^' + dlg.Components[I].Name + U);    // Not setup for dialogs on the GUI side
       // sl.Add('R^' + dlg.Components[I].Name + U);    // Once this is enabled you will be able to pass it to VistA
     end;
   finally

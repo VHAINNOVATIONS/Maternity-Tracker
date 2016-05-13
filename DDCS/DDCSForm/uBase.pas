@@ -1353,27 +1353,44 @@ begin
                 vProp := Piece(Piece(vPropertyList,U,P),'|',1);
                 vValue := Piece(Piece(vPropertyList,U,P),'|',2);
 
-                if ((vProp = 'ORDER') and (vValue <> '')) then
+                  //  IdentifyingName := nItem.IdentifyingName;
+                  //  Order           := nItem.Order;
+                  //  Title           := nItem.Title;
+                  //  Prefix          := nItem.Prefix;
+                  //  Suffix          := nItem.Suffix;
+                  //  DoNotSpace      := nItem.DoNotSpace;
+                  //  DoNotSave       := nItem.DoNotSave;
+                  //  DoNotRestore    := nItem.DoNotRestore;
+                  //  HideFromNote    := nItem.HideFromNote;
+                  //  Required        := nItem.Required;
+                  //  DialogReturn    := nItem.DialogReturn;
+
+                if ((vProp = 'IDENTIFYINGNAME') and (vValue <> '')) then
+                  nItem.IdentifyingName := vValue
+                else if ((vProp = 'ORDER') and (vValue <> '')) then
                   nItem.Order := StrToInt(vValue)
+                else if ((vProp = 'TITLE') and (vValue <> '')) then
+                  nItem.Title := vValue
                 else if ((vProp = 'PREFIX') and (vValue <> '')) then
                   nItem.Prefix := vValue
                 else if ((vProp = 'SUFFIX') and (vValue <> '')) then
                   nItem.Suffix := vValue
-                else if ((vProp = 'DO NOT SPACE') and (vValue <> '')) then
+                else if ((vProp = 'DONOTSPACE') and (vValue <> '')) then
                   nItem.DoNotSpace := StrToBool(vValue)
-                else if ((vProp = 'TITLE') and (vValue <> '')) then
-                  nItem.Title := vValue
-                else if ((vProp = 'DIALOG RETURN') and (vValue <> '')) then
+                else if ((vProp = 'DONOTSAVE') and (vValue <> '')) then
+                  nItem.DoNotSave := StrToBool(vValue)
+                else if ((vProp = 'DONOTRESTORE') and (vValue <> '')) then
+                  nItem.DoNotRestore := StrToBool(vValue)
+                else if ((vProp = 'HIDEFROMNOTE') and (vValue <> '')) then
+                  nItem.HideFromNote := StrToBool(vValue)
+                else if ((vProp = 'REQUIRED') and (vValue <> '')) then
+                  nItem.Required := StrToBool(vValue)
+                else if ((vProp = 'DIALOGRETURN') and (vValue <> '')) then
                 begin
                   dReturn := TForm(Owner).FindComponent(vValue);
                   if dReturn is TWinControl then
                     nItem.DialogReturn := TWinControl(dReturn);
-                end else if ((vProp = 'REQUIRED') and (vValue <> '')) then
-                  nItem.Required := StrToBool(vValue)
-                else if ((vProp = 'DO NOT SAVE') and (vValue <> '')) then
-                  nItem.DoNotSave := StrToBool(vValue)
-                else if ((vProp = 'HIDE FROM NOTE') and (vValue <> '')) then
-                  nItem.HideFromNote := StrToBool(vValue);
+                end;
               end;
             end;
           end;
