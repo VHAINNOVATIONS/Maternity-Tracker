@@ -43,7 +43,8 @@ type
     function IsObjectRegistered: Boolean;
   public
     constructor Create;
-    procedure Say(txt: string; stop: Boolean);
+    procedure Say(txt: string; flush: Boolean);
+    procedure Stop;
   end;
 
         TDisplayDialog = function(Broker: PCPRSComBroker; dlgName: WideString; DebugMode: Boolean): WideString; stdcall;
@@ -103,15 +104,21 @@ begin
   FActive := IsObjectRegistered;
 end;
 
-procedure TScreenReader.Say(txt: string; stop: Boolean);
+procedure TScreenReader.Say(txt: string; flush: Boolean);
 begin
   if not FActive then
     Exit;
 
-  if stop then
+  if flush then
     Obj.StopSpeech;
 
-  Obj.SayString(txt, stop);
+  Obj.SayString(txt, flush);
+end;
+
+procedure TScreenReader.Stop;
+begin
+  if FActive then
+    Obj.StopSpeech;
 end;
 
 {$ENDREGION}
@@ -126,7 +133,7 @@ var
   lbo: TORListBox;
   lv: TListView;
   lvo: TORListView;
-  lvitem: TListItem;
+  lvItem: TListItem;
   lvcolumn: TListColumn;
   sl: TStringList;
   sg: TStringGrid;
@@ -139,7 +146,10 @@ begin
       if wControl is TORDateBox then
         TORDateBox(wControl).Text := iValue
       else if wControl is TORCheckBox then
-        TORCheckBox(wControl).Checked := True
+      begin
+        if AnsiContainsText(iIndex, 'TRUE') then
+          TORCheckBox(wControl).Checked := True;
+      end
       else if wControl is TORComboBox then
       begin
         cbo := TORComboBox(wControl);
@@ -174,7 +184,7 @@ begin
           sl.Delimiter := U;
           sl.StrictDelimiter := True;
           sl.DelimitedText := iValue;
-          if iIndex = '0' then
+          if iIndex = 'H' then
           begin
             lvo.ViewStyle := vsReport;
             for I := 0 to sl.Count - 1 do
@@ -185,13 +195,13 @@ begin
             end;
             Exit;
           end;
-          lvitem := lvo.Items.Add;
-          lvitem.Caption := sl[0];
+          lvItem := lvo.Items.Add;
+          lvItem.Caption := sl[0];
           if sl.Count > 1 then
             for I := 1 to sl.Count - 1 do
-              lvitem.SubItems.Add(sl[I]);
+              lvItem.SubItems.Add(sl[I]);
           if AnsiContainsText(iIndex, 'TRUE') then
-            lvitem.Checked := True;
+            lvItem.Checked := True;
         finally
           sl.Free;
         end;
@@ -209,9 +219,15 @@ begin
       else if wControl.InheritsFrom(TCustomEdit) then
         TCustomEdit(wControl).Text := iValue
       else if wControl.InheritsFrom(TCheckBox) then
-        TCheckBox(wControl).Checked := True
+      begin
+        if AnsiContainsText(iIndex, 'TRUE') then
+          TCheckBox(wControl).Checked := True;
+      end
       else if wControl.InheritsFrom(TRadioButton) then
-        TRadioButton(wControl).Checked := True
+      begin
+        if AnsiContainsText(iIndex, 'TRUE') then
+          TRadioButton(wControl).Checked := True;
+      end
       else if wControl.InheritsFrom(TRadioGroup) then
         TRadioGroup(wControl).ItemIndex := StrToInt(iIndex)
       else if wControl.InheritsFrom(TCustomComboBox) then
@@ -248,10 +264,9 @@ begin
           sl.Delimiter := U;
           sl.StrictDelimiter := True;
           sl.DelimitedText := iValue;
-          if iIndex = '0' then
+          if iIndex = 'H' then
           begin
             lv.ViewStyle := vsReport;
-
             for I := 0 to sl.Count - 1 do
             begin
               lvcolumn := lv.Columns.Add;
@@ -260,13 +275,13 @@ begin
             end;
             Exit;
           end;
-          lvitem := lv.Items.Add;
-          lvitem.Caption := sl[0];
+          lvItem := lv.Items.Add;
+          lvItem.Caption := sl[0];
           if sl.Count > 1 then
             for I := 1 to sl.Count - 1 do
-              lvitem.SubItems.Add(sl[I]);
+              lvItem.SubItems.Add(sl[I]);
           if AnsiContainsText(iIndex, 'TRUE') then
-            lvitem.Checked := True;
+            lvItem.Checked := True;
         finally
           sl.Free;
         end;

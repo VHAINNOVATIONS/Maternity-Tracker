@@ -95,7 +95,7 @@ object dlgMedical: TdlgMedical
     Top = 33
     Width = 652
     Height = 606
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     OnChange = PageControl1Change
@@ -685,6 +685,10 @@ object dlgMedical: TdlgMedical
     object TabSheet2: TTabSheet
       Caption = 'Page2'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label16: TLabel
         Left = 10
         Top = 34

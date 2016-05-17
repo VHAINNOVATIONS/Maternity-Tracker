@@ -147,7 +147,11 @@ end;
 procedure TForm1.RadioGroup3Click(Sender: TObject);
 begin
   case RadioGroup3.ItemIndex of
-    -1: lbSummary.Caption := oSummary + '.';
+    -1: begin
+          if ((lbSummary.Caption <> '') and
+              (lbSummary.Caption[Length(lbSummary.Caption)] <> '.')) then
+            lbSummary.Caption := oSummary + '.';
+        end;
      0: lbSummary.Caption := oSummary + ' and is here for a return visit.';
      1: lbSummary.Caption := oSummary + ' and is here for a new visit.';
      2: lbSummary.Caption := oSummary + ' and is being referred.';

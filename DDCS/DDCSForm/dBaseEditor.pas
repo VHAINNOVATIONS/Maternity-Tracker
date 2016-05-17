@@ -86,24 +86,8 @@ begin
          if Assigned(PageControl.OnChange) then
            PageControl.OnChange(PageControl);
        end;
-    1: begin
-         if PageControl.ActivePageIndex < PageControl.PageCount - 1 then
-         begin
-           PageControl.ActivePageIndex := PageControl.ActivePageIndex + 1;
-
-           if Assigned(PageControl.OnChange) then
-             PageControl.OnChange(PageControl);
-         end;
-       end;
-    2: begin
-         if PageControl.ActivePageIndex > 0 then
-         begin
-           PageControl.ActivePageIndex := PageControl.ActivePageIndex - 1;
-
-           if Assigned(PageControl.OnChange) then
-             PageControl.OnChange(PageControl);
-         end;
-       end;
+    1: PageControl.SelectNextPage(True, False);
+    2: PageControl.SelectNextPage(False, False);
     3: begin
          TabSheet := TTabSheet(PageControl.ActivePage);
          if Assigned(TabSheet) then

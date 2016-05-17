@@ -219,7 +219,6 @@ begin
           if CheckBox33.Checked then
           begin
             Edit1.Visible := TRUE;
-            Edit1.SetFocus;
           end
           else
           begin

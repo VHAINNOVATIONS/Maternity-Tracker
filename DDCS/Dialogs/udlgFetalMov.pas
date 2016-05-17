@@ -133,8 +133,6 @@ begin
       leDur.Visible := True;
       lbOnset1.Visible := True;
       leOnset1.Visible := True;
-
-      leFreq.SetFocus;
     end else
     begin
       cbContY.OnClick := nil;

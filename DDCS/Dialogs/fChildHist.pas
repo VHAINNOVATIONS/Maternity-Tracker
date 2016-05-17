@@ -35,7 +35,6 @@ type
     cntcbxStillBorn: TCheckBox;
     lblg1: TLabel;
     spnBirthWeight: TJvSpinEdit;
-    amgrMain: TVA508AccessibilityManager;
     procedure FormCreate(Sender: TObject);
     procedure cntcbxStillBornClick(Sender: TObject);
     procedure SpinMin(Sender: TObject);

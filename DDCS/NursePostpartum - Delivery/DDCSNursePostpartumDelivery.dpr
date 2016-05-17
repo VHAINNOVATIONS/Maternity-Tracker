@@ -20,7 +20,8 @@ library DDCSNursePostpartumDelivery;
 
 uses
   uExtndComBroker,
-  frmMain in 'frmMain.pas' {Form1};
+  frmMain in 'frmMain.pas' {Form1},
+  frmBaby in 'frmBaby.pas' {frmInner: TFrame};
 
 {$R *.res}
 

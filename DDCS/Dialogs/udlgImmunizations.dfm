@@ -86,7 +86,6 @@ object dlgImmunizations: TdlgImmunizations
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    OnClick = SpeedButton1Click
   end
   object SpeedButton2: TSpeedButton
     Tag = 2
@@ -112,7 +111,6 @@ object dlgImmunizations: TdlgImmunizations
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    OnClick = SpeedButton1Click
   end
   object SpeedButton3: TSpeedButton
     Tag = 3
@@ -138,7 +136,6 @@ object dlgImmunizations: TdlgImmunizations
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    OnClick = SpeedButton1Click
   end
   object SpeedButton4: TSpeedButton
     Tag = 4
@@ -164,7 +161,6 @@ object dlgImmunizations: TdlgImmunizations
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    OnClick = SpeedButton1Click
   end
   object SpeedButton5: TSpeedButton
     Tag = 5
@@ -190,7 +186,6 @@ object dlgImmunizations: TdlgImmunizations
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    OnClick = SpeedButton1Click
   end
   object SpeedButton6: TSpeedButton
     Tag = 6
@@ -216,7 +211,6 @@ object dlgImmunizations: TdlgImmunizations
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    OnClick = SpeedButton1Click
   end
   object SpeedButton7: TSpeedButton
     Tag = 7
@@ -242,7 +236,6 @@ object dlgImmunizations: TdlgImmunizations
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    OnClick = SpeedButton1Click
   end
   object Panel1: TPanel
     Tag = 19641

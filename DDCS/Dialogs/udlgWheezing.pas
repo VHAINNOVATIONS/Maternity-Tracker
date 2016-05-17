@@ -92,7 +92,6 @@ begin
 
       lbDur.Visible := True;
       leDur.Visible := True;
-      leDur.SetFocus;
     end else
     begin
       if lbDur.Visible then
@@ -123,7 +122,7 @@ end;
 
 procedure TdlgWheezing.FormCreate(Sender: TObject);
 begin
-  hdiff := lbAssociatedSymp.Top - leDur.Top;
+  hdiff := leDur.Height + 10;
   Height := Height - hdiff;
 end;
 

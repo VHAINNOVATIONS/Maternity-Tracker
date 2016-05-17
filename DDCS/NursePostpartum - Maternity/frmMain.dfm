@@ -214,8 +214,9 @@ object Form1: TForm1
         Order = 0
         IdentifyingName = 'Feeding Method'
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = True
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = lbFeedingMethod
         Required = False
       end
@@ -224,8 +225,9 @@ object Form1: TForm1
         IdentifyingName = 'Breast Milk'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckBreastMilk
         Required = False
       end
@@ -234,8 +236,9 @@ object Form1: TForm1
         IdentifyingName = 'Bottle'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckBottle
         Required = False
       end
@@ -244,8 +247,9 @@ object Form1: TForm1
         IdentifyingName = 'Formula'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckFormula
         Required = False
       end
@@ -253,8 +257,9 @@ object Form1: TForm1
         Order = 4
         IdentifyingName = 'Ongoing Chronic Medical Conditions'
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = True
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = lbOngoingChronic
         Required = False
       end
@@ -263,8 +268,9 @@ object Form1: TForm1
         IdentifyingName = 'Asthma'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckAsthma
         Required = False
       end
@@ -273,8 +279,9 @@ object Form1: TForm1
         IdentifyingName = 'Diabetes'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckDiabetes
         Required = False
       end
@@ -283,18 +290,21 @@ object Form1: TForm1
         IdentifyingName = 'Hypertension'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckHypertension
         Required = False
       end
       item
+        SayOnFocus = 'Ongoing Chronic Medical Conditions Other'
         Order = 8
         IdentifyingName = 'Ongoing Chronic Medical Conditions Other'
         Prefix = '   Other: '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ledOngoingChronicOther
         Required = False
       end
@@ -302,8 +312,9 @@ object Form1: TForm1
         Order = 9
         IdentifyingName = 'Maternal Complications'
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = True
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = lbMaternalComplications
         Required = False
       end
@@ -312,8 +323,9 @@ object Form1: TForm1
         IdentifyingName = 'None'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckNone
         Required = False
       end
@@ -322,8 +334,9 @@ object Form1: TForm1
         IdentifyingName = 'Postpartum Hemorrhage'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckPostpartumHemorrhage
         Required = False
       end
@@ -332,8 +345,9 @@ object Form1: TForm1
         IdentifyingName = 'Infection'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckInfection
         Required = False
       end
@@ -342,18 +356,21 @@ object Form1: TForm1
         IdentifyingName = 'Pre-eclampsia'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ckPreEclampsia
         Required = False
       end
       item
+        SayOnFocus = 'Maternal Complications Other'
         Order = 14
         IdentifyingName = 'Maternal Complications Other'
         Prefix = '   Other: '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ledMaternalComplicationsOther
         Required = False
       end
@@ -361,8 +378,9 @@ object Form1: TForm1
         Order = 15
         IdentifyingName = 'Contraceptive Method'
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = True
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = lbContraceptiveMethod
         Required = False
       end
@@ -371,18 +389,21 @@ object Form1: TForm1
         IdentifyingName = 'Contraceptive Method'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = cbContraceptiveMethod
         Required = False
       end
       item
+        SayOnFocus = 'Contraceptive Method Other'
         Order = 17
         IdentifyingName = 'Contraceptive Method Other'
         Prefix = '   Other: '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = ledContraceptiveMethodOther
         Required = False
       end
@@ -390,8 +411,9 @@ object Form1: TForm1
         Order = 18
         IdentifyingName = 'Comments'
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = True
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = lbComments
         Required = False
       end
@@ -400,8 +422,9 @@ object Form1: TForm1
         IdentifyingName = 'Comments'
         Prefix = '   '
         DoNotSpace = True
-        HideFromNote = False
         DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
         OwningObject = meComments
         Required = False
       end>
@@ -524,22 +547,20 @@ object Form1: TForm1
         TabOrder = 11
         OnClick = MaternalComplicationsUpdate
       end
-      object ledMaternalComplicationsOther: TCaptionEdit
+      object ledMaternalComplicationsOther: TEdit
         Left = 68
         Top = 176
         Width = 245
         Height = 21
         TabOrder = 16
         OnChange = MaternalComplicationsUpdate
-        Caption = 'Maternal Complications Other'
       end
-      object ledOngoingChronicOther: TCaptionEdit
+      object ledOngoingChronicOther: TEdit
         Left = 410
         Top = 68
         Width = 271
         Height = 21
         TabOrder = 9
-        Caption = 'Ongoing Chronic Medical Conditions Other'
       end
       object ckAsthma: TCheckBox
         Left = 377
@@ -549,13 +570,12 @@ object Form1: TForm1
         Caption = 'Asthma'
         TabOrder = 5
       end
-      object ledContraceptiveMethodOther: TCaptionEdit
+      object ledContraceptiveMethodOther: TEdit
         Left = 410
         Top = 157
         Width = 271
         Height = 21
         TabOrder = 20
-        Caption = 'Contraceptive Method Other'
       end
       object ckBottle: TCheckBox
         Left = 36

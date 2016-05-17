@@ -122,7 +122,6 @@ begin
       lbBlood.Visible := True;
       cbBloodY.Visible := True;
       cbBloodN.Visible := True;
-      leColor.SetFocus;
     end
     else if not (Sender as TCheckBox).Checked then
     begin {Yes - unchecked}

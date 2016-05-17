@@ -113,7 +113,6 @@ begin
       leFreq.Visible := True;
       lbDur.Visible := True;
       leDur.Visible := True;
-      leFreq.SetFocus;
     end else
     begin  {Yes - unchecked}
       leFreq.Clear;

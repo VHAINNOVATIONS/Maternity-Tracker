@@ -99,7 +99,6 @@ begin
 
       lbWhat.Visible := True;
       leWhat.Visible := True;
-      leWhat.SetFocus;
     end else
     begin
       lbWhat.Visible := False;

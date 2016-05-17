@@ -22,10 +22,10 @@ type
     ckPreEclampsia: TCheckBox;
     ckInfection: TCheckBox;
     ckNone: TCheckBox;
-    ledMaternalComplicationsOther: TCaptionEdit;
-    ledOngoingChronicOther: TCaptionEdit;
+    ledMaternalComplicationsOther: TEdit;
+    ledOngoingChronicOther: TEdit;
     ckAsthma: TCheckBox;
-    ledContraceptiveMethodOther: TCaptionEdit;
+    ledContraceptiveMethodOther: TEdit;
     ckBottle: TCheckBox;
     ckFormula: TCheckBox;
     ckDiabetes: TCheckBox;

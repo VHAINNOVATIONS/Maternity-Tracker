@@ -73,12 +73,4 @@ object frmChildHist: TfrmChildHist
       OnChange = SpinMin
     end
   end
-  object amgrMain: TVA508AccessibilityManager
-    Left = 150
-    Top = 40
-    Data = (
-      (
-        'Component = frmChildHist'
-        'Status = stsDefault'))
-  end
 end

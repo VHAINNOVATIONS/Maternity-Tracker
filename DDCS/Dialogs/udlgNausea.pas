@@ -92,7 +92,6 @@ begin
      TmpStrList.Add('  Abdominal pain? Yes');
      if leLocal.Text  <> '' then TmpStrList.Add('    Localization: ' + leLocal.Text);
      if leDur1.Text  <> '' then TmpStrList.Add('    Duration: ' + leDur1.Text);
-     leLocal.SetFocus;
    end
    else if cbAbdomN.Checked then
    begin
@@ -129,7 +128,6 @@ begin
       leLocal.Visible := True;
       lbDur1.Visible := True;
       leDur1.Visible := True;
-      leLocal.SetFocus;
     end else
     begin
       leLocal.Clear;

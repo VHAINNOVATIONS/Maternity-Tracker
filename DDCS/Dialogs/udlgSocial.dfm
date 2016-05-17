@@ -78,7 +78,7 @@ object dlgSocial: TdlgSocial
     Top = 33
     Width = 632
     Height = 600
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
@@ -752,6 +752,10 @@ object dlgSocial: TdlgSocial
     object TabSheet2: TTabSheet
       Caption = 'Relationship && Sexual History'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object gbRelation: TGroupBox
         Left = 0
         Top = 0
@@ -978,6 +982,10 @@ object dlgSocial: TdlgSocial
     object TabSheet3: TTabSheet
       Caption = 'Tobacco'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object gb3: TGroupBox
         Left = 0
         Top = 0
@@ -1009,7 +1017,6 @@ object dlgSocial: TdlgSocial
           NumGlyphs = 2
           ParentShowHint = False
           ShowHint = True
-          OnClick = sbtnGetDate1Click
         end
         object Label10: TLabel
           Left = 16
@@ -1397,7 +1404,6 @@ object dlgSocial: TdlgSocial
           NumGlyphs = 2
           ParentShowHint = False
           ShowHint = True
-          OnClick = sbtnGetDate1Click
         end
         object cbalcoholyes: TCheckBox
           Left = 23
@@ -1582,7 +1588,6 @@ object dlgSocial: TdlgSocial
           NumGlyphs = 2
           ParentShowHint = False
           ShowHint = True
-          OnClick = sbtnGetDate1Click
         end
         object cbdrugsyes: TCheckBox
           Left = 374

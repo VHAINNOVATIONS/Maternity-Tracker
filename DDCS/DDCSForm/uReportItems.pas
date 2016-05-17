@@ -30,6 +30,7 @@ type
   TDDCSNoteItem = class(TCollectionItem)
     private
       FConfig: TStringList;
+      FAccess: string;
       FIDName: string;
       FTitle: string;
       FPrefix: string;
@@ -59,6 +60,7 @@ type
       property Page: TTabSheet read GetPage;
       property Configuration: TStringList read FConfig write FConfig;
     published
+      property SayOnFocus: string read FAccess write FAccess;
       property Order: Integer read GetOrder write SetIndex;
       property IdentifyingName: string read GetIDName write FIDName;
       property Title: string read FTitle write FTitle;
@@ -66,7 +68,7 @@ type
       property Suffix: string read FSuffix write FSuffix;
       property DoNotSpace: Boolean read FSpace write FSpace;
       property DoNotSave: Boolean read FSave write FSave;
-      property DoNotRestore: Boolean read FRestore write FRestore;
+      property DoNotRestoreV: Boolean read FRestore write FRestore;
       property HideFromNote: Boolean read FHide write FHide;
       property OwningObject: TWinControl read  FObject write SetObject;
       property Required: Boolean read FRequired write FRequired;
@@ -179,6 +181,7 @@ begin
   if Source is TDDCSNoteItem then
   begin
     nItem := TDDCSNoteItem(Source);
+    SayOnFocus         := nItem.SayOnFocus;
     IdentifyingName    := nItem.IdentifyingName;
     Order              := nItem.Order;
     Title              := nItem.Title;
@@ -186,7 +189,7 @@ begin
     Suffix             := nItem.Suffix;
     DoNotSpace         := nItem.DoNotSpace;
     DoNotSave          := nItem.DoNotSave;
-    DoNotRestore       := nItem.DoNotRestore;
+    DoNotRestoreV      := nItem.DoNotRestoreV;
     HideFromNote       := nItem.HideFromNote;
     OwningObject       := nItem.OwningObject;
     Required           := nItem.Required;
@@ -519,13 +522,18 @@ begin
       end
       else if FObject is TORCheckBox then
       begin
-        cko := TORCheckBox(FObject);
-        if cko.Checked then
+        if cko.Caption <> '' then
         begin
-          if cko.Caption <> '' then
+          if cko.Checked then
             Result.Add(FObject.Name + '^TRUE^' + cko.Caption)
           else
+            Result.Add(FObject.Name + '^^' + cko.Caption)
+        end else if cko.Hint <> '' then
+        begin
+          if cko.Checked then
             Result.Add(FObject.Name + '^TRUE^' + cko.Hint)
+          else
+            Result.Add(FObject.Name + '^^' + cko.Hint);
         end;
       end
       else if FObject is TORComboBox then
@@ -563,16 +571,28 @@ begin
         if lvo.ViewStyle = vsReport then
           for I := 0 to lvo.Columns.Count - 1 do
             if str <> '' then
-              str := str + ' | ' + lvo.Column[I].Caption
+              str := str + U + lvo.Column[I].Caption
             else
               str := lvo.Column[I].Caption;
-        Result.Add(FObject.Name + '^0^' + str);
+        Result.Add(FObject.Name + '^H^' + str);
         for I := 0 to lvo.Items.Count - 1 do
         begin
           str := lvo.Items.Item[I].Caption;
           for J := 0 to lvo.Items.Item[I].SubItems.Count - 1 do
-            str := str + ' | ' + lvo.Items[I].SubItems[J];
-          Result.Add(FObject.Name + U + IntToStr(I) + U + str);
+            str := str + U + lvo.Items[I].SubItems[J];
+          if lvo.Checkboxes then
+          begin
+            if lvo.Items.Item[I].Checked then
+              Result.Add(FObject.Name + U + IntToStr(I) + 'TRUE' + U + str)
+            else
+              Result.Add(FObject.Name + U + IntToStr(I) + U + str);
+          end else
+          begin
+            if lvo.Items.Item[I].Selected then
+              Result.Add(FObject.Name + U + IntToStr(I) + 'TRUE' + U + str)
+            else
+              Result.Add(FObject.Name + U + IntToStr(I) + U + str);
+          end;
         end;
       end;
     // -------------------------------------------------------------------------
@@ -596,23 +616,35 @@ begin
       else if FObject.InheritsFrom(TCheckBox) then
       begin
         ck := TCheckBox(FObject);
-        if ck.Checked then
+        if ck.Caption <> '' then
         begin
-          if ck.Caption <> '' then
+          if ck.Checked then
             Result.Add(FObject.Name + '^TRUE^' + ck.Caption)
           else
+            Result.Add(FObject.Name + '^^' + ck.Caption)
+        end else if ck.Hint <> '' then
+        begin
+          if ck.Checked then
             Result.Add(FObject.Name + '^TRUE^' + ck.Hint)
+          else
+            Result.Add(FObject.Name + '^^' + ck.Hint);
         end;
       end
       else if FObject.InheritsFrom(TRadioButton) then
       begin
         rb := TRadioButton(FObject);
-        if rb.Checked then
+        if rb.Caption <> '' then
         begin
-          if rb.Caption <> '' then
+          if rb.Checked then
             Result.Add(FObject.Name + '^TRUE^' + rb.Caption)
           else
+            Result.Add(FObject.Name + '^^' + rb.Caption)
+        end else if rb.Hint <> '' then
+        begin
+          if rb.Checked then
             Result.Add(FObject.Name + '^TRUE^' + rb.Hint)
+          else
+            Result.Add(FObject.Name + '^^' + rb.Hint);
         end;
       end
       else if FObject.InheritsFrom(TRadioGroup) then
@@ -664,16 +696,28 @@ begin
         if lv.ViewStyle = vsReport then
           for I := 0 to lv.Columns.Count - 1 do
             if str <> '' then
-              str := str + ' | ' + lv.Column[I].Caption
+              str := str + U + lv.Column[I].Caption
             else
               str := lv.Column[I].Caption;
-        Result.Add(FObject.Name + '^0^' + str);
+        Result.Add(FObject.Name + '^H^' + str);
         for I := 0 to lv.Items.Count - 1 do
         begin
           str := lv.Items.Item[I].Caption;
           for J := 0 to lv.Items.Item[I].SubItems.Count - 1 do
-            str := str + ' | ' + lv.Items[I].SubItems[J];
-          Result.Add(FObject.Name + U + IntToStr(I) + U + str);
+            str := str + U + lv.Items[I].SubItems[J];
+          if lv.Checkboxes then
+          begin
+            if lv.Items.Item[I].Checked then
+              Result.Add(FObject.Name + U + IntToStr(I) + 'TRUE' + U + str)
+            else
+              Result.Add(FObject.Name + U + IntToStr(I) + U + str);
+          end else
+          begin
+            if lv.Items.Item[I].Selected then
+              Result.Add(FObject.Name + U + IntToStr(I) + 'TRUE' + U + str)
+            else
+              Result.Add(FObject.Name + U + IntToStr(I) + U + str);
+          end;
         end;
       end
       else if FObject.InheritsFrom(TStringGrid) then

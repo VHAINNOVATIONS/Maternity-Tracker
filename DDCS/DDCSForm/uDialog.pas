@@ -86,16 +86,15 @@ end;
 procedure TDDCSDialog.RadioGroupEnter(Sender: TObject);
 var
   rg: TRadioGroup;
+  I: Integer;
 begin
   if not Sender.InheritsFrom(TRadioGroup) then
     Exit;
 
   rg := TRadioGroup(Sender);
   if rg.ItemIndex = -1 then
-  begin
-    rg.ItemIndex := 0;
-    TRadioButton(rg.Controls[0]).SetFocus;
-  end;
+    for I := 0 to rg.ControlCount - 1 do
+      TWinControl(rg.Controls[0]).TabStop := True;
 end;
 
 // Protected -------------------------------------------------------------------

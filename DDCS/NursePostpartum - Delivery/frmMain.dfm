@@ -187,7 +187,6 @@ object Form1: TForm1
   OldCreateOrder = True
   Position = poOwnerFormCenter
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -211,90 +210,43 @@ object Form1: TForm1
     TabStop = False
     ReportCollection = <
       item
+        SayOnFocus = 'Primary'
         Order = 0
-        IdentifyingName = 'Gender'
         DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
         HideFromNote = False
-        DoNotSave = True
-        OwningObject = rgSex1
+        OwningObject = edCPrimaryFor
         Required = False
       end
       item
+        SayOnFocus = 'Other Primary Indications for Cesarean'
         Order = 1
         DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
         HideFromNote = False
-        DoNotSave = True
-        OwningObject = spnLb1
+        OwningObject = edReasonsCOthPrimary
         Required = False
       end
       item
+        SayOnFocus = 'Other Secondary Indications for Cesarean'
         Order = 2
         DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
         HideFromNote = False
-        DoNotSave = True
-        OwningObject = spnOz1
+        OwningObject = edReasonsCOthSecondary
         Required = False
       end
       item
+        SayOnFocus = 'Other'
         Order = 3
         DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = True
-        OwningObject = spng1
-        Required = False
-      end
-      item
-        Order = 4
-        IdentifyingName = 'A P G A R Score one minute after birth'
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = True
-        OwningObject = edAPGARone1
-        Required = False
-      end
-      item
-        Order = 5
-        IdentifyingName = 'A P G A R Score five minutes after birth'
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = True
-        OwningObject = edAPGARfive1
-        Required = False
-      end
-      item
-        Order = 6
-        IdentifyingName = 'Neonatal Intensive Care Unit Admission (NICU)'
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = True
-        OwningObject = ckNICU1
-        Required = False
-      end
-      item
-        Order = 7
-        IdentifyingName = 'Complications and or Anomalies'
-        DoNotSpace = False
-        HideFromNote = False
-        DoNotSave = True
-        OwningObject = meComplications1
-        Required = False
-      end
-      item
-        Order = 8
-        IdentifyingName = 'Living'
-        DoNotSpace = False
-        HideFromNote = False
         DoNotSave = False
-        OwningObject = ckLiving1
-        Required = False
-      end
-      item
-        Order = 9
-        IdentifyingName = 'Demise'
-        DoNotSpace = False
+        DoNotRestoreV = False
         HideFromNote = False
-        DoNotSave = False
-        OwningObject = ckDemise1
+        OwningObject = edProceduresOther
         Required = False
       end>
     OnOverrideNote = Finished
@@ -510,7 +462,6 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 11
         TabStop = True
-        OnEnter = RadioGroupEnter
       end
       object spnLaborLength: TSpinEdit
         Left = 544
@@ -579,9 +530,9 @@ object Form1: TForm1
       end
       object meDeliveryNotes: TCaptionMemo
         Left = 19
-        Top = 226
+        Top = 228
         Width = 694
-        Height = 154
+        Height = 152
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
         ScrollBars = ssVertical
@@ -607,7 +558,7 @@ object Form1: TForm1
           MaxValue = 0
           MinValue = 0
           TabOrder = 1
-          Value = 1
+          Value = 0
           OnChange = spnBirthCountChange
         end
         object lbBirthCount: TStaticText
@@ -639,212 +590,9 @@ object Form1: TForm1
         Top = 50
         Width = 734
         Height = 348
-        ActivePage = TsBaby1
         Align = alClient
         Style = tsFlatButtons
         TabOrder = 1
-        object TsBaby1: TTabSheet
-          Caption = 'Baby 1'
-          object lbBirthWeight1: TStaticText
-            Left = 19
-            Top = 80
-            Width = 133
-            Height = 17
-            Caption = 'Birth Weight in pounds'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 3
-          end
-          object lbComplications1: TStaticText
-            Left = 19
-            Top = 159
-            Width = 145
-            Height = 17
-            Caption = 'Complications/Anomalies'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 13
-          end
-          object lbg1: TStaticText
-            Left = 396
-            Top = 80
-            Width = 128
-            Height = 17
-            Caption = 'Total Weight in grams'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 7
-          end
-          object rgSex1: TRadioGroup
-            Left = 19
-            Top = 3
-            Width = 270
-            Height = 54
-            Caption = 'Gender'
-            Columns = 3
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            Items.Strings = (
-              'Male'
-              'Female'
-              'Unknown')
-            ParentFont = False
-            TabOrder = 0
-            TabStop = True
-            OnEnter = RadioGroupEnter
-          end
-          object spnLb1: TSpinEdit
-            Left = 158
-            Top = 75
-            Width = 54
-            Height = 22
-            MaxValue = 0
-            MinValue = 0
-            TabOrder = 4
-            Value = 0
-            OnChange = spnLb1Change
-          end
-          object spnOz1: TSpinEdit
-            Left = 298
-            Top = 75
-            Width = 54
-            Height = 22
-            MaxValue = 0
-            MinValue = 0
-            TabOrder = 6
-            Value = 0
-            OnChange = spnOz1Change
-          end
-          object meComplications1: TCaptionMemo
-            Left = 19
-            Top = 176
-            Width = 690
-            Height = 128
-            Align = alCustom
-            Anchors = [akLeft, akTop, akRight, akBottom]
-            ScrollBars = ssVertical
-            TabOrder = 14
-            Caption = 'Complications and or Anomalies'
-          end
-          object edAPGARone1: TCaptionEdit
-            Left = 71
-            Top = 117
-            Width = 54
-            Height = 21
-            NumbersOnly = True
-            TabOrder = 10
-            Caption = 'A P G A R Score one minute after birth'
-          end
-          object ckNICU1: TCheckBox
-            Left = 229
-            Top = 122
-            Width = 295
-            Height = 17
-            Caption = 'Neonatal Intensive Care Unit Admission (NICU)'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 12
-          end
-          object edAPGARfive1: TCaptionEdit
-            Left = 131
-            Top = 117
-            Width = 54
-            Height = 21
-            NumbersOnly = True
-            TabOrder = 11
-            Caption = 'A P G A R Score five minutes after birth'
-          end
-          object spng1: TSpinEdit
-            Left = 530
-            Top = 75
-            Width = 81
-            Height = 22
-            MaxValue = 0
-            MinValue = 0
-            TabOrder = 8
-            Value = 0
-            OnChange = UpdateLBOZ
-          end
-          object lbAPGAR1: TStaticText
-            Left = 19
-            Top = 121
-            Width = 46
-            Height = 17
-            Caption = 'APGAR'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 9
-          end
-          object lbOz1: TStaticText
-            Left = 222
-            Top = 80
-            Width = 70
-            Height = 17
-            Caption = 'and ounces'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 5
-          end
-          object ckLiving1: TCheckBox
-            Tag = 1
-            Left = 329
-            Top = 25
-            Width = 72
-            Height = 17
-            Caption = 'Living'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 1
-            OnClick = CheckBoxCheckClick
-          end
-          object ckDemise1: TCheckBox
-            Tag = 2
-            Left = 412
-            Top = 25
-            Width = 97
-            Height = 17
-            Caption = 'Demise'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 2
-            OnClick = CheckBoxCheckClick
-          end
-        end
       end
     end
     object oPage3: TTabSheet
@@ -1020,7 +768,7 @@ object Form1: TForm1
           ParentFont = False
           TabOrder = 0
         end
-        object edCPrimaryFor: TCaptionEdit
+        object edCPrimaryFor: TEdit
           Left = 78
           Top = 28
           Width = 376
@@ -1032,7 +780,6 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 1
-          Caption = 'Primary'
         end
         object ckCUnsuccessfulVBAC: TCheckBox
           Left = 19
@@ -1061,7 +808,6 @@ object Form1: TForm1
             'Classical')
           TabOrder = 12
           TabStop = True
-          OnEnter = RadioGroupEnter
         end
         object ckRepeatwoLabor: TCheckBox
           Left = 19
@@ -1107,7 +853,7 @@ object Form1: TForm1
           TabOrder = 10
           Caption = 'Secondary Indications for Cesarean'
         end
-        object edReasonsCOthPrimary: TCaptionEdit
+        object edReasonsCOthPrimary: TEdit
           Left = 275
           Top = 117
           Width = 179
@@ -1119,9 +865,8 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 8
-          Caption = 'Other Primary Indications for Cesarean'
         end
-        object edReasonsCOthSecondary: TCaptionEdit
+        object edReasonsCOthSecondary: TEdit
           Left = 275
           Top = 144
           Width = 179
@@ -1133,7 +878,6 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 11
-          Caption = 'Other Secondary Indications for Cesarean'
         end
       end
       object gbOtherProcedures: TGroupBox
@@ -1256,7 +1000,7 @@ object Form1: TForm1
           Caption = 'Other'
           TabOrder = 7
         end
-        object edProceduresOther: TCaptionEdit
+        object edProceduresOther: TEdit
           Left = 342
           Top = 88
           Width = 342
@@ -1268,7 +1012,6 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 8
-          Caption = 'Other'
         end
       end
       object ckDeliveryMethodV: TCheckBox

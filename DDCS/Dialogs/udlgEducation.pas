@@ -54,13 +54,21 @@ implementation
 procedure TdlgEducation.bbtnOKClick(Sender: TObject);
 var
   I: Integer;
+  tmp: string;
 begin
   for I := 0 to educationListView.Items.Count - 1 do
-  if educationListView.Items[I].Checked then
-  TmpStrList.Add('  ' + educationListView.Items[I].Caption);
+    if educationListView.Items[I].Checked then
+    begin
+      tmp := educationListView.Items[I].SubItems[0];
+      if educationListView.Items[I].Caption <> '' then
+        tmp := tmp + ' (Code: ' + educationListView.Items[I].Caption + ')';
+      if educationListView.Items[I].SubItems[1] <> '' then
+        tmp := tmp + ' (Category: ' + educationListView.Items[I].SubItems[1] + ')';
+      TmpStrList.Add('  ' + tmp);
+    end;
 
   if TmpStrList.Count > 0 then
-  TmpStrList.Insert(0,'Patient Education:');
+    TmpStrList.Insert(0,'Patient Education:');
 end;
 
 procedure TdlgEducation.educationListViewColumnClick(Sender: TObject;
@@ -80,10 +88,11 @@ procedure TdlgEducation.educationListViewCompare(Sender: TObject; Item1,
 begin
   try
     if SortedColumn = 0 then
-    Compare := CompareText(Item1.Caption, Item2.Caption)
+      Compare := CompareText(Item1.Caption, Item2.Caption)
     else if SortedColumn <> 0 then
-    Compare := CompareText(Item1.SubItems[SortedColumn-1], Item2.SubItems[SortedColumn-1]);
-    if Descending then Compare := -Compare;
+      Compare := CompareText(Item1.SubItems[SortedColumn-1], Item2.SubItems[SortedColumn-1]);
+    if Descending then
+      Compare := -Compare;
   except
   end;
 end;

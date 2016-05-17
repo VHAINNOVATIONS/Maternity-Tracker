@@ -25,7 +25,7 @@ uses
   System.TypInfo, System.Classes, System.Actions, Vcl.Graphics, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus,
   Vcl.Themes, Vcl.Styles, Vcl.Consts, Vcl.CheckLst, Vcl.ActnList,
-  uReportItems, frmVitals, uDialog, VAUtils, uCommon;
+  VAUtils, uCommon, uReportItems, frmVitals, uDialog;
 
 type
   TDDCSForm = class;
@@ -103,14 +103,12 @@ type
     procedure ListBoxGetDialogDBClick(Sender: TObject);
     // TButton
     procedure ButtonGetDialogClick(Sender: TObject);
-    // TComboBox
-    procedure cbAutoWidth(Sender: TObject);
-    // TRadioGroup
-    procedure RadioGroupEnter(Sender: TObject);
     // TForm -------------------------------------------------------------------
     procedure FormOverrideShow(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    // Screen ------------------------------------------------------------------
+    procedure ActiveControlChanged(Sender: TObject);
     // Navigation --------------------------------------------------------------
     procedure CtrlTab(Sender: TObject);
     procedure CtrlShiftTab(Sender: TObject);
@@ -136,6 +134,12 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure Change; override;
+    // Support and 508 ---------------------------------------------------------
+    // TComboBox
+    procedure cbAutoWidth(Sender: TObject);
+    // TRadioGroup
+    procedure RadioGroupEnter(Sender: TObject);
+    // Support and 508 ---------------------------------------------------------
     function HasSecurityKey(const KeyName: string): Boolean;
     function GetPatientAllergies: TStringList;
     function GetPatientActiveProblems: TStringList;
@@ -392,7 +396,8 @@ begin
   if Section.Index = FSelectedSectionIndex then
   begin
     Canvas.Brush.Style := bsSolid;
-    Canvas.Brush.Color := clBtnHighlight;
+    Canvas.Brush.Color := clGray;
+    Canvas.Font.Style := [fsBold];
   end else
   begin
     Canvas.Brush.Style := bsClear;
@@ -400,8 +405,12 @@ begin
   Canvas.FillRect(R);
 
   if ((not Section.AllowClick) and (Section.Index <> 6)) then
-    Canvas.Font.Color := clGrayText
-  else
+  begin
+    if Section.Index = FSelectedSectionIndex then
+      Canvas.Font.Color := clBlack
+    else
+      Canvas.Font.Color := clGrayText;
+  end else
     Canvas.Font.Color := clWindowText;
 
   X := Round(R.Left + (R.Width div 2) - (Canvas.TextWidth(Section.Text) div 2));
@@ -445,17 +454,17 @@ begin
     2: FDDCSForm.Preview(False);
     3: FDDCSForm.Finish;
     4: FDDCSForm.Cancel;
-    5: begin
-         if IsPrev(I) then
-           FDDCSForm.ActivePageIndex := I;
-         FDDCSForm.Change;
-       end;
+    5: FDDCSForm.SelectNextPage(False);
+//         if IsPrev(I) then
+//           FDDCSForm.ActivePageIndex := I;
+//         FDDCSForm.Change;
+//       end;
     6: ;
-    7: begin
-         if IsNext(I) then
-           FDDCSForm.ActivePageIndex := I;
-         FDDCSForm.Change;
-       end;
+    7: FDDCSForm.SelectNextPage(True);
+//         if IsNext(I) then
+//           FDDCSForm.ActivePageIndex := I;
+//         FDDCSForm.Change;
+//       end;
   end;
 end;
 
@@ -857,16 +866,15 @@ end;
 procedure TDDCSForm.RadioGroupEnter(Sender: TObject);
 var
   rg: TRadioGroup;
+  I: Integer;
 begin
   if not Sender.InheritsFrom(TRadioGroup) then
     Exit;
 
   rg := TRadioGroup(Sender);
   if rg.ItemIndex = -1 then
-  begin
-    rg.ItemIndex := 0;
-    TRadioButton(rg.Controls[0]).SetFocus;
-  end;
+    for I := 0 to rg.ControlCount - 1 do
+      TWinControl(rg.Controls[0]).TabStop := True;
 end;
 
 {$ENDREGION}
@@ -1091,7 +1099,7 @@ begin
     for I := 0 to ReportCollection.Count - 1 do
     begin
       nItem := ReportCollection.Items[I];
-      if ((nItem.Page <> nil) and (nItem.Page.TabVisible)) then
+      if ((nItem.Page <> nil) and (nItem.Page.Visible)) then
       begin
         if not nItem.IsValid then
         begin
@@ -1197,9 +1205,10 @@ begin
     TForm(AOwner).AlphaBlend := True;
     TForm(AOwner).AlphaBlendValue := 0;
 
+    Screen.OnActiveControlChange := ActiveControlChanged;
+
     FSaveShow := TForm(AOwner).OnShow;
     TForm(AOwner).OnShow := FormOverrideShow;
-
     TForm(AOwner).OnCloseQuery := FormCloseQuery;
     TForm(AOwner).OnClose := FormClose;
 
@@ -1360,7 +1369,7 @@ begin
                   //  Suffix          := nItem.Suffix;
                   //  DoNotSpace      := nItem.DoNotSpace;
                   //  DoNotSave       := nItem.DoNotSave;
-                  //  DoNotRestore    := nItem.DoNotRestore;
+                  //  DoNotRestoreV   := nItem.DoNotRestoreV;
                   //  HideFromNote    := nItem.HideFromNote;
                   //  Required        := nItem.Required;
                   //  DialogReturn    := nItem.DialogReturn;
@@ -1380,7 +1389,7 @@ begin
                 else if ((vProp = 'DONOTSAVE') and (vValue <> '')) then
                   nItem.DoNotSave := StrToBool(vValue)
                 else if ((vProp = 'DONOTRESTORE') and (vValue <> '')) then
-                  nItem.DoNotRestore := StrToBool(vValue)
+                  nItem.DoNotRestoreV := StrToBool(vValue)
                 else if ((vProp = 'HIDEFROMNOTE') and (vValue <> '')) then
                   nItem.HideFromNote := StrToBool(vValue)
                 else if ((vProp = 'REQUIRED') and (vValue <> '')) then
@@ -1472,6 +1481,8 @@ end;
 
 destructor TDDCSForm.Destroy;
 begin
+  Screen.OnActiveControlChange := nil;
+
   FReportCollection.Free;
   SetLength(TabSeen, 0);
 
@@ -1556,58 +1567,70 @@ begin
   end;
 end;
 
-procedure TDDCSForm.CtrlTab(Sender: TObject);
+procedure TDDCSForm.ActiveControlChanged(Sender: TObject);
+var
+  nItem: TDDCSNoteItem;
 begin
-  if VitalsPage = ActivePage then
+  if Owner <> nil then
   begin
-    if ((VitalsControl.fVitalsControl.ActivePageIndex < VitalsControl.fVitalsControl.PageCount - 1) and
-        (VitalsControl.fVitalsControl.Pages[VitalsControl.fVitalsControl.ActivePageIndex + 1].TabVisible)) then
-    begin
-      VitalsControl.fVitalsControl.ActivePageIndex := VitalsControl.fVitalsControl.ActivePageIndex + 1;
-      VitalsControl.fVitalsControlChange(nil);
-    end else
-    begin
-      if FControlPanel.Sections[7].AllowClick then
-      begin
-        ActivePageIndex := ActivePageIndex + 1;
-        Change;
-      end;
-    end;
-  end else
-  begin
-    if FControlPanel.Sections[7].AllowClick then
-    begin
-      ActivePageIndex := ActivePageIndex + 1;
-      Change;
-    end;
+    nItem := FReportCollection.GetNoteItem(TForm(Owner).ActiveControl);
+    if nItem <> nil then
+      if nItem.SayOnFocus <> '' then
+        if ScreenReader <> nil then
+          ScreenReader.Say(nItem.SayOnFocus, False);
   end;
 end;
 
-procedure TDDCSForm.CtrlShiftTab(Sender: TObject);
+procedure TDDCSForm.CtrlTab(Sender: TObject);
+var
+  wControl: TWinControl;
+  vpg: TPageControl;
 begin
+  wControl := TForm(Owner).ActiveControl;
+  if ((wControl <> nil) and (wControl.InheritsFrom(TPageControl)) and
+      not (wControl is TDDCSForm) and
+      not (wControl is TDDCSVitals)) then
+  begin
+    TPageControl(wControl).SelectNextPage(True);
+    Exit;
+  end;
+
   if VitalsPage = ActivePage then
   begin
-    if ((VitalsControl.fVitalsControl.ActivePageIndex > 0) and
-        (VitalsControl.fVitalsControl.Pages[VitalsControl.fVitalsControl.ActivePageIndex - 1].TabVisible)) then
-    begin
-      VitalsControl.fVitalsControl.ActivePageIndex := VitalsControl.fVitalsControl.ActivePageIndex - 1;
-      VitalsControl.fVitalsControlChange(nil);
-    end else
-    begin
-      if FControlPanel.Sections[5].AllowClick then
-      begin
-        ActivePageIndex := ActivePageIndex - 1;
-        Change;
-      end;
-    end;
+    vpg := VitalsControl.fVitalsControl;
+    if ((vpg.ActivePageIndex < VitalsControl.fVitalsControl.PageCount - 1) and
+        (vpg.Pages[vpg.ActivePageIndex + 1].TabVisible)) then
+      vpg.SelectNextPage(True)
+    else
+      SelectNextPage(True);
   end else
+    SelectNextPage(True);
+end;
+
+procedure TDDCSForm.CtrlShiftTab(Sender: TObject);
+var
+  wControl: TWinControl;
+  vpg: TPageControl;
+begin
+  wControl := TForm(Owner).ActiveControl;
+  if ((wControl <> nil) and (wControl.InheritsFrom(TPageControl)) and
+      not (wControl is TDDCSForm) and
+      not (wControl is TDDCSVitals)) then
   begin
-    if FControlPanel.Sections[5].AllowClick then
-    begin
-      ActivePageIndex := ActivePageIndex - 1;
-      Change;
-    end;
+    TPageControl(wControl).SelectNextPage(False);
+    Exit;
   end;
+
+  if VitalsPage = ActivePage then
+  begin
+    vpg := VitalsControl.fVitalsControl;
+    if ((vpg.ActivePageIndex > 0) and
+        (vpg.Pages[vpg.ActivePageIndex - 1].TabVisible)) then
+      vpg.SelectNextPage(False)
+    else
+      SelectNextPage(False);
+  end else
+    SelectNextPage(False);
 end;
 
 function TDDCSForm.GetVitalsForm: TDDCSVitals;

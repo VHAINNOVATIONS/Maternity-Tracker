@@ -23,7 +23,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Samples.Spin,
-  ORCtrls, VAUtils, uBase, uCommon, uReportItems, uExtndComBroker;
+  ORCtrls, VAUtils, uBase, uCommon, uReportItems, uExtndComBroker, Vcl.CheckLst;
 
 type
   TDDCSFormConfig = class(TForm)
@@ -31,62 +31,69 @@ type
     tabDialog: TTabSheet;
     tabReport: TTabSheet;
     lvDDCSForm: TListView;
-    pnlReport: TPanel;
-    ckHideFromNote: TCheckBox;
-    ckRequired: TCheckBox;
-    ckDoNotSave: TCheckBox;
     btnReloadDialogs: TBitBtn;
-    btnUpdateDialogs: TBitBtn;
     lvDialogComponent: TListView;
     btnDialogShow: TBitBtn;
     pnlCommand: TPanel;
-    btnCancel: TBitBtn;
     btnSave: TBitBtn;
     btnDelete: TBitBtn;
-    lbReportNotice: TStaticText;
-    spOrder: TSpinEdit;
-    lbOrder: TStaticText;
-    lbTitle: TStaticText;
-    lbPrefix: TStaticText;
-    lbSuffix: TStaticText;
-    edTitle: TCaptionEdit;
-    edPrefix: TCaptionEdit;
-    edSuffix: TCaptionEdit;
-    ckDoNotSpace: TCheckBox;
-    cbDialogReturn: TCaptionComboBox;
-    lbDialogReturn: TStaticText;
     btnClear: TBitBtn;
     btnClose: TBitBtn;
-    ckDoNotRestore: TCheckBox;
-    lbReportControl: TStaticText;
     lvDialog: TListView;
     pgDialogOutput: TPageControl;
     TabSheet1: TTabSheet;
-    pnlDialog: TPanel;
+    TabSheet2: TTabSheet;
+    meDialogOutput: TMemo;
+    btnUpdate: TBitBtn;
+    Panel1: TPanel;
     StaticText1: TStaticText;
     StaticText2: TStaticText;
     StaticText3: TStaticText;
     StaticText4: TStaticText;
     StaticText5: TStaticText;
     StaticText6: TStaticText;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    SpinEdit1: TSpinEdit;
-    CaptionEdit1: TCaptionEdit;
-    CaptionEdit2: TCaptionEdit;
-    CaptionEdit3: TCaptionEdit;
-    CheckBox4: TCheckBox;
-    CaptionComboBox1: TCaptionComboBox;
-    CheckBox5: TCheckBox;
-    StaticText7: TStaticText;
-    TabSheet2: TTabSheet;
-    meDialogOutput: TMemo;
-    edIdentifyingName: TCaptionEdit;
-    StaticText8: TStaticText;
-    Memo1: TMemo;
+    ckHideFromNoteD: TCheckBox;
+    ckRequiredD: TCheckBox;
+    ckDoNotSaveD: TCheckBox;
+    spOrderD: TSpinEdit;
+    edTitleD: TCaptionEdit;
+    edPrefixD: TCaptionEdit;
+    edSuffixD: TCaptionEdit;
+    ckDoNotSpaceD: TCheckBox;
+    cbDialogReturnD: TCaptionComboBox;
+    ckDoNotRestoreD: TCheckBox;
+    lbReportControlD: TStaticText;
+    edIdentifyingNameD: TCaptionEdit;
     StaticText9: TStaticText;
-    btnUpdateReport: TBitBtn;
+    pgConfigCR: TPageControl;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    pnlReport: TPanel;
+    lbReportNotice: TStaticText;
+    lbOrder: TStaticText;
+    lbTitle: TStaticText;
+    lbPrefix: TStaticText;
+    lbSuffix: TStaticText;
+    lbDialogReturn: TStaticText;
+    ckHideFromNoteCR: TCheckBox;
+    ckRequiredCR: TCheckBox;
+    ckDoNotSaveCR: TCheckBox;
+    spOrderCR: TSpinEdit;
+    edTitleCR: TCaptionEdit;
+    edPrefixCR: TCaptionEdit;
+    edSuffixCR: TCaptionEdit;
+    ckDoNotSpaceCR: TCheckBox;
+    cbDialogReturnCR: TCaptionComboBox;
+    ckDoNotRestoreCR: TCheckBox;
+    lbReportControlCR: TStaticText;
+    edIdentifyingNameCR: TCaptionEdit;
+    StaticText8: TStaticText;
+    meConfigValuesC: TCaptionMemo;
+    StaticText7: TStaticText;
+    edConfigRoutineC: TCaptionEdit;
+    StaticText10: TStaticText;
+    StaticText11: TStaticText;
+    cklConfigDialogsC: TCaptionCheckListBox;
     procedure FormShow(Sender: TObject);
     // ListBox -----------------------------------------------------------------
     procedure ListColumnClick(Sender: TObject; Column: TListColumn);
@@ -94,28 +101,26 @@ type
       Data: Integer; var Compare: Integer);
     // Report Items ------------------------------------------------------------
     procedure lvDDCSFormDblClick(Sender: TObject);
-    procedure btnUpdateReportClick(Sender: TObject);
     // Dialogs -----------------------------------------------------------------
     procedure lvDialogDblClick(Sender: TObject);
     procedure lvDialogComponentDblClick(Sender: TObject);
     procedure ReloadDialogs(Sender: TObject);
     procedure btnDialogShowClick(Sender: TObject);
-    procedure btnUpdateDialogsClick(Sender: TObject);
     // Command
     procedure btnSaveClick(Sender: TObject);
-    procedure btnCancelClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
+    procedure btnUpdateClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
-    procedure TabsChange(Sender: TObject);
   private
     FDDCSForm: TDDCSForm;
     FObjects: TStringList;
     Descending: Boolean;
     SortedColumn: Integer;
     procedure ClearReportItemEditor;
-    procedure ClearReportItemInput;
+    procedure ClearReportItemInputCR;
     procedure ClearDialogEditor;
+    procedure ClearReportItemInputD;
   public
     constructor Create(AOwner: TComponent; DDCSForm: TDDCSForm); overload;
     destructor Destroy; override;
@@ -170,88 +175,21 @@ end;
 
 {$REGION 'Configuration and Report Items'}
 
-procedure TDDCSFormConfig.TabsChange(Sender: TObject);
-begin
-  if Tabs.ActivePageIndex = 0 then
-    btnUpdateReport.Enabled := True
-  else
-    btnUpdateReport.Enabled := False;
-end;
-
-procedure TDDCSFormConfig.btnUpdateReportClick(Sender: TObject);
-var
-  sl: TStringList;
-  I: Integer;
-  cControl: TComponent;
-  nItem: TDDCSNoteItem;
-
-  function DialogReturnName(nItem: TDDCSNoteItem): string;
-  begin
-    Result := '';
-    if nItem.DialogReturn <> nil then
-      Result := nItem.DialogReturn.Name;
-  end;
-
-begin
-  if RPCBrokerV = nil then
-    Exit;
-
-  sl := TStringList.Create;
-  try
-    try
-      //   (H) - CONTROL       ^ PAGE# ^ CONTROL_NAME ^ CONTROL_CLASS ^ PUSH ^ ID ^ OBSERVATION
-      //   (C) - CONFIGURATION ^ PAGE# ^ CONTROL_NAME ^ VALUE
-      //   (R) - REPORT ITEM   ^ PAGE# ^ CONTROL_NAME ^ NAME | VALUE
-      for I := 0 to lvDDCSForm.Items.Count - 1 do
-      begin
-        sl.Add('H^' + lvDDCSForm.Items[I].SubItems[1] + U + lvDDCSForm.Items[I].Caption + U +
-               lvDDCSForm.Items[I].SubItems[0]);
-
-        cControl := FDDCSForm.Owner.FindComponent(lvDDCSForm.Items[I].Caption);
-        if cControl <> nil then
-        begin
-          nItem := FDDCSForm.ReportCollection.GetNoteItem(TWinControl(cControl));
-          if nItem <> nil then
-          begin
-            sl.Add('R^' + lvDDCSForm.Items[I].SubItems[1] + U + lvDDCSForm.Items[I].Caption + U +
-                   'IDENTIFYINGNAME|' + nItem.IdentifyingName         + U +
-                             'ORDER|' + IntToStr(nItem.Order)         + U +
-                             'TITLE|' + nItem.Title                   + U +
-                            'PREFIX|' + nItem.Prefix                  + U +
-                            'SUFFIX|' + nItem.Suffix                  + U +
-                        'DONOTSPACE|' + BoolAsStr(nItem.DoNotSpace)   + U +
-                         'DONOTSAVE|' + BoolAsStr(nItem.DoNotSave)    + U +
-                      'DONOTRESTORE|' + BoolAsStr(nItem.DoNotRestore) + U +
-                      'HIDEFROMNOTE|' + BoolAsStr(nItem.HideFromNote) + U +
-                           'REQUIRE|' + BoolAsStr(nItem.Required)     + U +
-                      'DIALOGRETURN|' + DialogReturnName(nItem));
-          end;
-        end;
-      end;
-
-      if UpdateContext(MENU_CONTEXT) then
-        CallV('DSIO DDCS IMPORT FORM', [RPCBrokerV.DDCSInterface, sl]);
-    except
-      On E: Exception do
-      ShowMsg(E.Message, smiError, smbOK);
-    end;
-  finally
-    sl.Free;
-  end;
-end;
-
 procedure TDDCSFormConfig.lvDDCSFormDblClick(Sender: TObject);
 var
   cControl: TComponent;
   nItem: TDDCSNoteItem;
+  I,J: Integer;
 begin
-  lbReportControl.Caption := '';
+  lbReportControlCR.Caption := '';
   if lvDDCSForm.ItemIndex < 0 then
     Exit;
 
-  lbReportControl.Caption := lvDDCSForm.Items[lvDDCSForm.ItemIndex].Caption;
+  lbReportControlCR.Caption := lvDDCSForm.Items[lvDDCSForm.ItemIndex].Caption;
+  ClearReportItemInputCR;
+  pgConfigCR.ActivePageIndex := 0;
 
-  cControl := FDDCSForm.Owner.FindComponent(lbReportControl.Caption);
+  cControl := FDDCSForm.Owner.FindComponent(lbReportControlCR.Caption);
   if cControl <> nil then
   begin
     nItem := FDDCSForm.ReportCollection.GetNoteItem(TWinControl(cControl));
@@ -263,24 +201,35 @@ begin
       //  Suffix          := nItem.Suffix;
       //  DoNotSpace      := nItem.DoNotSpace;
       //  DoNotSave       := nItem.DoNotSave;
-      //  DoNotRestore    := nItem.DoNotRestore;
+      //  DoNotRestoreV   := nItem.DoNotRestoreV;
       //  HideFromNote    := nItem.HideFromNote;
       //  Required        := nItem.Required;
       //  DialogReturn    := nItem.DialogReturn;
 
-    if nItem <> nil then
+    if nItem = nil then
+      Exit;
+
+    spOrderCR.Value := nItem.Order;
+    edIdentifyingNameCR.Caption := nItem.IdentifyingName;
+    edTitleCR.Text := nItem.Title;
+    edPrefixCR.Text := nItem.Prefix;
+    edSuffixCR.Text := nItem.Suffix;
+    ckDoNotSpaceCR.Checked := nItem.DoNotSpace;
+    ckHideFromNoteCR.Checked := nItem.HideFromNote;
+    ckDoNotSaveCR.Checked := nItem.DoNotSave;
+    ckDoNotRestoreCR.Checked := nItem.DoNotRestoreV;
+    ckRequiredCR.Checked := nItem.Required;
+    if nItem.DialogReturn <> nil then
+      cbDialogReturnCR.ItemIndex := cbDialogReturnCR.Items.IndexOf(nItem.DialogReturn.Name);
+
+    if nItem.DialogReturn <> nil then
     begin
-      spOrder.Value := nItem.Order;
-      edTitle.Text := nItem.Title;
-      edPrefix.Text := nItem.Prefix;
-      edSuffix.Text := nItem.Suffix;
-      ckDoNotSpace.Checked := nItem.DoNotSpace;
-      ckHideFromNote.Checked := nItem.HideFromNote;
-      ckDoNotSave.Checked := nItem.DoNotSave;
-      ckDoNotRestore.Checked := nItem.DoNotRestore;
-      ckRequired.Checked := nItem.Required;
-      if nItem.DialogReturn <> nil then
-        cbDialogReturn.ItemIndex := cbDialogReturn.Items.IndexOf(nItem.DialogReturn.Name);
+      for I := 0 to nItem.Configuration.Count - 1 do
+      begin
+        J := cklConfigDialogsC.Items.IndexOf(Piece(nItem.Configuration[I],'|',3));
+        if J <> -1 then
+          cklConfigDialogsC.Checked[J] := True;
+      end;
     end;
   end;
 end;
@@ -368,44 +317,8 @@ begin
       sl.Free;
     end;
   end;
-end;
 
-procedure TDDCSFormConfig.btnUpdateDialogsClick(Sender: TObject);
-var
-  sl: TStringList;
-  I: Integer;
-begin
-  if RPCBrokerV = nil then
-    Exit;
-
-  sl := TStringList.Create;
-  try
-    try
-      for I := 0 to lvDialog.Items.Count - 1 do
-      begin
-        sl.Clear;
-
-        if DialogDLL <> 0 then
-        begin
-          sl.Text := GetDialogComponents(lvDialog.Items[I].Caption);
-
-          // Need to collect changes made in this form and apply them to the
-          // return of the existing configuration
-
-          if sl.Count > 0 then
-          begin
-            if UpdateContext(MENU_CONTEXT) then
-              CallV('DSIO DDCS DIALOG IMPORT', [Piece(DLLDialogList[I],U,2), Piece(DLLDialogList[I],U,1), sl]);
-          end;
-        end;
-      end;
-    except
-      on E: Exception do
-      ShowMsg(E.Message, smiError, smbOK);
-    end;
-  finally
-    sl.Free;
-  end;
+  lvDialog.Selected := lvDialog.Items[lvDialog.ItemIndex];
 end;
 
 {$ENDREGION}
@@ -414,22 +327,121 @@ end;
 
 procedure TDDCSFormConfig.btnSaveClick(Sender: TObject);
 begin
-//
-end;
+  if Tabs.ActivePageIndex = 0 then
+  begin
 
-procedure TDDCSFormConfig.btnCancelClick(Sender: TObject);
-begin
-//
+  end else
+  begin
+
+  end;
 end;
 
 procedure TDDCSFormConfig.btnClearClick(Sender: TObject);
 begin
-//
+  if Tabs.ActivePageIndex = 0 then
+    ClearReportItemInputCR
+  else
+    ClearReportItemInputD;
 end;
 
 procedure TDDCSFormConfig.btnDeleteClick(Sender: TObject);
 begin
 //
+end;
+
+procedure TDDCSFormConfig.btnUpdateClick(Sender: TObject);
+var
+  sl: TStringList;
+  I: Integer;
+  cControl: TComponent;
+  nItem: TDDCSNoteItem;
+
+  function DialogReturnName(nItem: TDDCSNoteItem): string;
+  begin
+    Result := '';
+    if nItem.DialogReturn <> nil then
+      Result := nItem.DialogReturn.Name;
+  end;
+
+begin
+  if RPCBrokerV = nil then
+    Exit;
+
+  if Tabs.ActivePageIndex = 0 then
+  begin
+    sl := TStringList.Create;
+    try
+      try
+        //   (H) - CONTROL       ^ PAGE# ^ CONTROL_NAME ^ CONTROL_CLASS ^ PUSH ^ ID ^ OBSERVATION
+        //   (C) - CONFIGURATION ^ PAGE# ^ CONTROL_NAME ^ VALUE
+        //   (R) - REPORT ITEM   ^ PAGE# ^ CONTROL_NAME ^ NAME | VALUE
+        for I := 0 to lvDDCSForm.Items.Count - 1 do
+        begin
+          sl.Add('H^' + lvDDCSForm.Items[I].SubItems[1] + U + lvDDCSForm.Items[I].Caption + U +
+                 lvDDCSForm.Items[I].SubItems[0]);
+
+          cControl := FDDCSForm.Owner.FindComponent(lvDDCSForm.Items[I].Caption);
+          if cControl <> nil then
+          begin
+            nItem := FDDCSForm.ReportCollection.GetNoteItem(TWinControl(cControl));
+            if nItem <> nil then
+            begin
+              sl.Add('R^' + lvDDCSForm.Items[I].SubItems[1] + U + lvDDCSForm.Items[I].Caption + U +
+                     'IDENTIFYINGNAME|' + nItem.IdentifyingName          + U +
+                               'ORDER|' + IntToStr(nItem.Order)          + U +
+                               'TITLE|' + nItem.Title                    + U +
+                              'PREFIX|' + nItem.Prefix                   + U +
+                              'SUFFIX|' + nItem.Suffix                   + U +
+                          'DONOTSPACE|' + BoolAsStr(nItem.DoNotSpace)    + U +
+                           'DONOTSAVE|' + BoolAsStr(nItem.DoNotSave)     + U +
+                        'DONOTRESTORE|' + BoolAsStr(nItem.DoNotRestoreV) + U +
+                        'HIDEFROMNOTE|' + BoolAsStr(nItem.HideFromNote)  + U +
+                             'REQUIRE|' + BoolAsStr(nItem.Required)      + U +
+                        'DIALOGRETURN|' + DialogReturnName(nItem));
+            end;
+          end;
+        end;
+
+        if UpdateContext(MENU_CONTEXT) then
+          CallV('DSIO DDCS IMPORT FORM', [RPCBrokerV.DDCSInterface, sl]);
+      except
+        On E: Exception do
+        ShowMsg(E.Message, smiError, smbOK);
+      end;
+    finally
+      sl.Free;
+    end;
+  end else
+  begin
+    sl := TStringList.Create;
+    try
+      try
+        for I := 0 to lvDialog.Items.Count - 1 do
+        begin
+          sl.Clear;
+
+          if DialogDLL <> 0 then
+          begin
+            sl.Text := GetDialogComponents(lvDialog.Items[I].Caption);
+
+            // Need to collect changes made in this form and apply them to the
+            // return of the existing configuration
+
+            if sl.Count > 0 then
+            begin
+              if UpdateContext(MENU_CONTEXT) then
+                CallV('DSIO DDCS DIALOG IMPORT', [Piece(DLLDialogList[I],U,2), Piece(DLLDialogList[I],U,1), sl]);
+            end;
+          end;
+        end;
+      except
+        on E: Exception do
+        ShowMsg(E.Message, smiError, smbOK);
+      end;
+    finally
+      sl.Free;
+    end;
+  end;
 end;
 
 procedure TDDCSFormConfig.btnCloseClick(Sender: TObject);
@@ -445,21 +457,30 @@ procedure TDDCSFormConfig.ClearReportItemEditor;
 begin
   lvDDCSForm.SortType := stNone;
   lvDDCSForm.Clear;
-  ClearReportItemInput;
+  lbReportControlCR.Caption := '';
+  ClearReportItemInputCR;
 end;
 
-procedure TDDCSFormConfig.ClearReportItemInput;
+procedure TDDCSFormConfig.ClearReportItemInputCR;
+var
+  I: Integer;
 begin
-  spOrder.Value := 0;
-  edTitle.Clear;
-  edPrefix.Clear;
-  edSuffix.Clear;
-  ckDoNotSpace.Checked := False;
-  ckHideFromNote.Checked := False;
-  ckDoNotSave.Checked := False;
-  ckDoNotRestore.Checked := False;
-  ckRequired.Checked := False;
-  cbDialogReturn.ItemIndex := -1;
+  meConfigValuesC.Clear;
+  edConfigRoutineC.Clear;
+  for I := 0 to cklConfigDialogsC.Count - 1 do
+    cklConfigDialogsC.Checked[I] := False;
+
+  spOrderCR.Value := 0;
+  edIdentifyingNameCR.Clear;
+  edTitleCR.Clear;
+  edPrefixCR.Clear;
+  edSuffixCR.Clear;
+  ckDoNotSpaceCR.Checked := False;
+  ckHideFromNoteCR.Checked := False;
+  ckDoNotSaveCR.Checked := False;
+  ckDoNotRestoreCR.Checked := False;
+  ckRequiredCR.Checked := False;
+  cbDialogReturnCR.ItemIndex := -1;
 end;
 
 procedure TDDCSFormConfig.ClearDialogEditor;
@@ -472,6 +493,25 @@ begin
 
   lvDialogComponent.SortType := stNone;
   lvDialogComponent.Clear;
+  lbReportControlD.Caption := '';
+  ClearReportItemInputD;
+end;
+
+procedure TDDCSFormConfig.ClearReportItemInputD;
+begin
+  spOrderD.Value := 0;
+  edIdentifyingNameD.Clear;
+  edTitleD.Clear;
+  edPrefixD.Clear;
+  edSuffixD.Clear;
+  ckDoNotSpaceD.Checked := False;
+  ckHideFromNoteD.Checked := False;
+  ckDoNotSaveD.Checked := False;
+  ckDoNotRestoreD.Checked := False;
+  ckRequiredD.Checked := False;
+  cbDialogReturnD.ItemIndex := -1;
+
+  meDialogOutput.Clear;
 end;
 
 // Public ----------------------------------------------------------------------
@@ -492,6 +532,8 @@ begin
       lvItem := lvDialog.Items.Add;
       lvItem.Caption := Piece(DLLDialogList[I],U,1);
       lvItem.SubItems.Add(Piece(DLLDialogList[I],u,2));
+
+      cklConfigDialogsC.Items.Add(lvItem.Caption);
     end;
 end;
 
@@ -542,7 +584,10 @@ var
     end;
 
     if wControl.InheritsFrom(TCustomMemo) then
-      cbDialogReturn.Items.AddObject(wControl.Name, wControl);
+    begin
+      cbDialogReturnCR.Items.AddObject(wControl.Name, wControl);
+      cbDialogReturnD.Items.AddObject(wControl.Name, wControl);
+    end;
   end;
 
 begin

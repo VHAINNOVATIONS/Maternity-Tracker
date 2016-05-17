@@ -215,7 +215,7 @@ object Form1: TForm1
         IdentifyingName = 'Summary'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = True
+        DoNotRestoreV = True
         HideFromNote = False
         OwningObject = lbSummary
         Required = False
@@ -225,7 +225,7 @@ object Form1: TForm1
         IdentifyingName = 'Type of Service'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = True
         OwningObject = RadioGroup3
         Required = True
@@ -237,7 +237,7 @@ object Form1: TForm1
         Prefix = '  '
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = memChief
         Required = True
@@ -246,7 +246,7 @@ object Form1: TForm1
         Order = 3
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = DDCSVitals
         Required = False
@@ -255,7 +255,7 @@ object Form1: TForm1
         Order = 4
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = True
         OwningObject = ListBoxComplaints
         Required = False
@@ -268,7 +268,7 @@ object Form1: TForm1
           'ote Text'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = MemoComplaints
         Required = False
@@ -278,7 +278,7 @@ object Form1: TForm1
         IdentifyingName = 'Imported Medical Data'
         DoNotSpace = False
         DoNotSave = True
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = True
         OwningObject = RadioGroupImport
         Required = False
@@ -288,7 +288,7 @@ object Form1: TForm1
         IdentifyingName = 'Active Medications Section Note Text'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = memoActiveMedications
         Required = False
@@ -298,7 +298,7 @@ object Form1: TForm1
         IdentifyingName = 'Allergies Section Note Text'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = memoAllergies
         Required = False
@@ -308,7 +308,7 @@ object Form1: TForm1
         IdentifyingName = 'History Categories'
         DoNotSpace = False
         DoNotSave = True
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = True
         OwningObject = RadioGroupHistory
         Required = False
@@ -317,7 +317,7 @@ object Form1: TForm1
         Order = 10
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = True
         OwningObject = ListBoxMedicalHist
         Required = False
@@ -327,7 +327,7 @@ object Form1: TForm1
         Order = 11
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = True
         OwningObject = ListBoxFamilyHist
         Required = False
@@ -337,7 +337,7 @@ object Form1: TForm1
         Order = 12
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = True
         OwningObject = ListBoxSocialHist
         Required = False
@@ -348,7 +348,7 @@ object Form1: TForm1
         IdentifyingName = 'History Section Note Text'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = MemoHistory
         Required = False
@@ -358,7 +358,7 @@ object Form1: TForm1
         IdentifyingName = 'Review of Symptoms since Last Menstrual Period'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = ButtonROS
         Required = False
@@ -369,7 +369,7 @@ object Form1: TForm1
         IdentifyingName = 'Review of Symptoms since Last Menstrual Period Section Note Text'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = MemoROS
         Required = False
@@ -379,7 +379,7 @@ object Form1: TForm1
         IdentifyingName = 'Physical Exam'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = ButtonPhysical
         Required = False
@@ -390,7 +390,7 @@ object Form1: TForm1
         IdentifyingName = 'Physical Exam Section Note Text'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = MemoPhysical
         Required = False
@@ -400,7 +400,7 @@ object Form1: TForm1
         IdentifyingName = 'Pelvic Exam'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = ButtonOBExam
         Required = False
@@ -411,7 +411,7 @@ object Form1: TForm1
         IdentifyingName = 'Obstetrics and Gynecology Flow Sheet'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = ButtonOBFlow
         Required = False
@@ -422,7 +422,7 @@ object Form1: TForm1
         IdentifyingName = 'Pelvic Exam Section Note Text'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = MemoOBExam
         Required = False
@@ -431,7 +431,7 @@ object Form1: TForm1
         Order = 21
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = True
         OwningObject = cklstProblems
         Required = False
@@ -441,7 +441,7 @@ object Form1: TForm1
         IdentifyingName = 'Patient Education'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = btnEducation
         Required = False
@@ -452,7 +452,7 @@ object Form1: TForm1
         IdentifyingName = 'Return to Clinic Date'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = ButtonPreNatalNormal
         Required = False
@@ -464,7 +464,7 @@ object Form1: TForm1
         Title = 'ASSESSMENT AND PLAN:'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestore = False
+        DoNotRestoreV = False
         HideFromNote = False
         OwningObject = MemoPreNatal
         Required = False
@@ -526,7 +526,7 @@ object Form1: TForm1
         Top = 158
         Width = 92
         Height = 17
-        Caption = 'Cheif Complaint'
+        Caption = 'Chief Complaint'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11

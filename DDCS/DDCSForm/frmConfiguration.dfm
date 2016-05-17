@@ -200,7 +200,6 @@ object DDCSFormConfig: TDDCSFormConfig
     Style = tsButtons
     TabHeight = 30
     TabOrder = 0
-    OnChange = TabsChange
     object tabDialog: TTabSheet
       Caption = 'Configuration && Reporting'
       ImageIndex = 1
@@ -247,257 +246,324 @@ object DDCSFormConfig: TDDCSFormConfig
         OnCompare = ListCompare
         OnDblClick = lvDDCSFormDblClick
       end
-      object pnlReport: TPanel
+      object pgConfigCR: TPageControl
         Left = 477
         Top = 0
         Width = 406
         Height = 488
+        ActivePage = TabSheet3
         Align = alRight
-        BevelOuter = bvNone
         TabOrder = 1
-        object lbReportNotice: TStaticText
-          AlignWithMargins = True
-          Left = 3
-          Top = 3
-          Width = 400
-          Height = 46
-          Align = alTop
-          Alignment = taCenter
-          AutoSize = False
-          Caption = 
-            'Changing the information here will override Report Item configur' +
-            'ation. To restore original behavior delete the override.'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-          TabStop = True
+        object TabSheet3: TTabSheet
+          Caption = 'Configuration'
+          object meConfigValuesC: TCaptionMemo
+            Left = 16
+            Top = 28
+            Width = 369
+            Height = 185
+            TabOrder = 1
+            Caption = ''
+          end
+          object StaticText7: TStaticText
+            Left = 16
+            Top = 10
+            Width = 120
+            Height = 17
+            Caption = 'Configuration Values'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 0
+          end
+          object edConfigRoutineC: TCaptionEdit
+            Left = 16
+            Top = 245
+            Width = 369
+            Height = 21
+            TabOrder = 3
+            Caption = ''
+          end
+          object StaticText10: TStaticText
+            Left = 16
+            Top = 226
+            Width = 73
+            Height = 17
+            Caption = 'Run Routine'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 2
+          end
+          object StaticText11: TStaticText
+            Left = 16
+            Top = 282
+            Width = 45
+            Height = 17
+            Caption = 'Dialogs'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 4
+          end
+          object cklConfigDialogsC: TCaptionCheckListBox
+            Left = 16
+            Top = 302
+            Width = 369
+            Height = 139
+            ItemHeight = 13
+            TabOrder = 5
+            Caption = ''
+          end
         end
-        object lbOrder: TStaticText
-          Left = 16
-          Top = 81
-          Width = 41
-          Height = 20
-          Caption = 'Order'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 2
-          TabStop = True
-        end
-        object lbTitle: TStaticText
-          Left = 16
-          Top = 156
-          Width = 31
-          Height = 20
-          Caption = 'Title'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 4
-        end
-        object lbPrefix: TStaticText
-          Left = 16
-          Top = 183
-          Width = 41
-          Height = 20
-          Caption = 'Prefix'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 6
-        end
-        object lbSuffix: TStaticText
-          Left = 16
-          Top = 210
-          Width = 40
-          Height = 20
-          Caption = 'Suffix'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 8
-        end
-        object lbDialogReturn: TStaticText
-          Left = 16
-          Top = 325
-          Width = 92
-          Height = 20
-          Caption = 'Dialog Return'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 15
-        end
-        object ckHideFromNote: TCheckBox
-          Left = 89
-          Top = 269
-          Width = 97
-          Height = 17
-          Caption = 'Hide from Note'
-          TabOrder = 11
-        end
-        object ckRequired: TCheckBox
-          Left = 225
-          Top = 269
-          Width = 97
-          Height = 17
-          Caption = 'Required'
-          TabOrder = 14
-        end
-        object ckDoNotSave: TCheckBox
-          Left = 89
-          Top = 292
-          Width = 132
-          Height = 17
-          Caption = 'Do not Save'
-          TabOrder = 12
-        end
-        object spOrder: TSpinEdit
-          Left = 89
-          Top = 80
-          Width = 64
-          Height = 22
-          MaxValue = 0
-          MinValue = 0
-          TabOrder = 3
-          Value = 0
-        end
-        object edTitle: TCaptionEdit
-          Left = 72
-          Top = 156
-          Width = 313
-          Height = 21
-          TabOrder = 5
-          Caption = 'Title'
-        end
-        object edPrefix: TCaptionEdit
-          Left = 72
-          Top = 183
-          Width = 313
-          Height = 21
-          TabOrder = 7
-          Caption = 'Prefix'
-        end
-        object edSuffix: TCaptionEdit
-          Left = 72
-          Top = 210
-          Width = 313
-          Height = 21
-          TabOrder = 9
-          Caption = 'Suffix'
-        end
-        object ckDoNotSpace: TCheckBox
-          Left = 89
-          Top = 246
-          Width = 97
-          Height = 17
-          Caption = 'Do not Space'
-          TabOrder = 10
-        end
-        object cbDialogReturn: TCaptionComboBox
-          Left = 114
-          Top = 325
-          Width = 271
-          Height = 21
-          Style = csDropDownList
-          TabOrder = 16
-          Caption = 'Dialog Return'
-        end
-        object ckDoNotRestore: TCheckBox
-          Left = 225
-          Top = 246
-          Width = 97
-          Height = 17
-          Caption = 'Do not Restore'
-          TabOrder = 13
-        end
-        object lbReportControl: TStaticText
-          Left = 0
-          Top = 52
-          Width = 406
-          Height = 4
-          Align = alTop
-          Alignment = taCenter
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 1
-          TabStop = True
-        end
-        object edIdentifyingName: TCaptionEdit
-          Left = 16
-          Top = 129
-          Width = 369
-          Height = 21
-          TabOrder = 21
-          Caption = 'Identifying Name'
-        end
-        object StaticText8: TStaticText
-          Left = 16
-          Top = 108
-          Width = 113
-          Height = 20
-          Caption = 'Identifying Name'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 23
-          TabStop = True
-        end
-        object Memo1: TMemo
-          Left = 16
-          Top = 384
-          Width = 369
-          Height = 89
-          Enabled = False
-          ScrollBars = ssVertical
-          TabOrder = 24
-        end
-        object StaticText9: TStaticText
-          Left = 16
-          Top = 363
-          Width = 126
-          Height = 20
-          Caption = 'Configuration Data'
-          Enabled = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 25
+        object TabSheet4: TTabSheet
+          Caption = 'Reporting'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object pnlReport: TPanel
+            Left = -8
+            Top = 0
+            Width = 406
+            Height = 460
+            Align = alRight
+            BevelOuter = bvNone
+            TabOrder = 0
+            object lbReportNotice: TStaticText
+              AlignWithMargins = True
+              Left = 3
+              Top = 3
+              Width = 400
+              Height = 46
+              Align = alTop
+              Alignment = taCenter
+              AutoSize = False
+              Caption = 
+                'Changing the information here will override Report Item configur' +
+                'ation. To restore original behavior delete the override.'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              TabStop = True
+            end
+            object lbOrder: TStaticText
+              Left = 16
+              Top = 81
+              Width = 41
+              Height = 20
+              Caption = 'Order'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 2
+              TabStop = True
+            end
+            object lbTitle: TStaticText
+              Left = 16
+              Top = 156
+              Width = 31
+              Height = 20
+              Caption = 'Title'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 4
+            end
+            object lbPrefix: TStaticText
+              Left = 16
+              Top = 183
+              Width = 41
+              Height = 20
+              Caption = 'Prefix'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 6
+            end
+            object lbSuffix: TStaticText
+              Left = 16
+              Top = 210
+              Width = 40
+              Height = 20
+              Caption = 'Suffix'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 8
+            end
+            object lbDialogReturn: TStaticText
+              Left = 16
+              Top = 325
+              Width = 92
+              Height = 20
+              Caption = 'Dialog Return'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 15
+            end
+            object ckHideFromNoteCR: TCheckBox
+              Left = 89
+              Top = 269
+              Width = 97
+              Height = 17
+              Caption = 'Hide from Note'
+              TabOrder = 11
+            end
+            object ckRequiredCR: TCheckBox
+              Left = 225
+              Top = 269
+              Width = 97
+              Height = 17
+              Caption = 'Required'
+              TabOrder = 14
+            end
+            object ckDoNotSaveCR: TCheckBox
+              Left = 89
+              Top = 292
+              Width = 132
+              Height = 17
+              Caption = 'Do not Save'
+              TabOrder = 12
+            end
+            object spOrderCR: TSpinEdit
+              Left = 89
+              Top = 80
+              Width = 64
+              Height = 22
+              MaxValue = 0
+              MinValue = 0
+              TabOrder = 3
+              Value = 0
+            end
+            object edTitleCR: TCaptionEdit
+              Left = 72
+              Top = 156
+              Width = 313
+              Height = 21
+              TabOrder = 5
+              Caption = 'Title'
+            end
+            object edPrefixCR: TCaptionEdit
+              Left = 72
+              Top = 183
+              Width = 313
+              Height = 21
+              TabOrder = 7
+              Caption = 'Prefix'
+            end
+            object edSuffixCR: TCaptionEdit
+              Left = 72
+              Top = 210
+              Width = 313
+              Height = 21
+              TabOrder = 9
+              Caption = 'Suffix'
+            end
+            object ckDoNotSpaceCR: TCheckBox
+              Left = 89
+              Top = 246
+              Width = 97
+              Height = 17
+              Caption = 'Do not Space'
+              TabOrder = 10
+            end
+            object cbDialogReturnCR: TCaptionComboBox
+              Left = 114
+              Top = 325
+              Width = 271
+              Height = 21
+              Style = csDropDownList
+              TabOrder = 16
+              Caption = 'Dialog Return'
+            end
+            object ckDoNotRestoreCR: TCheckBox
+              Left = 225
+              Top = 246
+              Width = 120
+              Height = 17
+              Caption = 'Do not Restore (V)'
+              TabOrder = 13
+            end
+            object lbReportControlCR: TStaticText
+              Left = 0
+              Top = 52
+              Width = 406
+              Height = 4
+              Align = alTop
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 1
+              TabStop = True
+              ExplicitWidth = 4
+            end
+            object edIdentifyingNameCR: TCaptionEdit
+              Left = 16
+              Top = 129
+              Width = 369
+              Height = 21
+              TabOrder = 21
+              Caption = 'Identifying Name'
+            end
+            object StaticText8: TStaticText
+              Left = 16
+              Top = 108
+              Width = 113
+              Height = 20
+              Caption = 'Identifying Name'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 23
+              TabStop = True
+            end
+          end
         end
       end
     end
     object tabReport: TTabSheet
       Caption = 'Dialog Editor'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         883
         488)
@@ -515,41 +581,6 @@ object DDCSFormConfig: TDDCSFormConfig
         ParentFont = False
         TabOrder = 0
         OnClick = ReloadDialogs
-      end
-      object btnUpdateDialogs: TBitBtn
-        Left = 95
-        Top = 460
-        Width = 140
-        Height = 25
-        Anchors = [akLeft, akBottom]
-        Caption = 'Update VistA'
-        Default = True
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Glyph.Data = {
-          DE010000424DDE01000000000000760000002800000024000000120000000100
-          0400000000006801000000000000000000001000000000000000000000000000
-          80000080000000808000800000008000800080800000C0C0C000808080000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-          3333333333333333333333330000333333333333333333333333F33333333333
-          00003333344333333333333333388F3333333333000033334224333333333333
-          338338F3333333330000333422224333333333333833338F3333333300003342
-          222224333333333383333338F3333333000034222A22224333333338F338F333
-          8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
-          33333338F83338F338F33333000033A33333A222433333338333338F338F3333
-          0000333333333A222433333333333338F338F33300003333333333A222433333
-          333333338F338F33000033333333333A222433333333333338F338F300003333
-          33333333A222433333333333338F338F00003333333333333A22433333333333
-          3338F38F000033333333333333A223333333333333338F830000333333333333
-          333A333333333333333338330000333333333333333333333333333333333333
-          0000}
-        NumGlyphs = 2
-        ParentFont = False
-        TabOrder = 2
-        OnClick = btnUpdateDialogsClick
       end
       object lvDialogComponent: TListView
         Left = 241
@@ -570,7 +601,7 @@ object DDCSFormConfig: TDDCSFormConfig
           end>
         ReadOnly = True
         RowSelect = True
-        TabOrder = 3
+        TabOrder = 2
         ViewStyle = vsReport
         OnColumnClick = ListColumnClick
         OnCompare = ListCompare
@@ -579,7 +610,7 @@ object DDCSFormConfig: TDDCSFormConfig
       object btnDialogShow: TBitBtn
         Left = 1
         Top = 460
-        Width = 88
+        Width = 234
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'Show'
@@ -605,7 +636,7 @@ object DDCSFormConfig: TDDCSFormConfig
           end>
         ReadOnly = True
         RowSelect = True
-        TabOrder = 4
+        TabOrder = 3
         ViewStyle = vsReport
         OnColumnClick = ListColumnClick
         OnCompare = ListCompare
@@ -618,10 +649,14 @@ object DDCSFormConfig: TDDCSFormConfig
         Height = 488
         ActivePage = TabSheet1
         Align = alRight
-        TabOrder = 5
+        TabOrder = 4
         object TabSheet1: TTabSheet
           Caption = 'Report Items'
-          object pnlDialog: TPanel
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object Panel1: TPanel
             Left = 5
             Top = 0
             Width = 406
@@ -667,7 +702,7 @@ object DDCSFormConfig: TDDCSFormConfig
             end
             object StaticText3: TStaticText
               Left = 16
-              Top = 109
+              Top = 156
               Width = 31
               Height = 20
               Caption = 'Title'
@@ -681,7 +716,7 @@ object DDCSFormConfig: TDDCSFormConfig
             end
             object StaticText4: TStaticText
               Left = 16
-              Top = 136
+              Top = 183
               Width = 41
               Height = 20
               Caption = 'Prefix'
@@ -695,7 +730,7 @@ object DDCSFormConfig: TDDCSFormConfig
             end
             object StaticText5: TStaticText
               Left = 16
-              Top = 163
+              Top = 210
               Width = 40
               Height = 20
               Caption = 'Suffix'
@@ -709,11 +744,10 @@ object DDCSFormConfig: TDDCSFormConfig
             end
             object StaticText6: TStaticText
               Left = 16
-              Top = 314
+              Top = 325
               Width = 92
               Height = 20
               Caption = 'Dialog Return'
-              Enabled = False
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -13
@@ -722,31 +756,31 @@ object DDCSFormConfig: TDDCSFormConfig
               ParentFont = False
               TabOrder = 15
             end
-            object CheckBox1: TCheckBox
+            object ckHideFromNoteD: TCheckBox
               Left = 89
-              Top = 218
+              Top = 269
               Width = 97
               Height = 17
               Caption = 'Hide from Note'
               TabOrder = 11
             end
-            object CheckBox2: TCheckBox
-              Left = 89
-              Top = 285
+            object ckRequiredD: TCheckBox
+              Left = 225
+              Top = 269
               Width = 97
               Height = 17
               Caption = 'Required'
               TabOrder = 14
             end
-            object CheckBox3: TCheckBox
+            object ckDoNotSaveD: TCheckBox
               Left = 89
-              Top = 241
+              Top = 292
               Width = 132
               Height = 17
               Caption = 'Do not Save'
               TabOrder = 12
             end
-            object SpinEdit1: TSpinEdit
+            object spOrderD: TSpinEdit
               Left = 89
               Top = 80
               Width = 64
@@ -756,58 +790,56 @@ object DDCSFormConfig: TDDCSFormConfig
               TabOrder = 3
               Value = 0
             end
-            object CaptionEdit1: TCaptionEdit
-              Left = 89
-              Top = 108
-              Width = 288
+            object edTitleD: TCaptionEdit
+              Left = 72
+              Top = 156
+              Width = 313
               Height = 21
               TabOrder = 5
               Caption = 'Title'
             end
-            object CaptionEdit2: TCaptionEdit
-              Left = 89
-              Top = 135
-              Width = 288
+            object edPrefixD: TCaptionEdit
+              Left = 72
+              Top = 183
+              Width = 313
               Height = 21
               TabOrder = 7
               Caption = 'Prefix'
             end
-            object CaptionEdit3: TCaptionEdit
-              Left = 89
-              Top = 162
-              Width = 288
+            object edSuffixD: TCaptionEdit
+              Left = 72
+              Top = 210
+              Width = 313
               Height = 21
               TabOrder = 9
               Caption = 'Suffix'
             end
-            object CheckBox4: TCheckBox
+            object ckDoNotSpaceD: TCheckBox
               Left = 89
-              Top = 195
+              Top = 246
               Width = 97
               Height = 17
               Caption = 'Do not Space'
               TabOrder = 10
             end
-            object CaptionComboBox1: TCaptionComboBox
-              Left = 125
-              Top = 313
-              Width = 252
+            object cbDialogReturnD: TCaptionComboBox
+              Left = 114
+              Top = 325
+              Width = 271
               Height = 21
               Style = csDropDownList
-              Enabled = False
               TabOrder = 16
               Caption = 'Dialog Return'
             end
-            object CheckBox5: TCheckBox
-              Left = 89
-              Top = 263
-              Width = 97
+            object ckDoNotRestoreD: TCheckBox
+              Left = 225
+              Top = 246
+              Width = 120
               Height = 17
-              Caption = 'Do not Restore'
-              Enabled = False
+              Caption = 'Do not Restore (V)'
               TabOrder = 13
             end
-            object StaticText7: TStaticText
+            object lbReportControlD: TStaticText
               Left = 0
               Top = 52
               Width = 406
@@ -822,11 +854,39 @@ object DDCSFormConfig: TDDCSFormConfig
               ParentFont = False
               TabOrder = 1
               TabStop = True
+              ExplicitWidth = 4
+            end
+            object edIdentifyingNameD: TCaptionEdit
+              Left = 16
+              Top = 129
+              Width = 369
+              Height = 21
+              TabOrder = 21
+              Caption = 'Identifying Name'
+            end
+            object StaticText9: TStaticText
+              Left = 16
+              Top = 108
+              Width = 113
+              Height = 20
+              Caption = 'Identifying Name'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 23
+              TabStop = True
             end
           end
         end
         object TabSheet2: TTabSheet
           Caption = 'Output'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object meDialogOutput: TMemo
             Left = 0
             Top = 0
@@ -850,44 +910,13 @@ object DDCSFormConfig: TDDCSFormConfig
     BevelOuter = bvNone
     BorderStyle = bsSingle
     TabOrder = 1
-    object btnCancel: TBitBtn
-      Left = 0
-      Top = 25
-      Width = 83
-      Height = 25
-      Align = alTop
-      Cancel = True
-      Caption = '&Cancel'
-      Enabled = False
-      Glyph.Data = {
-        DE010000424DDE01000000000000760000002800000024000000120000000100
-        0400000000006801000000000000000000001000000000000000000000000000
-        80000080000000808000800000008000800080800000C0C0C000808080000000
-        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-        333333333333333333333333000033338833333333333333333F333333333333
-        0000333911833333983333333388F333333F3333000033391118333911833333
-        38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
-        911118111118333338F3338F833338F3000033333911111111833333338F3338
-        3333F8330000333333911111183333333338F333333F83330000333333311111
-        8333333333338F3333383333000033333339111183333333333338F333833333
-        00003333339111118333333333333833338F3333000033333911181118333333
-        33338333338F333300003333911183911183333333383338F338F33300003333
-        9118333911183333338F33838F338F33000033333913333391113333338FF833
-        38F338F300003333333333333919333333388333338FFF830000333333333333
-        3333333333333333333888330000333333333333333333333333333333333333
-        0000}
-      NumGlyphs = 2
-      TabOrder = 1
-      OnClick = btnCancelClick
-    end
     object btnSave: TBitBtn
       Left = 0
       Top = 0
       Width = 83
       Height = 25
       Align = alTop
-      Caption = '&Save'
-      Enabled = False
+      Caption = '&Save  '
       Glyph.Data = {
         DE010000424DDE01000000000000760000002800000024000000120000000100
         0400000000006801000000000000000000001000000000000000000000000000
@@ -911,9 +940,10 @@ object DDCSFormConfig: TDDCSFormConfig
     end
     object btnDelete: TBitBtn
       Left = 0
-      Top = 157
+      Top = 50
       Width = 83
       Height = 25
+      Align = alTop
       Caption = 'Delete'
       Enabled = False
       Glyph.Data = {
@@ -934,16 +964,16 @@ object DDCSFormConfig: TDDCSFormConfig
         3333333333333333333888330000333333333333333333333333333333333333
         0000}
       NumGlyphs = 2
-      TabOrder = 3
+      TabOrder = 2
       OnClick = btnDeleteClick
     end
     object btnClear: TBitBtn
       Left = 0
-      Top = 131
+      Top = 25
       Width = 83
       Height = 25
-      Caption = 'Clear'
-      Enabled = False
+      Align = alTop
+      Caption = 'Clear  '
       Glyph.Data = {
         DE010000424DDE01000000000000760000002800000024000000120000000100
         0400000000006801000000000000000000001000000000000000000000000000
@@ -962,7 +992,7 @@ object DDCSFormConfig: TDDCSFormConfig
         3333333333333333333888330000333333333333333333333333333333333333
         0000}
       NumGlyphs = 2
-      TabOrder = 2
+      TabOrder = 1
       OnClick = btnClearClick
     end
     object btnClose: TBitBtn
@@ -991,35 +1021,18 @@ object DDCSFormConfig: TDDCSFormConfig
         3333333333338888883333330000333333333333333333333333333333333333
         0000}
       NumGlyphs = 2
-      TabOrder = 5
+      TabOrder = 4
       OnClick = btnCloseClick
     end
-    object btnUpdateReport: TBitBtn
+    object btnUpdate: TBitBtn
       Left = 0
-      Top = 264
+      Top = 240
       Width = 83
-      Height = 25
-      Caption = 'Update'
-      Glyph.Data = {
-        DE010000424DDE01000000000000760000002800000024000000120000000100
-        0400000000006801000000000000000000001000000000000000000000000000
-        80000080000000808000800000008000800080800000C0C0C000808080000000
-        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-        3333333333333333333333330000333333333333333333333333F33333333333
-        00003333344333333333333333388F3333333333000033334224333333333333
-        338338F3333333330000333422224333333333333833338F3333333300003342
-        222224333333333383333338F3333333000034222A22224333333338F338F333
-        8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
-        33333338F83338F338F33333000033A33333A222433333338333338F338F3333
-        0000333333333A222433333333333338F338F33300003333333333A222433333
-        333333338F338F33000033333333333A222433333333333338F338F300003333
-        33333333A222433333333333338F338F00003333333333333A22433333333333
-        3338F38F000033333333333333A223333333333333338F830000333333333333
-        333A333333333333333338330000333333333333333333333333333333333333
-        0000}
+      Height = 49
+      Caption = 'Update All'
       NumGlyphs = 2
-      TabOrder = 4
-      OnClick = btnUpdateReportClick
+      TabOrder = 3
+      OnClick = btnUpdateClick
     end
   end
 end
