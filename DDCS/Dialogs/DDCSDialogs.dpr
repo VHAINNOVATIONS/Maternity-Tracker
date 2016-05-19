@@ -24,7 +24,7 @@ uses
   System.Classes,
   Vcl.Forms,
   Vcl.Controls,
-  VAUtils,
+  uBase,
   uDialog,
   uCommon,
   uExtndComBroker,
@@ -107,7 +107,8 @@ begin
   end;
 end;
 
-function DisplayDialog(Broker: PCPRSComBroker; Build: WideString; DebugMode: Boolean): WideString; stdcall;
+function DisplayDialog(AOwner: PDDCSForm; Broker: PCPRSComBroker; Build: WideString;
+                       DebugMode: Boolean): WideString; stdcall;
 var
   dlgP: TPersistentClass;
   dlgClass: TDialogClass;
@@ -127,7 +128,7 @@ begin
   if dlgClass = nil then
     Exit;
 
-  dlg := dlgClass.Create(nil, Broker, DebugMode, Piece(Build,'|',1));
+  dlg := dlgClass.Create(AOwner, Broker, DebugMode, Piece(Build,'|',1));
   try
     dlg.ShowModal;
 

@@ -22,12 +22,29 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.TypInfo, System.Classes, System.Actions, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus,
-  Vcl.Themes, Vcl.Styles, Vcl.Consts, Vcl.CheckLst, Vcl.ActnList,
-  VAUtils, uCommon, uReportItems, frmVitals, uDialog;
+  System.TypInfo, System.Classes, System.Actions, System.Win.ComObj,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, Vcl.Themes, Vcl.Styles, Vcl.Consts,
+  Vcl.CheckLst, Vcl.ActnList, FSAPILib_TLB, uReportItems, frmVitals;
+
+const
+  WM_SHOW_SPLASH = WM_USER + 270;
+  WM_SAVE        = WM_USER + 280;
 
 type
+  TScreenReader = class(TObject)
+  private
+    FActive: Boolean;
+    ObjGUID: TGUID;
+    ObjIntf: IUnknown;
+    Obj: IJawsApi;
+    function IsObjectRegistered: Boolean;
+  public
+    constructor Create;
+    procedure Say(txt: string; flush: Boolean);
+    procedure Stop;
+  end;
+
   TDDCSForm = class;
 
   TDDCSHeaderControl = class(THeaderControl)
@@ -74,6 +91,7 @@ type
     FAutoSaveTimer: TTimer;
     FVitalsPage: TTabSheet;
     FReportCollection: TDDCSNoteCollection;
+    FScreenReader: TScreenReader;
     // -------------------------------------------------------------------------
     FDisableSplash: Boolean;
     Tasks: TStringList;    //array of autosave tasks to be canceled onClose of the DDCS Form
@@ -101,6 +119,7 @@ type
     procedure OnAutoSaveTimer(Sender: TObject);
     // TCustomListBox   (TListBox and TCheckListBox)
     procedure ListBoxGetDialogDBClick(Sender: TObject);
+    procedure ListBoxGetDialogKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     // TButton
     procedure ButtonGetDialogClick(Sender: TObject);
     // TForm -------------------------------------------------------------------
@@ -148,6 +167,7 @@ type
     property TmpStrList: TStringList read FReturnList write FReturnList;
     property Validated: Boolean read FValidated write FValidated;
     property VitalsControl: TDDCSVitals read GetVitalsForm;
+    property ScreenReader: TScreenReader read FScreenReader;
   published
     property VitalsPage: TTabSheet read FVitalsPage write SetVitals;
     property AutoTimer: TTimer read FAutoSaveTimer write FAutoSaveTimer;
@@ -159,13 +179,15 @@ type
     property OnRestore: TNotifyEvent read FOnpbRestore write FOnpbRestore;
     property OnOverrideNote: TNotifyEvent read FOnpbOverrideNote write FOnpbOverrideNote;
   end;
+  PDDCSForm = ^TDDCSForm;
 
   procedure Register;
 
 implementation
 
 uses
-  frmSplash, frmPreview, frmConfiguration, frmAbout, uExtndComBroker;
+  frmSplash, frmPreview, frmConfiguration, frmAbout, uCommon, uDialog,
+  uExtndComBroker;
 
 procedure Register;
 begin
@@ -176,6 +198,59 @@ begin
   RegisterClass(TDDCSVitals);
   RegisterComponents('DDCSForm', [TDDCSForm]);
 end;
+
+{$REGION 'TScreenReader'}
+
+// Private ---------------------------------------------------------------------
+
+function TScreenReader.IsObjectRegistered;
+begin
+  Result := FActive;
+
+  if not Result then
+  try
+    ObjIntf := CreateComObject(ObjGUID);
+    if assigned(ObjIntf) then
+    begin
+      ObjIntf.QueryInterface(IID_IJawsApi, Obj);
+      if assigned(Obj) then
+      begin
+        FActive := True;
+        Result := True;
+      end;
+    end;
+  except
+  end;
+end;
+
+// Public ----------------------------------------------------------------------
+
+constructor TScreenReader.Create;
+begin
+  inherited;
+
+  ObjGUID := StringToGUID('{CCE5B1E5-B2ED-45D5-B09F-8EC54B75ABF4}');     // Change this to an entry in OE/RR?
+  FActive := IsObjectRegistered;
+end;
+
+procedure TScreenReader.Say(txt: string; flush: Boolean);
+begin
+  if not FActive then
+    Exit;
+
+  if flush then
+    Obj.StopSpeech;
+
+  Obj.SayString(txt, flush);
+end;
+
+procedure TScreenReader.Stop;
+begin
+  if FActive then
+    Obj.StopSpeech;
+end;
+
+{$ENDREGION}
 
 {$REGION 'TDDCSHeaderControl'}
 
@@ -203,8 +278,8 @@ begin
   if Sections[FSelectedSectionIndex].AllowClick then
     SayText := SayText + ', press space or enter to activate.';
 
-  if ScreenReader <> nil then
-    ScreenReader.Say(SayText, False);
+  if FDDCSForm.FScreenReader <> nil then
+    FDDCSForm.FScreenReader.Say(SayText, False);
 end;
 
 procedure TDDCSHeaderControl.WMSetFocus(var Message: TWMSetFocus);
@@ -538,6 +613,11 @@ begin
   TabStop := True;
   TabOrder := 1;
 
+  for I := 0 to 7 do AddControlPanelButton(I);
+
+  if csDesigning in ComponentState then
+    Exit;
+
   FCommandMenu := TPopupMenu.Create(Self);
   FCommandMenu.MenuAnimation := [maBottomToTop];
 
@@ -571,8 +651,6 @@ begin
   FCommandItem.Caption := 'Windows10';
   FCommandItem.OnClick := FcChangeThemeClick;
   FCommandMenu.Items[3].Add(FCommandItem);
-
-  for I := 0 to 7 do AddControlPanelButton(I);
 end;
 
 procedure TDDCSHeaderControl.UpdateControlPanel;
@@ -748,18 +826,15 @@ begin
 
   if Page <> nil then
   begin
-    FVitalsForm := TDDCSVitals.Create(nil);
+    FVitalsForm := TDDCSVitals.Create(Self);
     FVitalsForm.Parent := Page;
     FVitalsForm.Name := 'DDCSVitals';
     FVitalsForm.Align := alClient;
     FVitalsForm.Show;
 
-    FEDDLoad := True;
-    FLMPLoad := True;
-
     // If we create with owner then it will fail with already exists because the Frame
     // Create is probably being called multiple times so we set the owner later, here
-    Owner.InsertComponent(FVitalsForm);
+    // Owner.InsertComponent(FVitalsForm);
   end;
 end;
 
@@ -802,7 +877,68 @@ begin
   sl := TStringList.Create;
   try
     try
-      sl.Text := DisplayDialog(@RPCBrokerV, nItem.Configuration[ls.ItemIndex], False);
+      sl.Text := DisplayDialog(@Self, @RPCBrokerV, nItem.Configuration[ls.ItemIndex], False);
+
+      if ((Sender.InheritsFrom(TCheckListBox)) and (sl.Count > 0)) then
+        TCheckListBox(Sender).Checked[ls.ItemIndex] := True;
+
+      if nItem.DialogReturn <> nil then
+        TCustomMemo(nItem.DialogReturn).Lines.AddStrings(sl);
+    except
+    end;
+  finally
+    sl.Free;
+  end;
+end;
+
+procedure TDDCSForm.ListBoxGetDialogKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  ls: TCustomListBox;
+  nItem: TDDCSNoteItem;
+  tmp: string;
+  sl: TStringList;
+begin
+  inherited;
+
+  if ((Key <> VK_SPACE) and (Key <> VK_RETURN)) then
+    Exit;
+
+  if DialogDLL = 0 then
+    Exit;
+  if not Sender.InheritsFrom(TCustomListBox) then
+    Exit;
+  ls := TCustomListBox(Sender);
+  if ls.ItemIndex = -1 then
+    Exit;
+  nItem := FReportCollection.GetNoteItem(TWinControl(Sender));
+  if nItem = nil then
+    Exit;
+  if nItem.Configuration.Count < 1 then
+    Exit;
+  if nItem.Configuration[ls.ItemIndex] = '' then
+    Exit;
+
+  if Key = VK_SPACE then
+  begin
+    if ls.InheritsFrom(TCheckListBox) then
+    begin
+      tmp := ls.Items[ls.ItemIndex];
+
+      if TCheckListBox(ls).Checked[ls.ItemIndex] then        // KeyDown before checked
+        tmp := tmp + ' not checked'
+      else
+        tmp := tmp + ' checked';
+
+      FScreenReader.Say(tmp, False);
+    end;
+
+    Exit;
+  end;
+
+  sl := TStringList.Create;
+  try
+    try
+      sl.Text := DisplayDialog(@Self, @RPCBrokerV, nItem.Configuration[ls.ItemIndex], False);
 
       if ((Sender.InheritsFrom(TCheckListBox)) and (sl.Count > 0)) then
         TCheckListBox(Sender).Checked[ls.ItemIndex] := True;
@@ -830,11 +966,15 @@ begin
   nItem := FReportCollection.GetNoteItem(TWinControl(Sender));
   if nItem = nil then
     Exit;
+  if nItem.Configuration.Count < 1 then
+    Exit;
+  if nItem.Configuration[0] = '' then
+    Exit;
 
   sl := TStringList.Create;
   try
     try
-      sl.Text := DisplayDialog(@RPCBrokerV, nItem.Configuration[0], False);
+      sl.Text := DisplayDialog(@Self, @RPCBrokerV, nItem.Configuration[0], False);
 
       if nItem.DialogReturn <> nil then
         TCustomMemo(nItem.DialogReturn).Lines.AddStrings(sl);
@@ -909,7 +1049,7 @@ var
 begin
   if (((wControl.InheritsFrom(TCustomPanel)) or (wControl.InheritsFrom(TCustomGroupBox)) or
        (wControl.InheritsFrom(TCustomTabControl))) and (not wControl.InheritsFrom(TRadioGroup)) and
-     (wControl.ControlCount > 0)) then
+       (wControl.ControlCount > 0)) then
   begin
     for I := 0 to wControl.ControlCount - 1 do
       if wControl.Controls[I] is TWinControl then
@@ -942,10 +1082,14 @@ begin
     if Assigned(nItem.DialogReturn) then
     begin
       if wControl.InheritsFrom(TCheckListBox) then
-        TCheckListBox(wControl).OnDblClick := ListBoxGetDialogDBClick
-      else if wControl.InheritsFrom(TListBox) then
-        TListBox(wControl).OnDblClick := ListBoxGetDialogDBClick
-      else if wControl.InheritsFrom(TButton) then
+      begin
+        TCheckListBox(wControl).OnDblClick := ListBoxGetDialogDBClick;
+        TCheckListBox(wControl).OnKeyDown := ListBoxGetDialogKeyDown;
+      end else if wControl.InheritsFrom(TListBox) then
+      begin
+        TListBox(wControl).OnDblClick := ListBoxGetDialogDBClick;
+        TListBox(wControl).OnKeyDown := ListBoxGetDialogKeyDown;
+      end else if wControl.InheritsFrom(TButton) then
         TButton(wControl).OnClick := ButtonGetDialogClick;
     end;
   end;
@@ -1198,43 +1342,44 @@ begin
 
   FReportCollection := TDDCSNoteCollection.Create(Self, TDDCSNoteItem);         // Create last to prevent adding ReportCollection Items we shouldn't have
                                                                                 // - components that are part of TDDCSForm
-  if not (csDesigning in ComponentState) then
-  begin
-    OnDrawTab := DrawCheckTab;       // This needs to be part of the class
+  if csDesigning in ComponentState then
+    Exit;
 
-    TForm(AOwner).AlphaBlend := True;
-    TForm(AOwner).AlphaBlendValue := 0;
+  OnDrawTab := DrawCheckTab;       // This needs to be part of the class
 
-    Screen.OnActiveControlChange := ActiveControlChanged;
+  TForm(AOwner).AlphaBlend := True;
+  TForm(AOwner).AlphaBlendValue := 0;
 
-    FSaveShow := TForm(AOwner).OnShow;
-    TForm(AOwner).OnShow := FormOverrideShow;
-    TForm(AOwner).OnCloseQuery := FormCloseQuery;
-    TForm(AOwner).OnClose := FormClose;
+  Screen.OnActiveControlChange := ActiveControlChanged;
 
-    FNavControl := TActionList.Create(AOwner);
-    nAct := TAction.Create(FNavControl);
-    nAct.ActionList := FNavControl;
-    nAct.ShortCut := ShortCut(VK_TAB, [ssCtrl]);
-    nAct.OnExecute := CtrlTab;
-    nAct := TAction.Create(FNavControl);
-    nAct.ActionList := FNavControl;
-    nAct.ShortCut := ShortCut(VK_TAB, [ssShift, ssCtrl]);
-    nAct.OnExecute := CtrlShiftTab;
+  FSaveShow := TForm(AOwner).OnShow;
+  TForm(AOwner).OnShow := FormOverrideShow;
 
-    ScreenReader := TScreenReader.Create;
+  TForm(AOwner).OnCloseQuery := FormCloseQuery;
+  TForm(AOwner).OnClose := FormClose;
 
-    FAutoSaveTimer := TTimer.Create(Self);
-    FAutoSaveTimer.Name := 'DDCSAutoTimer';
-    FAutoSaveTimer.Interval := 600000;
-    FAutoSaveTimer.OnTimer := OnAutoSaveTimer;
+  FNavControl := TActionList.Create(AOwner);
+  nAct := TAction.Create(FNavControl);
+  nAct.ActionList := FNavControl;
+  nAct.ShortCut := ShortCut(VK_TAB, [ssCtrl]);
+  nAct.OnExecute := CtrlTab;
+  nAct := TAction.Create(FNavControl);
+  nAct.ActionList := FNavControl;
+  nAct.ShortCut := ShortCut(VK_TAB, [ssShift, ssCtrl]);
+  nAct.OnExecute := CtrlShiftTab;
 
-    DLLDialogList := TStringList.Create;
-    Tasks := TStringList.Create;
-    FReturnList := TStringList.Create;
+  FScreenReader := TScreenReader.Create;
 
-    DialogDLL := LoadDialogs;
-  end;
+  FAutoSaveTimer := TTimer.Create(Self);
+  FAutoSaveTimer.Name := 'DDCSAutoTimer';
+  FAutoSaveTimer.Interval := 600000;
+  FAutoSaveTimer.OnTimer := OnAutoSaveTimer;
+
+  DLLDialogList := TStringList.Create;
+  Tasks := TStringList.Create;
+  FReturnList := TStringList.Create;
+
+  DialogDLL := LoadDialogs;
 end;
 
 procedure TDDCSForm.FormOverrideShow(Sender: TObject);
@@ -1276,7 +1421,7 @@ begin
       if not FDisableSplash then
         PostMessage(Handle, WM_SHOW_SPLASH, 0, 0);
 
-      DDCSFormConfig := TDDCSFormConfig.Create(Owner, Self);
+      DDCSFormConfig := TDDCSFormConfig.Create(Self);
 
       // We're going through all of the component's controls rather than just the report collection
       // because we're adding the TWinControls to the Configuration form and adding click methods to
@@ -1481,13 +1626,14 @@ end;
 
 destructor TDDCSForm.Destroy;
 begin
-  Screen.OnActiveControlChange := nil;
+  if not (csDesigning in ComponentState) then
+    Screen.OnActiveControlChange := nil;
 
   FReportCollection.Free;
   SetLength(TabSeen, 0);
 
-  if Assigned(ScreenReader) then
-    ScreenReader.Free;
+  if Assigned(FScreenReader) then
+    FScreenReader.Free;
   if Assigned(DLLDialogList) then
     DLLDialogList.Free;
   if Assigned(Tasks) then
@@ -1529,10 +1675,13 @@ begin
 
   FControlPanel.UpdateControlPanel;
 
+  if csDesigning in ComponentState then
+    Exit;
+
   if ActivePage.TabVisible then
-    if ScreenReader <> nil then
+    if FScreenReader <> nil then
     begin
-      ScreenReader.Say(ActivePage.Caption + ' Currently on page ' + FControlPanel.Sections.Items[6].Text, False);
+      FScreenReader.Say(ActivePage.Caption + ' Currently on page ' + FControlPanel.Sections.Items[6].Text, False);
 
       if ActivePage = VitalsPage then
         VitalsControl.fVitalsControlChange(nil);
@@ -1569,15 +1718,24 @@ end;
 
 procedure TDDCSForm.ActiveControlChanged(Sender: TObject);
 var
+  tmp: string;
   nItem: TDDCSNoteItem;
 begin
   if Owner <> nil then
   begin
-    nItem := FReportCollection.GetNoteItem(TForm(Owner).ActiveControl);
-    if nItem <> nil then
-      if nItem.SayOnFocus <> '' then
-        if ScreenReader <> nil then
-          ScreenReader.Say(nItem.SayOnFocus, False);
+    if VitalsPage = ActivePage then
+    begin
+      tmp := VitalsControl.GetTextforFocus(TForm(Owner).ActiveControl);
+      if ((tmp <> '') and (FScreenReader <> nil)) then
+        FScreenReader.Say(tmp, False);
+    end else
+    begin
+      nItem := FReportCollection.GetNoteItem(TForm(Owner).ActiveControl);
+      if nItem <> nil then
+        if nItem.SayOnFocus <> '' then
+          if FScreenReader <> nil then
+            FScreenReader.Say(nItem.SayOnFocus, False);
+    end;
   end;
 end;
 
@@ -1586,15 +1744,6 @@ var
   wControl: TWinControl;
   vpg: TPageControl;
 begin
-  wControl := TForm(Owner).ActiveControl;
-  if ((wControl <> nil) and (wControl.InheritsFrom(TPageControl)) and
-      not (wControl is TDDCSForm) and
-      not (wControl is TDDCSVitals)) then
-  begin
-    TPageControl(wControl).SelectNextPage(True);
-    Exit;
-  end;
-
   if VitalsPage = ActivePage then
   begin
     vpg := VitalsControl.fVitalsControl;
@@ -1603,7 +1752,15 @@ begin
       vpg.SelectNextPage(True)
     else
       SelectNextPage(True);
-  end else
+
+    Exit;
+  end;
+
+  wControl := TForm(Owner).ActiveControl;
+  if ((wControl <> nil) and (wControl.InheritsFrom(TPageControl)) and
+      not (wControl is TDDCSForm)) then
+    TPageControl(wControl).SelectNextPage(True)
+  else
     SelectNextPage(True);
 end;
 
@@ -1612,15 +1769,6 @@ var
   wControl: TWinControl;
   vpg: TPageControl;
 begin
-  wControl := TForm(Owner).ActiveControl;
-  if ((wControl <> nil) and (wControl.InheritsFrom(TPageControl)) and
-      not (wControl is TDDCSForm) and
-      not (wControl is TDDCSVitals)) then
-  begin
-    TPageControl(wControl).SelectNextPage(False);
-    Exit;
-  end;
-
   if VitalsPage = ActivePage then
   begin
     vpg := VitalsControl.fVitalsControl;
@@ -1629,7 +1777,15 @@ begin
       vpg.SelectNextPage(False)
     else
       SelectNextPage(False);
-  end else
+
+    Exit;
+  end;
+
+  wControl := TForm(Owner).ActiveControl;
+  if ((wControl <> nil) and (wControl.InheritsFrom(TPageControl)) and
+      not (wControl is TDDCSForm)) then
+    TPageControl(wControl).SelectNextPage(False)
+  else
     SelectNextPage(False);
 end;
 

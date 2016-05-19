@@ -25,8 +25,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Buttons, ExtCtrls, ComCtrls, strutils, JvSpin,
-  JvStringGrid, JvExControls, Vcl.Grids, JvExGrids,
-  uDialog, uCommon, uExtndComBroker, VA508AccessibilityManager;
+  JvStringGrid, JvExControls, Vcl.Grids, JvExGrids, uDialog, uExtndComBroker;
 
 type
   TdlgOBSpread = class(TDDCSDialog)
@@ -146,7 +145,7 @@ implementation
 {$R *.dfm}
 
 uses
-  VAUtils;
+  uCommon;
 
 procedure TdlgOBSpread.FormCreate(Sender: TObject);
 var

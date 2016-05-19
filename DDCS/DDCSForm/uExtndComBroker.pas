@@ -24,9 +24,6 @@ uses
   Winapi.Windows, Winapi.msxml, System.SysUtils, System.Classes, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Trpcb, CPRSChart_TLB;
 
-const
-  U = '^';
-
 type
   TNote = class(TPersistent)
   private
@@ -117,7 +114,7 @@ var
 implementation
 
 uses
-  VAUtils, ORFn, ORNet;
+  ORFn, ORNet, uCommon;
 
 // From ORNet (internal to this unit)
 function GetRPCCursor: TCursor;

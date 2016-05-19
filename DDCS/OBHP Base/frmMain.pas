@@ -1,12 +1,30 @@
 unit frmMain;
 
+{
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+     Developer: Theodore Fontana
+       Company: Document Storage Systems Inc.
+   VA Contract: TAC-13-06464
+}
+
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.StdCtrls, Vcl.CheckLst, Vcl.ExtCtrls, Vcl.ComCtrls, ORCtrls,
-  VAUtils, uBase, frmVitals, uExtndComBroker;
+  uBase, frmVitals;
 
 type
   TForm1 = class(TForm)
@@ -44,26 +62,26 @@ type
     ButtonOBClear: TButton;
     MemoOBExam: TCaptionMemo;
     oPage9: TTabSheet;
-    lblProblems: TStaticText;
+    lbProblems: TLabel;
     cklstProblems: TCheckListBox;
     btnEducation: TButton;
     ButtonPreNatalNormal: TButton;
     ButtonPlanClear: TButton;
     MemoPreNatal: TCaptionMemo;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
+    lbChiefComplaint: TLabel;
+    lbAdditionalComplaints: TLabel;
     ButtonComplaintClear: TButton;
-    StaticText3: TStaticText;
+    lbComplaintsSection: TLabel;
     pnlSectionImports: TPanel;
-    memoAllergies: TCaptionMemo;
-    memoActiveMedications: TCaptionMemo;
+    memoAllergies: TMemo;
+    memoActiveMedications: TMemo;
     ButtonReload: TButton;
-    StaticText4: TStaticText;
-    StaticText5: TStaticText;
-    StaticText6: TStaticText;
-    StaticText7: TStaticText;
-    StaticText8: TStaticText;
-    StaticText9: TStaticText;
+    lbImportSection: TLabel;
+    lbHistorySection: TLabel;
+    lbRosSection: TLabel;
+    lbPhysicalSection: TLabel;
+    lbPelvicSection: TLabel;
+    lbPlanSection: TLabel;
     procedure ClearTextClick(Sender: TObject);
     procedure RadioGroupImportClick(Sender: TObject);
     procedure RadioGroupHistoryClick(Sender: TObject);
@@ -71,6 +89,8 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure RadioGroup3Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure pnlSectionImportsEnter(Sender: TObject);
+    procedure pnlHistoryCategoriesEnter(Sender: TObject);
   private
     problemck: Boolean;
     problems: array of Boolean;
@@ -84,6 +104,9 @@ var
 implementation
 
 {$R *.dfm}
+
+uses
+  uCommon, uExtndComBroker;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
@@ -173,15 +196,27 @@ begin
       0: begin
            memoActiveMedications.Clear;
            memoActiveMedications.BringToFront;
+           memoActiveMedications.TabStop := True;
            memoActiveMedications.Lines.AddStrings(DDCSForm1.GetPatientActiveMedications);
+           memoAllergies.TabStop := False;
          end;
       1: begin
            memoAllergies.Clear;
            memoAllergies.BringToFront;
+           memoAllergies.TabStop := True;
            memoAllergies.Lines.AddStrings(DDCSForm1.GetPatientAllergies);
+           memoActiveMedications.TabStop := False;
          end;
     end;
   except
+  end;
+end;
+
+procedure TForm1.pnlSectionImportsEnter(Sender: TObject);
+begin
+  case RadioGroupImport.ItemIndex of
+    0: memoActiveMedications.SetFocus;
+    1: memoAllergies.SetFocus;
   end;
 end;
 
@@ -190,9 +225,33 @@ end;
 procedure TForm1.RadioGroupHistoryClick(Sender: TObject);
 begin
   case RadioGroupHistory.ItemIndex of
-    0: ListBoxMedicalHist.BringToFront;
-    1: ListBoxFamilyHist.BringToFront;
-    2: ListBoxSocialHist.BringToFront;
+    0: begin
+         ListBoxMedicalHist.BringToFront;
+         ListBoxMedicalHist.TabStop := True;
+         ListBoxFamilyHist.TabStop := False;
+         ListBoxSocialHist.TabStop := False;
+       end;
+    1: begin
+         ListBoxFamilyHist.BringToFront;
+         ListBoxFamilyHist.TabStop := True;
+         ListBoxMedicalHist.TabStop := False;
+         ListBoxSocialHist.TabStop := False;
+       end;
+    2: begin
+         ListBoxSocialHist.BringToFront;
+         ListBoxSocialHist.TabStop := True;
+         ListBoxFamilyHist.TabStop := False;
+         ListBoxMedicalHist.TabStop := False;
+       end;
+  end;
+end;
+
+procedure TForm1.pnlHistoryCategoriesEnter(Sender: TObject);
+begin
+  case RadioGroupHistory.ItemIndex of
+    0: ListBoxMedicalHist.SetFocus;
+    1: ListBoxFamilyHist.SetFocus;
+    2: ListBoxSocialHist.SetFocus;
   end;
 end;
 

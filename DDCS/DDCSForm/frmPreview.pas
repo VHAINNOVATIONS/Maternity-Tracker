@@ -47,7 +47,7 @@ var
 implementation
 
 uses
-  VAUtils, uCommon, uExtndComBroker;
+  uCommon, uExtndComBroker;
 
 {$R *.DFM}
 

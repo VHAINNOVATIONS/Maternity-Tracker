@@ -24,115 +24,130 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
   System.ConvUtils, System.StdConvs, System.DateUtils, System.StrUtils,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Samples.Spin,
-  Vcl.ComCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Graphics,
-  ORDtTm, ORCtrls;
+  Vcl.ComCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Graphics, ORDtTm, ORCtrls;
 
 type
+  TSayOnFocus = record
+    FOwningObject: TWinControl;
+    Text: string[100];
+  end;
+  PSayOnFocus = ^TSayOnFocus;
+
+  TSayOnFocusList = class(TList)
+  private
+    function Get(Index: Integer): PSayOnFocus;
+  public
+    destructor Destroy; override;
+    function Add(Value: PSayOnFocus): Integer;
+    property Items[Index: Integer]: PSayOnFocus read Get; default;
+  end;
+
   TEventType = (evLMP,evECD,evUlt,evEmT,evOth,evUkn);
 
   TDDCSVitals = class(TFrame)
     fVitalsControl: TPageControl;
     PageMain: TTabSheet;
-    FAge: TStaticText;
-    FSex: TStaticText;
-    FBMI: TStaticText;
-    FTemps: TCaptionEdit;
-    FHeights: TCaptionEdit;
-    FWeights: TCaptionEdit;
-    FTempdt: TStaticText;
-    FHeightdt: TStaticText;
-    FWeightdt: TStaticText;
-    FTempl: TStaticText;
-    FHeightl: TStaticText;
-    FWeightl: TStaticText;
-    FTempe: TCaptionEdit;
-    FHeighte: TCaptionEdit;
-    FWeighte: TCaptionEdit;
-    FPulses: TCaptionEdit;
-    FPulsedt: TStaticText;
-    FPulsel: TStaticText;
-    FResps: TCaptionEdit;
-    FRespl: TStaticText;
-    FRespdt: TStaticText;
-    FPains: TCaptionEdit;
-    FPainl: TStaticText;
-    FPaindt: TStaticText;
-    FSystolics: TCaptionEdit;
-    FSystolicl: TStaticText;
-    FSystolicdt: TStaticText;
-    FDiastolics: TCaptionEdit;
-    FDiastolicl: TStaticText;
-    FDiastolicdt: TStaticText;
     PageEDD: TTabSheet;
     PageLMP: TTabSheet;
-    edtContraceptionType: TCaptionComboBox;
-    ckMensesYes: TCheckBox;
-    ckDurationYes: TCheckBox;
-    ckAmountYes: TCheckBox;
-    memLMP: TCaptionMemo;
-    ckDurationNo: TCheckBox;
-    ckContraceptionNo: TCheckBox;
-    ckContraceptionYes: TCheckBox;
-    ckAmountNo: TCheckBox;
-    edtMenarche: TCaptionEdit;
-    edtFrequency: TCaptionEdit;
-    ckMensesNo: TCheckBox;
-    Label7: TStaticText;
-    Label6: TStaticText;
-    Label8: TStaticText;
-    Label5: TStaticText;
-    Label4: TStaticText;
-    Label3: TStaticText;
-    Label2: TStaticText;
-    Label1: TStaticText;
-    StaticText2: TStaticText;
-    edtCurrentEDD: TCaptionEdit;
-    EDDGrid: TGridPanel;
-    dtLMP: TORDateBox;
-    edtEDDLMP: TCaptionEdit;
+    FTemps: TEdit;
+    FHeights: TEdit;
+    FWeights: TEdit;
+    FTempe: TEdit;
+    FHeighte: TEdit;
+    FWeighte: TEdit;
+    FPulses: TEdit;
+    FResps: TEdit;
+    FPains: TEdit;
+    FSystolics: TEdit;
+    FDiastolics: TEdit;
+    edtMenarche: TEdit;
+    edtFrequency: TEdit;
+    edtCurrentEDD: TEdit;
+    edtEDDLMP: TEdit;
+	  edtEDDECD: TEdit;
+   	edtEDDUltra: TEdit;
+  	edtEDDEmbryo: TEdit;
+    edtEDDOther: TEdit;
+    lblOther: TEdit;
+    edtFinalGA: TEdit;
+	  edtEDDGA: TEdit;
+    FTempdt: TLabel;
+    FHeightdt: TLabel;
+    FWeightdt: TLabel;
+    FTempl: TLabel;
+    FHeightl: TLabel;
+    FWeightl: TLabel;
+    FPulsedt: TLabel;
+    FPulsel: TLabel;
+    FRespl: TLabel;
+    FRespdt: TLabel;
+    FPainl: TLabel;
+    FPaindt: TLabel;
+    FSystolicl: TLabel;
+    FSystolicdt: TLabel;
+    FDiastolicl: TLabel;
+    FDiastolicdt: TLabel;
+    Label7: TLabel;
+    Label6: TLabel;
+    Label8: TLabel;
+    Label5: TLabel;
+    Label4: TLabel;
+    Label3: TLabel;
+    Label2: TLabel;
+    Label1: TLabel;
+    StaticText2: TLabel;
     lblLMP: TLabel;
     lblECD: TLabel;
     lblUltra: TLabel;
-    dtECD: TORDateBox;
-    edtEDDECD: TCaptionEdit;
-    dtUltra: TORDateBox;
-    spnWeekUltra: TSpinEdit;
-    spnDayUltra: TSpinEdit;
-    edtEDDUltra: TCaptionEdit;
-    dtEmbryo: TORDateBox;
-    edtEDDEmbryo: TCaptionEdit;
     lblUnknown: TLabel;
-    dtOther: TORDateBox;
-    spnWeekOther: TSpinEdit;
-    spnDayOther: TSpinEdit;
-    edtEDDOther: TCaptionEdit;
-    lblOther: TCaptionEdit;
     Label9: TLabel;
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
     Label13: TLabel;
+    StaticText1: TLabel;
+    StaticText3: TLabel;
+    StaticText4: TLabel;
+    StaticText5: TLabel;
+    Panel2: TPanel;
+    FAge: TLabel;
+    FSex: TLabel;
+    FBMI: TLabel;
+   	Label14: TLabel;
+  	lblEmbryo: TLabel;
+  	Label15: TLabel;
+	  EDDGrid: TGridPanel;
+    ckMensesYes: TCheckBox;
+    ckDurationYes: TCheckBox;
+    ckAmountYes: TCheckBox;
+    ckDurationNo: TCheckBox;
+    ckContraceptionNo: TCheckBox;
+    ckContraceptionYes: TCheckBox;
+    ckAmountNo: TCheckBox;
+    ckMensesNo: TCheckBox;
     ckFinalEDDLMP: TCheckBox;
     ckFinalEDDECD: TCheckBox;
     ckFinalEDDUltra: TCheckBox;
     ckFinalEDDEmbryo: TCheckBox;
     ckFinalEDDOther: TCheckBox;
     ckFinalEDDUnknown: TCheckBox;
-    dtEDDUnknown: TORDateBox;
-    edtFinalGA: TCaptionEdit;
-    Label14: TStaticText;
-    Panel1: TPanel;
-    lblEmbryo: TLabel;
-    ck_LMPQualifier: TCheckBox;
-    Label15: TStaticText;
-    edtEDDGA: TCaptionEdit;
-    cbTransferDay: TCaptionComboBox;
+  	ck_LMPQualifier: TCheckBox;
+    dtLMP: TORDateBox;
+    dtECD: TORDateBox;
+    dtUltra: TORDateBox;
+    dtEmbryo: TORDateBox;
+    dtOther: TORDateBox;
     edtLMP: TORDateBox;
-    edthcg: TORDateBox;
-    StaticText1: TStaticText;
-    StaticText3: TStaticText;
-    StaticText4: TStaticText;
-    StaticText5: TStaticText;
+    edthcg: TORDateBox;	
+	  dtEDDUnknown: TORDateBox;
+    edtContraceptionType: TCaptionComboBox;
+   	cbTransferDay: TCaptionComboBox;
+  	memLMP: TCaptionMemo;
+    spnWeekUltra: TSpinEdit;
+    spnDayUltra: TSpinEdit;
+    spnWeekOther: TSpinEdit;
+    spnDayOther: TSpinEdit;
+    Panel1: TPanel;
     FAgeValue: TStaticText;
     FSexValue: TStaticText;
     FBMIValue: TStaticText;
@@ -158,8 +173,10 @@ type
     procedure edtLMPChange(Sender: TObject);
     procedure ToggleCheckBoxes(Sender: TObject);
   private
+    FocusControlText: TSayOnFocusList;
     FNote: TStringList;
     TabSeen: array of Boolean;
+    procedure BuildSayOnFocus(wControl: TWinControl; txt: string);
     procedure LMPChangeEvents(Switch: Boolean);
     procedure UpdateLMP;
     function CalEDD(EventType: TEventType): string;
@@ -173,20 +190,46 @@ type
     function GetEDDNote: TStringList;
     function GetLMPNote: TStringList;
     function GetCompleteNote: TStringList;
+    function GetTextforFocus(Value: TWinControl): string;
   end;
-
-var
-  FEDDLoad,FLMPLoad: Boolean;
 
 implementation
 
 {$R *.dfm}
 
 uses
-  ORFn, VAUtils, uBase, uCommon, uExtndComBroker; // uCommon is both overrides of VAUtils and ORDtTm
+  ORFn, uBase, uCommon, uExtndComBroker;
 
 const
   FMT_DATETIME = 'mm/dd/yyyy';
+
+{$REGION 'TSayOnFocusList'}
+
+// Private ---------------------------------------------------------------------
+
+function TSayOnFocusList.Get(Index: Integer): PSayOnFocus;
+begin
+  Result := PSayOnFocus(inherited Get(Index));
+end;
+
+// Public ----------------------------------------------------------------------
+
+destructor TSayOnFocusList.Destroy;
+var
+  I: Integer;
+begin
+  for I := 0 to Count - 1 do
+    FreeMem(Items[I]);
+
+  inherited;
+end;
+
+function TSayOnFocusList.Add(Value: PSayOnFocus): Integer;
+begin
+  Result := inherited Add(Value);
+end;
+
+{$ENDREGION}
 
 //procedure TDDCSVitals.fVitalsDrawCheckTab(Control: TCustomTabControl; TabIndex: Integer; const Rect: TRect; Active: Boolean);
 //var
@@ -394,7 +437,7 @@ end;
 
 procedure TDDCSVitals.lblOtherMouseEnter(Sender: TObject);
 begin
-  if lblOther.Text = 'Enter Other Criteria' then
+  if lblOther.Text = 'Other Criteria' then
   begin
     lblOther.Text := '';
     lblOther.SetFocus;
@@ -404,10 +447,7 @@ end;
 procedure TDDCSVitals.lblOtherExit(Sender: TObject);
 begin
   if lblOther.Text = '' then
-    lblOther.Text := 'Enter Other Criteria';
-
-  dtOther.Caption := lblOther.Text + ' Event Date';
-  edtEDDOther.Caption := lblOther.Text + ' Estimated Delivery Date';
+    lblOther.Text := 'Other Criteria';
 end;
 
    // Unknown ****
@@ -519,7 +559,7 @@ begin
             5: begin                                                            // Other
                  dtOtherChange(dtOther);
 
-                 if lblOther.Text = 'Enter Other Criteria' then
+                 if lblOther.Text = 'Other Criteria' then
                    ckFinalEDDOther.Checked := False
                  else if TryStrToDate(edtEDDOther.Text, fDate) then
                  begin
@@ -563,15 +603,6 @@ begin
   end;
 end;
 
-procedure TDDCSVitals.fVitalsControlChange(Sender: TObject);
-begin
-  inherited;
-
-  if fVitalsControl.ActivePage.TabVisible then
-    if ScreenReader <> nil then
-      ScreenReader.Say('Currently on the ' + fVitalsControl.ActivePage.Caption + ' tab of the vitals page.', False);
-end;
-
 procedure TDDCSVitals.ToggleCheckBoxes(Sender: TObject);
 
   Procedure ToggleCB(cb1:TCheckBox; cb2:TCheckBox);
@@ -583,14 +614,14 @@ procedure TDDCSVitals.ToggleCheckBoxes(Sender: TObject);
 begin
   if (Sender is TCheckBox) and ((Sender as TCheckBox).Checked = True) then
   case (Sender as TCheckBox).Tag of
-    1: ToggleCB(ckMensesYes,ckMensesNo);
-    2: ToggleCB(ckMensesNo,ckMensesYes);
-    3: ToggleCB(ckAmountYes,ckAmountNo);
-    4: ToggleCB(ckAmountNo,ckAmountYes);
-    5: ToggleCB(ckContraceptionYes,ckContraceptionNo);
-    6: ToggleCB(ckContraceptionNo,ckContraceptionYes);
-    7: ToggleCB(ckDurationYes,ckDurationNo);
-    8: ToggleCB(ckDurationNo,ckDurationYes);
+    1: ToggleCB(ckMensesYes, ckMensesNo);
+    2: ToggleCB(ckMensesNo, ckMensesYes);
+    3: ToggleCB(ckAmountYes, ckAmountNo);
+    4: ToggleCB(ckAmountNo, ckAmountYes);
+    5: ToggleCB(ckContraceptionYes, ckContraceptionNo);
+    6: ToggleCB(ckContraceptionNo, ckContraceptionYes);
+    7: ToggleCB(ckDurationYes, ckDurationNo);
+    8: ToggleCB(ckDurationNo, ckDurationYes);
   end;
 end;
 
@@ -686,7 +717,33 @@ begin
   Result := IntToStr(GAgeWeeks) + U + IntToStr(GAgeDays - Trunc(GAgeWeeks * 7));
 end;
 
+// -----------------------------------------------------------------------------
+
+procedure TDDCSVitals.fVitalsControlChange(Sender: TObject);
+begin
+  inherited;
+  
+  if csDesigning in ComponentState then
+    Exit;
+
+  if fVitalsControl.ActivePage.TabVisible then
+    if Owner is TDDCSForm then
+      if TDDCSForm(Owner).ScreenReader <> nil then
+        TDDCSForm(Owner).ScreenReader.Say('Currently on the ' + fVitalsControl.ActivePage.Caption +
+                                 ' tab of the vitals page.', False);
+end;
+
 // Public ----------------------------------------------------------------------
+
+procedure TDDCSVitals.BuildSayOnFocus(wControl: TWinControl; txt: string);
+var
+  rText: PSayOnFocus;
+begin
+  GetMem(rText, SizeOf(TSayOnFocus));
+  rText.FOwningObject := wControl;
+  rText.Text := txt;
+  FocusControlText.Add(rText);
+end;
 
 constructor TDDCSVitals.Create(AOwner: TComponent);
 var
@@ -704,108 +761,111 @@ var
 begin
   inherited;
 
+  if csDesigning in ComponentState then
+    Exit;
+
   FNote := TStringList.Create;
   SetLength(TabSeen, fVitalsControl.PageCount);
 
   cbTransferDay.ItemIndex := 1;
 
-  dtLMP.Format := FMT_DATETIME;
-  dtECD.Format := FMT_DATETIME;
-  dtUltra.Format := FMT_DATETIME;
-  dtEmbryo.Format := FMT_DATETIME;
-  dtOther.Format := FMT_DATETIME;
+  dtLMP.Format        := FMT_DATETIME;
+  dtECD.Format        := FMT_DATETIME;
+  dtUltra.Format      := FMT_DATETIME;
+  dtEmbryo.Format     := FMT_DATETIME;
+  dtOther.Format      := FMT_DATETIME;
   dtEDDUnknown.Format := FMT_DATETIME;
-  edtLMP.Format := FMT_DATETIME;
+  edtLMP.Format       := FMT_DATETIME;
 
-  if not (csDesigning in ComponentState) then
-  begin
-    sl := TStringList.Create;
+  sl := TStringList.Create;
+  try
     try
-      try
-        if RPCBrokerV = nil then
-          Exit;
+      if RPCBrokerV = nil then
+        Exit;
 
-        sl.AddStrings(GetPatientVitals);
-
-        FNote.Add('VITAL SIGNS:');
-        for I := 0 to sl.Count - 1 do
+      sl.AddStrings(GetPatientVitals);
+	  
+      if sl.Count > 0 then
+        if sl[0] <> '-1' then
         begin
-          if ((I = 0) and (sl[I] = '-1')) then
-            Break;
-
-          if Piece(sl[I],U,2) = 'T' then                                                          // Temperature
+          FNote.Add('VITAL SIGNS:');
+          for I := 0 to sl.Count - 1 do
           begin
-            FTemps.Text := Piece(sl[I],U,3);
-            FTempe.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), tuFahrenheit, tuCelsius));
-            FTempdt.Caption := Piece(sl[I],U,4);
-            FNote.Add(strlengthen('  Temperature:    ' + FTemps.Text + ' F (' + FTempe.Text + ' C)') + FTempdt.Caption);
-          end
-          else if Piece(sl[I],U,2) = 'P' then                                                     // Pulse
-          begin
-            FPulses.Text := Piece(sl[I],U,3);
-            FPulsedt.Caption := Piece(sl[I],U,4);
-            FNote.Add(strlengthen('  Pulse:          ' + FPulses.Text) + FPulsedt.Caption);
-          end                                                                                     // Respiration
-          else if Piece(sl[I],U,2) = 'R' then
-          begin
-            FResps.Text := Piece(sl[I],U,3);
-            FRespdt.Caption := Piece(sl[I],U,4);
-            FNote.Add(strlengthen('  Respiration:    ' + FResps.Text) + FRespdt.Caption);
-          end
-          else if Piece(sl[I],U,2) = 'BP' then                                                    // Blood Pressure
-          begin
-         // Populate Systolic (top) and Diastolic (bottom) from BP
-            FSystolics.Text := Piece(Piece(sl[I],U,3),'/',1);
-            FDiastolics.Text := Piece(Piece(sl[I],U,3),'/',2);
-            FSystolicdt.Caption := Piece(sl[I],U,4);
-            FDiastolicdt.Caption := Piece(sl[I],U,4);
-            FNote.Add(strlengthen('  Blood Pressure: ' + Piece(sl[I],U,3)) + Piece(sl[I],U,4));
-          end
-          else if Piece(sl[I],U,2) = 'HT' then                                                    // Height
-          begin
-            FHeights.Text := Piece(sl[I],U,3);
-            FHeighte.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), duInches, duCentimeters));
-            FHeightdt.Caption := Piece(sl[I],U,4);
-            FNote.Add(strlengthen('  Height:         ' + FHeights.Text + ' in (' + FHeighte.Text + ' cm)') + FHeightdt.Caption);
-          end
-          else if Piece(sl[I],U,2) = 'WT' then                                                    // Weight
-          begin
-            FWeights.Text := Piece(sl[I],U,3);
-            FWeighte.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), muPounds, muKilograms));
-            FWeightdt.Caption := Piece(sl[I],U,4);
-            FNote.Add(strlengthen('  Weight:         ' + FWeights.Text + ' lb (' + FWeighte.Text + ' kg)') + FWeightdt.Caption);
-          end
-          else if Piece(sl[I],U,2) = 'PN' then                                                    // Pain
-          begin
-            FPains.Text := Piece(sl[I],U,3);
-            FPaindt.Caption := Piece(sl[I],U,4);
-            FNote.Add(strlengthen('  Pain:           ' + FPains.Text) + FPaindt.Caption);
-          end
-  //        if Piece(sl[I],U,2) = 'POX'                                                           // Pulse Oximetry
-  //        if Piece(sl[I],U,2) = 'CVP' then                                                      // Central Venous Pressure
-  //        if Piece(sl[I],U,2) = 'CG' then                                                       // Circumference/Girth
-          else if Piece(sl[I],U,2) = 'BMI' then                                                   // Body Mass Index
-          begin
-            FBMIValue.Caption := Piece(sl[I],U,3);
-            FNote.Insert(1, '  BMI:            ' + Piece(sl[I],U,3));
-          end
-          else if Piece(sl[I],U,2) = 'AGE' then                                                   // Age
-          begin
-            FAgeValue.Caption := Piece(sl[I],U,3);
-            FNote.Insert(1, '  Age:            ' + Piece(sl[I],U,3));
-          end
-          else if Piece(sl[I],U,2) = 'SEX' then                                                   // Sex
-          begin
-            FSexValue.Caption := Piece(sl[I],U,3);
-            FNote.Insert(1, '  Sex:            ' + Piece(sl[I],U,3));
+            if Piece(sl[I],U,2) = 'T' then                                                          // Temperature
+            begin
+              FTemps.Text := Piece(sl[I],U,3);
+              FTempe.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), tuFahrenheit, tuCelsius));
+              FTempdt.Caption := Piece(sl[I],U,4);
+              FNote.Add(strlengthen('  Temperature:    ' + FTemps.Text + ' F (' + FTempe.Text + ' C)') + FTempdt.Caption);
+            end
+            else if Piece(sl[I],U,2) = 'P' then                                                     // Pulse
+            begin
+              FPulses.Text := Piece(sl[I],U,3);
+              FPulsedt.Caption := Piece(sl[I],U,4);
+              FNote.Add(strlengthen('  Pulse:          ' + FPulses.Text) + FPulsedt.Caption);
+            end                                                                                     // Respiration
+            else if Piece(sl[I],U,2) = 'R' then
+            begin
+              FResps.Text := Piece(sl[I],U,3);
+              FRespdt.Caption := Piece(sl[I],U,4);
+              FNote.Add(strlengthen('  Respiration:    ' + FResps.Text) + FRespdt.Caption);
+            end
+            else if Piece(sl[I],U,2) = 'BP' then                                                    // Blood Pressure
+            begin
+              // Populate Systolic (top) and Diastolic (bottom) from BP
+              FSystolics.Text := Piece(Piece(sl[I],U,3),'/',1);
+              FDiastolics.Text := Piece(Piece(sl[I],U,3),'/',2);
+              FSystolicdt.Caption := Piece(sl[I],U,4);
+              FDiastolicdt.Caption := Piece(sl[I],U,4);
+              FNote.Add(strlengthen('  Blood Pressure: ' + Piece(sl[I],U,3)) + Piece(sl[I],U,4));
+            end
+            else if Piece(sl[I],U,2) = 'HT' then                                                    // Height
+            begin
+              FHeights.Text := Piece(sl[I],U,3);
+              FHeighte.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), duInches, duCentimeters));
+              FHeightdt.Caption := Piece(sl[I],U,4);
+              FNote.Add(strlengthen('  Height:         ' + FHeights.Text + ' in (' + FHeighte.Text + ' cm)') + FHeightdt.Caption);
+            end
+            else if Piece(sl[I],U,2) = 'WT' then                                                    // Weight
+            begin
+              FWeights.Text := Piece(sl[I],U,3);
+              FWeighte.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), muPounds, muKilograms));
+              FWeightdt.Caption := Piece(sl[I],U,4);
+              FNote.Add(strlengthen('  Weight:         ' + FWeights.Text + ' lb (' + FWeighte.Text + ' kg)') + FWeightdt.Caption);
+            end
+            else if Piece(sl[I],U,2) = 'PN' then                                                    // Pain
+            begin
+              FPains.Text := Piece(sl[I],U,3);
+              FPaindt.Caption := Piece(sl[I],U,4);
+              FNote.Add(strlengthen('  Pain:           ' + FPains.Text) + FPaindt.Caption);
+            end
+            // if Piece(sl[I],U,2) = 'POX'                                                          // Pulse Oximetry
+            // if Piece(sl[I],U,2) = 'CVP' then                                                     // Central Venous Pressure
+            // if Piece(sl[I],U,2) = 'CG' then                                                      // Circumference/Girth
+            else if Piece(sl[I],U,2) = 'BMI' then                                                   // Body Mass Index
+            begin
+              FBMIValue.Caption := Piece(sl[I],U,3);
+             FNote.Insert(1, '  BMI:            ' + Piece(sl[I],U,3));
+            end
+            else if Piece(sl[I],U,2) = 'AGE' then                                                   // Age
+            begin
+             FAgeValue.Caption := Piece(sl[I],U,3);
+              FNote.Insert(1, '  Age:            ' + Piece(sl[I],U,3));
+            end
+            else if Piece(sl[I],U,2) = 'SEX' then                                                   // Sex
+            begin
+              FSexValue.Caption := Piece(sl[I],U,3);
+              FNote.Insert(1, '  Sex:            ' + Piece(sl[I],U,3));
+            end;
           end;
-        end;
+		    end;
 
-        sl.Clear;
-        if UpdateContext(MENU_CONTEXT) then
-          tCallV(sl, 'DSIO DDCS VITALS LMP', [RPCBrokerV.PatientDFN, RPCBrokerV.DDCSInterface]);
+      sl.Clear;
+      if UpdateContext(MENU_CONTEXT) then
+        tCallV(sl, 'DSIO DDCS VITALS LMP', [RPCBrokerV.PatientDFN, RPCBrokerV.DDCSInterface]);
 
-        if ((sl.Count > 0) and (sl[0] <> '-1')) then
+      if sl.Count > 0 then
+        if sl[0] <> '-1' then
         begin
           // LMP
           str := Piece(sl[0],U,1);
@@ -867,20 +927,68 @@ begin
               end;
             end;
         end;
-      except
-        on E: Exception do
-        ShowMsg(E.Message, smiError, smbOK);
-      end;
-    finally
-      sl.Free;
-
-      if ((FSexValue.Caption <> '') and
-          (AnsiCompareText(FSexValue.Caption, 'FEMALE') <> 0)) then
-      begin
-        fVitalsControl.Pages[1].TabVisible := False;
-        fVitalsControl.Pages[2].TabVisible := False;
-      end;
+    except
+      on E: Exception do
+      ShowMsg(E.Message, smiError, smbOK);
     end;
+  finally
+    sl.Free;
+
+    // 508 support -----------------------------------------------------------
+    FocusControlText := TSayOnFocusList.Create;
+    BuildSayOnFocus(         FAgeValue, 'Patient age in years');
+    BuildSayOnFocus(         FSexValue, 'Patient sex');
+    BuildSayOnFocus(         FBMIValue, 'Patient B M I');
+    BuildSayOnFocus(            FTemps, 'Temperature in Fahrenheit reported on '     + FTempdt.Caption);
+    BuildSayOnFocus(            FTempe, 'Temperature in Celsius reported on '        + FTempdt.Caption);
+    BuildSayOnFocus(          FHeights, 'Height in Inches reported on '            + FHeightdt.Caption);
+    BuildSayOnFocus(          FHeighte, 'Height in Centimeters reported on '       + FHeightdt.Caption);
+    BuildSayOnFocus(          FWeights, 'Weight in Pounds reported on '            + FWeightdt.Caption);
+    BuildSayOnFocus(          FWeighte, 'Weight in Kilograms reported on '         + FWeightdt.Caption);
+    BuildSayOnFocus(           FPulses, 'Pulse reported on '                        + FPulsedt.Caption);
+    BuildSayOnFocus(            FResps, 'Respiration reported on '                   + FRespdt.Caption);
+    BuildSayOnFocus(            FPains, 'Level of Pain reported on '                 + FPaindt.Caption);
+    BuildSayOnFocus(        FSystolics, 'Blood Pressure Systolic reported on '   + FSystolicdt.Caption);
+    BuildSayOnFocus(       FDiastolics, 'Blood Pressure Diastolic reported on ' + FDiastolicdt.Caption);
+
+    BuildSayOnFocus(     edtCurrentEDD, 'Final Estimated Delivery Date');
+    BuildSayOnFocus(          edtEDDGA, 'Gestational Age');
+    BuildSayOnFocus(         edtEDDLMP, 'Estimated Delivery Date');
+    BuildSayOnFocus(         edtEDDECD, 'Estimated Delivery Date');
+    BuildSayOnFocus(      spnWeekUltra, 'Ultrasound Gestational Age in Weeks');
+    BuildSayOnFocus(       spnDayUltra, 'Ultrasound Gestational Age in Days');
+    BuildSayOnFocus(       edtEDDUltra, 'Estimated Delivery Date');
+    BuildSayOnFocus(     cbTransferDay, 'Embryo Transfer Blastocyst Transfer Day');
+    BuildSayOnFocus(      edtEDDEmbryo, 'Estimated Delivery Date Embryo Transfer');
+    BuildSayOnFocus(      dtEDDUnknown, 'Estimated Delivery Date');
+    BuildSayOnFocus(     ckFinalEDDLMP, 'Last Menstrual Period Final Estimated Delivery Date');
+    BuildSayOnFocus(     ckFinalEDDECD, 'Estimated Conception Date Final Estimated Delivery Date');
+    BuildSayOnFocus(   ckFinalEDDUltra, 'Ultrasound Final Estimated Delivery Date');
+    BuildSayOnFocus(  ckFinalEDDEmbryo, 'Embryo Transfer Final Estimated Delivery Date');
+    BuildSayOnFocus( ckFinalEDDUnknown, 'Unknown Final Estimated Delivery Date');
+    BuildSayOnFocus(      spnWeekOther, 'Other Criteria Gestational Age in Weeks');
+    BuildSayOnFocus(       spnDayOther, 'Other Criteria Gestational Age in Days');
+    BuildSayOnFocus(       edtEDDOther, 'Estimated Delivery Date Other Criteria');
+    BuildSayOnFocus(   ckFinalEDDOther, 'Other Criteria Final Estimated Delivery Date');
+
+    BuildSayOnFocus(   ck_LMPQualifier, 'Last Menstrual Period Approximation');
+    BuildSayOnFocus(       ckMensesYes, 'Menses');
+    BuildSayOnFocus(        ckMensesNo, 'Menses');
+    BuildSayOnFocus(      edtFrequency, 'Frequency in days');
+    BuildSayOnFocus(       edtMenarche, 'Menarche in age of onset');
+    BuildSayOnFocus(       ckAmountYes, 'Amount');
+    BuildSayOnFocus(        ckAmountNo, 'Amount');
+    BuildSayOnFocus(     ckDurationYes, 'Duration');
+    BuildSayOnFocus(      ckDurationNo, 'Duration');
+    BuildSayOnFocus(ckContraceptionYes, 'On Contraception');
+    BuildSayOnFocus( ckContraceptionNo, 'On Contraception');
+    // 508 support -----------------------------------------------------------
+  end;
+
+  if AnsiCompareText(FSexValue.Caption, 'MALE') = 0 then
+  begin
+    fVitalsControl.Pages[1].TabVisible := False;
+    fVitalsControl.Pages[2].TabVisible := False;
   end;
 
   fVitalsControl.ActivePageIndex := 0;
@@ -888,7 +996,10 @@ end;
 
 destructor TDDCSVitals.Destroy;
 begin
-  FNote.Free;
+  if Assigned(FocusControlText) then
+    FocusControlText.Free;
+  if Assigned(FNote) then
+    FNote.Free;
   SetLength(TabSeen, 0);
 
   inherited;
@@ -1060,6 +1171,20 @@ begin
     Result.AddStrings(GetEDDNote);
   if fVitalsControl.Pages[2].TabVisible then
     Result.AddStrings(GetLMPNote);
+end;
+
+function TDDCSVitals.GetTextforFocus(Value: TWinControl): string;
+var
+  I: Integer;
+begin
+  Result := '';
+
+  for I := 0 to FocusControlText.Count - 1 do
+    if FocusControlText[I].FOwningObject = Value then
+    begin
+      Result := FocusControlText[I].Text;
+      Break;
+    end;
 end;
 
 end.

@@ -23,7 +23,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Samples.Spin,
-  ORCtrls, VAUtils, uBase, uCommon, uReportItems, uExtndComBroker, Vcl.CheckLst;
+   Vcl.CheckLst, ORCtrls, uBase;
 
 type
   TDDCSFormConfig = class(TForm)
@@ -122,7 +122,7 @@ type
     procedure ClearDialogEditor;
     procedure ClearReportItemInputD;
   public
-    constructor Create(AOwner: TComponent; DDCSForm: TDDCSForm); overload;
+    constructor Create(AOwner: TDDCSForm); overload;
     destructor Destroy; override;
   end;
 
@@ -132,7 +132,7 @@ var
 implementation
 
 uses
-  frmConfigMultiItemAdd, frmVitals;
+  frmConfigMultiItemAdd, frmVitals, uCommon, uReportItems, uExtndComBroker;
 
 {$R *.dfm}
 
@@ -302,7 +302,8 @@ begin
     sl := TStringList.Create;
     try
       try
-        sl.Text := DisplayDialog(@RPCBrokerV, '||' + lvDialog.Items[lvDialog.ItemIndex].Caption, True);
+        sl.Text := DisplayDialog(@FDDCSForm, @RPCBrokerV,
+                   '||' + lvDialog.Items[lvDialog.ItemIndex].Caption, True);
       except
         on E: Exception do
         ShowMsg(E.Message, smiError, smbOK);
@@ -516,14 +517,14 @@ end;
 
 // Public ----------------------------------------------------------------------
 
-constructor TDDCSFormConfig.Create(AOwner: TComponent; DDCSForm: TDDCSForm);
+constructor TDDCSFormConfig.Create(AOwner: TDDCSForm);
 var
   I: Integer;
   lvItem: TListItem;
 begin
   inherited Create(AOwner);
 
-  FDDCSForm := DDCSForm;
+  FDDCSForm := AOwner;
   FObjects := TStringList.Create;
 
   if Assigned(DLLDialogList) then

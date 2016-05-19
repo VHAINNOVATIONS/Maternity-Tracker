@@ -17,7 +17,7 @@ unit udlgAbdomPain;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v2.0.0.0   - Visual and 508 Update only
+   v2.0.0.0
 }
 
 interface
@@ -32,28 +32,29 @@ type
     pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    leLocat: TCaptionEdit;
-    leFreq: TCaptionEdit;
-    leDur: TCaptionEdit;
-    Label3: TStaticText;
+    leOnset: TEdit;
+    leLocat: TEdit;
+    leFreq: TEdit;
+    leDur: TEdit;
+    Label3: TLabel;
     cbContYes: TCheckBox;
     cbContNo: TCheckBox;
-    Label1: TStaticText;
+    Label1: TLabel;
     cbNausYes: TCheckBox;
     cbNausNo: TCheckBox;
-    Label4: TStaticText;
+    Label4: TLabel;
     cbAppYes: TCheckBox;
     cbAppNo: TCheckBox;
-    Label5: TStaticText;
+    Label5: TLabel;
     cbFevYes: TCheckBox;
     cbFevNo: TCheckBox;
-    StaticText1: TStaticText;
-    lbFreq: TStaticText;
-    lbDur: TStaticText;
-    StaticText4: TStaticText;
+    StaticText1: TLabel;
+    lbFreq: TLabel;
+    lbDur: TLabel;
+    StaticText4: TLabel;
     procedure bbtnOKClick(Sender: TObject);
     procedure cbContYesClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -65,8 +66,19 @@ implementation
 
 {$R *.dfm}
 
+procedure TdlgAbdomPain.FormCreate(Sender: TObject);
+begin
+  SayOnFocus(cbContYes, 'Contractions');
+  SayOnFocus( cbContNo, 'Contractions');
+  SayOnFocus(cbNausYes, 'Nausea, Vomiting, Diarrhea');
+  SayOnFocus( cbNausNo, 'Nausea, Vomiting, Diarrhea');
+  SayOnFocus( cbAppYes, 'Appetite');
+  SayOnFocus(  cbAppNo, 'Appetite');
+  SayOnFocus( cbFevYes, 'Fever and or Chills');
+  SayOnFocus(  cbFevNo, 'Fever and or Chills');
+end;
+
 procedure TdlgAbdomPain.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
 var
   I : Integer;
 begin

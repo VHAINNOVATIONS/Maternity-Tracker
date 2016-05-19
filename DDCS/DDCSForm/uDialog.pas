@@ -23,13 +23,14 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.ComCtrls, VAUtils, uCommon, uReportItems, uExtndComBroker;
+  Vcl.ComCtrls, uBase, uCommon, uReportItems, uExtndComBroker;
 
 Type
   TGetTmpStrList = function: TStringList of object;
 
   TDDCSDialog = class(TForm)
   private
+    FDDCSForm: TDDCSForm;
     FReportCollection: TDDCSNoteCollection;
     FReturnList: TStringList;
     FConfiguration: TStringList;
@@ -39,12 +40,17 @@ Type
     procedure SetNoteCollection(const Value: TDDCSNoteCollection);
     procedure cbAutoWidth(Sender: TObject);
     procedure RadioGroupEnter(Sender: TObject);
+    // Screen ------------------------------------------------------------------
+    procedure ActiveControlChanged(Sender: TObject);
   protected
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
   public
-    constructor Create(AOwner: TComponent; Broker: PCPRSComBroker; DebugMode: Boolean; iIEN: string); overload;
+    constructor Create(AOwner: PDDCSForm; Broker: PCPRSComBroker;
+                       DebugMode: Boolean; iIEN: string); overload;
     destructor Destroy; override;
+    procedure SayOnFocus(wControl: TWinControl; tSay: string);
     procedure Save;
+    property DDCSForm: TDDCSForm read FDDCSForm;
     property TmpStrList: TStringList read FReturnList write FReturnList;
     property DebugMode: Boolean read FDebugMode write FDebugMode;
     property IEN: string read FIEN write FIEN;
@@ -97,6 +103,19 @@ begin
       TWinControl(rg.Controls[0]).TabStop := True;
 end;
 
+procedure TDDCSDialog.ActiveControlChanged(Sender: TObject);
+var
+  tmp: string;
+  nItem: TDDCSNoteItem;
+begin
+  nItem := FReportCollection.GetNoteItem(ActiveControl);
+  if nItem <> nil then
+    if nItem.SayOnFocus <> '' then
+      if FDDCSForm <> nil then
+        if FDDCSForm.ScreenReader <> nil then
+          FDDCSForm.ScreenReader.Say(nItem.SayOnFocus, False);
+end;
+
 // Protected -------------------------------------------------------------------
 
 procedure TDDCSDialog.Notification(AComponent: TComponent; Operation: TOperation);
@@ -120,7 +139,8 @@ end;
 
 // Public ----------------------------------------------------------------------
 
-constructor TDDCSDialog.Create(AOwner: TComponent; Broker: PCPRSComBroker; DebugMode: Boolean; iIEN: string);
+constructor TDDCSDialog.Create(AOwner: PDDCSForm; Broker: PCPRSComBroker;
+                               DebugMode: Boolean; iIEN: string);
 var
   sl,dl: TStringList;
   I: Integer;
@@ -164,7 +184,11 @@ var
   end;
 
 begin
-  inherited Create(AOwner);
+  inherited Create(AOwner^);
+
+  FDDCSForm := AOwner^;
+
+  Screen.OnActiveControlChange := ActiveControlChanged;
 
   RPCBrokerV := Broker^;
   FDebugMode := DebugMode;
@@ -228,11 +252,22 @@ begin
     if not DebugMode then
       Save;
 
+  Screen.OnActiveControlChange := nil;
+
   FReturnList.Free;
   FConfiguration.Free;
   FReportCollection.Free;
 
   inherited;
+end;
+
+procedure TDDCSDialog.SayOnFocus(wControl: TWinControl; tSay: string);
+var
+  nItem: TDDCSNoteItem;
+begin
+  nItem := FReportCollection.GetNoteItemAddifNil(wControl);
+  if nItem <> nil then
+    nItem.SayOnFocus := tSay;
 end;
 
 procedure TDDCSDialog.Save;
@@ -246,9 +281,9 @@ begin
 
   sl := TStringList.Create;
   try
-    for I := 0 to ReportCollection.Count - 1 do
+    for I := 0 to FReportCollection.Count - 1 do
     begin
-      nItem := ReportCollection.Items[I];
+      nItem := FReportCollection.Items[I];
 
       // Data format -----------------------------------------------------------
       //   CONTROL^(INDEXED^VALUE)

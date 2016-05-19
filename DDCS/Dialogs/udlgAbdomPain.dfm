@@ -4,7 +4,7 @@ object dlgAbdomPain: TdlgAbdomPain
   BorderStyle = bsDialog
   Caption = 'Abdominal Pain and Cramping'
   ClientHeight = 179
-  ClientWidth = 537
+  ClientWidth = 521
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,13 +14,14 @@ object dlgAbdomPain: TdlgAbdomPain
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TStaticText
+  object Label3: TLabel
     Left = 21
     Top = 51
-    Width = 82
-    Height = 18
+    Width = 78
+    Height = 14
     Caption = 'Contractions?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -28,13 +29,12 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 2
   end
-  object Label1: TStaticText
+  object Label1: TLabel
     Left = 260
     Top = 20
-    Width = 159
-    Height = 18
+    Width = 154
+    Height = 14
     Caption = 'Nausea, Vomiting, Diarrhea?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -42,13 +42,12 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 9
   end
-  object Label4: TStaticText
+  object Label4: TLabel
     Left = 260
     Top = 44
-    Width = 58
-    Height = 18
+    Width = 54
+    Height = 14
     Caption = 'Appetite?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -56,13 +55,12 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 12
   end
-  object Label5: TStaticText
+  object Label5: TLabel
     Left = 260
     Top = 68
-    Width = 114
-    Height = 18
+    Width = 110
+    Height = 14
     Caption = 'Fever and or Chills?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -70,30 +68,84 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 15
+  end
+  object StaticText1: TLabel
+    Left = 21
+    Top = 21
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbFreq: TLabel
+    Left = 21
+    Top = 81
+    Width = 58
+    Height = 14
+    Caption = 'Frequency'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
+  end
+  object lbDur: TLabel
+    Left = 21
+    Top = 116
+    Width = 46
+    Height = 14
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
+  end
+  object StaticText4: TLabel
+    Left = 260
+    Top = 100
+    Width = 47
+    Height = 14
+    Caption = 'Location'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
     Top = 150
-    Width = 537
+    Width = 521
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 20
+    TabOrder = 12
     object bbtnOK: TBitBtn
-      Left = 379
+      Left = 363
       Top = 2
       Width = 75
       Height = 25
       Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkOK
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 460
+      Left = 444
       Top = 2
       Width = 75
       Height = 25
@@ -104,176 +156,114 @@ object dlgAbdomPain: TdlgAbdomPain
       TabOrder = 1
     end
   end
-  object leOnset: TCaptionEdit
-    Left = 64
+  object leOnset: TEdit
+    Left = 62
     Top = 18
-    Width = 163
+    Width = 165
     Height = 22
-    TabOrder = 1
-    Caption = 'Onset'
+    TabOrder = 0
   end
-  object leLocat: TCaptionEdit
+  object leLocat: TEdit
     Left = 317
     Top = 96
     Width = 186
     Height = 22
-    TabOrder = 19
-    Caption = 'Location'
+    TabOrder = 11
   end
-  object leFreq: TCaptionEdit
+  object leFreq: TEdit
     Left = 89
     Top = 77
     Width = 138
     Height = 22
-    TabOrder = 6
+    TabOrder = 3
     Visible = False
-    Caption = 'Frequency'
   end
-  object leDur: TCaptionEdit
+  object leDur: TEdit
     Left = 89
     Top = 112
     Width = 138
     Height = 22
-    TabOrder = 8
+    TabOrder = 4
     Visible = False
-    Caption = 'Duration'
   end
   object cbContYes: TCheckBox
     Tag = 1
     Left = 109
-    Top = 52
+    Top = 51
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 3
+    TabOrder = 1
     OnClick = cbContYesClick
   end
   object cbContNo: TCheckBox
     Tag = 2
-    Left = 171
-    Top = 52
+    Left = 155
+    Top = 51
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 4
+    TabOrder = 2
     OnClick = cbContYesClick
   end
   object cbNausYes: TCheckBox
     Tag = 3
-    Left = 419
-    Top = 21
+    Left = 422
+    Top = 20
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 10
+    TabOrder = 5
     OnClick = cbContYesClick
   end
   object cbNausNo: TCheckBox
     Tag = 4
     Left = 467
-    Top = 21
+    Top = 20
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 11
+    TabOrder = 6
     OnClick = cbContYesClick
   end
   object cbAppYes: TCheckBox
     Tag = 5
-    Left = 419
-    Top = 45
+    Left = 422
+    Top = 44
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 13
+    TabOrder = 7
     OnClick = cbContYesClick
   end
   object cbAppNo: TCheckBox
     Tag = 6
     Left = 467
-    Top = 45
+    Top = 44
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 14
+    TabOrder = 8
     OnClick = cbContYesClick
   end
   object cbFevYes: TCheckBox
     Tag = 7
-    Left = 419
-    Top = 69
+    Left = 422
+    Top = 68
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 16
+    TabOrder = 9
     OnClick = cbContYesClick
   end
   object cbFevNo: TCheckBox
     Tag = 8
     Left = 467
-    Top = 69
+    Top = 68
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 17
+    TabOrder = 10
     OnClick = cbContYesClick
-  end
-  object StaticText1: TStaticText
-    Left = 21
-    Top = 21
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-  end
-  object lbFreq: TStaticText
-    Left = 21
-    Top = 81
-    Width = 62
-    Height = 18
-    Caption = 'Frequency'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 5
-    Visible = False
-  end
-  object lbDur: TStaticText
-    Left = 21
-    Top = 116
-    Width = 50
-    Height = 18
-    Caption = 'Duration'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 7
-    Visible = False
-  end
-  object StaticText4: TStaticText
-    Left = 260
-    Top = 100
-    Width = 51
-    Height = 18
-    Caption = 'Location'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 18
   end
 end

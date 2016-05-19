@@ -25,7 +25,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls, Buttons, ComCtrls, Vcl.Samples.Spin, Mask, System.StrUtils,
-  uDialog, uCommon, uExtndComBroker, VA508AccessibilityManager;
+  uDialog, uExtndComBroker;
 
 type
   TdlgPregHist = class(TDDCSDialog)
@@ -78,7 +78,7 @@ var
 implementation
 
 uses
-  VAUtils, fPregHist, fChildHist, udlgModTotPregs;
+  uCommon, fPregHist, fChildHist, udlgModTotPregs;
 
 {$R *.dfm}
 
@@ -523,45 +523,45 @@ var
   lvitem: TListItem;
   I: Integer;
 begin
-  tabControl := TTabSheet.Create(nil);
-  tabControl.PageControl := pgcPregnancy;
-  tabControl.Name := 'tsht' + IntToStr(pgcPregnancy.PageCount);
-  tabControl.Caption := 'Pregnancy #' + IntToStr(pgcPregnancy.PageCount);
-
-  Result := TfrmPregHist.Create(tabControl, @RPCBrokerV, False, '');
-  Result.Parent := tabControl;
-  InsertComponent(Result);
-  Result.Left := 0;
-  Result.Top := 0;
-  Result.BorderStyle := bsNone;
-  Result.Position := poDefault;
-  Result.FormStyle := fsNormal;
-  Result.Align := alClient;
-  Result.Visible := True;
-  TfrmPregHist(Result).FPregIEN := iIEN;
-  TfrmPregHist(Result).FType := TSpinEdit(Sender).Hint;
-
-  slPregs.AddObject(tabControl.Caption,Result);
-
-  if AnsiContainsStr(iIEN,'+') then
-  begin
-    lvitem := PregListView.Items.Add;
-    lvitem.Caption := 'L';
-    for I := 0 to 19 do
-      lvitem.SubItems.Add('');
-
-    lvitem.SubItems[0] := TfrmPregHist(Result).FPregIEN;
-    lvitem.SubItems[18] := TfrmPregHist(Result).FType;
-
-    if lvitem.SubItems[18] = 'E' then
-      TfrmPregHist(Result).lblStatus.Caption := '*** ECTOPIC ***'
-    else if lvitem.SubItems[18] = 'AI' then
-      TfrmPregHist(Result).lblStatus.Caption := '*** AB. INDUCED ***'
-    else if lvitem.SubItems[18] = 'AS' then
-      TfrmPregHist(Result).lblStatus.Caption := '*** AB. SPONTANEOUS ***';
-  end;
-
-  pgcPregnancy.ActivePageIndex := tabControl.PageIndex;
+//  tabControl := TTabSheet.Create(nil);
+//  tabControl.PageControl := pgcPregnancy;
+//  tabControl.Name := 'tsht' + IntToStr(pgcPregnancy.PageCount);
+//  tabControl.Caption := 'Pregnancy #' + IntToStr(pgcPregnancy.PageCount);
+//
+//  Result := TfrmPregHist.Create(tabControl, @RPCBrokerV, False, '');
+//  Result.Parent := tabControl;
+//  InsertComponent(Result);
+//  Result.Left := 0;
+//  Result.Top := 0;
+//  Result.BorderStyle := bsNone;
+//  Result.Position := poDefault;
+//  Result.FormStyle := fsNormal;
+//  Result.Align := alClient;
+//  Result.Visible := True;
+//  TfrmPregHist(Result).FPregIEN := iIEN;
+//  TfrmPregHist(Result).FType := TSpinEdit(Sender).Hint;
+//
+//  slPregs.AddObject(tabControl.Caption,Result);
+//
+//  if AnsiContainsStr(iIEN,'+') then
+//  begin
+//    lvitem := PregListView.Items.Add;
+//    lvitem.Caption := 'L';
+//    for I := 0 to 19 do
+//      lvitem.SubItems.Add('');
+//
+//    lvitem.SubItems[0] := TfrmPregHist(Result).FPregIEN;
+//    lvitem.SubItems[18] := TfrmPregHist(Result).FType;
+//
+//    if lvitem.SubItems[18] = 'E' then
+//      TfrmPregHist(Result).lblStatus.Caption := '*** ECTOPIC ***'
+//    else if lvitem.SubItems[18] = 'AI' then
+//      TfrmPregHist(Result).lblStatus.Caption := '*** AB. INDUCED ***'
+//    else if lvitem.SubItems[18] = 'AS' then
+//      TfrmPregHist(Result).lblStatus.Caption := '*** AB. SPONTANEOUS ***';
+//  end;
+//
+//  pgcPregnancy.ActivePageIndex := tabControl.PageIndex;
 end;
 
 procedure TdlgPregHist.edtTotPregChange(Sender: TObject);

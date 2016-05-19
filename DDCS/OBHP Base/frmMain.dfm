@@ -252,6 +252,9 @@ object Form1: TForm1
         Required = False
       end
       item
+        SayOnFocus = 
+          'Additional Complaints and or History of Present Illness check li' +
+          'st box press space to check item or return to activate dialog'
         Order = 4
         DoNotSpace = False
         DoNotSave = False
@@ -284,6 +287,7 @@ object Form1: TForm1
         Required = False
       end
       item
+        SayOnFocus = 'Active Medications'
         Order = 7
         IdentifyingName = 'Active Medications Section Note Text'
         DoNotSpace = False
@@ -294,6 +298,7 @@ object Form1: TForm1
         Required = False
       end
       item
+        SayOnFocus = 'Active Allergies'
         Order = 8
         IdentifyingName = 'Allergies Section Note Text'
         DoNotSpace = False
@@ -314,6 +319,9 @@ object Form1: TForm1
         Required = False
       end
       item
+        SayOnFocus = 
+          'Medical History check list box press space to check item or retu' +
+          'rn to activate dialog'
         Order = 10
         DoNotSpace = False
         DoNotSave = False
@@ -324,6 +332,9 @@ object Form1: TForm1
         DialogReturn = MemoHistory
       end
       item
+        SayOnFocus = 
+          'Family History check list box press space to check item or retur' +
+          'n to activate dialog'
         Order = 11
         DoNotSpace = False
         DoNotSave = False
@@ -334,6 +345,9 @@ object Form1: TForm1
         DialogReturn = MemoHistory
       end
       item
+        SayOnFocus = 
+          'Social History check list box press space to check item or retur' +
+          'n to activate dialog'
         Order = 12
         DoNotSpace = False
         DoNotSave = False
@@ -428,6 +442,7 @@ object Form1: TForm1
         Required = False
       end
       item
+        SayOnFocus = 'Problems check list box press space to check item'
         Order = 21
         DoNotSpace = False
         DoNotSave = False
@@ -461,7 +476,7 @@ object Form1: TForm1
       item
         Order = 24
         IdentifyingName = 'Plan Section Note Text'
-        Title = 'ASSESSMENT AND PLAN:'
+        Title = 'Assessment and Plan'
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -471,6 +486,19 @@ object Form1: TForm1
       end>
     object oPage1: TTabSheet
       Caption = 'Overview'
+      object lbChiefComplaint: TLabel
+        Left = 19
+        Top = 158
+        Width = 89
+        Height = 13
+        Caption = 'Chief Complaint'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object RadioGroup3: TRadioGroup
         Left = 551
         Top = 25
@@ -500,7 +528,7 @@ object Form1: TForm1
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
         ScrollBars = ssVertical
-        TabOrder = 3
+        TabOrder = 2
         Caption = 'Chief Complaint'
       end
       object lbSummary: TStaticText
@@ -521,20 +549,6 @@ object Form1: TForm1
         TabOrder = 0
         TabStop = True
       end
-      object StaticText1: TStaticText
-        Left = 19
-        Top = 158
-        Width = 92
-        Height = 17
-        Caption = 'Chief Complaint'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 2
-      end
     end
     object oPage2: TTabSheet
       Caption = 'Vitals'
@@ -551,6 +565,32 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'History of Present Illness'
+      object lbAdditionalComplaints: TLabel
+        Left = 19
+        Top = 30
+        Width = 307
+        Height = 13
+        Caption = 'Additional Complaints and or History of Present Illness'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lbComplaintsSection: TLabel
+        Left = 20
+        Top = 199
+        Width = 104
+        Height = 13
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object ListBoxComplaints: TCheckListBox
         Left = 19
         Top = 47
@@ -559,22 +599,7 @@ object Form1: TForm1
         Align = alCustom
         Anchors = [akLeft, akTop, akRight]
         ItemHeight = 13
-        TabOrder = 1
-      end
-      object StaticText2: TStaticText
-        Left = 19
-        Top = 30
-        Width = 310
-        Height = 17
-        Caption = 'Additional Complaints and or History of Present Illness'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
         TabOrder = 0
-        TabStop = True
       end
       object ButtonComplaintClear: TButton
         Tag = 1
@@ -585,7 +610,7 @@ object Form1: TForm1
         Align = alCustom
         Anchors = [akTop, akRight]
         Caption = 'Clear Text'
-        TabOrder = 4
+        TabOrder = 2
         OnClick = ClearTextClick
       end
       object MemoComplaints: TCaptionMemo
@@ -602,24 +627,10 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth
-        TabOrder = 3
+        TabOrder = 1
         Caption = 
           'Additional Complints and or History of Present Illness Section N' +
           'ote Text'
-      end
-      object StaticText3: TStaticText
-        Left = 20
-        Top = 199
-        Width = 107
-        Height = 17
-        Caption = 'Section Note Text'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 2
       end
     end
     object oPage4: TTabSheet
@@ -628,6 +639,19 @@ object Form1: TForm1
       ExplicitTop = 0
       ExplicitWidth = 0
       ExplicitHeight = 0
+      object lbImportSection: TLabel
+        Left = 19
+        Top = 115
+        Width = 104
+        Height = 13
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object RadioGroupImport: TRadioGroup
         Left = 19
         Top = 30
@@ -657,12 +681,14 @@ object Form1: TForm1
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
         BevelOuter = bvNone
-        TabOrder = 3
-        object memoAllergies: TCaptionMemo
+        TabOrder = 2
+        OnEnter = pnlSectionImportsEnter
+        object memoAllergies: TMemo
           Left = 0
           Top = 0
           Width = 701
           Height = 307
+          TabStop = False
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -673,9 +699,8 @@ object Form1: TForm1
           ReadOnly = True
           ScrollBars = ssBoth
           TabOrder = 1
-          Caption = 'Allergies Section Note Text'
         end
-        object memoActiveMedications: TCaptionMemo
+        object memoActiveMedications: TMemo
           Left = 0
           Top = 0
           Width = 701
@@ -690,7 +715,6 @@ object Form1: TForm1
           ReadOnly = True
           ScrollBars = ssBoth
           TabOrder = 0
-          Caption = 'Active Medications Section Note Text'
         end
       end
       object ButtonReload: TButton
@@ -703,11 +727,14 @@ object Form1: TForm1
         WordWrap = True
         OnClick = RadioGroupImportClick
       end
-      object StaticText4: TStaticText
-        Left = 19
-        Top = 115
-        Width = 107
-        Height = 17
+    end
+    object oPage5: TTabSheet
+      Caption = 'History'
+      object lbHistorySection: TLabel
+        Left = 272
+        Top = 66
+        Width = 104
+        Height = 13
         Caption = 'Section Note Text'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -715,11 +742,7 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 2
       end
-    end
-    object oPage5: TTabSheet
-      Caption = 'History'
       object RadioGroupHistory: TRadioGroup
         Left = 19
         Top = 20
@@ -751,7 +774,7 @@ object Form1: TForm1
         Align = alCustom
         Anchors = [akTop, akRight]
         Caption = 'Clear Text'
-        TabOrder = 4
+        TabOrder = 3
         OnClick = ClearTextClick
       end
       object pnlHistoryCategories: TPanel
@@ -763,11 +786,13 @@ object Form1: TForm1
         Anchors = [akLeft, akTop, akBottom]
         BevelOuter = bvNone
         TabOrder = 1
+        OnEnter = pnlHistoryCategoriesEnter
         object ListBoxSocialHist: TCheckListBox
           Left = 0
           Top = 0
           Width = 231
           Height = 356
+          TabStop = False
           Align = alClient
           ItemHeight = 13
           TabOrder = 2
@@ -777,9 +802,10 @@ object Form1: TForm1
           Top = 0
           Width = 231
           Height = 356
+          TabStop = False
           Align = alClient
           ItemHeight = 13
-          TabOrder = 0
+          TabOrder = 1
         end
         object ListBoxMedicalHist: TCheckListBox
           Left = 0
@@ -788,7 +814,7 @@ object Form1: TForm1
           Height = 356
           Align = alClient
           ItemHeight = 13
-          TabOrder = 1
+          TabOrder = 0
         end
       end
       object MemoHistory: TCaptionMemo
@@ -805,22 +831,8 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth
-        TabOrder = 3
-        Caption = 'History Section Note Text'
-      end
-      object StaticText5: TStaticText
-        Left = 272
-        Top = 66
-        Width = 107
-        Height = 17
-        Caption = 'Section Note Text'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
         TabOrder = 2
+        Caption = 'History Section Note Text'
       end
     end
     object oPage6: TTabSheet
@@ -828,6 +840,19 @@ object Form1: TForm1
       DesignSize = (
         734
         458)
+      object lbRosSection: TLabel
+        Left = 19
+        Top = 76
+        Width = 104
+        Height = 13
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object ButtonROS: TButton
         Left = 19
         Top = 30
@@ -850,7 +875,7 @@ object Form1: TForm1
         Height = 25
         Anchors = [akTop, akRight]
         Caption = 'Clear Text'
-        TabOrder = 3
+        TabOrder = 2
         OnClick = ClearTextClick
       end
       object MemoROS: TCaptionMemo
@@ -867,22 +892,8 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth
-        TabOrder = 2
-        Caption = 'Review of Symptoms since Last Menstrual Period Section Note Text'
-      end
-      object StaticText6: TStaticText
-        Left = 19
-        Top = 76
-        Width = 107
-        Height = 17
-        Caption = 'Section Note Text'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
         TabOrder = 1
+        Caption = 'Review of Symptoms since Last Menstrual Period Section Note Text'
       end
     end
     object oPage7: TTabSheet
@@ -890,6 +901,19 @@ object Form1: TForm1
       DesignSize = (
         734
         458)
+      object lbPhysicalSection: TLabel
+        Left = 19
+        Top = 76
+        Width = 104
+        Height = 13
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object ButtonPhysicalClear: TButton
         Tag = 4
         Left = 645
@@ -898,7 +922,7 @@ object Form1: TForm1
         Height = 25
         Anchors = [akTop, akRight]
         Caption = 'Clear Text'
-        TabOrder = 3
+        TabOrder = 2
         OnClick = ClearTextClick
       end
       object ButtonPhysical: TButton
@@ -929,22 +953,8 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth
-        TabOrder = 2
-        Caption = 'Physical Exam Section Note Text'
-      end
-      object StaticText7: TStaticText
-        Left = 19
-        Top = 76
-        Width = 107
-        Height = 17
-        Caption = 'Section Note Text'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
         TabOrder = 1
+        Caption = 'Physical Exam Section Note Text'
       end
     end
     object oPage8: TTabSheet
@@ -952,6 +962,19 @@ object Form1: TForm1
       DesignSize = (
         734
         458)
+      object lbPelvicSection: TLabel
+        Left = 19
+        Top = 76
+        Width = 104
+        Height = 13
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object ButtonOBFlow: TButton
         Left = 117
         Top = 30
@@ -988,7 +1011,7 @@ object Form1: TForm1
         Height = 25
         Anchors = [akTop, akRight]
         Caption = 'Clear Text'
-        TabOrder = 4
+        TabOrder = 3
         OnClick = ClearTextClick
       end
       object MemoOBExam: TCaptionMemo
@@ -1005,22 +1028,8 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth
-        TabOrder = 3
-        Caption = 'Pelvic Exam Section Note Text'
-      end
-      object StaticText8: TStaticText
-        Left = 19
-        Top = 76
-        Width = 107
-        Height = 17
-        Caption = 'Section Note Text'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
         TabOrder = 2
+        Caption = 'Pelvic Exam Section Note Text'
       end
     end
     object oPage9: TTabSheet
@@ -1028,20 +1037,31 @@ object Form1: TForm1
       DesignSize = (
         734
         458)
-      object lblProblems: TStaticText
+      object lbProblems: TLabel
         Left = 19
         Top = 21
-        Width = 59
-        Height = 17
-        Caption = 'Problems:'
+        Width = 52
+        Height = 13
+        Caption = 'Problems'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 0
-        TabStop = True
+      end
+      object lbPlanSection: TLabel
+        Left = 19
+        Top = 176
+        Width = 104
+        Height = 13
+        Caption = 'Section Note Text'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object cklstProblems: TCheckListBox
         Left = 19
@@ -1052,7 +1072,7 @@ object Form1: TForm1
         Align = alCustom
         Anchors = [akLeft, akTop, akRight]
         ItemHeight = 13
-        TabOrder = 1
+        TabOrder = 0
       end
       object btnEducation: TButton
         Left = 533
@@ -1067,7 +1087,7 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 1
       end
       object ButtonPreNatalNormal: TButton
         Left = 533
@@ -1082,7 +1102,7 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 2
       end
       object ButtonPlanClear: TButton
         Tag = 6
@@ -1092,7 +1112,7 @@ object Form1: TForm1
         Height = 25
         Anchors = [akTop, akRight]
         Caption = 'Clear Text'
-        TabOrder = 6
+        TabOrder = 4
         OnClick = ClearTextClick
       end
       object MemoPreNatal: TCaptionMemo
@@ -1109,22 +1129,8 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth
-        TabOrder = 5
+        TabOrder = 3
         Caption = 'Plan Section Note Text'
-      end
-      object StaticText9: TStaticText
-        Left = 19
-        Top = 176
-        Width = 107
-        Height = 17
-        Caption = 'Section Note Text'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 4
       end
     end
   end

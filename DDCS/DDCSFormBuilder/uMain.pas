@@ -24,8 +24,8 @@ interface
 
 uses
   Windows, ActiveX, Classes, ComObj, DDCSFormBuilder_TLB, CPRSChart_TLB,
-  Forms, SysUtils, Vcl.Dialogs, Vcl.Controls, StrUtils, StdVcl, uBase, uCommon,
-  uExtndComBroker;
+  Forms, SysUtils, Vcl.Dialogs, Vcl.Controls, StrUtils, StdVcl,
+  uBase, uExtndComBroker;
 
 type
   TDDCS = class(TAutoObject, IDDCS, ICPRSExtension)
@@ -48,7 +48,7 @@ var
 implementation
 
 uses
-  ComServ, VAUtils;
+  ComServ, uCommon;
 
 // Legacy ----------------------------------------------------------------------
 

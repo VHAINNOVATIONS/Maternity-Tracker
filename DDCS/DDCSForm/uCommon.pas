@@ -22,43 +22,39 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, System.StrUtils, System.Win.ComObj, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.ComCtrls, Vcl.Menus, Vcl.CheckLst, Vcl.Grids, FSAPILib_TLB,
-  ORDtTm, ORCtrls, uExtndComBroker;
+  System.Classes, System.StrUtils, Vcl.Graphics, Vcl.Controls, Vcl.Forms,
+  Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus,
+  Vcl.CheckLst, Vcl.Grids, ORDtTm, ORCtrls, uBase, uExtndComBroker;
 
 const
   U = '^';
   MENU_CONTEXT    = 'DSIO DDCS CONTEXT';
-  WM_SHOW_SPLASH  = WM_USER + 270;
-  WM_SAVE         = WM_USER + 280;
 
 type
-  TScreenReader = class(TObject)
-  private
-    FActive: Boolean;
-    ObjGUID: TGUID;
-    ObjIntf: IUnknown;
-    Obj: IJawsApi;
-    function IsObjectRegistered: Boolean;
-  public
-    constructor Create;
-    procedure Say(txt: string; flush: Boolean);
-    procedure Stop;
-  end;
-
-        TDisplayDialog = function(Broker: PCPRSComBroker; dlgName: WideString; DebugMode: Boolean): WideString; stdcall;
+        TDisplayDialog = function(AOwner: PDDCSForm; Broker: PCPRSComBroker; dlgName: WideString;
+                                  DebugMode: Boolean): WideString; stdcall;
       TRegisterDialogs = function: WideString; stdcall;
   TGetDialogComponents = function(dlgName: WideString): WideString; stdcall;
+
+  // Replacement of and Redirection to VAUtils ---------------------------------
+    TShow508MessageIcon = (smiNone, smiInfo, smiWarning, smiError, smiQuestion);
+  TShow508MessageButton = (smbOK, smbOKCancel, smbAbortRetryCancel, smbYesNoCancel,
+                           smbYesNo, smbRetryCancel);
+  TShow508MessageResult = (smrOK, srmCancel, smrAbort, smrRetry, smrIgnore, smrYes, smrNo);
+
+  function ShowMsg(const Msg, Caption: string; Icon: TShow508MessageIcon = smiNone;
+                   Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
+  function ShowMsg(const Msg: string; Icon: TShow508MessageIcon = smiNone;
+                   Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
+  function Piece(const S: string; Delim: char; PieceNum: Integer): string;
+  // Using VAUtils will return up to LastNum of delimiter even if the pieces didn't exist in the string
+  function Pieces(const S: string; Delim: char; FirstNum, LastNum: Integer): string;
+  // ---------------------------------------------------------------------------
 
   procedure Fill(wControl: TWinControl; iIndex,iValue: string);
   function LoadDialogs: THandle;
 
-  // Using VAUtils will return up to LastNum of delimiter even if the pieces didn't exist in the string
-  function Pieces(const S: string; Delim: char; FirstNum, LastNum: Integer): string;
-
 var
-  ScreenReader: TScreenReader;
   DLLDialogList: TStringList;
   DialogDLL: THandle;
   RegisterDialogs: TRegisterDialogs;
@@ -68,60 +64,7 @@ var
 implementation
 
 uses
-  ORFn, VAUtils, uReportItems;
-
-{$REGION 'TScreenReader'}
-
-// Private ---------------------------------------------------------------------
-
-function TScreenReader.IsObjectRegistered;
-begin
-  Result := FActive;
-
-  if not Result then
-  try
-    ObjIntf := CreateComObject(ObjGUID);
-    if assigned(ObjIntf) then
-    begin
-      ObjIntf.QueryInterface(IID_IJawsApi, Obj);
-      if assigned(Obj) then
-      begin
-        FActive := True;
-        Result := True;
-      end;
-    end;
-  except
-  end;
-end;
-
-// Public ----------------------------------------------------------------------
-
-constructor TScreenReader.Create;
-begin
-  inherited;
-
-  ObjGUID := StringToGUID('{CCE5B1E5-B2ED-45D5-B09F-8EC54B75ABF4}');     // Change this to an entry in OE/RR?
-  FActive := IsObjectRegistered;
-end;
-
-procedure TScreenReader.Say(txt: string; flush: Boolean);
-begin
-  if not FActive then
-    Exit;
-
-  if flush then
-    Obj.StopSpeech;
-
-  Obj.SayString(txt, flush);
-end;
-
-procedure TScreenReader.Stop;
-begin
-  if FActive then
-    Obj.StopSpeech;
-end;
-
-{$ENDREGION}
+  VAUtils;
 
 // Used by both the DDCSForm Component and the DDCSDialog Class
 procedure Fill(wControl: TWinControl; iIndex,iValue: string);
@@ -359,6 +302,63 @@ begin
     on E: Exception do
     ShowMsg(E.Message, smiError, smbOK);
   end;
+end;
+
+// Replacement of and Redirection to VAUtils -----------------------------------
+function ShowMsg(const Msg, Caption: string; Icon: TShow508MessageIcon = smiNone;
+                 Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
+var
+  Flags, Answer: Longint;
+  Title: string;
+begin
+  Flags := MB_TOPMOST;
+  case Icon of
+    smiInfo:      Flags := Flags OR MB_ICONINFORMATION;
+    smiWarning:   Flags := Flags OR MB_ICONWARNING;
+    smiError:     Flags := Flags OR MB_ICONERROR;
+    smiQuestion:  Flags := Flags OR MB_ICONQUESTION;
+  end;
+  case Buttons of
+    smbOK:                Flags := Flags OR MB_OK;
+    smbOKCancel:          Flags := Flags OR MB_OKCANCEL;
+    smbAbortRetryCancel:  Flags := Flags OR MB_ABORTRETRYIGNORE;
+    smbYesNoCancel:       Flags := Flags OR MB_YESNOCANCEL;
+    smbYesNo:             Flags := Flags OR MB_YESNO;
+    smbRetryCancel:       Flags := Flags OR MB_RETRYCANCEL;
+  end;
+  Title := Caption;
+  if Title = '' then
+    Title := ExtractFileName(GetModuleName(HInstance));
+  Answer := Application.MessageBox(PChar(Msg), PChar(Title), Flags);
+  case Answer of
+    IDCANCEL: Result := srmCancel;
+    IDABORT:  Result := smrAbort;
+    IDRETRY:  Result := smrRetry;
+    IDIGNORE: Result := smrIgnore;
+    IDYES:    Result := smrYes;
+    IDNO:     Result := smrNo;
+    else      Result := smrOK; // IDOK
+  end;
+end;
+
+function ShowMsg(const Msg: string; Icon: TShow508MessageIcon = smiNone;
+                 Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
+var
+  Caption: string;
+begin
+  Caption := '';
+  case Icon of
+    smiWarning:   Caption := ' Warning';
+    smiError:     Caption := ' Error';
+    smiQuestion:  Caption := ' Inquiry';
+  end;
+  Caption := ExtractFileName(GetModuleName(HInstance)) + Caption;
+  Result := ShowMsg(Msg, Caption, Icon, Buttons);
+end;
+
+function Piece(const S: string; Delim: char; PieceNum: Integer): string;
+begin
+  Result := VAUtils.Piece(S, Delim, PieceNum);
 end;
 
 function Pieces(const S: string; Delim: char; FirstNum, LastNum: Integer): string;

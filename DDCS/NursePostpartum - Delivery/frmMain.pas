@@ -115,7 +115,7 @@ implementation
 {$R *.dfm}
 
 uses
-  VAUtils, uCommon, uExtndComBroker;
+  uCommon, uExtndComBroker;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin

@@ -24,7 +24,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, System.ConvUtils, System.StdConvs, Vcl.Graphics, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Samples.Spin,
-  ORCtrls, uBase, uReportItems;
+  ORCtrls;
 
 type
   TfrmInner = class(TFrame)
@@ -63,7 +63,7 @@ implementation
 {$R *.dfm}
 
 uses
-  frmMain;
+  frmMain, uBase, uReportItems;
 
 procedure TfrmInner.spnLbChange(Sender: TObject);
 begin

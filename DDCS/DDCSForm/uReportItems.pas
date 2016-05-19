@@ -24,7 +24,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.TypInfo, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms,
   Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, Vcl.Grids,
-  Vcl.CheckLst, ORCtrls, ORDtTm, uCommon;
+  Vcl.CheckLst, ORCtrls, ORDtTm;
 
 type
   TDDCSNoteItem = class(TCollectionItem)
@@ -92,7 +92,7 @@ type
 implementation
 
 uses
-  uBase, frmVitals, uExtndComBroker;
+  uBase, frmVitals, uCommon, uExtndComBroker;
 
 {$REGION 'TDDCSNoteItem'}
 

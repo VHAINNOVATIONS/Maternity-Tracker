@@ -25,7 +25,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls, Buttons, Vcl.Samples.Spin, Vcl.ComCtrls, system.StrUtils,
-  uDialog, uCommon, uExtndComBroker;
+  uDialog, uExtndComBroker;
 
 type
   TdlgFamily = class(TDDCSDialog)
@@ -88,7 +88,7 @@ var
 implementation
 
 uses
-   VAUtils, fFamilyAdd;
+   uCommon, fFamilyAdd;
 
 {$R *.dfm}
 

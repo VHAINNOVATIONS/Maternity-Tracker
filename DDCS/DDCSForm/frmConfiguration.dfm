@@ -203,6 +203,10 @@ object DDCSFormConfig: TDDCSFormConfig
     object tabDialog: TTabSheet
       Caption = 'Configuration && Reporting'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         883
         488)
@@ -256,6 +260,10 @@ object DDCSFormConfig: TDDCSFormConfig
         TabOrder = 1
         object TabSheet3: TTabSheet
           Caption = 'Configuration'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object meConfigValuesC: TCaptionMemo
             Left = 16
             Top = 28

@@ -231,57 +231,57 @@ var
   iCurLiveBirths: integer;
   iNewLiveBirths: integer;
 begin
-  iCurLiveBirths := 0;
-  for cntr := 0 to slChildHist.Count - 1 do
-    if not(TfrmChildHist(slChildHist.Objects[cntr]).cntcbxStillBorn.Checked) then
-      inc(iCurLiveBirths);
-
-  if cxRadioGroupBirthType.ItemIndex = 0 then
-    iSize := 1
-  else
-    iSize := Floor(JvSpinEdit1.Value);
-
-  if  iSize > slChildHist.Count then
-  begin
-    for cntr := slChildHist.Count to iSize - 1 do
-    begin
-      tabControl := TTabSheet.Create(nil);
-      tabControl.PageControl := pgcChildNumber;
-      tabControl := pgcChildNumber.Pages[cntr];
-      tabControl.Name := 'tsht' + IntToStr(cntr+1);
-      tabControl.Caption := IntToStr(cntr+1);
-      frmTmpChildHist := TfrmChildHist.Create(tabControl, @RPCBrokerV, False, '');
-      frmTmpChildHist.Parent := tabControl;
-      InsertComponent(frmTmpChildHist);
-      frmTmpChildHist.Left := 0;
-      frmTmpChildHist.Top := 0;
-      frmTmpChildHist.BorderStyle := bsNone;
-      frmTmpChildHist.Position := poDefault;
-      frmTmpChildHist.FormStyle := fsNormal;
-      frmTmpChildHist.Align := alClient;
-      frmTmpChildHist.Visible := True;
-      if frmTmpChildHist.FBabyIEN = '' then
-        frmTmpChildHist.FBabyIEN := IntToStr(pgcChildNumber.PageCount) + '+';
-      slChildHist.AddObject(IntToStr(cntr+1),frmTmpChildHist);
-    end;
-  end else if iSize < slChildHist.Count then
-  begin
-    for cntr := slChildHist.Count - 1 downto iSize do
-    begin
-      frmTmpChildHist := TfrmChildHist(slChildHist.Objects[cntr]);
-      frmTmpChildHist.Free;
-      slChildHist.Delete(cntr);
-      pgcChildNumber.Pages[cntr].Free;
-    end;
-  end;
-  iNewLiveBirths := 0;
-
-  for cntr := 0 to slChildHist.Count - 1 do
-    if not(TfrmChildHist(slChildHist.Objects[cntr]).cntcbxStillBorn.Checked) then
-      inc(iNewLiveBirths);
-
-  iNumBirthChange := iNewLiveBirths - iCurLiveBirths;
-  TdlgPregHist(Owner).ModifyLiveBirthCount(iNumBirthChange);
+//  iCurLiveBirths := 0;
+//  for cntr := 0 to slChildHist.Count - 1 do
+//    if not(TfrmChildHist(slChildHist.Objects[cntr]).cntcbxStillBorn.Checked) then
+//      inc(iCurLiveBirths);
+//
+//  if cxRadioGroupBirthType.ItemIndex = 0 then
+//    iSize := 1
+//  else
+//    iSize := Floor(JvSpinEdit1.Value);
+//
+//  if  iSize > slChildHist.Count then
+//  begin
+//    for cntr := slChildHist.Count to iSize - 1 do
+//    begin
+//      tabControl := TTabSheet.Create(nil);
+//      tabControl.PageControl := pgcChildNumber;
+//      tabControl := pgcChildNumber.Pages[cntr];
+//      tabControl.Name := 'tsht' + IntToStr(cntr+1);
+//      tabControl.Caption := IntToStr(cntr+1);
+//      frmTmpChildHist := TfrmChildHist.Create(@DDCSForm, tabControl, @RPCBrokerV, False, '');
+//      frmTmpChildHist.Parent := tabControl;
+//      InsertComponent(frmTmpChildHist);
+//      frmTmpChildHist.Left := 0;
+//      frmTmpChildHist.Top := 0;
+//      frmTmpChildHist.BorderStyle := bsNone;
+//      frmTmpChildHist.Position := poDefault;
+//      frmTmpChildHist.FormStyle := fsNormal;
+//      frmTmpChildHist.Align := alClient;
+//      frmTmpChildHist.Visible := True;
+//      if frmTmpChildHist.FBabyIEN = '' then
+//        frmTmpChildHist.FBabyIEN := IntToStr(pgcChildNumber.PageCount) + '+';
+//      slChildHist.AddObject(IntToStr(cntr+1),frmTmpChildHist);
+//    end;
+//  end else if iSize < slChildHist.Count then
+//  begin
+//    for cntr := slChildHist.Count - 1 downto iSize do
+//    begin
+//      frmTmpChildHist := TfrmChildHist(slChildHist.Objects[cntr]);
+//      frmTmpChildHist.Free;
+//      slChildHist.Delete(cntr);
+//      pgcChildNumber.Pages[cntr].Free;
+//    end;
+//  end;
+//  iNewLiveBirths := 0;
+//
+//  for cntr := 0 to slChildHist.Count - 1 do
+//    if not(TfrmChildHist(slChildHist.Objects[cntr]).cntcbxStillBorn.Checked) then
+//      inc(iNewLiveBirths);
+//
+//  iNumBirthChange := iNewLiveBirths - iCurLiveBirths;
+//  TdlgPregHist(Owner).ModifyLiveBirthCount(iNumBirthChange);
 end;
 
 procedure TfrmPregHist.pgcChildNumberChange(Sender: TObject);

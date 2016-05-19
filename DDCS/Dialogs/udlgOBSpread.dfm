@@ -203,6 +203,10 @@ object dlgOBSpread: TdlgOBSpread
     OnChange = pgcOBFlowChange
     object tsStandard: TTabSheet
       Caption = 'Exam'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblPresentation: TLabel
         Left = 715
         Top = 205
@@ -577,6 +581,10 @@ object dlgOBSpread: TdlgOBSpread
     object tsDiabetic: TTabSheet
       Caption = 'Diabetic'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         1180
         500)
