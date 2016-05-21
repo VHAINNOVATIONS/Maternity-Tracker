@@ -30,32 +30,33 @@ type
   TdlgNausea = class(TDDCSDialog)
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    leLocal: TCaptionEdit;
-    leDur: TCaptionEdit;
-    leDur1: TCaptionEdit;
-    Label3: TStaticText;
+    leOnset: TEdit;
+    leLocal: TEdit;
+    leDur: TEdit;
+    leDur1: TEdit;
+    lbtoleratesolids: TLabel;
     cbSolidY: TCheckBox;
     cbSolidN: TCheckBox;
-    Label4: TStaticText;
+    lbtolerateliquids: TLabel;
     cbLiquidY: TCheckBox;
     cbLiquidN: TCheckBox;
-    Label5: TStaticText;
+    lbfever: TLabel;
     cbFeverY: TCheckBox;
     cbFeverN: TCheckBox;
-    Label6: TStaticText;
+    lbabdominalpain: TLabel;
     cbAbdomY: TCheckBox;
     cbAbdomN: TCheckBox;
-    Label1: TStaticText;
+    lbcontractions: TLabel;
     cbContY: TCheckBox;
     cbContN: TCheckBox;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
-    lbLocal: TStaticText;
-    lbDur1: TStaticText;
+    lbonset: TLabel;
+    lbdur: TLabel;
+    lbLocal1: TLabel;
+    lbDur1: TLabel;
     pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
     procedure checkboxClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -67,93 +68,113 @@ implementation
 
 {$R *.dfm}
 
-procedure TdlgNausea.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
+procedure TdlgNausea.FormCreate(Sender: TObject);
 begin
-  if (leOnset.Text <> '') or (cbSolidY.Checked) or (cbSolidN.Checked) or
-     (cbLiquidY.Checked) or (cbLiquidN.Checked) or (leDur.Text <> '') or
-     (cbFeverY.Checked) or (cbFeverN.Checked) or
-     (cbAbdomY.Checked) or (cbAbdomN.Checked) or
-     (cbContY.Checked) or (cbContN.Checked) then
+  SayOnFocus( cbSolidY, 'Can tolerate solids?');
+  SayOnFocus( cbSolidN, 'Can tolerate solids?');
+  SayOnFocus(cbLiquidY, 'Can tolerate liquids?');
+  SayOnFocus(cbLiquidN, 'Can tolerate liquids?');
+  SayOnFocus( cbFeverY, 'Fever and or Chills?');
+  SayOnFocus( cbFeverN, 'Fever and or Chills?');
+  SayOnFocus(  cbContY, 'Contractions?');
+  SayOnFocus(  cbContN, 'Contractions?');
+  SayOnFocus( cbAbdomY, 'Abdominal pain?');
+  SayOnFocus( cbAbdomN, 'Abdominal pain?');
+end;
+
+procedure TdlgNausea.bbtnOKClick(Sender: TObject);
+begin
+  if leOnset.Text  <> '' then
+    TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if cbSolidY.Checked then
+    TmpStrList.Add('  Can tolerate solids? Yes')
+  else if cbSolidN.Checked then
+    TmpStrList.Add('  Can tolerate solids? No');
+  if cbLiquidY.Checked then
+    TmpStrList.Add('  Can tolerate liquids? Yes')
+  else if cbLiquidN.Checked then
+    TmpStrList.Add('  Can tolerate liquids? No');
+  if leDur.Text  <> '' then
+    TmpStrList.Add('  Duration: ' + leDur.Text);
+  if cbFeverY.Checked then
+    TmpStrList.Add('  Fever and or Chills? Yes')
+  else if cbFeverN.Checked then
+    TmpStrList.Add('  Fever and or Chills? No');
+  if cbContY.Checked then
+    TmpStrList.Add('  Contractions? Yes')
+  else if cbContN.Checked then
+    TmpStrList.Add('  Contractions? No');
+  if cbAbdomY.Checked then
   begin
-   TmpStrList.Add('Nausea, Vomiting, and Diarrhea:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if cbSolidY.Checked then TmpStrList.Add('  Can tolerate solids? Yes')
-   else if cbSolidN.Checked then TmpStrList.Add('  Can tolerate solids? No');
-   if cbLiquidY.Checked then TmpStrList.Add('  Can tolerate liquids? Yes')
-   else if cbLiquidN.Checked then TmpStrList.Add('  Can tolerate liquids? No');
-   if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
-   if cbFeverY.Checked then TmpStrList.Add('  Fever and or Chills? Yes')
-   else if cbFeverN.Checked then TmpStrList.Add('  Fever and or Chills? No');
-   if cbContY.Checked then TmpStrList.Add('  Contractions? Yes')
-   else if cbContN.Checked then TmpStrList.Add('  Contractions? No');
-   if cbAbdomY.Checked then
-   begin
-     TmpStrList.Add('  Abdominal pain? Yes');
-     if leLocal.Text  <> '' then TmpStrList.Add('    Localization: ' + leLocal.Text);
-     if leDur1.Text  <> '' then TmpStrList.Add('    Duration: ' + leDur1.Text);
-   end
-   else if cbAbdomN.Checked then
-   begin
-     TmpStrList.Add('  Abdominal pain? No');
-     leLocal.Clear;
-     leDur1.Clear;
-   end;
- end;
+    TmpStrList.Add('  Abdominal pain? Yes');
+    if leLocal.Text  <> '' then
+      TmpStrList.Add('    Localization: ' + leLocal.Text);
+    if leDur1.Text  <> '' then
+      TmpStrList.Add('    Duration: ' + leDur1.Text);
+  end
+  else if cbAbdomN.Checked then
+  begin
+    TmpStrList.Add('  Abdominal pain? No');
+    leLocal.Clear;
+    leDur1.Clear;
+  end;
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Nausea, Vomiting, and Diarrhea:');
 end;
 
 procedure TdlgNausea.checkboxClick(Sender: TObject);
 begin
-  if ((Sender as TCheckBox).Tag = 1) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbSolidN.Checked := FALSE
-  else  if ((Sender as TCheckBox).Tag = 2) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbSolidY.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 3) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbLiquidN.Checked := FALSE
-  else  if ((Sender as TCheckBox).Tag = 4) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbLiquidY.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 5) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbFeverN.Checked := FALSE
-  else  if ((Sender as TCheckBox).Tag = 6) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbFeverY.Checked := FALSE
+  if (((Sender as TCheckBox).Tag = 1) and ((Sender as TCheckBox).Checked)) then
+    cbSolidN.Checked := False
+  else  if (((Sender as TCheckBox).Tag = 2) and ((Sender as TCheckBox).Checked)) then
+    cbSolidY.Checked := False
+  else if (((Sender as TCheckBox).Tag = 3) and ((Sender as TCheckBox).Checked)) then
+    cbLiquidN.Checked := False
+  else  if (((Sender as TCheckBox).Tag = 4) and ((Sender as TCheckBox).Checked)) then
+    cbLiquidY.Checked := False
+  else if (((Sender as TCheckBox).Tag = 5) and ((Sender as TCheckBox).Checked)) then
+    cbFeverN.Checked := False
+  else  if (((Sender as TCheckBox).Tag = 6) and ((Sender as TCheckBox).Checked)) then
+    cbFeverY.Checked := False
   else if (Sender as TCheckBox).Tag = 7 then
-  begin {Yes}
+  begin
     if (Sender as TCheckBox).Checked then
     begin
       cbAbdomN.OnClick := nil;
       cbAbdomN.Checked := False;
       cbAbdomN.OnClick := checkboxClick;
 
-      lbLocal.Visible := True;
+      lbLocal1.Visible := True;
       leLocal.Visible := True;
       lbDur1.Visible := True;
       leDur1.Visible := True;
     end else
     begin
       leLocal.Clear;
-      lbLocal.Visible := False;
+      lbLocal1.Visible := False;
       leLocal.Visible := False;
       leDur1.Clear;
       lbDur1.Visible := False;
       leDur1.Visible := False;
     end;
   end else if (Sender as TCheckBox).Tag = 8 then
-  begin {No}
+  begin
     cbAbdomY.OnClick := nil;
     cbAbdomY.Checked := False;
     cbAbdomY.OnClick := checkboxClick;
 
     leLocal.Clear;
-    lbLocal.Visible := False;
+    lbLocal1.Visible := False;
     leLocal.Visible := False;
     leDur1.Clear;
     lbDur1.Visible := False;
     leDur1.Visible := False;
   end
-  else if ((Sender as TCheckBox).Tag = 9) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbContN.Checked := FALSE
-  else  if ((Sender as TCheckBox).Tag = 10) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbContY.Checked := FALSE;
+  else if (((Sender as TCheckBox).Tag = 9) and ((Sender as TCheckBox).Checked)) then
+    cbContN.Checked := False
+  else  if (((Sender as TCheckBox).Tag = 10) and ((Sender as TCheckBox).Checked)) then
+    cbContY.Checked := False;
 end;
 
 end.

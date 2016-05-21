@@ -30,19 +30,20 @@ type
   TdlgVagDischarge = class(TDDCSDialog)
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    leColor: TCaptionEdit;
-    Label3: TStaticText;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    Label1: TStaticText;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
+    leOnset: TEdit;
+    leColor: TEdit;
+    lbodor: TLabel;
+    ckOdorY: TCheckBox;
+    ckOdorN: TCheckBox;
+    lbitching: TLabel;
+    ckItchingY: TCheckBox;
+    ckItchingN: TCheckBox;
+    lbonset: TLabel;
+    lbcolor: TLabel;
     pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
     procedure CheckBoxClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -54,33 +55,45 @@ implementation
 
 {$R *.dfm}
 
+procedure TdlgVagDischarge.FormCreate(Sender: TObject);
+begin
+  SayOnFocus(   ckOdorY, 'Odor?');
+  SayOnFocus(   ckOdorN, 'Odor?');
+  SayOnFocus(ckItchingY, 'Itching?');
+  SayOnFocus(ckItchingN, 'Itching?');
+end;
+
 procedure TdlgVagDischarge.bbtnOKClick(Sender: TObject);
 begin
-  if (leOnset.Text <> '') or (leColor.Text <> '') or (CheckBox1.Checked) or
-     (CheckBox2.Checked) or (CheckBox3.Checked) or (CheckBox4.Checked) then
-  begin
-   TmpStrList.Add('Vaginal Discharge:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if leColor.Text  <> '' then TmpStrList.Add('  Color: ' + leColor.Text);
-   if CheckBox1.Checked then TmpStrList.Add('  Odor? Yes');
-   if CheckBox2.Checked then TmpStrList.Add('  Odor? No');
-   if CheckBox3.Checked then TmpStrList.Add('  Itching? Yes');
-   if CheckBox4.Checked then TmpStrList.Add('  Itching? No');
-  end;
+  if leOnset.Text  <> '' then
+    TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if leColor.Text  <> '' then
+    TmpStrList.Add('  Color: ' + leColor.Text);
+  if ckOdorY.Checked then
+    TmpStrList.Add('  Odor? Yes');
+  if ckOdorN.Checked then
+    TmpStrList.Add('  Odor? No');
+  if ckItchingY.Checked then
+    TmpStrList.Add('  Itching? Yes');
+  if ckItchingN.Checked then
+    TmpStrList.Add('  Itching? No');
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Vaginal Discharge:');
 end;
 
 procedure TdlgVagDischarge.CheckBoxClick(Sender: TObject);
 begin
- if (Sender is TCheckBox) and ((Sender as TCheckBox).Checked = TRUE) then
- begin   {cb6-9 - toggle 4 checkboxes}
+ if ((Sender is TCheckBox) and ((Sender as TCheckBox).Checked)) then
+ begin
    if (Sender as TCheckBox).Tag = 1 then
-     CheckBox2.Checked := FALSE
+     ckOdorN.Checked := False
    else if (Sender as TCheckBox).Tag = 2 then
-     CheckBox1.Checked := FALSE
+     ckOdorY.Checked := False
    else if (Sender as TCheckBox).Tag = 3 then
-     CheckBox4.Checked := FALSE
+     ckItchingN.Checked := False
    else if (Sender as TCheckBox).Tag = 4 then
-     CheckBox3.Checked := FALSE;
+     ckItchingY.Checked := False;
   end;
 end;
 

@@ -30,15 +30,15 @@ type
   TdlgPalp = class(TDDCSDialog)
     pnlfooter: TPanel;
     bbtnOK: TBitBtn;
-    leOnset: TCaptionEdit;
-    leDur: TCaptionEdit;
-    leAssoc: TCaptionEdit;
-    leFreq: TCaptionEdit;
+    leOnset: TEdit;
+    leDur: TEdit;
+    leAssoc: TEdit;
+    leFreq: TEdit;
     Label1: TLabel;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
-    StaticText3: TStaticText;
-    StaticText4: TStaticText;
+    lbonset: TLabel;
+    lbdur: TLabel;
+    lbfrequency: TLabel;
+    lbsymptoms: TLabel;
     bbtnCancel: TBitBtn;
     procedure bbtnOKClick(Sender: TObject);
   private
@@ -53,17 +53,21 @@ implementation
 {$R *.dfm}
 
 procedure TdlgPalp.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
 begin
-  if (leOnset.Text <> '') or (leDur.Text <> '') or (leFreq.Text <> '') or
-     (leAssoc.Text <> '') then
+  if leOnset.Text  <> '' then
+    TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if leDur.Text  <> '' then
+    TmpStrList.Add('  Duration: ' + leDur.Text);
+  if leFreq.Text  <> '' then
+    TmpStrList.Add('  Frequency: ' + leFreq.Text);
+  if leAssoc.Text  <> '' then
   begin
-   TmpStrList.Add('Palpitations:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
-   if leFreq.Text  <> '' then TmpStrList.Add('  Frequency: ' + leFreq.Text);
-   if leAssoc.Text  <> '' then TmpStrList.Add('  Associated Symptoms: ' + leAssoc.Text);
+    TmpStrList.Add('  Associated Symptoms:');
+    TmpStrList.Add('    ' + leAssoc.Text);
   end;
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Palpitations:');
 end;
 
 end.

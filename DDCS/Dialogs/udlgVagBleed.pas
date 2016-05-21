@@ -30,21 +30,22 @@ type
   TdlgVagBleed = class(TDDCSDialog)
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    leAmt: TCaptionEdit;
-    leDur: TCaptionEdit;
-    Label3: TStaticText;
+    leOnset: TEdit;
+    leAmt: TEdit;
+    leDur: TEdit;
+    lbassociated: TLabel;
     cbCrampY: TCheckBox;
     cbCrampN: TCheckBox;
-    Label1: TStaticText;
+    lbleakage: TLabel;
     cbLeakY: TCheckBox;
     cbLeakN: TCheckBox;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
-    StaticText3: TStaticText;
+    lbamount: TLabel;
+    lbdur: TLabel;
+    lbonset: TLabel;
     pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
     procedure checkboxClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -56,36 +57,47 @@ implementation
 
 {$R *.dfm}
 
-procedure TdlgVagBleed.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
+procedure TdlgVagBleed.FormCreate(Sender: TObject);
 begin
-  if (leOnset.Text <> '') or (leDur.Text <> '') or (leAmt.Text <> '') or
-     (cbCrampY.Checked) or (cbCrampN.Checked) or
-     (cbLeakY.Checked) or (cbLeakN.Checked) then
-  begin
-   TmpStrList.Add('Vaginal Bleeding:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
-   if leAmt.Text  <> '' then TmpStrList.Add('  Amount: ' + leAmt.Text);
-   if cbCrampY.Checked then TmpStrList.Add('  Associated with cramping and or contractions? Yes');
-   if cbCrampN.Checked then TmpStrList.Add('  Associated with cramping and or contractions? No');
-   if cbLeakY.Checked then TmpStrList.Add('  Leakage of fluid? Yes');
-   if cbLeakN.Checked then TmpStrList.Add('  Leakage of fluid? No');
-  end;
+  SayOnFocus(cbCrampY, 'Associated with cramping and or contractions?');
+  SayOnFocus(cbCrampN, 'Associated with cramping and or contractions?');
+  SayOnFocus( cbLeakY, 'Leakage of fluid?');
+  SayOnFocus( cbLeakN, 'Leakage of fluid?');
+end;
+
+procedure TdlgVagBleed.bbtnOKClick(Sender: TObject);
+begin
+  if leOnset.Text  <> '' then
+   TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if leDur.Text  <> '' then
+   TmpStrList.Add('  Duration: ' + leDur.Text);
+  if leAmt.Text  <> '' then
+   TmpStrList.Add('  Amount: ' + leAmt.Text);
+  if cbCrampY.Checked then
+   TmpStrList.Add('  Associated with cramping and or contractions? Yes');
+  if cbCrampN.Checked then
+   TmpStrList.Add('  Associated with cramping and or contractions? No');
+  if cbLeakY.Checked then
+   TmpStrList.Add('  Leakage of fluid? Yes');
+  if cbLeakN.Checked then
+   TmpStrList.Add('  Leakage of fluid? No');
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Vaginal Bleeding:');
 end;
 
 procedure TdlgVagBleed.checkboxClick(Sender: TObject);
 begin
-  if (Sender as TCheckBox).Checked = TRUE then
+  if (Sender as TCheckBox).Checked then
   begin
     if (Sender as TCheckBox).Tag = 1 then
-      cbCrampN.Checked := FALSE
+      cbCrampN.Checked := False
     else  if (Sender as TCheckBox).Tag = 2 then
-      cbCrampY.Checked := FALSE
+      cbCrampY.Checked := False
     else if (Sender as TCheckBox).Tag = 3 then
-      cbLeakN.Checked := FALSE
+      cbLeakN.Checked := False
     else  if (Sender as TCheckBox).Tag = 4 then
-      cbLeakY.Checked := FALSE;
+      cbLeakY.Checked := False;
   end;
 end;
 

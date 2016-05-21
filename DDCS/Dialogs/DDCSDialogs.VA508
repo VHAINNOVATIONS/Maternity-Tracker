@@ -271,15 +271,15 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCS\2.0\Dialogs\f
 973
 1
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgAbdomPain.dfm
-5466/1219713488
+5465/1219775655
 974
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgBackPain.dfm
-4834/1219128775
+4445/1219775695
 976
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgCoughCongest.dfm
-7020/1219128844
+6625/1219775978
 978
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgDATE.dfm
@@ -291,19 +291,19 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgFamily
 982
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgFetalMov.dfm
-6990/1219193524
+6490/1219785877
 984
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgHeadache.dfm
-4697/1219192236
+4550/1219789405
 986
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgInfectHist.dfm
-20344/1219253558
+18825/1219792066
 988
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgLegPain.dfm
-1976/1219127984
+1857/1219785544
 990
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgMedical.dfm
@@ -315,11 +315,11 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgModTot
 994
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgNausea.dfm
-6518/1219132635
+6209/1219781821
 996
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPalp.dfm
-3108/1219068037
+2833/1219789000
 998
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPreNatal.dfm
@@ -327,11 +327,11 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPreNat
 1000
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgRash.dfm
-2690/1219128003
+2556/1219784216
 1002
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgRTClinic.dfm
-1946/1219133808
+1902/1219792168
 1004
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgSocial.dfm
@@ -339,23 +339,23 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgSocial
 1006
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgVagBleed.dfm
-3893/1219132792
+3662/1219783853
 1008
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgVagDischarge.dfm
-3398/1219132821
+3223/1219784256
 1010
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgVisualChanges.dfm
-4165/1219134700
+3362/1219793253
 1012
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgWheezing.dfm
-3366/1219193434
+3144/1219784564
 1014
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPelvic.dfm
-8224/1219259086
+7912/1219782329
 1016
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPregHist.dfm
@@ -387,7 +387,7 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgImmuni
 1030
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgROS.dfm
-19074/1219257678
+18179/1219794425
 1032
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPhysicalExam.dfm
@@ -1519,47 +1519,47 @@ Supported platforms:
 u
 269
 object dlgAbdomPain: TdlgAbdomPain
-232
+219
 object dlgBackPain: TdlgBackPain
-346
+329
 object dlgCoughCongest: TdlgCoughCongest
 67
 object dlgDate: TdlgDate
 489
 object dlgFamily: TdlgFamily
-333
+314
 object dlgFetalMov: TdlgFetalMov
-221
+216
 object dlgHeadache: TdlgHeadache
-900
+861
 object dlgInfectHist: TdlgInfectHist
-95
+91
 object dlgLegPain: TdlgLegPain
 1272
 object dlgMedical: TdlgMedical
 99
 object dlgModTotPregs: TdlgModTotPregs
-318
+304
 object dlgNausea: TdlgNausea
-147
+139
 object dlgPalp: TdlgPalp
 360
 object dlgPreNatal: TdlgPreNatal
-131
+126
 object dlgRash: TdlgRash
-93
+91
 object dlgRTClinic: TdlgRTClinic
 1819
 object dlgSocial: TdlgSocial
-188
+179
 object dlgVagBleed: TdlgVagBleed
-166
+159
 object dlgVagDischarge: TdlgVagDischarge
-195
+162
 object dlgVisualChanges: TdlgVisualChanges
-160
+152
 object dlgWheezing: TdlgWheezing
-399
+385
 object dlgPelvic: TdlgPelvic
 261
 object dlgPregHist: TdlgPregHist
@@ -1575,7 +1575,7 @@ object dlgSurgical: TdlgSurgical
 object dlgOBSpread: TdlgOBSpread
 404
 object dlgImmunizations: TdlgImmunizations
-916
+880
 object dlgROS: TdlgROS
 1199
 object dlgPhysicalExam: TdlgPhysicalExam

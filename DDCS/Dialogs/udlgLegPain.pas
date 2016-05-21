@@ -30,11 +30,11 @@ type
   TdlgLegPain = class(TDDCSDialog)
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    leDur: TCaptionEdit;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
+    leOnset: TEdit;
+    leDur: TEdit;
     pnlfooter: TPanel;
+    lbonset: TLabel;
+    lbdur: TLabel;
     procedure bbtnOKClick(Sender: TObject);
   private
   public
@@ -48,14 +48,14 @@ implementation
 {$R *.dfm}
 
 procedure TdlgLegPain.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
 begin
-  if (leOnset.Text <> '') or (leDur.Text <> '') then
-  begin
-    TmpStrList.Add('Leg Pain and Swelling:');
-    if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-    if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
-  end;
+  if leOnset.Text  <> '' then
+    TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if leDur.Text  <> '' then
+    TmpStrList.Add('  Duration: ' + leDur.Text);
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Leg Pain and Swelling:');
 end;
 
 end.

@@ -29,14 +29,14 @@ uses
 
 type
   TdlgPelvic = class(TDDCSDialog)
-    Label9: TStaticText;
-    Label13: TStaticText;
-    Label15: TStaticText;
-    Label16: TStaticText;
-    Label11: TStaticText;
-    Label1: TStaticText;
-    Label2: TStaticText;
-    Label3: TStaticText;
+    lbvulva: TLabel;
+    lbadnexa: TLabel;
+    lbuterus: TLabel;
+    lbclinical: TLabel;
+    lbcervix: TLabel;
+    lbsize: TLabel;
+    lbcomments: TLabel;
+    lbvagina: TLabel;
     cbVulvNorm: TCheckBox;
     cbVulvCond: TCheckBox;
     cbVulvLes: TCheckBox;
@@ -53,7 +53,7 @@ type
     cbPelDimAde: TCheckBox;
     cbPelDimBor: TCheckBox;
     cbPelDimCon: TCheckBox;
-    edUterSize: TCaptionEdit;
+    edUterSize: TEdit;
     memPelvimetry: TCaptionMemo;
     memComments: TCaptionMemo;
     pnlfooter: TPanel;
@@ -61,6 +61,7 @@ type
     btnCancel: TBitBtn;
     procedure cbSwitch(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -71,6 +72,27 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TdlgPelvic.FormCreate(Sender: TObject);
+begin
+  SayOnFocus(  cbVulvNorm, 'Vulva');
+  SayOnFocus(  cbVulvCond, 'Vulva');
+  SayOnFocus(   cbVulvLes, 'Vulva');
+  SayOnFocus(   cbVagNorm, 'Vagina');
+  SayOnFocus( cbVagInflam, 'Vagina');
+  SayOnFocus(   cbVagDisc, 'Vagina');
+  SayOnFocus(  cbCervNorm, 'Cervix');
+  SayOnFocus(cbCervInflam, 'Cervix');
+  SayOnFocus(   cbCervLes, 'Cervix');
+  SayOnFocus(   cbAdnNorm, 'Adnexa');
+  SayOnFocus(    cbAdnMas, 'Adnexa');
+  SayOnFocus(  cbUterNorm, 'Uterus');
+  SayOnFocus(   cbUterAbn, 'Uterus');
+  SayOnFocus(  edUterSize, 'Uterus size in weeks');
+  SayOnFocus( cbPelDimAde, 'Clinical Pelvimetry Assessment');
+  SayOnFocus( cbPelDimBor, 'Clinical Pelvimetry Assessment');
+  SayOnFocus( cbPelDimCon, 'Clinical Pelvimetry Assessment');
+end;
 
 procedure TdlgPelvic.cbSwitch(Sender: TObject);
 

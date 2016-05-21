@@ -68,55 +68,56 @@ implementation
 
 procedure TdlgAbdomPain.FormCreate(Sender: TObject);
 begin
-  SayOnFocus(cbContYes, 'Contractions');
-  SayOnFocus( cbContNo, 'Contractions');
-  SayOnFocus(cbNausYes, 'Nausea, Vomiting, Diarrhea');
-  SayOnFocus( cbNausNo, 'Nausea, Vomiting, Diarrhea');
-  SayOnFocus( cbAppYes, 'Appetite');
-  SayOnFocus(  cbAppNo, 'Appetite');
-  SayOnFocus( cbFevYes, 'Fever and or Chills');
-  SayOnFocus(  cbFevNo, 'Fever and or Chills');
+  SayOnFocus(cbContYes, 'Contractions?');
+  SayOnFocus( cbContNo, 'Contractions?');
+  SayOnFocus(cbNausYes, 'Nausea, Vomiting, and or Diarrhea?');
+  SayOnFocus( cbNausNo, 'Nausea, Vomiting, and or Diarrhea?');
+  SayOnFocus( cbAppYes, 'Appetite?');
+  SayOnFocus(  cbAppNo, 'Appetite?');
+  SayOnFocus( cbFevYes, 'Fever and or Chills?');
+  SayOnFocus(  cbFevNo, 'Fever and or Chills?');
 end;
 
 procedure TdlgAbdomPain.bbtnOKClick(Sender: TObject);
-var
-  I : Integer;
 begin
-  if (leOnset.Text <> '') or (cbContYes.Checked) or (cbContNo.Checked) or
-     (leFreq.Text <> '') or (leDur.Text <> '') or (cbNausYes.Checked) or
-     (cbNausNo.Checked) or (cbAppYes.Checked) or (cbAppNo.Checked) or
-     (cbFevYes.Checked) or (cbFevNo.Checked) or (leLocat.Text <> '')
-     then
-  begin
-   TmpStrList.Add('Abdominal Pain and Cramping:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if cbContYes.Checked  then
-   begin
-     TmpStrList.Add('  Contractions? Yes');
-     if leFreq.Text  <> '' then
-       TmpStrList.Add('    Frequency:' + leFreq.Text);
-     if leDur.Text  <> '' then
-       TmpStrList.Add('    Duration:' + leDur.Text);
-   end
-   else if cbContNo.Checked  then
-     TmpStrList.Add('  Contractions? No');
+ if leOnset.Text  <> '' then
+   TmpStrList.Add('  Onset: ' + leOnset.Text);
 
-   if cbNausYes.Checked then TmpStrList.Add('  Nausea, Vomiting, Diarrhea? Yes');
-   if cbNausNo.Checked then TmpStrList.Add('  Nausea, Vomiting, Diarrhea? No');
-   if cbAppYes.Checked then TmpStrList.Add('  Appetite? Yes');
-   if cbAppNo.Checked then TmpStrList.Add('  Appetite? No');
-   if cbFevYes.Checked then TmpStrList.Add('  Fever and or Chills? Yes');
-   if cbFevNo.Checked then TmpStrList.Add('  Fever and or Chills? No');
-   if leLocat.Text  <> '' then TmpStrList.Add('  Location: ' + leLocat.Text);
-  end;
+ if cbContYes.Checked then
+ begin
+   TmpStrList.Add('  Contractions? Yes');
+   if leFreq.Text <> '' then
+     TmpStrList.Add('    Frequency:' + leFreq.Text);
+   if leDur.Text  <> '' then
+     TmpStrList.Add('    Duration:' + leDur.Text);
+ end else if cbContNo.Checked then
+   TmpStrList.Add('  Contractions? No');
+
+ if cbNausYes.Checked then
+   TmpStrList.Add('  Nausea, Vomiting, Diarrhea? Yes');
+ if cbNausNo.Checked then
+   TmpStrList.Add('  Nausea, Vomiting, Diarrhea? No');
+ if cbAppYes.Checked then
+   TmpStrList.Add('  Appetite? Yes');
+ if cbAppNo.Checked then
+   TmpStrList.Add('  Appetite? No');
+ if cbFevYes.Checked then
+   TmpStrList.Add('  Fever and or Chills? Yes');
+ if cbFevNo.Checked then
+   TmpStrList.Add('  Fever and or Chills? No');
+ if leLocat.Text  <> '' then
+   TmpStrList.Add('  Location: ' + leLocat.Text);
+
+ if TmpStrList.Count > 0 then
+   TmpStrList.Insert(0, 'Abdominal Pain and Cramping:');
 end;
 
 procedure TdlgAbdomPain.cbContYesClick(Sender: TObject);
 begin
   if (Sender as TCheckBox).Tag = 1 then
-  begin  {Yes}
+  begin
     if (Sender as TCheckBox).Checked then
-    begin  {Yes}
+    begin
       cbContNo.OnClick := nil;
       cbContNo.Checked := False;
       cbContNo.OnClick := cbContYesClick;
@@ -126,7 +127,7 @@ begin
       lbDur.Visible := True;
       leDur.Visible := True;
     end else
-    begin  {Yes - unchecked}
+    begin
       leFreq.Clear;
       lbFreq.Visible := False;
       leFreq.Visible := False;
@@ -135,7 +136,7 @@ begin
       leDur.Visible := False;
     end;
   end else if (Sender as TCheckBox).Tag = 2 then
-  begin   {No}
+  begin
     cbContYes.OnClick := nil;
     cbContYes.Checked := False;
     cbContYes.OnClick := cbContYesClick;
@@ -147,18 +148,18 @@ begin
     lbDur.Visible := False;
     leDur.Visible := False;
   end
-  else if ((Sender as TCheckBox).Tag = 3) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbNausNo.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 4) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbNausYes.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 5) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbAppNo.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 6) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbAppYes.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 7) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbFevNo.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 8) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbFevYes.Checked := FALSE;
+  else if ((Sender as TCheckBox).Tag = 3) and ((Sender as TCheckBox).Checked) then
+    cbNausNo.Checked := False
+  else if ((Sender as TCheckBox).Tag = 4) and ((Sender as TCheckBox).Checked) then
+    cbNausYes.Checked := False
+  else if ((Sender as TCheckBox).Tag = 5) and ((Sender as TCheckBox).Checked) then
+    cbAppNo.Checked := False
+  else if ((Sender as TCheckBox).Tag = 6) and ((Sender as TCheckBox).Checked) then
+    cbAppYes.Checked := False
+  else if ((Sender as TCheckBox).Tag = 7) and ((Sender as TCheckBox).Checked) then
+    cbFevNo.Checked := False
+  else if ((Sender as TCheckBox).Tag = 8) and ((Sender as TCheckBox).Checked) then
+    cbFevYes.Checked := False;
 end;
 
 end.

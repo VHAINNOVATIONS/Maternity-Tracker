@@ -14,13 +14,14 @@ object dlgVagBleed: TdlgVagBleed
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TStaticText
+  object lbassociated: TLabel
     Left = 241
     Top = 14
-    Width = 262
-    Height = 18
+    Width = 258
+    Height = 14
     Caption = 'Associated wth cramping and or contractions?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -28,14 +29,12 @@ object dlgVagBleed: TdlgVagBleed
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 6
-    TabStop = True
   end
-  object Label1: TStaticText
+  object lbleakage: TLabel
     Left = 241
-    Top = 62
-    Width = 99
-    Height = 18
+    Top = 60
+    Width = 95
+    Height = 14
     Caption = 'Leakage of fluid?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -43,8 +42,45 @@ object dlgVagBleed: TdlgVagBleed
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 9
-    TabStop = True
+  end
+  object lbamount: TLabel
+    Left = 17
+    Top = 79
+    Width = 44
+    Height = 14
+    Caption = 'Amount'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbdur: TLabel
+    Left = 17
+    Top = 48
+    Width = 46
+    Height = 14
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbonset: TLabel
+    Left = 17
+    Top = 17
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object pnlfooter: TPanel
     Tag = 19641
@@ -54,7 +90,7 @@ object dlgVagBleed: TdlgVagBleed
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 12
+    TabOrder = 7
     object bbtnOK: TBitBtn
       Left = 356
       Top = 3
@@ -79,110 +115,65 @@ object dlgVagBleed: TdlgVagBleed
       TabOrder = 1
     end
   end
-  object leOnset: TCaptionEdit
+  object leOnset: TEdit
     Left = 73
     Top = 14
     Width = 145
     Height = 22
-    TabOrder = 1
-    Caption = 'Onset'
+    TabOrder = 0
   end
-  object leAmt: TCaptionEdit
+  object leAmt: TEdit
     Left = 73
     Top = 76
     Width = 145
     Height = 22
-    TabOrder = 5
-    Caption = 'Amount'
+    TabOrder = 2
   end
-  object leDur: TCaptionEdit
+  object leDur: TEdit
     Left = 73
     Top = 45
     Width = 145
     Height = 22
-    TabOrder = 3
-    Caption = 'Duration'
+    TabOrder = 1
   end
   object cbCrampY: TCheckBox
     Tag = 1
     Left = 241
-    Top = 30
+    Top = 33
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 7
+    TabOrder = 3
     OnClick = checkboxClick
   end
   object cbCrampN: TCheckBox
     Tag = 2
     Left = 290
-    Top = 30
+    Top = 33
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 8
+    TabOrder = 4
     OnClick = checkboxClick
   end
   object cbLeakY: TCheckBox
     Tag = 3
     Left = 241
-    Top = 77
+    Top = 79
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 10
+    TabOrder = 5
     OnClick = checkboxClick
   end
   object cbLeakN: TCheckBox
     Tag = 4
     Left = 290
-    Top = 77
+    Top = 79
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 11
+    TabOrder = 6
     OnClick = checkboxClick
-  end
-  object StaticText1: TStaticText
-    Left = 17
-    Top = 80
-    Width = 48
-    Height = 18
-    Caption = 'Amount'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 4
-  end
-  object StaticText2: TStaticText
-    Left = 17
-    Top = 49
-    Width = 50
-    Height = 18
-    Caption = 'Duration'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 2
-  end
-  object StaticText3: TStaticText
-    Left = 17
-    Top = 18
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
   end
 end

@@ -16,6 +16,32 @@ object dlgLegPain: TdlgLegPain
   Scaled = False
   PixelsPerInch = 96
   TextHeight = 14
+  object lbonset: TLabel
+    Left = 11
+    Top = 11
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbdur: TLabel
+    Left = 11
+    Top = 39
+    Width = 46
+    Height = 14
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
@@ -24,7 +50,7 @@ object dlgLegPain: TdlgLegPain
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 4
+    TabOrder = 2
     object bbtnOK: TBitBtn
       Left = 125
       Top = 2
@@ -48,48 +74,18 @@ object dlgLegPain: TdlgLegPain
       TabOrder = 1
     end
   end
-  object leOnset: TCaptionEdit
+  object leOnset: TEdit
     Left = 69
     Top = 8
     Width = 201
     Height = 22
-    TabOrder = 1
-    Caption = 'Onset'
+    TabOrder = 0
   end
-  object leDur: TCaptionEdit
+  object leDur: TEdit
     Left = 69
     Top = 36
     Width = 201
     Height = 22
-    TabOrder = 3
-    Caption = 'Duration'
-  end
-  object StaticText1: TStaticText
-    Left = 11
-    Top = 12
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-  end
-  object StaticText2: TStaticText
-    Left = 11
-    Top = 40
-    Width = 50
-    Height = 18
-    Caption = 'Duration'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
   end
 end

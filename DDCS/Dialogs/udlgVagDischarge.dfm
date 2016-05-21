@@ -14,13 +14,14 @@ object dlgVagDischarge: TdlgVagDischarge
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TStaticText
+  object lbodor: TLabel
     Left = 225
-    Top = 15
-    Width = 38
-    Height = 18
+    Top = 14
+    Width = 34
+    Height = 14
     Caption = 'Odor?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -28,14 +29,12 @@ object dlgVagDischarge: TdlgVagDischarge
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 4
-    TabStop = True
   end
-  object Label1: TStaticText
+  object lbitching: TLabel
     Left = 225
-    Top = 46
-    Width = 48
-    Height = 18
+    Top = 45
+    Width = 44
+    Height = 14
     Caption = 'Itching?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -43,8 +42,32 @@ object dlgVagDischarge: TdlgVagDischarge
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 7
-    TabStop = True
+  end
+  object lbonset: TLabel
+    Left = 14
+    Top = 14
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbcolor: TLabel
+    Left = 14
+    Top = 45
+    Width = 30
+    Height = 14
+    Caption = 'Color'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object pnlfooter: TPanel
     Tag = 19641
@@ -54,7 +77,7 @@ object dlgVagDischarge: TdlgVagDischarge
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 10
+    TabOrder = 6
     object bbtnOK: TBitBtn
       Left = 212
       Top = 3
@@ -79,88 +102,58 @@ object dlgVagDischarge: TdlgVagDischarge
       TabOrder = 1
     end
   end
-  object leOnset: TCaptionEdit
+  object leOnset: TEdit
     Left = 53
     Top = 11
     Width = 155
     Height = 22
-    TabOrder = 1
-    Caption = 'Onset'
+    TabOrder = 0
   end
-  object leColor: TCaptionEdit
+  object leColor: TEdit
     Left = 53
     Top = 42
     Width = 155
     Height = 22
-    TabOrder = 3
-    Caption = 'Color'
+    TabOrder = 1
   end
-  object CheckBox1: TCheckBox
+  object ckOdorY: TCheckBox
     Tag = 1
-    Left = 275
-    Top = 15
+    Left = 276
+    Top = 14
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 5
+    TabOrder = 2
     OnClick = CheckBoxClick
   end
-  object CheckBox2: TCheckBox
+  object ckOdorN: TCheckBox
     Tag = 2
     Left = 324
-    Top = 15
+    Top = 14
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 6
+    TabOrder = 3
     OnClick = CheckBoxClick
   end
-  object CheckBox3: TCheckBox
+  object ckItchingY: TCheckBox
     Tag = 3
-    Left = 275
-    Top = 46
+    Left = 276
+    Top = 45
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 8
+    TabOrder = 4
     OnClick = CheckBoxClick
   end
-  object CheckBox4: TCheckBox
+  object ckItchingN: TCheckBox
     Tag = 4
-    Left = 324
-    Top = 46
+    Left = 323
+    Top = 45
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 9
+    TabOrder = 5
     OnClick = CheckBoxClick
-  end
-  object StaticText1: TStaticText
-    Left = 14
-    Top = 15
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-  end
-  object StaticText2: TStaticText
-    Left = 14
-    Top = 46
-    Width = 34
-    Height = 18
-    Caption = 'Color'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 2
   end
 end

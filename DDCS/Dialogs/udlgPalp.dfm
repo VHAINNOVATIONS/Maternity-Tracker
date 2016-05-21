@@ -23,6 +23,58 @@ object dlgPalp: TdlgPalp
     Height = 14
     Caption = '(dizziness/fainting)'
   end
+  object lbonset: TLabel
+    Left = 13
+    Top = 15
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbdur: TLabel
+    Left = 13
+    Top = 51
+    Width = 46
+    Height = 14
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbfrequency: TLabel
+    Left = 13
+    Top = 87
+    Width = 58
+    Height = 14
+    Caption = 'Frequency'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbsymptoms: TLabel
+    Left = 13
+    Top = 124
+    Width = 125
+    Height = 14
+    Caption = 'Associated Symptoms'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
@@ -31,7 +83,7 @@ object dlgPalp: TdlgPalp
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 8
+    TabOrder = 4
     object bbtnOK: TBitBtn
       Left = 84
       Top = 3
@@ -56,92 +108,32 @@ object dlgPalp: TdlgPalp
       TabOrder = 1
     end
   end
-  object leOnset: TCaptionEdit
+  object leOnset: TEdit
     Left = 81
     Top = 12
     Width = 147
     Height = 22
-    TabOrder = 1
-    Caption = 'Onset'
+    TabOrder = 0
   end
-  object leDur: TCaptionEdit
+  object leDur: TEdit
     Left = 81
     Top = 48
     Width = 147
     Height = 22
-    TabOrder = 3
-    Caption = 'Duration'
+    TabOrder = 1
   end
-  object leAssoc: TCaptionEdit
+  object leAssoc: TEdit
     Left = 13
     Top = 143
     Width = 215
     Height = 22
-    TabOrder = 7
-    Caption = 'Associated symptoms such as dizziness and fainting'
+    TabOrder = 3
   end
-  object leFreq: TCaptionEdit
+  object leFreq: TEdit
     Left = 81
     Top = 84
     Width = 147
     Height = 22
-    TabOrder = 5
-    Caption = 'Frequency'
-  end
-  object StaticText1: TStaticText
-    Left = 38
-    Top = 16
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-  end
-  object StaticText2: TStaticText
-    Left = 25
-    Top = 52
-    Width = 50
-    Height = 18
-    Caption = 'Duration'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
     TabOrder = 2
-  end
-  object StaticText3: TStaticText
-    Left = 13
-    Top = 88
-    Width = 62
-    Height = 18
-    Caption = 'Frequency'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 4
-  end
-  object StaticText4: TStaticText
-    Left = 13
-    Top = 124
-    Width = 129
-    Height = 18
-    Caption = 'Associated Symptoms'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 6
   end
 end

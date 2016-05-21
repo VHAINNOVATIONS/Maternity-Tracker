@@ -30,16 +30,17 @@ type
   TdlgRash = class(TDDCSDialog)
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    leLocat: TCaptionEdit;
-    Label3: TStaticText;
+    leOnset: TEdit;
+    leLocat: TEdit;
+    lbitching: TLabel;
     cbItchY: TCheckBox;
     cbItchN: TCheckBox;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
+    lbonset: TLabel;
+    lbloc: TLabel;
     pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
     procedure checkboxClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -51,29 +52,36 @@ implementation
 
 {$R *.dfm}
 
-procedure TdlgRash.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
+procedure TdlgRash.FormCreate(Sender: TObject);
 begin
-  if (leOnset.Text <> '') or (leLocat.Text <> '') or
-     (cbItchY.Checked) or (cbItchN.Checked) then
-  begin
-   TmpStrList.Add('Rash and Itching:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if leLocat.Text  <> '' then TmpStrList.Add('  Location: ' + leLocat.Text);
-   if cbItchY.Checked then TmpStrList.Add('  Itching? Yes');
-   if cbItchN.Checked then TmpStrList.Add('  Itching? No');
-  end;
+  SayOnFocus(cbItchY, 'Itching?');
+  SayOnFocus(cbItchN, 'Itching?');
+end;
+
+procedure TdlgRash.bbtnOKClick(Sender: TObject);
+begin
+  if leOnset.Text  <> '' then
+   TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if leLocat.Text  <> '' then
+   TmpStrList.Add('  Location: ' + leLocat.Text);
+  if cbItchY.Checked then
+   TmpStrList.Add('  Itching? Yes');
+  if cbItchN.Checked then
+   TmpStrList.Add('  Itching? No');
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Rash and Itching:');
 end;
 
 procedure TdlgRash.checkboxClick(Sender: TObject);
 begin
-  if (Sender as TCheckBox).Checked = TRUE then
-    begin
-      if (Sender as TCheckBox).Tag = 1 then
-        cbItchN.Checked := FALSE
-      else
-        cbItchY.Checked := FALSE;
-    end
+  if ((Sender is TCheckBox) and ((Sender as TCheckBox).Checked)) then
+  begin
+   if (Sender as TCheckBox).Tag = 1 then
+     cbItchN.Checked := False
+   else if (Sender as TCheckBox).Tag = 2 then
+     cbItchY.Checked := False
+  end;
 end;
 
 end.

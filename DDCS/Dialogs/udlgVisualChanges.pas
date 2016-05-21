@@ -30,17 +30,18 @@ type
   TdlgVisualChanges = class(TDDCSDialog)
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    cmbChar: TORComboBox;
-    Label2: TStaticText;
-    cmbLoc: TORComboBox;
-    Label3: TStaticText;
-    Label1: TStaticText;
-    StaticText1: TStaticText;
+    leOnset: TEdit;
+    cmbChar: TComboBox;
+    lbchar: TLabel;
+    cmbLoc: TComboBox;
+    lbloc: TLabel;
+    lbonset: TLabel;
     pnlfooter: TPanel;
-    leAssociatedSymp: TCaptionEdit;
-    leDur: TCaptionEdit;
-    StaticText3: TStaticText;
+    leDur: TEdit;
+    lbdur: TLabel;
+    Panel1: TPanel;
+    leAssociatedSymp: TEdit;
+    lbsymptoms: TLabel;
     procedure bbtnOKClick(Sender: TObject);
   private
   public
@@ -54,24 +55,23 @@ implementation
 {$R *.dfm}
 
 procedure TdlgVisualChanges.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
-var
-  I : Integer;
 begin
-  if (leOnset.Text <> '') or (cmbChar.Text <> '') or (cmbLoc.Text <> '') or
-    (leDur.Text <> '') then
+  if leOnset.Text  <> '' then
+    TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if cmbChar.Text  <> '' then
+    TmpStrList.Add('  Character: ' + cmbChar.Text);
+  if cmbLoc.Text  <> '' then
+    TmpStrList.Add('  Location: ' + cmbLoc.Text);
+  if leDur.Text  <> '' then
+    TmpStrList.Add('  Duration: ' + leDur.Text);
+  if leAssociatedSymp.Text <> '' then
   begin
-   TmpStrList.Add('Visual Changes:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if cmbChar.Text  <> '' then TmpStrList.Add('  Character: ' + cmbChar.Text);
-   if cmbLoc.Text  <> '' then TmpStrList.Add('  Location: ' + cmbLoc.Text);
-   if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
-   if leAssociatedSymp.Text <> '' then
-   begin
-     TmpStrList.Add('  Associated Symptoms:');
-     TmpStrList.Add('    ' + leAssociatedSymp.Text);
-   end;
- end;
+   TmpStrList.Add('  Associated Symptoms:');
+   TmpStrList.Add('    ' + leAssociatedSymp.Text);
+  end;
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Visual Changes:');
 end;
 
 end.

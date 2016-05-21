@@ -3,8 +3,8 @@ object dlgROS: TdlgROS
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Review of Symptoms since Last Menstrual Period'
-  ClientHeight = 385
-  ClientWidth = 634
+  ClientHeight = 386
+  ClientWidth = 653
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,247 +14,612 @@ object dlgROS: TdlgROS
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TStaticText
+  object lbOther: TLabel
+    Tag = 14
+    Left = 16
+    Top = 328
+    Width = 32
+    Height = 13
+    Caption = 'Other'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbTreatment: TLabel
+    Left = 355
+    Top = 8
+    Width = 91
+    Height = 13
+    Caption = 'Treatment Date'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbComment: TLabel
+    Left = 527
+    Top = 8
+    Width = 55
+    Height = 13
+    Caption = 'Comment'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object dtOther: TORDateBox
+    Tag = 14
+    Left = 344
+    Top = 325
+    Width = 121
+    Height = 21
+    TabOrder = 53
+    DateOnly = False
+    RequireTime = False
+    Caption = 'Other treatment date'
+  end
+  object Edit1: TEdit
     Tag = 1
-    Left = 12
-    Top = 28
-    Width = 35
-    Height = 17
-    Caption = 'Mood'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 2
-    TabStop = True
+    Left = 471
+    Top = 26
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 3
   end
-  object Label2: TStaticText
-    Tag = 12
-    Left = 12
-    Top = 281
-    Width = 100
-    Height = 17
-    HelpContext = 17
-    Caption = 'Skin Rash or Itch'
-    Color = clBtnFace
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    TabOrder = 57
-    TabStop = True
-    Transparent = False
-  end
-  object Label3: TStaticText
+  object Edit10: TEdit
     Tag = 10
-    Left = 12
-    Top = 235
-    Width = 169
-    Height = 17
-    Caption = 'Bone or Joint Pain or Swelling'
-    Color = clBtnFace
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    TabOrder = 47
-    TabStop = True
-    Transparent = False
+    Left = 471
+    Top = 233
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 39
   end
-  object Label4: TStaticText
-    Tag = 13
-    Left = 12
-    Top = 304
-    Width = 142
-    Height = 17
-    Caption = 'Heat or Cold Intolerance'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 62
-    TabStop = True
-  end
-  object Label5: TStaticText
-    Tag = 4
-    Left = 12
-    Top = 97
-    Width = 88
-    Height = 17
-    Caption = 'Visual Changes'
-    Color = clBtnFace
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    TabOrder = 17
-    TabStop = True
-    Transparent = False
-  end
-  object Label6: TStaticText
-    Tag = 8
-    Left = 12
-    Top = 189
-    Width = 207
-    Height = 17
-    Caption = 'GI Symptoms of Nausea or Vomiting'
-    Color = clBtnFace
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    TabOrder = 37
-    TabStop = True
-    Transparent = False
-  end
-  object Label7: TStaticText
+  object Edit11: TEdit
     Tag = 11
-    Left = 12
-    Top = 258
-    Width = 170
-    Height = 17
-    Caption = 'Vaginal Bleeding or Discharge'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 52
-    TabStop = True
+    Left = 471
+    Top = 256
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 43
   end
-  object Label8: TStaticText
-    Tag = 9
-    Left = 12
-    Top = 212
-    Width = 226
-    Height = 17
-    Caption = 'GU Symptoms of Burning, Pain, or Blood'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 42
-    TabStop = True
+  object Edit12: TEdit
+    Tag = 12
+    Left = 471
+    Top = 279
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 47
   end
-  object Label9: TStaticText
-    Tag = 6
-    Left = 12
-    Top = 143
-    Width = 142
-    Height = 17
-    Caption = 'Chest Pain or Palpitation'
-    Color = clBtnFace
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    TabOrder = 27
-    TabStop = True
-    Transparent = False
+  object Edit13: TEdit
+    Tag = 13
+    Left = 471
+    Top = 302
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 51
   end
-  object Label10: TStaticText
-    Tag = 5
-    Left = 12
-    Top = 120
-    Width = 129
-    Height = 17
-    Caption = 'Ears, Nose, and Throat'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 22
-    TabStop = True
-  end
-  object Label11: TStaticText
-    Tag = 7
-    Left = 12
-    Top = 166
-    Width = 182
-    Height = 17
-    Caption = 'Dyspnea, Cough, or Hemoptysis'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 32
-    TabStop = True
-  end
-  object Label12: TStaticText
-    Tag = 3
-    Left = 12
-    Top = 74
-    Width = 158
-    Height = 17
-    Caption = 'Weight Loss or Weight Gain'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 12
-    TabStop = True
-  end
-  object Label13: TStaticText
+  object Edit2: TEdit
     Tag = 2
-    Left = 12
-    Top = 51
-    Width = 66
-    Height = 17
-    Caption = 'Headaches'
-    Color = clBtnFace
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
+    Left = 471
+    Top = 49
+    Width = 167
+    Height = 21
+    Enabled = False
     TabOrder = 7
-    TabStop = True
-    Transparent = False
+  end
+  object Edit3: TEdit
+    Tag = 3
+    Left = 471
+    Top = 72
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 11
+  end
+  object Edit4: TEdit
+    Tag = 4
+    Left = 471
+    Top = 95
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 15
+  end
+  object Edit5: TEdit
+    Tag = 5
+    Left = 471
+    Top = 118
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 19
+  end
+  object Edit6: TEdit
+    Tag = 6
+    Left = 471
+    Top = 141
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 23
+  end
+  object Edit7: TEdit
+    Tag = 7
+    Left = 471
+    Top = 164
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 27
+  end
+  object Edit8: TEdit
+    Tag = 8
+    Left = 471
+    Top = 187
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 31
+  end
+  object Edit9: TEdit
+    Tag = 9
+    Left = 471
+    Top = 210
+    Width = 167
+    Height = 21
+    Enabled = False
+    TabOrder = 35
+  end
+  object edOtherComments: TEdit
+    Tag = 14
+    Left = 471
+    Top = 325
+    Width = 167
+    Height = 21
+    TabOrder = 54
+  end
+  object ORDateBox1: TORDateBox
+    Tag = 1
+    Left = 344
+    Top = 26
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 2
+    DateOnly = False
+    RequireTime = False
+    Caption = 'Mood treatment date'
+  end
+  object ORDateBox10: TORDateBox
+    Tag = 10
+    Left = 344
+    Top = 233
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 38
+    DateOnly = False
+    RequireTime = False
+    Caption = 'bone or joint pain or swelling treatment date'
+  end
+  object ORDateBox11: TORDateBox
+    Tag = 11
+    Left = 344
+    Top = 256
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 42
+    DateOnly = False
+    RequireTime = False
+    Caption = 'vaginal bleeding or discharge treatment date'
+  end
+  object ORDateBox12: TORDateBox
+    Tag = 12
+    Left = 344
+    Top = 279
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 46
+    DateOnly = False
+    RequireTime = False
+    Caption = 'Skin rash or itch treatment date'
+  end
+  object ORDateBox13: TORDateBox
+    Tag = 13
+    Left = 344
+    Top = 302
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 50
+    DateOnly = False
+    RequireTime = False
+    Caption = 'Heat or cold intolerance treatment date'
+  end
+  object ORDateBox2: TORDateBox
+    Tag = 2
+    Left = 344
+    Top = 49
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 6
+    DateOnly = False
+    RequireTime = False
+    Caption = 'Headache treatment date'
+  end
+  object ORDateBox3: TORDateBox
+    Tag = 3
+    Left = 344
+    Top = 72
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 10
+    DateOnly = False
+    RequireTime = False
+    Caption = 'Weight loss or weight gain treatment date'
+  end
+  object ORDateBox4: TORDateBox
+    Tag = 4
+    Left = 344
+    Top = 95
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 14
+    DateOnly = False
+    RequireTime = False
+    Caption = 'visual change treatment date'
+  end
+  object ORDateBox5: TORDateBox
+    Tag = 5
+    Left = 344
+    Top = 118
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 18
+    DateOnly = False
+    RequireTime = False
+    Caption = 'ear, nose, and throat treatment date'
+  end
+  object ORDateBox6: TORDateBox
+    Tag = 6
+    Left = 344
+    Top = 141
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 22
+    DateOnly = False
+    RequireTime = False
+    Caption = 'chest pain or palpitation treatment date'
+  end
+  object ORDateBox7: TORDateBox
+    Tag = 7
+    Left = 344
+    Top = 164
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 26
+    DateOnly = False
+    RequireTime = False
+    Caption = 'dyspnea, cough, or hemoptysis treatment date'
+  end
+  object ORDateBox8: TORDateBox
+    Tag = 8
+    Left = 344
+    Top = 187
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 30
+    DateOnly = False
+    RequireTime = False
+    Caption = 'GI symptoms of nausea or vomiting treatment date'
+  end
+  object ORDateBox9: TORDateBox
+    Tag = 9
+    Left = 344
+    Top = 210
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 34
+    DateOnly = False
+    RequireTime = False
+    Caption = 'GU symptoms of burning, pain, or blood treatment date'
+  end
+  object CheckBox1: TCheckBox
+    Tag = 1
+    Left = 258
+    Top = 28
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 0
+    OnClick = CheckBoxClick
+  end
+  object CheckBox2: TCheckBox
+    Tag = 1
+    Left = 303
+    Top = 28
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 1
+    OnClick = CheckBoxClick
+  end
+  object CheckBox3: TCheckBox
+    Tag = 2
+    Left = 258
+    Top = 51
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 4
+    OnClick = CheckBoxClick
+  end
+  object CheckBox4: TCheckBox
+    Tag = 2
+    Left = 303
+    Top = 51
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 5
+    OnClick = CheckBoxClick
+  end
+  object CheckBox5: TCheckBox
+    Tag = 3
+    Left = 258
+    Top = 74
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 8
+    OnClick = CheckBoxClick
+  end
+  object CheckBox6: TCheckBox
+    Tag = 3
+    Left = 303
+    Top = 74
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 9
+    OnClick = CheckBoxClick
+  end
+  object CheckBox7: TCheckBox
+    Tag = 4
+    Left = 258
+    Top = 97
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 12
+    OnClick = CheckBoxClick
+  end
+  object CheckBox8: TCheckBox
+    Tag = 4
+    Left = 303
+    Top = 97
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 13
+    OnClick = CheckBoxClick
+  end
+  object CheckBox9: TCheckBox
+    Tag = 5
+    Left = 258
+    Top = 120
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 16
+    OnClick = CheckBoxClick
+  end
+  object CheckBox10: TCheckBox
+    Tag = 5
+    Left = 303
+    Top = 120
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 17
+    OnClick = CheckBoxClick
+  end
+  object CheckBox11: TCheckBox
+    Tag = 6
+    Left = 258
+    Top = 143
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 20
+    OnClick = CheckBoxClick
+  end
+  object CheckBox12: TCheckBox
+    Tag = 6
+    Left = 303
+    Top = 143
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 21
+    OnClick = CheckBoxClick
+  end
+  object CheckBox13: TCheckBox
+    Tag = 7
+    Left = 258
+    Top = 166
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 24
+    OnClick = CheckBoxClick
+  end
+  object CheckBox14: TCheckBox
+    Tag = 7
+    Left = 303
+    Top = 166
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 25
+    OnClick = CheckBoxClick
+  end
+  object CheckBox15: TCheckBox
+    Tag = 8
+    Left = 258
+    Top = 189
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 28
+    OnClick = CheckBoxClick
+  end
+  object CheckBox16: TCheckBox
+    Tag = 8
+    Left = 303
+    Top = 189
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 29
+    OnClick = CheckBoxClick
+  end
+  object CheckBox17: TCheckBox
+    Tag = 9
+    Left = 258
+    Top = 212
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 32
+    OnClick = CheckBoxClick
+  end
+  object CheckBox18: TCheckBox
+    Tag = 9
+    Left = 303
+    Top = 212
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 33
+    OnClick = CheckBoxClick
+  end
+  object CheckBox19: TCheckBox
+    Tag = 10
+    Left = 258
+    Top = 235
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 36
+    OnClick = CheckBoxClick
+  end
+  object CheckBox20: TCheckBox
+    Tag = 10
+    Left = 303
+    Top = 235
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 37
+    OnClick = CheckBoxClick
+  end
+  object CheckBox21: TCheckBox
+    Tag = 11
+    Left = 258
+    Top = 258
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 40
+    OnClick = CheckBoxClick
+  end
+  object CheckBox22: TCheckBox
+    Tag = 11
+    Left = 303
+    Top = 258
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 41
+    OnClick = CheckBoxClick
+  end
+  object CheckBox23: TCheckBox
+    Tag = 12
+    Left = 258
+    Top = 281
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 44
+    OnClick = CheckBoxClick
+  end
+  object CheckBox24: TCheckBox
+    Tag = 12
+    Left = 303
+    Top = 281
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 45
+    OnClick = CheckBoxClick
+  end
+  object CheckBox25: TCheckBox
+    Tag = 13
+    Left = 258
+    Top = 304
+    Width = 40
+    Height = 17
+    Caption = 'Yes'
+    TabOrder = 48
+    OnClick = CheckBoxClick
+  end
+  object CheckBox26: TCheckBox
+    Tag = 13
+    Left = 303
+    Top = 304
+    Width = 40
+    Height = 17
+    Caption = 'No'
+    TabOrder = 49
+    OnClick = CheckBoxClick
   end
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 356
-    Width = 634
+    Top = 357
+    Width = 653
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 71
-    ExplicitTop = 344
+    TabOrder = 55
     object btnOK: TBitBtn
-      Left = 477
+      Left = 496
       Top = 3
       Width = 75
       Height = 25
@@ -266,7 +631,7 @@ object dlgROS: TdlgROS
       OnClick = btnOKClick
     end
     object btnCancel: TBitBtn
-      Left = 558
+      Left = 577
       Top = 3
       Width = 75
       Height = 25
@@ -295,622 +660,221 @@ object dlgROS: TdlgROS
       OnClick = btnNegClick
     end
   end
-  object Edit1: TCaptionEdit
-    Tag = 1
-    Left = 455
-    Top = 26
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 6
-    Caption = 'Mood comment'
-  end
-  object Edit2: TCaptionEdit
-    Tag = 2
-    Left = 455
-    Top = 49
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 11
-    Caption = 'Headache comment'
-  end
-  object Edit3: TCaptionEdit
-    Tag = 3
-    Left = 455
-    Top = 72
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 16
-    Caption = 'Weight loss or weight gain comment'
-  end
-  object Edit4: TCaptionEdit
-    Tag = 4
-    Left = 455
-    Top = 95
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 21
-    Caption = 'Visual change comment'
-  end
-  object Edit5: TCaptionEdit
-    Tag = 5
-    Left = 455
-    Top = 118
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 26
-    Caption = 'Ear, nose, and throat comment'
-  end
-  object Edit6: TCaptionEdit
-    Tag = 6
-    Left = 455
-    Top = 141
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 31
-    Caption = 'Chest pain or palpitation comment'
-  end
-  object Edit7: TCaptionEdit
-    Tag = 7
-    Left = 455
-    Top = 164
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 36
-    Caption = 'Dyspnea, cough, or hemoptysis comment'
-  end
-  object Edit8: TCaptionEdit
-    Tag = 8
-    Left = 455
-    Top = 187
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 41
-    Caption = 'GI symptoms of nausea or vomiting comment'
-  end
-  object Edit9: TCaptionEdit
-    Tag = 9
-    Left = 455
-    Top = 210
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 46
-    Caption = 'GU symptoms of burning, pain, or blood comment'
-  end
-  object Edit10: TCaptionEdit
-    Tag = 10
-    Left = 455
-    Top = 233
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 51
-    Caption = 'Bone or joint pain or swelling comment'
-  end
-  object Edit11: TCaptionEdit
-    Tag = 11
-    Left = 455
-    Top = 256
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 56
-    Caption = 'Vaginal bleeding or discharge comment'
-  end
-  object Edit12: TCaptionEdit
-    Tag = 12
-    Left = 455
-    Top = 279
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 61
-    Caption = 'Skin rash or itch comment'
-  end
-  object Edit13: TCaptionEdit
-    Tag = 13
-    Left = 455
-    Top = 302
-    Width = 167
-    Height = 21
-    Enabled = False
-    TabOrder = 66
-    Caption = 'Heat or cold intolerance comment'
-  end
-  object CheckBox1: TCheckBox
-    Tag = 1
-    Left = 240
-    Top = 28
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 3
-    OnClick = CheckBoxClick
-  end
-  object CheckBox2: TCheckBox
-    Tag = 1
-    Left = 285
-    Top = 28
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 4
-    OnClick = CheckBoxClick
-  end
-  object CheckBox3: TCheckBox
-    Tag = 2
-    Left = 240
-    Top = 51
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 8
-    OnClick = CheckBoxClick
-  end
-  object CheckBox4: TCheckBox
-    Tag = 2
-    Left = 285
-    Top = 51
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 9
-    OnClick = CheckBoxClick
-  end
-  object CheckBox5: TCheckBox
-    Tag = 3
-    Left = 240
-    Top = 74
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 13
-    OnClick = CheckBoxClick
-  end
-  object CheckBox6: TCheckBox
-    Tag = 3
-    Left = 285
-    Top = 74
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 14
-    OnClick = CheckBoxClick
-  end
-  object CheckBox7: TCheckBox
-    Tag = 4
-    Left = 240
-    Top = 97
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 18
-    OnClick = CheckBoxClick
-  end
-  object CheckBox8: TCheckBox
-    Tag = 4
-    Left = 285
-    Top = 97
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 19
-    OnClick = CheckBoxClick
-  end
-  object CheckBox9: TCheckBox
-    Tag = 5
-    Left = 240
-    Top = 120
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 23
-    OnClick = CheckBoxClick
-  end
-  object CheckBox10: TCheckBox
-    Tag = 5
-    Left = 285
-    Top = 120
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 24
-    OnClick = CheckBoxClick
-  end
-  object CheckBox11: TCheckBox
-    Tag = 6
-    Left = 240
-    Top = 143
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 28
-    OnClick = CheckBoxClick
-  end
-  object CheckBox12: TCheckBox
-    Tag = 6
-    Left = 285
-    Top = 143
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 29
-    OnClick = CheckBoxClick
-  end
-  object CheckBox13: TCheckBox
-    Tag = 7
-    Left = 240
-    Top = 166
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 33
-    OnClick = CheckBoxClick
-  end
-  object CheckBox14: TCheckBox
-    Tag = 7
-    Left = 285
-    Top = 166
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 34
-    OnClick = CheckBoxClick
-  end
-  object CheckBox15: TCheckBox
-    Tag = 8
-    Left = 240
-    Top = 189
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 38
-    OnClick = CheckBoxClick
-  end
-  object CheckBox16: TCheckBox
-    Tag = 8
-    Left = 285
-    Top = 189
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 39
-    OnClick = CheckBoxClick
-  end
-  object CheckBox17: TCheckBox
-    Tag = 9
-    Left = 240
-    Top = 212
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 43
-    OnClick = CheckBoxClick
-  end
-  object CheckBox18: TCheckBox
-    Tag = 9
-    Left = 285
-    Top = 212
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 44
-    OnClick = CheckBoxClick
-  end
-  object CheckBox19: TCheckBox
-    Tag = 10
-    Left = 240
-    Top = 235
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 48
-    OnClick = CheckBoxClick
-  end
-  object CheckBox20: TCheckBox
-    Tag = 10
-    Left = 285
-    Top = 235
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 49
-    OnClick = CheckBoxClick
-  end
-  object CheckBox21: TCheckBox
-    Tag = 11
-    Left = 240
-    Top = 258
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 53
-    OnClick = CheckBoxClick
-  end
-  object CheckBox22: TCheckBox
-    Tag = 11
-    Left = 285
-    Top = 258
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 54
-    OnClick = CheckBoxClick
-  end
-  object CheckBox23: TCheckBox
-    Tag = 12
-    Left = 240
-    Top = 281
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 58
-    OnClick = CheckBoxClick
-  end
-  object CheckBox24: TCheckBox
-    Tag = 12
-    Left = 285
-    Top = 281
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 59
-    OnClick = CheckBoxClick
-  end
-  object CheckBox25: TCheckBox
-    Tag = 13
-    Left = 240
-    Top = 304
-    Width = 40
-    Height = 17
-    Caption = 'Yes'
-    TabOrder = 63
-    OnClick = CheckBoxClick
-  end
-  object CheckBox26: TCheckBox
-    Tag = 13
-    Left = 285
-    Top = 304
-    Width = 40
-    Height = 17
-    Caption = 'No'
-    TabOrder = 64
-    OnClick = CheckBoxClick
-  end
-  object ORDateBox1: TORDateBox
-    Tag = 1
-    Left = 328
-    Top = 26
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 5
-    DateOnly = False
-    RequireTime = False
-    Caption = 'Mood treatment date'
-  end
-  object ORDateBox2: TORDateBox
-    Tag = 2
-    Left = 328
-    Top = 49
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 10
-    DateOnly = False
-    RequireTime = False
-    Caption = 'Headache treatment date'
-  end
-  object ORDateBox3: TORDateBox
-    Tag = 3
-    Left = 328
-    Top = 72
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 15
-    DateOnly = False
-    RequireTime = False
-    Caption = 'Weight loss or weight gain treatment date'
-  end
-  object ORDateBox4: TORDateBox
-    Tag = 4
-    Left = 328
-    Top = 95
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 20
-    DateOnly = False
-    RequireTime = False
-    Caption = 'visual change treatment date'
-  end
-  object ORDateBox5: TORDateBox
-    Tag = 5
-    Left = 328
-    Top = 118
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 25
-    DateOnly = False
-    RequireTime = False
-    Caption = 'ear, nose, and throat treatment date'
-  end
-  object ORDateBox6: TORDateBox
-    Tag = 6
-    Left = 328
-    Top = 141
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 30
-    DateOnly = False
-    RequireTime = False
-    Caption = 'chest pain or palpitation treatment date'
-  end
-  object ORDateBox7: TORDateBox
-    Tag = 7
-    Left = 328
-    Top = 164
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 35
-    DateOnly = False
-    RequireTime = False
-    Caption = 'dyspnea, cough, or hemoptysis treatment date'
-  end
-  object ORDateBox8: TORDateBox
-    Tag = 8
-    Left = 328
-    Top = 187
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 40
-    DateOnly = False
-    RequireTime = False
-    Caption = 'GI symptoms of nausea or vomiting treatment date'
-  end
-  object ORDateBox9: TORDateBox
-    Tag = 9
-    Left = 328
-    Top = 210
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 45
-    DateOnly = False
-    RequireTime = False
-    Caption = 'GU symptoms of burning, pain, or blood treatment date'
-  end
-  object ORDateBox10: TORDateBox
-    Tag = 10
-    Left = 328
-    Top = 233
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 50
-    DateOnly = False
-    RequireTime = False
-    Caption = 'bone or joint pain or swelling treatment date'
-  end
-  object ORDateBox11: TORDateBox
-    Tag = 11
-    Left = 328
-    Top = 256
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 55
-    DateOnly = False
-    RequireTime = False
-    Caption = 'vaginal bleeding or discharge treatment date'
-  end
-  object ORDateBox12: TORDateBox
-    Tag = 12
-    Left = 328
-    Top = 279
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 60
-    DateOnly = False
-    RequireTime = False
-    Caption = 'Skin rash or itch treatment date'
-  end
-  object ORDateBox13: TORDateBox
-    Tag = 13
-    Left = 328
-    Top = 302
-    Width = 121
-    Height = 21
-    Enabled = False
-    TabOrder = 65
-    DateOnly = False
-    RequireTime = False
-    Caption = 'Heat or cold intolerance treatment date'
-  end
-  object lbOther: TStaticText
+  object edOther: TEdit
     Tag = 14
-    Left = 12
-    Top = 327
-    Width = 36
-    Height = 17
-    Caption = 'Other'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 67
-  end
-  object edOtherComments: TCaptionEdit
-    Tag = 14
-    Left = 455
-    Top = 325
-    Width = 167
-    Height = 21
-    TabOrder = 70
-    Caption = 'Other comment'
-  end
-  object dtOther: TORDateBox
-    Tag = 14
-    Left = 328
-    Top = 325
-    Width = 121
-    Height = 21
-    TabOrder = 69
-    DateOnly = False
-    RequireTime = False
-    Caption = 'Other treatment date'
-  end
-  object edOther: TCaptionEdit
-    Tag = 14
-    Left = 54
+    Left = 70
     Top = 325
     Width = 268
     Height = 21
-    TabOrder = 68
-    Caption = 'Other'
+    TabOrder = 52
   end
-  object StaticText1: TStaticText
-    Left = 331
-    Top = 8
-    Width = 95
-    Height = 17
-    Caption = 'Treatment Date'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-  end
-  object StaticText2: TStaticText
-    Left = 455
-    Top = 8
-    Width = 59
-    Height = 17
-    Caption = 'Comment'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 1
+  object pnlLabels: TPanel
+    Left = 4
+    Top = 11
+    Width = 237
+    Height = 311
+    BevelOuter = bvNone
+    TabOrder = 56
+    object Label10: TLabel
+      Tag = 5
+      Left = 12
+      Top = 110
+      Width = 125
+      Height = 13
+      Caption = 'Ears, Nose, and Throat'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Tag = 2
+      Left = 12
+      Top = 41
+      Width = 62
+      Height = 13
+      Caption = 'Headaches'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+    end
+    object Label12: TLabel
+      Tag = 3
+      Left = 12
+      Top = 64
+      Width = 154
+      Height = 13
+      Caption = 'Weight Loss or Weight Gain'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Tag = 7
+      Left = 12
+      Top = 156
+      Width = 178
+      Height = 13
+      Caption = 'Dyspnea, Cough, or Hemoptysis'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Tag = 6
+      Left = 12
+      Top = 133
+      Width = 138
+      Height = 13
+      Caption = 'Chest Pain or Palpitation'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+    end
+    object Label8: TLabel
+      Tag = 9
+      Left = 12
+      Top = 202
+      Width = 222
+      Height = 13
+      Caption = 'GU Symptoms of Burning, Pain, or Blood'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Tag = 11
+      Left = 12
+      Top = 248
+      Width = 166
+      Height = 13
+      Caption = 'Vaginal Bleeding or Discharge'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Tag = 8
+      Left = 12
+      Top = 179
+      Width = 203
+      Height = 13
+      Caption = 'GI Symptoms of Nausea or Vomiting'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+    end
+    object Label5: TLabel
+      Tag = 4
+      Left = 12
+      Top = 87
+      Width = 84
+      Height = 13
+      Caption = 'Visual Changes'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+    end
+    object Label4: TLabel
+      Tag = 13
+      Left = 12
+      Top = 294
+      Width = 138
+      Height = 13
+      Caption = 'Heat or Cold Intolerance'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Tag = 10
+      Left = 12
+      Top = 225
+      Width = 165
+      Height = 13
+      Caption = 'Bone or Joint Pain or Swelling'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+    end
+    object Label2: TLabel
+      Tag = 12
+      Left = 12
+      Top = 271
+      Width = 96
+      Height = 13
+      HelpContext = 17
+      Caption = 'Skin Rash or Itch'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+    end
+    object Label1: TLabel
+      Tag = 1
+      Left = 12
+      Top = 18
+      Width = 31
+      Height = 13
+      Caption = 'Mood'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
   end
 end

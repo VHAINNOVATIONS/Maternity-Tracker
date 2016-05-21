@@ -17,7 +17,7 @@ unit udlgInfectHist;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v2.0.0.0  (full rewrite)
+   v2.0.0.0
 }
 
 interface
@@ -34,20 +34,20 @@ type
     pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    Label1: TStaticText;
-    Label3: TStaticText;
-    Label4: TStaticText;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
-    StaticText3: TStaticText;
-    StaticText4: TStaticText;
-    StaticText5: TStaticText;
-    StaticText6: TStaticText;
-    StaticText7: TStaticText;
-    StaticText8: TStaticText;
-    StaticText9: TStaticText;
-    StaticText10: TStaticText;
-    StaticText11: TStaticText;
+    Label1: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    StaticText1: TLabel;
+    StaticText2: TLabel;
+    StaticText3: TLabel;
+    StaticText4: TLabel;
+    StaticText5: TLabel;
+    StaticText6: TLabel;
+    StaticText7: TLabel;
+    StaticText8: TLabel;
+    StaticText9: TLabel;
+    StaticText10: TLabel;
+    StaticText11: TLabel;
     ckNotInfectionHistory: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
@@ -88,22 +88,23 @@ type
     CheckBox37: TCheckBox;
     CheckBox38: TCheckBox;
     CheckBox39: TCheckBox;
-    CaptionEdit1: TCaptionEdit;
-    CaptionEdit2: TCaptionEdit;
-    CaptionEdit3: TCaptionEdit;
-    CaptionEdit4: TCaptionEdit;
-    CaptionEdit5: TCaptionEdit;
-    CaptionEdit6: TCaptionEdit;
-    CaptionEdit7: TCaptionEdit;
-    CaptionEdit8: TCaptionEdit;
-    CaptionEdit9: TCaptionEdit;
-    CaptionEdit10: TCaptionEdit;
-    CaptionEdit11: TCaptionEdit;
-    CaptionEdit12: TCaptionEdit;
-    CaptionEdit13: TCaptionEdit;
+    CaptionEdit1: TEdit;
+    CaptionEdit2: TEdit;
+    CaptionEdit3: TEdit;
+    CaptionEdit4: TEdit;
+    CaptionEdit5: TEdit;
+    CaptionEdit6: TEdit;
+    CaptionEdit7: TEdit;
+    CaptionEdit8: TEdit;
+    CaptionEdit9: TEdit;
+    CaptionEdit10: TEdit;
+    CaptionEdit11: TEdit;
+    CaptionEdit12: TEdit;
+    CaptionEdit13: TEdit;
     procedure ckNotInfectionHistoryClick(Sender: TObject);
     procedure CheckBoxClick(Sender: TObject);
     procedure bbtnOKClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -114,6 +115,30 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TdlgInfectHist.FormCreate(Sender: TObject);
+var
+  I: Integer;
+
+  procedure SetSay(wControl: TWinControl);
+  var
+    I: Integer;
+  begin
+    for I := 0 to pnlbody.ControlCount - 1 do
+      if ((pnlbody.Controls[I] is TLabel) and (pnlbody.Controls[I].Tag = wControl.Tag)) then
+      begin
+        SayOnFocus(wControl, TLabel(pnlbody.Controls[I]).Caption);
+        Break;
+      end;
+  end;
+
+begin
+  for I := 0 to pnlbody.ControlCount - 1 do
+  begin
+    if pnlbody.Controls[I] is TCheckbox then
+      SetSay(TWinControl(pnlbody.Controls[I]));
+  end;
+end;
 
 procedure TdlgInfectHist.ckNotInfectionHistoryClick(Sender: TObject);
 var
@@ -132,8 +157,8 @@ begin
         ck.Checked := False;
         ck.OnClick := CheckBoxClick;
       end;
-      if pnlbody.Controls[I] is TCaptionEdit then
-        TCaptionEdit(pnlbody.Controls[I]).Clear;
+      if pnlbody.Controls[I] is TEdit then
+        TEdit(pnlbody.Controls[I]).Clear;
     end;
   end else
     pnlbody.Visible := True;
@@ -143,7 +168,7 @@ procedure TdlgInfectHist.CheckBoxClick(Sender: TObject);
 var
   I: Integer;
   ick,ck: TCheckBox;
-  ce: TCaptionEdit;
+  ce: TEdit;
 begin
   ick := TCheckBox(Sender);
 
@@ -159,10 +184,10 @@ begin
         ck.OnClick := CheckBoxClick;
       end;
     end;
-    if pnlbody.Controls[I] is TCaptionEdit then
-      if TCaptionEdit(pnlbody.Controls[I]).Tag = ick.Tag then
+    if pnlbody.Controls[I] is TEdit then
+      if pnlbody.Controls[I].Tag = ick.Tag then
       begin
-        ce := TCaptionEdit(pnlbody.Controls[I]);
+        ce := TEdit(pnlbody.Controls[I]);
         if ick.Caption = 'No' then
         begin
           ce.Clear;
@@ -185,10 +210,10 @@ var
   begin
     Result := '';
     for I := 0 to pnlbody.ControlCount - 1 do
-      if pnlbody.Controls[I] is TStaticText then
-        if TStaticText(pnlbody.Controls[I]).Tag = iTag then
+      if pnlbody.Controls[I] is TLabel then
+        if pnlbody.Controls[I].Tag = iTag then
         begin
-          Result := TStaticText(pnlbody.Controls[I]).Caption;
+          Result := TLabel(pnlbody.Controls[I]).Caption;
           if Result[Length(Result)] <> '?' then
             Result := Result + ':';
           Break;
@@ -201,10 +226,10 @@ var
   begin
     Result := '';
     for I := 0 to pnlbody.ControlCount - 1 do
-      if pnlbody.Controls[I] is TCaptionEdit then
-        if TCaptionEdit(pnlbody.Controls[I]).Tag = iTag then
+      if pnlbody.Controls[I] is TEdit then
+        if pnlbody.Controls[I].Tag = iTag then
         begin
-          Result := TCaptionEdit(pnlbody.Controls[I]).Text;
+          Result := TEdit(pnlbody.Controls[I]).Text;
           Break;
         end;
   end;

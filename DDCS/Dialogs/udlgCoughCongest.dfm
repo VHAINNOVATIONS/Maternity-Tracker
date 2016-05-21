@@ -14,13 +14,41 @@ object dlgCoughCongest: TdlgCoughCongest
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TStaticText
+  object lbColor: TLabel
+    Left = 19
+    Top = 78
+    Width = 30
+    Height = 14
+    Caption = 'Color'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
+  end
+  object lbonset: TLabel
+    Left = 19
+    Top = 14
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
     Left = 19
     Top = 46
-    Width = 109
-    Height = 18
+    Width = 105
+    Height = 14
     Caption = 'Productive Cough?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -28,14 +56,12 @@ object dlgCoughCongest: TdlgCoughCongest
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 2
-    TabStop = True
   end
-  object lbBlood: TStaticText
+  object lbBlood: TLabel
     Left = 19
     Top = 111
-    Width = 42
-    Height = 18
+    Width = 38
+    Height = 14
     Caption = 'Blood?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -43,15 +69,13 @@ object dlgCoughCongest: TdlgCoughCongest
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 7
-    TabStop = True
     Visible = False
   end
-  object Label5: TStaticText
+  object Label5: TLabel
     Left = 244
     Top = 15
-    Width = 94
-    Height = 18
+    Width = 90
+    Height = 14
     Caption = 'Post-Nasal Drip?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -59,14 +83,12 @@ object dlgCoughCongest: TdlgCoughCongest
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 10
-    TabStop = True
   end
-  object Label1: TStaticText
+  object Label1: TLabel
     Left = 244
     Top = 39
-    Width = 68
-    Height = 18
+    Width = 64
+    Height = 14
     Caption = 'Sinus Pain?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -74,14 +96,12 @@ object dlgCoughCongest: TdlgCoughCongest
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 13
-    TabStop = True
   end
-  object Label2: TStaticText
+  object Label2: TLabel
     Left = 244
     Top = 63
-    Width = 72
-    Height = 18
+    Width = 68
+    Height = 14
     Caption = 'Rhinorrhea?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -89,14 +109,12 @@ object dlgCoughCongest: TdlgCoughCongest
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 16
-    TabStop = True
   end
-  object Label6: TStaticText
+  object Label6: TLabel
     Left = 244
     Top = 87
-    Width = 114
-    Height = 18
+    Width = 110
+    Height = 14
     Caption = 'Fever and or Chills?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -104,14 +122,12 @@ object dlgCoughCongest: TdlgCoughCongest
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 19
-    TabStop = True
   end
-  object Label7: TStaticText
+  object Label7: TLabel
     Left = 244
     Top = 111
-    Width = 122
-    Height = 18
+    Width = 118
+    Height = 14
     Caption = 'Shortness of Breath?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -119,8 +135,6 @@ object dlgCoughCongest: TdlgCoughCongest
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 22
-    TabStop = True
   end
   object pnlfooter: TPanel
     Tag = 19641
@@ -130,7 +144,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 25
+    TabOrder = 16
     object bbtnOK: TBitBtn
       Left = 318
       Top = 3
@@ -155,22 +169,20 @@ object dlgCoughCongest: TdlgCoughCongest
       TabOrder = 1
     end
   end
-  object leOnset: TCaptionEdit
+  object leOnset: TEdit
     Left = 62
     Top = 11
     Width = 161
     Height = 22
-    TabOrder = 1
-    Caption = 'Onset'
+    TabOrder = 0
   end
-  object leColor: TCaptionEdit
+  object leColor: TEdit
     Left = 62
     Top = 75
     Width = 161
     Height = 22
-    TabOrder = 6
+    TabOrder = 3
     Visible = False
-    Caption = 'Color'
   end
   object cbProdCY: TCheckBox
     Tag = 1
@@ -179,7 +191,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 3
+    TabOrder = 1
     OnClick = cbProdCYClick
   end
   object cbProdCN: TCheckBox
@@ -189,7 +201,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 4
+    TabOrder = 2
     OnClick = cbProdCYClick
   end
   object cbBloodY: TCheckBox
@@ -199,7 +211,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 8
+    TabOrder = 4
     Visible = False
     OnClick = cbBloodYClick
   end
@@ -210,7 +222,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 9
+    TabOrder = 5
     Visible = False
     OnClick = cbBloodYClick
   end
@@ -221,7 +233,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 11
+    TabOrder = 6
     OnClick = cbNasalYClick
   end
   object cbNasalN: TCheckBox
@@ -231,7 +243,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 12
+    TabOrder = 7
     OnClick = cbNasalYClick
   end
   object cbSinusY: TCheckBox
@@ -241,7 +253,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 14
+    TabOrder = 8
     OnClick = cbNasalYClick
   end
   object cbSinusN: TCheckBox
@@ -251,7 +263,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 15
+    TabOrder = 9
     OnClick = cbNasalYClick
   end
   object cbRhinY: TCheckBox
@@ -261,7 +273,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 17
+    TabOrder = 10
     OnClick = cbNasalYClick
   end
   object cbRhinN: TCheckBox
@@ -271,7 +283,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 18
+    TabOrder = 11
     OnClick = cbNasalYClick
   end
   object cbFeverY: TCheckBox
@@ -281,7 +293,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 20
+    TabOrder = 12
     OnClick = cbNasalYClick
   end
   object cbFeverN: TCheckBox
@@ -291,7 +303,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 21
+    TabOrder = 13
     OnClick = cbNasalYClick
   end
   object cbSOBY: TCheckBox
@@ -301,7 +313,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 23
+    TabOrder = 14
     OnClick = cbNasalYClick
   end
   object cbSOBN: TCheckBox
@@ -311,36 +323,7 @@ object dlgCoughCongest: TdlgCoughCongest
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 24
+    TabOrder = 15
     OnClick = cbNasalYClick
-  end
-  object lbColor: TStaticText
-    Left = 19
-    Top = 79
-    Width = 34
-    Height = 18
-    Caption = 'Color'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 5
-    Visible = False
-  end
-  object StaticText2: TStaticText
-    Left = 19
-    Top = 15
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
   end
 end

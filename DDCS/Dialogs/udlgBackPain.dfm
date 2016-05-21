@@ -14,13 +14,79 @@ object dlgBackPain: TdlgBackPain
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TStaticText
+  object lbchar: TLabel
+    Left = 16
+    Top = 113
+    Width = 54
+    Height = 14
+    Caption = 'Character'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbloc: TLabel
+    Left = 16
+    Top = 80
+    Width = 47
+    Height = 14
+    Caption = 'Location'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbdur: TLabel
+    Left = 16
+    Top = 47
+    Width = 46
+    Height = 14
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbonset: TLabel
+    Left = 16
+    Top = 14
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lburinary: TLabel
+    Left = 286
+    Top = 11
+    Width = 186
+    Height = 14
+    Caption = 'Urinary Frequency and or Urgency'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbdysuria: TLabel
     Left = 286
     Top = 64
-    Width = 52
-    Height = 18
+    Width = 48
+    Height = 14
     Caption = 'Dysuria?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -28,14 +94,12 @@ object dlgBackPain: TdlgBackPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 10
-    TabStop = True
   end
-  object Label1: TStaticText
+  object lbfever: TLabel
     Left = 286
     Top = 89
-    Width = 112
-    Height = 18
+    Width = 108
+    Height = 14
     Caption = 'Fever and or chills?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -43,8 +107,6 @@ object dlgBackPain: TdlgBackPain
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 13
-    TabStop = True
   end
   object pnlfooter: TPanel
     Tag = 19641
@@ -54,7 +116,7 @@ object dlgBackPain: TdlgBackPain
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 16
+    TabOrder = 9
     object bbtnOK: TBitBtn
       Left = 343
       Top = 3
@@ -79,45 +141,40 @@ object dlgBackPain: TdlgBackPain
       TabOrder = 1
     end
   end
-  object leOnset: TCaptionEdit
+  object leOnset: TEdit
     Left = 76
     Top = 11
     Width = 190
     Height = 22
-    TabOrder = 1
-    Caption = 'Onset'
+    TabOrder = 0
   end
-  object leChar: TCaptionEdit
+  object leChar: TEdit
     Left = 76
     Top = 110
     Width = 190
     Height = 22
-    TabOrder = 7
-    Caption = 'Character'
+    TabOrder = 3
   end
-  object leLocat: TCaptionEdit
+  object leLocat: TEdit
     Left = 76
     Top = 77
     Width = 190
     Height = 22
-    TabOrder = 5
-    Caption = 'Location'
+    TabOrder = 2
   end
-  object leDur: TCaptionEdit
+  object leDur: TEdit
     Left = 76
     Top = 44
     Width = 190
     Height = 22
-    TabOrder = 3
-    Caption = 'Duration'
+    TabOrder = 1
   end
-  object leUrin: TCaptionEdit
+  object leUrin: TEdit
     Left = 286
     Top = 30
     Width = 200
     Height = 22
-    TabOrder = 9
-    Caption = 'Urinary Frequency and or Urgency'
+    TabOrder = 4
   end
   object cbDysY: TCheckBox
     Tag = 1
@@ -126,7 +183,7 @@ object dlgBackPain: TdlgBackPain
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 11
+    TabOrder = 5
     OnClick = checkboxClick
   end
   object cbDysN: TCheckBox
@@ -136,7 +193,7 @@ object dlgBackPain: TdlgBackPain
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 12
+    TabOrder = 6
     OnClick = checkboxClick
   end
   object cbFeverY: TCheckBox
@@ -146,7 +203,7 @@ object dlgBackPain: TdlgBackPain
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 14
+    TabOrder = 7
     OnClick = checkboxClick
   end
   object cbFeverN: TCheckBox
@@ -156,77 +213,7 @@ object dlgBackPain: TdlgBackPain
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 15
-    OnClick = checkboxClick
-  end
-  object StaticText1: TStaticText
-    Left = 16
-    Top = 114
-    Width = 58
-    Height = 18
-    Caption = 'Character'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 6
-  end
-  object StaticText2: TStaticText
-    Left = 16
-    Top = 81
-    Width = 51
-    Height = 18
-    Caption = 'Location'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 4
-  end
-  object StaticText3: TStaticText
-    Left = 16
-    Top = 48
-    Width = 50
-    Height = 18
-    Caption = 'Duration'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 2
-  end
-  object StaticText4: TStaticText
-    Left = 16
-    Top = 15
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-  end
-  object StaticText5: TStaticText
-    Left = 286
-    Top = 11
-    Width = 190
-    Height = 18
-    Caption = 'Urinary Frequency and or Urgency'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
     TabOrder = 8
+    OnClick = checkboxClick
   end
 end

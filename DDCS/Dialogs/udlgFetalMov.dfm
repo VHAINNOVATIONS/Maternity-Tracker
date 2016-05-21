@@ -17,11 +17,11 @@ object dlgFetalMov: TdlgFetalMov
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TStaticText
+  object Label3: TLabel
     Left = 16
     Top = 12
-    Width = 147
-    Height = 18
+    Width = 143
+    Height = 14
     Caption = 'Fetal movement present?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -29,14 +29,12 @@ object dlgFetalMov: TdlgFetalMov
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 0
-    TabStop = True
   end
-  object lbContractions: TStaticText
+  object lbContractions: TLabel
     Left = 16
-    Top = 235
-    Width = 82
-    Height = 18
+    Top = 236
+    Width = 78
+    Height = 14
     Caption = 'Contractions?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -44,14 +42,12 @@ object dlgFetalMov: TdlgFetalMov
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 14
-    TabStop = True
   end
-  object Label2: TStaticText
+  object Label2: TLabel
     Left = 16
     Top = 144
-    Width = 102
-    Height = 18
+    Width = 97
+    Height = 14
     Caption = 'Vaginal bleeding?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -59,14 +55,12 @@ object dlgFetalMov: TdlgFetalMov
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 7
-    TabStop = True
   end
-  object Label4: TStaticText
+  object Label4: TLabel
     Left = 16
     Top = 171
-    Width = 99
-    Height = 18
+    Width = 95
+    Height = 14
     Caption = 'Leakage of fluid?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -74,8 +68,87 @@ object dlgFetalMov: TdlgFetalMov
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 10
-    TabStop = True
+  end
+  object StaticText1: TLabel
+    Left = 16
+    Top = 39
+    Width = 240
+    Height = 14
+    Caption = 'Date and time of last perceived movement?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object StaticText2: TLabel
+    Left = 16
+    Top = 89
+    Width = 172
+    Height = 14
+    Caption = 'Character of fetal movements?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object StaticText3: TLabel
+    Left = 16
+    Top = 201
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbFreq: TLabel
+    Left = 16
+    Top = 271
+    Width = 58
+    Height = 14
+    Caption = 'Frequency'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
+  end
+  object lbDur: TLabel
+    Left = 16
+    Top = 299
+    Width = 46
+    Height = 14
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
+  end
+  object lbOnset1: TLabel
+    Left = 16
+    Top = 327
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
   end
   object pnlfooter: TPanel
     Tag = 19641
@@ -85,7 +158,7 @@ object dlgFetalMov: TdlgFetalMov
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 23
+    TabOrder = 14
     object bbtnOK: TBitBtn
       Left = 128
       Top = 3
@@ -110,13 +183,12 @@ object dlgFetalMov: TdlgFetalMov
       TabOrder = 1
     end
   end
-  object leOnset: TCaptionEdit
+  object leOnset: TEdit
     Left = 58
     Top = 198
     Width = 211
     Height = 22
-    TabOrder = 13
-    Caption = 'Onset'
+    TabOrder = 8
   end
   object cbFetMovY: TCheckBox
     Tag = 1
@@ -125,7 +197,7 @@ object dlgFetalMov: TdlgFetalMov
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 1
+    TabOrder = 0
     OnClick = checkboxClick
   end
   object cbFetMovN: TCheckBox
@@ -135,7 +207,7 @@ object dlgFetalMov: TdlgFetalMov
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 2
+    TabOrder = 1
     OnClick = checkboxClick
   end
   object cbContY: TCheckBox
@@ -145,7 +217,7 @@ object dlgFetalMov: TdlgFetalMov
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 15
+    TabOrder = 9
     OnClick = checkboxClick
   end
   object cbContN: TCheckBox
@@ -155,7 +227,7 @@ object dlgFetalMov: TdlgFetalMov
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 16
+    TabOrder = 10
     OnClick = checkboxClick
   end
   object cbVagBleY: TCheckBox
@@ -165,7 +237,7 @@ object dlgFetalMov: TdlgFetalMov
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 8
+    TabOrder = 4
     OnClick = checkboxClick
   end
   object cbVagBleN: TCheckBox
@@ -175,7 +247,7 @@ object dlgFetalMov: TdlgFetalMov
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 9
+    TabOrder = 5
     OnClick = checkboxClick
   end
   object cbLeakY: TCheckBox
@@ -185,7 +257,7 @@ object dlgFetalMov: TdlgFetalMov
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 11
+    TabOrder = 6
     OnClick = checkboxClick
   end
   object cbLeakN: TCheckBox
@@ -195,139 +267,48 @@ object dlgFetalMov: TdlgFetalMov
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 12
+    TabOrder = 7
     OnClick = checkboxClick
-  end
-  object StaticText1: TStaticText
-    Left = 16
-    Top = 39
-    Width = 244
-    Height = 18
-    Caption = 'Date and time of last perceived movement?'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 3
   end
   object leLastMov: TORDateBox
     Left = 16
     Top = 58
-    Width = 211
+    Width = 253
     Height = 22
-    TabOrder = 4
+    TabOrder = 2
     DateOnly = False
     RequireTime = False
-    Caption = 'Date/time of last perceived movement'
+    Caption = 'Date and time of last perceived movement'
   end
-  object leCharFetal: TCaptionEdit
+  object leCharFetal: TEdit
     Left = 16
-    Top = 109
-    Width = 211
+    Top = 108
+    Width = 253
     Height = 22
-    TabOrder = 6
-    Caption = 'Character of fetal movements'
+    TabOrder = 3
   end
-  object StaticText2: TStaticText
-    Left = 16
-    Top = 89
-    Width = 176
-    Height = 18
-    Caption = 'Character of fetal movements?'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 5
-  end
-  object StaticText3: TStaticText
-    Left = 16
-    Top = 202
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 27
-  end
-  object leFreq: TCaptionEdit
-    Left = 109
+  object leFreq: TEdit
+    Left = 84
     Top = 268
-    Width = 121
+    Width = 185
     Height = 22
-    TabOrder = 18
+    TabOrder = 11
     Visible = False
-    Caption = 'Frequency'
   end
-  object leDur: TCaptionEdit
-    Left = 109
+  object leDur: TEdit
+    Left = 84
     Top = 296
-    Width = 121
+    Width = 185
     Height = 22
-    TabOrder = 20
+    TabOrder = 12
     Visible = False
-    Caption = 'Duration'
   end
-  object leOnset1: TCaptionEdit
-    Left = 109
+  object leOnset1: TEdit
+    Left = 84
     Top = 324
-    Width = 121
+    Width = 185
     Height = 22
-    TabOrder = 22
-    Visible = False
-    Caption = 'Onset'
-  end
-  object lbFreq: TStaticText
-    Left = 41
-    Top = 272
-    Width = 62
-    Height = 18
-    Caption = 'Frequency'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 17
-    Visible = False
-  end
-  object lbDur: TStaticText
-    Left = 53
-    Top = 300
-    Width = 50
-    Height = 18
-    Caption = 'Duration'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 19
-    Visible = False
-  end
-  object lbOnset1: TStaticText
-    Left = 66
-    Top = 328
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 21
+    TabOrder = 13
     Visible = False
   end
 end

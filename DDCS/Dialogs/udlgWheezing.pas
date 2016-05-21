@@ -30,20 +30,21 @@ type
   TdlgWheezing = class(TDDCSDialog)
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    leAssocSym: TCaptionEdit;
-    leDur: TCaptionEdit;
-    Label3: TStaticText;
+    leOnset: TEdit;
+    leAssocSym: TEdit;
+    leDur: TEdit;
+    lbbreath: TLabel;
     cbSOBY: TCheckBox;
     cbSOBN: TCheckBox;
-    lbDur: TStaticText;
-    lbAssociatedSymp: TStaticText;
-    StaticText3: TStaticText;
+    lbDur: TLabel;
+    lbAssociatedSymp: TLabel;
+    lbonset: TLabel;
     pnlfooter: TPanel;
     procedure bbtnOKClick(Sender: TObject);
     procedure checkboxClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
+    hdiff: Integer;
   public
   end;
 
@@ -54,34 +55,39 @@ implementation
 
 {$R *.dfm}
 
-var
-  hdiff: Integer;
+procedure TdlgWheezing.FormCreate(Sender: TObject);
+begin
+  hdiff := leDur.Height + 10;
+  Height := Height - hdiff;
+
+  SayOnFocus(cbSOBY, 'Shortness of breath?');
+  SayOnFocus(cbSOBN, 'Shortness of breath?');
+end;
 
 procedure TdlgWheezing.bbtnOKClick(Sender: TObject);
-var
-  I : Integer;
 begin
-  if (leOnset.Text <> '') or (cbSOBY.Checked) or (cbSOBN.Checked) or
-     (leDur.Text <> '') or (leAssocSym.Text <> '') then
+  if leOnset.Text  <> '' then
+    TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if cbSOBY.Checked then
+    TmpStrList.Add('  Shortness of breath?: Yes');
+  if cbSOBN.Checked then
+    TmpStrList.Add('  Shortness of breath?: No');
+  if leDur.Text  <> '' then
+    TmpStrList.Add('  Duration: ' + leDur.Text);
+  if leAssocSym.Text  <> '' then
   begin
-    TmpStrList.Add('Wheezing:');
-    if leOnset.Text  <> '' then
-      TmpStrList.Add('  Onset: ' + leOnset.Text);
-    if cbSOBY.Checked then
-      TmpStrList.Add('  Shortness of breath?: Yes');
-    if cbSOBN.Checked then
-      TmpStrList.Add('  Shortness of breath?: No');
-    if leDur.Text  <> '' then
-      TmpStrList.Add('  Duration: ' + leDur.Text);
-    if leAssocSym.Text  <> '' then
-      TmpStrList.Add('  Associated Symptoms: ' + leAssocSym.Text);
+    TmpStrList.Add('  Associated Symptoms:');
+    TmpStrList.Add('    ' + leAssocSym.Text);
   end;
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Wheezing:');
 end;
 
 procedure TdlgWheezing.checkboxClick(Sender: TObject);
 begin
   if (Sender as TCheckBox).Tag = 1 then
-  begin {Yes}
+  begin
     if (Sender as TCheckBox).Checked then
     begin
       cbSOBN.OnClick := nil;
@@ -118,12 +124,6 @@ begin
       Height := Height - hdiff;
     end;
   end;
-end;
-
-procedure TdlgWheezing.FormCreate(Sender: TObject);
-begin
-  hdiff := leDur.Height + 10;
-  Height := Height - hdiff;
 end;
 
 end.

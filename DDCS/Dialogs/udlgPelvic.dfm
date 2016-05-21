@@ -14,13 +14,14 @@ object dlgPelvic: TdlgPelvic
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label9: TStaticText
+  object lbvulva: TLabel
     Left = 13
     Top = 12
-    Width = 34
-    Height = 18
+    Width = 30
+    Height = 14
     Caption = 'Vulva'
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
@@ -30,15 +31,13 @@ object dlgPelvic: TdlgPelvic
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
-    TabOrder = 0
-    TabStop = True
     Transparent = False
   end
-  object Label11: TStaticText
+  object lbcervix: TLabel
     Left = 13
     Top = 66
-    Width = 39
-    Height = 18
+    Width = 35
+    Height = 14
     Caption = 'Cervix'
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
@@ -48,15 +47,13 @@ object dlgPelvic: TdlgPelvic
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
-    TabOrder = 8
-    TabStop = True
     Transparent = False
   end
-  object Label13: TStaticText
+  object lbadnexa: TLabel
     Left = 13
     Top = 93
-    Width = 45
-    Height = 18
+    Width = 41
+    Height = 14
     Caption = 'Adnexa'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -64,14 +61,12 @@ object dlgPelvic: TdlgPelvic
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 12
-    TabStop = True
   end
-  object Label15: TStaticText
+  object lbuterus: TLabel
     Left = 13
     Top = 120
-    Width = 41
-    Height = 18
+    Width = 37
+    Height = 14
     Caption = 'Uterus'
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
@@ -81,15 +76,13 @@ object dlgPelvic: TdlgPelvic
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
-    TabOrder = 15
-    TabStop = True
     Transparent = False
   end
-  object Label16: TStaticText
+  object lbclinical: TLabel
     Left = 13
     Top = 253
-    Width = 180
-    Height = 18
+    Width = 176
+    Height = 14
     Caption = 'Clinical Pelvimetry Assessment'
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
@@ -99,15 +92,13 @@ object dlgPelvic: TdlgPelvic
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
-    TabOrder = 22
-    TabStop = True
     Transparent = False
   end
-  object Label1: TStaticText
+  object lbsize: TLabel
     Left = 231
     Top = 120
-    Width = 81
-    Height = 18
+    Width = 77
+    Height = 14
     Caption = 'Size in weeks'
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
@@ -117,13 +108,12 @@ object dlgPelvic: TdlgPelvic
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
-    TabOrder = 18
   end
-  object Label2: TStaticText
+  object lbcomments: TLabel
     Left = 13
     Top = 147
-    Width = 66
-    Height = 18
+    Width = 62
+    Height = 14
     Caption = 'Comments'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -131,13 +121,12 @@ object dlgPelvic: TdlgPelvic
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 20
   end
-  object Label3: TStaticText
+  object lbvagina: TLabel
     Left = 13
     Top = 39
-    Width = 41
-    Height = 18
+    Width = 36
+    Height = 14
     Caption = 'Vagina'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -145,8 +134,6 @@ object dlgPelvic: TdlgPelvic
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 4
-    TabStop = True
   end
   object cbUterNorm: TCheckBox
     Tag = 12
@@ -157,7 +144,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Normal'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 16
+    TabOrder = 11
     OnClick = cbSwitch
   end
   object pnlfooter: TPanel
@@ -168,7 +155,7 @@ object dlgPelvic: TdlgPelvic
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 27
+    TabOrder = 19
     object btnOK: TBitBtn
       Left = 247
       Top = 3
@@ -202,7 +189,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Normal'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 1
+    TabOrder = 0
     OnClick = cbSwitch
   end
   object cbVulvCond: TCheckBox
@@ -214,7 +201,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Condyloma'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 2
+    TabOrder = 1
     OnClick = cbSwitch
   end
   object cbVulvLes: TCheckBox
@@ -226,7 +213,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Lesions'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 3
+    TabOrder = 2
     OnClick = cbSwitch
   end
   object cbVagNorm: TCheckBox
@@ -238,7 +225,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Normal'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 5
+    TabOrder = 3
     OnClick = cbSwitch
   end
   object cbVagInflam: TCheckBox
@@ -250,7 +237,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Inflammation'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 6
+    TabOrder = 4
     OnClick = cbSwitch
   end
   object cbVagDisc: TCheckBox
@@ -262,7 +249,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Discharge'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 7
+    TabOrder = 5
     OnClick = cbSwitch
   end
   object cbCervNorm: TCheckBox
@@ -274,7 +261,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Normal'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 9
+    TabOrder = 6
     OnClick = cbSwitch
   end
   object cbCervInflam: TCheckBox
@@ -286,7 +273,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Inflammation'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 10
+    TabOrder = 7
     OnClick = cbSwitch
   end
   object cbCervLes: TCheckBox
@@ -298,7 +285,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Lesions'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 11
+    TabOrder = 8
     OnClick = cbSwitch
   end
   object cbAdnNorm: TCheckBox
@@ -308,7 +295,7 @@ object dlgPelvic: TdlgPelvic
     Width = 66
     Height = 17
     Caption = 'Normal'
-    TabOrder = 13
+    TabOrder = 9
     OnClick = cbSwitch
   end
   object cbAdnMas: TCheckBox
@@ -318,7 +305,7 @@ object dlgPelvic: TdlgPelvic
     Width = 55
     Height = 17
     Caption = 'Mass'
-    TabOrder = 14
+    TabOrder = 10
     OnClick = cbSwitch
   end
   object cbUterAbn: TCheckBox
@@ -330,7 +317,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Abnormal'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 17
+    TabOrder = 12
     OnClick = cbSwitch
   end
   object cbPelDimAde: TCheckBox
@@ -342,7 +329,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Adequate'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 23
+    TabOrder = 15
     OnClick = cbSwitch
   end
   object cbPelDimBor: TCheckBox
@@ -354,7 +341,7 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Borderline'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 24
+    TabOrder = 16
     OnClick = cbSwitch
   end
   object cbPelDimCon: TCheckBox
@@ -366,17 +353,16 @@ object dlgPelvic: TdlgPelvic
     Caption = 'Inadequate'
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 25
+    TabOrder = 17
     OnClick = cbSwitch
   end
-  object edUterSize: TCaptionEdit
+  object edUterSize: TEdit
     Left = 313
     Top = 116
     Width = 78
     Height = 22
     Color = clWhite
-    TabOrder = 19
-    Caption = 'Size in weeks'
+    TabOrder = 13
   end
   object memPelvimetry: TCaptionMemo
     Left = 13
@@ -384,7 +370,7 @@ object dlgPelvic: TdlgPelvic
     Width = 378
     Height = 85
     ScrollBars = ssVertical
-    TabOrder = 26
+    TabOrder = 18
     Caption = 'Clinical Pelvimetry Assessment'
   end
   object memComments: TCaptionMemo
@@ -393,7 +379,7 @@ object dlgPelvic: TdlgPelvic
     Width = 378
     Height = 76
     ScrollBars = ssVertical
-    TabOrder = 21
+    TabOrder = 14
     Caption = 'Comments'
   end
 end

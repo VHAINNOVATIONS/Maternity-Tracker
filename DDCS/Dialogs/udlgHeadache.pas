@@ -31,23 +31,25 @@ type
     pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    leChar: TCaptionEdit;
-    leLocat: TCaptionEdit;
-    leDur: TCaptionEdit;
-    leAssoc: TCaptionEdit;
-    leWhat: TCaptionEdit;
-    Label3: TStaticText;
-    cbTreatYes: TCheckBox;
+    leOnset: TEdit;
+    leChar: TEdit;
+    leLocat: TEdit;
+    leDur: TEdit;
+    lbonset: TLabel;
+    lbchar: TLabel;
+    lbloc: TLabel;
+    lbdur: TLabel;
+    Panel1: TPanel;
+    leWhat: TEdit;
     cbTreatNo: TCheckBox;
-    lbWhat: TStaticText;
-    StaticText2: TStaticText;
-    StaticText3: TStaticText;
-    StaticText4: TStaticText;
-    StaticText5: TStaticText;
-    StaticText6: TStaticText;
+    cbTreatYes: TCheckBox;
+    leAssoc: TEdit;
+    lbtreatments: TLabel;
+    lbsymptoms: TLabel;
+    lbWhat: TLabel;
     procedure bbtnOKClick(Sender: TObject);
     procedure cbTreatYesClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -59,38 +61,44 @@ implementation
 
 {$R *.dfm}
 
-procedure TdlgHeadache.bbtnOKClick(Sender: TObject);
-var
-  I: Integer;
+procedure TdlgHeadache.FormCreate(Sender: TObject);
 begin
-  if (leOnset.Text <> '') or (leChar.Text <> '') or (leLocat.Text <> '') or
-    (leDur.Text <> '') or (leAssoc.Text <> '') or (cbTreatYes.Checked) or
-    (cbTreatNo.Checked) then
+  SayOnFocus(cbTreatYes, 'Treatments?');
+  SayOnFocus( cbTreatNo, 'Treatments?');
+  SayOnFocus(   leAssoc, 'Associated Symptoms?');
+  SayOnFocus(    leWhat, 'What was used? What was the effectiveness?');
+end;
+
+procedure TdlgHeadache.bbtnOKClick(Sender: TObject);
+begin
+  if leOnset.Text  <> '' then
+    TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if leChar.Text  <> '' then
+    TmpStrList.Add('  Character: ' + leChar.Text);
+  if leLocat.Text  <> '' then
+    TmpStrList.Add('  Localization: ' + leLocat.Text);
+  if leDur.Text  <> '' then
+    TmpStrList.Add('  Duration: ' + leDur.Text);
+  if leAssoc.Text  <> '' then
   begin
-    TmpStrList.Add('Headache:');
-    if leOnset.Text  <> '' then
-      TmpStrList.Add('  Onset: ' + leOnset.Text);
-    if leChar.Text  <> '' then
-      TmpStrList.Add('  Character: ' + leChar.Text);
-    if leLocat.Text  <> '' then
-      TmpStrList.Add('  Localization: ' + leLocat.Text);
-    if leDur.Text  <> '' then
-      TmpStrList.Add('  Duration: ' + leDur.Text);
-    if leAssoc.Text  <> '' then
-      TmpStrList.Add('  Associated Symptoms: ' + leAssoc.Text);
-    if cbTreatYes.Checked  then
-    begin
-      TmpStrList.Add('  Treatments? Yes');
-      if leWhat.Text  <> '' then TmpStrList.Add('    What was used? What was the effectiveness? ' + leWhat.Text);
-    end else if cbTreatNo.Checked then
-      TmpStrList.Add('  Treatments? No');
+    TmpStrList.Add('  Associated Symptoms:');
+    TmpStrList.Add('    ' + leAssoc.Text);
   end;
+  if cbTreatYes.Checked  then
+  begin
+    TmpStrList.Add('  Treatments? Yes');
+    if leWhat.Text  <> '' then TmpStrList.Add('  What was used? What was the effectiveness? ' + leWhat.Text);
+  end else if cbTreatNo.Checked then
+    TmpStrList.Add('  Treatments? No');
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Headaches:');
 end;
 
 procedure TdlgHeadache.cbTreatYesClick(Sender: TObject);
 begin
   if (Sender as TCheckBox).Tag = 1 then
-  begin {Yes}
+  begin
     if (Sender as TCheckBox).Checked then
     begin
       cbTreatNo.OnClick := nil;
@@ -106,7 +114,7 @@ begin
       leWhat.Visible := False;
     end;
   end else if (Sender as TCheckBox).Tag = 2 then
-  begin  {No}
+  begin
     cbTreatYes.OnClick := nil;
     cbTreatYes.Checked := False;
     cbTreatYes.OnClick := cbTreatYesClick;

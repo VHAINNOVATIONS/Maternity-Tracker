@@ -31,10 +31,10 @@ type
   TdlgRTClinic = class(TDDCSDialog)
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    Label3: TStaticText;
     edtRTCWeeks: TSpinEdit;
     cbTimeUnit: TComboBox;
     pnlfooter: TPanel;
+    lbrtc: TLabel;
     procedure bbtnOKClick(Sender: TObject);
     procedure edtRTCWeeksChange(Sender: TObject);
   private
@@ -51,7 +51,7 @@ implementation
 procedure TdlgRTClinic.bbtnOKClick(Sender: TObject);
 begin
   if edtRTCWeeks.Value > 0 then
-    tmpstrlist.add ('Return to clinic in ' + IntToStr(edtRTCWeeks.Value) + ' '+ cbTimeUnit.Text);
+    TmpStrList.add ('Return to clinic in ' + IntToStr(edtRTCWeeks.Value) + ' '+ cbTimeUnit.Text);
 end;
 
 procedure TdlgRTClinic.edtRTCWeeksChange(Sender: TObject);

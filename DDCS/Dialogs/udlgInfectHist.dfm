@@ -14,6 +14,7 @@ object dlgInfectHist: TdlgInfectHist
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
   object pnlfooter: TPanel
@@ -24,7 +25,7 @@ object dlgInfectHist: TdlgInfectHist
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 1
+    TabOrder = 2
     object bbtnOK: TBitBtn
       Left = 640
       Top = 3
@@ -56,13 +57,13 @@ object dlgInfectHist: TdlgInfectHist
     Height = 330
     Align = alClient
     BevelOuter = bvNone
-    TabOrder = 0
-    object Label1: TStaticText
+    TabOrder = 1
+    object Label1: TLabel
       Tag = 1
       Left = 11
       Top = 9
-      Width = 258
-      Height = 18
+      Width = 254
+      Height = 14
       Caption = 'Live with someone with TB or exposed to TB?'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -70,22 +71,19 @@ object dlgInfectHist: TdlgInfectHist
       Font.Name = 'Arial'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 0
-      TabStop = True
     end
-    object Label3: TStaticText
+    object Label3: TLabel
       Left = 38
       Top = 62
-      Width = 4
-      Height = 4
-      TabOrder = 65
+      Width = 3
+      Height = 14
     end
-    object Label4: TStaticText
+    object Label4: TLabel
       Tag = 4
       Left = 11
       Top = 81
-      Width = 193
-      Height = 18
+      Width = 189
+      Height = 14
       Caption = 'Rash since last menstrual period?'
       Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
@@ -95,8 +93,178 @@ object dlgInfectHist: TdlgInfectHist
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
-      TabOrder = 15
-      TabStop = True
+    end
+    object StaticText1: TLabel
+      Tag = 2
+      Left = 11
+      Top = 33
+      Width = 137
+      Height = 14
+      Caption = 'History of Genital Herpes'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object StaticText2: TLabel
+      Tag = 3
+      Left = 11
+      Top = 57
+      Width = 152
+      Height = 14
+      Caption = 'Exposed to Genital Herpes?'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object StaticText3: TLabel
+      Tag = 5
+      Left = 11
+      Top = 105
+      Width = 227
+      Height = 14
+      Caption = 'Viral illness since last menstrual period?'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object StaticText4: TLabel
+      Tag = 6
+      Left = 11
+      Top = 129
+      Width = 58
+      Height = 14
+      Caption = 'Hepatitis B'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object StaticText5: TLabel
+      Tag = 7
+      Left = 11
+      Top = 153
+      Width = 59
+      Height = 14
+      Caption = 'Hepatitis C'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object StaticText6: TLabel
+      Tag = 8
+      Left = 11
+      Top = 177
+      Width = 77
+      Height = 14
+      Caption = 'History of STD'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object StaticText7: TLabel
+      Tag = 9
+      Left = 11
+      Top = 201
+      Width = 115
+      Height = 14
+      Caption = 'History of Gonorrhea'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object StaticText8: TLabel
+      Tag = 10
+      Left = 11
+      Top = 224
+      Width = 113
+      Height = 14
+      Caption = 'History of Chlamydia'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object StaticText9: TLabel
+      Tag = 11
+      Left = 11
+      Top = 249
+      Width = 78
+      Height = 14
+      Caption = 'History of HPV'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object StaticText10: TLabel
+      Tag = 12
+      Left = 11
+      Top = 273
+      Width = 74
+      Height = 14
+      Caption = 'History of HIV'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object StaticText11: TLabel
+      Tag = 13
+      Left = 11
+      Top = 297
+      Width = 99
+      Height = 14
+      Caption = 'History of Syphilis'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
     end
     object CheckBox2: TCheckBox
       Tag = 1
@@ -105,7 +273,7 @@ object dlgInfectHist: TdlgInfectHist
       Width = 46
       Height = 17
       Caption = 'Yes'
-      TabOrder = 1
+      TabOrder = 0
       OnClick = CheckBoxClick
     end
     object CheckBox3: TCheckBox
@@ -115,7 +283,7 @@ object dlgInfectHist: TdlgInfectHist
       Width = 37
       Height = 17
       Caption = 'No'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = CheckBoxClick
     end
     object CheckBox4: TCheckBox
@@ -127,7 +295,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 6
+      TabOrder = 4
       OnClick = CheckBoxClick
     end
     object CheckBox5: TCheckBox
@@ -139,7 +307,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'No'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 7
+      TabOrder = 5
       OnClick = CheckBoxClick
     end
     object CheckBox8: TCheckBox
@@ -151,7 +319,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 11
+      TabOrder = 8
       OnClick = CheckBoxClick
     end
     object CheckBox9: TCheckBox
@@ -163,7 +331,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'No'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 12
+      TabOrder = 9
       OnClick = CheckBoxClick
     end
     object CheckBox10: TCheckBox
@@ -175,7 +343,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 16
+      TabOrder = 12
       OnClick = CheckBoxClick
     end
     object CheckBox11: TCheckBox
@@ -187,7 +355,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'No'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 17
+      TabOrder = 13
       OnClick = CheckBoxClick
     end
     object CheckBox6: TCheckBox
@@ -199,7 +367,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 18
+      TabOrder = 14
       OnClick = CheckBoxClick
     end
     object CheckBox7: TCheckBox
@@ -209,7 +377,7 @@ object dlgInfectHist: TdlgInfectHist
       Width = 77
       Height = 17
       Caption = 'Not Known'
-      TabOrder = 13
+      TabOrder = 10
       OnClick = CheckBoxClick
     end
     object CheckBox12: TCheckBox
@@ -221,7 +389,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 8
+      TabOrder = 6
       OnClick = CheckBoxClick
     end
     object CheckBox13: TCheckBox
@@ -231,7 +399,7 @@ object dlgInfectHist: TdlgInfectHist
       Width = 77
       Height = 17
       Caption = 'Not Known'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = CheckBoxClick
     end
     object CheckBox14: TCheckBox
@@ -241,7 +409,7 @@ object dlgInfectHist: TdlgInfectHist
       Width = 45
       Height = 17
       Caption = 'Yes'
-      TabOrder = 21
+      TabOrder = 16
       OnClick = CheckBoxClick
     end
     object CheckBox15: TCheckBox
@@ -251,7 +419,7 @@ object dlgInfectHist: TdlgInfectHist
       Width = 37
       Height = 17
       Caption = 'No'
-      TabOrder = 22
+      TabOrder = 17
       OnClick = CheckBoxClick
     end
     object CheckBox16: TCheckBox
@@ -261,7 +429,7 @@ object dlgInfectHist: TdlgInfectHist
       Width = 79
       Height = 17
       Caption = 'Not Known'
-      TabOrder = 23
+      TabOrder = 18
       OnClick = CheckBoxClick
     end
     object CheckBox17: TCheckBox
@@ -273,7 +441,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 26
+      TabOrder = 20
       OnClick = CheckBoxClick
     end
     object CheckBox18: TCheckBox
@@ -285,7 +453,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'No'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 27
+      TabOrder = 21
       OnClick = CheckBoxClick
     end
     object CheckBox19: TCheckBox
@@ -297,7 +465,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 28
+      TabOrder = 22
       OnClick = CheckBoxClick
     end
     object CheckBox20: TCheckBox
@@ -309,7 +477,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 31
+      TabOrder = 24
       OnClick = CheckBoxClick
     end
     object CheckBox21: TCheckBox
@@ -321,7 +489,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 36
+      TabOrder = 28
       OnClick = CheckBoxClick
     end
     object CheckBox22: TCheckBox
@@ -333,7 +501,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'No'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 32
+      TabOrder = 25
       OnClick = CheckBoxClick
     end
     object CheckBox23: TCheckBox
@@ -345,11 +513,11 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'No'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 37
+      TabOrder = 29
       OnClick = CheckBoxClick
     end
     object CheckBox24: TCheckBox
-      Tag = 21
+      Tag = 7
       Left = 366
       Top = 153
       Width = 79
@@ -357,7 +525,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 33
+      TabOrder = 26
       OnClick = CheckBoxClick
     end
     object CheckBox25: TCheckBox
@@ -369,202 +537,8 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 38
-      OnClick = CheckBoxClick
-    end
-    object StaticText1: TStaticText
-      Tag = 2
-      Left = 11
-      Top = 33
-      Width = 141
-      Height = 18
-      Caption = 'History of Genital Herpes'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 5
-      TabStop = True
-    end
-    object StaticText2: TStaticText
-      Tag = 3
-      Left = 11
-      Top = 57
-      Width = 156
-      Height = 18
-      Caption = 'Exposed to Genital Herpes?'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 10
-      TabStop = True
-    end
-    object StaticText3: TStaticText
-      Tag = 5
-      Left = 11
-      Top = 105
-      Width = 231
-      Height = 18
-      Caption = 'Viral illness since last menstrual period?'
-      Color = clBtnFace
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      TabOrder = 20
-      TabStop = True
-    end
-    object StaticText4: TStaticText
-      Tag = 6
-      Left = 11
-      Top = 129
-      Width = 62
-      Height = 18
-      Caption = 'Hepatitis B'
-      Color = clBtnFace
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      TabOrder = 25
-      TabStop = True
-    end
-    object StaticText5: TStaticText
-      Tag = 7
-      Left = 11
-      Top = 153
-      Width = 63
-      Height = 18
-      Caption = 'Hepatitis C'
-      Color = clBtnFace
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
       TabOrder = 30
-      TabStop = True
-    end
-    object StaticText6: TStaticText
-      Tag = 8
-      Left = 11
-      Top = 177
-      Width = 81
-      Height = 18
-      Caption = 'History of STD'
-      Color = clBtnFace
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      TabOrder = 35
-      TabStop = True
-    end
-    object StaticText7: TStaticText
-      Tag = 9
-      Left = 11
-      Top = 201
-      Width = 119
-      Height = 18
-      Caption = 'History of Gonorrhea'
-      Color = clBtnFace
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      TabOrder = 40
-      TabStop = True
-    end
-    object StaticText8: TStaticText
-      Tag = 10
-      Left = 11
-      Top = 225
-      Width = 117
-      Height = 18
-      Caption = 'History of Chlamydia'
-      Color = clBtnFace
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      TabOrder = 45
-      TabStop = True
-    end
-    object StaticText9: TStaticText
-      Tag = 11
-      Left = 11
-      Top = 249
-      Width = 82
-      Height = 18
-      Caption = 'History of HPV'
-      Color = clBtnFace
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      TabOrder = 50
-      TabStop = True
-    end
-    object StaticText10: TStaticText
-      Tag = 12
-      Left = 11
-      Top = 273
-      Width = 78
-      Height = 18
-      Caption = 'History of HIV'
-      Color = clBtnFace
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      TabOrder = 55
-      TabStop = True
-    end
-    object StaticText11: TStaticText
-      Tag = 13
-      Left = 11
-      Top = 297
-      Width = 103
-      Height = 18
-      Caption = 'History of Syphilis'
-      Color = clBtnFace
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      TabOrder = 60
-      TabStop = True
+      OnClick = CheckBoxClick
     end
     object CheckBox1: TCheckBox
       Tag = 9
@@ -575,19 +549,19 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 41
+      TabOrder = 32
       OnClick = CheckBoxClick
     end
     object CheckBox26: TCheckBox
       Tag = 10
       Left = 276
-      Top = 225
+      Top = 224
       Width = 45
       Height = 17
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 46
+      TabOrder = 36
       OnClick = CheckBoxClick
     end
     object CheckBox27: TCheckBox
@@ -599,7 +573,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 51
+      TabOrder = 40
       OnClick = CheckBoxClick
     end
     object CheckBox28: TCheckBox
@@ -611,55 +585,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Yes'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 56
-      OnClick = CheckBoxClick
-    end
-    object CheckBox29: TCheckBox
-      Tag = 13
-      Left = 276
-      Top = 297
-      Width = 45
-      Height = 17
-      Caption = 'Yes'
-      Color = clBtnFace
-      ParentColor = False
-      TabOrder = 61
-      OnClick = CheckBoxClick
-    end
-    object CheckBox30: TCheckBox
-      Tag = 9
-      Left = 324
-      Top = 201
-      Width = 37
-      Height = 17
-      Caption = 'No'
-      Color = clBtnFace
-      ParentColor = False
-      TabOrder = 42
-      OnClick = CheckBoxClick
-    end
-    object CheckBox31: TCheckBox
-      Tag = 10
-      Left = 324
-      Top = 225
-      Width = 37
-      Height = 17
-      Caption = 'No'
-      Color = clBtnFace
-      ParentColor = False
-      TabOrder = 47
-      OnClick = CheckBoxClick
-    end
-    object CheckBox32: TCheckBox
-      Tag = 11
-      Left = 324
-      Top = 249
-      Width = 37
-      Height = 17
-      Caption = 'No'
-      Color = clBtnFace
-      ParentColor = False
-      TabOrder = 52
+      TabOrder = 44
       OnClick = CheckBoxClick
     end
     object CheckBox33: TCheckBox
@@ -671,19 +597,43 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'No'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 57
+      TabOrder = 45
       OnClick = CheckBoxClick
     end
-    object CheckBox34: TCheckBox
-      Tag = 13
+    object CheckBox30: TCheckBox
+      Tag = 9
       Left = 324
-      Top = 297
+      Top = 201
       Width = 37
       Height = 17
       Caption = 'No'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 62
+      TabOrder = 33
+      OnClick = CheckBoxClick
+    end
+    object CheckBox31: TCheckBox
+      Tag = 10
+      Left = 324
+      Top = 224
+      Width = 37
+      Height = 17
+      Caption = 'No'
+      Color = clBtnFace
+      ParentColor = False
+      TabOrder = 37
+      OnClick = CheckBoxClick
+    end
+    object CheckBox32: TCheckBox
+      Tag = 11
+      Left = 324
+      Top = 249
+      Width = 37
+      Height = 17
+      Caption = 'No'
+      Color = clBtnFace
+      ParentColor = False
+      TabOrder = 41
       OnClick = CheckBoxClick
     end
     object CheckBox35: TCheckBox
@@ -695,19 +645,19 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 43
+      TabOrder = 34
       OnClick = CheckBoxClick
     end
     object CheckBox36: TCheckBox
       Tag = 10
       Left = 366
-      Top = 225
+      Top = 224
       Width = 79
       Height = 17
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 48
+      TabOrder = 38
       OnClick = CheckBoxClick
     end
     object CheckBox37: TCheckBox
@@ -719,7 +669,7 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 53
+      TabOrder = 42
       OnClick = CheckBoxClick
     end
     object CheckBox38: TCheckBox
@@ -731,7 +681,31 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 58
+      TabOrder = 46
+      OnClick = CheckBoxClick
+    end
+    object CheckBox29: TCheckBox
+      Tag = 13
+      Left = 276
+      Top = 297
+      Width = 45
+      Height = 17
+      Caption = 'Yes'
+      Color = clBtnFace
+      ParentColor = False
+      TabOrder = 48
+      OnClick = CheckBoxClick
+    end
+    object CheckBox34: TCheckBox
+      Tag = 13
+      Left = 324
+      Top = 297
+      Width = 37
+      Height = 17
+      Caption = 'No'
+      Color = clBtnFace
+      ParentColor = False
+      TabOrder = 49
       OnClick = CheckBoxClick
     end
     object CheckBox39: TCheckBox
@@ -743,138 +717,125 @@ object dlgInfectHist: TdlgInfectHist
       Caption = 'Not Known'
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 63
+      TabOrder = 50
       OnClick = CheckBoxClick
     end
-    object CaptionEdit1: TCaptionEdit
+    object CaptionEdit1: TEdit
       Tag = 1
       Left = 449
       Top = 6
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 4
-      Caption = 'Live with someone with TB or exposed to TB narrative'
+      TabOrder = 3
     end
-    object CaptionEdit2: TCaptionEdit
+    object CaptionEdit2: TEdit
       Tag = 2
       Left = 449
       Top = 30
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 9
-      Caption = 'History of Genital Herpes narrative'
+      TabOrder = 7
     end
-    object CaptionEdit3: TCaptionEdit
+    object CaptionEdit3: TEdit
       Tag = 3
       Left = 449
       Top = 54
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 14
-      Caption = 'Exposed to Genital Herpes narrative'
+      TabOrder = 11
     end
-    object CaptionEdit4: TCaptionEdit
+    object CaptionEdit4: TEdit
       Tag = 4
       Left = 449
       Top = 78
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 19
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 15
     end
-    object CaptionEdit5: TCaptionEdit
+    object CaptionEdit5: TEdit
       Tag = 5
       Left = 449
       Top = 102
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 24
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 19
     end
-    object CaptionEdit6: TCaptionEdit
+    object CaptionEdit6: TEdit
       Tag = 7
       Left = 449
       Top = 150
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 34
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 27
     end
-    object CaptionEdit7: TCaptionEdit
+    object CaptionEdit7: TEdit
       Tag = 6
       Left = 449
       Top = 126
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 29
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 23
     end
-    object CaptionEdit8: TCaptionEdit
+    object CaptionEdit8: TEdit
       Tag = 8
       Left = 449
       Top = 174
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 39
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 31
     end
-    object CaptionEdit9: TCaptionEdit
+    object CaptionEdit9: TEdit
       Tag = 9
       Left = 449
       Top = 198
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 44
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 35
     end
-    object CaptionEdit10: TCaptionEdit
+    object CaptionEdit10: TEdit
       Tag = 10
       Left = 449
       Top = 221
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 49
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 39
     end
-    object CaptionEdit11: TCaptionEdit
+    object CaptionEdit11: TEdit
       Tag = 11
       Left = 449
       Top = 246
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 54
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 43
     end
-    object CaptionEdit12: TCaptionEdit
+    object CaptionEdit12: TEdit
       Tag = 12
       Left = 449
       Top = 270
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 59
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 47
     end
-    object CaptionEdit13: TCaptionEdit
+    object CaptionEdit13: TEdit
       Tag = 13
       Left = 449
       Top = 294
       Width = 337
       Height = 22
       Enabled = False
-      TabOrder = 64
-      Caption = 'Rash since last menstrual period narrative'
+      TabOrder = 51
     end
   end
   object pnlheader: TPanel
@@ -884,7 +845,7 @@ object dlgInfectHist: TdlgInfectHist
     Height = 35
     Align = alTop
     BevelOuter = bvNone
-    TabOrder = 2
+    TabOrder = 0
     object ckNotInfectionHistory: TCheckBox
       Left = 11
       Top = 12

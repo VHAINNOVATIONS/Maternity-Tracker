@@ -4,7 +4,7 @@ object dlgNausea: TdlgNausea
   BorderStyle = bsDialog
   Caption = 'Nausea, Vomiting, and Diarrhea'
   ClientHeight = 203
-  ClientWidth = 502
+  ClientWidth = 505
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,13 +14,14 @@ object dlgNausea: TdlgNausea
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label3: TStaticText
+  object lbtoleratesolids: TLabel
     Left = 16
     Top = 48
-    Width = 115
-    Height = 18
+    Width = 111
+    Height = 14
     Caption = 'Can tolerate solids?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -28,14 +29,12 @@ object dlgNausea: TdlgNausea
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 2
-    TabStop = True
   end
-  object Label4: TStaticText
+  object lbtolerateliquids: TLabel
     Left = 16
     Top = 80
-    Width = 118
-    Height = 18
+    Width = 114
+    Height = 14
     Caption = 'Can tolerate liquids?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -43,14 +42,12 @@ object dlgNausea: TdlgNausea
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 5
-    TabStop = True
   end
-  object Label5: TStaticText
+  object lbfever: TLabel
     Left = 16
     Top = 144
-    Width = 114
-    Height = 18
+    Width = 110
+    Height = 14
     Caption = 'Fever and or Chills?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -58,14 +55,12 @@ object dlgNausea: TdlgNausea
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 10
-    TabStop = True
   end
-  object Label6: TStaticText
+  object lbabdominalpain: TLabel
     Left = 259
     Top = 48
-    Width = 96
-    Height = 18
+    Width = 92
+    Height = 14
     Caption = 'Abdominal pain?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -73,14 +68,12 @@ object dlgNausea: TdlgNausea
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 16
-    TabStop = True
   end
-  object Label1: TStaticText
+  object lbcontractions: TLabel
     Left = 259
     Top = 16
-    Width = 82
-    Height = 18
+    Width = 78
+    Height = 14
     Caption = 'Contractions?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -88,31 +81,85 @@ object dlgNausea: TdlgNausea
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 13
-    TabStop = True
+  end
+  object lbonset: TLabel
+    Left = 16
+    Top = 16
+    Width = 33
+    Height = 14
+    Caption = 'Onset'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbdur: TLabel
+    Left = 16
+    Top = 113
+    Width = 46
+    Height = 14
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbLocal1: TLabel
+    Left = 259
+    Top = 80
+    Width = 65
+    Height = 14
+    Caption = 'Localization'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
+  end
+  object lbDur1: TLabel
+    Left = 259
+    Top = 113
+    Width = 46
+    Height = 14
+    Caption = 'Duration'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
   end
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
     Top = 174
-    Width = 502
+    Width = 505
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 23
+    TabOrder = 14
+    ExplicitWidth = 502
     object bbtnOK: TBitBtn
-      Left = 345
+      Left = 348
       Top = 3
       Width = 75
       Height = 25
       Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkOK
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
     end
     object bbtnCancel: TBitBtn
-      Left = 426
+      Left = 429
       Top = 3
       Width = 75
       Height = 25
@@ -121,41 +168,38 @@ object dlgNausea: TdlgNausea
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
+      ExplicitLeft = 426
     end
   end
-  object leOnset: TCaptionEdit
+  object leOnset: TEdit
     Left = 72
     Top = 12
     Width = 159
     Height = 22
-    TabOrder = 1
-    Caption = 'Onset'
+    TabOrder = 0
   end
-  object leLocal: TCaptionEdit
+  object leLocal: TEdit
     Left = 332
     Top = 78
     Width = 156
     Height = 22
-    TabOrder = 20
+    TabOrder = 12
     Visible = False
-    Caption = 'Localization'
   end
-  object leDur: TCaptionEdit
+  object leDur: TEdit
     Left = 72
     Top = 109
     Width = 159
     Height = 22
-    TabOrder = 9
-    Caption = 'Duration'
+    TabOrder = 5
   end
-  object leDur1: TCaptionEdit
+  object leDur1: TEdit
     Left = 332
     Top = 109
     Width = 156
     Height = 22
-    TabOrder = 22
+    TabOrder = 13
     Visible = False
-    Caption = 'Duration'
   end
   object cbSolidY: TCheckBox
     Tag = 1
@@ -164,7 +208,7 @@ object dlgNausea: TdlgNausea
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 3
+    TabOrder = 1
     OnClick = checkboxClick
   end
   object cbSolidN: TCheckBox
@@ -174,7 +218,7 @@ object dlgNausea: TdlgNausea
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 4
+    TabOrder = 2
     OnClick = checkboxClick
   end
   object cbLiquidY: TCheckBox
@@ -184,7 +228,7 @@ object dlgNausea: TdlgNausea
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 6
+    TabOrder = 3
     OnClick = checkboxClick
   end
   object cbLiquidN: TCheckBox
@@ -194,7 +238,7 @@ object dlgNausea: TdlgNausea
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 7
+    TabOrder = 4
     OnClick = checkboxClick
   end
   object cbFeverY: TCheckBox
@@ -204,7 +248,7 @@ object dlgNausea: TdlgNausea
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 11
+    TabOrder = 6
     OnClick = checkboxClick
   end
   object cbFeverN: TCheckBox
@@ -214,7 +258,7 @@ object dlgNausea: TdlgNausea
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 12
+    TabOrder = 7
     OnClick = checkboxClick
   end
   object cbAbdomY: TCheckBox
@@ -224,7 +268,7 @@ object dlgNausea: TdlgNausea
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 17
+    TabOrder = 10
     OnClick = checkboxClick
   end
   object cbAbdomN: TCheckBox
@@ -234,7 +278,7 @@ object dlgNausea: TdlgNausea
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 18
+    TabOrder = 11
     OnClick = checkboxClick
   end
   object cbContY: TCheckBox
@@ -244,7 +288,7 @@ object dlgNausea: TdlgNausea
     Width = 43
     Height = 17
     Caption = 'Yes'
-    TabOrder = 14
+    TabOrder = 8
     OnClick = checkboxClick
   end
   object cbContN: TCheckBox
@@ -254,65 +298,7 @@ object dlgNausea: TdlgNausea
     Width = 36
     Height = 17
     Caption = 'No'
-    TabOrder = 15
+    TabOrder = 9
     OnClick = checkboxClick
-  end
-  object StaticText1: TStaticText
-    Left = 16
-    Top = 16
-    Width = 37
-    Height = 18
-    Caption = 'Onset'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-  end
-  object StaticText2: TStaticText
-    Left = 16
-    Top = 113
-    Width = 50
-    Height = 18
-    Caption = 'Duration'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 8
-  end
-  object lbLocal: TStaticText
-    Left = 259
-    Top = 80
-    Width = 69
-    Height = 18
-    Caption = 'Localization'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 19
-    Visible = False
-  end
-  object lbDur1: TStaticText
-    Left = 259
-    Top = 113
-    Width = 50
-    Height = 18
-    Caption = 'Duration'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 21
-    Visible = False
   end
 end

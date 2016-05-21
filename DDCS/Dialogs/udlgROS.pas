@@ -17,7 +17,7 @@ unit udlgROS;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v2.0.0.0  (full rewrite)
+   v2.0.0.0
 }
 
 interface
@@ -25,7 +25,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker, ORDtTm;
+  Vcl.ExtCtrls, Vcl.Buttons, ORCtrls, ORDtTm, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgROS = class(TDDCSDialog)
@@ -33,22 +33,7 @@ type
     btnNeg: TBitBtn;
     btnOK: TBitBtn;
     btnCancel: TBitBtn;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
-    Label1: TStaticText;
-    Label2: TStaticText;
-    Label3: TStaticText;
-    Label4: TStaticText;
-    Label5: TStaticText;
-    Label6: TStaticText;
-    Label7: TStaticText;
-    Label8: TStaticText;
-    Label9: TStaticText;
-    Label10: TStaticText;
-    Label11: TStaticText;
-    Label12: TStaticText;
-    Label13: TStaticText;
-    lbOther: TStaticText;
+    lbOther: TLabel;
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
@@ -89,24 +74,41 @@ type
     ORDateBox12: TORDateBox;
     ORDateBox13: TORDateBox;
     dtOther: TORDateBox;
-    Edit1: TCaptionEdit;
-    Edit2: TCaptionEdit;
-    Edit3: TCaptionEdit;
-    Edit4: TCaptionEdit;
-    Edit5: TCaptionEdit;
-    Edit6: TCaptionEdit;
-    Edit7: TCaptionEdit;
-    Edit8: TCaptionEdit;
-    Edit9: TCaptionEdit;
-    Edit10: TCaptionEdit;
-    Edit11: TCaptionEdit;
-    Edit12: TCaptionEdit;
-    Edit13: TCaptionEdit;
-    edOther: TCaptionEdit;
-    edOtherComments: TCaptionEdit;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    Edit12: TEdit;
+    Edit13: TEdit;
+    edOther: TEdit;
+    edOtherComments: TEdit;
+    lbTreatment: TLabel;
+    lbComment: TLabel;
+    pnlLabels: TPanel;
+    Label10: TLabel;
+    Label13: TLabel;
+    Label12: TLabel;
+    Label11: TLabel;
+    Label9: TLabel;
+    Label8: TLabel;
+    Label7: TLabel;
+    Label6: TLabel;
+    Label5: TLabel;
+    Label4: TLabel;
+    Label3: TLabel;
+    Label2: TLabel;
+    Label1: TLabel;
     procedure CheckBoxClick(Sender: TObject);
     procedure btnNegClick(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -118,20 +120,44 @@ implementation
 
 {$R *.dfm}
 
+procedure TdlgROS.FormCreate(Sender: TObject);
+var
+  I: Integer;
+
+  procedure SetSay(wControl: TWinControl);
+  var
+    I: Integer;
+  begin
+    for I := 0 to pnlLabels.ControlCount - 1 do
+      if pnlLabels.Controls[I].Tag = wControl.Tag then
+      begin
+        SayOnFocus(wControl, TLabel(pnlLabels.Controls[I]).Caption);
+        Break;
+      end;
+  end;
+
+begin
+  for I := 0 to ComponentCount - 1 do
+  begin
+    if (Components[I] is TCheckbox) or (Components[I] is TEdit) then
+      SetSay(TWinControl(Components[I]));
+  end;
+end;
+
 procedure TdlgROS.CheckBoxClick(Sender: TObject);
 var
   I: Integer;
   ick,ck: TCheckBox;
-  ce: TCaptionEdit;
+  ce: TEdit;
   cd: TORDateBox;
 begin
   ick := TCheckBox(Sender);
 
-  for I := 0 to ControlCount - 1 do
+  for I := 0 to ComponentCount - 1 do
   begin
-    if Controls[I] is TCheckbox then
+    if Components[I] is TCheckbox then
     begin
-      ck := TCheckBox(Controls[I]);
+      ck := TCheckBox(Components[I]);
       if ((ck <> ick) and (ck.Tag = ick.Tag)) then
       begin
         ck.OnClick := nil;
@@ -139,10 +165,10 @@ begin
         ck.OnClick := CheckBoxClick;
       end;
     end;
-    if Controls[I] is TCaptionEdit then
-      if TCaptionEdit(Controls[I]).Tag = ick.Tag then
+    if Components[I] is TEdit then
+      if Components[I].Tag = ick.Tag then
       begin
-        ce := TCaptionEdit(Controls[I]);
+        ce := TEdit(Components[I]);
         if ick.Caption = 'No' then
         begin
           ce.Clear;
@@ -150,10 +176,10 @@ begin
         end else
           ce.Enabled := True;
       end;
-    if Controls[I] is TORDateBox then
-      if TORDateBox(Controls[I]).Tag = ick.Tag then
+    if Components[I] is TORDateBox then
+      if Components[I].Tag = ick.Tag then
       begin
-        cd := TORDateBox(Controls[I]);
+        cd := TORDateBox(Components[I]);
         if ick.Caption = 'No' then
         begin
           cd.Clear;
@@ -169,11 +195,11 @@ var
   I: Integer;
   ck: TCheckBox;
 begin
-  for I := 0 to ControlCount - 1 do
+  for I := 0 to ComponentCount - 1 do
   begin
-    if Controls[I] is TCheckbox then
+    if Components[I] is TCheckbox then
     begin
-      ck := TCheckBox(Controls[I]);
+      ck := TCheckBox(Components[I]);
       if ck.Caption = 'No' then
         ck.Checked := True;
     end;
@@ -191,13 +217,12 @@ var
     I: Integer;
   begin
     Result := '';
-    for I := 0 to ControlCount - 1 do
-      if Controls[I] is TStaticText then
-        if TStaticText(Controls[I]).Tag = iTag then
-        begin
-          Result := TStaticText(Controls[I]).Caption + ': ';
-          Break;
-        end;
+    for I := 0 to pnlLabels.ControlCount - 1 do
+      if pnlLabels.Controls[I].Tag = iTag then
+      begin
+        Result := TLabel(pnlLabels.Controls[I]).Caption + ': ';
+        Break;
+      end;
   end;
 
   function GetDate(iTag: Integer): string;
@@ -205,12 +230,12 @@ var
     I: Integer;
   begin
     Result := '';
-    for I := 0 to ControlCount - 1 do
-      if Controls[I] is TORDateBox then
-        if TORDateBox(Controls[I]).Tag = iTag then
-          if TORDateBox(Controls[I]).IsValid then
+    for I := 0 to ComponentCount - 1 do
+      if Components[I] is TORDateBox then
+        if Components[I].Tag = iTag then
+          if TORDateBox(Components[I]).IsValid then
           begin
-            Result := TORDateBox(Controls[I]).Text;
+            Result := TORDateBox(Components[I]).Text;
             Break;
           end;
   end;
@@ -220,20 +245,20 @@ var
     I: Integer;
   begin
     Result := '';
-    for I := 0 to ControlCount - 1 do
-      if Controls[I] is TCaptionEdit then
-        if TCaptionEdit(Controls[I]).Tag = iTag then
+    for I := 0 to ComponentCount - 1 do
+      if Components[I] is TEdit then
+        if Components[I].Tag = iTag then
         begin
-          Result := TCaptionEdit(Controls[I]).Text;
+          Result := TEdit(Components[I]).Text;
           Break;
         end;
   end;
 
 begin
-  for I := 0 to ControlCount - 1 do
-    if Controls[I] is TCheckbox then
+  for I := 0 to ComponentCount - 1 do
+    if Components[I] is TCheckbox then
     begin
-      ck := TCheckBox(Controls[I]);
+      ck := TCheckBox(Components[I]);
 
       if ck.Checked then
       begin

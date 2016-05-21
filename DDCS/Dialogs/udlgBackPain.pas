@@ -24,31 +24,32 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, uDialog, uExtndComBroker, ORCtrls;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uExtndComBroker;
 
 type
   TdlgBackPain = class(TDDCSDialog)
     pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    leChar: TCaptionEdit;
-    leLocat: TCaptionEdit;
-    leDur: TCaptionEdit;
-    leUrin: TCaptionEdit;
-    Label3: TStaticText;
+    leOnset: TEdit;
+    leChar: TEdit;
+    leLocat: TEdit;
+    leDur: TEdit;
+    leUrin: TEdit;
+    lbdysuria: TLabel;
     cbDysY: TCheckBox;
     cbDysN: TCheckBox;
-    Label1: TStaticText;
+    lbfever: TLabel;
     cbFeverY: TCheckBox;
     cbFeverN: TCheckBox;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
-    StaticText3: TStaticText;
-    StaticText4: TStaticText;
-    StaticText5: TStaticText;
+    lbchar: TLabel;
+    lbloc: TLabel;
+    lbdur: TLabel;
+    lbonset: TLabel;
+    lburinary: TLabel;
     procedure bbtnOKClick(Sender: TObject);
     procedure checkboxClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
   end;
@@ -60,39 +61,51 @@ implementation
 
 {$R *.dfm}
 
-procedure TdlgBackPain.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
+procedure TdlgBackPain.FormCreate(Sender: TObject);
 begin
-   if (leOnset.Text <> '') or (leDur.Text <> '') or (leLocat.Text <> '') or
-     (leChar.Text <> '') or (leUrin.Text <> '') or
-     (cbDysY.Checked) or (cbDysN.Checked) or
-     (cbFeverY.Checked) or (cbFeverN.Checked) then
-  begin
-   TmpStrList.Add('Back pain:');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if leDur.Text  <> '' then TmpStrList.Add('  Duration: ' + leDur.Text);
-   if leLocat.Text  <> '' then TmpStrList.Add('  Location: ' + leLocat.Text);
-   if leChar.Text  <> '' then TmpStrList.Add('  Character: ' + leChar.Text);
-   if leUrin.Text  <> '' then TmpStrList.Add('  Urinary frequency and or urgency: ' + leUrin.Text);
-   if cbDysY.Checked then TmpStrList.Add('  Dysuria? Yes');
-   if cbDysN.Checked then TmpStrList.Add('  Dysuria? No');
-   if cbFeverY.Checked then TmpStrList.Add('  Fever and or Chills? Yes');
-   if cbFeverN.Checked then TmpStrList.Add('  Fever and or Chills? No');
-  end;
+  SayOnFocus(  cbDysY, 'Dysuria?');
+  SayOnFocus(  cbDysN, 'Dysuria?');
+  SayOnFocus(cbFeverY, 'Fever and or chills?');
+  SayOnFocus(cbFeverN, 'Fever and or chills?');
+end;
+
+procedure TdlgBackPain.bbtnOKClick(Sender: TObject);
+begin
+ if leOnset.Text  <> '' then
+   TmpStrList.Add('  Onset: ' + leOnset.Text);
+ if leDur.Text  <> '' then
+   TmpStrList.Add('  Duration: ' + leDur.Text);
+ if leLocat.Text  <> '' then
+   TmpStrList.Add('  Location: ' + leLocat.Text);
+ if leChar.Text  <> '' then
+   TmpStrList.Add('  Character: ' + leChar.Text);
+ if leUrin.Text  <> '' then
+   TmpStrList.Add('  Urinary frequency and or urgency: ' + leUrin.Text);
+ if cbDysY.Checked then
+   TmpStrList.Add('  Dysuria? Yes');
+ if cbDysN.Checked then
+   TmpStrList.Add('  Dysuria? No');
+ if cbFeverY.Checked then
+   TmpStrList.Add('  Fever and or Chills? Yes');
+ if cbFeverN.Checked then
+   TmpStrList.Add('  Fever and or Chills? No');
+
+ if TmpStrList.Count > 0 then
+   TmpStrList.Insert(0, 'Back pain:');
 end;
 
 procedure TdlgBackPain.checkboxClick(Sender: TObject);
 begin
- if (Sender is TCheckBox) and ((Sender as TCheckBox).Checked = TRUE) then
- begin   {cb6-9 - toggle 4 checkboxes}
+ if (Sender is TCheckBox) and ((Sender as TCheckBox).Checked) then
+ begin
    if (Sender as TCheckBox).Tag = 1 then
-     cbDysN.Checked := FALSE
+     cbDysN.Checked := False
    else if (Sender as TCheckBox).Tag = 2 then
-     cbDysY.Checked := FALSE
+     cbDysY.Checked := False
    else if (Sender as TCheckBox).Tag = 3 then
-     cbFeverN.Checked := FALSE
+     cbFeverN.Checked := False
    else if (Sender as TCheckBox).Tag = 4 then
-     cbFeverY.Checked := FALSE;
+     cbFeverY.Checked := False;
   end;
 end;
 

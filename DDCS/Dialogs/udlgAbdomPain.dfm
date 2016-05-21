@@ -84,7 +84,7 @@ object dlgAbdomPain: TdlgAbdomPain
   end
   object lbFreq: TLabel
     Left = 21
-    Top = 81
+    Top = 80
     Width = 58
     Height = 14
     Caption = 'Frequency'
@@ -98,7 +98,7 @@ object dlgAbdomPain: TdlgAbdomPain
   end
   object lbDur: TLabel
     Left = 21
-    Top = 116
+    Top = 115
     Width = 46
     Height = 14
     Caption = 'Duration'
@@ -112,7 +112,7 @@ object dlgAbdomPain: TdlgAbdomPain
   end
   object StaticText4: TLabel
     Left = 260
-    Top = 100
+    Top = 99
     Width = 47
     Height = 14
     Caption = 'Location'

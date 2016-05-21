@@ -31,34 +31,35 @@ type
     pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
-    leOnset: TCaptionEdit;
-    Label3: TStaticText;
+    leOnset: TEdit;
+    Label3: TLabel;
     cbFetMovY: TCheckBox;
     cbFetMovN: TCheckBox;
-    lbContractions: TStaticText;
+    lbContractions: TLabel;
     cbContY: TCheckBox;
     cbContN: TCheckBox;
-    Label2: TStaticText;
+    Label2: TLabel;
     cbVagBleY: TCheckBox;
     cbVagBleN: TCheckBox;
-    Label4: TStaticText;
+    Label4: TLabel;
     cbLeakY: TCheckBox;
     cbLeakN: TCheckBox;
-    StaticText1: TStaticText;
+    StaticText1: TLabel;
     leLastMov: TORDateBox;
-    leCharFetal: TCaptionEdit;
-    StaticText2: TStaticText;
-    StaticText3: TStaticText;
-    leFreq: TCaptionEdit;
-    leDur: TCaptionEdit;
-    leOnset1: TCaptionEdit;
-    lbFreq: TStaticText;
-    lbDur: TStaticText;
-    lbOnset1: TStaticText;
+    leCharFetal: TEdit;
+    StaticText2: TLabel;
+    StaticText3: TLabel;
+    leFreq: TEdit;
+    leDur: TEdit;
+    leOnset1: TEdit;
+    lbFreq: TLabel;
+    lbDur: TLabel;
+    lbOnset1: TLabel;
     procedure bbtnOKClick(Sender: TObject);
     procedure checkboxClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
+    hdiff: Integer;
   public
   end;
 
@@ -69,54 +70,72 @@ implementation
 
 {$R *.dfm}
 
-var
-  hdiff: Integer;
+procedure TdlgFetalMov.FormCreate(Sender: TObject);
+begin
+  hdiff := lbOnset1.Top - lbContractions.Top;
+  Height := Height - hdiff;
+
+  SayOnFocus(cbFetMovY, 'Fetal movement present?');
+  SayOnFocus(cbFetMovN, 'Fetal movement present?');
+  SayOnFocus(cbVagBleY, 'Vaginal bleeding?');
+  SayOnFocus(cbVagBleN, 'Vaginal bleeding?');
+  SayOnFocus(  cbLeakY, 'Leakage of fluid?');
+  SayOnFocus(  cbLeakN, 'Leakage of fluid?');
+  SayOnFocus(  cbContY, 'Contractions?');
+  SayOnFocus(  cbContN, 'Contractions?');
+end;
 
 procedure TdlgFetalMov.bbtnOKClick(Sender: TObject);
-{ User pressed OK. }
 begin
-  if (leLastMov.Text <> '') or (leCharFetal.Text <> '') or (leOnset.Text <> '') or
-      (cbFetMovY.Checked) or (cbFetMovN.Checked) or
-      (cbVagBleY.Checked) or (cbVagBleN.Checked) or
-      (cbLeakY.Checked) or (cbLeakN.Checked) or
-      (cbContY.Checked) or (cbContN.Checked) then
-  begin
-   TmpStrList.Add('Change in fetal movement:');
-   if cbFetMovY.Checked then TmpStrList.Add('  Fetal movement present? Yes');
-   if cbFetMovN.Checked then TmpStrList.Add('  Fetal movement present? No');
-   if leLastMov.Text  <> '' then TmpStrList.Add('  Date and time of last perceived movement: ' + leLastMov.Text);
-   if leCharFetal.Text  <> '' then TmpStrList.Add('  Character of fetal movements: ' + leCharFetal.Text);
-   if cbVagBleY.Checked then TmpStrList.Add('  Vaginal bleeding? Yes');
-   if cbVagBleN.Checked then TmpStrList.Add('  Vaginal bleeding? No');
-   if cbLeakY.Checked then TmpStrList.Add('  Leakage of fluid? Yes');
-   if cbLeakN.Checked then TmpStrList.Add('  Leakage of fluid? No');
-   if leOnset.Text  <> '' then TmpStrList.Add('  Onset: ' + leOnset.Text);
-   if cbContY.Checked then
-   begin
-     TmpStrList.Add('  Contractions? Yes');
-     if leFreq.Text  <> '' then TmpStrList.Add('    Frequency: ' + leFreq.Text);
-     if leDur.Text  <> '' then TmpStrList.Add('    Duration: ' + leDur.Text);
-     if leOnset1.Text  <> '' then TmpStrList.Add('    Onset: ' + leOnset1.Text);
-   end
-   else if cbContN.Checked then
-    TmpStrList.Add('  Contractions? No');
-  end;
+ if cbFetMovY.Checked then
+   TmpStrList.Add('  Fetal movement present? Yes');
+ if cbFetMovN.Checked then
+   TmpStrList.Add('  Fetal movement present? No');
+ if leLastMov.Text  <> '' then
+   TmpStrList.Add('  Date and time of last perceived movement: ' + leLastMov.Text);
+ if leCharFetal.Text  <> '' then
+   TmpStrList.Add('  Character of fetal movements: ' + leCharFetal.Text);
+ if cbVagBleY.Checked then
+   TmpStrList.Add('  Vaginal bleeding? Yes');
+ if cbVagBleN.Checked then
+   TmpStrList.Add('  Vaginal bleeding? No');
+ if cbLeakY.Checked then
+   TmpStrList.Add('  Leakage of fluid? Yes');
+ if cbLeakN.Checked then
+   TmpStrList.Add('  Leakage of fluid? No');
+ if leOnset.Text  <> '' then
+   TmpStrList.Add('  Onset: ' + leOnset.Text);
+ if cbContY.Checked then
+ begin
+   TmpStrList.Add('  Contractions? Yes');
+   if leFreq.Text  <> '' then
+     TmpStrList.Add('    Frequency: ' + leFreq.Text);
+   if leDur.Text  <> '' then
+     TmpStrList.Add('    Duration: ' + leDur.Text);
+   if leOnset1.Text  <> '' then
+     TmpStrList.Add('    Onset: ' + leOnset1.Text);
+ end
+ else if cbContN.Checked then
+   TmpStrList.Add('  Contractions? No');
+
+  if TmpstrList.Count > 0 then
+    TmpStrList.Insert(0, 'Change in fetal movement:');
 end;
 
 procedure TdlgFetalMov.checkboxClick(Sender: TObject);
 begin
-  if ((Sender as TCheckBox).Tag = 1) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbFetMovN.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 2) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbFetMovY.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 3) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbVagBleN.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 4) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbVagBleY.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 5) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbLeakN.Checked := FALSE
-  else if ((Sender as TCheckBox).Tag = 6) and ((Sender as TCheckBox).Checked = TRUE) then
-    cbLeakY.Checked := FALSE
+  if (((Sender as TCheckBox).Tag = 1) and ((Sender as TCheckBox).Checked)) then
+    cbFetMovN.Checked := False
+  else if (((Sender as TCheckBox).Tag = 2) and ((Sender as TCheckBox).Checked)) then
+    cbFetMovY.Checked := False
+  else if (((Sender as TCheckBox).Tag = 3) and ((Sender as TCheckBox).Checked)) then
+    cbVagBleN.Checked := False
+  else if (((Sender as TCheckBox).Tag = 4) and ((Sender as TCheckBox).Checked)) then
+    cbVagBleY.Checked := False
+  else if (((Sender as TCheckBox).Tag = 5) and ((Sender as TCheckBox).Checked)) then
+    cbLeakN.Checked := False
+  else if (((Sender as TCheckBox).Tag = 6) and ((Sender as TCheckBox).Checked)) then
+    cbLeakY.Checked := False
   else if (Sender as TCheckBox).Tag = 7 then
   begin
     if (Sender as TCheckBox).Checked then
@@ -176,12 +195,6 @@ begin
       Height := Height - hdiff;
     end;
   end;
-end;
-
-procedure TdlgFetalMov.FormCreate(Sender: TObject);
-begin
-  hdiff := lbOnset1.Top - lbContractions.Top;
-  Height := Height - hdiff;
 end;
 
 end.
