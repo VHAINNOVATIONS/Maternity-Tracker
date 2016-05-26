@@ -78,12 +78,14 @@ begin
       ckPostpartumHemorrhage.Visible := False;
       ckPreEclampsia.Visible := False;
       ckInfection.Visible := False;
+      lbMaternalOther.Visible := False;
       ledMaternalComplicationsOther.Visible := False;
     end else
     begin
       ckPostpartumHemorrhage.Visible := True;
       ckPreEclampsia.Visible := True;
       ckInfection.Visible := True;
+      lbMaternalOther.Visible := True;
       ledMaternalComplicationsOther.Visible := True;
 
       if ckPostpartumHemorrhage.Checked or ckInfection.Checked or

@@ -23,7 +23,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Samples.Spin,
-   Vcl.CheckLst, ORCtrls, uBase;
+  Vcl.CheckLst, ORCtrls, uBase;
 
 type
   TDDCSFormConfig = class(TForm)

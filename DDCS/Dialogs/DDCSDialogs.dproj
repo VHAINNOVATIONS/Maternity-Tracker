@@ -72,6 +72,8 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Release>0</VerInfo_Release>
         <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
@@ -79,7 +81,7 @@
         <Manifest_File>None</Manifest_File>
         <VerInfo_Build>0</VerInfo_Build>
         <DCC_ExeOutput>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_output\v2\</DCC_ExeOutput>
-        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=DDCS Shared Secondary Forms;FileVersion=2.0.1.0;InternalName=DDCSDialogs.dll;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.0.1.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=DDCS Shared Secondary Forms;FileVersion=2.1.0.0;InternalName=DDCSDialogs.dll;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.1.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -126,9 +128,6 @@
         <DCCReference Include="udlgMedical.pas">
             <Form>dlgMedical</Form>
         </DCCReference>
-        <DCCReference Include="udlgModTotPregs.pas">
-            <Form>dlgModTotPregs</Form>
-        </DCCReference>
         <DCCReference Include="udlgNausea.pas">
             <Form>dlgNausea</Form>
         </DCCReference>
@@ -165,12 +164,6 @@
         <DCCReference Include="udlgPregHist.pas">
             <Form>dlgPregHist</Form>
         </DCCReference>
-        <DCCReference Include="fPregHist.pas">
-            <Form>frmPregHist</Form>
-        </DCCReference>
-        <DCCReference Include="fChildHist.pas">
-            <Form>frmChildHist</Form>
-        </DCCReference>
         <DCCReference Include="udlgGenetic.pas">
             <Form>dlgGenetic</Form>
         </DCCReference>
@@ -194,6 +187,21 @@
         </DCCReference>
         <DCCReference Include="fFamilyAdd.pas">
             <Form>frmFamilyAdd</Form>
+        </DCCReference>
+        <DCCReference Include="frmPregHistPreg.pas">
+            <Form>fPreg</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="frmPregHistChild.pas">
+            <Form>fChild</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="frmPregHistPregInfo.pas">
+            <Form>fPregInfo</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
@@ -258,7 +266,7 @@
                 <Platform value="Win64">False</Platform>
             </Platforms>
             <Deployment Version="2">
-                <DeployFile LocalName="..\..\_output\DDCSDialogs.dll" Configuration="Release" Class="ProjectOutput">
+                <DeployFile LocalName="..\_output\v2\DDCSDialogs.dll" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>DDCSDialogs.dll</RemoteName>
                         <Overwrite>true</Overwrite>

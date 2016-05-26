@@ -30,11 +30,6 @@ uses
 type
   TfrmChildHist = class(TDDCSDialog)
     Panel40: TPanel;
-    Label305: TLabel;
-    rgbxChildGender: TRadioGroup;
-    cntcbxStillBorn: TCheckBox;
-    lblg1: TLabel;
-    spnBirthWeight: TJvSpinEdit;
     procedure FormCreate(Sender: TObject);
     procedure cntcbxStillBornClick(Sender: TObject);
     procedure SpinMin(Sender: TObject);
@@ -55,35 +50,6 @@ uses
 
 {$R *.dfm}
 
-procedure TfrmChildHist.cntcbxStillBornClick(Sender: TObject);
-begin
-  if cntcbxStillBorn.Checked then
-    TdlgPregHist(Owner.Owner).ModifyLiveBirthCount(-1)
-  else
-    TdlgPregHist(Owner.Owner).ModifyLiveBirthCount(1)
-end;
 
-procedure TfrmChildHist.FormCreate(Sender: TObject);
-begin
-  bNotViewed := True;
-end;
-
-procedure TfrmChildHist.GetText(slText: TStringList);
-begin
-  if rgbxChildGender.ItemIndex = 0 then
-    slText.Add('      Sex: Male')
-  else if rgbxChildGender.ItemIndex = 1 then
-    slText.Add('      Sex: Female');
-  if Trim(spnBirthWeight.Text) <> '' then
-    slText.Add('      Birth Weight: ' + spnBirthWeight.Text + ' grams');
-  if cntcbxStillBorn.Checked then
-    slText.Add('      Stillborn: Yes');
-end;
-
-procedure TfrmChildHist.SpinMin(Sender: TObject);
-begin
-  if TJvSpinEdit(Sender).Value < 0 then
-    TJvSpinEdit(Sender).Value := 0;
-end;
 
 end.

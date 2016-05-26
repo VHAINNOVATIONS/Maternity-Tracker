@@ -2,8 +2,9 @@ object dlgPregHist: TdlgPregHist
   Left = 197
   Top = 155
   BorderStyle = bsDialog
-  ClientHeight = 516
-  ClientWidth = 633
+  Caption = 'Pregnancy History'
+  ClientHeight = 562
+  ClientWidth = 524
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,118 +14,138 @@ object dlgPregHist: TdlgPregHist
   OldCreateOrder = False
   Position = poOwnerFormCenter
   Scaled = False
-  OnDestroy = FormDestroy
-  OnShow = FormShow
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label1: TLabel
-    Left = 24
-    Top = 55
-    Width = 85
+  object lbTotalPreg: TLabel
+    Left = 17
+    Top = 13
+    Width = 98
     Height = 14
     Caption = 'Total Pregnancies'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
-  object Label2: TLabel
-    Left = 24
-    Top = 84
-    Width = 42
+  object lbFullTerm: TLabel
+    Left = 17
+    Top = 42
+    Width = 51
     Height = 14
     Caption = 'Full Term'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
-  object Label3: TLabel
-    Left = 24
-    Top = 112
-    Width = 49
+  object lbPremature: TLabel
+    Left = 17
+    Top = 70
+    Width = 59
     Height = 14
     Caption = 'Premature'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
-  object Label4: TLabel
-    Left = 24
-    Top = 140
-    Width = 58
+  object lbInduced: TLabel
+    Left = 17
+    Top = 98
+    Width = 95
     Height = 14
-    Caption = 'Ab. Induced'
+    Caption = 'Induced Abortion'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
-  object Label5: TLabel
-    Left = 288
-    Top = 55
-    Width = 84
+  object lbSpontaneous: TLabel
+    Left = 244
+    Top = 13
+    Width = 124
     Height = 14
-    Caption = 'Ab. Spontaneous'
+    Caption = 'Spontaneous Abortion'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
-  object Label6: TLabel
-    Left = 288
-    Top = 84
-    Width = 41
+  object lbEctopics: TLabel
+    Left = 244
+    Top = 42
+    Width = 39
     Height = 14
-    Caption = 'Ectopics'
+    Caption = 'Ectopic'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
-  object Label7: TLabel
-    Left = 288
-    Top = 112
-    Width = 66
+  object lbMultipleBirths: TLabel
+    Left = 244
+    Top = 70
+    Width = 80
     Height = 14
     Caption = 'Multiple Births'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
-  object Label8: TLabel
-    Left = 288
-    Top = 140
-    Width = 28
+  object lbLiving: TLabel
+    Left = 244
+    Top = 98
+    Width = 33
     Height = 14
     Caption = 'Living'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object PregListView: TListView
-    Left = 80
-    Top = 223
+    Left = 18
+    Top = 239
     Width = 452
     Height = 207
     Columns = <>
-    TabOrder = 11
+    TabOrder = 10
     ViewStyle = vsReport
     Visible = False
   end
-  object Panel1: TPanel
+  object pnlfooter: TPanel
     Left = 0
-    Top = 0
-    Width = 633
-    Height = 33
-    Align = alTop
-    Color = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 0
-    object lbltitle: TLabel
-      Left = 4
-      Top = 4
-      Width = 146
-      Height = 20
-      Caption = 'Pregnancy History'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -16
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-  end
-  object Panel2: TPanel
-    Tag = 19641
-    Left = 0
-    Top = 487
-    Width = 633
+    Top = 533
+    Width = 524
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 10
-    object bbtnOK: TBitBtn
-      Left = 474
-      Top = 2
+    TabOrder = 9
+    object btnOK: TBitBtn
+      Left = 367
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Caption = 'OK'
       Default = True
       Glyph.Data = {
@@ -144,118 +165,122 @@ object dlgPregHist: TdlgPregHist
         3338F38F000033333333333333A223333333333333338F830000333333333333
         333A333333333333333338330000333333333333333333333333333333333333
         0000}
+      ModalResult = 1
       NumGlyphs = 2
       TabOrder = 0
-      OnClick = bbtnOKClick
+      OnClick = btnOKClick
     end
-    object bbtnCancel: TBitBtn
-      Left = 555
-      Top = 2
+    object btnCancel: TBitBtn
+      Left = 448
+      Top = 3
       Width = 75
       Height = 25
+      Align = alCustom
+      Anchors = [akTop, akRight]
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
     end
   end
-  object pgcPregnancy: TPageControl
-    Left = 8
-    Top = 184
-    Width = 620
-    Height = 297
-    TabOrder = 9
-    OnChange = pgcPregnancyChange
-    OnChanging = pgcPregnancyChanging
+  object pgPregnancy: TPageControl
+    Left = 2
+    Top = 133
+    Width = 520
+    Height = 395
+    Align = alCustom
+    Anchors = [akLeft, akRight, akBottom]
+    TabOrder = 8
   end
   object edtAbInduced: TSpinEdit
-    Left = 122
-    Top = 137
+    Tag = 2
+    Left = 121
+    Top = 95
     Width = 85
     Height = 23
-    Hint = 'AI'
+    Hint = 'Induced Abortion'
+    MaxValue = 0
+    MinValue = 0
+    TabOrder = 3
+    Value = 0
+    OnChange = TotPregChange
+  end
+  object edtAbSpont: TSpinEdit
+    Tag = 3
+    Left = 374
+    Top = 10
+    Width = 85
+    Height = 23
+    Hint = 'Spontaneous Abortion'
     MaxValue = 0
     MinValue = 0
     TabOrder = 4
     Value = 0
+    OnChange = TotPregChange
   end
-  object edtAbSpont: TSpinEdit
-    Left = 386
-    Top = 52
+  object edtTotPreg: TSpinEdit
+    Tag = 1
+    Left = 121
+    Top = 10
     Width = 85
     Height = 23
-    Hint = 'AS'
+    Hint = 'Normal Pregnancy'
+    MaxValue = 0
+    MinValue = 0
+    TabOrder = 0
+    Value = 0
+    OnChange = TotPregChange
+  end
+  object edtEctopic: TSpinEdit
+    Tag = 4
+    Left = 374
+    Top = 39
+    Width = 85
+    Height = 23
+    Hint = 'Ectopic'
     MaxValue = 0
     MinValue = 0
     TabOrder = 5
     Value = 0
+    OnChange = TotPregChange
   end
-  object edtTotPreg: TSpinEdit
-    Left = 122
-    Top = 52
+  object lbFullTermValue: TStaticText
+    Left = 121
+    Top = 42
     Width = 85
-    Height = 23
-    MaxValue = 0
-    MinValue = 0
+    Height = 18
+    AutoSize = False
+    Caption = '0'
     TabOrder = 1
-    Value = 0
+    TabStop = True
   end
-  object edtEctopic: TSpinEdit
-    Left = 386
-    Top = 81
+  object lbPrematureValue: TStaticText
+    Left = 121
+    Top = 70
     Width = 85
-    Height = 23
-    Hint = 'E'
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 6
-    Value = 0
-  end
-  object edLiveBirths: TEdit
-    Left = 386
-    Top = 141
-    Width = 85
-    Height = 22
-    BevelInner = bvNone
-    BevelOuter = bvNone
-    BorderStyle = bsNone
-    Color = clBtnFace
-    ReadOnly = True
-    TabOrder = 8
-  end
-  object edMultipleBirths: TEdit
-    Left = 386
-    Top = 112
-    Width = 85
-    Height = 22
-    BevelInner = bvNone
-    BevelOuter = bvNone
-    BorderStyle = bsNone
-    Color = clBtnFace
-    ReadOnly = True
-    TabOrder = 7
-  end
-  object edPremature: TEdit
-    Left = 122
-    Top = 111
-    Width = 85
-    Height = 22
-    BevelInner = bvNone
-    BevelOuter = bvNone
-    BorderStyle = bsNone
-    Color = clBtnFace
-    ReadOnly = True
-    TabOrder = 3
-  end
-  object edFullTerm: TEdit
-    Left = 122
-    Top = 83
-    Width = 85
-    Height = 22
-    BevelInner = bvNone
-    BevelOuter = bvNone
-    BorderStyle = bsNone
-    Color = clBtnFace
-    ReadOnly = True
+    Height = 18
+    AutoSize = False
+    Caption = '0'
     TabOrder = 2
+    TabStop = True
+  end
+  object lbMultipleBirthsValue: TStaticText
+    Left = 374
+    Top = 70
+    Width = 85
+    Height = 18
+    AutoSize = False
+    Caption = '0'
+    TabOrder = 6
+    TabStop = True
+  end
+  object lbLivingValue: TStaticText
+    Left = 374
+    Top = 95
+    Width = 85
+    Height = 18
+    AutoSize = False
+    Caption = '0'
+    TabOrder = 7
+    TabStop = True
   end
 end

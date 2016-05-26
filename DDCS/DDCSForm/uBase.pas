@@ -1243,7 +1243,8 @@ begin
     for I := 0 to ReportCollection.Count - 1 do
     begin
       nItem := ReportCollection.Items[I];
-      if ((nItem.Page <> nil) and (nItem.Page.Visible)) then
+      if ((nItem.Page <> nil) and ((nItem.Page.TabVisible) or
+          (not (nItem.Page.TabVisible) and (PageCount = 1)))) then
       begin
         if not nItem.IsValid then
         begin

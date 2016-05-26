@@ -225,7 +225,7 @@ object Form1: TForm1
         IdentifyingName = 'Type of Service'
         DoNotSpace = False
         DoNotSave = False
-        DoNotRestoreV = False
+        DoNotRestoreV = True
         HideFromNote = True
         OwningObject = RadioGroup3
         Required = True

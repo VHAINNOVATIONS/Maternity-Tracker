@@ -45,6 +45,7 @@ Type
   protected
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
   public
+    constructor Create; overload;
     constructor Create(AOwner: PDDCSForm; Broker: PCPRSComBroker;
                        DebugMode: Boolean; iIEN: string); overload;
     destructor Destroy; override;
@@ -138,6 +139,19 @@ begin
 end;
 
 // Public ----------------------------------------------------------------------
+
+constructor TDDCSDialog.Create;
+begin
+  inherited Create(nil);
+
+  FDDCSForm := nil;
+  RPCBrokerV := nil;
+  FDebugMode := True;
+  FIEN := '';
+  FReturnList := TStringList.Create;
+  FConfiguration := TStringList.Create;
+  FReportCollection := TDDCSNoteCollection.Create(Self, TDDCSNoteItem);
+end;
 
 constructor TDDCSDialog.Create(AOwner: PDDCSForm; Broker: PCPRSComBroker;
                                DebugMode: Boolean; iIEN: string);

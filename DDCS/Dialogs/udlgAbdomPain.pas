@@ -48,10 +48,10 @@ type
     Label5: TLabel;
     cbFevYes: TCheckBox;
     cbFevNo: TCheckBox;
-    StaticText1: TLabel;
+    lbonset: TLabel;
     lbFreq: TLabel;
     lbDur: TLabel;
-    StaticText4: TLabel;
+    lbloc: TLabel;
     procedure bbtnOKClick(Sender: TObject);
     procedure cbContYesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);

@@ -69,7 +69,7 @@ object dlgAbdomPain: TdlgAbdomPain
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object StaticText1: TLabel
+  object lbonset: TLabel
     Left = 21
     Top = 21
     Width = 33
@@ -110,7 +110,7 @@ object dlgAbdomPain: TdlgAbdomPain
     ParentFont = False
     Visible = False
   end
-  object StaticText4: TLabel
+  object lbloc: TLabel
     Left = 260
     Top = 99
     Width = 47

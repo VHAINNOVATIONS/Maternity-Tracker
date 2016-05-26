@@ -59,9 +59,10 @@ begin
   for I := 0 to educationListView.Items.Count - 1 do
     if educationListView.Items[I].Checked then
     begin
-      tmp := educationListView.Items[I].SubItems[0];
-      if educationListView.Items[I].Caption <> '' then
-        tmp := tmp + ' (Code: ' + educationListView.Items[I].Caption + ')';
+      tmp := educationListView.Items[I].Caption;
+
+      if educationListView.Items[I].SubItems[0] <> '' then
+        tmp := tmp + ' (Code: ' + educationListView.Items[I].SubItems[0] + ')';
       if educationListView.Items[I].SubItems[1] <> '' then
         tmp := tmp + ' (Category: ' + educationListView.Items[I].SubItems[1] + ')';
       TmpStrList.Add('  ' + tmp);

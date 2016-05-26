@@ -45,7 +45,7 @@ object frmInner: TfrmInner
   end
   object lbComplications: TLabel
     Left = 17
-    Top = 157
+    Top = 158
     Width = 142
     Height = 13
     Caption = 'Complications/Anomalies'

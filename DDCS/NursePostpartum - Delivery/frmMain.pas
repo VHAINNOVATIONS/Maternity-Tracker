@@ -295,8 +295,7 @@ begin
   if cbLabor.ItemIndex <> -1 then
     DDCSForm1.TmpStrList.Add('  Labor: ' + cbLabor.Items[cbLabor.ItemIndex]);
 
-  if Trim(spnLaborLength.Text) <> '' then
-    DDCSForm1.TmpStrList.Add('  Length of Labor: ' + Trim(spnLaborLength.Text) + ' hrs');
+  DDCSForm1.TmpStrList.Add('  Length of Labor: ' + spnLaborLength.Text + ' hrs');
 
   if cbOutcome.ItemIndex <> -1 then
     DDCSForm1.TmpStrList.Add('  Outcome: ' + cbOutcome.Items[cbOutcome.ItemIndex]);
