@@ -1,12 +1,13 @@
 object fPregInfo: TfPregInfo
   Left = 0
   Top = 0
-  Width = 443
+  Width = 507
   Height = 293
   Align = alClient
   TabOrder = 0
+  ExplicitWidth = 443
   DesignSize = (
-    443
+    507
     293)
   object lbOutcome: TLabel
     Left = 172
@@ -35,7 +36,7 @@ object fPregInfo: TfPregInfo
     ParentFont = False
   end
   object lbLengthLabor: TLabel
-    Left = 219
+    Left = 283
     Top = 107
     Width = 136
     Height = 13
@@ -132,12 +133,13 @@ object fPregInfo: TfPregInfo
   object cbOutcome: TComboBox
     Left = 173
     Top = 75
-    Width = 120
+    Width = 184
     Height = 21
     Align = alCustom
     Style = csDropDownList
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 3
+    ExplicitWidth = 120
   end
   object spnGAWeeks: TSpinEdit
     Left = 7
@@ -162,7 +164,7 @@ object fPregInfo: TfPregInfo
     OnChange = spnGADaysChange
   end
   object spnLaborLength: TSpinEdit
-    Left = 361
+    Left = 425
     Top = 104
     Width = 77
     Height = 22
@@ -172,17 +174,19 @@ object fPregInfo: TfPregInfo
     TabOrder = 6
     Value = 0
     OnChange = SpinCheck
+    ExplicitLeft = 361
   end
   object meDeliveryNotes: TCaptionMemo
     Left = 7
     Top = 239
-    Width = 431
+    Width = 495
     Height = 45
     Align = alCustom
     Anchors = [akLeft, akTop, akRight, akBottom]
     ScrollBars = ssVertical
     TabOrder = 11
     Caption = 'Comments'
+    ExplicitWidth = 431
   end
   object dtDelivery: TORDateBox
     Left = 7
@@ -197,26 +201,28 @@ object fPregInfo: TfPregInfo
   object cbAnesthesia: TComboBox
     Left = 241
     Top = 148
-    Width = 197
+    Width = 261
     Height = 21
     Align = alCustom
     Style = csDropDownList
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 9
+    ExplicitWidth = 197
   end
   object cbDeliveryPlace: TComboBox
     Left = 7
     Top = 194
-    Width = 431
+    Width = 495
     Height = 21
     Align = alCustom
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 10
+    ExplicitWidth = 431
   end
   object lbStatus: TStaticText
-    Left = 225
+    Left = 213
     Top = 5
-    Width = 184
+    Width = 248
     Height = 23
     Align = alCustom
     Alignment = taCenter
@@ -237,12 +243,13 @@ object fPregInfo: TfPregInfo
   object pnlBirthCount: TPanel
     Left = 7
     Top = 5
-    Width = 132
+    Width = 196
     Height = 40
     Align = alCustom
     Anchors = [akLeft, akTop, akRight]
     BorderStyle = bsSingle
     TabOrder = 0
+    ExplicitWidth = 132
     object lbBirthCount: TLabel
       Left = 9
       Top = 10
@@ -265,11 +272,11 @@ object fPregInfo: TfPregInfo
       MinValue = 0
       TabOrder = 0
       Value = 0
-      OnChange = SpinCheck
+      OnChange = spnBabyCountChange
     end
   end
   object rgPretermDelivery: TRadioGroup
-    Left = 299
+    Left = 363
     Top = 51
     Width = 139
     Height = 45
@@ -290,6 +297,7 @@ object fPregInfo: TfPregInfo
     TabOrder = 4
     TabStop = True
     OnClick = rgPretermDeliveryClick
+    ExplicitLeft = 299
   end
   object edtDeliveryAt: TSpinEdit
     Left = 206

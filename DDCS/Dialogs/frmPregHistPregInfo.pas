@@ -25,7 +25,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Samples.Spin, ORDtTm, ORCtrls;
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Samples.Spin, Vcl.ComCtrls, ORDtTm, ORCtrls;
 
 type
   TfPregInfo = class(TFrame)
@@ -54,9 +54,11 @@ type
     edtDeliveryAt: TSpinEdit;
     lbBirthCount: TLabel;
     procedure SpinCheck(Sender: TObject);
+    procedure spnBabyCountChange(Sender: TObject);
     procedure rgPretermDeliveryClick(Sender: TObject);
     procedure spnGADaysChange(Sender: TObject);
   private
+    ChildCount: Integer;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -68,7 +70,7 @@ implementation
 {$R *.dfm}
 
 uses
-  udlgPregHist;
+  udlgPregHist, frmPregHistChild, uCommon, uReportItems;
 
 procedure TfPregInfo.SpinCheck(Sender: TObject);
 begin
@@ -76,6 +78,42 @@ begin
   begin
     TSpinEdit(Sender).Value := 0;
     Exit;
+  end;
+end;
+
+procedure TfPregInfo.spnBabyCountChange(Sender: TObject);
+var
+  vTabSheet: TTabSheet;
+  vPregBaby: TfChild;
+begin
+  if spnBirthCount.Value < 0 then
+  begin
+    spnBirthCount.Value := 0;
+    Exit;
+  end;
+
+  if spnBirthCount.Value < ChildCount then
+  begin
+    spnBirthCount.OnChange := nil;
+    spnBirthCount.Value := spnBirthCount.Value + 1;
+    spnBirthCount.OnChange := spnBabyCountChange;
+    ShowMsg('Use the "X" button on the child you wish to remove.', smiWarning, smbOK);
+  end else
+  begin
+    Inc(ChildCount);
+
+    if Owner <> nil then
+      if Owner is TTabSheet then
+      begin
+        vTabSheet := TTabSheet.Create(TTabSheet(Owner).PageControl);
+        vTabSheet.PageControl := TTabSheet(Owner).PageControl;
+        vTabSheet.Caption := 'Baby #' + IntToStr(vTabSheet.TabIndex);
+
+        vPregBaby := TfChild.Create(vTabSheet);
+        vPregBaby.Parent := vTabSheet;
+        vPregBaby.Align := alClient;
+        vPregBaby.Show;
+      end;
   end;
 end;
 
@@ -110,10 +148,17 @@ end;
 // Public ----------------------------------------------------------------------
 
 constructor TfPregInfo.Create(AOwner: TComponent);
+var
+  nItem: TDDCSNoteItem;
 begin
   inherited;
 
+  ChildCount := 0;
   dlgPregHist.ModifyFullTerm(1);
+
+//  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(spnLb);
+//  if nItem <> nil then
+//    nItem.SayOnFocus := 'Birth Weight in pounds';
 end;
 
 destructor TfPregInfo.Destroy;
@@ -126,7 +171,7 @@ begin
   inherited;
 end;
 
-function TfPregInfo.GetText;
+function TfPregInfo.GetText: TStringList;
 var
   I: Integer;
 begin

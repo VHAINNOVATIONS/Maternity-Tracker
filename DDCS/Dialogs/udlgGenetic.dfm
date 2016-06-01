@@ -42,7 +42,7 @@ object dlgGenetic: TdlgGenetic
         Width = 146
         Height = 399
         BevelOuter = bvNone
-        TabOrder = 44
+        TabOrder = 56
         object Label2: TLabel
           Tag = 2
           Left = 4
@@ -398,7 +398,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 12
         OnClick = CheckBoxClick
       end
       object CheckBox11: TCheckBox
@@ -414,7 +414,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 13
         OnClick = CheckBoxClick
       end
       object CheckBox12: TCheckBox
@@ -430,7 +430,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 14
         OnClick = CheckBoxClick
       end
       object CheckBox13: TCheckBox
@@ -446,7 +446,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 14
+        TabOrder = 16
         OnClick = CheckBoxClick
       end
       object CheckBox14: TCheckBox
@@ -462,7 +462,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 15
+        TabOrder = 17
         OnClick = CheckBoxClick
       end
       object CheckBox15: TCheckBox
@@ -478,7 +478,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 16
+        TabOrder = 18
         OnClick = CheckBoxClick
       end
       object CheckBox16: TCheckBox
@@ -494,7 +494,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 17
+        TabOrder = 20
         OnClick = CheckBoxClick
       end
       object CheckBox17: TCheckBox
@@ -510,7 +510,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 18
+        TabOrder = 21
         OnClick = CheckBoxClick
       end
       object CheckBox18: TCheckBox
@@ -526,7 +526,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 19
+        TabOrder = 22
         OnClick = CheckBoxClick
       end
       object CheckBox19: TCheckBox
@@ -542,7 +542,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 20
+        TabOrder = 24
         OnClick = CheckBoxClick
       end
       object CheckBox20: TCheckBox
@@ -558,7 +558,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 21
+        TabOrder = 25
         OnClick = CheckBoxClick
       end
       object CheckBox21: TCheckBox
@@ -574,7 +574,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 22
+        TabOrder = 26
         OnClick = CheckBoxClick
       end
       object CheckBox22: TCheckBox
@@ -590,7 +590,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 23
+        TabOrder = 28
         OnClick = CheckBoxClick
       end
       object CheckBox23: TCheckBox
@@ -606,7 +606,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 24
+        TabOrder = 29
         OnClick = CheckBoxClick
       end
       object CheckBox24: TCheckBox
@@ -622,7 +622,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 25
+        TabOrder = 30
         OnClick = CheckBoxClick
       end
       object CheckBox25: TCheckBox
@@ -638,7 +638,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 26
+        TabOrder = 32
         OnClick = CheckBoxClick
       end
       object CheckBox26: TCheckBox
@@ -654,7 +654,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 27
+        TabOrder = 33
         OnClick = CheckBoxClick
       end
       object CheckBox27: TCheckBox
@@ -670,7 +670,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 28
+        TabOrder = 34
         OnClick = CheckBoxClick
       end
       object CheckBox28: TCheckBox
@@ -686,7 +686,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 29
+        TabOrder = 36
         OnClick = CheckBoxClick
       end
       object CheckBox29: TCheckBox
@@ -702,7 +702,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 30
+        TabOrder = 37
         OnClick = CheckBoxClick
       end
       object CheckBox30: TCheckBox
@@ -718,7 +718,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 31
+        TabOrder = 38
         OnClick = CheckBoxClick
       end
       object CheckBox31: TCheckBox
@@ -734,7 +734,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 32
+        TabOrder = 40
         OnClick = CheckBoxClick
       end
       object CheckBox32: TCheckBox
@@ -750,7 +750,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 33
+        TabOrder = 41
         OnClick = CheckBoxClick
       end
       object CheckBox33: TCheckBox
@@ -766,7 +766,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 34
+        TabOrder = 42
         OnClick = CheckBoxClick
       end
       object CheckBox34: TCheckBox
@@ -782,7 +782,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 35
+        TabOrder = 44
         OnClick = CheckBoxClick
       end
       object CheckBox35: TCheckBox
@@ -798,7 +798,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 36
+        TabOrder = 45
         OnClick = CheckBoxClick
       end
       object CheckBox36: TCheckBox
@@ -814,7 +814,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 37
+        TabOrder = 46
         OnClick = CheckBoxClick
       end
       object CheckBox37: TCheckBox
@@ -830,7 +830,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 38
+        TabOrder = 48
         OnClick = CheckBoxClick
       end
       object CheckBox38: TCheckBox
@@ -846,7 +846,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 39
+        TabOrder = 49
         OnClick = CheckBoxClick
       end
       object CheckBox39: TCheckBox
@@ -862,7 +862,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 40
+        TabOrder = 50
         OnClick = CheckBoxClick
       end
       object CheckBox40: TCheckBox
@@ -878,7 +878,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 41
+        TabOrder = 52
         OnClick = CheckBoxClick
       end
       object CheckBox41: TCheckBox
@@ -894,7 +894,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 42
+        TabOrder = 53
         OnClick = CheckBoxClick
       end
       object CheckBox42: TCheckBox
@@ -910,7 +910,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 43
+        TabOrder = 54
         OnClick = CheckBoxClick
       end
       object Edit1: TEdit
@@ -938,7 +938,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 45
+        TabOrder = 11
       end
       object Edit4: TEdit
         Tag = 4
@@ -947,7 +947,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 46
+        TabOrder = 15
       end
       object Edit5: TEdit
         Tag = 5
@@ -956,7 +956,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 47
+        TabOrder = 19
       end
       object Edit6: TEdit
         Tag = 6
@@ -965,7 +965,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 48
+        TabOrder = 23
       end
       object Edit7: TEdit
         Tag = 7
@@ -974,7 +974,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 49
+        TabOrder = 27
       end
       object Edit8: TEdit
         Tag = 8
@@ -983,7 +983,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 50
+        TabOrder = 31
       end
       object Edit9: TEdit
         Tag = 9
@@ -992,7 +992,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 51
+        TabOrder = 35
       end
       object Edit10: TEdit
         Tag = 10
@@ -1001,7 +1001,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 52
+        TabOrder = 39
       end
       object Edit11: TEdit
         Tag = 11
@@ -1010,7 +1010,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 53
+        TabOrder = 43
       end
       object Edit12: TEdit
         Tag = 12
@@ -1019,7 +1019,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 54
+        TabOrder = 47
       end
       object Edit13: TEdit
         Tag = 13
@@ -1028,7 +1028,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 56
+        TabOrder = 51
       end
       object Edit14: TEdit
         Tag = 14
@@ -1042,10 +1042,6 @@ object dlgGenetic: TdlgGenetic
     end
     object TabSheet2: TTabSheet
       Caption = 'Page #2'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object CheckBox43: TCheckBox
         Tag = 15
         Left = 164
@@ -1075,7 +1071,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 12
         OnClick = CheckBoxClick
       end
       object CheckBox54: TCheckBox
@@ -1091,7 +1087,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 1
         OnClick = CheckBoxClick
       end
       object CheckBox55: TCheckBox
@@ -1107,7 +1103,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 13
         OnClick = CheckBoxClick
       end
       object CheckBox56: TCheckBox
@@ -1123,7 +1119,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 4
+        TabOrder = 14
         OnClick = CheckBoxClick
       end
       object CheckBox57: TCheckBox
@@ -1139,7 +1135,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 5
+        TabOrder = 16
         OnClick = CheckBoxClick
       end
       object CheckBox58: TCheckBox
@@ -1155,7 +1151,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 6
+        TabOrder = 17
         OnClick = CheckBoxClick
       end
       object CheckBox59: TCheckBox
@@ -1171,7 +1167,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 7
+        TabOrder = 18
         OnClick = CheckBoxClick
       end
       object CheckBox60: TCheckBox
@@ -1187,7 +1183,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 20
         OnClick = CheckBoxClick
       end
       object CheckBox61: TCheckBox
@@ -1203,7 +1199,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 21
         OnClick = CheckBoxClick
       end
       object CheckBox62: TCheckBox
@@ -1219,7 +1215,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 22
         OnClick = CheckBoxClick
       end
       object CheckBox65: TCheckBox
@@ -1235,7 +1231,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 2
         OnClick = CheckBoxClick
       end
       object CheckBox76: TCheckBox
@@ -1251,7 +1247,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 4
         OnClick = CheckBoxClick
       end
       object CheckBox80: TCheckBox
@@ -1267,7 +1263,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 5
         OnClick = CheckBoxClick
       end
       object CheckBox81: TCheckBox
@@ -1283,7 +1279,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 14
+        TabOrder = 6
         OnClick = CheckBoxClick
       end
       object CheckBox82: TCheckBox
@@ -1299,7 +1295,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 15
+        TabOrder = 8
         OnClick = CheckBoxClick
       end
       object CheckBox83: TCheckBox
@@ -1315,7 +1311,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 16
+        TabOrder = 9
         OnClick = CheckBoxClick
       end
       object CheckBox84: TCheckBox
@@ -1331,7 +1327,7 @@ object dlgGenetic: TdlgGenetic
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 17
+        TabOrder = 10
         OnClick = CheckBoxClick
       end
       object Edit15: TEdit
@@ -1341,7 +1337,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 18
+        TabOrder = 3
       end
       object Edit21: TEdit
         Tag = 16
@@ -1350,7 +1346,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 19
+        TabOrder = 7
       end
       object Edit22: TEdit
         Tag = 17
@@ -1359,7 +1355,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 20
+        TabOrder = 11
       end
       object Edit26: TEdit
         Tag = 19
@@ -1368,7 +1364,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 21
+        TabOrder = 19
       end
       object Edit28: TEdit
         Tag = 20
@@ -1377,7 +1373,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 22
+        TabOrder = 23
       end
       object pnlLabels2: TPanel
         Left = 8
@@ -1385,7 +1381,7 @@ object dlgGenetic: TdlgGenetic
         Width = 146
         Height = 406
         BevelOuter = bvNone
-        TabOrder = 23
+        TabOrder = 24
         object Label15: TLabel
           Tag = 16
           Left = 4
@@ -1487,7 +1483,7 @@ object dlgGenetic: TdlgGenetic
         Width = 337
         Height = 22
         Enabled = False
-        TabOrder = 24
+        TabOrder = 15
       end
     end
   end

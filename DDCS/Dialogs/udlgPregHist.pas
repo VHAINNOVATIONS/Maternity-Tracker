@@ -26,7 +26,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
   System.StrUtils, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons, Vcl.Samples.Spin, Vcl.ComCtrls,
-  uDialog, uCommon, uExtndComBroker;
+  uDialog;
 
 type
   TdlgPregHist = class(TDDCSDialog)
@@ -61,6 +61,8 @@ type
   public
     procedure ModifyPreterm(Value: Integer);
     procedure ModifyFullTerm(Value: Integer);
+    procedure ModifyMultiBirth(Value: Integer);
+    procedure ModifyLiving(Value: Integer);
     procedure DeletePregnancy(iIndex: Integer);
   end;
 
@@ -72,7 +74,8 @@ implementation
 {$R *.dfm}
 
 uses
-  frmPregHistPreg, frmPregHistPregInfo, frmPregHistChild;
+  frmPregHistPreg, frmPregHistPregInfo, frmPregHistChild, uCommon,
+  uExtndComBroker;
 
 procedure TdlgPregHist.FormCreate(Sender: TObject);
 begin
@@ -124,7 +127,7 @@ begin
 
       vTabSheet := TTabSheet.Create(pgPregnancy);
       vTabSheet.PageControl := pgPregnancy;
-      vTabSheet.Caption := '# '+ IntToStr(vTabSheet.PageIndex + 1);
+      vTabSheet.Caption := '# '+ IntToStr(vTabSheet.TabIndex + 1);
 
       vPreg := TfPreg.Create(vTabSheet);
       vPreg.Parent := vTabSheet;
@@ -139,7 +142,6 @@ begin
       vPregInfo.Parent := vTabSheet;
       vPregInfo.Align := alClient;
       vPregInfo.Show;
-      vPregInfo.rgPretermDelivery.OnEnter := DDCSForm.RadioGroupEnter;
 
       case TSpinEdit(Sender).Tag of
         1: vPreg.PregnancyType := ptN;
@@ -160,13 +162,13 @@ var
 begin
   TmpStrList.Add('Pregnancy History: ');
   TmpStrList.Add('  Total Pregnancies: ' + edtTotPreg.Text);
-  TmpStrList.Add('  Full Term: ' + lbFullTerm.Caption);
-  TmpStrList.Add('  Premature: ' + lbPremature.Caption);
+  TmpStrList.Add('  Full Term: ' + lbFullTermValue.Caption);
+  TmpStrList.Add('  Premature: ' + lbPrematureValue.Caption);
   TmpStrList.Add('  Induced Abortion: ' + edtAbInduced.Text);
   TmpStrList.Add('  Spontaneous Abortion: ' + edtAbSpont.Text);
   TmpStrList.Add('  Ectopic: ' + edtEctopic.Text);
-  TmpStrList.Add('  Multiple Births: ' + lbMultipleBirths.Caption);
-  TmpStrList.Add('  Living: ' + lbLiving.Caption);
+  TmpStrList.Add('  Multiple Births: ' + lbMultipleBirthsValue.Caption);
+  TmpStrList.Add('  Living: ' + lbLivingValue.Caption);
 
   for I := 0 to pgPregnancy.PageCount - 1 do
     if pgPregnancy.Pages[I].ControlCount > 0 then
@@ -286,6 +288,24 @@ begin
   I := StrToIntDef(lbFullTermValue.Caption, 0);
   I := I + Value;
   lbFullTermValue.Caption := IntToStr(I);
+end;
+
+procedure TdlgPregHist.ModifyMultiBirth(Value: Integer);
+var
+  I: Integer;
+begin
+  I := StrToIntDef(lbMultipleBirthsValue.Caption, 0);
+  I := I + Value;
+  lbMultipleBirthsValue.Caption := IntToStr(I);
+end;
+
+procedure TdlgPregHist.ModifyLiving(Value: Integer);
+var
+  I: Integer;
+begin
+  I := StrToIntDef(lbLivingValue.Caption, 0);
+  I := I + Value;
+  lbLivingValue.Caption := IntToStr(I);
 end;
 
 procedure TdlgPregHist.DeletePregnancy(iIndex: Integer);

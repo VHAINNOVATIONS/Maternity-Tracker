@@ -90,7 +90,7 @@ object fChild: TfChild
     Align = alCustom
     Anchors = [akLeft, akTop, akRight, akBottom]
     ScrollBars = ssVertical
-    TabOrder = 0
+    TabOrder = 8
     Caption = 'Complications and or Anomalies'
   end
   object rgSex: TRadioGroup
@@ -105,12 +105,13 @@ object fChild: TfChild
     Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
+    ItemIndex = 2
     Items.Strings = (
       'Male'
       'Female'
       'Unknown')
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 0
     TabStop = True
   end
   object spnLb: TSpinEdit
@@ -120,8 +121,9 @@ object fChild: TfChild
     Height = 22
     MaxValue = 0
     MinValue = 0
-    TabOrder = 3
+    TabOrder = 6
     Value = 0
+    OnChange = spnLbChange
   end
   object edAPGARfive: TEdit
     Left = 120
@@ -129,7 +131,7 @@ object fChild: TfChild
     Width = 54
     Height = 21
     NumbersOnly = True
-    TabOrder = 4
+    TabOrder = 3
   end
   object spnG: TSpinEdit
     Left = 346
@@ -140,6 +142,7 @@ object fChild: TfChild
     MinValue = 0
     TabOrder = 5
     Value = 0
+    OnChange = UpdateLbOz
   end
   object rgLife: TRadioGroup
     Left = 266
@@ -153,12 +156,14 @@ object fChild: TfChild
     Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
+    ItemIndex = 0
     Items.Strings = (
       'Living'
       'Demise')
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 1
     TabStop = True
+    OnClick = rgLifeClick
   end
   object ckNICU: TCheckBox
     Left = 11
@@ -172,7 +177,7 @@ object fChild: TfChild
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 4
   end
   object spnOz: TSpinEdit
     Left = 346
@@ -181,8 +186,9 @@ object fChild: TfChild
     Height = 22
     MaxValue = 0
     MinValue = 0
-    TabOrder = 8
+    TabOrder = 7
     Value = 0
+    OnChange = spnOzChange
   end
   object edAPGARone: TEdit
     Left = 60
@@ -190,10 +196,10 @@ object fChild: TfChild
     Width = 54
     Height = 21
     NumbersOnly = True
-    TabOrder = 9
+    TabOrder = 2
   end
-  object BitBtn1: TBitBtn
-    Left = 477
+  object btnDelete: TBitBtn
+    Left = 475
     Top = 7
     Width = 28
     Height = 25
@@ -216,6 +222,7 @@ object fChild: TfChild
       3333333333333333333888330000333333333333333333333333333333333333
       0000}
     NumGlyphs = 2
-    TabOrder = 10
+    TabOrder = 9
+    OnClick = btnDeleteClick
   end
 end

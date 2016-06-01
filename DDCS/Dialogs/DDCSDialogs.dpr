@@ -39,7 +39,6 @@ uses
   udlgMedical in 'udlgMedical.pas' {dlgMedical},
   udlgNausea in 'udlgNausea.pas' {dlgNausea},
   udlgPalp in 'udlgPalp.pas' {dlgPalp},
-  udlgPreNatal in 'udlgPreNatal.pas' {dlgPreNatal},
   udlgRash in 'udlgRash.pas' {dlgRash},
   udlgRTClinic in 'udlgRTClinic.pas' {dlgRTClinic},
   udlgSocial in 'udlgSocial.pas' {dlgSocial},
@@ -84,7 +83,6 @@ begin
     RegisterClass(TdlgOBSpread);               sl.Add('TdlgOBSpread^udlgOBSpread');
     RegisterClass(TdlgPalp);                   sl.Add('TdlgPalp^udlgPalp');
     RegisterClass(TdlgPregHist);               sl.Add('TdlgPregHist^udlgPregHist');
-    RegisterClass(TdlgPreNatal);               sl.Add('TdlgPreNatal^udlgPreNatal');
     RegisterClass(TdlgRash);                   sl.Add('TdlgRash^udlgRash');
     RegisterClass(TdlgRTClinic);               sl.Add('TdlgRTClinic^udlgRTClinic');
     RegisterClass(TdlgSocial);                 sl.Add('TdlgSocial^udlgSocial');

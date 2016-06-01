@@ -720,7 +720,7 @@ object dlgInfectHist: TdlgInfectHist
       TabOrder = 50
       OnClick = CheckBoxClick
     end
-    object CaptionEdit1: TEdit
+    object Edit1: TEdit
       Tag = 1
       Left = 449
       Top = 6
@@ -729,7 +729,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 3
     end
-    object CaptionEdit2: TEdit
+    object Edit2: TEdit
       Tag = 2
       Left = 449
       Top = 30
@@ -738,7 +738,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 7
     end
-    object CaptionEdit3: TEdit
+    object Edit3: TEdit
       Tag = 3
       Left = 449
       Top = 54
@@ -747,7 +747,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 11
     end
-    object CaptionEdit4: TEdit
+    object Edit4: TEdit
       Tag = 4
       Left = 449
       Top = 78
@@ -756,7 +756,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 15
     end
-    object CaptionEdit5: TEdit
+    object Edit5: TEdit
       Tag = 5
       Left = 449
       Top = 102
@@ -765,7 +765,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 19
     end
-    object CaptionEdit6: TEdit
+    object Edit7: TEdit
       Tag = 7
       Left = 449
       Top = 150
@@ -774,7 +774,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 27
     end
-    object CaptionEdit7: TEdit
+    object Edit6: TEdit
       Tag = 6
       Left = 449
       Top = 126
@@ -783,7 +783,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 23
     end
-    object CaptionEdit8: TEdit
+    object Edit8: TEdit
       Tag = 8
       Left = 449
       Top = 174
@@ -792,7 +792,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 31
     end
-    object CaptionEdit9: TEdit
+    object Edit9: TEdit
       Tag = 9
       Left = 449
       Top = 198
@@ -801,7 +801,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 35
     end
-    object CaptionEdit10: TEdit
+    object Edit10: TEdit
       Tag = 10
       Left = 449
       Top = 221
@@ -810,7 +810,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 39
     end
-    object CaptionEdit11: TEdit
+    object Edit11: TEdit
       Tag = 11
       Left = 449
       Top = 246
@@ -819,7 +819,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 43
     end
-    object CaptionEdit12: TEdit
+    object Edit12: TEdit
       Tag = 12
       Left = 449
       Top = 270
@@ -828,7 +828,7 @@ object dlgInfectHist: TdlgInfectHist
       Enabled = False
       TabOrder = 47
     end
-    object CaptionEdit13: TEdit
+    object Edit13: TEdit
       Tag = 13
       Left = 449
       Top = 294
