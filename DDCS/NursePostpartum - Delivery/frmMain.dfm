@@ -462,6 +462,7 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 11
         TabStop = True
+        OnClick = rgPretermDeliveryClick
       end
       object spnLaborLength: TSpinEdit
         Left = 544
@@ -542,6 +543,10 @@ object Form1: TForm1
     end
     object oPage2: TTabSheet
       Caption = 'Neonatal Information'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlBirthCount: TPanel
         Left = 0
         Top = 0
@@ -597,6 +602,10 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'Delivery Method'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object gbVaginal: TGroupBox
         Left = 14
         Top = 19

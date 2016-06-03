@@ -46,6 +46,7 @@ type
     procedure spnLbChange(Sender: TObject);
     procedure spnOzChange(Sender: TObject);
     procedure UpdateLbOz(Sender: TObject);
+    procedure rgLifeClick(Sender: TObject);
   private
     procedure OnChangeNil;
     procedure OnChangeRestore;
@@ -121,6 +122,20 @@ begin
   OnChangeRestore;
 end;
 
+procedure TfrmInner.rgLifeClick(Sender: TObject);
+begin
+  if (Form1.cbOutcome.ItemIndex = -1) or (Form1.cbOutcome.Text = 'Unknown') or
+     (Form1.cbOutcome.Text = 'Full Term') or (Form1.cbOutcome.Text = 'Preterm') then
+    case rgLife.ItemIndex of
+      0: Form1.rgPretermDeliveryClick(nil);
+      1: begin
+           if Form1.cbOutcome.Items.IndexOf('Stillbirth') = -1 then
+             Form1.cbOutcome.Items.Add('Stillbirth');
+           Form1.cbOutcome.ItemIndex := Form1.cbOutcome.Items.IndexOf('Stillbirth');
+         end;
+    end;
+end;
+
 // Private ---------------------------------------------------------------------
 
 procedure TfrmInner.OnChangeNil;
@@ -158,6 +173,8 @@ var
   nItem: TDDCSNoteItem;
 begin
   inherited;
+
+  rgLifeClick(nil);
 
   nItem := Form1.DDCSForm1.ReportCollection.GetNoteItemAddifNil(spnLb);
   if nItem <> nil then

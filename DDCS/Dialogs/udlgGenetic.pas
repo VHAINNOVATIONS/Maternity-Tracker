@@ -179,8 +179,12 @@ var
 begin
   for I := 0 to pgBody.PageCount - 1 do
     for J := 0 to pgBody.Pages[I].ControlCount - 1 do
+    begin
       if pgBody.Pages[I].Controls[J] is TCheckBox then
         SetSay(TWinControl(pgBody.Pages[I].Controls[J]));
+      if pgBody.Pages[I].Controls[J] is TEdit then
+        SetSay(TWinControl(pgBody.Pages[I].Controls[J]));
+    end;
 end;
 
 procedure TdlgGenetic.btnNegClick(Sender: TObject);
@@ -273,13 +277,13 @@ var
 begin
   for I := 0 to pgBody.PageCount - 1 do
     for J := 0 to pgBody.Pages[I].ControlCount - 1 do
-      if pgBody.Pages[I].Controls[I] is TCheckbox then
+      if pgBody.Pages[I].Controls[J] is TCheckbox then
       begin
         ck := TCheckBox(pgBody.Pages[I].Controls[J]);
 
         if ck.Checked then
         begin
-          TmpStrList.Add('  ' + GetQuestion(ck.Tag) + ' ' + ck.Caption);
+          TmpStrList.Add('  ' + GetQuestion(ck.Tag) + ': ' + ck.Caption);
           if ck.Caption <> 'No' then
           begin
             tmp := GetNarrative(ck.Tag);

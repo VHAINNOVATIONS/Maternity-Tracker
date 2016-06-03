@@ -37,13 +37,16 @@ type
     procedure btnDeleteClick(Sender: TObject);
   private
     FPregType: TPregType;
+    FPregIEN: Integer;
     procedure SetPregType(Value: TPregType);
     function GetIndex: Integer;
-    function GetPregInfo: TfPregInfo;
   public
     procedure DeleteChild(Value: TTabSheet);
+    function GetPregInfo: TfPregInfo;
     function GetText: TStringList;
+    function GetChildrenV: string;
     property PregnancyType: TPregType read FPregType write SetPregType default ptN;
+    property PregnancyIEN: Integer read FPregIEN write FPregIEN default 0;
   end;
 
 implementation
@@ -51,11 +54,14 @@ implementation
 {$R *.dfm}
 
 uses
-  udlgPregHist, frmPregHistChild;
+  udlgPregHist, frmPregHistChild, uCommon;
 
 procedure TfPreg.btnDeleteClick(Sender: TObject);
 begin
-  dlgPregHist.DeletePregnancy(GetIndex);
+  if ShowMsg('Are you sure you wish to delete this pregnancy record?' +
+             ' All associated child information will also be deleted.' +
+             ' This action cannot be undone.', smiWarning, smbYesNo) = smrYes then
+    dlgPregHist.DeletePregnancy(GetIndex);
 end;
 
 // Private ---------------------------------------------------------------------
@@ -85,6 +91,35 @@ begin
     Result := TTabSheet(Owner).TabIndex;
 end;
 
+// Public ----------------------------------------------------------------------
+
+procedure TfPreg.DeleteChild(Value: TTabSheet);
+var
+  I: Integer;
+  vPregInfo: TfPregInfo;
+begin
+  pgPreg.Pages[Value.TabIndex].Free;
+
+  vPregInfo := GetPregInfo;
+  if vPregInfo <> nil then
+  begin
+    vPregInfo.spnBirthCount.OnChange := nil;
+    vPregInfo.spnBirthCount.Value := vPregInfo.spnBirthCount.Value - 1;
+    vPregInfo.spnBirthCount.OnChange := vPregInfo.spnBabyCountChange;
+
+    vPregInfo.ChildCount := vPregInfo.spnBirthCount.Value;
+    if ((vPregInfo.ChildCount < 2) and (vPregInfo.MultiBirth)) then
+    begin
+      vPregInfo.MultiBirth := False;
+      dlgPregHist.ModifyMultiBirth(-1);
+    end;
+  end;
+
+  if pgPreg.PageCount > 1 then
+    for I := 1 to pgPreg.PageCount - 1 do
+      pgPreg.Pages[I].Caption := 'Baby # ' + IntToStr(I);
+end;
+
 function TfPreg.GetPregInfo: TfPregInfo;
 begin
   Result := nil;
@@ -93,31 +128,6 @@ begin
     if pgPreg.Pages[0].ControlCount > 0 then
       if pgPreg.Pages[0].Controls[0] is TfPregInfo then
         Result := TfPregInfo(pgPreg.Pages[0].Controls[0]);
-end;
-
-// Public ----------------------------------------------------------------------
-
-procedure TfPreg.DeleteChild(Value: TTabSheet);
-var
-  I: Integer;
-  vPregInfo: TfPregInfo;
-begin
-  if ((Value.TabIndex > 0) and (Value.TabIndex < pgPreg.PageCount)) then
-  begin
-    pgPreg.Pages[Value.TabIndex].Free;
-
-    vPregInfo := GetPregInfo;
-    if vPregInfo <> nil then
-    begin
-      vPregInfo.spnBirthCount.OnChange := nil;
-      vPregInfo.spnBirthCount.Value := vPregInfo.spnBirthCount.Value - 1;
-      vPregInfo.spnBirthCount.OnChange := vPregInfo.spnBabyCountChange;
-    end;
-
-    if pgPreg.PageCount > 1 then
-      for I := 1 to pgPreg.PageCount - 1 do
-        pgPreg.Pages[I].Caption := 'Baby # ' + IntToStr(I);
-  end;
 end;
 
 function TfPreg.GetText: TStringList;
@@ -134,6 +144,19 @@ begin
       if pgPreg.Pages[I].ControlCount > 0 then
         if pgPreg.Pages[I].Controls[0] is TfChild then
           Result.AddStrings(TfChild(pgPreg.Pages[I].Controls[0]).GetText);
+end;
+
+function TfPreg.GetChildrenV: string;
+var
+  I: Integer;
+begin
+  Result := '';
+
+  if pgPreg.PageCount > 1 then
+    for I := 1 to pgPreg.PageCount - 1 do
+      if pgPreg.Pages[I].ControlCount > 0 then
+        if pgPreg.Pages[I].Controls[0] is TfChild then
+          Result := Result + TfChild(pgPreg.Pages[I]).GetV;
 end;
 
 end.

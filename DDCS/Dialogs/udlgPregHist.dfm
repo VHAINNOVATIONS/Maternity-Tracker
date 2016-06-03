@@ -3,7 +3,7 @@ object dlgPregHist: TdlgPregHist
   Top = 155
   BorderStyle = bsDialog
   Caption = 'Pregnancy History'
-  ClientHeight = 562
+  ClientHeight = 582
   ClientWidth = 524
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,6 +15,7 @@ object dlgPregHist: TdlgPregHist
   Position = poOwnerFormCenter
   Scaled = False
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
   object lbTotalPreg: TLabel
@@ -122,10 +123,10 @@ object dlgPregHist: TdlgPregHist
     ParentFont = False
   end
   object PregListView: TListView
-    Left = 18
-    Top = 239
-    Width = 452
-    Height = 207
+    Left = 48
+    Top = 208
+    Width = 422
+    Height = 238
     Columns = <>
     TabOrder = 10
     ViewStyle = vsReport
@@ -133,7 +134,7 @@ object dlgPregHist: TdlgPregHist
   end
   object pnlfooter: TPanel
     Left = 0
-    Top = 533
+    Top = 553
     Width = 524
     Height = 29
     Align = alBottom
@@ -184,9 +185,9 @@ object dlgPregHist: TdlgPregHist
   end
   object pgPregnancy: TPageControl
     Left = 2
-    Top = 133
+    Top = 135
     Width = 520
-    Height = 395
+    Height = 415
     Align = alCustom
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 8

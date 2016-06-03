@@ -4,7 +4,7 @@ object dlgInfectHist: TdlgInfectHist
   BorderStyle = bsDialog
   Caption = 'Infection History'
   ClientHeight = 394
-  ClientWidth = 797
+  ClientWidth = 787
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,13 +21,14 @@ object dlgInfectHist: TdlgInfectHist
     Tag = 19641
     Left = 0
     Top = 365
-    Width = 797
+    Width = 787
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2
+    ExplicitWidth = 797
     object bbtnOK: TBitBtn
-      Left = 640
+      Left = 630
       Top = 3
       Width = 75
       Height = 25
@@ -37,9 +38,10 @@ object dlgInfectHist: TdlgInfectHist
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
+      ExplicitLeft = 640
     end
     object bbtnCancel: TBitBtn
-      Left = 721
+      Left = 711
       Top = 3
       Width = 75
       Height = 25
@@ -48,16 +50,18 @@ object dlgInfectHist: TdlgInfectHist
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
+      ExplicitLeft = 721
     end
   end
   object pnlbody: TPanel
     Left = 0
     Top = 35
-    Width = 797
+    Width = 787
     Height = 330
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitWidth = 797
     object Label1: TLabel
       Tag = 1
       Left = 11
@@ -364,7 +368,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 81
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 14
@@ -376,7 +380,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 57
       Width = 77
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       TabOrder = 10
       OnClick = CheckBoxClick
     end
@@ -386,7 +390,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 33
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 6
@@ -398,7 +402,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 9
       Width = 77
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       TabOrder = 2
       OnClick = CheckBoxClick
     end
@@ -428,7 +432,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 105
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       TabOrder = 18
       OnClick = CheckBoxClick
     end
@@ -462,7 +466,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 129
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 22
@@ -522,7 +526,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 153
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 26
@@ -534,7 +538,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 177
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 30
@@ -642,7 +646,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 201
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 34
@@ -654,7 +658,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 224
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 38
@@ -666,7 +670,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 249
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 42
@@ -678,7 +682,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 273
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 46
@@ -714,7 +718,7 @@ object dlgInfectHist: TdlgInfectHist
       Top = 297
       Width = 79
       Height = 17
-      Caption = 'Not Known'
+      Caption = 'Unknown'
       Color = clBtnFace
       ParentColor = False
       TabOrder = 50
@@ -722,7 +726,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit1: TEdit
       Tag = 1
-      Left = 449
+      Left = 440
       Top = 6
       Width = 337
       Height = 22
@@ -731,7 +735,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit2: TEdit
       Tag = 2
-      Left = 449
+      Left = 440
       Top = 30
       Width = 337
       Height = 22
@@ -740,7 +744,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit3: TEdit
       Tag = 3
-      Left = 449
+      Left = 440
       Top = 54
       Width = 337
       Height = 22
@@ -749,7 +753,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit4: TEdit
       Tag = 4
-      Left = 449
+      Left = 440
       Top = 78
       Width = 337
       Height = 22
@@ -758,7 +762,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit5: TEdit
       Tag = 5
-      Left = 449
+      Left = 440
       Top = 102
       Width = 337
       Height = 22
@@ -767,7 +771,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit7: TEdit
       Tag = 7
-      Left = 449
+      Left = 440
       Top = 150
       Width = 337
       Height = 22
@@ -776,7 +780,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit6: TEdit
       Tag = 6
-      Left = 449
+      Left = 440
       Top = 126
       Width = 337
       Height = 22
@@ -785,7 +789,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit8: TEdit
       Tag = 8
-      Left = 449
+      Left = 440
       Top = 174
       Width = 337
       Height = 22
@@ -794,7 +798,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit9: TEdit
       Tag = 9
-      Left = 449
+      Left = 440
       Top = 198
       Width = 337
       Height = 22
@@ -803,7 +807,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit10: TEdit
       Tag = 10
-      Left = 449
+      Left = 440
       Top = 221
       Width = 337
       Height = 22
@@ -812,7 +816,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit11: TEdit
       Tag = 11
-      Left = 449
+      Left = 440
       Top = 246
       Width = 337
       Height = 22
@@ -821,7 +825,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit12: TEdit
       Tag = 12
-      Left = 449
+      Left = 440
       Top = 270
       Width = 337
       Height = 22
@@ -830,7 +834,7 @@ object dlgInfectHist: TdlgInfectHist
     end
     object Edit13: TEdit
       Tag = 13
-      Left = 449
+      Left = 440
       Top = 294
       Width = 337
       Height = 22
@@ -841,11 +845,12 @@ object dlgInfectHist: TdlgInfectHist
   object pnlheader: TPanel
     Left = 0
     Top = 0
-    Width = 797
+    Width = 787
     Height = 35
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 797
     object ckNotInfectionHistory: TCheckBox
       Left = 11
       Top = 12

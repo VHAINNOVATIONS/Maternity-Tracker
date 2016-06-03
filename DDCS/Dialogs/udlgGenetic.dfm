@@ -1058,22 +1058,6 @@ object dlgGenetic: TdlgGenetic
         TabOrder = 0
         OnClick = CheckBoxClick
       end
-      object CheckBox53: TCheckBox
-        Tag = 18
-        Left = 164
-        Top = 161
-        Width = 40
-        Height = 17
-        Caption = 'Yes'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 12
-        OnClick = CheckBoxClick
-      end
       object CheckBox54: TCheckBox
         Tag = 15
         Left = 210
@@ -1088,6 +1072,134 @@ object dlgGenetic: TdlgGenetic
         Font.Style = []
         ParentFont = False
         TabOrder = 1
+        OnClick = CheckBoxClick
+      end
+      object CheckBox65: TCheckBox
+        Tag = 15
+        Left = 256
+        Top = 15
+        Width = 71
+        Height = 17
+        Caption = 'Unknown'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+        OnClick = CheckBoxClick
+      end
+      object CheckBox76: TCheckBox
+        Tag = 16
+        Left = 164
+        Top = 43
+        Width = 40
+        Height = 17
+        Caption = 'Yes'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 4
+        OnClick = CheckBoxClick
+      end
+      object CheckBox80: TCheckBox
+        Tag = 16
+        Left = 210
+        Top = 43
+        Width = 40
+        Height = 17
+        Caption = 'No'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 5
+        OnClick = CheckBoxClick
+      end
+      object CheckBox81: TCheckBox
+        Tag = 16
+        Left = 256
+        Top = 43
+        Width = 71
+        Height = 17
+        Caption = 'Unknown'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 6
+        OnClick = CheckBoxClick
+      end
+      object CheckBox82: TCheckBox
+        Tag = 17
+        Left = 164
+        Top = 99
+        Width = 40
+        Height = 17
+        Caption = 'Yes'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 8
+        OnClick = CheckBoxClick
+      end
+      object CheckBox83: TCheckBox
+        Tag = 17
+        Left = 210
+        Top = 99
+        Width = 40
+        Height = 17
+        Caption = 'No'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 9
+        OnClick = CheckBoxClick
+      end
+      object CheckBox84: TCheckBox
+        Tag = 17
+        Left = 256
+        Top = 99
+        Width = 71
+        Height = 17
+        Caption = 'Unknown'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 10
+        OnClick = CheckBoxClick
+      end
+      object CheckBox53: TCheckBox
+        Tag = 18
+        Left = 164
+        Top = 161
+        Width = 40
+        Height = 17
+        Caption = 'Yes'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 12
         OnClick = CheckBoxClick
       end
       object CheckBox55: TCheckBox
@@ -1216,118 +1328,6 @@ object dlgGenetic: TdlgGenetic
         Font.Style = []
         ParentFont = False
         TabOrder = 22
-        OnClick = CheckBoxClick
-      end
-      object CheckBox65: TCheckBox
-        Tag = 15
-        Left = 256
-        Top = 15
-        Width = 71
-        Height = 17
-        Caption = 'Unknown'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 2
-        OnClick = CheckBoxClick
-      end
-      object CheckBox76: TCheckBox
-        Tag = 16
-        Left = 164
-        Top = 43
-        Width = 40
-        Height = 17
-        Caption = 'Yes'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 4
-        OnClick = CheckBoxClick
-      end
-      object CheckBox80: TCheckBox
-        Tag = 16
-        Left = 210
-        Top = 43
-        Width = 40
-        Height = 17
-        Caption = 'No'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 5
-        OnClick = CheckBoxClick
-      end
-      object CheckBox81: TCheckBox
-        Tag = 16
-        Left = 256
-        Top = 43
-        Width = 71
-        Height = 17
-        Caption = 'Unknown'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 6
-        OnClick = CheckBoxClick
-      end
-      object CheckBox82: TCheckBox
-        Tag = 17
-        Left = 164
-        Top = 99
-        Width = 40
-        Height = 17
-        Caption = 'Yes'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 8
-        OnClick = CheckBoxClick
-      end
-      object CheckBox83: TCheckBox
-        Tag = 17
-        Left = 210
-        Top = 99
-        Width = 40
-        Height = 17
-        Caption = 'No'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 9
-        OnClick = CheckBoxClick
-      end
-      object CheckBox84: TCheckBox
-        Tag = 17
-        Left = 256
-        Top = 99
-        Width = 71
-        Height = 17
-        Caption = 'Unknown'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 10
         OnClick = CheckBoxClick
       end
       object Edit15: TEdit

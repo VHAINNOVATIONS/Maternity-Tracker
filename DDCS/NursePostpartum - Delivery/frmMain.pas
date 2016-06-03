@@ -100,6 +100,7 @@ type
     procedure SpinCheck(Sender: TObject);
     procedure spnGADaysChange(Sender: TObject);
     procedure spnBirthCountChange(Sender: TObject);
+    procedure rgPretermDeliveryClick(Sender: TObject);
     procedure Finished(Sender: TObject);
   private
     BirthCount: Integer;
@@ -120,6 +121,7 @@ uses
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   BirthCount := 0;
+  Form1 := Self;
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
@@ -252,6 +254,23 @@ begin
     pgBaby.Pages[pgBaby.PageCount - 1].Free;
 
   BirthCount := spnBirthCount.Value;
+end;
+
+procedure TForm1.rgPretermDeliveryClick(Sender: TObject);
+begin
+  if (cbOutcome.ItemIndex = -1) or (cbOutcome.Text = 'Unknown') then
+    case rgPretermDelivery.ItemIndex of
+      0: begin
+           if cbOutcome.Items.IndexOf('Full Term') = -1 then
+             cbOutcome.Items.Add('Full Term');
+           cbOutcome.ItemIndex := cbOutcome.Items.IndexOf('Full Term');
+         end;
+      1: begin
+           if cbOutcome.Items.IndexOf('Preterm') = -1 then
+             cbOutcome.Items.Add('Preterm');
+           cbOutcome.ItemIndex := cbOutcome.Items.IndexOf('Preterm');
+         end;
+    end;
 end;
 
 procedure TForm1.Finished(Sender: TObject);

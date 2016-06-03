@@ -138,12 +138,14 @@ object frmInner: TfrmInner
     Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
+    ItemIndex = 0
     Items.Strings = (
       'Living'
       'Demise')
     ParentFont = False
     TabOrder = 1
     TabStop = True
+    OnClick = rgLifeClick
   end
   object spnG: TSpinEdit
     Left = 352
@@ -187,6 +189,7 @@ object frmInner: TfrmInner
     Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
+    ItemIndex = 2
     Items.Strings = (
       'Male'
       'Female'

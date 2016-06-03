@@ -1,16 +1,15 @@
 object fPregInfo: TfPregInfo
   Left = 0
   Top = 0
-  Width = 507
+  Width = 443
   Height = 293
   Align = alClient
   TabOrder = 0
-  ExplicitWidth = 443
   DesignSize = (
-    507
+    443
     293)
   object lbOutcome: TLabel
-    Left = 172
+    Left = 161
     Top = 56
     Width = 51
     Height = 13
@@ -23,8 +22,8 @@ object fPregInfo: TfPregInfo
     ParentFont = False
   end
   object lbPlaceDelivery: TLabel
-    Left = 7
-    Top = 176
+    Left = 209
+    Top = 191
     Width = 94
     Height = 13
     Caption = 'Place of Delivery'
@@ -36,10 +35,10 @@ object fPregInfo: TfPregInfo
     ParentFont = False
   end
   object lbLengthLabor: TLabel
-    Left = 283
-    Top = 107
-    Width = 136
-    Height = 13
+    Left = 346
+    Top = 44
+    Width = 91
+    Height = 26
     Align = alCustom
     Anchors = [akTop, akRight]
     Caption = 'Length of Labor in hours'
@@ -49,11 +48,11 @@ object fPregInfo: TfPregInfo
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitLeft = 293
+    WordWrap = True
   end
   object lbGestationalAge: TLabel
     Left = 7
-    Top = 130
+    Top = 162
     Width = 90
     Height = 13
     Caption = 'Gestational Age'
@@ -65,15 +64,15 @@ object fPregInfo: TfPregInfo
     ParentFont = False
   end
   object lbGAWeeks: TLabel
-    Left = 52
-    Top = 151
+    Left = 159
+    Top = 162
     Width = 32
     Height = 13
     Caption = 'Weeks'
   end
   object lbGADays: TLabel
-    Left = 136
-    Top = 151
+    Left = 243
+    Top = 162
     Width = 24
     Height = 13
     Caption = 'Days'
@@ -93,7 +92,7 @@ object fPregInfo: TfPregInfo
   end
   object lbComments: TLabel
     Left = 7
-    Top = 221
+    Top = 236
     Width = 82
     Height = 13
     Caption = 'Delivery Notes'
@@ -105,8 +104,8 @@ object fPregInfo: TfPregInfo
     ParentFont = False
   end
   object lbAnesthesia: TLabel
-    Left = 172
-    Top = 151
+    Left = 7
+    Top = 191
     Width = 63
     Height = 13
     Caption = 'Anesthesia'
@@ -118,10 +117,10 @@ object fPregInfo: TfPregInfo
     ParentFont = False
   end
   object lbDaysHospital: TLabel
-    Left = 7
-    Top = 107
-    Width = 193
-    Height = 13
+    Left = 289
+    Top = 155
+    Width = 100
+    Height = 26
     Caption = 'Days in Hospital following Delivery'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -129,22 +128,22 @@ object fPregInfo: TfPregInfo
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    WordWrap = True
   end
   object cbOutcome: TComboBox
-    Left = 173
+    Left = 161
     Top = 75
-    Width = 184
+    Width = 179
     Height = 21
     Align = alCustom
     Style = csDropDownList
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 3
-    ExplicitWidth = 120
   end
   object spnGAWeeks: TSpinEdit
-    Left = 7
-    Top = 148
-    Width = 40
+    Left = 103
+    Top = 159
+    Width = 50
     Height = 22
     MaxValue = 0
     MinValue = 0
@@ -153,8 +152,8 @@ object fPregInfo: TfPregInfo
     OnChange = SpinCheck
   end
   object spnGADays: TSpinEdit
-    Left = 90
-    Top = 148
+    Left = 197
+    Top = 159
     Width = 40
     Height = 22
     MaxValue = 0
@@ -164,34 +163,33 @@ object fPregInfo: TfPregInfo
     OnChange = spnGADaysChange
   end
   object spnLaborLength: TSpinEdit
-    Left = 425
-    Top = 104
-    Width = 77
+    Left = 346
+    Top = 74
+    Width = 91
     Height = 22
     Anchors = [akTop, akRight]
+    AutoSelect = False
     MaxValue = 0
     MinValue = 0
-    TabOrder = 6
+    TabOrder = 4
     Value = 0
     OnChange = SpinCheck
-    ExplicitLeft = 361
   end
   object meDeliveryNotes: TCaptionMemo
     Left = 7
-    Top = 239
-    Width = 495
-    Height = 45
+    Top = 254
+    Width = 430
+    Height = 32
     Align = alCustom
     Anchors = [akLeft, akTop, akRight, akBottom]
     ScrollBars = ssVertical
-    TabOrder = 11
+    TabOrder = 12
     Caption = 'Comments'
-    ExplicitWidth = 431
   end
   object dtDelivery: TORDateBox
     Left = 7
     Top = 75
-    Width = 160
+    Width = 148
     Height = 21
     TabOrder = 2
     DateOnly = True
@@ -199,30 +197,27 @@ object fPregInfo: TfPregInfo
     Caption = 'Date of Delivery'
   end
   object cbAnesthesia: TComboBox
-    Left = 241
-    Top = 148
-    Width = 261
+    Left = 7
+    Top = 209
+    Width = 196
     Height = 21
     Align = alCustom
     Style = csDropDownList
-    Anchors = [akLeft, akTop, akRight]
-    TabOrder = 9
-    ExplicitWidth = 197
+    TabOrder = 10
   end
   object cbDeliveryPlace: TComboBox
-    Left = 7
-    Top = 194
-    Width = 495
+    Left = 209
+    Top = 209
+    Width = 228
     Height = 21
     Align = alCustom
     Anchors = [akLeft, akTop, akRight]
-    TabOrder = 10
-    ExplicitWidth = 431
+    TabOrder = 11
   end
   object lbStatus: TStaticText
     Left = 213
     Top = 5
-    Width = 248
+    Width = 191
     Height = 23
     Align = alCustom
     Alignment = taCenter
@@ -243,13 +238,11 @@ object fPregInfo: TfPregInfo
   object pnlBirthCount: TPanel
     Left = 7
     Top = 5
-    Width = 196
+    Width = 195
     Height = 40
     Align = alCustom
-    Anchors = [akLeft, akTop, akRight]
     BorderStyle = bsSingle
     TabOrder = 0
-    ExplicitWidth = 132
     object lbBirthCount: TLabel
       Left = 9
       Top = 10
@@ -276,12 +269,11 @@ object fPregInfo: TfPregInfo
     end
   end
   object rgPretermDelivery: TRadioGroup
-    Left = 363
-    Top = 51
-    Width = 139
+    Left = 208
+    Top = 102
+    Width = 132
     Height = 45
     Align = alCustom
-    Anchors = [akTop, akRight]
     Caption = 'Preterm Delivery'
     Columns = 2
     Font.Charset = DEFAULT_CHARSET
@@ -294,20 +286,40 @@ object fPregInfo: TfPregInfo
       'No'
       'Yes')
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 6
     TabStop = True
     OnClick = rgPretermDeliveryClick
-    ExplicitLeft = 299
   end
   object edtDeliveryAt: TSpinEdit
-    Left = 206
-    Top = 104
-    Width = 50
+    Left = 401
+    Top = 159
+    Width = 36
     Height = 22
     MaxValue = 0
     MinValue = 0
-    TabOrder = 5
+    TabOrder = 9
     Value = 0
     OnChange = SpinCheck
+  end
+  object rgTypeDelivery: TRadioGroup
+    Left = 7
+    Top = 102
+    Width = 195
+    Height = 45
+    Align = alCustom
+    Caption = 'Type of Delivery'
+    Columns = 2
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ItemIndex = 0
+    Items.Strings = (
+      'Vaginal'
+      'Cesarean')
+    ParentFont = False
+    TabOrder = 5
+    TabStop = True
   end
 end

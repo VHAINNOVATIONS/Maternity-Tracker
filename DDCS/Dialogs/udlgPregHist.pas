@@ -26,7 +26,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
   System.StrUtils, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons, Vcl.Samples.Spin, Vcl.ComCtrls,
-  uDialog;
+  uDialog, frmPregHistPreg;
 
 type
   TdlgPregHist = class(TDDCSDialog)
@@ -52,12 +52,14 @@ type
     lbMultipleBirthsValue: TStaticText;
     lbLivingValue: TStaticText;
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure TotPregChange(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
   private
     TotalPreg,TotalAI,TotalAS,TotalE: Integer;
     procedure PregHeaderChangeOff;
     procedure PregHeaderChangeOn;
+    function GetPregInfobyIEN(Value: Integer): TfPreg;
   public
     procedure ModifyPreterm(Value: Integer);
     procedure ModifyFullTerm(Value: Integer);
@@ -74,8 +76,7 @@ implementation
 {$R *.dfm}
 
 uses
-  frmPregHistPreg, frmPregHistPregInfo, frmPregHistChild, uCommon,
-  uExtndComBroker;
+  frmPregHistPregInfo, frmPregHistChild, uCommon, uExtndComBroker;
 
 procedure TdlgPregHist.FormCreate(Sender: TObject);
 begin
@@ -85,6 +86,188 @@ begin
   TotalE    := 0;
 
   dlgPregHist := Self;
+end;
+
+procedure TdlgPregHist.FormShow(Sender: TObject);
+var
+  I,J,bI,bJ: Integer;
+  val,bval: string;
+  vPreg: TfPreg;
+  vPregInfo: TfPregInfo;
+  vPregChild: TfChild;
+
+  function SubCount(str: string; d: Char): Integer;
+  var
+    I: Integer;
+  begin
+    Result := 0;
+    for I := 0 to Length(str) - 1 do
+      if str[I] = d then
+        inc(Result);
+  end;
+
+begin
+  try
+    //  L^IEN^DATE RECORDED^EDC^DFN|PATIENT^STATUS^FOF|(IEN OR IDENTIFIER)^
+    //    EDD^PREGNANCY END^OB IEN|OB^FACILITY IEN|FACILITY^
+    //    UPDATED BY IEN|UPDATED BY^GESTATIONAL AGE^LENGTH OF LABOR^
+    //    TYPE OF DELIVERY^ANESTHESIA^PRETERM DELIVERY^BIRTH TYPE^
+    //    IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU^
+    //    OUTCOME^HIGH RISK FLAG^DELIVERY AT
+    //  C^IEN^COMMENT
+
+    for I := 0 to PregListView.Items.Count - 1 do
+      for J := PregListView.Items.Item[I].SubItems.Count - 1 to 19 do
+        PregListView.Items.Item[I].SubItems.Add('');
+
+    for I := 0 to PregListView.Items.Count - 1 do
+      if PregListView.Items.Item[I].Caption = 'L' then
+      begin
+        // ---- Add the Pregnancy Tab ------------------------------------------
+        val := Uppercase(PregListView.Items.Item[I].SubItems[18]);    // Outcome
+        if val = 'ECTOPIC' then
+          edtEctopic.Value := edtEctopic.Value + 1
+        else if val = 'TERMINATION' then
+          edtAbInduced.Value := edtAbInduced.Value + 1
+        else if val = 'SPONTANEOUS ABORTION' then
+          edtAbSpont.Value := edtAbSpont.Value + 1
+        else
+          edtTotPreg.Value := edtTotPreg.Value + 1;
+        // ---------------------------------------------------------------------
+
+        // ---- Get the Pregnancy Info Form ------------------------------------
+        if pgPregnancy.Pages[pgPregnancy.PageCount - 1].ControlCount > 0 then
+          if pgPregnancy.Pages[pgPregnancy.PageCount - 1].Controls[0] is TfPreg then
+          begin
+            vPreg := TfPreg(pgPregnancy.Pages[pgPregnancy.PageCount - 1].Controls[0]);
+            vPreg.PregnancyIEN := StrToIntDef(PregListView.Items.Item[I].SubItems[0], 0);
+            vPregInfo := vPreg.GetPregInfo;
+          end;
+
+        if vPregInfo <> nil then
+        begin
+          for J := 0 to PregListView.Items.Item[I].SubItems.Count - 1 do
+          begin
+            val := PregListView.Items.Item[I].SubItems[J];
+            if val <> '' then
+            case J of
+              0: ;                                                              // IEN
+              1: ;                                                              // DATE RECORDED
+              2: ;                                                              // EDC
+              3: ;                                                              // DFN|PATIENT
+              4: if val = 'CURRENT' then                                        // STATUS
+                   vPregInfo.lbStatus.Caption := vPregInfo.lbStatus.Caption + ' (C)';
+              5: ;                                                              // FOF|(IEN OR IDENTIFIER)
+              6: ;                                                              // EDD
+              7: vPregInfo.dtDelivery.Text := val;                              // PREGNANCY END
+              8: ;                                                              // OB IEN|OB
+              9: begin                                                          // FACILITY IEN|FACILITY
+                   if vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(val,'|',2)) <> -1 then
+                     vPregInfo.cbDeliveryPlace.ItemIndex := vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(val,'|',2))
+                   else
+                     vPregInfo.cbDeliveryPlace.Text := Piece(val,'|',2);
+                 end;
+             10: ;                                                              // UPDATED BY IEN|UPDATED BY
+             11: begin                                                          // GESTATIONAL AGE
+                   vPregInfo.spnGAWeeks.Value := StrToIntDef(Piece(val,'W',1), 0);
+                   vPregInfo.spnGADays.Value := StrToIntDef(Piece(Piece(val,'D',1),'W',2), 0);
+                 end;
+             12: vPregInfo.spnLaborLength.Value := StrToIntDef(val, 0);         // LENGTH OF DELIVERY
+             13: begin                                                          // TYPE OF DELIVERY (C/V)
+                   if val = 'V' then
+                     vPregInfo.rgTypeDelivery.ItemIndex := 0
+                   else if val = 'C' then
+                     vPregInfo.rgTypeDelivery.ItemIndex := 1;
+                 end;
+             14: begin                                                          // ANESTHESIA
+                   if vPregInfo.cbAnesthesia.Items.IndexOf(val) = -1 then
+                     vPregInfo.cbAnesthesia.Items.Add(val);
+                   vPregInfo.cbAnesthesia.ItemIndex := vPregInfo.cbAnesthesia.Items.IndexOf(val);
+                 end;
+             15: vPregInfo.rgPretermDelivery.ItemIndex := StrToIntDef(val, 0);  // PRETERM DELIVERY
+             16: ;                                                              // BIRTH TYPE
+             // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
+             17: begin
+                   bJ := SubCount(val,'|') + 1;
+
+                   for bI := 1 to bJ do
+                   begin
+                     bval := Piece(val,'|',bI);
+                     // ---- Add the Baby Tab ---------------------------------
+                     vPregInfo.spnBirthCount.Value := vPregInfo.spnBirthCount.Value + 1;
+                     // -------------------------------------------------------
+
+                     // ---- Get the Baby Info Form ---------------------------
+                     if vPreg.pgPreg.PageCount > 1 then
+                       if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].ControlCount > 0 then
+                         if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0] is TfChild then
+                         begin
+                           vPregChild := TfChild(vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0]);
+
+                           // IEN
+                           vPregChild.BabyIEN := StrToIntDef(Piece(bval,';',1), 0);
+
+                           // Baby #
+                           vPregChild.BabyNumber := StrToIntDef(Piece(bval,';',2), 0);
+
+                           // Sex
+                           if Piece(bval,';',4) = 'M' then
+                             vPregChild.rgSex.ItemIndex := 0
+                           else if Piece(bval,';',4) = 'F' then
+                             vPregChild.rgSex.ItemIndex := 1
+                           else if Piece(bval,';',4) = 'U' then
+                             vPregChild.rgSex.ItemIndex := 2;
+
+                           // Weight
+                           vPregChild.spnG.Value := StrToIntDef(Piece(bval,';',5), 0);
+
+                           // Stillborn - set status to demise
+                           vPregChild.rgLife.ItemIndex := StrToIntDef(Piece(bval,';',6), 0);
+                           // Status
+                           if Piece(bval,';',9) = 'D' then
+                             vPregChild.rgLife.ItemIndex := 1;
+
+                           // APGAR1
+                           vPregChild.edAPGARone.Text := Piece(bval,';',7);
+
+                           // APGAR2
+                           vPregChild.edAPGARfive.Text := Piece(bval,';',8);
+
+                           // NICU
+                           vPregChild.ckNICU.Checked := (Piece(bval,';',10) = '1');
+                         end;
+                   end;
+                 end;
+             18: begin                                                          // OUTCOME
+                   if vPregInfo.cbOutcome.Enabled then
+                   begin
+                     if vPregInfo.cbOutcome.Items.IndexOf(val) = -1 then
+                       vPregInfo.cbOutcome.Items.Add(val);
+                     vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf(val);
+                   end;
+                 end;
+             19: ;                                                              // HIGH RISK FLAG
+             20: vPregInfo.edtDeliveryAt.Value := StrToIntDef(val, 0);          // DELIVERY AT
+            end;
+          end;
+        end;
+      end;
+
+    for I := 0 to PregListView.Items.Count - 1 do
+      if PregListView.Items.Item[I].Caption = 'C' then
+      begin
+        vPreg := GetPregInfobyIEN(StrToIntDef(PregListView.Items.Item[I].SubItems[0], 0));
+        if vPreg <> nil then
+        begin
+          vPregInfo := vPreg.GetPregInfo;
+          if vPregInfo <> nil then
+            vPregInfo.meDeliveryNotes.Lines.Add(PregListView.Items.Item[I].SubItems[1]);
+        end;
+      end;
+  finally
+    if pgPregnancy.PageCount > 0 then
+      pgPregnancy.ActivePageIndex := 0;
+  end;
 end;
 
 procedure TdlgPregHist.TotPregChange(Sender: TObject);
@@ -145,9 +328,44 @@ begin
 
       case TSpinEdit(Sender).Tag of
         1: vPreg.PregnancyType := ptN;
-        2: vPreg.PregnancyType := ptAI;
-        3: vPreg.PregnancyType := ptAS;
-        4: vPreg.PregnancyType := ptE;
+        2: begin
+             vPreg.PregnancyType := ptAI;
+             vPregInfo.spnBirthCount.Enabled := False;
+             vPregInfo.lbBirthCount.Enabled := False;
+             vPregInfo.rgPretermDelivery.ItemIndex := -1;
+             dlgPregHist.ModifyFullTerm(-1);
+             vPregInfo.rgPretermDelivery.Visible := False;
+             if vPregInfo.cbOutcome.Items.IndexOf('Termination') = -1 then
+               vPregInfo.cbOutcome.Items.Add('Termination');
+             vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf('Termination');
+             vPregInfo.cbOutcome.Enabled := False;
+           end;
+        3: begin
+             vPreg.PregnancyType := ptAS;
+             vPregInfo.spnBirthCount.Enabled := False;
+             vPregInfo.lbBirthCount.Enabled := False;
+             vPregInfo.rgPretermDelivery.ItemIndex := -1;
+             dlgPregHist.ModifyFullTerm(-1);
+             vPregInfo.rgPretermDelivery.Visible := False;
+             if vPregInfo.cbOutcome.Items.IndexOf('Spontaneous Abortion') = -1 then
+               vPregInfo.cbOutcome.Items.Add('Spontaneous Abortion');
+             vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf('Spontaneous Abortion');
+             vPregInfo.cbOutcome.Enabled := False;
+           end;
+        4: begin
+             vPreg.PregnancyType := ptE;
+             if vPregInfo.cbOutcome.Items.IndexOf('Ectopic') = -1 then
+               vPregInfo.cbOutcome.Items.Add('Ectopic');
+             vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf('Ectopic');
+             vPregInfo.cbOutcome.Enabled := False;
+           end;
+      end;
+
+      if vPregInfo.cbOutcome.Items.IndexOf(vPregInfo.lbStatus.Caption) <> -1 then
+      begin
+        vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf(vPregInfo.lbStatus.Caption);
+        vPregInfo.cbOutcome.Enabled := False;
+        vPregInfo.lbOutcome.Enabled := False;
       end;
     end;
   finally
@@ -157,8 +375,10 @@ end;
 
 procedure TdlgPregHist.btnOKClick(Sender: TObject);
 var
-  I: Integer;
+  I,J: Integer;
   vPreg: TfPreg;
+  vPregInfo: TfPregInfo;
+  lvItem: TListItem;
 begin
   TmpStrList.Add('Pregnancy History: ');
   TmpStrList.Add('  Total Pregnancies: ' + edtTotPreg.Text);
@@ -179,77 +399,55 @@ begin
         TmpStrList.AddStrings(vPreg.GetText);
       end;
 
-//  PregListView.Clear;
-//
-//  for I := 0 to pgcPregnancy.PageCount - 1 do
-//  begin
-//    pg := TfrmPregHist(slPregs.Objects[I]);
-//    if pg <> nil then
-//    begin
-//      lvitem := PregListView.Items.Add;
-//      lvitem.Caption := 'L';
-//      for J := 0 to 19 do
-//        lvitem.SubItems.Add('');
-//
-//      lvitem.SubItems[0] := pg.FPregIEN;                                              //IEN
-//
-//      if pg.lblStatus.Caption = '*** CURRENT ***' then                                //STATUS
-//        lvitem.SubItems[4] := 'CURRENT'
-//      else
-//        lvitem.SubItems[4] := 'HISTORICAL';
-//
-//      lvitem.SubItems[7] := pg.edtDateOfDelivery.Text;                                //PREGNANCY END
-//      lvitem.SubItems[9] := '|' + pg.CB_PlaceofDelivery.Text;                         //PLACE OF DELIVERY
-//      lvitem.SubItems[11] := pg.SPN_GAWeeks.Text + 'W' + pg.SPN_GADays.Text + 'D';    //GESTATIONAL AGE #W#D
-//      lvitem.SubItems[12] := pg.E_LengthofLabor.Text;                                 //LENGTH OF LABOR
-//      lvitem.SubItems[13] := pg.E_TypeofDelivery.Text;                                //TYPE OF DELIVERY
-//
-//      if pg.cbAnesthesia.ItemIndex <> -1 then                                         //ANESTHESIA
-//        lvitem.SubItems[14] := pg.cbAnesthesia.Items[pg.cbAnesthesia.ItemIndex];
-//
-//      if pg.cxRadioGroup_PretermLabor.ItemIndex <> -1 then                            //PRETERM LABOR
-//        lvitem.SubItems[15] := IntToStr(pg.cxRadioGroup_PretermLabor.ItemIndex);
-//
-//      with pg.pgcChildNumber do                                                       //IEN;BABY#;SEX;WEIGHT;STILLBORN|
-//      begin
-//        str := '';
-//        for K := 0 to pg.pgcChildNumber.PageCount - 1 do
-//        begin
-//          pgChild := TfrmChildHist(pg.GetChildForm(K+1));
-//          if pgChild <> nil then
-//          begin
-//            if str <> '' then
-//              str := str + '|';
-//
-//            str := str + pgChild.FBabyIEN + ';' + IntToStr(K+1) + ';';
-//
-//            if pgChild.rgbxChildGender.ItemIndex = 0 then
-//              str := str + 'M;'
-//            else if pgChild.rgbxChildGender.ItemIndex = 1 then
-//              str := str + 'F;'
-//            else
-//              str := str + ';';
-//
-//            str := str + pgChild.spnBirthWeight.Text + ';';
-//
-//            if pgChild.cntcbxStillBorn.Checked then
-//              str := str + '1';
-//          end;
-//        end;
-//        lvitem.SubItems[17] := str;
-//      end;
-//
-//      lvitem.SubItems[18] := pg.FType;                                               //COMPLICATION
-//
-//      for K := 0 to pg.MO_CommentComplication.Lines.Count - 1 do                     //COMMENTS
-//      begin
-//        lvitemc := PregListView.Items.Add;
-//        lvitemc.Caption := 'C';
-//        lvitemc.SubItems.Add(pg.FPregIEN);
-//        lvitemc.SubItems.Add(pg.MO_CommentComplication.Lines[K]);
-//      end;
-//    end;
-//  end;
+  PregListView.Clear;
+
+  for I := 0 to pgPregnancy.PageCount - 1 do
+  begin
+    if pgPregnancy.Pages[I].ControlCount > 0 then
+      if pgPregnancy.Pages[I].Controls[0] is TfPreg then
+      begin
+        vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
+
+        vPregInfo := vPreg.GetPregInfo;
+        if vPregInfo <> nil then
+        begin
+          lvItem := PregListView.Items.Add;
+          lvItem.Caption := 'L';
+
+          for J := 0 to 19 do
+            lvItem.SubItems.Add('');
+
+          lvItem.SubItems[0]  := IntToStr(vPreg.PregnancyIEN);                    // IEN
+          lvItem.SubItems[7]  := vPregInfo.dtDelivery.Text;                       // PREGNANCY END
+          lvItem.SubItems[9]  := '|' + vPregInfo.cbDeliveryPlace.Text;            // PLACE OF DELIVERY
+          lvItem.SubItems[11] := vPregInfo.spnGAWeeks.Text + 'W' +                // GESTATIONAL AGE #W#D
+                                 vPregInfo.spnGADays.Text  + 'D';
+          lvItem.SubItems[12] := vPregInfo.spnLaborLength.Text;                   // LENGTH OF DELIVERY
+
+          if vPregInfo.rgTypeDelivery.ItemIndex = 0 then                          // TYPE OF DELIVERY (C/V)
+            lvItem.SubItems[13] := 'V'
+          else if vPregInfo.rgTypeDelivery.ItemIndex = 1 then
+            lvItem.SubItems[13] := 'C';
+
+          lvItem.SubItems[14] := vPregInfo.cbAnesthesia.Text;                     // ANESTHESIA
+          lvItem.SubItems[15] := IntToStr(vPregInfo.rgPretermDelivery.ItemIndex); // PRETERM DELIVERY
+
+          // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
+          lvItem.SubItems[17] := vPreg.GetChildrenV;
+
+          lvItem.SubItems[18] := vPregInfo.cbOutcome.Text;                        // OUTCOME
+          lvItem.SubItems[20] := vPregInfo.edtDeliveryAt.Text;                    // DELIVERY AT
+
+          for J := 0 to vPregInfo.meDeliveryNotes.Lines.Count - 1 do              // COMMENTS
+          begin
+            lvItem := PregListView.Items.Add;
+            lvItem.Caption := 'C';
+            lvItem.SubItems.Add(IntToStr(vPreg.PregnancyIEN));
+            lvItem.SubItems.Add(vPregInfo.meDeliveryNotes.Lines[J]);
+          end;
+        end;
+      end;
+  end;
 end;
 
 // Private ---------------------------------------------------------------------
@@ -268,6 +466,29 @@ begin
   edtAbInduced.OnChange := TotPregChange;
   edtAbSpont.OnChange   := TotPregChange;
   edtEctopic.OnChange   := TotPregChange;
+end;
+
+function TdlgPregHist.GetPregInfobyIEN(Value: Integer): TfPreg;
+var
+  I: Integer;
+  vPreg: TfPreg;
+begin
+  Result := nil;
+
+  if Value < 1 then
+    Exit;
+
+  for I := 0 to pgPregnancy.PageCount - 1 do
+    if pgPregnancy.Pages[I].ControlCount > 0 then
+      if pgPregnancy.Pages[I].Controls[0] is TfPreg then
+      begin
+        vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
+        if vPreg.PregnancyIEN = Value then
+        begin
+          Result := vPreg;
+          Break;
+        end;
+      end;
 end;
 
 // Public ----------------------------------------------------------------------
@@ -343,234 +564,5 @@ begin
     PregHeaderChangeOn;
   end;
 end;
-
-//procedure TdlgPregHist.FormShow(Sender: TObject);
-//var
-//  I,J,T,tVal: Integer;
-//  iTmpTotPreg,iTmpAbSpon,iTmpAbInduce,iTmpEctopic,iMultBirths,iCalcBirths: Integer;
-//  pg: TfrmPregHist;
-//  pgChild: TfrmChildHist;
-//  val: string;
-//
-//  function SubCount(str: string; d: Char): Integer;
-//  var
-//    I: Integer;
-//  begin
-//    Result := 0;
-//    for I := 0 to Length(str) - 1 do
-//      if str[I] = d then
-//        inc(Result);
-//  end;
-//
-//  function getPregForm(iVal: string): TfrmPregHist;
-//  var
-//    I: Integer;
-//  begin
-//    Result := nil;
-//
-//    for I := 0 to slPregs.Count - 1 do
-//      if TfrmPregHist(slPregs.Objects[I]).IEN = iVal then
-//      begin
-//        Result := TfrmPregHist(slPregs.Objects[I]);
-//        Break;
-//      end;
-//  end;
-//
-//begin
-//  slPregs := TStringList.Create(True);
-//
-//  edtTotPreg.OnChange   := nil;
-//  edtAbInduced.OnChange := nil;
-//  edtAbSpont.OnChange   := nil;
-//  edtEctopic.OnChange   := nil;
-//  try
-//    edtTotPreg.Value := 0;
-//    edtAbInduced.Value := 0;
-//    edtAbSpont.Value := 0;
-//    edtEctopic.Value := 0;
-//
-//    //  L^IEN^DATE RECORDED^EDC^DFN|PATIENT^STATUS^FOF|(IEN OR IDENTIFIER)^
-//    //    EDD^PREGNANCY END^OB IEN|OB^FACILITY IEN|FACILITY^
-//    //    UPDATED BY IEN|UPDATED BY^GESTATIONAL AGE^LENGTH OF DELIVERY^
-//    //    TYPE OF DELIVERY^ANESTHESIA^PRETERM LABOR^BIRTH TYPE^IEN;BABY |IEN;BABY^
-//    //    OUTCOME
-//    //  C^IEN^COMMENT
-//
-//    for I := 0 to PregListView.Items.Count - 1 do
-//      for J := PregListView.Items.Item[I].SubItems.Count - 1 to 19 do
-//        PregListView.Items.Item[I].SubItems.Add('');
-//
-//    for I := 0 to PregListView.Items.Count - 1 do
-//    begin
-//      if PregListView.Items.Item[I].Caption = 'L' then
-//      begin
-//        edtTotPreg.Value := edtTotPreg.Value + 1;
-//        rPreg := rPreg + 1;
-//        pg := TfrmPregHist(AddPage(Sender,PregListView.Items.Item[I].SubItems[0]));
-//
-//        for J := 0 to PregListView.Items.Item[I].SubItems.Count - 1 do
-//        begin
-//          val := PregListView.Items.Item[I].SubItems[J];
-//          if val <> '' then
-//          case J of
-//            0 : pg.FPregIEN := val;                                            //IEN
-//            1 : ;                                                              //DATE RECORDED
-//            2 : ;                                                              //EDC
-//            3 : ;                                                              //DFN|PATIENT
-//            4 : if val = 'CURRENT' then                                        //STATUS
-//                begin
-//                  pg.lblStatus.Caption := '*** CURRENT ***';
-//
-//                  for T := 0 to pg.ComponentCount - 1 do
-//                    if pg.Components[T] is TWinControl then
-//                      if ((pg.Components[T].ClassType <> TForm) and (pg.Components[T].ClassType <> TPanel) and
-//                         (pg.Components[T].ClassType <> TMemo)) then
-//                      TWinControl(pg.Components[T]).Enabled := False;
-//                end;
-//            5 : ;                                                              //FOF|(IEN OR IDENTIFIER)
-//            6 : ;                                                              //EDD
-//            7 : pg.edtDateOfDelivery.Text := val;                              //PREGNANCY END
-//            8 : ;                                                              //OB IEN|OB
-//            9 : pg.CB_PlaceofDelivery.Text := Piece(val,'|',2);                //FACILITY IEN|FACILITY
-//           10 : ;                                                              //UPDATED BY IEN|UPDATED BY
-//           11 : begin                                                          //GESTATIONAL AGE
-//                  if TryStrToInt(Piece(val,'W',1),tVal) then
-//                    pg.SPN_GAWeeks.Value := tVal;
-//                  if TryStrToInt(Piece(Piece(val,'D',1),'W',2),tVal) then
-//                    pg.SPN_GADays.Value := tVal;
-//                end;
-//           12 : pg.E_LengthofLabor.Text := val;                                //LENGTH OF DELIVERY
-//           13 : begin                                                          //TYPE OF DELIVERY
-//                  for T := 0 to pg.E_TypeofDelivery.Items.Count - 1 do
-//                    if AnsiCompareText(pg.E_TypeofDelivery.Items[T],val) = 0 then
-//                    begin
-//                      pg.E_TypeofDelivery.ItemIndex := T;
-//                      Break;
-//                    end;
-//
-//                  if pg.E_TypeofDelivery.ItemIndex = -1 then
-//                  begin
-//                    pg.E_TypeofDelivery.Items.Add(val);
-//                    pg.E_TypeofDelivery.ItemIndex := pg.E_TypeofDelivery.Items.Count - 1;
-//                  end;
-//                end;
-//           14 : begin                                                          //ANESTHESIA
-//                  for T := 0 to pg.cbAnesthesia.Items.Count - 1 do
-//                    if UpperCase(pg.cbAnesthesia.Items[T]) = UpperCase(val) then
-//                    begin
-//                      pg.cbAnesthesia.ItemIndex := T;
-//                      Break;
-//                    end;
-//
-//                  if ((pg.cbAnesthesia.ItemIndex = -1) and (val <> '')) then
-//                  begin
-//                    pg.cbAnesthesia.Items.Add(val);
-//                    pg.cbAnesthesia.ItemIndex := pg.cbAnesthesia.Items.Count - 1;
-//                  end;
-//                end;
-//           15 : begin                                                          //PRETERM LABOR
-//                  if val = '1' then
-//                    pg.cxRadioGroup_PretermLabor.ItemIndex := 1
-//                  else if val = '0' then
-//                    pg.cxRadioGroup_PretermLabor.ItemIndex := 0;
-//                end;
-//           16 : ;                                                              //BIRTH TYPE
-//           17 : begin                                                          //IEN;BABY#;SEX;WEIGHT;STILLBORN|
-//                  for T := 1 to SubCount(val,'|') + 1 do
-//                  begin
-//                    if T > 1 then
-//                    begin
-//                      pg.cxRadioGroupBirthType.ItemIndex := 1;
-//
-//                      if T > 2 then
-//                        pg.JvSpinEdit1.Value := pg.JvSpinEdit1.Value + 1;
-//                    end else
-//                    if ((T > 0) and (T < 2)) then
-//                      pg.cxRadioGroupBirthType.ItemIndex := 0;
-//
-//                    pgChild := TfrmChildHist(pg.GetChildForm(T));
-//                    if pgChild <> nil then
-//                    begin
-//                      if Piece(Piece(val,'|',T),';',1) <> '' then
-//                        pgChild.FBabyIEN :=  Piece(Piece(val,'|',T),';',1);
-//
-//                      if Piece(Piece(val,'|',T),';',3) = 'M' then
-//                        pgChild.rgbxChildGender.ItemIndex := 0
-//                      else if Piece(Piece(val,'|',T),';',3) = 'F' then
-//                        pgChild.rgbxChildGender.ItemIndex := 1;
-//
-//                      if Piece(Piece(val,'|',T),';',4) <> '' then
-//                        pgChild.spnBirthWeight.Value := StrToFloat(Piece(Piece(val,'|',T),';',4));
-//
-//                      if Piece(Piece(val,'|',T),';',5) = '1' then
-//                        pgChild.cntcbxStillBorn.Checked := True;
-//                    end;
-//                  end;
-//                end;
-//           18 : begin                                                            //OUTCOME
-//                  pg.FType := val;
-//
-//                  if val = 'E' then
-//                  begin
-//                    edtEctopic.Value := edtEctopic.Value + 1;
-//                    pg.lblStatus.Caption := '*** ECTOPIC ***';
-//                  end else if val = 'AI' then
-//                  begin
-//                    edtAbInduced.Value := edtAbInduced.Value + 1;
-//                    pg.lblStatus.Caption := '*** AB. INDUCED ***';
-//                  end else if val = 'AS' then
-//                  begin
-//                    edtAbSpont.Value := edtAbSpont.Value + 1;
-//                    pg.lblStatus.Caption := '*** AB. SPONTANEOUS ***';
-//                  end;
-//                end;
-//          end;
-//        end;
-//
-//        for J := 0 to PregListView.Items.Count - 1 do
-//          if ((PregListView.Items.Item[J].Caption = 'C') and (PregListView.Items.Item[J].SubItems[0] = pg.FPregIEN)) then
-//            pg.MO_CommentComplication.Lines.Add(PregListView.Items.Item[J].SubItems[1]);
-//
-//        val := '';
-//        for J := 0 to pg.MO_CommentComplication.Lines.Count - 1 do
-//          if Trim(pg.MO_CommentComplication.Lines[J]) <> '' then
-//            val := '*';
-//
-//        if val = '' then
-//          pg.MO_CommentComplication.Clear;
-//
-//      end;
-//    end;
-//  finally
-//    spnTotPreg := edtTotPreg.Value;
-//    spnAbInduced := edtAbInduced.Value;
-//    spnAbSpont := edtAbSpont.Value;
-//    spnEctopic := edtEctopic.Value;
-//
-//    for I := 0 to pgcPregnancy.PageCount - 1 do
-//      pgcPregnancy.Pages[I].Caption := 'Pregnancy #' + IntToStr(I+1);
-//
-//    if pgcPregnancy.PageCount > 0 then
-//      pgcPregnancy.ActivePageIndex := 0;
-//
-//    iCalcBirths := 0;
-//    iMultBirths := 0;
-//    for I := 0 to slPregs.Count - 1 do
-//    begin
-//      iCalcBirths := iCalcBirths + TfrmPregHist(slPregs.Objects[I]).GetLiveBirths;
-//      if TfrmPregHist(slPregs.Objects[I]).cxRadioGroupBirthType.ItemIndex = 1 then
-//        Inc(iMultBirths);
-//    end;
-//
-//    SetLiveBirthCount(iCalcBirths);
-//    ModifyBirthTypes;
-//    CalculateMultiPregs;
-//
-//    edtTotPreg.OnChange   := edtTotPregChange;
-//    edtAbInduced.OnChange := edtTotPregChange;
-//    edtAbSpont.OnChange   := edtTotPregChange;
-//    edtEctopic.OnChange   := edtTotPregChange;
-//  end;
-//end;
 
 end.

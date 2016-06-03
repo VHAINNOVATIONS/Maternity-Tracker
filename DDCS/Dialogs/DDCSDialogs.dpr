@@ -71,19 +71,23 @@ begin
     RegisterClass(TdlgAbdomPain);              sl.Add('TdlgAbdomPain^udlgAbdomPain');
     RegisterClass(TdlgBackPain);               sl.Add('TdlgBackPain^udlgBackPain');
     RegisterClass(TdlgCoughCongest);           sl.Add('TdlgCoughCongest^udlgCoughCongest');
+    RegisterClass(TdlgEducation);              sl.Add('TdlgEducation^udlgEducation');
     RegisterClass(TdlgFamily);                 sl.Add('TdlgFamily^udlgFamily');
     RegisterClass(TdlgFetalMov);               sl.Add('TdlgFetalMov^udlgFetalMov');
     RegisterClass(TdlgGenetic);                sl.Add('TdlgGenetic^udlgGenetic');
     RegisterClass(TdlgHeadache);               sl.Add('TdlgHeadache^udlgHeadache');
+    RegisterClass(TdlgImmunizations);          sl.Add('TdlgImmunizations^udlgImmunizations');
     RegisterClass(TdlgInfectHist);             sl.Add('TdlgInfectHist^udlgInfectHist');
     RegisterClass(TdlgLegPain);                sl.Add('TdlgLegPain^udlgLegPain');
     RegisterClass(TdlgMedical);                sl.Add('TdlgMedical^udlgMedical');
     RegisterClass(TdlgNausea);                 sl.Add('TdlgNausea^udlgNausea');
-    RegisterClass(TdlgPelvic);                 sl.Add('TdlgPelvic^udlgPelvic');
     RegisterClass(TdlgOBSpread);               sl.Add('TdlgOBSpread^udlgOBSpread');
     RegisterClass(TdlgPalp);                   sl.Add('TdlgPalp^udlgPalp');
+    RegisterClass(TdlgPelvic);                 sl.Add('TdlgPelvic^udlgPelvic');
+    RegisterClass(TdlgPhysicalExam);           sl.Add('TdlgPhysicalExam^udlgPhysicalExam');
     RegisterClass(TdlgPregHist);               sl.Add('TdlgPregHist^udlgPregHist');
     RegisterClass(TdlgRash);                   sl.Add('TdlgRash^udlgRash');
+    RegisterClass(TdlgROS);                    sl.Add('TdlgROS^udlgROS');
     RegisterClass(TdlgRTClinic);               sl.Add('TdlgRTClinic^udlgRTClinic');
     RegisterClass(TdlgSocial);                 sl.Add('TdlgSocial^udlgSocial');
     RegisterClass(TdlgSurgical);               sl.Add('TdlgSurgical^udlgSurgical');
@@ -91,10 +95,6 @@ begin
     RegisterClass(TdlgVagDischarge);           sl.Add('TdlgVagDischarge^udlgVagDischarge');
     RegisterClass(TdlgVisualChanges);          sl.Add('TdlgVisualChanges^udlgVisualChanges');
     RegisterClass(TdlgWheezing);               sl.Add('TdlgWheezing^udlgWheezing');
-    RegisterClass(TdlgImmunizations);          sl.Add('TdlgImmunizations^udlgImmunizations');
-    RegisterClass(TdlgPhysicalExam);           sl.Add('TdlgPhysicalExam^udlgPhysicalExam');
-    RegisterClass(TdlgROS);                    sl.Add('TdlgROS^udlgROS');
-    RegisterClass(TdlgEducation);              sl.Add('TdlgEducation^udlgEducation');
   finally
     Result := sl.Text;
     sl.Free;
