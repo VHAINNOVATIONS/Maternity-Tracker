@@ -105,10 +105,10 @@ type
     Label3: TLabel;
     Label2: TLabel;
     Label1: TLabel;
+    procedure FormCreate(Sender: TObject);
     procedure CheckBoxClick(Sender: TObject);
     procedure btnNegClick(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
   public
   end;

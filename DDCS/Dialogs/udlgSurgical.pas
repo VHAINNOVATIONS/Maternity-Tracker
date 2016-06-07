@@ -17,74 +17,85 @@ unit udlgSurgical;
        Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, uDialog, uExtndComBroker, StdCtrls, ExtCtrls, Buttons,
-  VA508AccessibilityManager;
+  Dialogs, StdCtrls, ExtCtrls, Buttons, ORDtTm, ORCtrls,
+  uDialog, uExtndComBroker;
 
 type
   TdlgSurgical = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
+    pnlfooter: TPanel;
     bbtnOK: TBitBtn;
     bbtnCancel: TBitBtn;
+    Edit19: TEdit;
+    btnNeg: TBitBtn;
+    meComments: TCaptionMemo;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
+    CheckBox7: TCheckBox;
+    CheckBox8: TCheckBox;
+    CheckBox10: TCheckBox;
+    CheckBox11: TCheckBox;
+    CheckBox13: TCheckBox;
+    CheckBox14: TCheckBox;
+    CheckBox16: TCheckBox;
+    CheckBox17: TCheckBox;
+    ORDateBox1: TORDateBox;
+    CheckBox19: TCheckBox;
+    CheckBox20: TCheckBox;
+    CheckBox22: TCheckBox;
+    CheckBox23: TCheckBox;
+    CheckBox25: TCheckBox;
+    CheckBox26: TCheckBox;
+    Edit1: TEdit;
+    ORDateBox2: TORDateBox;
+    Edit2: TEdit;
+    ORDateBox3: TORDateBox;
+    Edit3: TEdit;
+    ORDateBox4: TORDateBox;
+    Edit4: TEdit;
+    ORDateBox5: TORDateBox;
+    Edit5: TEdit;
+    ORDateBox6: TORDateBox;
+    Edit6: TEdit;
+    ORDateBox7: TORDateBox;
+    Edit7: TEdit;
+    ORDateBox8: TORDateBox;
+    Edit8: TEdit;
+    ORDateBox9: TORDateBox;
+    lbComments: TLabel;
+    lbTreatment: TLabel;
+    lbComment: TLabel;
+    pnlLabels: TPanel;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Label34: TLabel;
-    Label36: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    Label28: TLabel;
-    Label30: TLabel;
-    Label24: TLabel;
-    Memo1: TMemo;
-    CheckBox41: TCheckBox;
-    CheckBox42: TCheckBox;
-    Edit24: TEdit;
-    CheckBox43: TCheckBox;
-    CheckBox44: TCheckBox;
-    Edit25: TEdit;
-    CheckBox45: TCheckBox;
-    CheckBox46: TCheckBox;
-    Edit26: TEdit;
-    CheckBox47: TCheckBox;
-    CheckBox48: TCheckBox;
-    Edit27: TEdit;
-    Edit18: TEdit;
-    CheckBox40: TCheckBox;
-    CheckBox39: TCheckBox;
-    CheckBox37: TCheckBox;
-    CheckBox38: TCheckBox;
-    Edit19: TEdit;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
     Label6: TLabel;
-    Edit1: TEdit;
-    CheckBox49: TCheckBox;
-    CheckBox50: TCheckBox;
-    BitBtn1: TBitBtn;
-    Label7: TLabel;
-    Edit2: TEdit;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    Label8: TLabel;
-    Edit3: TEdit;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    Label9: TLabel;
-    Edit4: TEdit;
-    CheckBox5: TCheckBox;
-    CheckBox6: TCheckBox;
-    procedure BitBtn1Click(Sender: TObject);
+    lbOther1: TLabel;
+    dtOther1: TORDateBox;
+    edOtherComments1: TEdit;
+    edOther1: TEdit;
+    lbOther2: TLabel;
+    dtOther2: TORDateBox;
+    edOtherComments2: TEdit;
+    edOther2: TEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure CheckBoxClick(Sender: TObject);
+    procedure btnNegClick(Sender: TObject);
     procedure bbtnOKClick(Sender: TObject);
-    procedure CheckBox37Click(Sender: TObject);
   private
-    procedure ToggleCB(cb1:TCheckBox; cb2:TCheckBox);
   public
   end;
 
@@ -95,131 +106,193 @@ implementation
 
 {$R *.dfm}
 
-procedure TdlgSurgical.BitBtn1Click(Sender: TObject);
+procedure TdlgSurgical.FormCreate(Sender: TObject);
 var
   I: Integer;
-begin   {Negative for all}
-  for I := 0 to ControlCount - 1 do
-    if (Controls[I] is TCheckBox) then
-      if Odd((TCheckBox(Controls[I]).Tag)) = False then
-        TCheckBox(Controls[I]).Checked := True;
+
+  procedure SetSay(wControl: TWinControl);
+  var
+    I: Integer;
+  begin
+    for I := 0 to pnlLabels.ControlCount - 1 do
+      if pnlLabels.Controls[I].Tag = wControl.Tag then
+      begin
+        SayOnFocus(wControl, TLabel(pnlLabels.Controls[I]).Caption);
+        Break;
+      end;
+  end;
+
+begin
+  for I := 0 to ComponentCount - 1 do
+  begin
+    if (Components[I] is TCheckbox) or (Components[I] is TEdit) then
+      SetSay(TWinControl(Components[I]));
+  end;
+
+  SayOnFocus(edOtherComments1, 'Other Surgery Comment');
+  SayOnFocus(edOtherComments2, 'Other Surgery Comment');
 end;
 
-procedure TdlgSurgical.CheckBox37Click(Sender: TObject);
+procedure TdlgSurgical.CheckBoxClick(Sender: TObject);
+var
+  I: Integer;
+  ick,ck: TCheckBox;
+  ce: TEdit;
+  cd: TORDateBox;
 begin
- if (Sender is TCheckBox) then
-  case (Sender as TCheckBox).Tag of
-    37: ToggleCB(CheckBox37,CheckBox38);
-    38: ToggleCB(CheckBox38,CheckBox37);
-    39: ToggleCB(CheckBox39,CheckBox40);
-    40: ToggleCB(CheckBox40,CheckBox39);
-    41: ToggleCB(CheckBox41,CheckBox42);
-    42: ToggleCB(CheckBox42,CheckBox41);
-    43: ToggleCB(CheckBox43,CheckBox44);
-    44: ToggleCB(CheckBox44,CheckBox43);
-    45: ToggleCB(CheckBox45,CheckBox46);
-    46: ToggleCB(CheckBox46,CheckBox45);
-    47: ToggleCB(CheckBox47,CheckBox48);
-    48: ToggleCB(CheckBox48,CheckBox47);
-    49: ToggleCB(CheckBox49,CheckBox50);
-    50: ToggleCB(CheckBox50,CheckBox49);
-    51: ToggleCB(CheckBox1,CheckBox2);
-    52: ToggleCB(CheckBox2,CheckBox1);
-    53: ToggleCB(CheckBox3,CheckBox4);
-    54: ToggleCB(CheckBox4,CheckBox3);
-    55: ToggleCB(CheckBox5,CheckBox6);
-    56: ToggleCB(CheckBox6,CheckBox5);
+  ick := TCheckBox(Sender);
+
+  for I := 0 to ComponentCount - 1 do
+  begin
+    if Components[I] is TCheckbox then
+    begin
+      ck := TCheckBox(Components[I]);
+      if ((ck <> ick) and (ck.Tag = ick.Tag)) then
+      begin
+        ck.OnClick := nil;
+        ck.Checked := False;
+        ck.OnClick := CheckBoxClick;
+      end;
+    end;
+    if Components[I] is TEdit then
+      if Components[I].Tag = ick.Tag then
+      begin
+        ce := TEdit(Components[I]);
+        if ick.Caption = 'No' then
+        begin
+          ce.Clear;
+          ce.Enabled := False;
+        end else
+          ce.Enabled := True;
+      end;
+    if Components[I] is TORDateBox then
+      if Components[I].Tag = ick.Tag then
+      begin
+        cd := TORDateBox(Components[I]);
+        if ick.Caption = 'No' then
+        begin
+          cd.Clear;
+          cd.Enabled := False;
+        end else
+          cd.Enabled := True;
+      end;
   end;
 end;
 
-procedure TdlgSurgical.ToggleCB(cb1:TCheckBox; cb2:TCheckBox);
+procedure TdlgSurgical.btnNegClick(Sender: TObject);
+var
+  I: Integer;
+  ck: TCheckBox;
 begin
-  if cb1.Checked = True then
-    cb2.Checked := False;
+  for I := 0 to ComponentCount - 1 do
+  begin
+    if Components[I] is TCheckbox then
+    begin
+      ck := TCheckBox(Components[I]);
+      if ck.Caption = 'No' then
+        ck.Checked := True;
+    end;
+  end;
 end;
 
 procedure TdlgSurgical.bbtnOKClick(Sender: TObject);
 var
-  I: integer;
-  TmpStr: string;
+  I: Integer;
+  ck: TCheckBox;
+  tmp: string;
 
-  function Check4True: Boolean;
-  {Check for at least 1 checkbox = True }
+  function GetQuestion(iTag: Integer): string;
   var
-    J: Integer;
+    I: Integer;
   begin
-    for J := 0 to ComponentCount - 1 do
-    begin
-      if (Components[J] is TCheckBox) and ((Components[J] as TCheckBox).Checked = True) then
+    Result := '';
+    for I := 0 to pnlLabels.ControlCount - 1 do
+      if pnlLabels.Controls[I].Tag = iTag then
       begin
-        Result := True;
-        Exit;
+        Result := TLabel(pnlLabels.Controls[I]).Caption + ': ';
+        Break;
       end;
-    end;
-    Result := False;
+  end;
+
+  function GetDate(iTag: Integer): string;
+  var
+    I: Integer;
+  begin
+    Result := '';
+    for I := 0 to ComponentCount - 1 do
+      if Components[I] is TORDateBox then
+        if Components[I].Tag = iTag then
+          if TORDateBox(Components[I]).IsValid then
+          begin
+            Result := TORDateBox(Components[I]).Text;
+            Break;
+          end;
+  end;
+
+  function GetNarrative(iTag: Integer): string;
+  var
+    I: Integer;
+  begin
+    Result := '';
+    for I := 0 to ComponentCount - 1 do
+      if Components[I] is TEdit then
+        if Components[I].Tag = iTag then
+        begin
+          Result := TEdit(Components[I]).Text;
+          Break;
+        end;
   end;
 
 begin
-  if Check4True then
-  begin
-    TmpStrList.Add('Surgical History:');
-
-    for I := 0 to ComponentCount - 1 do
-    if (Components[I] is TCheckBox) and ((Components[I] as TCheckBox).Checked = True) then
+  for I := 0 to ComponentCount - 1 do
+    if Components[I] is TCheckbox then
     begin
-      TmpStr := '';
-      case (Components[I] as TCheckBox).Tag of
-        37 : begin TmpStr := '  Operations/Hospitalizations: POS'; if Edit19.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit19.Text; end;
-        38 : begin TmpStr := '  Operations/Hospitalizations: NEG'; if Edit19.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit19.Text; end;
-        39 : begin TmpStr := '  Anesthetic Complications: POS'; if Edit18.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit18.Text; end;
-        40 : begin TmpStr := '  Anesthetic Complications: NEG'; if Edit18.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit18.Text; end;
-        41 : begin TmpStr := '  Oophorectomy: POS'; if Edit24.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit24.Text; end;
-        42 : begin TmpStr := '  Oophorectomy: NEG'; if Edit24.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit24.Text; end;
-        43 : begin TmpStr := '  Cholecystectomy: POS'; if Edit25.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit25.Text; end;
-        44 : begin TmpStr := '  Cholecystectomy: NEG'; if Edit25.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit25.Text; end;
-        45 : begin TmpStr := '  Laparoscopy: POS'; if Edit26.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit26.Text; end;
-        46 : begin TmpStr := '  Laparoscopy: NEG'; if Edit26.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit26.Text; end;
-        47 : begin TmpStr := '  D&C: POS'; if Edit27.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit27.Text; end;
-        48 : begin TmpStr := '  D&C: NEG'; if Edit27.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit27.Text; end;
-        49 : begin TmpStr := '  C-Section: POS'; if Edit1.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit1.Text; end;
-        50 : begin TmpStr := '  C-Section: NEG'; if Edit1.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit1.Text; end;
-        51 : begin TmpStr := '  Appendectomy: POS'; if Edit2.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit2.Text; end;
-        52 : begin TmpStr := '  Appendectomy: NEG'; if Edit2.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit2.Text; end;
-        53 : begin TmpStr := '  Tonsils & Adenoids: POS'; if Edit3.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit3.Text; end;
-        54 : begin TmpStr := '  Tonsils & Adenoids: NEG'; if Edit3.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit3.Text; end;
-        55 : begin TmpStr := '  Additional Surgeries: POS'; if Edit4.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit4.Text; end;
-        56 : begin TmpStr := '  Additional Surgeries: NEG'; if Edit4.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit4.Text; end;
+      ck := TCheckBox(Components[I]);
+
+      if ck.Checked then
+      begin
+        TmpStrList.Add('  ' + GetQuestion(ck.Tag) + ' ' + ck.Caption);
+        if ck.Caption <> 'No' then
+        begin
+          tmp := GetDate(ck.Tag);
+          if tmp <> '' then
+            TmpStrList.Add('    Surgery Date: ' + tmp);
+          tmp := GetNarrative(ck.Tag);
+          if tmp <> '' then
+            TmpStrList.Add('    Narrative: ' + tmp);
+        end;
       end;
-      TmpStrList.Add(TmpStr);
     end;
 
-    if Memo1.Lines.Count > 0 then
-    begin
-      TmpStrList.Add('  Surgical Narrative:');
-      for I := 0 to Memo1.Lines.Count - 1  do
-        TmpStrList.Add('   ' + Memo1.Lines[I]);
-    end;
+  if Trim(edOther1.Text) <> '' then
+  begin
+    TmpStrList.Add('  ' + edOther1.Text);
+
+    if dtOther1.Text <> '' then
+      TmpStrList.Add('    Surgery Date: ' + dtOther1.Text);
+    if edOtherComments1.Text <> '' then
+      TmpStrList.Add('    Narrative: ' + edOtherComments1.Text);
   end;
+
+  if Trim(edOther2.Text) <> '' then
+  begin
+    TmpStrList.Add('  ' + edOther2.Text);
+
+    if dtOther2.Text <> '' then
+      TmpStrList.Add('    Surgery Date: ' + dtOther2.Text);
+    if edOtherComments2.Text <> '' then
+      TmpStrList.Add('    Narrative: ' + edOtherComments2.Text);
+  end;
+
+  if meComments.Lines.Count > 0 then
+  begin
+    TmpStrList.Add('  Comments:');
+    for I := 0 to meComments.Lines.Count - 1 do
+      TmpStrList.Add('   ' + meComments.Lines[I]);
+  end;
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Surgical History: ');
 end;
 
 end.

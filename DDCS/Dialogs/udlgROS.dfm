@@ -32,10 +32,12 @@ object dlgROS: TdlgROS
     ParentFont = False
   end
   object lbTreatment: TLabel
-    Left = 355
+    Left = 344
     Top = 8
-    Width = 91
+    Width = 121
     Height = 13
+    Alignment = taCenter
+    AutoSize = False
     Caption = 'Treatment Date'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -45,10 +47,12 @@ object dlgROS: TdlgROS
     ParentFont = False
   end
   object lbComment: TLabel
-    Left = 527
+    Left = 471
     Top = 8
-    Width = 55
+    Width = 167
     Height = 13
+    Alignment = taCenter
+    AutoSize = False
     Caption = 'Comment'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
