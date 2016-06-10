@@ -14,18 +14,15 @@ library DDCSDialogs;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 }
 
 uses
   Winapi.Windows,
-  System.SysUtils,
   System.Classes,
   Vcl.Forms,
   Vcl.Controls,
   uBase,
-  uDialog,
   uCommon,
   uExtndComBroker,
   udlgAbdomPain in 'udlgAbdomPain.pas' {dlgAbdomPain},
@@ -53,12 +50,12 @@ uses
   udlgOBSpread in 'udlgOBSpread.pas' {dlgOBSpread},
   udlgImmunizations in 'udlgImmunizations.pas' {dlgImmunizations},
   udlgROS in 'udlgROS.pas' {dlgROS},
-  udlgPhysicalExam in 'udlgPhysicalExam.pas' {dlgPhysicalExam},
   udlgEducation in 'udlgEducation.pas' {dlgEducation},
-  fFamilyAdd in 'fFamilyAdd.pas' {frmFamilyAdd},
   frmPregHistPreg in 'frmPregHistPreg.pas' {fPreg: TFrame},
   frmPregHistChild in 'frmPregHistChild.pas' {fChild: TFrame},
-  frmPregHistPregInfo in 'frmPregHistPregInfo.pas' {fPregInfo: TFrame};
+  frmPregHistPregInfo in 'frmPregHistPregInfo.pas' {fPregInfo: TFrame},
+  uDialog in 'uDialog.pas',
+  udlgPhysicalExam in 'udlgPhysicalExam.pas' {dlgPhysicalExam};
 
 {$R *.res}
 

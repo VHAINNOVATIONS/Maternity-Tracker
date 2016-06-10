@@ -1,8 +1,9 @@
 object dlgSocial: TdlgSocial
   Left = 327
   Top = 340
-  BorderStyle = bsDialog
-  ClientHeight = 662
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
+  ClientHeight = 665
   ClientWidth = 632
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -47,12 +48,13 @@ object dlgSocial: TdlgSocial
   object Panel2: TPanel
     Tag = 19641
     Left = 0
-    Top = 633
+    Top = 636
     Width = 632
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2
+    ExplicitTop = 633
     object bbtnOK: TBitBtn
       Left = 474
       Top = 2
@@ -77,20 +79,23 @@ object dlgSocial: TdlgSocial
     Left = 0
     Top = 33
     Width = 632
-    Height = 600
+    Height = 603
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
+    ExplicitHeight = 600
     object TabSheet1: TTabSheet
       Caption = 'Lifestyle'
       ImageIndex = 2
+      ExplicitHeight = 571
       object gb1: TGroupBox
         Left = 0
         Top = 0
         Width = 624
-        Height = 571
+        Height = 574
         Align = alClient
         TabOrder = 0
+        ExplicitHeight = 571
         object Label37: TLabel
           Left = 13
           Top = 243
@@ -752,15 +757,11 @@ object dlgSocial: TdlgSocial
     object TabSheet2: TTabSheet
       Caption = 'Relationship && Sexual History'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object gbRelation: TGroupBox
         Left = 0
         Top = 0
         Width = 624
-        Height = 571
+        Height = 574
         Align = alClient
         TabOrder = 0
         object Label43: TLabel
@@ -1545,7 +1546,7 @@ object dlgSocial: TdlgSocial
         Left = 0
         Top = 168
         Width = 624
-        Height = 403
+        Height = 406
         Align = alClient
         Caption = 'DRUGS'
         TabOrder = 1

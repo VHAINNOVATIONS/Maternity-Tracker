@@ -14,7 +14,6 @@ unit frmAbout;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 }
 
@@ -29,8 +28,6 @@ type
     pnlInfo: TPanel;
     lbAppName: TStaticText;
     btnOk: TButton;
-    lbWebDSS: TStaticText;
-    imgDSS: TImage;
     imgVA: TImage;
     lbCompany: TStaticText;
     lbApache: TStaticText;

@@ -14,7 +14,6 @@ unit uDialog;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 }
 
@@ -63,7 +62,14 @@ Type
 
   TDialogClass = class of TDDCSDialog;
 
+  procedure Register;
+
 implementation
+
+procedure Register;
+begin
+  RegisterClass(TDDCSDialog);
+end;
 
 // Private ---------------------------------------------------------------------
 
@@ -143,6 +149,8 @@ end;
 constructor TDDCSDialog.Create;
 begin
   inherited Create(nil);
+
+  Icon := nil;
 
   FDDCSForm := nil;
   RPCBrokerV := nil;

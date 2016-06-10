@@ -19,6 +19,10 @@ object DDCSVitals: TDDCSVitals
     OnChange = fVitalsControlChange
     object PageMain: TTabSheet
       Caption = 'Vitals'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object FTempdt: TLabel
         Left = 92
         Top = 143
@@ -334,6 +338,10 @@ object DDCSVitals: TDDCSVitals
     object PageEDD: TTabSheet
       Caption = 'Estimated Delivery Date'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         670
         370)
@@ -1061,6 +1069,10 @@ object DDCSVitals: TDDCSVitals
     object PageLMP: TTabSheet
       Caption = 'Menstrual History'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label7: TLabel
         Left = 278
         Top = 137

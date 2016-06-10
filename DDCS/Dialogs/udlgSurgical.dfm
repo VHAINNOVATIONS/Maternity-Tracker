@@ -1,9 +1,10 @@
 object dlgSurgical: TdlgSurgical
   Left = 0
   Top = 0
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Surgical History'
-  ClientHeight = 522
+  ClientHeight = 525
   ClientWidth = 799
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -90,7 +91,7 @@ object dlgSurgical: TdlgSurgical
   end
   object pnlfooter: TPanel
     Left = 0
-    Top = 493
+    Top = 496
     Width = 799
     Height = 29
     Align = alBottom
@@ -151,7 +152,7 @@ object dlgSurgical: TdlgSurgical
     Left = 10
     Top = 368
     Width = 779
-    Height = 114
+    Height = 117
     Align = alCustom
     Anchors = [akLeft, akTop, akRight, akBottom]
     ScrollBars = ssVertical

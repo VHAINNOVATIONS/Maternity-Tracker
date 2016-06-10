@@ -1,9 +1,10 @@
 object dlgPelvic: TdlgPelvic
   Left = 193
   Top = 174
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Pelvic Exam'
-  ClientHeight = 423
+  ClientHeight = 426
   ClientWidth = 405
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -150,14 +151,15 @@ object dlgPelvic: TdlgPelvic
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 394
+    Top = 397
     Width = 405
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 19
+    ExplicitTop = 394
     object btnOK: TBitBtn
-      Left = 247
+      Left = 248
       Top = 3
       Width = 75
       Height = 25
@@ -169,7 +171,7 @@ object dlgPelvic: TdlgPelvic
       OnClick = btnOKClick
     end
     object btnCancel: TBitBtn
-      Left = 328
+      Left = 329
       Top = 3
       Width = 75
       Height = 25

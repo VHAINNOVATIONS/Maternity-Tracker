@@ -14,7 +14,6 @@ library DDCSOBInitialBase;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 }
 

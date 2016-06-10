@@ -14,7 +14,6 @@ unit udlgGenetic;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
    v2.0.0.0
@@ -266,8 +265,8 @@ var
     Result := '';
     for I := 0 to pgBody.PageCount - 1 do
       for J := 0 to pgBody.Pages[I].ControlCount - 1 do
-        if pgBody.Pages[I].Controls[J] is TEdit then
-          if pgBody.Pages[I].Controls[J].Tag = iTag then
+        if pgBody.Pages[I].Controls[J].Tag = iTag then
+          if pgBody.Pages[I].Controls[J] is TEdit then
           begin
             Result := TEdit(pgBody.Pages[I].Controls[J]).Text;
             Break;

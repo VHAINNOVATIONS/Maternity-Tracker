@@ -14,71 +14,57 @@ unit udlgFamily;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, Vcl.Samples.Spin, Vcl.ComCtrls, system.StrUtils,
-  uDialog, uExtndComBroker;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
+  System.StrUtils, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons, Vcl.Samples.Spin, Vcl.ComCtrls,
+  Vcl.CheckLst, ORCtrls, uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgFamily = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
-    bbtnOK: TBitBtn;
-    bbtnCancel: TBitBtn;
-    btnDAdd: TButton;
-    btnDDelete: TButton;
-    ListBox: TListBox;
-    ledcomments: TLabeledEdit;
-    leddatebirth: TLabeledEdit;
-    cobdx: TComboBox;
-    cbdead: TCheckBox;
-    cblive: TCheckBox;
-    cobfammem: TComboBox;
-    spDateSelect: TSpeedButton;
-    Label2: TLabel;
-    Label1: TLabel;
-    spnEducation: TSpinEdit;
-    lblEducation: TStaticText;
-    edtAddr1: TLabeledEdit;
-    edtAddr2: TLabeledEdit;
-    edtAddr3: TLabeledEdit;
-    edtAddrcity: TLabeledEdit;
-    edtAddrzip: TLabeledEdit;
-    edtPhoneH: TLabeledEdit;
-    edtPhoneC: TLabeledEdit;
-    edtPhoneW: TLabeledEdit;
-    cbAddrstate: TComboBox;
-    Label3: TLabel;
+    pnlfooter: TPanel;
+    btnOK: TBitBtn;
+    btnCancel: TBitBtn;
+    cbRelationship: TComboBox;
+    lbRelationship: TLabel;
     lvPersonList: TListView;
     cbName: TComboBox;
-    lblName: TStaticText;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    procedure bbtnOKClick(Sender: TObject);
-    procedure btnDAddClick(Sender: TObject);
-    procedure btnDDeleteClick(Sender: TObject);
-    procedure ToggleCB(Sender: TObject);
-    procedure spnEducationChange(Sender: TObject);
+    lblName: TLabel;
+    rgLife: TRadioGroup;
+    rgSex: TRadioGroup;
+    lbComments: TLabel;
+    edComment: TEdit;
+    pnlDiagnosis: TPanel;
+    cklstDiagnosisList: TCheckListBox;
+    btnAdd: TButton;
+    cklstDiagnosis: TCheckListBox;
+    btnDelete: TButton;
+    lbDiagnosis: TLabel;
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure cbNameChange(Sender: TObject);
-    procedure UpdateField(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
-    procedure cbNameSelect(Sender: TObject);
+    procedure cbNameExit(Sender: TObject);
+    procedure cbRelationshipChange(Sender: TObject);
+    procedure rgSexClick(Sender: TObject);
+    procedure rgLifeClick(Sender: TObject);
+    procedure btnAddClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure edCommentExit(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
   private
-    Item: TListItem;
-    ISelected: Integer;
+    FamilyItem: TListItem;
     procedure ClearForm;
+    procedure BuildForm;
+    procedure AddDiagnosis(Value: string);
     procedure UpdateDiagnosis;
+    function SubCount(str: string; d: Char): Integer;
   public
   end;
 
@@ -87,304 +73,261 @@ var
 
 implementation
 
-uses
-   uCommon, fFamilyAdd;
-
 {$R *.dfm}
+
+procedure TdlgFamily.FormCreate(Sender: TObject);
+begin
+  SayOnFocus(cklstDiagnosisList, 'Check items to add to person diagnosis.');
+  SayOnFocus(    cklstDiagnosis, 'Check items to delete from person diagnosis.');
+  SayOnFocus(            btnAdd, 'Click to add checked items from available diagnosis list to person diagnosis.');
+  SayOnFocus(         btnDelete, 'Click to delete checked items from person diagnosis.');
+end;
 
 procedure TdlgFamily.FormShow(Sender: TObject);
 var
   I,J: Integer;
 begin
   ClearForm;
-  cbName.Clear;
 
   for I := 0 to lvPersonList.Items.Count - 1 do
   begin
+    if lvPersonList.Items[I].SubItems.Count > 0 then
+      cbName.Items.Add(lvPersonList.Items[I].SubItems[0]);
     for J := lvPersonList.Items.Item[I].SubItems.Count - 1 to 19 do
       lvPersonList.Items.Item[I].SubItems.Add('');
-
-    if not AnsiContainsText(lvPersonList.Items.Item[I].Caption,'-') then
-      cbName.Items.Add(lvPersonList.Items[I].SubItems[0]);
-  end;
-end;
-
-procedure TdlgFamily.ClearForm;
-begin
-  Item := nil; ISelected := -1;
-
-  cobfammem.Text := '';
-  cblive.OnClick := nil;
-  cbdead.OnClick := nil;
-  cblive.Checked := False;
-  cbdead.Checked := False;
-  cblive.OnClick := ToggleCB;
-  cbdead.OnClick := ToggleCB;
-  cobdx.Text := '';
-  ListBox.Clear;
-  ledcomments.Text := '';
-  leddatebirth.Text := '';
-  spnEducation.Value := 0;
-  edtAddr1.Text := '';
-  edtAddr2.Text := '';
-  edtAddr3.Text := '';
-  edtAddrcity.Text := '';
-  cbAddrstate.Text := '';
-  edtAddrzip.Text := '';
-  edtPhoneH.Text := '';
-  edtPhoneC.Text := '';
-  edtPhoneW.Text := '';
-end;
-
-procedure TdlgFamily.UpdateField(Sender: TObject);
-begin
-  if Item = nil then
-    Exit;
-
-  case TWinControl(Sender).Tag of
-   0: ;
-   1: ;
-   2: Item.SubItems[2]  := leddatebirth.Text;
-   3: Item.SubItems[3]  := spnEducation.Text;
-   4: Item.SubItems[4]  := edtAddr1.Text;
-   5: Item.SubItems[5]  := edtAddr2.Text;
-   6: Item.SubItems[6]  := edtAddr3.Text;
-   7: Item.SubItems[7]  := edtAddrcity.Text;
-   8: begin
-        if cbAddrstate.ItemIndex <> -1 then
-          Item.SubItems[8]  := cbAddrstate.Items[cbAddrstate.ItemIndex];
-      end;
-   9: Item.SubItems[9]  := edtAddrzip.Text;
-  10: Item.SubItems[10] := edtPhoneH.Text;
-  11: Item.SubItems[11] := edtPhoneW.Text;
-  12: Item.SubItems[12] := edtPhoneC.Text;
-  13: ;
-  14: ;
-  15: ;
-  16: Item.SubItems[16] := cobfammem.Text;
-  17: Item.SubItems[17] := TCheckBox(Sender).Caption;
-  18: ;
-  19: Item.SubItems[19] := ledcomments.Text;
-  end;
-end;
-
-procedure TdlgFamily.UpdateDiagnosis;
-var
-  I: Integer;
-begin
-  if Item = nil then
-    Exit;
-
-  Item.SubItems[18] := '';
-  for I := 0 to ListBox.Items.Count - 1 do
-  begin
-    if I > 0 then
-      Item.SubItems[18] := Item.SubItems[18] + '|' + ListBox.Items[I]
-    else
-      Item.SubItems[18] := ListBox.Items[I];
   end;
 end;
 
 procedure TdlgFamily.cbNameChange(Sender: TObject);
-begin
-  if Item <> nil then
-  begin
-    Item.SubItems[0] := cbName.Text;
-    cbName.Items[ISelected] := cbName.Text;
-  end;
-end;
-
-procedure TdlgFamily.cbNameSelect(Sender: TObject);
 var
-  I,sNbr,J: Integer;
-  sl: TStringList;
-
-  // IEN^NAME^SEX^DOB^EDUCATION^STREET1^STREET2^STREET3^CITY^STATE^ZIP^PHONE HOME^
-  // PHONE WORK^PHONE CELL^PHONE FAX^PATIENT^DFN^RELATIONSHIP^STATUS^DIAGNOSIS^COMMENTS
-
-begin
-  ClearForm;
-  ISelected := cbName.ItemIndex;
-
-  for I := 0 to lvPersonList.Items.Count - 1 do
-  begin
-    if lvPersonList.Items[I].SubItems[0] = cbName.Text then
-    begin
-      Item := lvPersonList.Items[I];
-
-      cobfammem.Text := Item.SubItems[16];
-
-      if UpperCase(Item.SubItems[17]) = 'LIVING' then
-        cblive.Checked := True
-      else if UpperCase(Item.SubItems[17]) = 'DECEASED' then
-        cbdead.Checked := True;
-
-      leddatebirth.Text := Item.SubItems[2];
-
-      if ((Item.SubItems[3] <> '') and (TryStrToInt(Item.SubItems[3],sNbr))) then
-        spnEducation.Value := sNbr;
-
-      edtAddr1.Text := Item.SubItems[4];
-      edtAddr2.Text := Item.SubItems[5];
-      edtAddr3.Text := Item.SubItems[6];
-      edtAddrcity.Text := Item.SubItems[7];
-      cbAddrstate.Text := Item.SubItems[8];
-
-      if ((Item.SubItems[9] <> '') and (TryStrToInt(Item.SubItems[9],sNbr))) then
-        edtAddrzip.Text := Item.SubItems[9];
-
-      edtPhoneH.Text := Item.SubItems[10];
-      edtPhoneW.Text := Item.SubItems[11];
-      edtPhoneC.Text := Item.SubItems[12];
-
-      sl := TStringList.Create;
-      try
-        sl.Delimiter := '|'; sl.StrictDelimiter := True;
-        sl.DelimitedText := Item.SubItems[18];
-        for J := 0 to sl.Count - 1 do
-          ListBox.Items.Add(sl[J]);
-      finally
-        sl.Free;
-      end;
-
-      ledcomments.Text := Item.SubItems[19];
-
-      Break;
-    end;
-  end;
-end;
-
-Procedure TdlgFamily.ToggleCB(Sender: TObject);
-begin
-  if not (Sender is TCheckBox)then
-    Exit;
-
-  if ((TCheckBox(Sender).Name = 'cblive') and (TCheckBox(Sender).Checked)) then
-    cbdead.Checked := False;
-
-  if ((TCheckBox(Sender).Name = 'cbdead') and (TCheckBox(Sender).Checked)) then
-    cblive.Checked := False;
-
-  UpdateField(Sender);
-end;
-
-procedure TdlgFamily.BitBtn1Click(Sender: TObject);
-var
-  lvitem: TListItem;
   I: Integer;
 begin
-  frmFamilyAdd := TfrmFamilyAdd.Create(Self);
-  try
-    frmFamilyAdd.ShowModal;
-    if frmFamilyAdd.ModalResult = mrOk then
+  if cbName.Text = '' then
+  begin
+    FamilyItem := nil;
+    Exit;
+  end;
+
+  ClearForm;
+
+  for I := 0 to lvPersonList.Items.Count - 1 do
+    if lvPersonList.Items[I].SubItems.Count > 0 then
+      if AnsiCompareText(lvPersonList.Items[I].SubItems[0], cbName.Text) = 0 then
+      begin
+        FamilyItem := lvPersonList.Items[I];
+        BuildForm;
+        Break;
+      end;
+end;
+
+procedure TdlgFamily.cbNameExit(Sender: TObject);
+begin
+  cbNameChange(cbName);
+
+  if ((FamilyItem = nil) and (cbName.Text <> '')) then
+  begin
+    if ShowMsg('Do you wish to add ' + cbName.Text + ' as a new entry?', smiQuestion,
+                smbYesNo) = smrYes then
     begin
-      lvitem := lvPersonList.Items.Add;
-      lvitem.Caption := '+';
-      lvitem.SubItems.Add(frmFamilyAdd.LabeledEdit1.Text);
-
-      FormShow(Sender);
-
-      cbName.ItemIndex := cbName.Items.IndexOf(frmFamilyAdd.LabeledEdit1.Text);
-      cbNameSelect(Sender);
+      FamilyItem := lvPersonList.Items.Add;
+      FamilyItem.Caption := '+';
+      FamilyItem.SubItems.Add(cbName.Text);
+      cbName.Items.Add(cbName.Text);
+      BuildForm;
+    end else
+    begin
+      ClearForm;
+      cbName.ItemIndex := -1;
+      cbName.Text := '';
     end;
-  finally
-    frmFamilyAdd.Free;
   end;
 end;
 
-procedure TdlgFamily.BitBtn2Click(Sender: TObject);
+procedure TdlgFamily.cbRelationshipChange(Sender: TObject);
 begin
-  if MessageDlg('Do you really want to DELETE "' + cbName.Text + '"?',mtWarning,mbYesNoCancel,0) = mrYes then
-  begin
-    Item.Caption := Item.Caption + '-';
+  if FamilyItem = nil then
+    Exit;
 
-    FormShow(Sender);
+  FamilyItem.SubItems[16] := cbRelationship.Text;
+end;
+
+procedure TdlgFamily.rgSexClick(Sender: TObject);
+begin
+  if FamilyItem = nil then
+    Exit;
+
+  case rgSex.ItemIndex of
+   0: FamilyItem.SubItems[1] := 'MALE';
+   1: FamilyItem.SubItems[1] := 'FEMALE';
+   2: FamilyItem.SubItems[1] := 'UNKNOWN';
   end;
 end;
 
-procedure TdlgFamily.btnDAddClick(Sender: TObject);
+procedure TdlgFamily.rgLifeClick(Sender: TObject);
 begin
-  if cobdx.Text = '' then
+  if FamilyItem = nil then
     Exit;
 
-  if ListBox.Items.IndexOf(cobdx.Text) = -1 then
-    ListBox.Items.Add(cobdx.Text);
-
-  UpdateDiagnosis;
+  case rgLife.ItemIndex of
+   0: FamilyItem.SubItems[17] := 'LIVING';
+   1: FamilyItem.SubItems[17] := 'DECEASED';
+  end;
 end;
 
-procedure TdlgFamily.btnDDeleteClick(Sender: TObject);
-begin
-  if ListBox.ItemIndex = -1 then
-    Exit;
-
-  ListBox.Items.Delete(ListBox.ItemIndex);
-  UpdateDiagnosis;
-end;
-
-procedure TdlgFamily.bbtnOKClick(Sender: TObject);
+procedure TdlgFamily.btnAddClick(Sender: TObject);
 var
-  I,J: Integer;
-  val: string;
+  I: Integer;
+begin
+  if FamilyItem = nil then
+    Exit;
 
-  function SubCount(str: string; d: Char): Integer;
-  var
-    I: Integer;
-  begin
-    Result := 0;
-    for I := 0 to Length(str) - 1 do
-      if str[I] = d then
-        inc(Result);
-  end;
+  for I := 0 to cklstDiagnosisList.Items.Count - 1 do
+    if cklstDiagnosisList.Checked[I] then
+      AddDiagnosis(cklstDiagnosisList.Items[I]);
+
+  UpdateDiagnosis;
+end;
+
+procedure TdlgFamily.btnDeleteClick(Sender: TObject);
+var
+  I: Integer;
+begin
+  if FamilyItem = nil then
+    Exit;
+
+  for I := cklstDiagnosis.Items.Count - 1 downto 0 do
+    if cklstDiagnosis.Checked[I] then
+      cklstDiagnosis.Items.Delete(I);
+
+  UpdateDiagnosis;
+end;
+
+procedure TdlgFamily.edCommentExit(Sender: TObject);
+begin
+  if FamilyItem = nil then
+    Exit;
+
+  FamilyItem.SubItems[19] := edComment.Text;
+end;
+
+procedure TdlgFamily.btnOKClick(Sender: TObject);
+var
+  I,J,G: Integer;
+  val: string;
 
   // IEN^NAME^SEX^DOB^EDUCATION^STREET1^STREET2^STREET3^CITY^STATE^ZIP^PHONE HOME^
   // PHONE WORK^PHONE CELL^PHONE FAX^PATIENT^DFN^RELATIONSHIP^STATUS^DIAGNOSIS^COMMENTS
 
 begin
-  if lvPersonList.Items.Count < 1 then
-    Exit;
-
-  TmpStrList.Add('Family History:');
   for I := 0 to lvPersonList.Items.Count - 1 do
   begin
-    if not AnsiContainsText(lvPersonList.Items.Item[I].Caption,'-') then
+    TmpStrList.Add('  Name: ' + lvPersonList.Items.Item[I].SubItems[0]);
+    TmpStrList.Add('    Relationship: ' + lvPersonList.Items.Item[I].SubItems[16]);
+    TmpStrList.Add('    Gender: ' + lvPersonList.Items.Item[I].SubItems[1]);
+    TmpStrList.Add('    Status: ' + lvPersonList.Items.Item[I].SubItems[17]);
+
+    val := lvPersonList.Items.Item[I].SubItems[18];
+    if val <> '' then
     begin
-      TmpStrList.Add('  Name: ' + lvPersonList.Items.Item[I].SubItems[0]);
-//      TmpStrList.Add('   Date of Birth: ' + lvPersonList.Items.Item[I].SubItems[2]);
-      TmpStrList.Add('   Status: ' + lvPersonList.Items.Item[I].SubItems[17]);
-      TmpStrList.Add('   Relationship: ' + lvPersonList.Items.Item[I].SubItems[16]);
-//      TmpStrList.Add('   Years of Education: ' + lvPersonList.Items.Item[I].SubItems[3]);
-
-      val := lvPersonList.Items.Item[I].SubItems[18];
-      if val <> '' then
-      begin
-        TmpStrList.Add('   Diagnosis:');
-        for J := 1 to SubCount(val,'|') + 1 do
-          TmpStrList.Add('    ' + Piece(val,'|',J));
-      end;
-
-//      TmpStrList.Add('   Street Address 1: ' + lvPersonList.Items.Item[I].SubItems[4]);
-//      TmpStrList.Add('   Street Address 2: ' + lvPersonList.Items.Item[I].SubItems[5]);
-//      TmpStrList.Add('   Street Address 3: ' + lvPersonList.Items.Item[I].SubItems[6]);
-//      TmpStrList.Add('   City: ' + lvPersonList.Items.Item[I].SubItems[7]);
-//      TmpStrList.Add('   State: ' + lvPersonList.Items.Item[I].SubItems[8]);
-//      TmpStrList.Add('   Zip: ' + lvPersonList.Items.Item[I].SubItems[9]);
-//
-//      TmpStrList.Add('   Phone (Home): ' + lvPersonList.Items.Item[I].SubItems[10]);
-//      TmpStrList.Add('   Phone (Cell): ' + lvPersonList.Items.Item[I].SubItems[11]);
-//      TmpStrList.Add('   Phone (Work): ' + lvPersonList.Items.Item[I].SubItems[12]);
-
-      TmpStrList.Add('   Comments: ' + lvPersonList.Items.Item[I].SubItems[19]);
+      TmpStrList.Add('    Diagnosis:');
+      G := SubCount(val,'|') + 1;
+      for J := 1 to G do
+        TmpStrList.Add('     ' + Piece(val,'|',J));
     end;
+
+    TmpStrList.Add('    Comment: ' + lvPersonList.Items.Item[I].SubItems[19]);
   end;
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Family History:');
 end;
 
-procedure TdlgFamily.spnEducationChange(Sender: TObject);
-begin
-  if spnEducation.Value < 0 then
-    spnEducation.Value := 0;
+// Private ---------------------------------------------------------------------
 
-  UpdateField(Sender);
+procedure TdlgFamily.ClearForm;
+var
+  I: Integer;
+begin
+  FamilyItem := nil;
+
+  cbRelationship.ItemIndex := -1;
+  rgSex.ItemIndex := -1;
+  rgLife.ItemIndex := -1;
+  edComment.Clear;
+
+  for I := 0 to cklstDiagnosisList.Items.Count - 1 do
+    cklstDiagnosisList.Checked[I] := False;
+  cklstDiagnosis.Clear;
+end;
+
+procedure TdlgFamily.BuildForm;
+var
+  val: string;
+  I,J: Integer;
+begin
+  if FamilyItem = nil then
+    Exit;
+
+  for I := FamilyItem.SubItems.Count - 1 to 19 do
+    FamilyItem.SubItems.Add('');
+
+  if cbRelationship.Items.IndexOf(FamilyItem.SubItems[16]) <> -1 then
+    cbRelationship.ItemIndex := cbRelationship.Items.IndexOf(FamilyItem.SubItems[16]);
+
+  if FamilyItem.SubItems[1] = 'MALE' then
+    rgSex.ItemIndex := 0
+  else if FamilyItem.SubItems[1] = 'FEMALE' then
+    rgSex.ItemIndex := 1
+  else rgSex.ItemIndex := 2;
+
+  if FamilyItem.SubItems[17] = 'LIVING' then
+    rgLife.ItemIndex := 0
+  else rgLife.ItemIndex := 1;
+
+  val := FamilyItem.SubItems[18];
+  if val <> '' then
+  begin
+    J := SubCount(val,'|') + 1;
+    for I := 1 to J do
+      AddDiagnosis(Piece(val,'|',I));
+  end;
+
+  edComment.Text := FamilyItem.SubItems[19];
+end;
+
+procedure TdlgFamily.AddDiagnosis(Value: string);
+var
+  I: Integer;
+begin
+  for I := 0 to cklstDiagnosis.Items.Count - 1 do
+    if cklstDiagnosis.Items[I] = Value then
+      Exit;
+
+  cklstDiagnosis.Items.Add(Value);
+end;
+
+procedure TdlgFamily.UpdateDiagnosis;
+var
+  Value: string;
+  I: Integer;
+begin
+  if FamilyItem = nil then
+    Exit;
+
+  Value := '';
+  for I := 0 to cklstDiagnosis.Items.Count - 1 do
+    Value := Value + cklstDiagnosis.Items[I] + '|';
+  FamilyItem.SubItems[18] := Value;
+end;
+
+function TdlgFamily.SubCount(str: string; d: Char): Integer;
+var
+  I: Integer;
+begin
+  Result := 0;
+  for I := 0 to Length(str) - 1 do
+    if str[I] = d then
+      inc(Result);
 end;
 
 end.

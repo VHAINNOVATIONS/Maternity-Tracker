@@ -1,9 +1,10 @@
 object dlgRTClinic: TdlgRTClinic
   Left = 368
   Top = 174
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Return to Clinic Time Span'
-  ClientHeight = 75
+  ClientHeight = 78
   ClientWidth = 268
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -32,12 +33,13 @@ object dlgRTClinic: TdlgRTClinic
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 46
+    Top = 49
     Width = 268
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2
+    ExplicitTop = 46
     object bbtnOK: TBitBtn
       Left = 111
       Top = 3

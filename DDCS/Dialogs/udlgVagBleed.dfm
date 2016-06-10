@@ -1,9 +1,10 @@
 object dlgVagBleed: TdlgVagBleed
   Left = 217
   Top = 135
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Vaginal Bleeding'
-  ClientHeight = 138
+  ClientHeight = 141
   ClientWidth = 513
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -85,12 +86,13 @@ object dlgVagBleed: TdlgVagBleed
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 109
+    Top = 112
     Width = 513
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 7
+    ExplicitTop = 109
     object bbtnOK: TBitBtn
       Left = 356
       Top = 3

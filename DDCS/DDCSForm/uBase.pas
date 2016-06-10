@@ -14,7 +14,6 @@ unit uBase;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 }
 
@@ -186,12 +185,10 @@ type
 implementation
 
 uses
-  frmSplash, frmPreview, frmConfiguration, frmAbout, uCommon, uDialog,
-  uExtndComBroker;
+  frmSplash, frmPreview, frmConfiguration, frmAbout, uCommon, uExtndComBroker;
 
 procedure Register;
 begin
-  RegisterClass(TDDCSDialog);
   RegisterClass(TDDCSNoteCollection);
   RegisterClass(TDDCSNoteItem);
   RegisterClass(TDDCSHeaderControl);

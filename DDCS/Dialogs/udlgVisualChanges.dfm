@@ -1,9 +1,10 @@
 object dlgVisualChanges: TdlgVisualChanges
   Left = 217
   Top = 135
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Visual Changes'
-  ClientHeight = 144
+  ClientHeight = 147
   ClientWidth = 528
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -71,12 +72,13 @@ object dlgVisualChanges: TdlgVisualChanges
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 115
+    Top = 118
     Width = 528
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 5
+    ExplicitTop = 115
     object bbtnOK: TBitBtn
       Left = 371
       Top = 3

@@ -1,9 +1,10 @@
 object dlgPalp: TdlgPalp
   Left = 217
   Top = 135
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Palpitations'
-  ClientHeight = 221
+  ClientHeight = 224
   ClientWidth = 241
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -78,12 +79,13 @@ object dlgPalp: TdlgPalp
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 192
+    Top = 195
     Width = 241
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 4
+    ExplicitTop = 192
     object bbtnOK: TBitBtn
       Left = 84
       Top = 3

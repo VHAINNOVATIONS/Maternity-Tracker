@@ -1,9 +1,10 @@
 object dlgVagDischarge: TdlgVagDischarge
   Left = 217
   Top = 135
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Vaginal Discharge'
-  ClientHeight = 107
+  ClientHeight = 110
   ClientWidth = 369
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -72,12 +73,13 @@ object dlgVagDischarge: TdlgVagDischarge
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 78
+    Top = 81
     Width = 369
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 6
+    ExplicitTop = 78
     object bbtnOK: TBitBtn
       Left = 212
       Top = 3

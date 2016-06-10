@@ -14,7 +14,6 @@ unit udlgInfectHist;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
    v2.0.0.0
@@ -210,8 +209,8 @@ var
   begin
     Result := '';
     for I := 0 to pnlbody.ControlCount - 1 do
-      if pnlbody.Controls[I] is TLabel then
-        if pnlbody.Controls[I].Tag = iTag then
+      if pnlbody.Controls[I].Tag = iTag then
+        if pnlbody.Controls[I] is TLabel then
         begin
           Result := TLabel(pnlbody.Controls[I]).Caption;
           if Result[Length(Result)] <> '?' then
@@ -226,8 +225,8 @@ var
   begin
     Result := '';
     for I := 0 to pnlbody.ControlCount - 1 do
-      if pnlbody.Controls[I] is TEdit then
-        if pnlbody.Controls[I].Tag = iTag then
+      if pnlbody.Controls[I].Tag = iTag then
+        if pnlbody.Controls[I] is TEdit then
         begin
           Result := TEdit(pnlbody.Controls[I]).Text;
           Break;

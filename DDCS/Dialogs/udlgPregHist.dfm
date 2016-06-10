@@ -1,9 +1,10 @@
 object dlgPregHist: TdlgPregHist
   Left = 197
   Top = 155
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Pregnancy History'
-  ClientHeight = 582
+  ClientHeight = 585
   ClientWidth = 524
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -134,12 +135,13 @@ object dlgPregHist: TdlgPregHist
   end
   object pnlfooter: TPanel
     Left = 0
-    Top = 553
+    Top = 556
     Width = 524
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 9
+    ExplicitTop = 553
     object btnOK: TBitBtn
       Left = 367
       Top = 3
@@ -185,12 +187,13 @@ object dlgPregHist: TdlgPregHist
   end
   object pgPregnancy: TPageControl
     Left = 2
-    Top = 135
+    Top = 138
     Width = 520
     Height = 415
     Align = alCustom
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 8
+    ExplicitTop = 135
   end
   object edtAbInduced: TSpinEdit
     Tag = 2

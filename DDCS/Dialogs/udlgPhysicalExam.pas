@@ -14,88 +14,90 @@ unit udlgPhysicalExam;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
-   v1.0.0.0
+   v2.0.0.0
 }
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons, ExtCtrls, Vcl.ComCtrls, uDialog, uExtndComBroker,
-  VA508AccessibilityManager;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
+  System.StrUtils, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons, Vcl.ComCtrls, uDialog,
+  uExtndComBroker, ORDtTm;
 
 type
   TdlgPhysicalExam = class(TDDCSDialog)
-    Panel1: TPanel;
-    lbltitle: TLabel;
-    Panel2: TPanel;
-    bbtnOK: TBitBtn;
-    bbtnCancel: TBitBtn;
-    BitBtn1: TBitBtn;
-    PageControl1: TPageControl;
+    pnlfooter: TPanel;
+    btnOK: TBitBtn;
+    btnCancel: TBitBtn;
+    btnNorm: TBitBtn;
+    pgBody: TPageControl;
     TabSheet1: TTabSheet;
-    Label13: TLabel;
-    CheckBox36: TCheckBox;
+    ORDateBox7: TORDateBox;
+    Edit14: TEdit;
+    ORDateBox14: TORDateBox;
+    CheckBox6: TCheckBox;
+    CheckBox3: TCheckBox;
+    ORDateBox9: TORDateBox;
+    ORDateBox8: TORDateBox;
+    ORDateBox6: TORDateBox;
+    ORDateBox5: TORDateBox;
+    ORDateBox4: TORDateBox;
+    ORDateBox3: TORDateBox;
+    ORDateBox2: TORDateBox;
+    ORDateBox13: TORDateBox;
+    ORDateBox12: TORDateBox;
+    ORDateBox11: TORDateBox;
+    ORDateBox10: TORDateBox;
+    ORDateBox1: TORDateBox;
+    Edit9: TEdit;
+    Edit8: TEdit;
+    Edit7: TEdit;
+    Edit6: TEdit;
+    Edit5: TEdit;
+    Edit4: TEdit;
+    Edit3: TEdit;
+    Edit2: TEdit;
+    Edit13: TEdit;
+    Edit12: TEdit;
+    Edit11: TEdit;
+    Edit10: TEdit;
+    Edit1: TEdit;
+    lbComment: TLabel;
+    lbTreatment: TLabel;
+    CheckBox41: TCheckBox;
+    CheckBox40: TCheckBox;
+    CheckBox38: TCheckBox;
+    CheckBox37: TCheckBox;
     CheckBox35: TCheckBox;
-    Edit18: TEdit;
-    Label20: TLabel;
     CheckBox34: TCheckBox;
-    CheckBox33: TCheckBox;
     CheckBox32: TCheckBox;
     CheckBox31: TCheckBox;
-    CheckBox30: TCheckBox;
     CheckBox29: TCheckBox;
-    Edit17: TEdit;
-    Edit16: TEdit;
-    Edit15: TEdit;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
-    Edit10: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
-    Edit13: TEdit;
+    CheckBox28: TCheckBox;
     CheckBox26: TCheckBox;
     CheckBox25: TCheckBox;
-    CheckBox24: TCheckBox;
     CheckBox23: TCheckBox;
     CheckBox22: TCheckBox;
-    CheckBox21: TCheckBox;
     CheckBox20: TCheckBox;
     CheckBox19: TCheckBox;
-    CheckBox18: TCheckBox;
     CheckBox17: TCheckBox;
     CheckBox16: TCheckBox;
-    CheckBox15: TCheckBox;
     CheckBox14: TCheckBox;
     CheckBox13: TCheckBox;
-    CheckBox12: TCheckBox;
     CheckBox11: TCheckBox;
     CheckBox10: TCheckBox;
-    CheckBox9: TCheckBox;
     CheckBox8: TCheckBox;
     CheckBox7: TCheckBox;
-    CheckBox6: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox4: TCheckBox;
-    CheckBox3: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox1: TCheckBox;
-    Label19: TLabel;
-    Label18: TLabel;
-    Label17: TLabel;
-    Label29: TLabel;
-    Label1: TLabel;
+    pnllabels1: TPanel;
     Label2: TLabel;
+    Label1: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -106,37 +108,35 @@ type
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
+    Label13: TLabel;
     Label14: TLabel;
     Label15: TLabel;
     TabSheet2: TTabSheet;
-    LabeledEdit1: TLabeledEdit;
+    CheckBox9: TCheckBox;
+    pnllabels2: TPanel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
-    Label22: TLabel;
-    Label21: TLabel;
-    CheckBox37: TCheckBox;
-    CheckBox38: TCheckBox;
-    Edit19: TEdit;
-    Edit20: TEdit;
-    CheckBox39: TCheckBox;
-    CheckBox40: TCheckBox;
     Label26: TLabel;
-    CheckBox41: TCheckBox;
-    CheckBox42: TCheckBox;
-    Edit21: TEdit;
     Label27: TLabel;
-    Label28: TLabel;
-    Label30: TLabel;
-    Label31: TLabel;
-    Label32: TLabel;
-    Label33: TLabel;
-    Edit22: TEdit;
-    Edit23: TEdit;
-    Edit24: TEdit;
-    Edit25: TEdit;
-    Edit26: TEdit;
-    Edit27: TEdit;
+    CheckBox12: TCheckBox;
+    CheckBox15: TCheckBox;
+    CheckBox18: TCheckBox;
+    CheckBox21: TCheckBox;
+    CheckBox24: TCheckBox;
+    CheckBox27: TCheckBox;
+    CheckBox30: TCheckBox;
+    CheckBox33: TCheckBox;
+    CheckBox36: TCheckBox;
+    CheckBox39: TCheckBox;
+    CheckBox42: TCheckBox;
     CheckBox43: TCheckBox;
     CheckBox44: TCheckBox;
     CheckBox45: TCheckBox;
@@ -149,16 +149,43 @@ type
     CheckBox52: TCheckBox;
     CheckBox53: TCheckBox;
     CheckBox54: TCheckBox;
-    Label16: TLabel;
-    Edit14: TEdit;
-    CheckBox55: TCheckBox;
-    CheckBox56: TCheckBox;
-    procedure BitBtn1Click(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
-    procedure bbtnOKClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    Edit15: TEdit;
+    Edit16: TEdit;
+    Edit17: TEdit;
+    Edit18: TEdit;
+    Edit20: TEdit;
+    Edit21: TEdit;
+    Edit22: TEdit;
+    Edit23: TEdit;
+    Edit24: TEdit;
+    Edit25: TEdit;
+    Edit26: TEdit;
+    Edit27: TEdit;
+    ORDateBox16: TORDateBox;
+    ORDateBox17: TORDateBox;
+    ORDateBox18: TORDateBox;
+    ORDateBox19: TORDateBox;
+    ORDateBox21: TORDateBox;
+    ORDateBox22: TORDateBox;
+    ORDateBox23: TORDateBox;
+    ORDateBox24: TORDateBox;
+    ORDateBox25: TORDateBox;
+    ORDateBox26: TORDateBox;
+    ORDateBox27: TORDateBox;
+    ORDateBox29: TORDateBox;
+    Label31: TLabel;
+    Label32: TLabel;
+    Edit19: TEdit;
+    ORDateBox15: TORDateBox;
+    lbOther: TLabel;
+    dtOther: TORDateBox;
+    edOtherComments: TEdit;
+    edOther: TEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure btnNormClick(Sender: TObject);
+    procedure CheckBoxClick(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
   private
-    procedure ToggleCB(cb1:TCheckBox; cb2:TCheckBox);
   public
   end;
 
@@ -169,319 +196,198 @@ implementation
 
 {$R *.dfm}
 
-procedure TdlgPhysicalExam.BitBtn1Click(Sender: TObject);
+procedure TdlgPhysicalExam.FormCreate(Sender: TObject);
 var
-  I: Integer;
-begin   {Normal for all}
-  if PageControl1.ActivePageIndex = 0 then
-  begin
-  for I := 0 to TabSheet1.ControlCount -1 do
-    if (TabSheet1.Controls[I] is TCheckBox) then
-      if Odd(TCheckBox(TabSheet1.Controls[I]).Tag) then
-        TCheckBox(TabSheet1.Controls[I]).Checked := True;
-  end;
+  I,J: Integer;
 
-  if PageControl1.ActivePageIndex = 1 then
-  begin
-  for I := 0 to TabSheet2.ControlCount -1 do
-    if (TabSheet2.Controls[I] is TCheckBox) then
-      if Odd(TCheckBox(TabSheet2.Controls[I]).Tag) then
-        TCheckBox(TabSheet2.Controls[I]).Checked := True;
-  end;
-end;
-
-procedure TdlgPhysicalExam.CheckBox1Click(Sender: TObject);
-begin
-  if not (Sender is TCheckBox) then
-    Exit;
-
-  case (Sender as TCheckBox).Tag of
-      1: begin
-          ToggleCB(CheckBox1,CheckBox2);
-          Edit1.Text := 'Well developed, well nourished. No acute distress.';
-        end;
-      2: begin
-          ToggleCB(CheckBox2,CheckBox1);
-          if Edit1.Text = 'Well developed, well nourished. No acute distress.' then
-            Edit1.Text := '';
-        end;
-     3: begin
-          ToggleCB(CheckBox3,CheckBox4);
-          Edit2.Text := 'Cooperative. Affect broad, congruent to speech content. No evidence of thought disorder. No suicidal ideation.';
-        end;
-     4: begin
-          ToggleCB(CheckBox4,CheckBox3);
-          if Edit2.Text = 'Cooperative. Affect broad, congruent to speech content. No evidence of thought disorder. No suicidal ideation.' then
-            Edit2.Text := '';
-        end;
-     5: ToggleCB(CheckBox5,CheckBox6);
-     6: ToggleCB(CheckBox6,CheckBox5);
-     7: ToggleCB(CheckBox7,CheckBox8);
-     8: ToggleCB(CheckBox8,CheckBox7);
-     9: ToggleCB(CheckBox9,CheckBox10);
-    10: ToggleCB(CheckBox10,CheckBox9);
-    11: ToggleCB(CheckBox11,CheckBox12);
-    12: ToggleCB(CheckBox12,CheckBox11);
-    13: begin
-          ToggleCB(CheckBox13,CheckBox14);
-          Edit7.Text := 'Supple. No adenopathy. Thyroid not palpable. Trachea midline.';
-        end;
-    14: begin
-          ToggleCB(CheckBox14,CheckBox13);
-          if Edit7.Text = 'Supple. No adenopathy. Thyroid not palpable. Trachea midline.' then
-            Edit7.Text := '';
-        end;
-    15: begin
-          ToggleCB(CheckBox15,CheckBox16);
-          Edit8.Text := 'No external lesions, no masses noted in breast tissue or axillary region.  No nipple discharge.';
-        end;
-    16: begin
-          ToggleCB(CheckBox16,CheckBox15);
-          if Edit8.Text = 'No external lesions, no masses noted in breast tissue or axillary region.  No nipple discharge.' then
-            Edit8.Text := '';
-        end;
-    17: begin
-          ToggleCB(CheckBox17,CheckBox18);
-          Edit9.Text := 'Symmetric expansion.  Good air entry.  No crackles, wheezes, rubs or rhonchi.';
-        end;
-    18: begin
-          ToggleCB(CheckBox18,CheckBox17);
-          if Edit9.Text = 'Symmetric expansion.  Good air entry.  No crackles, wheezes, rubs or rhonchi.' then
-            Edit9.Text := '';
-        end;
-    19: ToggleCB(CheckBox19,CheckBox20);
-    20: ToggleCB(CheckBox20,CheckBox19);
-    21: begin
-          ToggleCB(CheckBox21,CheckBox22);
-          Edit11.Text := 'Normal sinus rhythm. S1,S2 normal. No murmurs, rubs or gallops.';
-        end;
-    22: begin
-          ToggleCB(CheckBox22,CheckBox21);
-          if Edit11.Text = 'Normal sinus rhythm. S1,S2 normal. No murmurs, rubs or gallops.' then
-            Edit11.Text := '';
-        end;
-    23: begin
-          ToggleCB(CheckBox23,CheckBox24);
-          Edit12.Text := 'Soft, non tender without rebound or guarding. No hepatomegaly.No splenomegaly, No other organomegaly.';
-        end;
-    24: begin
-          ToggleCB(CheckBox24,CheckBox23);
-          if Edit12.Text = 'Soft, non tender without rebound or guarding. No hepatomegaly.No splenomegaly, No other organomegaly.' then
-            Edit12.Text := '';
-        end;
-    25: ToggleCB(CheckBox25,CheckBox26);
-    26: ToggleCB(CheckBox26,CheckBox25);
-    29: begin
-          ToggleCB(CheckBox29,CheckBox30);
-          Edit15.Text := 'Intact and symmetrical.  No joint tenderness or swelling no edema.';
-        end;
-    30: begin
-          ToggleCB(CheckBox30,CheckBox29);
-          if Edit15.Text = 'Intact and symmetrical.  No joint tenderness or swelling no edema.' then
-            Edit15.Text := '';
-        end;
-    31: begin
-          ToggleCB(CheckBox31,CheckBox32);
-          Edit16.Text := 'Clear, Warm, Dry, Turgor Good';
-        end;
-    32: begin
-          ToggleCB(CheckBox32,CheckBox31);
-          if Edit16.Text = 'Clear, Warm, Dry, Turgor Good' then
-            Edit16.Text := '';
-        end;
-    33: ToggleCB(CheckBox33,CheckBox34);
-    34: ToggleCB(CheckBox34,CheckBox33);
-    35: ToggleCB(CheckBox35,CheckBox36);
-    36: ToggleCB(CheckBox36,CheckBox35);
-    37: ToggleCB(CheckBox37,CheckBox38);
-    38: ToggleCB(CheckBox38,CheckBox37);
-    39: ToggleCB(CheckBox39,CheckBox40);
-    40: ToggleCB(CheckBox40,CheckBox39);
-    41: ToggleCB(CheckBox41,CheckBox42);
-    42: ToggleCB(CheckBox42,CheckBox41);
-    43: ToggleCB(CheckBox43,CheckBox44);
-    44: ToggleCB(CheckBox44,CheckBox43);
-    45: ToggleCB(CheckBox45,CheckBox46);
-    46: ToggleCB(CheckBox46,CheckBox45);
-    47: ToggleCB(CheckBox47,CheckBox48);
-    48: ToggleCB(CheckBox48,CheckBox47);
-    49: ToggleCB(CheckBox49,CheckBox50);
-    50: ToggleCB(CheckBox50,CheckBox49);
-    51: ToggleCB(CheckBox51,CheckBox52);
-    52: ToggleCB(CheckBox52,CheckBox51);
-    53: ToggleCB(CheckBox53,CheckBox54);
-    54: ToggleCB(CheckBox54,CheckBox53);
-    55: begin
-          ToggleCB(CheckBox55,CheckBox56);
-          Edit14.Text := 'No costovertebral angle tenderness.';
-        end;
-    56: begin
-          ToggleCB(CheckBox56,CheckBox55);
-          if Edit14.Text = 'No costovertebral angle tenderness.' then
-            Edit14.Text := '';
-        end;
-  end;
-end;
-
-procedure TdlgPhysicalExam.FormShow(Sender: TObject);
-begin
-  PageControl1.ActivePageIndex := 0;
-end;
-
-procedure TdlgPhysicalExam.ToggleCB(cb1:TCheckBox; cb2:TCheckBox);
-begin
-  cb1.OnClick := nil;
-  cb2.OnClick := nil;
-
-  if cb1.Checked = True then
-    cb2.Checked := False;
-
-  cb1.OnClick := CheckBox1Click;
-  cb2.OnClick := CheckBox1Click;
-end;
-
-procedure TdlgPhysicalExam.bbtnOKClick(Sender: TObject);
-var
-  I: integer;
-  TmpStr: string;
-
-  function Check4True: Boolean;
-  {Check for at least 1 checkbox = True }
+  procedure SetSay(wControl: TWinControl);
   var
-    J: Integer;
+    I: Integer;
   begin
-    for J := 0 to ComponentCount - 1 do
-    begin
-      if (Components[J] is TCheckBox) and ((Components[J] as TCheckBox).Checked = True) then
+    for I := 0 to pnlLabels1.ControlCount - 1 do
+      if pnlLabels1.Controls[I].Tag = wControl.Tag then
       begin
-        Result := True;
+        SayOnFocus(wControl, TLabel(pnlLabels1.Controls[I]).Caption);
         Exit;
       end;
-    end;
-    Result := False;
+    for I := 0 to pnlLabels2.ControlCount - 1 do
+      if pnlLabels2.Controls[I].Tag = wControl.Tag then
+      begin
+        SayOnFocus(wControl, TLabel(pnlLabels2.Controls[I]).Caption);
+        Break;
+      end;
   end;
 
 begin
-  if Check4True then
-  begin
-    TmpStrList.Add('Physical Exam:');
-
-    for I := 0 to ComponentCount - 1 do
-    if (Components[I] is TCheckBox) and ((Components[I] as TCheckBox).Checked = True) then
+  for I := 0 to pgBody.PageCount - 1 do
+    for J := 0 to pgBody.Pages[I].ControlCount - 1 do
     begin
-      TmpStr := '';
-      case (Components[I] as TCheckBox).Tag of
-         1: begin TmpStr := '  General: Normal'; if Edit1.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit1.Text; end;
-         2: begin TmpStr := '  General: Abnormal'; if Edit1.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit1.Text; end;
-         3: begin TmpStr := '  Psych: Normal'; if Edit2.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit2.Text; end;
-         4: begin TmpStr := '  Psych: Abnormal'; if Edit2.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit2.Text; end;
-         5: begin TmpStr := '  Mouth: Normal'; if Edit3.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit3.Text; end;
-         6: begin TmpStr := '  Mouth: Abnormal'; if Edit3.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit3.Text; end;
-         7: begin TmpStr := '  Fundi: Normal'; if Edit4.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit4.Text; end;
-         8: begin TmpStr := '  Fundi: Abnormal'; if Edit4.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit4.Text; end;
-         9: begin TmpStr := '  Teeth: Normal'; if Edit5.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit5.Text; end;
-        10: begin TmpStr := '  Teeth: Abnormal'; if Edit5.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit5.Text; end;
-        11: begin TmpStr := '  Endocrine: Normal'; if Edit6.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit6.Text; end;
-        12: begin TmpStr := '  Endocrine: Abnormal'; if Edit6.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit6.Text; end;
-        13: begin TmpStr := '  Neck: Normal'; if Edit7.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit7.Text; end;
-        14: begin TmpStr := '  Neck: Abnormal'; if Edit7.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit7.Text; end;
-        15: begin TmpStr := '  Breasts: Normal'; if Edit8.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit8.Text; end;
-        16: begin TmpStr := '  Breasts: Abnormal'; if Edit8.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit8.Text; end;
-        17: begin TmpStr := '  Thorax/Lungs: Normal'; if Edit9.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit9.Text; end;
-        18: begin TmpStr := '  Thorax/Lungs: Abnormal'; if Edit9.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit9.Text; end;
-        19: begin TmpStr := '  Heart: Normal'; if Edit10.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit10.Text; end;
-        20: begin TmpStr := '  Heart: Abnormal'; if Edit10.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit10.Text; end;
-        21: begin TmpStr := '  Cardiovascular: Normal'; if Edit11.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit11.Text; end;
-        22: begin TmpStr := '  Cardiovascular: Abnormal'; if Edit11.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit11.Text; end;
-        23: begin TmpStr := '  Abdomen: Normal'; if Edit12.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit12.Text; end;
-        24: begin TmpStr := '  Abdomen: Abnormal'; if Edit12.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit12.Text; end;
-        25: begin TmpStr := '  Musculoskeletal: Normal'; if Edit13.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit13.Text; end;
-        26: begin TmpStr := '  Musculoskeletal: Abnormal'; if Edit13.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit13.Text; end;
-       31: begin TmpStr := '  Integumentary: Normal'; if Edit16.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit16.Text; end;
-        32: begin TmpStr := '  Integumentary: Abnormal'; if Edit16.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit16.Text; end;
-        29: begin TmpStr := '  Extremities: Normal'; if Edit15.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit15.Text; end;
-        30: begin TmpStr := '  Extremities: Abnormal'; if Edit15.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit15.Text; end;
-        35: begin TmpStr := '  Ears: Normal'; if Edit18.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit18.Text; end;
-        36: begin TmpStr := '  Ears: Abnormal'; if Edit18.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit18.Text; end;
-        33: begin TmpStr := '  Lymph Nodes: Normal'; if Edit17.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit17.Text; end;
-        34: begin TmpStr := '  Lymph Nodes: Abnormal'; if Edit17.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit17.Text; end;
-        37: begin TmpStr := '  Eyes: Normal'; if Edit19.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit19.Text; end;
-        38: begin TmpStr := '  Eyes: Abnormal'; if Edit19.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit19.Text; end;
-        39: begin TmpStr := '  Head: Normal'; if Edit20.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit20.Text; end;
-        40: begin TmpStr := '  Head: Abnormal'; if Edit20.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit20.Text; end;
-        41: begin TmpStr := '  Visible Implanted Medical Devices: Normal'; if Edit21.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit21.Text; end;
-        42: begin TmpStr := '  Visible Implanted Medical Devices: Abnormal'; if Edit21.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit21.Text; end;
-        43: begin TmpStr := '  Chest Wall: Normal'; if Edit22.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit22.Text; end;
-        44: begin TmpStr := '  Chest Wall: Abnormal'; if Edit22.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit22.Text; end;
-        45: begin TmpStr := '  Respiratory: Normal'; if Edit23.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit23.Text; end;
-        46: begin TmpStr := '  Respiratory: Abnormal'; if Edit23.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit23.Text; end;
-        47: begin TmpStr := '  Vessels: Normal'; if Edit24.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit24.Text; end;
-        48: begin TmpStr := '  Vessels: Abnormal'; if Edit24.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit24.Text; end;
-        49: begin TmpStr := '  Neurologic: Normal'; if Edit25.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit25.Text; end;
-        50: begin TmpStr := '  Neurologic: Abnormal'; if Edit25.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit25.Text; end;
-        51: begin TmpStr := '  Genitalia: Normal'; if Edit26.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit26.Text; end;
-        52: begin TmpStr := '  Genitalia: Abnormal'; if Edit26.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit26.Text; end;
-        53: begin TmpStr := '  Rectum: Normal'; if Edit27.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit27.Text; end;
-        54: begin TmpStr := '  Rectum: Abnormal'; if Edit27.Text  <> '' then
-             TmpStr := TmpStr + ' - Comments: ' + Edit27.Text; end;
-      end;
-      TmpStrList.Add(TmpStr);
+      if pgBody.Pages[I].Controls[J] is TCheckBox then
+        SetSay(TWinControl(pgBody.Pages[I].Controls[J]));
+      if pgBody.Pages[I].Controls[J] is TEdit then
+        SetSay(TWinControl(pgBody.Pages[I].Controls[J]));
     end;
+end;
 
-    if Trim(LabeledEdit1.Text) <> '' then
-    TmpStrList.Add('  Other: ' + LabeledEdit1.Text);
+procedure TdlgPhysicalExam.btnNormClick(Sender: TObject);
+var
+  I,J: Integer;
+begin
+  for I := 0 to pgBody.PageCount - 1 do
+    for J := 0 to pgBody.Pages[I].ControlCount - 1 do
+      if pgBody.Pages[I].Controls[J] is TCheckBox then
+        if TCheckBox(pgBody.Pages[I].Controls[J]).Caption = 'Normal' then
+          TCheckBox(pgBody.Pages[I].Controls[J]).Checked := True;
+end;
+
+procedure TdlgPhysicalExam.CheckBoxClick(Sender: TObject);
+var
+  I,J: Integer;
+  ick,ck: TCheckBox;
+  dComment: string;
+begin
+  ick := TCheckBox(Sender);
+
+  for I := 0 to pgBody.PageCount - 1 do
+    for J := 0 to pgBody.Pages[I].ControlCount - 1 do
+      if pgBody.Pages[I].Controls[J].Tag = ick.Tag then
+      begin
+        if pgBody.Pages[I].Controls[J] is TCheckBox then
+        begin
+          ck := TCheckBox(pgBody.Pages[I].Controls[J]);
+          if ck <> ick then
+          begin
+            ck.OnClick := nil;
+            ck.Checked := False;
+            ck.OnClick := CheckBoxClick;
+          end;
+        end else if pgBody.Pages[I].Controls[J] is TORDateBox then
+        begin
+          if not ick.Checked then
+          begin
+            TORDateBox(pgBody.Pages[I].Controls[J]).Clear;
+            TORDateBox(pgBody.Pages[I].Controls[J]).Enabled := False;
+          end else
+            TORDateBox(pgBody.Pages[I].Controls[J]).Enabled := True;
+        end else if pgBody.Pages[I].Controls[J] is TEdit then
+        begin
+          if not ick.Checked then
+          begin
+            TEdit(pgBody.Pages[I].Controls[J]).Clear;
+            TEdit(pgBody.Pages[I].Controls[J]).Enabled := False;
+          end else
+          begin
+            TEdit(pgBody.Pages[I].Controls[J]).Enabled := True;
+            if TEdit(pgBody.Pages[I].Controls[J]).Text = '' then
+            begin
+              case ick.Tag of
+                1 : dComment := 'Well developed, well nourished. No acute distress.';
+                2 : dComment := 'Cooperative. Affect broad, congruent to speech content. No evidence of thought disorder. No suicidal ideation.';
+                7 : dComment := 'Supple. No adenopathy. Thyroid not palpable. Trachea midline.';
+                8 : dComment := 'No external lesions, no masses noted in breast tissue or axillary region. No nipple discharge.';
+                9 : dComment := 'Symmetric expansion. Good air entry. No crackles, wheezes, rubs or rhonchi.';
+               11 : dComment := 'Normal sinus rhythm. S1,S2 normal. No murmurs, rubs or gallops.';
+               12 : dComment := 'Soft, non tender without rebound or guarding. No hepatomegaly.No splenomegaly, No other organomegaly.';
+               14 : dComment := 'Clear, warm, dry, turgor Good.';
+               15 : dComment := 'Intact and symmetrical. No joint tenderness or swelling no edema.';
+               20 : dComment := 'No costovertebral angle tenderness.';
+              end;
+              TEdit(pgBody.Pages[I].Controls[J]).Text := dComment;
+            end;
+          end;
+        end;
+      end;
+end;
+
+procedure TdlgPhysicalExam.btnOKClick(Sender: TObject);
+var
+  I,J: Integer;
+  ck: TCheckBox;
+  tmp: string;
+
+  function GetQuestion(iTag: Integer): string;
+  var
+    I: Integer;
+  begin
+    Result := '';
+    for I := 0 to pnlLabels1.ControlCount - 1 do
+      if pnlLabels1.Controls[I].Tag = iTag then
+      begin
+        Result := TLabel(pnlLabels1.Controls[I]).Caption;
+        Exit;
+      end;
+    for I := 0 to pnlLabels2.ControlCount - 1 do
+      if pnlLabels2.Controls[I].Tag = iTag then
+      begin
+        Result := TLabel(pnlLabels2.Controls[I]).Caption;
+        Break;
+      end;
   end;
+
+  function GetDate(iTag: Integer): string;
+  var
+    I,J: Integer;
+  begin
+    Result := '';
+    for I := 0 to pgBody.PageCount - 1 do
+      for J := 0 to pgBody.Pages[I].ControlCount - 1 do
+        if pgBody.Pages[I].Controls[J].Tag = iTag then
+          if pgBody.Pages[I].Controls[J] is TORDateBox then
+            if TORDateBox(pgBody.Pages[I].Controls[J]).IsValid then
+            begin
+              Result := TORDateBox(pgBody.Pages[I].Controls[J]).Text;
+              Break;
+            end;
+  end;
+
+  function GetNarrative(iTag: Integer): string;
+  var
+    I,J: Integer;
+  begin
+    Result := '';
+    for I := 0 to pgBody.PageCount - 1 do
+      for J := 0 to pgBody.Pages[I].ControlCount - 1 do
+        if pgBody.Pages[I].Controls[J].Tag = iTag then
+          if ((pgBody.Pages[I].Controls[J] is TEdit) and
+              not (pgBody.Pages[I].Controls[J] is TORDateBox)) then
+          begin
+            Result := TEdit(pgBody.Pages[I].Controls[J]).Text;
+            Break;
+          end;
+  end;
+
+begin
+  for I := 0 to pgBody.PageCount - 1 do
+    for J := 0 to pgBody.Pages[I].ControlCount - 1 do
+      if pgBody.Pages[I].Controls[J] is TCheckbox then
+      begin
+        ck := TCheckBox(pgBody.Pages[I].Controls[J]);
+
+        if ck.Checked then
+        begin
+          TmpStrList.Add('  ' + GetQuestion(ck.Tag) + ' ' + ck.Caption);
+
+          tmp := GetDate(ck.Tag);
+          if tmp <> '' then
+            TmpStrList.Add('    Treatment Date: ' + tmp);
+          tmp := GetNarrative(ck.Tag);
+          if tmp <> '' then
+            TmpStrList.Add('    Narrative: ' + tmp);
+        end;
+      end;
+
+  if Trim(edOther.Text) <> '' then
+  begin
+    TmpStrList.Add('  ' + edOther.Text);
+
+    if dtOther.Text <> '' then
+      TmpStrList.Add('    Treatment Date: ' + dtOther.Text);
+    if edOtherComments.Text <> '' then
+      TmpStrList.Add('    Narrative: ' + edOtherComments.Text);
+  end;
+
+  if TmpStrList.Count > 0 then
+    TmpStrList.Insert(0, 'Physical Exam: ');
 end;
 
 end.

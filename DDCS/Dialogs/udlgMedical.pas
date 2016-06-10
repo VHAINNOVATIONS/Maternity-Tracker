@@ -14,7 +14,6 @@ unit udlgMedical;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
    v1.0.0.0
@@ -24,8 +23,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, ComCtrls, uDialog, uExtndComBroker,
-  VA508AccessibilityManager, ORDtTm;
+  StdCtrls, ExtCtrls, Buttons, ComCtrls, uDialog, uExtndComBroker, ORDtTm;
 
 type
   TdlgMedical = class(TDDCSDialog)

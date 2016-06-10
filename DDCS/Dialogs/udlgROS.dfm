@@ -1,9 +1,10 @@
 object dlgROS: TdlgROS
   Left = 0
   Top = 0
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Review of Symptoms since Last Menstrual Period'
-  ClientHeight = 386
+  ClientHeight = 389
   ClientWidth = 653
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -616,7 +617,7 @@ object dlgROS: TdlgROS
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 357
+    Top = 360
     Width = 653
     Height = 29
     Align = alBottom

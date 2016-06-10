@@ -1,9 +1,10 @@
 object dlgWheezing: TdlgWheezing
   Left = 217
   Top = 135
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Wheezing'
-  ClientHeight = 176
+  ClientHeight = 179
   ClientWidth = 265
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -46,7 +47,7 @@ object dlgWheezing: TdlgWheezing
   end
   object lbAssociatedSymp: TLabel
     Left = 13
-    Top = 99
+    Top = 102
     Width = 125
     Height = 14
     Align = alCustom
@@ -58,6 +59,7 @@ object dlgWheezing: TdlgWheezing
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 99
   end
   object lbonset: TLabel
     Left = 13
@@ -75,12 +77,13 @@ object dlgWheezing: TdlgWheezing
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 147
+    Top = 150
     Width = 265
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 5
+    ExplicitTop = 147
     object bbtnOK: TBitBtn
       Left = 108
       Top = 3
@@ -114,12 +117,13 @@ object dlgWheezing: TdlgWheezing
   end
   object leAssocSym: TEdit
     Left = 13
-    Top = 118
+    Top = 121
     Width = 240
     Height = 22
     Align = alCustom
     Anchors = [akLeft, akBottom]
     TabOrder = 4
+    ExplicitTop = 118
   end
   object leDur: TEdit
     Left = 66

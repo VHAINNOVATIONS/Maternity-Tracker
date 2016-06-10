@@ -14,7 +14,6 @@ unit udlgROS;
    limitations under the License.
 
      Developer: Theodore Fontana
-       Company: Document Storage Systems Inc.
    VA Contract: TAC-13-06464
 
    v2.0.0.0
@@ -231,8 +230,8 @@ var
   begin
     Result := '';
     for I := 0 to ComponentCount - 1 do
-      if Components[I] is TORDateBox then
-        if Components[I].Tag = iTag then
+      if Components[I].Tag = iTag then
+        if Components[I] is TORDateBox then
           if TORDateBox(Components[I]).IsValid then
           begin
             Result := TORDateBox(Components[I]).Text;
@@ -246,8 +245,9 @@ var
   begin
     Result := '';
     for I := 0 to ComponentCount - 1 do
-      if Components[I] is TEdit then
-        if Components[I].Tag = iTag then
+      if Components[I].Tag = iTag then
+        if ((Components[I] is TEdit) and
+            not (Components[I] is TORDateBox)) then
         begin
           Result := TEdit(Components[I]).Text;
           Break;

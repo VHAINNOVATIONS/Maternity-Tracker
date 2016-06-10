@@ -9,13 +9,13 @@ package DDCSFramework;
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
-{$LOCALSYMBOLS OFF}
+{$LOCALSYMBOLS ON}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
 {$OPTIMIZATION ON}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
-{$REFERENCEINFO OFF}
+{$REFERENCEINFO ON}
 {$SAFEDIVIDE OFF}
 {$STACKFRAMES OFF}
 {$TYPEDADDRESS OFF}
@@ -24,7 +24,6 @@ package DDCSFramework;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DEFINE DDCS}
-{$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
 {$IMPLICITBUILD ON}
 
@@ -44,7 +43,6 @@ contains
   frmConfigMultiItemAdd in 'frmConfigMultiItemAdd.pas' {AddItem},
   uReportItems in 'uReportItems.pas',
   frmVitals in 'frmVitals.pas' {DDCSVitals: TFrame},
-  uDialog in 'uDialog.pas',
   uCommon in 'uCommon.pas',
   dBaseEditor in 'dBaseEditor.pas',
   uBase in 'uBase.pas';
