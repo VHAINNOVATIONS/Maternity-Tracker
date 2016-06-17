@@ -184,6 +184,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnNormClick(Sender: TObject);
     procedure CheckBoxClick(Sender: TObject);
+    procedure EditReadMe(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
   private
   public
@@ -297,6 +298,14 @@ begin
           end;
         end;
       end;
+end;
+
+procedure TdlgPhysicalExam.EditReadMe(Sender: TObject);
+begin
+  if ((Sender is TEdit) and (TEdit(Sender).Text <> '')) then
+    if DDCSForm <> nil then
+      if DDCSForm.ScreenReader <> nil then
+        DDCSForm.ScreenReader.Say(TEdit(Sender).Text, False);
 end;
 
 procedure TdlgPhysicalExam.btnOKClick(Sender: TObject);

@@ -72,8 +72,6 @@ type
     ButtonComplaintClear: TButton;
     lbComplaintsSection: TLabel;
     pnlSectionImports: TPanel;
-    memoAllergies: TMemo;
-    memoActiveMedications: TMemo;
     ButtonReload: TButton;
     lbImportSection: TLabel;
     lbHistorySection: TLabel;
@@ -81,15 +79,29 @@ type
     lbPhysicalSection: TLabel;
     lbPelvicSection: TLabel;
     lbPlanSection: TLabel;
-    procedure ClearTextClick(Sender: TObject);
-    procedure RadioGroupImportClick(Sender: TObject);
-    procedure RadioGroupHistoryClick(Sender: TObject);
-    procedure cklstProblemsClickCheck(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
-    procedure RadioGroup3Click(Sender: TObject);
+    pnlAllergies: TPanel;
+    memoAllergiesNar: TMemo;
+    memoAllergies: TMemo;
+    lbAllergies: TLabel;
+    pnlProblems: TPanel;
+    lbActiveProblems: TLabel;
+    memoProblemsNar: TMemo;
+    memoProblems: TMemo;
+    pnlMedications: TPanel;
+    lbActiveMedications: TLabel;
+    memoMedicationsNar: TMemo;
+    memoMedications: TMemo;
     procedure FormShow(Sender: TObject);
-    procedure pnlSectionImportsEnter(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure ClearTextClick(Sender: TObject);
+    procedure RadioGroup3Click(Sender: TObject);
+    procedure RadioGroupImportClick(Sender: TObject);
+    procedure pnlMedicationsResize(Sender: TObject);
+    procedure pnlProblemsResize(Sender: TObject);
+    procedure pnlAllergiesResize(Sender: TObject);
+    procedure RadioGroupHistoryClick(Sender: TObject);
     procedure pnlHistoryCategoriesEnter(Sender: TObject);
+    procedure cklstProblemsClickCheck(Sender: TObject);
   private
     problemck: Boolean;
     problems: array of Boolean;
@@ -193,30 +205,83 @@ begin
   try
     case RadioGroupImport.ItemIndex of
       0: begin
-           memoActiveMedications.Clear;
-           memoActiveMedications.BringToFront;
-           memoActiveMedications.TabStop := True;
-           memoActiveMedications.Lines.AddStrings(DDCSForm1.GetPatientActiveMedications);
+           memoMedications.Clear;
+           pnlMedications.BringToFront;
+           memoMedications.TabStop := True;
+           memoMedicationsNar.TabStop := True;
+           memoMedications.Lines.AddStrings(DDCSForm1.GetPatientActiveMedications);
+           memoProblems.TabStop := False;
+           memoProblemsNar.TabStop := False;
            memoAllergies.TabStop := False;
+           memoAllergiesNar.TabStop := False;
+           pnlMedicationsResize(pnlMedications);
          end;
       1: begin
+           memoProblems.Clear;
+           pnlProblems.BringToFront;
+           memoProblems.TabStop := True;
+           memoProblemsNar.TabStop := True;
+           memoProblems.Lines.AddStrings(DDCSForm1.GetPatientActiveProblems);
+           memoMedications.TabStop := False;
+           memoMedicationsNar.TabStop := False;
+           memoAllergies.TabStop := False;
+           memoAllergiesNar.TabStop := False;
+           pnlProblemsResize(pnlProblems);
+         end;
+      2: begin
            memoAllergies.Clear;
-           memoAllergies.BringToFront;
+           pnlAllergies.BringToFront;
            memoAllergies.TabStop := True;
+           memoAllergiesNar.TabStop := True;
            memoAllergies.Lines.AddStrings(DDCSForm1.GetPatientAllergies);
-           memoActiveMedications.TabStop := False;
+           memoMedications.TabStop := False;
+           memoMedicationsNar.TabStop := False;
+           memoProblems.TabStop := False;
+           memoProblemsNar.TabStop := False;
+           pnlAllergiesResize(pnlAllergies);
          end;
     end;
   except
   end;
 end;
 
-procedure TForm1.pnlSectionImportsEnter(Sender: TObject);
+procedure TForm1.pnlMedicationsResize(Sender: TObject);
+var
+  mHeight: Integer;
 begin
-  case RadioGroupImport.ItemIndex of
-    0: memoActiveMedications.SetFocus;
-    1: memoAllergies.SetFocus;
-  end;
+  mHeight := (pnlMedications.Height - 27) div 2;
+
+  memoMedications.Top := 0;
+  memoMedications.Height := mHeight;
+  lbActiveMedications.Top := mHeight + 10;
+  memoMedicationsNar.Top := mHeight + 27;
+  memoMedicationsNar.Height := mHeight;
+end;
+
+procedure TForm1.pnlProblemsResize(Sender: TObject);
+var
+  mHeight: Integer;
+begin
+  mHeight := (pnlMedications.Height - 27) div 2;
+
+  memoProblems.Top := 0;
+  memoProblems.Height := mHeight;
+  lbActiveProblems.Top := mHeight + 10;
+  memoProblemsNar.Top := mHeight + 27;
+  memoProblemsNar.Height := mHeight;
+end;
+
+procedure TForm1.pnlAllergiesResize(Sender: TObject);
+var
+  mHeight: Integer;
+begin
+  mHeight := (pnlMedications.Height - 27) div 2;
+
+  memoAllergies.Top := 0;
+  memoAllergies.Height := mHeight;
+  lbAllergies.Top := mHeight + 10;
+  memoAllergiesNar.Top := mHeight + 27;
+  memoAllergiesNar.Height := mHeight;
 end;
 
 //-------------------------------------------------------------------- page 5

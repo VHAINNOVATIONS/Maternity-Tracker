@@ -99,7 +99,7 @@
         <DCC_Platform>x86</DCC_Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
-        <DCC_UsePackage>dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>dbrtl;xmlrtl;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
         <EnabledSysJars>android-support-v4.dex.jar;apk-expansion.dex.jar;cloud-messaging.dex.jar;fmx.dex.jar;google-analytics-v2.dex.jar;google-play-billing.dex.jar;google-play-licensing.dex.jar;google-play-services.dex.jar</EnabledSysJars>
         <BT_BuildType>Debug</BT_BuildType>
@@ -113,7 +113,7 @@
         <BT_BuildType>Debug</BT_BuildType>
         <Base>true</Base>
         <CfgParent>Base</CfgParent>
-        <DCC_UsePackage>rtl;$(DCC_UsePackage);dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>rtl;$(DCC_UsePackage);dbrtl;xmlrtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_iOSDevice64)'!=''">
         <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDevelopmentRegion=en;CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleInfoDictionaryVersion=7.1;CFBundleVersion=1.0.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);UIDeviceFamily=iPhone &amp; iPad;CFBundleResourceSpecification=ResourceRules.plist;NSLocationAlwaysUsageDescription=The reason for accessing the location information of the user;NSLocationWhenInUseUsageDescription=The reason for accessing the location information of the user;FMLocalNotificationPermission=false;UIBackgroundModes=</VerInfo_Keys>
@@ -123,17 +123,17 @@
         <BT_BuildType>Debug</BT_BuildType>
         <Base>true</Base>
         <CfgParent>Base</CfgParent>
-        <DCC_UsePackage>rtl;$(DCC_UsePackage);dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>rtl;$(DCC_UsePackage);dbrtl;xmlrtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_iOSSimulator)'!=''">
-        <DCC_UsePackage>rtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>rtl;dbrtl;xmlrtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_OSX32)'!=''">
-        <DCC_UsePackage>rtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>rtl;dbrtl;xmlrtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <DCC_UsePackage>rtl;vcl;vclimg;VclSmp;Jcl;JvCore;JvStdCtrls;XWB_RXE;VA_All_XE4;VA_All_XE8;Tee;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>rtl;vcl;vclimg;VclSmp;Jcl;JvCore;JvStdCtrls;XWB_RXE;VA_All_XE4;VA_All_XE8;Tee;dbrtl;xmlrtl;vclactnband;vclx;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Debugger_HostApplication>C:\Vista\cprs\OR_3_306V29\CPRS-chart\CPRSChart.exe</Debugger_HostApplication>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
@@ -143,7 +143,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <DCC_UsePackage>rtl;vcl;vclimg;VclSmp;Tee;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>rtl;vcl;vclimg;VclSmp;Tee;dbrtl;xmlrtl;vclactnband;vclx;$(DCC_UsePackage)</DCC_UsePackage>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
@@ -160,7 +160,7 @@
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <VerInfo_Build>0</VerInfo_Build>
         <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
-        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=Delphi DDCS Base Component;FileVersion=2.2.0.0;InternalName=DDCSFramework.bpl;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.2.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Veterans Health Administration;FileDescription=Delphi DDCS Base Component;FileVersion=2.2.0.0;InternalName=DDCSFramework.bpl;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.2.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice32)'!=''">
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
@@ -171,11 +171,11 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
-        <VerInfo_MajorVer>1</VerInfo_MajorVer>
+        <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <VerInfo_Build>0</VerInfo_Build>
-        <VerInfo_Release>14</VerInfo_Release>
+        <VerInfo_Release>0</VerInfo_Release>
         <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
-        <VerInfo_Keys>CompanyName=Document Systems Systems, Inc.;FileDescription=;FileVersion=1.0.14.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.14.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Veterans Health Administration;FileDescription=;FileVersion=2.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=2.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -267,6 +267,144 @@
                 </VersionInfoKeys>
                 <Excluded_Packages>
                     <Excluded_Packages/>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxCoreRS23.bpl">ExpressCoreLibrary by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxLibraryRS23.bpl">Express Cross Platform Library by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxPageControlRS23.bpl">ExpressPageControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxServerModeRS23.bpl">ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxDBXServerModeRS23.bpl">dbExpress Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxFireDACServerModeRS23.bpl">FireDAC Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxADOServerModeRS23.bpl">ADO Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxEditorsRS23.bpl">ExpressEditors Library by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxEditorFieldLinkRS23.bpl">ExpressEditors FieldLink by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxWizardControlRS23.bpl">ExpressWizardControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxBarEditItemRS23.bpl">ExpressBars cxEditor item by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxBarRS23.bpl">ExpressBars by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxBarExtDBItemsRS23.bpl">ExpressBars extended DB items by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxBarExtItemsRS23.bpl">ExpressBars extended items by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxBarDBNavRS23.bpl">ExpressBars DBNavigator by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxRibbonRS23.bpl">ExpressBars Ribbon controls by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxTabbedMDIRS23.bpl">ExpressBars Tabbed MDI by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxDockingRS23.bpl">ExpressDocking Library by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxLayoutControlRS23.bpl">ExpressLayout Control by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSpreadSheetRS23.bpl">ExpressSpreadSheet by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxTreeListRS23.bpl">ExpressQuantumTreeList by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxGridRS23.bpl">ExpressQuantumGrid by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxVerticalGridRS23.bpl">ExpressVerticalGrid by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxmdsRS23.bpl">ExpressMemData by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSpellCheckerRS23.bpl">ExpressSpellChecker 2 by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxTileControlRS23.bpl">ExpressTileControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxNavBarRS23.bpl">ExpressNavBar by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSkinsCoreRS23.bpl">ExpressSkins Library by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinBlackRS23.bpl">ExpressSkins - Black Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinBlueprintRS23.bpl">ExpressSkins - Blueprint Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinBlueRS23.bpl">ExpressSkins - Blue Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinCaramelRS23.bpl">ExpressSkins - Caramel Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinCoffeeRS23.bpl">ExpressSkins - Coffee Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinDarkRoomRS23.bpl">ExpressSkins - Darkroom Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinDarkSideRS23.bpl">ExpressSkins - DarkSide Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinDevExpressDarkStyleRS23.bpl">ExpressSkins - DevExpressDarkStyle Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinDevExpressStyleRS23.bpl">ExpressSkins - DevExpressStyle Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinFoggyRS23.bpl">ExpressSkins - Foggy Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinGlassOceansRS23.bpl">ExpressSkins - GlassOceans Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinHighContrastRS23.bpl">ExpressSkins - HighContrast Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkiniMaginaryRS23.bpl">ExpressSkins - iMaginary Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinLilianRS23.bpl">ExpressSkins - Lilian Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinLiquidSkyRS23.bpl">ExpressSkins - LiquidSky Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinLondonLiquidSkyRS23.bpl">ExpressSkins - LondonLiquidSky Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinMcSkinRS23.bpl">ExpressSkins - McSkin Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinMetropolisDarkRS23.bpl">ExpressSkins - MetropolisDark Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinMetropolisRS23.bpl">ExpressSkins - Metropolis Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinMoneyTwinsRS23.bpl">ExpressSkins - MoneyTwins Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2007BlackRS23.bpl">ExpressSkins - Office2007Black Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2007BlueRS23.bpl">ExpressSkins - Office2007Blue Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2007GreenRS23.bpl">ExpressSkins - Office2007Green Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2007PinkRS23.bpl">ExpressSkins - Office2007Pink Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2007SilverRS23.bpl">ExpressSkins - Office2007Silver Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2010BlackRS23.bpl">ExpressSkins - Office2010Black Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2010BlueRS23.bpl">ExpressSkins - Office2010Blue Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2010SilverRS23.bpl">ExpressSkins - Office2010Silver Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2013DarkGrayRS23.bpl">ExpressSkins - Office2013DarkGray Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2013LightGrayRS23.bpl">ExpressSkins - Office2013LightGray Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinOffice2013WhiteRS23.bpl">ExpressSkins - Office2013White Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinPumpkinRS23.bpl">ExpressSkins - Pumpkin Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinSevenClassicRS23.bpl">ExpressSkins - SevenClassic Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinSevenRS23.bpl">ExpressSkins - Seven Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinSharpPlusRS23.bpl">ExpressSkins - SharpPlus Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinSharpRS23.bpl">ExpressSkins - Sharp Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinSilverRS23.bpl">ExpressSkins - Silver Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinSpringTimeRS23.bpl">ExpressSkins - Springtime Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinStardustRS23.bpl">ExpressSkins - Stardust Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinSummer2008RS23.bpl">ExpressSkins - Summer2008 Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinTheAsphaltWorldRS23.bpl">ExpressSkins - TheAsphaltWorld Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinValentineRS23.bpl">ExpressSkins - Valentine Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinVisualStudio2013BlueRS23.bpl">ExpressSkins - VisualStudio2013Blue Skin</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinVisualStudio2013DarkRS23.bpl">ExpressSkins - VisualStudio2013Dark Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinVisualStudio2013LightRS23.bpl">ExpressSkins - VisualStudio2013Light Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinVS2010RS23.bpl">ExpressSkins - VS2010 Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinWhiteprintRS23.bpl">ExpressSkins - Whiteprint Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinXmas2008BlueRS23.bpl">ExpressSkins - Xmas2008Blue Skin by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSCoreRS23.bpl">ExpressPrinting System by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSTeeChartRS23.bpl">ExpressPrinting System ReportLink for TeeChart by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSLnksRS23.bpl">ExpressPrinting System ReportLinks (Standard) by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSDBTeeChartRS23.bpl">ExpressPrinting System ReportLink for DBTeeChart by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxPScxPCProdRS23.bpl">ExpressPrinting System ContainerProducer for ExpressPageControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxPivotGridRS23.bpl">ExpressPivotGrid by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxPivotGridOLAPRS23.bpl">ExpressPivotGrid OLAP by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxdbtrRS23.bpl">ExpressDBTree by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxtrmdRS23.bpl">ExpressTreePrintedDataSet by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxOrgCRS23.bpl">ExpressOrgChart by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxDBOrRS23.bpl">ExpressDBOrgChart by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxFlowChartRS23.bpl">ExpressFlowChart by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxMapControlRS23.bpl">ExpressMapControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxSchedulerRS23.bpl">ExpressScheduler by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxRichEditControlRS23.bpl">ExpressRichEditControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxGaugeControlRS23.bpl">ExpressGaugeControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxIconLibraryRS23.bpl">Express Cross Platform Library Icon Library by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxPageControldxBarPopupMenuRS23.bpl">ExpressPageControl dxBar Popup Menu by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxRibbonCustomizationFormRS23.bpl">ExpressBars Ribbon Customization Form by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxTreeListdxBarPopupMenuRS23.bpl">ExpressQuantumTreeList dxBar Built-In Menu by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxGridWizardRS23.bpl">ExpressQuantumGrid Wizard by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSkinsDesignHelperRS23.bpl">ExpressSkins Library Uses Clause Auto Fill Helper by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinscxPCPainterRS23.bpl">ExpressSkins Library Painter for PageControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinscxSchedulerPainterRS23.bpl">ExpressSkins Library Painter for Scheduler by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSkinscxEditorsHelperRS23.bpl">ExpressSkins Library Uses Clause Auto Fill Helper for ExpressEditors by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinsdxBarPainterRS23.bpl">ExpressSkins Library Painter for Bars by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinsdxNavBarPainterRS23.bpl">ExpressSkins Library Painter for NavBar by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinsdxRibbonPainterRS23.bpl">ExpressSkins Library Painter for Ribbon by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSkinscxPCPainterRS23.bpl">ExpressSkins Library Uses Clause Auto Fill Helper for PageControl Painter by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSkinscxSchedulerPainterRS23.bpl">ExpressSkins Library Uses Clause Auto Fill Helper for Scheduler Painter by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dxSkinsdxDLPainterRS23.bpl">ExpressSkins Library Painter for Docking Library by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSkinsdxBarsPaintersRS23.bpl">ExpressSkins Library Uses Clause Auto Fill Helper for Bars Painters by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSkinsdxNavBarPainterRS23.bpl">ExpressSkins Library Uses Clause Auto Fill Helper for NavBar Painter by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxSkinsdxRibbonPaintersRS23.bpl">ExpressSkins Library Uses Clause Auto Fill Helper for Ribbon Painters by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPScxCommonRS23.bpl">ExpressPrinting System Cross Platform Library by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPScxExtCommonRS23.bpl">ExpressPrinting System Extended Cross Platform Library by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSdxLCLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressLayoutControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPScxPivotGridLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressPivotGrid by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPScxSchedulerLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressScheduler by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPScxTLLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressQuantumTreeList by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPScxVGridLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressVerticalGrid by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSdxDBOCLnkRS23.bpl">ExpressPrinting System ReportLinks for ExpressDBOrgChart by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSdxDBTVLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressDBTree by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSdxFCLnkRS23.bpl">ExpressPrinting System ReportLinks for ExpressFlowChart by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSdxGaugeControlLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressGauge Control by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPScxGridLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressQuantumGrid by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSdxOCLnkRS23.bpl">ExpressPrinting System ReportLinks for ExpressOrgChart by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSdxSpreadSheetLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressSpreadSheet by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSPrVwAdvRS23.bpl">ExpressPrinting System Advanced Preview Window by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSPrVwRibbonRS23.bpl">ExpressPrinting System Ribbon Preview Window by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dcldxPSRichEditControlLnkRS23.bpl">ExpressPrinting System ReportLink for ExpressRichEditControl by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxPivotGridChartRS23.bpl">ExpressPivotGrid connection to ExpressQuantumGrid Chart View by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxSchedulerRibbonStyleEventEditorRS23.bpl">ExpressScheduler Ribbon Event Window by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxSchedulerGridRS23.bpl">ExpressScheduler connection to ExpressQuantumGrid by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\VCL\DevExpress VCL\Library\RS23\dclcxSchedulerTreeBrowserRS23.bpl">ExpressScheduler tree browser by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\TMSDXE9.bpl">TMS Component Pack</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\TMSExDXE9.bpl">TMS Component Pack Extra</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\TMSDeDXE9.bpl">TMS Component Pack design time support</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\TMSXlsDXE9.bpl">TMS TAdvStringGrid Excel support</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\TMSWizDXE9.bpl">TMS Component Pack Wizards</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\TMSFMXPackPkgDXE9.bpl">TMS Pack for FireMonkey</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\TMSFMXPackPkgDEDXE9.bpl">TMS Pack for FireMonkey Design Time</Excluded_Packages>
                     <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\VA_Start.bpl">(untitled)</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
@@ -292,16 +430,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
                 <DeployClass Name="ProjectOSXResource">
                     <Platform Name="OSX32">
                         <RemoteDir>Contents\Resources</RemoteDir>
@@ -615,7 +744,16 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>

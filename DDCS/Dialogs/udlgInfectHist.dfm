@@ -27,7 +27,6 @@ object dlgInfectHist: TdlgInfectHist
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitTop = 365
     object bbtnOK: TBitBtn
       Left = 630
       Top = 3
@@ -78,31 +77,31 @@ object dlgInfectHist: TdlgInfectHist
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitHeight = 330
     object Label1: TLabel
       Tag = 1
       Left = 11
       Top = 9
-      Width = 254
-      Height = 14
-      Caption = 'Live with someone with TB or exposed to TB?'
+      Width = 226
+      Height = 26
+      Caption = 'Live with someone with Tuberculosis or exposed to Tuberculosis?'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
       ParentFont = False
+      WordWrap = True
     end
     object Label3: TLabel
       Left = 38
-      Top = 62
+      Top = 72
       Width = 3
       Height = 14
     end
     object Label4: TLabel
       Tag = 4
       Left = 11
-      Top = 81
+      Top = 91
       Width = 189
       Height = 14
       Caption = 'Rash since last menstrual period?'
@@ -118,7 +117,7 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText1: TLabel
       Tag = 2
       Left = 11
-      Top = 33
+      Top = 43
       Width = 137
       Height = 14
       Caption = 'History of Genital Herpes'
@@ -132,7 +131,7 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText2: TLabel
       Tag = 3
       Left = 11
-      Top = 57
+      Top = 67
       Width = 152
       Height = 14
       Caption = 'Exposed to Genital Herpes?'
@@ -146,7 +145,7 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText3: TLabel
       Tag = 5
       Left = 11
-      Top = 105
+      Top = 115
       Width = 227
       Height = 14
       Caption = 'Viral illness since last menstrual period?'
@@ -162,7 +161,7 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText4: TLabel
       Tag = 6
       Left = 11
-      Top = 129
+      Top = 139
       Width = 58
       Height = 14
       Caption = 'Hepatitis B'
@@ -178,7 +177,7 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText5: TLabel
       Tag = 7
       Left = 11
-      Top = 153
+      Top = 163
       Width = 59
       Height = 14
       Caption = 'Hepatitis C'
@@ -194,10 +193,10 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText6: TLabel
       Tag = 8
       Left = 11
-      Top = 177
-      Width = 77
+      Top = 187
+      Width = 218
       Height = 14
-      Caption = 'History of STD'
+      Caption = 'History of Sexually Transmitted Disease'
       Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -210,7 +209,7 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText7: TLabel
       Tag = 9
       Left = 11
-      Top = 201
+      Top = 211
       Width = 115
       Height = 14
       Caption = 'History of Gonorrhea'
@@ -226,7 +225,7 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText8: TLabel
       Tag = 10
       Left = 11
-      Top = 224
+      Top = 234
       Width = 113
       Height = 14
       Caption = 'History of Chlamydia'
@@ -242,10 +241,10 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText9: TLabel
       Tag = 11
       Left = 11
-      Top = 249
-      Width = 78
+      Top = 259
+      Width = 178
       Height = 14
-      Caption = 'History of HPV'
+      Caption = 'History of Human Papillomavirus'
       Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -258,10 +257,10 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText10: TLabel
       Tag = 12
       Left = 11
-      Top = 273
-      Width = 74
+      Top = 283
+      Width = 232
       Height = 14
-      Caption = 'History of HIV'
+      Caption = 'History of Human Immunodeficiency Virus'
       Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -274,7 +273,7 @@ object dlgInfectHist: TdlgInfectHist
     object StaticText11: TLabel
       Tag = 13
       Left = 11
-      Top = 297
+      Top = 307
       Width = 99
       Height = 14
       Caption = 'History of Syphilis'
@@ -310,7 +309,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox4: TCheckBox
       Tag = 2
       Left = 276
-      Top = 33
+      Top = 43
       Width = 46
       Height = 17
       Caption = 'Yes'
@@ -322,7 +321,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox5: TCheckBox
       Tag = 2
       Left = 324
-      Top = 33
+      Top = 43
       Width = 37
       Height = 17
       Caption = 'No'
@@ -334,7 +333,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox8: TCheckBox
       Tag = 3
       Left = 276
-      Top = 57
+      Top = 67
       Width = 46
       Height = 17
       Caption = 'Yes'
@@ -346,7 +345,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox9: TCheckBox
       Tag = 3
       Left = 324
-      Top = 57
+      Top = 67
       Width = 37
       Height = 17
       Caption = 'No'
@@ -358,7 +357,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox10: TCheckBox
       Tag = 4
       Left = 276
-      Top = 81
+      Top = 91
       Width = 46
       Height = 17
       Caption = 'Yes'
@@ -370,7 +369,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox11: TCheckBox
       Tag = 4
       Left = 324
-      Top = 81
+      Top = 91
       Width = 37
       Height = 17
       Caption = 'No'
@@ -382,7 +381,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox6: TCheckBox
       Tag = 4
       Left = 366
-      Top = 81
+      Top = 91
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -394,7 +393,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox7: TCheckBox
       Tag = 3
       Left = 366
-      Top = 57
+      Top = 67
       Width = 77
       Height = 17
       Caption = 'Unknown'
@@ -404,7 +403,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox12: TCheckBox
       Tag = 2
       Left = 366
-      Top = 33
+      Top = 43
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -426,7 +425,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox14: TCheckBox
       Tag = 5
       Left = 276
-      Top = 105
+      Top = 115
       Width = 45
       Height = 17
       Caption = 'Yes'
@@ -436,7 +435,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox15: TCheckBox
       Tag = 5
       Left = 324
-      Top = 105
+      Top = 115
       Width = 37
       Height = 17
       Caption = 'No'
@@ -446,7 +445,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox16: TCheckBox
       Tag = 5
       Left = 366
-      Top = 105
+      Top = 115
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -456,7 +455,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox17: TCheckBox
       Tag = 6
       Left = 276
-      Top = 129
+      Top = 139
       Width = 45
       Height = 17
       Caption = 'Yes'
@@ -468,7 +467,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox18: TCheckBox
       Tag = 6
       Left = 324
-      Top = 129
+      Top = 139
       Width = 37
       Height = 17
       Caption = 'No'
@@ -480,7 +479,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox19: TCheckBox
       Tag = 6
       Left = 366
-      Top = 129
+      Top = 139
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -492,7 +491,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox20: TCheckBox
       Tag = 7
       Left = 276
-      Top = 153
+      Top = 163
       Width = 45
       Height = 17
       Caption = 'Yes'
@@ -504,7 +503,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox21: TCheckBox
       Tag = 8
       Left = 276
-      Top = 177
+      Top = 187
       Width = 45
       Height = 17
       Caption = 'Yes'
@@ -516,7 +515,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox22: TCheckBox
       Tag = 7
       Left = 324
-      Top = 153
+      Top = 163
       Width = 37
       Height = 17
       Caption = 'No'
@@ -528,7 +527,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox23: TCheckBox
       Tag = 8
       Left = 324
-      Top = 177
+      Top = 187
       Width = 37
       Height = 17
       Caption = 'No'
@@ -540,7 +539,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox24: TCheckBox
       Tag = 7
       Left = 366
-      Top = 153
+      Top = 163
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -552,7 +551,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox25: TCheckBox
       Tag = 8
       Left = 366
-      Top = 177
+      Top = 187
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -564,7 +563,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox1: TCheckBox
       Tag = 9
       Left = 276
-      Top = 201
+      Top = 211
       Width = 45
       Height = 17
       Caption = 'Yes'
@@ -576,7 +575,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox26: TCheckBox
       Tag = 10
       Left = 276
-      Top = 224
+      Top = 234
       Width = 45
       Height = 17
       Caption = 'Yes'
@@ -588,7 +587,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox27: TCheckBox
       Tag = 11
       Left = 276
-      Top = 249
+      Top = 259
       Width = 45
       Height = 17
       Caption = 'Yes'
@@ -600,7 +599,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox28: TCheckBox
       Tag = 12
       Left = 276
-      Top = 273
+      Top = 283
       Width = 45
       Height = 17
       Caption = 'Yes'
@@ -612,7 +611,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox33: TCheckBox
       Tag = 12
       Left = 324
-      Top = 273
+      Top = 283
       Width = 37
       Height = 17
       Caption = 'No'
@@ -624,7 +623,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox30: TCheckBox
       Tag = 9
       Left = 324
-      Top = 201
+      Top = 211
       Width = 37
       Height = 17
       Caption = 'No'
@@ -636,7 +635,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox31: TCheckBox
       Tag = 10
       Left = 324
-      Top = 224
+      Top = 234
       Width = 37
       Height = 17
       Caption = 'No'
@@ -648,7 +647,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox32: TCheckBox
       Tag = 11
       Left = 324
-      Top = 249
+      Top = 259
       Width = 37
       Height = 17
       Caption = 'No'
@@ -660,7 +659,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox35: TCheckBox
       Tag = 9
       Left = 366
-      Top = 201
+      Top = 211
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -672,7 +671,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox36: TCheckBox
       Tag = 10
       Left = 366
-      Top = 224
+      Top = 234
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -684,7 +683,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox37: TCheckBox
       Tag = 11
       Left = 366
-      Top = 249
+      Top = 259
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -696,7 +695,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox38: TCheckBox
       Tag = 12
       Left = 366
-      Top = 273
+      Top = 283
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -708,7 +707,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox29: TCheckBox
       Tag = 13
       Left = 276
-      Top = 297
+      Top = 307
       Width = 45
       Height = 17
       Caption = 'Yes'
@@ -720,7 +719,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox34: TCheckBox
       Tag = 13
       Left = 324
-      Top = 297
+      Top = 307
       Width = 37
       Height = 17
       Caption = 'No'
@@ -732,7 +731,7 @@ object dlgInfectHist: TdlgInfectHist
     object CheckBox39: TCheckBox
       Tag = 13
       Left = 366
-      Top = 297
+      Top = 307
       Width = 79
       Height = 17
       Caption = 'Unknown'
@@ -753,7 +752,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit2: TEdit
       Tag = 2
       Left = 440
-      Top = 30
+      Top = 40
       Width = 337
       Height = 22
       Enabled = False
@@ -762,7 +761,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit3: TEdit
       Tag = 3
       Left = 440
-      Top = 54
+      Top = 64
       Width = 337
       Height = 22
       Enabled = False
@@ -771,7 +770,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit4: TEdit
       Tag = 4
       Left = 440
-      Top = 78
+      Top = 88
       Width = 337
       Height = 22
       Enabled = False
@@ -780,7 +779,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit5: TEdit
       Tag = 5
       Left = 440
-      Top = 102
+      Top = 112
       Width = 337
       Height = 22
       Enabled = False
@@ -789,7 +788,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit7: TEdit
       Tag = 7
       Left = 440
-      Top = 150
+      Top = 160
       Width = 337
       Height = 22
       Enabled = False
@@ -798,7 +797,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit6: TEdit
       Tag = 6
       Left = 440
-      Top = 126
+      Top = 136
       Width = 337
       Height = 22
       Enabled = False
@@ -807,7 +806,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit8: TEdit
       Tag = 8
       Left = 440
-      Top = 174
+      Top = 184
       Width = 337
       Height = 22
       Enabled = False
@@ -816,7 +815,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit9: TEdit
       Tag = 9
       Left = 440
-      Top = 198
+      Top = 208
       Width = 337
       Height = 22
       Enabled = False
@@ -825,7 +824,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit10: TEdit
       Tag = 10
       Left = 440
-      Top = 221
+      Top = 231
       Width = 337
       Height = 22
       Enabled = False
@@ -834,7 +833,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit11: TEdit
       Tag = 11
       Left = 440
-      Top = 246
+      Top = 254
       Width = 337
       Height = 22
       Enabled = False
@@ -843,7 +842,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit12: TEdit
       Tag = 12
       Left = 440
-      Top = 270
+      Top = 277
       Width = 337
       Height = 22
       Enabled = False
@@ -852,7 +851,7 @@ object dlgInfectHist: TdlgInfectHist
     object Edit13: TEdit
       Tag = 13
       Left = 440
-      Top = 294
+      Top = 300
       Width = 337
       Height = 22
       Enabled = False

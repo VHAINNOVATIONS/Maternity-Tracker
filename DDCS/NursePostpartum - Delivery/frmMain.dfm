@@ -255,6 +255,13 @@ object Form1: TForm1
       DesignSize = (
         734
         398)
+      object lbGADays: TLabel
+        Left = 338
+        Top = 110
+        Width = 24
+        Height = 13
+        Caption = 'Days'
+      end
       object lbDeliveryDate: TStaticText
         Left = 19
         Top = 19
@@ -352,9 +359,9 @@ object Form1: TForm1
       object lbGestationalAge: TStaticText
         Left = 19
         Top = 111
-        Width = 151
+        Width = 94
         Height = 17
-        Caption = 'Gestational Age in Weeks'
+        Caption = 'Gestational Age'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -476,7 +483,7 @@ object Form1: TForm1
         OnChange = SpinCheck
       end
       object spnGADays: TSpinEdit
-        Left = 303
+        Left = 282
         Top = 107
         Width = 50
         Height = 22
@@ -518,14 +525,14 @@ object Form1: TForm1
       object StaticText1: TStaticText
         Left = 242
         Top = 111
-        Width = 57
+        Width = 38
         Height = 17
-        Caption = 'and Days'
+        Caption = 'Weeks'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Style = []
         ParentFont = False
         TabOrder = 29
       end
@@ -543,10 +550,6 @@ object Form1: TForm1
     end
     object oPage2: TTabSheet
       Caption = 'Neonatal Information'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object pnlBirthCount: TPanel
         Left = 0
         Top = 0
@@ -602,10 +605,6 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'Delivery Method'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object gbVaginal: TGroupBox
         Left = 14
         Top = 19
@@ -976,9 +975,9 @@ object Form1: TForm1
         object ckIUDInsertion: TCheckBox
           Left = 301
           Top = 43
-          Width = 97
+          Width = 237
           Height = 17
-          Caption = 'IUD Insertion'
+          Caption = 'Intrauterine Contraceptive Device Insertion'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11

@@ -600,9 +600,9 @@ object dlgSurgical: TdlgSurgical
       Tag = 6
       Left = 8
       Top = 148
-      Width = 42
+      Width = 127
       Height = 13
-      Caption = 'D and C'
+      Caption = 'Dilation and Curettage'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -614,9 +614,9 @@ object dlgSurgical: TdlgSurgical
       Tag = 7
       Left = 8
       Top = 175
-      Width = 54
+      Width = 98
       Height = 13
-      Caption = 'C-Section'
+      Caption = 'Cesarean Section'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11

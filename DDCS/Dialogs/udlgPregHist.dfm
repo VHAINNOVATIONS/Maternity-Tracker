@@ -123,15 +123,33 @@ object dlgPregHist: TdlgPregHist
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object PregListView: TListView
-    Left = 48
-    Top = 208
-    Width = 422
-    Height = 238
-    Columns = <>
+  object cbOutcome: TComboBox
+    Left = 137
+    Top = 291
+    Width = 179
+    Height = 22
+    Align = alCustom
+    Style = csDropDownList
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 10
-    ViewStyle = vsReport
-    Visible = False
+  end
+  object cbAnesthesia: TComboBox
+    Left = 137
+    Top = 319
+    Width = 179
+    Height = 22
+    Align = alCustom
+    Style = csDropDownList
+    TabOrder = 11
+  end
+  object cbDeliveryPlace: TComboBox
+    Left = 137
+    Top = 347
+    Width = 179
+    Height = 22
+    Align = alCustom
+    Anchors = [akLeft, akTop, akRight]
+    TabOrder = 12
   end
   object pnlfooter: TPanel
     Left = 0
@@ -141,7 +159,6 @@ object dlgPregHist: TdlgPregHist
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 9
-    ExplicitTop = 553
     object btnOK: TBitBtn
       Left = 367
       Top = 3
@@ -193,7 +210,6 @@ object dlgPregHist: TdlgPregHist
     Align = alCustom
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 8
-    ExplicitTop = 135
   end
   object edtAbInduced: TSpinEdit
     Tag = 2
@@ -286,5 +302,9 @@ object dlgPregHist: TdlgPregHist
     Caption = '0'
     TabOrder = 7
     TabStop = True
+  end
+  object NavControl: TActionList
+    Left = 376
+    Top = 200
   end
 end

@@ -94,6 +94,7 @@ type
     lbProceduresOther: TStaticText;
     pnlSpacer: TPanel;
     StaticText1: TStaticText;
+    lbGADays: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpinCheck(Sender: TObject);

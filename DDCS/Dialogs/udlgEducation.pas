@@ -22,9 +22,10 @@ unit udlgEducation;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Forms,
-  Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
-  Vcl.Controls, ORCtrls, uDialog, uCommon, uExtndComBroker;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.StrUtils,
+  System.Classes, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Controls, ORCtrls,
+  uDialog, uCommon, uExtndComBroker;
 
 type
   TdlgEducation = class(TDDCSDialog)
@@ -37,6 +38,8 @@ type
       Column: TListColumn);
     procedure educationListViewCompare(Sender: TObject; Item1, Item2: TListItem;
       Data: Integer; var Compare: Integer);
+    procedure educationListViewSelectItem(Sender: TObject; Item: TListItem;
+      Selected: Boolean);
   private
     Descending: Boolean;
     SortedColumn: Integer;
@@ -95,6 +98,37 @@ begin
       Compare := -Compare;
   except
   end;
+end;
+
+procedure TdlgEducation.educationListViewSelectItem(Sender: TObject;
+  Item: TListItem; Selected: Boolean);
+var
+  I: Integer;
+  value,vend: string;
+begin
+  if Selected then
+    if DDCSForm <> nil then
+      if DDCSForm.ScreenReader <> nil then
+      begin
+        if educationListView.Columns.Count < 2 then
+        begin
+          if educationListView.Columns.Count = 1 then
+            value := educationListView.Columns[0].Caption + ' ' + Item.Caption
+          else
+            value := Item.Caption;
+        end else
+        begin
+          value := educationListView.Columns[0].Caption + ' ' + Item.Caption;
+          for I := educationListView.Columns.Count - 1 downto 1 do
+            if Item.SubItems.Count >= I then
+              if Item.SubItems[(I-1)] <> '' then
+                vend := educationListView.Columns[I].Caption + ' ' + Item.SubItems[(I-1)] + ' ' + vend;
+          value := value + ' ' + vend;
+        end;
+
+        if value <> '' then
+          DDCSForm.ScreenReader.Say(value, False);
+      end;
 end;
 
 end.

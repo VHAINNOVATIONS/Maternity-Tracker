@@ -25,7 +25,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, ORCtrls, ORDtTm,
-  frmPregHistPregInfo;
+  frmPregHistPregInfo, frmPregHistChild;
 
 type
   TPregType = (ptN, ptAI, ptAS, ptE);
@@ -34,6 +34,7 @@ type
     btnDelete: TBitBtn;
     pgPreg: TPageControl;
     procedure btnDeleteClick(Sender: TObject);
+    procedure pgPregChange(Sender: TObject);
   private
     FPregType: TPregType;
     FPregIEN: Integer;
@@ -42,6 +43,7 @@ type
   public
     procedure DeleteChild(Value: TTabSheet);
     function GetPregInfo: TfPregInfo;
+    function GetChild(Value: Integer): TfChild;
     function GetText: TStringList;
     function GetChildrenV: string;
     property PregnancyType: TPregType read FPregType write SetPregType default ptN;
@@ -53,7 +55,7 @@ implementation
 {$R *.dfm}
 
 uses
-  udlgPregHist, frmPregHistChild, uCommon;
+  udlgPregHist, uCommon;
 
 procedure TfPreg.btnDeleteClick(Sender: TObject);
 begin
@@ -61,6 +63,14 @@ begin
              ' All associated child information will also be deleted.' +
              ' This action cannot be undone.', smiWarning, smbYesNo) = smrYes then
     dlgPregHist.DeletePregnancy(GetIndex);
+end;
+
+procedure TfPreg.pgPregChange(Sender: TObject);
+begin
+  if pgPreg.ActivePageIndex <> 0 then
+    btnDelete.Visible := False
+  else
+    btnDelete.Visible := True;
 end;
 
 // Private ---------------------------------------------------------------------
@@ -117,6 +127,8 @@ begin
   if pgPreg.PageCount > 1 then
     for I := 1 to pgPreg.PageCount - 1 do
       pgPreg.Pages[I].Caption := 'Baby # ' + IntToStr(I);
+
+  pgPregChange(pgPreg);
 end;
 
 function TfPreg.GetPregInfo: TfPregInfo;
@@ -127,6 +139,23 @@ begin
     if pgPreg.Pages[0].ControlCount > 0 then
       if pgPreg.Pages[0].Controls[0] is TfPregInfo then
         Result := TfPregInfo(pgPreg.Pages[0].Controls[0]);
+end;
+
+function TfPreg.GetChild(Value: Integer): TfChild;
+var
+  I: Integer;
+begin
+  Result := nil;
+
+  if pgPreg.PageCount > 1 then
+    for I := 1 to pgPreg.PageCount - 1 do
+      if pgPreg.Pages[I].ControlCount > 0 then
+        if pgPreg.Pages[I].Controls[0] is TfChild then
+          if TfChild(pgPreg.Pages[I].Controls[0]).BabyIEN = Value then
+          begin
+            Result := TfChild(pgPreg.Pages[I].Controls[0]);
+            Break;
+          end;
 end;
 
 function TfPreg.GetText: TStringList;
@@ -155,7 +184,7 @@ begin
     for I := 1 to pgPreg.PageCount - 1 do
       if pgPreg.Pages[I].ControlCount > 0 then
         if pgPreg.Pages[I].Controls[0] is TfChild then
-          Result := Result + TfChild(pgPreg.Pages[I]).GetV;
+          Result := Result + TfChild(pgPreg.Pages[I].Controls[0]).GetV;
 end;
 
 end.

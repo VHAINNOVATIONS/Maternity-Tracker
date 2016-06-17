@@ -4,8 +4,8 @@ object dlgROS: TdlgROS
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Review of Symptoms since Last Menstrual Period'
-  ClientHeight = 389
-  ClientWidth = 653
+  ClientHeight = 409
+  ClientWidth = 651
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object dlgROS: TdlgROS
   object lbOther: TLabel
     Tag = 14
     Left = 16
-    Top = 328
+    Top = 350
     Width = 32
     Height = 13
     Caption = 'Other'
@@ -65,7 +65,7 @@ object dlgROS: TdlgROS
   object dtOther: TORDateBox
     Tag = 14
     Left = 344
-    Top = 325
+    Top = 347
     Width = 121
     Height = 21
     TabOrder = 53
@@ -85,7 +85,7 @@ object dlgROS: TdlgROS
   object Edit10: TEdit
     Tag = 10
     Left = 471
-    Top = 233
+    Top = 255
     Width = 167
     Height = 21
     Enabled = False
@@ -94,7 +94,7 @@ object dlgROS: TdlgROS
   object Edit11: TEdit
     Tag = 11
     Left = 471
-    Top = 256
+    Top = 278
     Width = 167
     Height = 21
     Enabled = False
@@ -103,7 +103,7 @@ object dlgROS: TdlgROS
   object Edit12: TEdit
     Tag = 12
     Left = 471
-    Top = 279
+    Top = 301
     Width = 167
     Height = 21
     Enabled = False
@@ -112,7 +112,7 @@ object dlgROS: TdlgROS
   object Edit13: TEdit
     Tag = 13
     Left = 471
-    Top = 302
+    Top = 324
     Width = 167
     Height = 21
     Enabled = False
@@ -184,7 +184,7 @@ object dlgROS: TdlgROS
   object Edit9: TEdit
     Tag = 9
     Left = 471
-    Top = 210
+    Top = 221
     Width = 167
     Height = 21
     Enabled = False
@@ -193,7 +193,7 @@ object dlgROS: TdlgROS
   object edOtherComments: TEdit
     Tag = 14
     Left = 471
-    Top = 325
+    Top = 347
     Width = 167
     Height = 21
     TabOrder = 54
@@ -213,7 +213,7 @@ object dlgROS: TdlgROS
   object ORDateBox10: TORDateBox
     Tag = 10
     Left = 344
-    Top = 233
+    Top = 255
     Width = 121
     Height = 21
     Enabled = False
@@ -225,7 +225,7 @@ object dlgROS: TdlgROS
   object ORDateBox11: TORDateBox
     Tag = 11
     Left = 344
-    Top = 256
+    Top = 278
     Width = 121
     Height = 21
     Enabled = False
@@ -237,7 +237,7 @@ object dlgROS: TdlgROS
   object ORDateBox12: TORDateBox
     Tag = 12
     Left = 344
-    Top = 279
+    Top = 301
     Width = 121
     Height = 21
     Enabled = False
@@ -249,7 +249,7 @@ object dlgROS: TdlgROS
   object ORDateBox13: TORDateBox
     Tag = 13
     Left = 344
-    Top = 302
+    Top = 324
     Width = 121
     Height = 21
     Enabled = False
@@ -345,7 +345,7 @@ object dlgROS: TdlgROS
   object ORDateBox9: TORDateBox
     Tag = 9
     Left = 344
-    Top = 210
+    Top = 221
     Width = 121
     Height = 21
     Enabled = False
@@ -517,7 +517,7 @@ object dlgROS: TdlgROS
   object CheckBox17: TCheckBox
     Tag = 9
     Left = 258
-    Top = 212
+    Top = 223
     Width = 40
     Height = 17
     Caption = 'Yes'
@@ -527,7 +527,7 @@ object dlgROS: TdlgROS
   object CheckBox18: TCheckBox
     Tag = 9
     Left = 303
-    Top = 212
+    Top = 223
     Width = 40
     Height = 17
     Caption = 'No'
@@ -537,7 +537,7 @@ object dlgROS: TdlgROS
   object CheckBox19: TCheckBox
     Tag = 10
     Left = 258
-    Top = 235
+    Top = 257
     Width = 40
     Height = 17
     Caption = 'Yes'
@@ -547,7 +547,7 @@ object dlgROS: TdlgROS
   object CheckBox20: TCheckBox
     Tag = 10
     Left = 303
-    Top = 235
+    Top = 257
     Width = 40
     Height = 17
     Caption = 'No'
@@ -557,7 +557,7 @@ object dlgROS: TdlgROS
   object CheckBox21: TCheckBox
     Tag = 11
     Left = 258
-    Top = 258
+    Top = 280
     Width = 40
     Height = 17
     Caption = 'Yes'
@@ -567,7 +567,7 @@ object dlgROS: TdlgROS
   object CheckBox22: TCheckBox
     Tag = 11
     Left = 303
-    Top = 258
+    Top = 280
     Width = 40
     Height = 17
     Caption = 'No'
@@ -577,7 +577,7 @@ object dlgROS: TdlgROS
   object CheckBox23: TCheckBox
     Tag = 12
     Left = 258
-    Top = 281
+    Top = 303
     Width = 40
     Height = 17
     Caption = 'Yes'
@@ -587,7 +587,7 @@ object dlgROS: TdlgROS
   object CheckBox24: TCheckBox
     Tag = 12
     Left = 303
-    Top = 281
+    Top = 303
     Width = 40
     Height = 17
     Caption = 'No'
@@ -597,7 +597,7 @@ object dlgROS: TdlgROS
   object CheckBox25: TCheckBox
     Tag = 13
     Left = 258
-    Top = 304
+    Top = 326
     Width = 40
     Height = 17
     Caption = 'Yes'
@@ -607,7 +607,7 @@ object dlgROS: TdlgROS
   object CheckBox26: TCheckBox
     Tag = 13
     Left = 303
-    Top = 304
+    Top = 326
     Width = 40
     Height = 17
     Caption = 'No'
@@ -617,14 +617,16 @@ object dlgROS: TdlgROS
   object pnlfooter: TPanel
     Tag = 19641
     Left = 0
-    Top = 360
-    Width = 653
+    Top = 380
+    Width = 651
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 55
+    ExplicitTop = 360
+    ExplicitWidth = 653
     object btnOK: TBitBtn
-      Left = 496
+      Left = 494
       Top = 3
       Width = 75
       Height = 25
@@ -634,9 +636,10 @@ object dlgROS: TdlgROS
       NumGlyphs = 2
       TabOrder = 1
       OnClick = btnOKClick
+      ExplicitLeft = 496
     end
     object btnCancel: TBitBtn
-      Left = 577
+      Left = 575
       Top = 3
       Width = 75
       Height = 25
@@ -645,6 +648,7 @@ object dlgROS: TdlgROS
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 2
+      ExplicitLeft = 577
     end
     object btnNeg: TBitBtn
       Left = 1
@@ -668,7 +672,7 @@ object dlgROS: TdlgROS
   object edOther: TEdit
     Tag = 14
     Left = 70
-    Top = 325
+    Top = 347
     Width = 268
     Height = 21
     TabOrder = 52
@@ -677,7 +681,7 @@ object dlgROS: TdlgROS
     Left = 4
     Top = 11
     Width = 237
-    Height = 311
+    Height = 335
     BevelOuter = bvNone
     TabOrder = 56
     object Label10: TLabel
@@ -759,21 +763,22 @@ object dlgROS: TdlgROS
     object Label8: TLabel
       Tag = 9
       Left = 12
-      Top = 202
-      Width = 222
-      Height = 13
-      Caption = 'GU Symptoms of Burning, Pain, or Blood'
+      Top = 213
+      Width = 213
+      Height = 26
+      Caption = 'Genitourinary Symptoms of Burning, Pain, or Blood'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      WordWrap = True
     end
     object Label7: TLabel
       Tag = 11
       Left = 12
-      Top = 248
+      Top = 270
       Width = 166
       Height = 13
       Caption = 'Vaginal Bleeding or Discharge'
@@ -788,9 +793,9 @@ object dlgROS: TdlgROS
       Tag = 8
       Left = 12
       Top = 179
-      Width = 203
-      Height = 13
-      Caption = 'GI Symptoms of Nausea or Vomiting'
+      Width = 213
+      Height = 26
+      Caption = 'Gastrointestinal Symptoms of Nausea or Vomiting'
       Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -800,6 +805,7 @@ object dlgROS: TdlgROS
       ParentColor = False
       ParentFont = False
       Transparent = False
+      WordWrap = True
     end
     object Label5: TLabel
       Tag = 4
@@ -821,7 +827,7 @@ object dlgROS: TdlgROS
     object Label4: TLabel
       Tag = 13
       Left = 12
-      Top = 294
+      Top = 316
       Width = 138
       Height = 13
       Caption = 'Heat or Cold Intolerance'
@@ -835,7 +841,7 @@ object dlgROS: TdlgROS
     object Label3: TLabel
       Tag = 10
       Left = 12
-      Top = 225
+      Top = 247
       Width = 165
       Height = 13
       Caption = 'Bone or Joint Pain or Swelling'
@@ -852,7 +858,7 @@ object dlgROS: TdlgROS
     object Label2: TLabel
       Tag = 12
       Left = 12
-      Top = 271
+      Top = 293
       Width = 96
       Height = 13
       HelpContext = 17

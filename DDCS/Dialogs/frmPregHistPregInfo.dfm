@@ -184,7 +184,7 @@ object fPregInfo: TfPregInfo
     Anchors = [akLeft, akTop, akRight, akBottom]
     ScrollBars = ssVertical
     TabOrder = 12
-    Caption = 'Comments'
+    Caption = 'Delivery Notes'
   end
   object dtDelivery: TORDateBox
     Left = 7

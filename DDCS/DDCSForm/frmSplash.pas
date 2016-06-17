@@ -28,9 +28,9 @@ type
     pnlBody: TPanel;
     imgVA: TImage;
     lbLoading: TStaticText;
-    lbCopyright: TLabel;
-    lbApache: TLabel;
-    lbCompany: TLabel;
+    lbCopyright: TStaticText;
+    lbCompany: TStaticText;
+    lbApache: TStaticText;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   protected

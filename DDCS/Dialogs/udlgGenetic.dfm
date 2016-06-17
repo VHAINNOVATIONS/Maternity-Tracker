@@ -147,9 +147,9 @@ object dlgGenetic: TdlgGenetic
           Tag = 8
           Left = 4
           Top = 207
-          Width = 94
+          Width = 104
           Height = 14
-          Caption = 'Sick Cell Disease'
+          Caption = 'Sickle Cell Disease'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -161,9 +161,9 @@ object dlgGenetic: TdlgGenetic
           Tag = 9
           Left = 4
           Top = 235
-          Width = 74
+          Width = 84
           Height = 14
-          Caption = 'Sick Cell Trait'
+          Caption = 'Sickle Cell Trait'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -1043,10 +1043,6 @@ object dlgGenetic: TdlgGenetic
     end
     object TabSheet2: TTabSheet
       Caption = 'Page 2'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object CheckBox43: TCheckBox
         Tag = 15
         Left = 164
@@ -1471,7 +1467,7 @@ object dlgGenetic: TdlgGenetic
           Top = 263
           Width = 119
           Height = 28
-          Caption = 'Recurrent pregnancy loss/stillbirth'
+          Caption = 'Recurrent pregnancy loss and or stillbirth'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11

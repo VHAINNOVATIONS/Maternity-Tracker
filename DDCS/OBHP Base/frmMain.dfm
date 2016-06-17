@@ -281,35 +281,70 @@ object Form1: TForm1
         IdentifyingName = 'Imported Medical Data'
         DoNotSpace = False
         DoNotSave = True
-        DoNotRestoreV = False
+        DoNotRestoreV = True
         HideFromNote = True
         OwningObject = RadioGroupImport
         Required = False
       end
       item
-        SayOnFocus = 'Active Medications'
         Order = 7
-        IdentifyingName = 'Active Medications Section Note Text'
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = True
+        HideFromNote = False
+        OwningObject = memoMedications
+        Required = False
+      end
+      item
+        Order = 8
+        Prefix = '  '
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
         HideFromNote = False
-        OwningObject = memoActiveMedications
+        OwningObject = memoMedicationsNar
         Required = False
       end
       item
-        SayOnFocus = 'Active Allergies'
-        Order = 8
-        IdentifyingName = 'Allergies Section Note Text'
+        Order = 9
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = True
+        HideFromNote = False
+        OwningObject = memoProblems
+        Required = False
+      end
+      item
+        Order = 10
+        Prefix = '  '
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
+        HideFromNote = False
+        OwningObject = memoProblemsNar
+        Required = False
+      end
+      item
+        Order = 11
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = True
         HideFromNote = False
         OwningObject = memoAllergies
         Required = False
       end
       item
-        Order = 9
+        Order = 12
+        Prefix = '  '
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
+        OwningObject = memoAllergiesNar
+        Required = False
+      end
+      item
+        Order = 13
         IdentifyingName = 'History Categories'
         DoNotSpace = False
         DoNotSave = True
@@ -322,7 +357,7 @@ object Form1: TForm1
         SayOnFocus = 
           'Medical History check list box press space to check item or retu' +
           'rn to activate dialog'
-        Order = 10
+        Order = 14
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -335,7 +370,7 @@ object Form1: TForm1
         SayOnFocus = 
           'Family History check list box press space to check item or retur' +
           'n to activate dialog'
-        Order = 11
+        Order = 15
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -348,7 +383,7 @@ object Form1: TForm1
         SayOnFocus = 
           'Social History check list box press space to check item or retur' +
           'n to activate dialog'
-        Order = 12
+        Order = 16
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -358,7 +393,7 @@ object Form1: TForm1
         DialogReturn = MemoHistory
       end
       item
-        Order = 13
+        Order = 17
         IdentifyingName = 'History Section Note Text'
         DoNotSpace = False
         DoNotSave = False
@@ -368,7 +403,7 @@ object Form1: TForm1
         Required = False
       end
       item
-        Order = 14
+        Order = 18
         IdentifyingName = 'Review of Symptoms since Last Menstrual Period'
         DoNotSpace = False
         DoNotSave = False
@@ -379,7 +414,7 @@ object Form1: TForm1
         DialogReturn = MemoROS
       end
       item
-        Order = 15
+        Order = 19
         IdentifyingName = 'Review of Symptoms since Last Menstrual Period Section Note Text'
         DoNotSpace = False
         DoNotSave = False
@@ -389,7 +424,7 @@ object Form1: TForm1
         Required = False
       end
       item
-        Order = 16
+        Order = 20
         IdentifyingName = 'Physical Exam'
         DoNotSpace = False
         DoNotSave = False
@@ -400,7 +435,7 @@ object Form1: TForm1
         DialogReturn = MemoPhysical
       end
       item
-        Order = 17
+        Order = 21
         IdentifyingName = 'Physical Exam Section Note Text'
         DoNotSpace = False
         DoNotSave = False
@@ -410,7 +445,7 @@ object Form1: TForm1
         Required = False
       end
       item
-        Order = 18
+        Order = 22
         IdentifyingName = 'Pelvic Exam'
         DoNotSpace = False
         DoNotSave = False
@@ -421,7 +456,7 @@ object Form1: TForm1
         DialogReturn = MemoOBExam
       end
       item
-        Order = 19
+        Order = 23
         IdentifyingName = 'Obstetrics and Gynecology Flow Sheet'
         DoNotSpace = False
         DoNotSave = False
@@ -432,7 +467,7 @@ object Form1: TForm1
         DialogReturn = MemoOBExam
       end
       item
-        Order = 20
+        Order = 24
         IdentifyingName = 'Pelvic Exam Section Note Text'
         DoNotSpace = False
         DoNotSave = False
@@ -443,7 +478,7 @@ object Form1: TForm1
       end
       item
         SayOnFocus = 'Problems check list box press space to check item'
-        Order = 21
+        Order = 25
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -452,7 +487,7 @@ object Form1: TForm1
         Required = False
       end
       item
-        Order = 22
+        Order = 26
         IdentifyingName = 'Patient Education'
         DoNotSpace = False
         DoNotSave = False
@@ -463,7 +498,7 @@ object Form1: TForm1
         DialogReturn = MemoPreNatal
       end
       item
-        Order = 23
+        Order = 27
         IdentifyingName = 'Return to Clinic Date'
         DoNotSpace = False
         DoNotSave = False
@@ -474,7 +509,7 @@ object Form1: TForm1
         DialogReturn = MemoPreNatal
       end
       item
-        Order = 24
+        Order = 28
         IdentifyingName = 'Plan Section Note Text'
         Title = 'Assessment and Plan'
         DoNotSpace = False
@@ -552,6 +587,10 @@ object Form1: TForm1
     end
     object oPage2: TTabSheet
       Caption = 'Vitals'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DDCSVitals: TDDCSVitals
         Left = 0
         Top = 0
@@ -565,6 +604,10 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'History of Present Illness'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbAdditionalComplaints: TLabel
         Left = 19
         Top = 30
@@ -635,10 +678,6 @@ object Form1: TForm1
     end
     object oPage4: TTabSheet
       Caption = 'Imports'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lbImportSection: TLabel
         Left = 19
         Top = 115
@@ -655,10 +694,10 @@ object Form1: TForm1
       object RadioGroupImport: TRadioGroup
         Left = 19
         Top = 30
-        Width = 294
+        Width = 422
         Height = 57
         Caption = 'Imported Medical Data'
-        Columns = 2
+        Columns = 3
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -667,6 +706,7 @@ object Form1: TForm1
         ItemIndex = 0
         Items.Strings = (
           'Active Medications'
+          'Active Problems'
           'Allergies')
         ParentFont = False
         TabOrder = 0
@@ -681,44 +721,192 @@ object Form1: TForm1
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
         BevelOuter = bvNone
+        ParentBackground = False
         TabOrder = 2
-        OnEnter = pnlSectionImportsEnter
-        object memoAllergies: TMemo
+        object pnlAllergies: TPanel
           Left = 0
           Top = 0
           Width = 701
           Height = 307
-          TabStop = False
-          Align = alClient
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ReadOnly = True
-          ScrollBars = ssBoth
-          TabOrder = 1
-        end
-        object memoActiveMedications: TMemo
-          Left = 0
-          Top = 0
-          Width = 701
-          Height = 307
-          Align = alClient
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ReadOnly = True
-          ScrollBars = ssBoth
+          Align = alCustom
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          BevelOuter = bvNone
+          ParentBackground = False
           TabOrder = 0
+          OnResize = pnlAllergiesResize
+          object lbAllergies: TLabel
+            Left = 0
+            Top = 150
+            Width = 58
+            Height = 13
+            Align = alCustom
+            Caption = 'Comments'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object memoAllergiesNar: TMemo
+            Left = 0
+            Top = 167
+            Width = 701
+            Height = 140
+            TabStop = False
+            Align = alCustom
+            Anchors = [akLeft, akRight, akBottom]
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ScrollBars = ssBoth
+            TabOrder = 1
+          end
+          object memoAllergies: TMemo
+            Left = 0
+            Top = 0
+            Width = 701
+            Height = 140
+            TabStop = False
+            Align = alCustom
+            Anchors = [akLeft, akTop, akRight]
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            ScrollBars = ssBoth
+            TabOrder = 0
+          end
+        end
+        object pnlProblems: TPanel
+          Left = 0
+          Top = 0
+          Width = 701
+          Height = 307
+          Align = alCustom
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          BevelOuter = bvNone
+          ParentBackground = False
+          TabOrder = 1
+          OnResize = pnlProblemsResize
+          object lbActiveProblems: TLabel
+            Left = 0
+            Top = 150
+            Width = 58
+            Height = 13
+            Align = alCustom
+            Caption = 'Comments'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object memoProblemsNar: TMemo
+            Left = 0
+            Top = 167
+            Width = 701
+            Height = 140
+            TabStop = False
+            Align = alCustom
+            Anchors = [akLeft, akRight, akBottom]
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ScrollBars = ssBoth
+            TabOrder = 1
+          end
+          object memoProblems: TMemo
+            Left = 0
+            Top = 0
+            Width = 701
+            Height = 140
+            TabStop = False
+            Align = alCustom
+            Anchors = [akLeft, akTop, akRight]
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            ScrollBars = ssBoth
+            TabOrder = 0
+          end
+        end
+        object pnlMedications: TPanel
+          Left = 0
+          Top = 0
+          Width = 701
+          Height = 307
+          Align = alCustom
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          BevelOuter = bvNone
+          ParentBackground = False
+          TabOrder = 2
+          OnResize = pnlMedicationsResize
+          object lbActiveMedications: TLabel
+            Left = 0
+            Top = 150
+            Width = 58
+            Height = 13
+            Align = alCustom
+            Caption = 'Comments'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object memoMedicationsNar: TMemo
+            Left = 0
+            Top = 167
+            Width = 701
+            Height = 140
+            Align = alCustom
+            Anchors = [akLeft, akRight, akBottom]
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ScrollBars = ssBoth
+            TabOrder = 1
+          end
+          object memoMedications: TMemo
+            Left = 0
+            Top = 0
+            Width = 701
+            Height = 140
+            Align = alCustom
+            Anchors = [akLeft, akTop, akRight]
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            ScrollBars = ssBoth
+            TabOrder = 0
+          end
         end
       end
       object ButtonReload: TButton
-        Left = 319
+        Left = 447
         Top = 30
         Width = 82
         Height = 63
@@ -730,6 +918,10 @@ object Form1: TForm1
     end
     object oPage5: TTabSheet
       Caption = 'History'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbHistorySection: TLabel
         Left = 272
         Top = 66
@@ -837,6 +1029,10 @@ object Form1: TForm1
     end
     object oPage6: TTabSheet
       Caption = 'Review of Symptoms'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -898,6 +1094,10 @@ object Form1: TForm1
     end
     object oPage7: TTabSheet
       Caption = 'Physical Exam'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -959,6 +1159,10 @@ object Form1: TForm1
     end
     object oPage8: TTabSheet
       Caption = 'Pelvic Exam'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -1034,6 +1238,10 @@ object Form1: TForm1
     end
     object oPage9: TTabSheet
       Caption = 'Plan'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         734
         458)

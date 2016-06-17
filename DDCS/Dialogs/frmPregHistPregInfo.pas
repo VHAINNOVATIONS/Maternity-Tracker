@@ -120,6 +120,7 @@ begin
         vPregBaby.Parent := vTabSheet;
         vPregBaby.Align := alClient;
         vPregBaby.Show;
+        TTabSheet(Owner).PageControl.OnChange(nil);
       end;
   end;
 end;

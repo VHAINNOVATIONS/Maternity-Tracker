@@ -4,8 +4,8 @@ object dlgImmunizations: TdlgImmunizations
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Immunization History'
-  ClientHeight = 305
-  ClientWidth = 557
+  ClientHeight = 293
+  ClientWidth = 621
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,21 +19,24 @@ object dlgImmunizations: TdlgImmunizations
   PixelsPerInch = 96
   TextHeight = 13
   object lbTDAP: TLabel
-    Left = 10
-    Top = 34
-    Width = 63
-    Height = 13
-    Caption = 'TDAP or TD'
+    Left = 8
+    Top = 31
+    Width = 151
+    Height = 39
+    Caption = 
+      'Combined Tetanus, Diphtheria, and Pertussis or Tetanus and Dipht' +
+      'heria'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    WordWrap = True
   end
   object lbInfluenza: TLabel
-    Left = 10
-    Top = 61
+    Left = 8
+    Top = 80
     Width = 53
     Height = 13
     Caption = 'Influenza'
@@ -45,21 +48,22 @@ object dlgImmunizations: TdlgImmunizations
     ParentFont = False
   end
   object lbMMR: TLabel
-    Left = 10
-    Top = 88
-    Width = 28
-    Height = 13
-    Caption = 'MMR'
+    Left = 8
+    Top = 103
+    Width = 151
+    Height = 26
+    Caption = 'Measles, Mumps, and Rubella'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    WordWrap = True
   end
   object lbVaricella: TLabel
-    Left = 10
-    Top = 115
+    Left = 8
+    Top = 139
     Width = 48
     Height = 13
     Caption = 'Varicella'
@@ -71,8 +75,8 @@ object dlgImmunizations: TdlgImmunizations
     ParentFont = False
   end
   object lbOther1: TLabel
-    Left = 10
-    Top = 157
+    Left = 8
+    Top = 171
     Width = 32
     Height = 13
     Caption = 'Other'
@@ -84,8 +88,8 @@ object dlgImmunizations: TdlgImmunizations
     ParentFont = False
   end
   object lbOther2: TLabel
-    Left = 10
-    Top = 184
+    Left = 8
+    Top = 194
     Width = 32
     Height = 13
     Caption = 'Other'
@@ -97,8 +101,8 @@ object dlgImmunizations: TdlgImmunizations
     ParentFont = False
   end
   object lbOther3: TLabel
-    Left = 10
-    Top = 211
+    Left = 8
+    Top = 217
     Width = 32
     Height = 13
     Caption = 'Other'
@@ -110,8 +114,8 @@ object dlgImmunizations: TdlgImmunizations
     ParentFont = False
   end
   object lbOther4: TLabel
-    Left = 10
-    Top = 237
+    Left = 8
+    Top = 240
     Width = 32
     Height = 13
     Caption = 'Other'
@@ -124,15 +128,16 @@ object dlgImmunizations: TdlgImmunizations
   end
   object pnlfooter: TPanel
     Left = 0
-    Top = 276
-    Width = 557
+    Top = 264
+    Width = 621
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 21
-    ExplicitTop = 273
+    ExplicitTop = 276
+    ExplicitWidth = 557
     object bbtnOK: TBitBtn
-      Left = 400
+      Left = 464
       Top = 3
       Width = 75
       Height = 25
@@ -160,9 +165,10 @@ object dlgImmunizations: TdlgImmunizations
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
+      ExplicitLeft = 400
     end
     object bbtnCancel: TBitBtn
-      Left = 481
+      Left = 545
       Top = 3
       Width = 75
       Height = 25
@@ -171,10 +177,11 @@ object dlgImmunizations: TdlgImmunizations
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
+      ExplicitLeft = 481
     end
   end
   object lbInformation: TStaticText
-    Left = 10
+    Left = 8
     Top = 8
     Width = 283
     Height = 17
@@ -183,8 +190,8 @@ object dlgImmunizations: TdlgImmunizations
     TabStop = True
   end
   object dtTDAP: TORDateBox
-    Left = 80
-    Top = 31
+    Left = 175
+    Top = 28
     Width = 153
     Height = 21
     TabOrder = 1
@@ -193,8 +200,8 @@ object dlgImmunizations: TdlgImmunizations
     Caption = 'T D A P or T D'
   end
   object dtInfluenza: TORDateBox
-    Left = 80
-    Top = 58
+    Left = 175
+    Top = 77
     Width = 153
     Height = 21
     TabOrder = 3
@@ -203,8 +210,8 @@ object dlgImmunizations: TdlgImmunizations
     Caption = 'Influenza'
   end
   object dtMMR: TORDateBox
-    Left = 80
-    Top = 85
+    Left = 175
+    Top = 100
     Width = 153
     Height = 21
     TabOrder = 5
@@ -213,8 +220,8 @@ object dlgImmunizations: TdlgImmunizations
     Caption = 'M M R'
   end
   object dtVaricella: TORDateBox
-    Left = 80
-    Top = 112
+    Left = 175
+    Top = 136
     Width = 153
     Height = 21
     TabOrder = 7
@@ -223,36 +230,36 @@ object dlgImmunizations: TdlgImmunizations
     Caption = 'Varicella'
   end
   object edTDAP: TEdit
-    Left = 239
-    Top = 31
-    Width = 308
+    Left = 334
+    Top = 28
+    Width = 280
     Height = 21
     TabOrder = 2
   end
   object edInfluenza: TEdit
-    Left = 239
-    Top = 58
-    Width = 308
+    Left = 334
+    Top = 77
+    Width = 280
     Height = 21
     TabOrder = 4
   end
   object edMMR: TEdit
-    Left = 239
-    Top = 85
-    Width = 308
+    Left = 334
+    Top = 100
+    Width = 280
     Height = 21
     TabOrder = 6
   end
   object edVaricella: TEdit
-    Left = 239
-    Top = 112
-    Width = 308
+    Left = 334
+    Top = 136
+    Width = 280
     Height = 21
     TabOrder = 8
   end
   object dtOther1: TORDateBox
-    Left = 167
-    Top = 154
+    Left = 232
+    Top = 168
     Width = 153
     Height = 21
     TabOrder = 10
@@ -261,15 +268,15 @@ object dlgImmunizations: TdlgImmunizations
     Caption = 'Other'
   end
   object edOther1: TEdit
-    Left = 326
-    Top = 154
-    Width = 221
+    Left = 391
+    Top = 168
+    Width = 223
     Height = 21
     TabOrder = 11
   end
   object dtOther2: TORDateBox
-    Left = 167
-    Top = 181
+    Left = 232
+    Top = 191
     Width = 153
     Height = 21
     TabOrder = 13
@@ -278,15 +285,15 @@ object dlgImmunizations: TdlgImmunizations
     Caption = 'Other'
   end
   object edOther2: TEdit
-    Left = 326
-    Top = 181
-    Width = 221
+    Left = 391
+    Top = 191
+    Width = 223
     Height = 21
     TabOrder = 14
   end
   object dtOther3: TORDateBox
-    Left = 167
-    Top = 208
+    Left = 232
+    Top = 214
     Width = 153
     Height = 21
     TabOrder = 16
@@ -295,15 +302,15 @@ object dlgImmunizations: TdlgImmunizations
     Caption = 'Other'
   end
   object edOther3: TEdit
-    Left = 326
-    Top = 208
-    Width = 221
+    Left = 391
+    Top = 214
+    Width = 223
     Height = 21
     TabOrder = 17
   end
   object dtOther4: TORDateBox
-    Left = 167
-    Top = 234
+    Left = 232
+    Top = 237
     Width = 153
     Height = 21
     TabOrder = 19
@@ -312,37 +319,37 @@ object dlgImmunizations: TdlgImmunizations
     Caption = 'Other'
   end
   object edOther4: TEdit
-    Left = 326
-    Top = 235
-    Width = 221
+    Left = 391
+    Top = 237
+    Width = 223
     Height = 21
     TabOrder = 20
   end
   object edLabelOther1: TEdit
-    Left = 48
-    Top = 154
-    Width = 113
+    Left = 46
+    Top = 168
+    Width = 180
     Height = 21
     TabOrder = 9
   end
   object edLabelOther2: TEdit
-    Left = 48
-    Top = 181
-    Width = 113
+    Left = 46
+    Top = 191
+    Width = 180
     Height = 21
     TabOrder = 12
   end
   object edLabelOther3: TEdit
-    Left = 48
-    Top = 207
-    Width = 113
+    Left = 46
+    Top = 213
+    Width = 180
     Height = 21
     TabOrder = 15
   end
   object edLabelOther4: TEdit
-    Left = 48
-    Top = 235
-    Width = 113
+    Left = 46
+    Top = 238
+    Width = 180
     Height = 21
     TabOrder = 18
   end

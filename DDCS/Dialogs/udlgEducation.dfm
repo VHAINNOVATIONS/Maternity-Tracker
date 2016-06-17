@@ -26,7 +26,6 @@ object dlgEducation: TdlgEducation
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitTop = 325
     object bbtnOK: TBitBtn
       Left = 672
       Top = 4
@@ -83,6 +82,6 @@ object dlgEducation: TdlgEducation
     ViewStyle = vsReport
     OnColumnClick = educationListViewColumnClick
     OnCompare = educationListViewCompare
-    ExplicitHeight = 325
+    OnSelectItem = educationListViewSelectItem
   end
 end

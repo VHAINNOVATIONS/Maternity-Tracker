@@ -27,51 +27,51 @@ uses
 
 type
   TDDCSNoteItem = class(TCollectionItem)
-    private
-      FConfig: TStringList;
-      FAccess: string;
-      FIDName: string;
-      FTitle: string;
-      FPrefix: string;
-      FSuffix: string;
-      FSpace: Boolean;
-      FSave: Boolean;
-      FRestore: Boolean;
-      FHide: Boolean;
-      FObject: TWinControl;
-      FRequired: Boolean;
-      FReturn: TWinControl;
-    protected
-      procedure SetObject(Value: TWinControl);
-      procedure SetDialogReturn(Value: TWinControl);
-      function GetDisplayName: string; override;
-      function GetIDName: string;
-      function GetOrder: Integer;
-      function GetPage: TTabSheet;
-    public
-      constructor Create(Collection: TCollection); override;
-      destructor Destroy; override;
-      procedure Assign(Source: TPersistent); override;
-      procedure SetIndex(Value: Integer); override;
-      function IsValid: Boolean;
-      function GetValueNote: TStringList;
-      function GetValueSave: TStringList;
-      property Page: TTabSheet read GetPage;
-      property Configuration: TStringList read FConfig write FConfig;
-    published
-      property SayOnFocus: string read FAccess write FAccess;
-      property Order: Integer read GetOrder write SetIndex;
-      property IdentifyingName: string read GetIDName write FIDName;
-      property Title: string read FTitle write FTitle;
-      property Prefix: string read FPrefix write FPrefix;
-      property Suffix: string read FSuffix write FSuffix;
-      property DoNotSpace: Boolean read FSpace write FSpace;
-      property DoNotSave: Boolean read FSave write FSave;
-      property DoNotRestoreV: Boolean read FRestore write FRestore;
-      property HideFromNote: Boolean read FHide write FHide;
-      property OwningObject: TWinControl read  FObject write SetObject;
-      property Required: Boolean read FRequired write FRequired;
-      property DialogReturn: TWinControl read FReturn write SetDialogReturn;
+  private
+    FConfig: TStringList;
+    FAccess: string;
+    FIDName: string;
+    FTitle: string;
+    FPrefix: string;
+    FSuffix: string;
+    FSpace: Boolean;
+    FSave: Boolean;
+    FRestore: Boolean;
+    FHide: Boolean;
+    FObject: TWinControl;
+    FRequired: Boolean;
+    FReturn: TWinControl;
+  protected
+    procedure SetObject(Value: TWinControl);
+    procedure SetDialogReturn(Value: TWinControl);
+    function GetDisplayName: string; override;
+    function GetIDName: string;
+    function GetOrder: Integer;
+    function GetPage: TTabSheet;
+  public
+    constructor Create(Collection: TCollection); override;
+    destructor Destroy; override;
+    procedure Assign(Source: TPersistent); override;
+    procedure SetIndex(Value: Integer); override;
+    function IsValid: Boolean;
+    function GetValueNote: TStringList;
+    function GetValueSave: TStringList;
+    property Page: TTabSheet read GetPage;
+    property Configuration: TStringList read FConfig write FConfig;
+  published
+    property SayOnFocus: string read FAccess write FAccess;
+    property Order: Integer read GetOrder write SetIndex;
+    property IdentifyingName: string read GetIDName write FIDName;
+    property Title: string read FTitle write FTitle;
+    property Prefix: string read FPrefix write FPrefix;
+    property Suffix: string read FSuffix write FSuffix;
+    property DoNotSpace: Boolean read FSpace write FSpace;
+    property DoNotSave: Boolean read FSave write FSave;
+    property DoNotRestoreV: Boolean read FRestore write FRestore;
+    property HideFromNote: Boolean read FHide write FHide;
+    property OwningObject: TWinControl read  FObject write SetObject;
+    property Required: Boolean read FRequired write FRequired;
+    property DialogReturn: TWinControl read FReturn write SetDialogReturn;
   end;
 
   TDDCSNoteCollection = class(TOwnedCollection)

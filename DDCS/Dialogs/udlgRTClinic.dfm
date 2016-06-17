@@ -20,9 +20,9 @@ object dlgRTClinic: TdlgRTClinic
   object lbrtc: TLabel
     Left = 16
     Top = 14
-    Width = 93
+    Width = 89
     Height = 13
-    Caption = 'Return To Clinic'
+    Caption = 'Return to Clinic'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -39,7 +39,6 @@ object dlgRTClinic: TdlgRTClinic
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitTop = 46
     object bbtnOK: TBitBtn
       Left = 111
       Top = 3

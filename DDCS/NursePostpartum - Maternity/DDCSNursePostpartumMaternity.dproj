@@ -84,6 +84,8 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <VerInfo_Keys>CompanyName=Veterans Health Administration;FileDescription=;FileVersion=2.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=2.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
         <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
@@ -105,7 +107,7 @@
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
-        <VerInfo_Keys>CompanyName=Document Storage Systems, Inc.;FileDescription=DDCS Form for Nurse Postpartum Maternity;FileVersion=2.2.0.0;InternalName=NursePostpartumMaternity.dll;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.2.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Veterans Health Administration;FileDescription=DDCS Form for Nurse Postpartum Maternity;FileVersion=2.2.0.0;InternalName=NursePostpartumMaternity.dll;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.2.0.0;Comments=</VerInfo_Keys>
         <VerInfo_DLL>true</VerInfo_DLL>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_ExeOutput>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_output\v2\</DCC_ExeOutput>
@@ -192,16 +194,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
                 <DeployClass Name="ProjectOSXResource">
                     <Platform Name="OSX32">
                         <RemoteDir>Contents\Resources</RemoteDir>
@@ -515,7 +508,16 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>

@@ -21,7 +21,8 @@ interface
 
 uses
   Winapi.Windows, System.Classes, System.SysUtils, Vcl.Forms, Vcl.Controls,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage, Vcl.Graphics, JclFileUtils;
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage, Vcl.Graphics, JclFileUtils,
+  JvExExtCtrls, JvExtComponent, JvPanel;
 
 type
   TDDCSAbout = class(TForm)
@@ -29,11 +30,12 @@ type
     lbAppName: TStaticText;
     btnOk: TButton;
     imgVA: TImage;
+    lbLicense: TStaticText;
+    lbWebVA: TStaticText;
+    Panel1: TPanel;
     lbCompany: TStaticText;
     lbApache: TStaticText;
     lbCopyright: TStaticText;
-    lbLicense: TStaticText;
-    lbWebVA: TStaticText;
     procedure FormShow(Sender: TObject);
     procedure HyperLinkClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);

@@ -13,6 +13,7 @@ object fPreg: TfPreg
     Align = alClient
     Style = tsFlatButtons
     TabOrder = 1
+    OnChange = pgPregChange
   end
   object btnDelete: TBitBtn
     Left = 410

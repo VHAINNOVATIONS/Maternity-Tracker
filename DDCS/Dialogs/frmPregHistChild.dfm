@@ -33,9 +33,9 @@ object fChild: TfChild
   object lbComplications: TLabel
     Left = 11
     Top = 155
-    Width = 142
+    Width = 180
     Height = 13
-    Caption = 'Complications/Anomalies'
+    Caption = 'Complications and or Anomalies'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11

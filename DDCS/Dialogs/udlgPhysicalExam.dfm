@@ -167,6 +167,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 56
+        OnEnter = EditReadMe
       end
       object ORDateBox14: TORDateBox
         Tag = 14
@@ -332,6 +333,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 36
+        OnEnter = EditReadMe
       end
       object Edit8: TEdit
         Tag = 8
@@ -341,6 +343,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 32
+        OnEnter = EditReadMe
       end
       object Edit7: TEdit
         Tag = 7
@@ -350,6 +353,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 28
+        OnEnter = EditReadMe
       end
       object Edit6: TEdit
         Tag = 6
@@ -359,6 +363,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 24
+        OnEnter = EditReadMe
       end
       object Edit5: TEdit
         Tag = 5
@@ -368,6 +373,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 20
+        OnEnter = EditReadMe
       end
       object Edit4: TEdit
         Tag = 4
@@ -377,6 +383,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 16
+        OnEnter = EditReadMe
       end
       object Edit3: TEdit
         Tag = 3
@@ -386,6 +393,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 12
+        OnEnter = EditReadMe
       end
       object Edit2: TEdit
         Tag = 2
@@ -395,6 +403,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 8
+        OnEnter = EditReadMe
       end
       object Edit13: TEdit
         Tag = 13
@@ -404,6 +413,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 52
+        OnEnter = EditReadMe
       end
       object Edit12: TEdit
         Tag = 12
@@ -413,6 +423,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 48
+        OnEnter = EditReadMe
       end
       object Edit11: TEdit
         Tag = 11
@@ -422,6 +433,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 44
+        OnEnter = EditReadMe
       end
       object Edit10: TEdit
         Tag = 10
@@ -431,6 +443,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 40
+        OnEnter = EditReadMe
       end
       object Edit1: TEdit
         Tag = 1
@@ -440,6 +453,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 4
+        OnEnter = EditReadMe
       end
       object CheckBox1: TCheckBox
         Tag = 1
@@ -1148,6 +1162,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 60
+        OnEnter = EditReadMe
       end
       object ORDateBox15: TORDateBox
         Tag = 15
@@ -1778,6 +1793,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 4
+        OnEnter = EditReadMe
       end
       object Edit16: TEdit
         Tag = 25
@@ -1787,6 +1803,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 40
+        OnEnter = EditReadMe
       end
       object Edit17: TEdit
         Tag = 26
@@ -1796,6 +1813,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 44
+        OnEnter = EditReadMe
       end
       object Edit18: TEdit
         Tag = 27
@@ -1805,6 +1823,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 48
+        OnEnter = EditReadMe
       end
       object Edit20: TEdit
         Tag = 17
@@ -1814,6 +1833,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 8
+        OnEnter = EditReadMe
       end
       object Edit21: TEdit
         Tag = 18
@@ -1823,6 +1843,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 12
+        OnEnter = EditReadMe
       end
       object Edit22: TEdit
         Tag = 19
@@ -1832,6 +1853,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 16
+        OnEnter = EditReadMe
       end
       object Edit23: TEdit
         Tag = 20
@@ -1841,6 +1863,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 20
+        OnEnter = EditReadMe
       end
       object Edit24: TEdit
         Tag = 21
@@ -1850,6 +1873,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 24
+        OnEnter = EditReadMe
       end
       object Edit25: TEdit
         Tag = 22
@@ -1859,6 +1883,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 28
+        OnEnter = EditReadMe
       end
       object Edit26: TEdit
         Tag = 23
@@ -1868,6 +1893,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 32
+        OnEnter = EditReadMe
       end
       object Edit27: TEdit
         Tag = 24
@@ -1877,6 +1903,7 @@ object dlgPhysicalExam: TdlgPhysicalExam
         Height = 22
         Enabled = False
         TabOrder = 36
+        OnEnter = EditReadMe
       end
       object ORDateBox16: TORDateBox
         Tag = 16
