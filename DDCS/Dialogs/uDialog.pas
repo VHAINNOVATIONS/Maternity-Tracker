@@ -54,6 +54,9 @@ Type
     destructor Destroy; override;
     function Add: TConfigItem; overload;
     function Insert(Index: Integer): TConfigItem;
+    function LookUp(p1,p2,p3: string): TConfigItem;
+    function CollectiveText: TStringList;
+    function ValidPieces(p1,p2,p3: string): Boolean;
     property Pieces[Index: Integer]: Integer read GetValue write SetValue;
     property TotalIDPieces: Integer read GetCount;
     property Delimiter: Char read FDelimiter write FDelimiter default '^';
@@ -112,30 +115,11 @@ end;
 // Private ---------------------------------------------------------------------
 
 procedure TConfigItem.SetValue(Index: Integer; Value: string);
-var
-  I: Integer;
-  flg: Boolean;
 begin
-  if Length(FID) = 0 then
-  begin
-    SetLength(FID, 1);
-    FID[0] := Value;
-  end else
-  begin
-    for I := 0 to Length(FID) - 1 do
-      if FID[I] = '' then
-      begin
-        FID[I] := Value;
-        flg := True;
-        Break;
-      end;
+  if (Index < 0) or (Index > 2) then
+    Exit;
 
-    if not flg then
-    begin
-      SetLength(FID, Length(FID) + 1);
-      FID[Length(FID) - 1] := Value;
-    end;
-  end;
+  FID[Index] := Value;
 end;
 
 procedure TConfigItem.SetPiece(Index: Integer; Value: string);
@@ -163,7 +147,10 @@ end;
 
 function TConfigItem.GetValue(Index: Integer): string;
 begin
-   Result := FID[Index];
+  Result := '';
+  if (Index < 0) or (Index > (Length(FID) - 1)) then
+    Exit;
+  Result := FID[Index];
 end;
 
 function TConfigItem.GetPiece(Index: Integer): string;
@@ -179,6 +166,7 @@ constructor TConfigItem.Create(Collection: TCollection);
 begin
   inherited;
 
+  SetLength(FID, 3);
   FData := TStringList.Create;
 end;
 
@@ -197,30 +185,13 @@ end;
 // Private ---------------------------------------------------------------------
 
 procedure TConfigCollection.SetValue(Index: Integer; Value: Integer);
-var
-  I: Integer;
-  flg: Boolean;
 begin
-  if Length(FPieces) = 0 then
-  begin
-    SetLength(FPieces, 1);
-    FPieces[0] := Value;
-  end else
-  begin
-    for I := 0 to Length(FPieces) - 1 do
-      if FPieces[I] < 1 then
-      begin
-        FPieces[I] := Value;
-        flg := True;
-        Break;
-      end;
+  if Length(FPieces) < 3 then
+    SetLength(FPieces, 3);
+  if (Index < 0) or (Index > 2) then
+    Exit;
 
-    if not flg then
-    begin
-      SetLength(FPieces, Length(FPieces) + 1);
-      FPieces[Length(FPieces) - 1] := Value;
-    end;
-  end;
+  FPieces[Index] := Value;
 end;
 
 procedure TConfigCollection.SetItem(Index: Integer; Value: TConfigItem);
@@ -230,7 +201,12 @@ end;
 
 function TConfigCollection.GetValue(Index: Integer): Integer;
 begin
-   Result := FPieces[Index];
+  if Length(FPieces) < 3 then
+    SetLength(FPieces, 3);
+  Result := -1;
+  if (Index < 0) or (Index > (Length(FPieces) - 1)) then
+    Exit;
+  Result := FPieces[Index];
 end;
 
 function TConfigCollection.GetCount: Integer;
@@ -238,8 +214,6 @@ var
   I: Integer;
 begin
   Result := 0;
-  if Length(FPieces) = 0 then
-    Exit;
 
   for I := 0 to Length(FPieces) - 1 do
     if FPieces[I] <> 0 then
@@ -268,6 +242,62 @@ end;
 function TConfigCollection.Insert(Index: Integer): TConfigItem;
 begin
   Result := TConfigItem(inherited Insert(Index));
+end;
+
+function TConfigCollection.LookUp(p1,p2,p3: string): TConfigItem;
+var
+  I: Integer;
+begin
+  Result := nil;
+  for I := 0 to Count - 1 do
+    if ((Items[I].ID[0] = p1) and (Items[I].ID[1] = p2) and (Items[I].ID[2] = p3)) then
+    begin
+      Result := Items[I];
+      Break;
+    end;
+end;
+
+function TConfigCollection.CollectiveText: TStringList;
+var
+  I: Integer;
+begin
+  Result := TStringList.Create;
+  for I := 0 to Count - 1 do
+    Result.AddStrings(Items[I].Data);
+end;
+
+function TConfigCollection.ValidPieces(p1,p2,p3: string): Boolean;
+
+  function CheckPiece(p: string): Boolean;
+  const
+    ALPHA = ['a'..'z', 'A'..'Z'];
+  begin
+    Result := False;
+
+    if (StrToIntDef(p, 0) > 0) or ((Length(p) = 1) and (p[1] in ALPHA)) then
+      Result := True;
+  end;
+
+begin
+  Result := True;
+  if GetCount < 1 then
+    Exit;
+
+  Result := CheckPiece(p1);
+  if not Result then
+    Exit;
+
+  if GetCount < 2 then
+    Exit;
+
+  Result := CheckPiece(p2);
+  if not Result then
+    Exit;
+
+  if GetCount < 3 then
+    Exit;
+
+  Result := CheckPiece(p3);
 end;
 
 {$ENDREGION}
@@ -374,7 +404,7 @@ var
   sl,dl: TStringList;
   I,cI,cII,cIII: Integer;
   wControl: TWinControl;
-  cID,tmp: string;
+  p1,p2,p3,cID,tmp: string;
   cD: Char;
   cItem: TConfigItem;
 
@@ -487,10 +517,28 @@ begin
 
           for I := 1 to sl.Count - 1 do
           begin
-            cItem := TConfigItem.Create(FConfiguration);
-            cItem.ID[0] := Piece(sl[I],cD,cI);
-            cItem.ID[1] := Piece(sl[I],cD,cII);
-            cItem.ID[2] := Piece(sl[I],cD,cIII);
+            if CI > 0 then
+              p1 := Piece(sl[I],cD,cI)
+            else p1 := '';
+            if CII > 0 then
+              p2 := Piece(sl[I],cD,cII)
+            else p2 := '';
+            if CIII > 0 then
+              p3 := Piece(sl[I],cD,cIII)
+            else p3 := '';
+
+            if ((not FConfiguration.ValidPieces(p1,p2,p3)) and (FConfiguration.Count > 0)) then
+              cItem := FConfiguration.Items[FConfiguration.Count - 1]
+            else
+            begin
+              cItem := FConfiguration.LookUp(p1, p2, p3);
+              if cItem = nil then
+                cItem := TConfigItem.Create(FConfiguration);
+            end;
+
+            cItem.ID[0] := p1;
+            cItem.ID[1] := p2;
+            cItem.ID[2] := p3;
             cItem.Data.Text := sl[I];
           end;
         end;
@@ -554,7 +602,13 @@ begin
     if sl.Count > 0 then
     try
       if UpdateContext(MENU_CONTEXT) then
+      begin
         CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.Source.IEN, FIEN + ';DSIO(19641.49,', sl]);
+
+        if Configuration.Count > 0 then
+          CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.Source.IEN, FIEN + ';DSIO(19641.49,',
+                                    Configuration.CollectiveText, 'C']);
+      end;
     except
       on E: Exception do
       ShowMsg(E.Message, smiError, smbOK);

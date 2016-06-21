@@ -116,12 +116,12 @@ end;
 
 procedure TdlgPregHist.FormShow(Sender: TObject);
 var
-  I: Integer;
+  I,G,J,L: Integer;
   vPreg: TfPreg;
   vPregInfo: TfPregInfo;
   vPregChild: TfChild;
   cItem: TConfigItem;
-  tmp: string;
+  tmp,btmp: string;
 begin
   //   1) L
   //   2) IEN
@@ -150,6 +150,7 @@ begin
   //  B^IEN|BABY|#^COMMENT
 
   if Configuration.Count > 0 then
+  begin
     for I := 0 to Configuration.Count - 1 do
     begin
       cItem := Configuration.Items[I];
@@ -167,8 +168,6 @@ begin
         else
           edtTotPreg.Value := edtTotPreg.Value + 1;
         // ---------------------------------------------------------------------
-
-        cItem.Piece[20] := 'OH YEAH!';
 
         // ---- Get the Pregnancy Info Form ------------------------------------
         if pgPregnancy.Pages[pgPregnancy.PageCount - 1].ControlCount > 0 then
@@ -209,77 +208,87 @@ begin
 
               vPregInfo.rgPretermDelivery.ItemIndex := StrToIntDef(cItem.Piece[17], 0);
 
+              if vPregInfo.cbOutcome.Enabled then
+              begin
+                tmp := cItem.Piece[20];
+                if vPregInfo.cbOutcome.Items.IndexOf(tmp) = -1 then
+                  vPregInfo.cbOutcome.Items.Add(tmp);
+                vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf(tmp);
+              end;
 
+              vPregInfo.edtDeliveryAt.Value := StrToIntDef(cItem.Piece[22], 0);
+
+              // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
+              tmp := cItem.Piece[19];
+              if tmp <> '' then
+              begin
+                G := SubCount(tmp,'|') + 1;
+                for J := 1 to G do
+                begin
+                  btmp := Piece(tmp,'|',J);
+                  // ---- Add the Baby Tab ---------------------------------------
+                  vPregInfo.spnBirthCount.Value := vPregInfo.spnBirthCount.Value + 1;
+                  // -------------------------------------------------------------
+
+                  // ---- Get the Baby Info Form ---------------------------------
+                  if vPreg.pgPreg.PageCount > 1 then
+                    if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].ControlCount > 0 then
+                      if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0] is TfChild then
+                      begin
+                        vPregChild := TfChild(vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0]);
+
+                        // IEN
+                        vPregChild.BabyIEN := Piece(btmp,';',1);
+
+                        // Baby #
+                        // vPregChild.BabyNumber := Piece(btmp,';',2);
+
+                        // Sex
+                        if Piece(btmp,';',4) = 'M' then
+                          vPregChild.rgSex.ItemIndex := 0
+                        else if Piece(btmp,';',4) = 'F' then
+                          vPregChild.rgSex.ItemIndex := 1
+                        else if Piece(btmp,';',4) = 'U' then
+                          vPregChild.rgSex.ItemIndex := 2;
+
+                        // Weight
+                        vPregChild.spnG.Value := StrToIntDef(Piece(btmp,';',5), 0);
+
+                        // Stillborn - set status to demise
+                        vPregChild.rgLife.ItemIndex := StrToIntDef(Piece(btmp,';',6), 0);
+                        // Status
+                        if Piece(btmp,';',9) = 'D' then
+                         vPregChild.rgLife.ItemIndex := 1;
+
+                        // APGAR1
+                        vPregChild.edAPGARone.Text := Piece(btmp,';',7);
+
+                        // APGAR2
+                        vPregChild.edAPGARfive.Text := Piece(btmp,';',8);
+
+                        // NICU
+                        vPregChild.ckNICU.Checked := (Piece(btmp,';',10) = '1');
+
+                        // Baby Notes
+                        cItem := Configuration.LookUp('B', IntToStr(vPreg.PregnancyIEN) + '|' +
+                                                      vPregChild.BabyIEN + '|' + vPregChild.BabyNumber, '');
+                        if cItem <> nil then
+                          for L := 0 to cItem.Data.Count - 1 do
+                            vPregChild.meComplications.Lines.Add(Pieces(cItem.Data[L],U,3,9999));
+                      end;
+                end;
+              end;
+
+              // Delivery Notes
+              cItem := Configuration.LookUp('C', IntToStr(vPreg.PregnancyIEN), '');
+              if cItem <> nil then
+                for J := 0 to cItem.Data.Count - 1 do
+                  vPregInfo.meDeliveryNotes.Lines.Add(Pieces(cItem.Data[J],U,3,9999));
             end;
-
-
-//             // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
-//             17: begin
-//                   bJ := SubCount(val,'|') + 1;
-//
-//                   for bI := 1 to bJ do
-//                   begin
-//                     bval := Piece(val,'|',bI);
-//                     // ---- Add the Baby Tab ---------------------------------
-//                     vPregInfo.spnBirthCount.Value := vPregInfo.spnBirthCount.Value + 1;
-//                     // -------------------------------------------------------
-//
-//                     // ---- Get the Baby Info Form ---------------------------
-//                     if vPreg.pgPreg.PageCount > 1 then
-//                       if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].ControlCount > 0 then
-//                         if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0] is TfChild then
-//                         begin
-//                           vPregChild := TfChild(vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0]);
-//
-//                           // IEN
-//                           vPregChild.BabyIEN := StrToIntDef(Piece(bval,';',1), 0);
-//
-//                           // Baby #
-//                           vPregChild.BabyNumber := StrToIntDef(Piece(bval,';',2), 0);
-//
-//                           // Sex
-//                           if Piece(bval,';',4) = 'M' then
-//                             vPregChild.rgSex.ItemIndex := 0
-//                           else if Piece(bval,';',4) = 'F' then
-//                             vPregChild.rgSex.ItemIndex := 1
-//                           else if Piece(bval,';',4) = 'U' then
-//                             vPregChild.rgSex.ItemIndex := 2;
-//
-//                           // Weight
-//                           vPregChild.spnG.Value := StrToIntDef(Piece(bval,';',5), 0);
-//
-//                           // Stillborn - set status to demise
-//                           vPregChild.rgLife.ItemIndex := StrToIntDef(Piece(bval,';',6), 0);
-//                           // Status
-//                           if Piece(bval,';',9) = 'D' then
-//                             vPregChild.rgLife.ItemIndex := 1;
-//
-//                           // APGAR1
-//                           vPregChild.edAPGARone.Text := Piece(bval,';',7);
-//
-//                           // APGAR2
-//                           vPregChild.edAPGARfive.Text := Piece(bval,';',8);
-//
-//                           // NICU
-//                           vPregChild.ckNICU.Checked := (Piece(bval,';',10) = '1');
-//                         end;
-//                   end;
-//                 end;
-//             18: begin                                                          // OUTCOME
-//                   if vPregInfo.cbOutcome.Enabled then
-//                   begin
-//                     if vPregInfo.cbOutcome.Items.IndexOf(val) = -1 then
-//                       vPregInfo.cbOutcome.Items.Add(val);
-//                     vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf(val);
-//                   end;
-//                 end;
-//             19: ;                                                              // HIGH RISK FLAG
-//             20: vPregInfo.edtDeliveryAt.Value := StrToIntDef(val, 0);          // DAYS IN HOSPITAL
-//            end;
-
-        end;
+          end;
       end;
     end;
+  end;
 
   if pgPregnancy.PageCount > 0 then
     pgPregnancy.ActivePageIndex := 0;
@@ -405,11 +414,10 @@ end;
 
 procedure TdlgPregHist.btnOKClick(Sender: TObject);
 var
-  I: Integer;
+  I,J,nPreg: Integer;
   vPreg: TfPreg;
   vPregInfo: TfPregInfo;
-  vChildren: string;
-  vPregChild: TfChild;
+  PregID: string;
   cItem: TConfigItem;
 begin
   TmpStrList.Add('Pregnancy History: ');
@@ -422,6 +430,7 @@ begin
   TmpStrList.Add('  Multiple Births: ' + lbMultipleBirthsValue.Caption);
   TmpStrList.Add('  Living: ' + lbLivingValue.Caption);
 
+  nPreg := 0;
   for I := 0 to pgPregnancy.PageCount - 1 do
     if pgPregnancy.Pages[I].ControlCount > 0 then
       if pgPregnancy.Pages[I].Controls[0] is TfPreg then
@@ -429,8 +438,35 @@ begin
         vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
         TmpStrList.AddStrings(vPreg.GetText);
 
-        // Add to Configuration
+        inc(nPreg);
+        if vPreg.PregnancyIEN < 1 then
+          PregID := '+' + IntToStr(nPreg)
+        else PregID := IntToStr(vPreg.PregnancyIEN);
 
+        // Pregnancy Info
+        cItem := Configuration.LookUp('L', PregID, '');
+        if cItem = nil then
+        begin
+          cItem := TConfigItem.Create(Configuration);
+          cItem.ID[0] := 'L';
+          cItem.ID[1] := PregID;
+          cItem.Data.Add('');
+        end;
+        cItem.Data[0] := vPreg.GetSavePregInfo(PregID);
+
+        // Pregnancy Comments
+        cItem := Configuration.LookUp('C', PregID, '');
+        if cItem = nil then
+        begin
+          cItem := TConfigItem.Create(Configuration);
+          cItem.ID[0] := 'C';
+          cItem.ID[1] := PregID;
+        end;
+        cItem.Data.Clear;
+        cItem.Data.AddStrings(vPreg.GetSavePregComments(PregID));
+
+        // Baby Comments
+        vPreg.GetSaveChildComments(PregID);
       end;
 end;
 

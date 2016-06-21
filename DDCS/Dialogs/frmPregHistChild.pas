@@ -51,18 +51,19 @@ type
     procedure rgLifeClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
   private
-    FBabyIEN: Integer;
-    FBabyNum: Integer;
+    FBabyIEN: string;
     procedure OnChangeNil;
     procedure OnChangeRestore;
     procedure UpdateGrams;
+    function GetBabyIEN: string;
+    function GetBabyNumber: string;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     function GetText: TStringList;
     function GetV: string;
-    property BabyIEN: Integer read FBabyIEN write FBabyIEN default 0;
-    property BabyNumber: Integer read FBabyNum write FBabyNum default 0;
+    property BabyIEN: string read GetBabyIEN write FBabyIEN;
+    property BabyNumber: string read GetBabyNumber;
   end;
 
 implementation
@@ -197,6 +198,21 @@ begin
   OnChangeRestore;
 end;
 
+function TfChild.GetBabyIEN: string;
+begin
+  if StrToIntDef(FBabyIEN, 0) < 1 then
+    FBabyIEN := '+';
+
+  Result := FBabyIEN;
+end;
+
+function TfChild.GetBabyNumber: string;
+begin
+  if Owner <> nil then
+    if Owner is TTabSheet then
+      Result := IntToStr(TTabSheet(Owner).TabIndex);
+end;
+
 // Public ----------------------------------------------------------------------
 
 constructor TfChild.Create(AOwner: TComponent);
@@ -311,7 +327,7 @@ function TfChild.GetV: string;
 
 begin
   // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
-  Result := IntToStr(BabyIEN) + ';' + IntToStr(BabyNumber) + ';;' + GetSex + ';' +
+  Result := BabyIEN + ';' + BabyNumber + ';;' + GetSex + ';' +
             spnG.Text + ';' + IntToStr(rgLife.ItemIndex) + ';' + edAPGARone.Text +
             ';' + edAPGARfive.Text + ';' + GetLife + ';' + GetNICU + '|';
 end;
