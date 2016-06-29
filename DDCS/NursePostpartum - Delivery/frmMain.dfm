@@ -1,7 +1,6 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  ActiveControl = dtDelivery
   Caption = 'Nurse Postpartum - Delivery'
   ClientHeight = 463
   ClientWidth = 742
@@ -248,6 +247,24 @@ object Form1: TForm1
         HideFromNote = False
         OwningObject = edProceduresOther
         Required = False
+      end
+      item
+        Order = 4
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
+        OwningObject = Panel1
+        Required = False
+      end
+      item
+        Order = 5
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
+        OwningObject = spnGAWeeks
+        Required = False
       end>
     OnOverrideNote = Finished
     object oPage1: TTabSheet
@@ -256,17 +273,17 @@ object Form1: TForm1
         734
         398)
       object lbGADays: TLabel
-        Left = 338
+        Left = 334
         Top = 110
         Width = 24
         Height = 13
         Caption = 'Days'
       end
-      object lbDeliveryDate: TStaticText
+      object lbDeliveryDate: TLabel
         Left = 19
         Top = 19
-        Width = 81
-        Height = 17
+        Width = 78
+        Height = 13
         Caption = 'Delivery Date'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -274,23 +291,12 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 0
       end
-      object dtDelivery: TORDateBox
-        Left = 187
-        Top = 15
-        Width = 166
-        Height = 21
-        TabOrder = 1
-        DateOnly = True
-        RequireTime = False
-        Caption = 'Delivery Date'
-      end
-      object lbDischargeDate: TStaticText
+      object lbDischargeDate: TLabel
         Left = 19
         Top = 50
-        Width = 145
-        Height = 17
+        Width = 142
+        Height = 13
         Caption = 'Maternal Discharge Date'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -298,13 +304,12 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 2
       end
-      object lbDaysIn: TStaticText
+      object lbDaysIn: TLabel
         Left = 19
         Top = 79
-        Width = 200
-        Height = 17
+        Width = 197
+        Height = 13
         Caption = 'Days in Hospital following Delivery'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -312,13 +317,12 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 4
       end
-      object lbAnesthesia: TStaticText
+      object lbAnesthesia: TLabel
         Left = 19
         Top = 142
-        Width = 66
-        Height = 17
+        Width = 63
+        Height = 13
         Caption = 'Anesthesia'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -326,13 +330,12 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 9
       end
-      object lbLabor: TStaticText
+      object lbLabor: TLabel
         Left = 395
         Top = 79
-        Width = 36
-        Height = 17
+        Width = 33
+        Height = 13
         Caption = 'Labor'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -340,13 +343,12 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 12
       end
-      object lbDeliveryNotes: TStaticText
+      object lbDeliveryNotes: TLabel
         Left = 19
         Top = 209
-        Width = 87
-        Height = 17
+        Width = 84
+        Height = 13
         Caption = 'Delivery Notes'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -354,13 +356,12 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 20
       end
-      object lbGestationalAge: TStaticText
+      object lbGestationalAge: TLabel
         Left = 19
         Top = 111
-        Width = 94
-        Height = 17
+        Width = 91
+        Height = 13
         Caption = 'Gestational Age'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -368,13 +369,12 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 6
       end
-      object lbLaborLength: TStaticText
+      object lbLaborLength: TLabel
         Left = 395
         Top = 111
-        Width = 143
-        Height = 17
+        Width = 140
+        Height = 13
         Caption = 'Length of Labor in hours'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -382,13 +382,12 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 14
       end
-      object lbDeliveryPlace: TStaticText
+      object lbDeliveryPlace: TLabel
         Left = 19
         Top = 178
-        Width = 101
-        Height = 17
+        Width = 98
+        Height = 13
         Caption = 'Place of Delivery'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -396,13 +395,12 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 18
       end
-      object lbOutcome: TStaticText
+      object lbOutcome: TLabel
         Left = 395
         Top = 142
-        Width = 54
-        Height = 17
+        Width = 51
+        Height = 13
         Caption = 'Outcome'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -410,14 +408,36 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 16
+      end
+      object lbGAWeeks: TLabel
+        Left = 240
+        Top = 111
+        Width = 34
+        Height = 13
+        Caption = 'Weeks'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        ParentFont = False
+      end
+      object dtDelivery: TORDateBox
+        Left = 187
+        Top = 15
+        Width = 166
+        Height = 21
+        TabOrder = 0
+        DateOnly = True
+        RequireTime = False
+        Caption = 'Delivery Date'
       end
       object dtMaternal: TORDateBox
         Left = 187
         Top = 46
         Width = 166
         Height = 21
-        TabOrder = 3
+        TabOrder = 1
         DateOnly = False
         RequireTime = False
         Caption = 'Maternal Discharge Date'
@@ -429,7 +449,7 @@ object Form1: TForm1
         Height = 22
         MaxValue = 0
         MinValue = 0
-        TabOrder = 5
+        TabOrder = 2
         Value = 0
         OnChange = SpinCheck
       end
@@ -439,7 +459,7 @@ object Form1: TForm1
         Width = 166
         Height = 21
         Style = csDropDownList
-        TabOrder = 10
+        TabOrder = 5
         Caption = 'Anesthesia'
       end
       object cbLabor: TCaptionComboBox
@@ -448,7 +468,7 @@ object Form1: TForm1
         Width = 162
         Height = 21
         Style = csDropDownList
-        TabOrder = 13
+        TabOrder = 7
         Caption = 'Labor'
       end
       object rgPretermDelivery: TRadioGroup
@@ -467,7 +487,7 @@ object Form1: TForm1
           'No'
           'Yes')
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 6
         TabStop = True
         OnClick = rgPretermDeliveryClick
       end
@@ -478,31 +498,28 @@ object Form1: TForm1
         Height = 22
         MaxValue = 0
         MinValue = 0
-        TabOrder = 15
-        Value = 0
-        OnChange = SpinCheck
-      end
-      object spnGADays: TSpinEdit
-        Left = 282
-        Top = 107
-        Width = 50
-        Height = 22
-        MaxValue = 0
-        MinValue = 0
         TabOrder = 8
         Value = 0
-        OnChange = spnGADaysChange
-      end
-      object spnGAWeeks: TSpinEdit
-        Left = 187
-        Top = 107
-        Width = 50
-        Height = 22
-        MaxValue = 0
-        MinValue = 0
-        TabOrder = 7
-        Value = 0
         OnChange = SpinCheck
+      end
+      object Panel1: TPanel
+        Left = 282
+        Top = 105
+        Width = 51
+        Height = 23
+        BevelOuter = bvNone
+        TabOrder = 4
+        object spnGADays: TSpinEdit
+          Left = 0
+          Top = 0
+          Width = 50
+          Height = 22
+          MaxValue = 0
+          MinValue = 0
+          TabOrder = 0
+          Value = 0
+          OnChange = spnGADaysChange
+        end
       end
       object cbDeliveryPlace: TCaptionComboBox
         Left = 132
@@ -510,7 +527,7 @@ object Form1: TForm1
         Width = 485
         Height = 21
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 19
+        TabOrder = 10
         Caption = 'Place of Delivery'
       end
       object cbOutcome: TCaptionComboBox
@@ -519,22 +536,8 @@ object Form1: TForm1
         Width = 162
         Height = 21
         Style = csDropDownList
-        TabOrder = 17
+        TabOrder = 9
         Caption = 'Outcome'
-      end
-      object StaticText1: TStaticText
-        Left = 242
-        Top = 111
-        Width = 38
-        Height = 17
-        Caption = 'Weeks'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 29
       end
       object meDeliveryNotes: TCaptionMemo
         Left = 19
@@ -544,8 +547,19 @@ object Form1: TForm1
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
         ScrollBars = ssVertical
-        TabOrder = 21
+        TabOrder = 11
         Caption = 'Delivery Notes'
+      end
+      object spnGAWeeks: TSpinEdit
+        Left = 187
+        Top = 105
+        Width = 50
+        Height = 22
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 3
+        Value = 0
+        OnChange = SpinCheck
       end
     end
     object oPage2: TTabSheet
@@ -558,22 +572,11 @@ object Form1: TForm1
         Align = alTop
         BorderStyle = bsSingle
         TabOrder = 0
-        object spnBirthCount: TSpinEdit
-          Left = 156
-          Top = 7
-          Width = 41
-          Height = 22
-          MaxValue = 0
-          MinValue = 0
-          TabOrder = 1
-          Value = 0
-          OnChange = spnBirthCountChange
-        end
-        object lbBirthCount: TStaticText
+        object lbBirthCount: TLabel
           Left = 19
           Top = 11
-          Width = 131
-          Height = 17
+          Width = 128
+          Height = 13
           Caption = 'Total Number of Births'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -581,7 +584,17 @@ object Form1: TForm1
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           ParentFont = False
+        end
+        object spnBirthCount: TSpinEdit
+          Left = 156
+          Top = 7
+          Width = 41
+          Height = 22
+          MaxValue = 0
+          MinValue = 0
           TabOrder = 0
+          Value = 0
+          OnChange = spnBirthCountChange
         end
       end
       object pnlSpacer: TPanel
@@ -718,19 +731,18 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 1
         TabStop = True
-        object lbCesareanReasons: TStaticText
+        object lbCesareanReasons: TLabel
           Left = 19
           Top = 101
-          Width = 142
-          Height = 17
+          Width = 138
+          Height = 13
           Caption = 'Indications for Cesarean'
-          TabOrder = 4
         end
-        object lbReasonsCPrimary: TStaticText
+        object lbReasonsCPrimary: TLabel
           Left = 19
           Top = 120
-          Width = 40
-          Height = 17
+          Width = 36
+          Height = 13
           Caption = 'Primary'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -738,13 +750,12 @@ object Form1: TForm1
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 6
         end
-        object lbReasonsCSecondary: TStaticText
+        object lbReasonsCSecondary: TLabel
           Left = 19
           Top = 147
-          Width = 55
-          Height = 17
+          Width = 51
+          Height = 13
           Caption = 'Secondary'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -752,15 +763,13 @@ object Form1: TForm1
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 9
         end
-        object lbReasonforCOther: TStaticText
+        object lbReasonforCOther: TLabel
           Left = 275
           Top = 101
-          Width = 36
-          Height = 17
+          Width = 32
+          Height = 13
           Caption = 'Other'
-          TabOrder = 5
         end
         object ckCPrimaryFor: TCheckBox
           Left = 19
@@ -814,7 +823,7 @@ object Form1: TForm1
             'Low Transverse'
             'Low Vertical'
             'Classical')
-          TabOrder = 12
+          TabOrder = 8
           TabStop = True
         end
         object ckRepeatwoLabor: TCheckBox
@@ -843,7 +852,7 @@ object Form1: TForm1
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 7
+          TabOrder = 4
           Caption = 'Primary Indications for Cesarean'
         end
         object cbReasonsCSecondary: TCaptionComboBox
@@ -858,7 +867,7 @@ object Form1: TForm1
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 10
+          TabOrder = 6
           Caption = 'Secondary Indications for Cesarean'
         end
         object edReasonsCOthPrimary: TEdit
@@ -872,7 +881,7 @@ object Form1: TForm1
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 8
+          TabOrder = 5
         end
         object edReasonsCOthSecondary: TEdit
           Left = 275
@@ -885,7 +894,7 @@ object Form1: TForm1
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 11
+          TabOrder = 7
         end
       end
       object gbOtherProcedures: TGroupBox
@@ -902,6 +911,13 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 2
         TabStop = True
+        object lbProceduresOther: TLabel
+          Left = 301
+          Top = 92
+          Width = 32
+          Height = 13
+          Caption = 'Other'
+        end
         object ckProUterineCurettage: TCheckBox
           Left = 23
           Top = 67
@@ -1000,14 +1016,6 @@ object Form1: TForm1
           ParentFont = False
           TabOrder = 6
         end
-        object lbProceduresOther: TStaticText
-          Left = 301
-          Top = 92
-          Width = 35
-          Height = 17
-          Caption = 'Other'
-          TabOrder = 7
-        end
         object edProceduresOther: TEdit
           Left = 342
           Top = 88
@@ -1019,7 +1027,7 @@ object Form1: TForm1
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           ParentFont = False
-          TabOrder = 8
+          TabOrder = 7
         end
       end
       object ckDeliveryMethodV: TCheckBox
@@ -1046,10 +1054,6 @@ object Form1: TForm1
     object oPage4: TTabSheet
       Caption = 'Data Control'
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lstDelivery: TListView
         Left = 0
         Top = 0

@@ -91,6 +91,7 @@ type
     lbActiveMedications: TLabel;
     memoMedicationsNar: TMemo;
     memoMedications: TMemo;
+    ckAllergyLatex: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ClearTextClick(Sender: TObject);
@@ -99,6 +100,7 @@ type
     procedure pnlMedicationsResize(Sender: TObject);
     procedure pnlProblemsResize(Sender: TObject);
     procedure pnlAllergiesResize(Sender: TObject);
+    procedure ckAllergyLatexClick(Sender: TObject);
     procedure RadioGroupHistoryClick(Sender: TObject);
     procedure pnlHistoryCategoriesEnter(Sender: TObject);
     procedure cklstProblemsClickCheck(Sender: TObject);
@@ -262,7 +264,7 @@ procedure TForm1.pnlProblemsResize(Sender: TObject);
 var
   mHeight: Integer;
 begin
-  mHeight := (pnlMedications.Height - 27) div 2;
+  mHeight := (pnlProblems.Height - 27) div 2;
 
   memoProblems.Top := 0;
   memoProblems.Height := mHeight;
@@ -275,13 +277,28 @@ procedure TForm1.pnlAllergiesResize(Sender: TObject);
 var
   mHeight: Integer;
 begin
-  mHeight := (pnlMedications.Height - 27) div 2;
+  mHeight := (pnlAllergies.Height - 27) div 2;
 
   memoAllergies.Top := 0;
   memoAllergies.Height := mHeight;
-  lbAllergies.Top := mHeight + 10;
-  memoAllergiesNar.Top := mHeight + 27;
-  memoAllergiesNar.Height := mHeight;
+  ckAllergyLatex.Top := mHeight + 10;
+  lbAllergies.Top := ckAllergyLatex.Top + ckAllergyLatex.Height + 10;
+  memoAllergiesNar.Top := lbAllergies.Top + lbAllergies.Height + 5;
+  memoAllergiesNar.Height := pnlAllergies.Height - memoAllergiesNar.Top;
+end;
+
+procedure TForm1.ckAllergyLatexClick(Sender: TObject);
+begin
+  if not ckAllergyLatex.Checked then
+    Exit;
+
+  if ShowMsg('By checking this box I do hereby certify that I have verified that ' +
+              RPCBrokerV.PatientName + ' is not allergic to Latex.', smiWarning, smbYesNo) <> smrYes then
+  begin
+    ckAllergyLatex.OnClick := nil;
+    ckAllergyLatex.Checked := False;
+    ckAllergyLatex.OnClick := ckAllergyLatexClick;
+  end;
 end;
 
 //-------------------------------------------------------------------- page 5

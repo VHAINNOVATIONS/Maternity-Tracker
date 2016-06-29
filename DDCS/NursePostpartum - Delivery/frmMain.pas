@@ -32,16 +32,16 @@ type
     oPage2: TTabSheet;
     oPage3: TTabSheet;
     oPage4: TTabSheet;
-    lbDeliveryDate: TStaticText;
-    lbDischargeDate: TStaticText;
-    lbDaysIn: TStaticText;
-    lbAnesthesia: TStaticText;
-    lbLabor: TStaticText;
-    lbDeliveryNotes: TStaticText;
-    lbGestationalAge: TStaticText;
-    lbLaborLength: TStaticText;
-    lbDeliveryPlace: TStaticText;
-    lbOutcome: TStaticText;
+    lbDeliveryDate: TLabel;
+    lbDischargeDate: TLabel;
+    lbDaysIn: TLabel;
+    lbAnesthesia: TLabel;
+    lbLabor: TLabel;
+    lbDeliveryNotes: TLabel;
+    lbGestationalAge: TLabel;
+    lbLaborLength: TLabel;
+    lbDeliveryPlace: TLabel;
+    lbOutcome: TLabel;
     dtDelivery: TORDateBox;
     dtMaternal: TORDateBox;
     edtDeliveryAt: TSpinEdit;
@@ -51,16 +51,15 @@ type
     rgPretermDelivery: TRadioGroup;
     spnLaborLength: TSpinEdit;
     spnGADays: TSpinEdit;
-    spnGAWeeks: TSpinEdit;
     cbDeliveryPlace: TCaptionComboBox;
     cbOutcome: TCaptionComboBox;
     pgBaby: TPageControl;
     pnlBirthCount: TPanel;
     gbCesarean: TGroupBox;
-    lbCesareanReasons: TStaticText;
-    lbReasonsCPrimary: TStaticText;
-    lbReasonsCSecondary: TStaticText;
-    lbReasonforCOther: TStaticText;
+    lbCesareanReasons: TLabel;
+    lbReasonsCPrimary: TLabel;
+    lbReasonsCSecondary: TLabel;
+    lbReasonforCOther: TLabel;
     ckCPrimaryFor: TCheckBox;
     edCPrimaryFor: TEdit;
     ckCUnsuccessfulVBAC: TCheckBox;
@@ -90,11 +89,12 @@ type
     ckDeliveryMethodC: TCheckBox;
     lstDelivery: TListView;
     spnBirthCount: TSpinEdit;
-    lbBirthCount: TStaticText;
-    lbProceduresOther: TStaticText;
+    lbBirthCount: TLabel;
+    lbProceduresOther: TLabel;
     pnlSpacer: TPanel;
-    StaticText1: TStaticText;
     lbGADays: TLabel;
+    Panel1: TPanel;
+    spnGAWeeks: TSpinEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpinCheck(Sender: TObject);
@@ -116,12 +116,21 @@ implementation
 {$R *.dfm}
 
 uses
-  uCommon, uExtndComBroker;
+  uCommon, uReportItems, uExtndComBroker;
 
 procedure TForm1.FormCreate(Sender: TObject);
+var
+  nItem: TDDCSNoteItem;
 begin
   BirthCount := 0;
   Form1 := Self;
+
+  nItem := DDCSForm1.ReportCollection.GetNoteItemAddifNil(spnGAWeeks);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Gestation Age in Weeks';
+  nItem := DDCSForm1.ReportCollection.GetNoteItemAddifNil(spnGADays);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Gestation Age in Days';
 end;
 
 procedure TForm1.FormShow(Sender: TObject);

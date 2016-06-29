@@ -42,6 +42,7 @@ type
     function GetIndex: Integer;
     function GetChildrenV: string;
   public
+    constructor Create(AOwner: TComponent); override;
     procedure DeleteChild(Value: TTabSheet);
     procedure GetSaveChildComments(PregID: string);
     function GetPregInfo: TfPregInfo;
@@ -58,7 +59,7 @@ implementation
 {$R *.dfm}
 
 uses
-  udlgPregHist, uCommon;
+  udlgPregHist, uCommon, uReportItems;
 
 procedure TfPreg.btnDeleteClick(Sender: TObject);
 begin
@@ -117,6 +118,17 @@ begin
 end;
 
 // Public ----------------------------------------------------------------------
+
+constructor TfPreg.Create(AOwner: TComponent);
+var
+  nItem: TDDCSNoteItem;
+begin
+  inherited;
+
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(btnDelete);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Click to delete current pregnancy and associated child records.';
+end;
 
 procedure TfPreg.DeleteChild(Value: TTabSheet);
 var
@@ -279,7 +291,7 @@ begin
   Result := Result + U;                                              // EDD
   Result := Result + vPregInfo.dtDelivery.Text + U;                  // PREGNANCY END
   Result := Result + U;                                              // OB IEN|OB
-  Result := Result + vPregInfo.cbDeliveryPlace.Text + U;             // FACILITY IEN|FACILITY
+  Result := Result + '|' + vPregInfo.cbDeliveryPlace.Text + U;       // FACILITY IEN|FACILITY
   Result := Result + U;                                              // UPDATED BY IEN|UPDATED BY
   Result := Result + vPregInfo.spnGAWeeks.Text + 'W' + vPregInfo.spnGADays.Text  + 'D^';   // GESTATIONAL AGE
   Result := Result + vPregInfo.spnLaborLength.Text + U;              // LENGTH OF LABOR

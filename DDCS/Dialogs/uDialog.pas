@@ -116,7 +116,7 @@ end;
 
 procedure TConfigItem.SetValue(Index: Integer; Value: string);
 begin
-  if (Index < 0) or (Index > 2) then
+  if (Index < 0) or (Index > (Length(FID) - 1)) then
     Exit;
 
   FID[Index] := Value;
@@ -135,7 +135,7 @@ begin
     sl.StrictDelimiter := True;
     sl.DelimitedText := FData[0];
 
-    if sl.Count >= Index then
+    if ((Index >= 1) and (Index <= sl.Count)) then
     begin
       sl[Index - 1] := Value;
       FData[0] := sl.DelimitedText;
@@ -527,19 +527,15 @@ begin
               p3 := Piece(sl[I],cD,cIII)
             else p3 := '';
 
-            if ((not FConfiguration.ValidPieces(p1,p2,p3)) and (FConfiguration.Count > 0)) then
-              cItem := FConfiguration.Items[FConfiguration.Count - 1]
-            else
+            cItem := FConfiguration.LookUp(p1, p2, p3);
+            if cItem = nil then
             begin
-              cItem := FConfiguration.LookUp(p1, p2, p3);
-              if cItem = nil then
-                cItem := TConfigItem.Create(FConfiguration);
+              cItem := TConfigItem.Create(FConfiguration);
+              cItem.ID[0] := p1;
+              cItem.ID[1] := p2;
+              cItem.ID[2] := p3;
             end;
-
-            cItem.ID[0] := p1;
-            cItem.ID[1] := p2;
-            cItem.ID[2] := p3;
-            cItem.Data.Text := sl[I];
+            cItem.Data.Add(sl[I]);
           end;
         end;
       end;

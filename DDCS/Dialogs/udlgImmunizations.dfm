@@ -21,7 +21,7 @@ object dlgImmunizations: TdlgImmunizations
   object lbTDAP: TLabel
     Left = 8
     Top = 31
-    Width = 151
+    Width = 147
     Height = 39
     Caption = 
       'Combined Tetanus, Diphtheria, and Pertussis or Tetanus and Dipht' +
@@ -50,7 +50,7 @@ object dlgImmunizations: TdlgImmunizations
   object lbMMR: TLabel
     Left = 8
     Top = 103
-    Width = 151
+    Width = 123
     Height = 26
     Caption = 'Measles, Mumps, and Rubella'
     Font.Charset = DEFAULT_CHARSET
@@ -134,8 +134,6 @@ object dlgImmunizations: TdlgImmunizations
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 21
-    ExplicitTop = 276
-    ExplicitWidth = 557
     object bbtnOK: TBitBtn
       Left = 464
       Top = 3
@@ -165,7 +163,6 @@ object dlgImmunizations: TdlgImmunizations
       NumGlyphs = 2
       TabOrder = 0
       OnClick = bbtnOKClick
-      ExplicitLeft = 400
     end
     object bbtnCancel: TBitBtn
       Left = 545
@@ -177,7 +174,6 @@ object dlgImmunizations: TdlgImmunizations
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 1
-      ExplicitLeft = 481
     end
   end
   object lbInformation: TStaticText
@@ -191,7 +187,7 @@ object dlgImmunizations: TdlgImmunizations
   end
   object dtTDAP: TORDateBox
     Left = 175
-    Top = 28
+    Top = 35
     Width = 153
     Height = 21
     TabOrder = 1
@@ -231,7 +227,7 @@ object dlgImmunizations: TdlgImmunizations
   end
   object edTDAP: TEdit
     Left = 334
-    Top = 28
+    Top = 35
     Width = 280
     Height = 21
     TabOrder = 2

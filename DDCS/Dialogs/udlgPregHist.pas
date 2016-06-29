@@ -81,7 +81,7 @@ implementation
 {$R *.dfm}
 
 uses
-  frmPregHistPregInfo, frmPregHistChild, uCommon, uExtndComBroker;
+  frmPregHistPregInfo, frmPregHistChild, uCommon, uReportItems, uExtndComBroker;
 
 function SubCount(str: string; d: Char): Integer;
 var
@@ -96,6 +96,7 @@ end;
 procedure TdlgPregHist.FormCreate(Sender: TObject);
 var
   nAct: TAction;
+  nItem: TDDCSNoteItem;
 begin
   TotalPreg := 0;
   TotalAI   := 0;
@@ -112,6 +113,19 @@ begin
   nAct.ActionList := NavControl;
   nAct.ShortCut := ShortCut(VK_TAB, [ssShift, ssCtrl]);
   nAct.OnExecute := CtrlShiftTab;
+
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(lbFullTermValue);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Full Term';
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(lbPrematureValue);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Premature';
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(lbMultipleBirthsValue);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Multiple Births';
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(lbLivingValue);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Living';
 end;
 
 procedure TdlgPregHist.FormShow(Sender: TObject);
@@ -184,10 +198,13 @@ begin
               vPregInfo.dtDelivery.Text := cItem.Piece[9];
 
               tmp := cItem.Piece[11];
-              if vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2)) <> -1 then
-                vPregInfo.cbDeliveryPlace.ItemIndex := vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2))
-              else
-                vPregInfo.cbDeliveryPlace.Text := Piece(tmp,'|',2);
+              if tmp <> '' then
+              begin
+                if vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2)) <> -1 then
+                  vPregInfo.cbDeliveryPlace.ItemIndex := vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2))
+                else
+                  vPregInfo.cbDeliveryPlace.Text := Piece(tmp,'|',2);
+              end;
 
               tmp := cItem.Piece[13];
               vPregInfo.spnGAWeeks.Value := StrToIntDef(Piece(tmp,'W',1), 0);
@@ -202,18 +219,24 @@ begin
                 vPregInfo.rgTypeDelivery.ItemIndex := 1;
 
               tmp := cItem.Piece[16];
-              if vPregInfo.cbAnesthesia.Items.IndexOf(tmp) = -1 then
-                vPregInfo.cbAnesthesia.Items.Add(tmp);
-              vPregInfo.cbAnesthesia.ItemIndex := vPregInfo.cbAnesthesia.Items.IndexOf(tmp);
+              if tmp <> '' then
+              begin
+                if vPregInfo.cbAnesthesia.Items.IndexOf(tmp) = -1 then
+                  vPregInfo.cbAnesthesia.Items.Add(tmp);
+                vPregInfo.cbAnesthesia.ItemIndex := vPregInfo.cbAnesthesia.Items.IndexOf(tmp);
+              end;
 
               vPregInfo.rgPretermDelivery.ItemIndex := StrToIntDef(cItem.Piece[17], 0);
 
               if vPregInfo.cbOutcome.Enabled then
               begin
                 tmp := cItem.Piece[20];
-                if vPregInfo.cbOutcome.Items.IndexOf(tmp) = -1 then
-                  vPregInfo.cbOutcome.Items.Add(tmp);
-                vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf(tmp);
+                if tmp <> '' then
+                begin
+                  if vPregInfo.cbOutcome.Items.IndexOf(tmp) = -1 then
+                    vPregInfo.cbOutcome.Items.Add(tmp);
+                  vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf(tmp);
+                end;
               end;
 
               vPregInfo.edtDeliveryAt.Value := StrToIntDef(cItem.Piece[22], 0);

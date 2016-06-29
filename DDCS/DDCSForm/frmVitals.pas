@@ -59,8 +59,6 @@ type
     FPains: TEdit;
     FSystolics: TEdit;
     FDiastolics: TEdit;
-    edtMenarche: TEdit;
-    edtFrequency: TEdit;
     edtCurrentEDD: TEdit;
     edtEDDLMP: TEdit;
 	  edtEDDECD: TEdit;
@@ -93,8 +91,7 @@ type
     Label4: TLabel;
     Label3: TLabel;
     Label2: TLabel;
-    Label1: TLabel;
-    StaticText2: TLabel;
+    lbFinalEDD: TLabel;
     lblLMP: TLabel;
     lblECD: TLabel;
     lblUltra: TLabel;
@@ -104,10 +101,10 @@ type
     Label11: TLabel;
     Label12: TLabel;
     Label13: TLabel;
-    StaticText1: TLabel;
-    StaticText3: TLabel;
-    StaticText4: TLabel;
-    StaticText5: TLabel;
+    lbHCG: TLabel;
+    lbLMP: TLabel;
+    lbFrequency: TLabel;
+    lbMenarche: TLabel;
     Panel2: TPanel;
     FAge: TLabel;
     FSex: TLabel;
@@ -116,21 +113,19 @@ type
   	lblEmbryo: TLabel;
   	Label15: TLabel;
 	  EDDGrid: TGridPanel;
-    ckMensesYes: TCheckBox;
     ckDurationYes: TCheckBox;
     ckAmountYes: TCheckBox;
     ckDurationNo: TCheckBox;
     ckContraceptionNo: TCheckBox;
     ckContraceptionYes: TCheckBox;
     ckAmountNo: TCheckBox;
-    ckMensesNo: TCheckBox;
     ckFinalEDDLMP: TCheckBox;
     ckFinalEDDECD: TCheckBox;
     ckFinalEDDUltra: TCheckBox;
     ckFinalEDDEmbryo: TCheckBox;
     ckFinalEDDOther: TCheckBox;
     ckFinalEDDUnknown: TCheckBox;
-  	ck_LMPQualifier: TCheckBox;
+    ckLMPQualifier: TCheckBox;
     dtLMP: TORDateBox;
     dtECD: TORDateBox;
     dtUltra: TORDateBox;
@@ -150,8 +145,19 @@ type
     FAgeValue: TStaticText;
     FSexValue: TStaticText;
     FBMIValue: TStaticText;
+    gbMenses: TGroupBox;
+    ckMensesYes: TCheckBox;
+    ckMensesNo: TCheckBox;
+    edtPriorMenses: TORDateBox;
+    spnFreq: TSpinEdit;
+    spnMenarche: TSpinEdit;
+    lbPriorMenses: TLabel;
+    spnMonthly: TSpinEdit;
+    lbMonthly: TLabel;
+    Label1: TLabel;
+    ckBirthPillsYes: TCheckBox;
+    ckBirthPillsNo: TCheckBox;
     procedure fVitalsControlChange(Sender: TObject);
-//    procedure fVitalsDrawCheckTab(Control: TCustomTabControl; TabIndex: Integer; const Rect: TRect; Active: Boolean);
     // EDD Calculator Page -----------------------------------------------------
     procedure dtLMPChange(Sender: TObject);
     procedure dtECDChange(Sender: TObject);
@@ -169,6 +175,7 @@ type
     procedure dtEDDUnknownChange(Sender: TObject);
     procedure IsFinalEDDClick(Sender: TObject);
     // Menstrual Page ----------------------------------------------------------
+    procedure spincheck(Sender: TObject);
     procedure edtLMPChange(Sender: TObject);
     procedure ToggleCheckBoxes(Sender: TObject);
   private
@@ -229,57 +236,6 @@ begin
 end;
 
 {$ENDREGION}
-
-//procedure TDDCSVitals.fVitalsDrawCheckTab(Control: TCustomTabControl; TabIndex: Integer; const Rect: TRect; Active: Boolean);
-//var
-//  iCaption: string;
-//  thisTab,rCheckBox: TRect;
-//
-//  function GetCkRect(tStat: Boolean): TRect;
-//  begin
-//    if tStat then
-//    begin
-//      Result.Left   := Rect.Left + 6;
-//      Result.Top    := Rect.Top + 6;
-//      Result.Right  := Result.Left + 12;
-//      Result.Bottom := Result.Top + 12;
-//    end else
-//    begin
-//      Result.Left   := Rect.Left + 1;
-//      Result.Top    := Rect.Top + 4;
-//      Result.Right  := Result.Left + 12;
-//      Result.Bottom := Result.Top + 12;
-//    end;
-//  end;
-//
-//begin
-//  SetLength(TabSeen, fVitalsControl.PageCount);
-//  iCaption := fVitalsControl.Pages[TabIndex].Caption;
-//
-//  thisTab := Rect;
-//  Control.Canvas.FillRect(Rect);
-//
-//  rCheckBox := GetCkRect(Active);
-//  Control.Canvas.Rectangle(rCheckBox);
-//
-//  thisTab.Top := rCheckBox.Bottom + 3;
-//  InflateRect(thisTab, 0, -3);          // This is the size of the text area
-//
-//  if TabIndex <> -1 then
-//  begin
-//    if Active then
-//      TabSeen[TabIndex] := True;
-//
-//    if TabSeen[TabIndex] then
-//      DrawFrameControl(Control.Canvas.Handle, rCheckBox, DFC_BUTTON, DFCS_CHECKED)
-//    else
-//      DrawFrameControl(Control.Canvas.Handle, rCheckBox, DFC_BUTTON, DFCS_INACTIVE);
-//  end else
-//    DrawFrameControl(Control.Canvas.Handle, rCheckBox, DFC_BUTTON, DFCS_INACTIVE);
-//
-//  Control.Canvas.Font.Orientation := 900;
-//  Control.Canvas.TextRect(thisTab, iCaption, [tfBottom, tfLeft, tfSingleLine]);
-//end;
 
    // LMP ****
 procedure TDDCSVitals.dtLMPChange(Sender: TObject);
@@ -591,6 +547,12 @@ end;
 
    // Menstrual Page -----------------------------------------------------------
 
+procedure TDDCSVitals.spincheck(Sender: TObject);
+begin
+  if TSpinEdit(Sender).Value < 0 then
+    TSpinEdit(Sender).Value := 0;
+end;
+
 procedure TDDCSVitals.edtLMPChange(Sender: TObject);
 begin
   if ((edtLMP.IsValid) and (edtLMP.FMDateTime <> dtLMP.FMDateTime)) then
@@ -613,14 +575,16 @@ procedure TDDCSVitals.ToggleCheckBoxes(Sender: TObject);
 begin
   if (Sender is TCheckBox) and ((Sender as TCheckBox).Checked = True) then
   case (Sender as TCheckBox).Tag of
-    1: ToggleCB(ckMensesYes, ckMensesNo);
-    2: ToggleCB(ckMensesNo, ckMensesYes);
-    3: ToggleCB(ckAmountYes, ckAmountNo);
-    4: ToggleCB(ckAmountNo, ckAmountYes);
-    5: ToggleCB(ckContraceptionYes, ckContraceptionNo);
-    6: ToggleCB(ckContraceptionNo, ckContraceptionYes);
-    7: ToggleCB(ckDurationYes, ckDurationNo);
-    8: ToggleCB(ckDurationNo, ckDurationYes);
+     1: ToggleCB(ckMensesYes, ckMensesNo);
+     2: ToggleCB(ckMensesNo, ckMensesYes);
+     3: ToggleCB(ckAmountYes, ckAmountNo);
+     4: ToggleCB(ckAmountNo, ckAmountYes);
+     5: ToggleCB(ckContraceptionYes, ckContraceptionNo);
+     6: ToggleCB(ckContraceptionNo, ckContraceptionYes);
+     7: ToggleCB(ckDurationYes, ckDurationNo);
+     8: ToggleCB(ckDurationNo, ckDurationYes);
+     9: ToggleCB(ckBirthPillsYes, ckBirthPillsNo);
+    10: ToggleCB(ckBirthPillsNo, ckBirthPillsYes);
   end;
 end;
 
@@ -628,18 +592,23 @@ end;
 
 procedure TDDCSVitals.UpdateLMP;
 begin
-  ck_LMPQualifier.Checked := False;
+  ckLMPQualifier.Checked := False;
   ckMensesYes.Checked := False;
   ckMensesNo.Checked := False;
-  edtFrequency.Text := '';
+  edtPriorMenses.Text := '';
+  spnMonthly.Value := 0;
+  spnFreq.Value := 0;
+  spnMenarche.Value := 0;
+  edthcg.Text := '';
   ckAmountYes.Checked := False;
   ckAmountNo.Checked := False;
   ckDurationYes.Checked := False;
   ckDurationNo.Checked := False;
   ckContraceptionYes.Checked := False;
   ckContraceptionNo.Checked := False;
+  ckBirthPillsYes.Checked := False;
+  ckBirthPillsNo.Checked := False;
   edtContraceptionType.ItemIndex := -1;
-  edthcg.Text := '';
   memLMP.Clear;
 end;
 
@@ -666,7 +635,6 @@ function TDDCSVitals.CalEDD(EventType: TEventType): string;
    //  function FMDateTimeOffsetBy(ADateTime: TFMDateTime; DaysDiff: Integer): TFMDateTime;
    //  function FormatFMDateTime(AFormat: string; ADateTime: TFMDateTime): string;
    //  function FormatFMDateTimeStr(const AFormat, ADateTime: string): string;
-
 begin
   Result := '';
 
@@ -768,13 +736,15 @@ begin
 
   cbTransferDay.ItemIndex := 1;
 
-  dtLMP.Format        := FMT_DATETIME;
-  dtECD.Format        := FMT_DATETIME;
-  dtUltra.Format      := FMT_DATETIME;
-  dtEmbryo.Format     := FMT_DATETIME;
-  dtOther.Format      := FMT_DATETIME;
-  dtEDDUnknown.Format := FMT_DATETIME;
-  edtLMP.Format       := FMT_DATETIME;
+  dtLMP.Format          := FMT_DATETIME;
+  dtECD.Format          := FMT_DATETIME;
+  dtUltra.Format        := FMT_DATETIME;
+  dtEmbryo.Format       := FMT_DATETIME;
+  dtOther.Format        := FMT_DATETIME;
+  dtEDDUnknown.Format   := FMT_DATETIME;
+  edtLMP.Format         := FMT_DATETIME;
+  edtPriorMenses.Format := FMT_DATETIME;
+  edthcg.Format         := FMT_DATETIME;
 
   sl := TStringList.Create;
   try
@@ -863,69 +833,91 @@ begin
       if UpdateContext(MENU_CONTEXT) then
         tCallV(sl, 'DSIO DDCS VITALS LMP', [RPCBrokerV.PatientDFN, RPCBrokerV.DDCSInterface]);
 
-      if sl.Count > 0 then
-        if sl[0] <> '-1' then
-        begin
-          // LMP
-          str := Piece(sl[0],U,1);
-          if str <> '' then
-            edtLMP.Text := str;
+      // (0)LMP^MENSES^FREQUENCY^MENARCHE^HCG^AMOUNT^DURATION^ON_CONTRACEPTION^QUALIFIER^PRIOR_MENSES^
+      //    MENSES_MONTHLY^BIRTH_PILLS_CONCEPTION
+      // (#)C1^^<LIST of COMMENTS>
+      // (#)C2^^<LIST of CONTRACEPTION>
 
-          // Qualifier
-          if Piece(sl[0],U,9) = 'A' then
-            ck_LMPQualifier.Checked := True;
+      if ((sl.Count > 0) and (sl[0] <> '-1')) then
+      begin
+        // LMP
+        str := Piece(sl[0],U,1);
+        if str <> '' then
+          edtLMP.Text := str;
 
-          // Menses
-          str := Piece(sl[0],U,2);
-          if str = 'N' then
-            ckMensesYes.Checked := True
-          else if str = 'A' then
-            ckMensesNo.Checked := True;
+        // Qualifier
+        if Piece(sl[0],U,9) = 'A' then
+          ckLMPQualifier.Checked := True;
 
-          // Frequency
-          edtFrequency.Text := Piece(sl[0],U,3);
+        // Menses
+        str := Piece(sl[0],U,2);
+        if str = 'N' then
+          ckMensesYes.Checked := True
+        else if str = 'A' then
+          ckMensesNo.Checked := True;
 
-          // Menarche
-          edtMenarche.Text := Piece(sl[0],U,4);
+        // Prior Menses Date
+        str := Piece(sl[0],U,10);
+        if str <> '' then
+          edtPriorMenses.Text := str;
 
-          // HCG
-          edthcg.Text := Piece(sl[0],U,5);
+        // Menses Monthly
+        spnMonthly.Value := StrToIntDef(Piece(sl[0],U,11), 0);
 
-          // Amount
-          str := Piece(sl[0],U,6);
-          if str = 'N' then
-            ckAmountYes.Checked := True
-          else if str = 'A' then
-            ckAmountNo.Checked := True;
+        // Frequency
+        spnFreq.Value := StrToIntDef(Piece(sl[0],U,3), 0);
 
-          // Duration
-          str := Piece(sl[0],U,7);
-          if str = 'N' then
-            ckDurationYes.Checked := True
-          else if str = 'A' then
-            ckDurationNo.Checked := True;
+        // Menarche
+        spnMenarche.Value := StrToIntDef(Piece(sl[0],U,4), 0);
 
-          // On Contraception
-          str := Piece(sl[0],U,8);
-          if str = 'Y' then
-            ckContraceptionYes.Checked := True
-          else if str = 'N' then
-            ckContraceptionNo.Checked := True;
+        // HCG
+        str := Piece(sl[0],U,5);
+        if str <> '' then
+          edthcg.Text := str;
 
-          if sl.Count > 1 then
-            for I := 1 to sl.Count - 1 do
+        // Amount
+        str := Piece(sl[0],U,6);
+        if str = 'N' then
+          ckAmountYes.Checked := True
+        else if str = 'A' then
+          ckAmountNo.Checked := True;
+
+        // Duration
+        str := Piece(sl[0],U,7);
+        if str = 'N' then
+          ckDurationYes.Checked := True
+        else if str = 'A' then
+          ckDurationNo.Checked := True;
+
+        // On Contraception
+        str := Piece(sl[0],U,8);
+        if str = 'Y' then
+          ckContraceptionYes.Checked := True
+        else if str = 'N' then
+          ckContraceptionNo.Checked := True;
+
+        // On Birth Control Pills on Conception
+        str := Piece(sl[0],U,12);
+        if str = 'Y' then
+          ckBirthPillsYes.Checked := True
+        else if str = 'N' then
+          ckBirthPillsNo.Checked := True;
+
+        // Contraception Type
+        if sl.Count > 1 then
+          for I := 1 to sl.Count - 1 do
+          begin
+            if Piece(sl[I],U,1) = 'C1' then
+              memLMP.Lines.Add(Piece(sl[I],U,3));
+            if Piece(sl[I],U,1) = 'C2' then
             begin
-              if Piece(sl[I],U,1) = 'C1' then
-                memLMP.Lines.Add(Piece(sl[I],U,3));
-              if Piece(sl[I],U,1) = 'C2' then
-              begin
-                edtContraceptionType.Items.Add(Piece(sl[I],U,3));
+              edtContraceptionType.Items.Add(Piece(sl[I],U,3));
 
-                if AnsiContainsText(Piece(sl[I],U,2), 'TRUE') then
-                  edtContraceptionType.ItemIndex := edtContraceptionType.Items.Count - 1;
-              end;
+              if AnsiContainsText(Piece(sl[I],U,2), 'TRUE') then
+                edtContraceptionType.ItemIndex := edtContraceptionType.Items.Count - 1;
             end;
-        end;
+          end;
+      end;
     except
       on E: Exception do
       ShowMsg(E.Message, smiError, smbOK);
@@ -970,17 +962,17 @@ begin
     BuildSayOnFocus(       edtEDDOther, 'Estimated Delivery Date Other Criteria');
     BuildSayOnFocus(   ckFinalEDDOther, 'Other Criteria Final Estimated Delivery Date');
 
-    BuildSayOnFocus(   ck_LMPQualifier, 'Last Menstrual Period Approximation');
-    BuildSayOnFocus(       ckMensesYes, 'Menses');
-    BuildSayOnFocus(        ckMensesNo, 'Menses');
-    BuildSayOnFocus(      edtFrequency, 'Frequency in days');
-    BuildSayOnFocus(       edtMenarche, 'Menarche in age of onset');
+    BuildSayOnFocus(    ckLMPQualifier, 'Last Menstrual Period Approximation');
+    BuildSayOnFocus(           spnFreq, 'Frequency in days');
+    BuildSayOnFocus(       spnMenarche, 'Menarche in age of onset');
     BuildSayOnFocus(       ckAmountYes, 'Amount');
     BuildSayOnFocus(        ckAmountNo, 'Amount');
     BuildSayOnFocus(     ckDurationYes, 'Duration');
     BuildSayOnFocus(      ckDurationNo, 'Duration');
     BuildSayOnFocus(ckContraceptionYes, 'On Contraception');
     BuildSayOnFocus( ckContraceptionNo, 'On Contraception');
+    BuildSayOnFocus(   ckBirthPillsYes, 'On Birth Control Pills at Conception');
+    BuildSayOnFocus(    ckBirthPillsNo, 'On Birth Control Pills at Conception');
     // 508 support -----------------------------------------------------------
   end;
 
@@ -1044,14 +1036,22 @@ begin
     sl.Add('EDD^' + lblUnknown.Caption + '^^^' + FloatToStr(dtEDDUnknown.FMDateTime) + U + ckBool(ckFinalEDDUnknown));
 
     // LMP
-    if ck_LMPQualifier.Checked then
+    if ckLMPQualifier.Checked then
       qual := 'A'
     else
       qual := '';
 
-    sl.Add('LMP^' + edtLMP.Text + U + SetofCodes(ckMensesYes,ckMensesNo) + U + edtFrequency.Text + U + SetofCodes(ckAmountYes,ckAmountNo) + U +
-                    SetofCodes(ckDurationYes,ckDurationNo) + U + SetofCodes(ckContraceptionNo,ckContraceptionYes) + U +
-                    edtContraceptionType.Text + U + edthcg.Text + U + edtMenarche.Text + U + qual);
+    //   DATA = EDD^CRITERIA^EVENT_DATE^GESTATIONAL_AGE^EDD^FINAL
+    //          LMP^MENSES^FREQUENCY^AMOUNT^DURATION^ON_CONTRACEPTION^RECENT_CONTRACEPTIVE
+    //             ^hCG+^MENARCHE^QUALIFIER^PRIOR_MENSES^MENSES_MONTHLY^BIRTH_PILLS_CONCEPTION
+    //             ^BIRTH_PILLS_CONCEPTION
+    //          COM^TEXT
+
+    sl.Add('LMP^' + edtLMP.Text + U + SetofCodes(ckMensesYes,ckMensesNo) + U + spnFreq.Text + U +
+           SetofCodes(ckAmountYes,ckAmountNo) + U + SetofCodes(ckDurationYes,ckDurationNo)  + U +
+           SetofCodes(ckContraceptionNo,ckContraceptionYes) + U + edtContraceptionType.Text + U +
+           edthcg.Text + U + spnMenarche.Text + U + qual + U + edtPriorMenses.Text          + U +
+           spnMonthly.Text + U + SetofCodes(ckBirthPillsYes,ckBirthPillsNo));
 
     // Comments
     if memLMP.Lines.Count > 0 then
@@ -1067,8 +1067,8 @@ begin
   end;
 end;
 
-function TDDCSVitals.GetPatientVitals: TStringList;
 // Array of vital ien^vital type^rate/value^date/time taken
+function TDDCSVitals.GetPatientVitals: TStringList;
 begin
   Result := TStringList.Create;
   try
@@ -1129,18 +1129,22 @@ begin
   Result := TStringList.Create;
 
   if edtLMP.Text <> ''                 then Result.Add('  LMP: ' + edtLMP.Text);
-  if ck_LMPQualifier.Checked           then Result.Add('   *Approximate');
-  if ckMensesYes.Checked = True        then Result.Add('  Menses Regular: YES');
-  if ckMensesNo.Checked = True         then Result.Add('  Menses Regular: NO');
-  if edtFrequency.Text <> ''           then Result.Add('  Frequency: ' + edtFrequency.Text + ' days');
-  if edtMenarche.Text <> ''            then Result.Add('  Menarche: ' + edtMenarche.Text + ' years old');
+  if ckLMPQualifier.Checked            then Result.Add('   *Approximate');
+  if ckMensesYes.Checked               then Result.Add('  Menses Regular: YES');
+  if ckMensesNo.Checked                then Result.Add('  Menses Regular: NO');
+  if edtPriorMenses.Text <> ''         then Result.Add('  Prior Menses Date: ' + edtPriorMenses.Text);
+  if spnMonthly.Value > 0              then Result.Add('  Menses Monthly: ' + spnMonthly.Text);
+  if spnFreq.Value > 0                 then Result.Add('  Frequency: ' + spnFreq.Text + ' days');
+  if spnMenarche.Value > 0             then Result.Add('  Menarche: ' + spnMenarche.Text + ' years old');
   if edthcg.Text <> ''                 then Result.Add('  hCG+: ' + edthcg.Text);
-  if ckAmountYes.Checked = True        then Result.Add('  Normal Amount: YES');
-  if ckAmountNo.Checked = True         then Result.Add('  Normal Amount: NO');
-  if ckDurationYes.Checked = True      then Result.Add('  Normal Duration: YES');
-  if ckDurationNo.Checked = True       then Result.Add('  Normal Duration: NO');
-  if ckContraceptionYes.Checked = True then Result.Add('  On Contraception: YES');
-  if ckContraceptionNo.Checked = True  then Result.Add('  On Contraception: NO');
+  if ckAmountYes.Checked               then Result.Add('  Normal Amount: YES');
+  if ckAmountNo.Checked                then Result.Add('  Normal Amount: NO');
+  if ckDurationYes.Checked             then Result.Add('  Normal Duration: YES');
+  if ckDurationNo.Checked              then Result.Add('  Normal Duration: NO');
+  if ckContraceptionYes.Checked        then Result.Add('  On Contraception: YES');
+  if ckContraceptionNo.Checked         then Result.Add('  On Contraception: NO');
+  if ckBirthPillsYes.Checked           then Result.Add('  On Birth Control Pills on Conception: YES');
+  if ckBirthPillsNo.Checked            then Result.Add('  On Birth Control Pills on Conception: NO');
   if edtContraceptionType.Text <> ''   then
   begin
     Result.Add('  What type(s) of contraception were you using most recently?');

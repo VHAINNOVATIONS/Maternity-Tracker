@@ -39,8 +39,6 @@ type
     lbAnesthesia: TLabel;
     lbDaysHospital: TLabel;
     cbOutcome: TComboBox;
-    spnGAWeeks: TSpinEdit;
-    spnGADays: TSpinEdit;
     spnLaborLength: TSpinEdit;
     meDeliveryNotes: TCaptionMemo;
     dtDelivery: TORDateBox;
@@ -50,9 +48,14 @@ type
     pnlBirthCount: TPanel;
     spnBirthCount: TSpinEdit;
     rgPretermDelivery: TRadioGroup;
-    edtDeliveryAt: TSpinEdit;
     lbBirthCount: TLabel;
     rgTypeDelivery: TRadioGroup;
+    Panel1: TPanel;
+    edtDeliveryAt: TSpinEdit;
+    Panel2: TPanel;
+    spnGAWeeks: TSpinEdit;
+    Panel3: TPanel;
+    spnGADays: TSpinEdit;
     procedure SpinCheck(Sender: TObject);
     procedure spnBabyCountChange(Sender: TObject);
     procedure rgPretermDeliveryClick(Sender: TObject);
@@ -194,9 +197,18 @@ begin
   dlgPregHist.ModifyFullTerm(1);
   MultiBirth := False;
 
-//  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(spnLb);
-//  if nItem <> nil then
-//    nItem.SayOnFocus := 'Birth Weight in pounds';
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(spnLaborLength);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Length of Labor in hours';
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(edtDeliveryAt);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Days in Hospital following Delivery';
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(spnGAWeeks);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Gestational age in weeks';
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(spnGADays);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Gestational age in days';
 end;
 
 destructor TfPregInfo.Destroy;

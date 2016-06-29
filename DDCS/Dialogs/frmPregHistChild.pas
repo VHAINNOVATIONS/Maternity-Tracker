@@ -238,6 +238,9 @@ begin
   nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(edAPGARfive);
   if nItem <> nil then
     nItem.SayOnFocus := 'A P G A R Score five minutes after birth';
+  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(btnDelete);
+  if nItem <> nil then
+    nItem.SayOnFocus := 'Click to delete current child record.';
 end;
 
 destructor TfChild.Destroy;

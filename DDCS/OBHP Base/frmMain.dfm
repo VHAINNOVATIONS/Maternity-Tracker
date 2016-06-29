@@ -335,6 +335,16 @@ object Form1: TForm1
       end
       item
         Order = 12
+        IdentifyingName = 'This patient does NOT have an allergy to Latex.'
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = True
+        HideFromNote = False
+        OwningObject = ckAllergyLatex
+        Required = False
+      end
+      item
+        Order = 13
         Prefix = '  '
         DoNotSpace = False
         DoNotSave = False
@@ -344,7 +354,7 @@ object Form1: TForm1
         Required = False
       end
       item
-        Order = 13
+        Order = 14
         IdentifyingName = 'History Categories'
         DoNotSpace = False
         DoNotSave = True
@@ -357,7 +367,7 @@ object Form1: TForm1
         SayOnFocus = 
           'Medical History check list box press space to check item or retu' +
           'rn to activate dialog'
-        Order = 14
+        Order = 15
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -370,7 +380,7 @@ object Form1: TForm1
         SayOnFocus = 
           'Family History check list box press space to check item or retur' +
           'n to activate dialog'
-        Order = 15
+        Order = 16
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -383,7 +393,7 @@ object Form1: TForm1
         SayOnFocus = 
           'Social History check list box press space to check item or retur' +
           'n to activate dialog'
-        Order = 16
+        Order = 17
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -393,7 +403,7 @@ object Form1: TForm1
         DialogReturn = MemoHistory
       end
       item
-        Order = 17
+        Order = 18
         IdentifyingName = 'History Section Note Text'
         DoNotSpace = False
         DoNotSave = False
@@ -403,7 +413,7 @@ object Form1: TForm1
         Required = False
       end
       item
-        Order = 18
+        Order = 19
         IdentifyingName = 'Review of Symptoms since Last Menstrual Period'
         DoNotSpace = False
         DoNotSave = False
@@ -414,7 +424,7 @@ object Form1: TForm1
         DialogReturn = MemoROS
       end
       item
-        Order = 19
+        Order = 20
         IdentifyingName = 'Review of Symptoms since Last Menstrual Period Section Note Text'
         DoNotSpace = False
         DoNotSave = False
@@ -424,7 +434,7 @@ object Form1: TForm1
         Required = False
       end
       item
-        Order = 20
+        Order = 21
         IdentifyingName = 'Physical Exam'
         DoNotSpace = False
         DoNotSave = False
@@ -435,7 +445,7 @@ object Form1: TForm1
         DialogReturn = MemoPhysical
       end
       item
-        Order = 21
+        Order = 22
         IdentifyingName = 'Physical Exam Section Note Text'
         DoNotSpace = False
         DoNotSave = False
@@ -445,7 +455,7 @@ object Form1: TForm1
         Required = False
       end
       item
-        Order = 22
+        Order = 23
         IdentifyingName = 'Pelvic Exam'
         DoNotSpace = False
         DoNotSave = False
@@ -456,7 +466,7 @@ object Form1: TForm1
         DialogReturn = MemoOBExam
       end
       item
-        Order = 23
+        Order = 24
         IdentifyingName = 'Obstetrics and Gynecology Flow Sheet'
         DoNotSpace = False
         DoNotSave = False
@@ -467,7 +477,7 @@ object Form1: TForm1
         DialogReturn = MemoOBExam
       end
       item
-        Order = 24
+        Order = 25
         IdentifyingName = 'Pelvic Exam Section Note Text'
         DoNotSpace = False
         DoNotSave = False
@@ -478,7 +488,7 @@ object Form1: TForm1
       end
       item
         SayOnFocus = 'Problems check list box press space to check item'
-        Order = 25
+        Order = 26
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -487,7 +497,7 @@ object Form1: TForm1
         Required = False
       end
       item
-        Order = 26
+        Order = 27
         IdentifyingName = 'Patient Education'
         DoNotSpace = False
         DoNotSave = False
@@ -498,7 +508,7 @@ object Form1: TForm1
         DialogReturn = MemoPreNatal
       end
       item
-        Order = 27
+        Order = 28
         IdentifyingName = 'Return to Clinic Date'
         DoNotSpace = False
         DoNotSave = False
@@ -509,7 +519,7 @@ object Form1: TForm1
         DialogReturn = MemoPreNatal
       end
       item
-        Order = 28
+        Order = 29
         IdentifyingName = 'Plan Section Note Text'
         Title = 'Assessment and Plan'
         DoNotSpace = False
@@ -587,10 +597,6 @@ object Form1: TForm1
     end
     object oPage2: TTabSheet
       Caption = 'Vitals'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DDCSVitals: TDDCSVitals
         Left = 0
         Top = 0
@@ -604,10 +610,6 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'History of Present Illness'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lbAdditionalComplaints: TLabel
         Left = 19
         Top = 30
@@ -678,6 +680,10 @@ object Form1: TForm1
     end
     object oPage4: TTabSheet
       Caption = 'Imports'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbImportSection: TLabel
         Left = 19
         Top = 115
@@ -735,8 +741,8 @@ object Form1: TForm1
           TabOrder = 0
           OnResize = pnlAllergiesResize
           object lbAllergies: TLabel
-            Left = 0
-            Top = 150
+            Left = 1
+            Top = 174
             Width = 58
             Height = 13
             Align = alCustom
@@ -750,9 +756,9 @@ object Form1: TForm1
           end
           object memoAllergiesNar: TMemo
             Left = 0
-            Top = 167
+            Top = 191
             Width = 701
-            Height = 140
+            Height = 116
             TabStop = False
             Align = alCustom
             Anchors = [akLeft, akRight, akBottom]
@@ -763,7 +769,7 @@ object Form1: TForm1
             Font.Style = []
             ParentFont = False
             ScrollBars = ssBoth
-            TabOrder = 1
+            TabOrder = 2
           end
           object memoAllergies: TMemo
             Left = 0
@@ -782,6 +788,21 @@ object Form1: TForm1
             ReadOnly = True
             ScrollBars = ssBoth
             TabOrder = 0
+          end
+          object ckAllergyLatex: TCheckBox
+            Left = 1
+            Top = 146
+            Width = 341
+            Height = 17
+            Caption = 'This patient does NOT have an allergy to Latex.'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 1
+            OnClick = ckAllergyLatexClick
           end
         end
         object pnlProblems: TPanel
@@ -918,10 +939,6 @@ object Form1: TForm1
     end
     object oPage5: TTabSheet
       Caption = 'History'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lbHistorySection: TLabel
         Left = 272
         Top = 66
@@ -1029,10 +1046,6 @@ object Form1: TForm1
     end
     object oPage6: TTabSheet
       Caption = 'Review of Symptoms'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -1094,10 +1107,6 @@ object Form1: TForm1
     end
     object oPage7: TTabSheet
       Caption = 'Physical Exam'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -1159,10 +1168,6 @@ object Form1: TForm1
     end
     object oPage8: TTabSheet
       Caption = 'Pelvic Exam'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -1238,10 +1243,6 @@ object Form1: TForm1
     end
     object oPage9: TTabSheet
       Caption = 'Plan'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         458)

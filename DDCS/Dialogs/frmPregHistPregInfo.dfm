@@ -64,14 +64,14 @@ object fPregInfo: TfPregInfo
     ParentFont = False
   end
   object lbGAWeeks: TLabel
-    Left = 159
+    Left = 156
     Top = 162
     Width = 32
     Height = 13
     Caption = 'Weeks'
   end
   object lbGADays: TLabel
-    Left = 243
+    Left = 240
     Top = 162
     Width = 24
     Height = 13
@@ -117,7 +117,7 @@ object fPregInfo: TfPregInfo
     ParentFont = False
   end
   object lbDaysHospital: TLabel
-    Left = 289
+    Left = 294
     Top = 155
     Width = 100
     Height = 26
@@ -139,28 +139,6 @@ object fPregInfo: TfPregInfo
     Style = csDropDownList
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 3
-  end
-  object spnGAWeeks: TSpinEdit
-    Left = 103
-    Top = 159
-    Width = 50
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 7
-    Value = 0
-    OnChange = SpinCheck
-  end
-  object spnGADays: TSpinEdit
-    Left = 197
-    Top = 159
-    Width = 40
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 8
-    Value = 0
-    OnChange = spnGADaysChange
   end
   object spnLaborLength: TSpinEdit
     Left = 346
@@ -290,17 +268,6 @@ object fPregInfo: TfPregInfo
     TabStop = True
     OnClick = rgPretermDeliveryClick
   end
-  object edtDeliveryAt: TSpinEdit
-    Left = 401
-    Top = 159
-    Width = 36
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 9
-    Value = 0
-    OnChange = SpinCheck
-  end
   object rgTypeDelivery: TRadioGroup
     Left = 7
     Top = 102
@@ -321,5 +288,62 @@ object fPregInfo: TfPregInfo
     ParentFont = False
     TabOrder = 5
     TabStop = True
+  end
+  object Panel1: TPanel
+    Left = 400
+    Top = 157
+    Width = 37
+    Height = 23
+    BevelOuter = bvNone
+    TabOrder = 9
+    object edtDeliveryAt: TSpinEdit
+      Left = 1
+      Top = 1
+      Width = 36
+      Height = 22
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 0
+      Value = 0
+      OnChange = SpinCheck
+    end
+  end
+  object Panel2: TPanel
+    Left = 100
+    Top = 158
+    Width = 51
+    Height = 23
+    BevelOuter = bvNone
+    TabOrder = 7
+    object spnGAWeeks: TSpinEdit
+      Left = 1
+      Top = 1
+      Width = 50
+      Height = 22
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 0
+      Value = 0
+      OnChange = SpinCheck
+    end
+  end
+  object Panel3: TPanel
+    Left = 193
+    Top = 158
+    Width = 41
+    Height = 23
+    BevelOuter = bvNone
+    TabOrder = 8
+    object spnGADays: TSpinEdit
+      Left = 1
+      Top = 1
+      Width = 40
+      Height = 22
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 0
+      Value = 0
+      OnChange = spnGADaysChange
+    end
   end
 end
