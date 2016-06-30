@@ -50,17 +50,18 @@ Type
     function GetValue(Index: Integer): Integer;
     function GetCount: Integer;
     function GetItem(Index: Integer): TConfigItem; overload;
+    function GetCollectiveText: TStringList;
   public
     destructor Destroy; override;
     function Add: TConfigItem; overload;
     function Insert(Index: Integer): TConfigItem;
     function LookUp(p1,p2,p3: string): TConfigItem;
-    function CollectiveText: TStringList;
     function ValidPieces(p1,p2,p3: string): Boolean;
     property Pieces[Index: Integer]: Integer read GetValue write SetValue;
     property TotalIDPieces: Integer read GetCount;
     property Delimiter: Char read FDelimiter write FDelimiter default '^';
     property Items[Index: Integer]: TConfigItem read GetItem write SetItem;
+    property CollectiveText: TStringList read GetCollectiveText;
   end;
 
   TGetTmpStrList = function: TStringList of object;
@@ -225,6 +226,16 @@ begin
   Result := TConfigItem(inherited Items[Index]);
 end;
 
+function TConfigCollection.GetCollectiveText: TStringList;
+var
+  I: Integer;
+begin
+  Result := TStringList.Create;
+
+  for I := 0 to Count - 1 do
+    Result.AddStrings(Items[I].Data);
+end;
+
 // Public ----------------------------------------------------------------------
 
 destructor TConfigCollection.Destroy;
@@ -255,15 +266,6 @@ begin
       Result := Items[I];
       Break;
     end;
-end;
-
-function TConfigCollection.CollectiveText: TStringList;
-var
-  I: Integer;
-begin
-  Result := TStringList.Create;
-  for I := 0 to Count - 1 do
-    Result.AddStrings(Items[I].Data);
 end;
 
 function TConfigCollection.ValidPieces(p1,p2,p3: string): Boolean;

@@ -1070,15 +1070,15 @@ object DDCSVitals: TDDCSVitals
       ExplicitWidth = 0
       ExplicitHeight = 0
       object Label7: TLabel
-        Left = 278
-        Top = 153
+        Left = 309
+        Top = 127
         Width = 295
         Height = 13
         Caption = 'What type(s) of contraception were you using most recently?'
       end
       object Label6: TLabel
-        Left = 278
-        Top = 197
+        Left = 309
+        Top = 179
         Width = 61
         Height = 13
         Caption = 'Comments'
@@ -1089,22 +1089,9 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Label8: TLabel
-        Left = 327
-        Top = 66
-        Width = 49
-        Height = 13
-        Caption = 'Duration'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
       object Label5: TLabel
-        Left = 278
-        Top = 92
+        Left = 406
+        Top = 71
         Width = 98
         Height = 13
         Caption = 'On Contraception'
@@ -1115,49 +1102,9 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Label4: TLabel
-        Left = 331
-        Top = 40
-        Width = 45
-        Height = 13
-        Caption = 'Amount'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label3: TLabel
-        Left = 157
-        Top = 279
-        Width = 95
-        Height = 13
-        Caption = '(Fill in age of onset)'
-      end
-      object Label2: TLabel
-        Left = 157
-        Top = 242
-        Width = 68
-        Height = 13
-        Caption = '(Fill in # days)'
-      end
-      object lbHCG: TLabel
-        Left = 46
-        Top = 317
-        Width = 31
-        Height = 13
-        Caption = 'hCG+'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
       object lbLMP: TLabel
         Left = 18
-        Top = 39
+        Top = 18
         Width = 123
         Height = 13
         Caption = 'Last Menstrual Period'
@@ -1168,35 +1115,9 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object lbFrequency: TLabel
-        Left = 18
-        Top = 242
-        Width = 59
-        Height = 13
-        Caption = 'Frequency'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object lbMenarche: TLabel
-        Left = 21
-        Top = 279
-        Width = 56
-        Height = 13
-        Caption = 'Menarche'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
       object Label1: TLabel
-        Left = 278
-        Top = 118
+        Left = 309
+        Top = 98
         Width = 195
         Height = 13
         Caption = 'On Birth Control Pills at Conception'
@@ -1207,108 +1128,97 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
       end
+      object lbHCG: TLabel
+        Left = 426
+        Top = 38
+        Width = 31
+        Height = 13
+        Caption = 'hCG+'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lbMenarche: TLabel
+        Left = 39
+        Top = 298
+        Width = 56
+        Height = 13
+        Caption = 'Menarche'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label3: TLabel
+        Left = 175
+        Top = 298
+        Width = 64
+        Height = 13
+        Caption = 'Age of Onset'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
       object edtContraceptionType: TCaptionComboBox
-        Left = 278
-        Top = 170
-        Width = 358
+        Left = 309
+        Top = 144
+        Width = 339
         Height = 21
         Style = csDropDownList
-        TabOrder = 14
+        TabOrder = 9
         Caption = 
           'What type or types of contraception were you using most recently' +
           '?'
       end
-      object ckDurationYes: TCheckBox
-        Tag = 7
-        Left = 383
-        Top = 65
-        Width = 64
-        Height = 17
-        Caption = 'Normal'
-        TabOrder = 8
-        OnClick = ToggleCheckBoxes
-      end
-      object ckAmountYes: TCheckBox
-        Tag = 3
-        Left = 383
-        Top = 39
-        Width = 63
-        Height = 17
-        Caption = 'Normal'
-        TabOrder = 6
-        OnClick = ToggleCheckBoxes
-      end
       object memLMP: TCaptionMemo
-        Left = 278
-        Top = 214
-        Width = 358
+        Left = 309
+        Top = 196
+        Width = 339
         Height = 121
         ScrollBars = ssVertical
-        TabOrder = 15
+        TabOrder = 10
         Caption = 'Comments'
-      end
-      object ckDurationNo: TCheckBox
-        Tag = 8
-        Left = 449
-        Top = 65
-        Width = 82
-        Height = 17
-        Caption = 'Abnormal'
-        TabOrder = 9
-        OnClick = ToggleCheckBoxes
       end
       object ckContraceptionNo: TCheckBox
         Tag = 6
-        Left = 449
-        Top = 91
+        Left = 586
+        Top = 70
         Width = 37
         Height = 17
         Caption = 'No'
-        TabOrder = 11
+        TabOrder = 6
         OnClick = ToggleCheckBoxes
       end
       object ckContraceptionYes: TCheckBox
         Tag = 5
-        Left = 383
-        Top = 91
+        Left = 521
+        Top = 70
         Width = 52
         Height = 17
         Caption = 'Yes'
-        TabOrder = 10
-        OnClick = ToggleCheckBoxes
-      end
-      object ckAmountNo: TCheckBox
-        Tag = 4
-        Left = 449
-        Top = 39
-        Width = 82
-        Height = 17
-        Caption = 'Abnormal'
-        TabOrder = 7
+        TabOrder = 5
         OnClick = ToggleCheckBoxes
       end
       object ckLMPQualifier: TCheckBox
-        Left = 180
-        Top = 58
-        Width = 97
+        Left = 209
+        Top = 37
+        Width = 80
         Height = 17
         Caption = 'Approximate'
         TabOrder = 1
       end
-      object edthcg: TORDateBox
-        Left = 83
-        Top = 314
-        Width = 156
-        Height = 21
-        TabOrder = 5
-        DateOnly = False
-        RequireTime = False
-        Caption = 'Human Chorionic Gonadotropin'
-      end
       object edtLMP: TORDateBox
         Left = 18
-        Top = 56
-        Width = 156
+        Top = 35
+        Width = 185
         Height = 21
         TabOrder = 0
         OnChange = edtLMPChange
@@ -1318,9 +1228,9 @@ object DDCSVitals: TDDCSVitals
       end
       object gbMenses: TGroupBox
         Left = 18
-        Top = 92
-        Width = 199
-        Height = 131
+        Top = 71
+        Width = 271
+        Height = 199
         Caption = 'Menses'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -1329,22 +1239,9 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 2
-        object lbPriorMenses: TLabel
-          Left = 20
-          Top = 45
-          Width = 57
-          Height = 13
-          Caption = 'Prior Date'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
         object lbMonthly: TLabel
           Left = 20
-          Top = 97
+          Top = 55
           Width = 46
           Height = 13
           Caption = 'Monthly'
@@ -1355,10 +1252,49 @@ object DDCSVitals: TDDCSVitals
           Font.Style = [fsBold]
           ParentFont = False
         end
+        object lbFrequency: TLabel
+          Left = 17
+          Top = 143
+          Width = 153
+          Height = 13
+          Caption = 'Duration of Flow Frequency'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label2: TLabel
+          Left = 108
+          Top = 163
+          Width = 35
+          Height = 13
+          Caption = '# Days'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label16: TLabel
+          Left = 152
+          Top = 55
+          Width = 35
+          Height = 13
+          Caption = '# Days'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
         object ckMensesYes: TCheckBox
           Tag = 1
-          Left = 20
-          Top = 21
+          Left = 49
+          Top = 22
           Width = 63
           Height = 17
           Caption = 'Normal'
@@ -1373,8 +1309,8 @@ object DDCSVitals: TDDCSVitals
         end
         object ckMensesNo: TCheckBox
           Tag = 2
-          Left = 103
-          Top = 21
+          Left = 137
+          Top = 22
           Width = 80
           Height = 17
           Caption = 'Abnormal'
@@ -1387,27 +1323,27 @@ object DDCSVitals: TDDCSVitals
           TabOrder = 1
           OnClick = ToggleCheckBoxes
         end
-        object edtPriorMenses: TORDateBox
-          Left = 20
-          Top = 62
-          Width = 157
-          Height = 21
+        object spnMonthly: TSpinEdit
+          Left = 78
+          Top = 52
+          Width = 68
+          Height = 22
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          MaxValue = 0
+          MinValue = 0
           ParentFont = False
           TabOrder = 2
-          OnChange = edtLMPChange
-          DateOnly = True
-          RequireTime = False
-          Caption = 'Prior Menses Date'
+          Value = 0
+          OnChange = spincheck
         end
-        object spnMonthly: TSpinEdit
-          Left = 72
-          Top = 94
-          Width = 59
+        object spnFreq: TSpinEdit
+          Left = 34
+          Top = 160
+          Width = 68
           Height = 22
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1421,48 +1357,163 @@ object DDCSVitals: TDDCSVitals
           Value = 0
           OnChange = spincheck
         end
-      end
-      object spnFreq: TSpinEdit
-        Left = 83
-        Top = 239
-        Width = 68
-        Height = 22
-        MaxValue = 0
-        MinValue = 0
-        TabOrder = 3
-        Value = 0
-        OnChange = spincheck
-      end
-      object spnMenarche: TSpinEdit
-        Left = 83
-        Top = 276
-        Width = 68
-        Height = 22
-        MaxValue = 0
-        MinValue = 0
-        TabOrder = 4
-        Value = 0
-        OnChange = spincheck
+        object Panel3: TPanel
+          Left = 11
+          Top = 78
+          Width = 251
+          Height = 62
+          BevelOuter = bvNone
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+          object Label4: TLabel
+            Left = 10
+            Top = 11
+            Width = 45
+            Height = 13
+            Caption = 'Amount'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label8: TLabel
+            Left = 6
+            Top = 36
+            Width = 49
+            Height = 13
+            Caption = 'Duration'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object ckAmountNo: TCheckBox
+            Tag = 4
+            Left = 149
+            Top = 10
+            Width = 66
+            Height = 17
+            Caption = 'Abnormal'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
+            OnClick = ToggleCheckBoxes
+          end
+          object ckAmountYes: TCheckBox
+            Tag = 3
+            Left = 67
+            Top = 10
+            Width = 61
+            Height = 17
+            Caption = 'Normal'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            OnClick = ToggleCheckBoxes
+          end
+          object ckDurationNo: TCheckBox
+            Tag = 8
+            Left = 149
+            Top = 35
+            Width = 66
+            Height = 17
+            Caption = 'Abnormal'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 3
+            OnClick = ToggleCheckBoxes
+          end
+          object ckDurationYes: TCheckBox
+            Tag = 7
+            Left = 67
+            Top = 35
+            Width = 61
+            Height = 17
+            Caption = 'Normal'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 2
+            OnClick = ToggleCheckBoxes
+          end
+        end
       end
       object ckBirthPillsYes: TCheckBox
         Tag = 9
-        Left = 480
-        Top = 117
+        Left = 521
+        Top = 97
         Width = 52
         Height = 17
         Caption = 'Yes'
-        TabOrder = 12
+        TabOrder = 7
         OnClick = ToggleCheckBoxes
       end
       object ckBirthPillsNo: TCheckBox
         Tag = 10
-        Left = 546
-        Top = 117
+        Left = 586
+        Top = 97
         Width = 37
         Height = 17
         Caption = 'No'
-        TabOrder = 13
+        TabOrder = 8
         OnClick = ToggleCheckBoxes
+      end
+      object edthcg: TORDateBox
+        Left = 463
+        Top = 35
+        Width = 185
+        Height = 21
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 4
+        DateOnly = False
+        RequireTime = False
+        Caption = 'Human Chorionic Gonadotropin'
+      end
+      object spnMenarche: TSpinEdit
+        Left = 101
+        Top = 295
+        Width = 68
+        Height = 22
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        MaxValue = 0
+        MinValue = 0
+        ParentFont = False
+        TabOrder = 3
+        Value = 0
+        OnChange = spincheck
       end
     end
   end
