@@ -49,9 +49,9 @@
     <Transaction>2016/05/17 15:58:11.000.664,C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\NursePostpartum - Delivery\frmBaby.pas=C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\NursePostpartum - Delivery\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="frmMain.pas"/>
-    <File Path="frmMain.dfm"/>
     <File Path="frmBaby.pas"/>
     <File Path="frmBaby.dfm"/>
+    <File Path="frmMain.pas"/>
+    <File Path="frmMain.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

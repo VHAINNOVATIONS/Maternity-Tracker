@@ -84,50 +84,50 @@ begin
   begin
     TmpStrList.Add('  ' + lbTDAP.Caption + ' approx. date: ' + dtTDAP.Text);
     if edTDAP.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edTDAP.Text);
+      TmpStrList.Add('    Comments: ' + edTDAP.Text);
   end;
   if dtInfluenza.Text <> '' then
   begin
     TmpStrList.Add('  ' + lbInfluenza.Caption + ' approx. date: ' + dtInfluenza.Text);
     if edInfluenza.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edInfluenza.Text);
+      TmpStrList.Add('    Comments: ' + edInfluenza.Text);
   end;
   if dtMMR.Text <> '' then
   begin
     TmpStrList.Add('  ' + lbMMR.Caption + ' approx. date: ' + dtMMR.Text);
     if edMMR.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edMMR.Text);
+      TmpStrList.Add('    Comments: ' + edMMR.Text);
   end;
   if dtVaricella.Text <> '' then
   begin
     TmpStrList.Add('  ' + lbVaricella.Caption + ' approx. date: ' + dtVaricella.Text);
     if edVaricella.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edVaricella.Text);
+      TmpStrList.Add('    Comments: ' + edVaricella.Text);
   end;
 
   if ((Trim(edLabelOther1.Text) <> '') and (dtOther1.Text <> '')) then
   begin
     TmpStrList.Add('  ' + edLabelOther1.Text + ' approx. date: ' + dtOther1.Text);
     if edOther1.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edOther1.Text);
+      TmpStrList.Add('    Comments: ' + edOther1.Text);
   end;
   if ((Trim(edLabelOther2.Text) <> '') and (dtOther2.Text <> '')) then
   begin
     TmpStrList.Add('  ' + edLabelOther2.Text + ' approx. date: ' + dtOther2.Text);
     if edOther2.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edOther2.Text);
+      TmpStrList.Add('    Comments: ' + edOther2.Text);
   end;
   if ((Trim(edLabelOther3.Text) <> '') and (dtOther3.Text <> '')) then
   begin
     TmpStrList.Add('  ' + edLabelOther3.Text + ' approx. date: ' + dtOther3.Text);
     if edOther3.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edOther3.Text);
+      TmpStrList.Add('    Comments: ' + edOther3.Text);
   end;
   if ((Trim(edLabelOther4.Text) <> '') and (dtOther4.Text <> '')) then
   begin
     TmpStrList.Add('  ' + edLabelOther4.Text + ' approx. date: ' + dtOther4.Text);
     if edOther4.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edOther4.Text);
+      TmpStrList.Add('    Comments: ' + edOther4.Text);
   end;
 
   if TmpStrList.Count > 0 then

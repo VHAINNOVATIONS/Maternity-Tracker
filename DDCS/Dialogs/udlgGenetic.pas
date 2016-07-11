@@ -287,7 +287,7 @@ begin
           begin
             tmp := GetNarrative(ck.Tag);
             if tmp <> '' then
-              TmpStrList.Add('    Narrative: ' + tmp);
+              TmpStrList.Add('    Comments: ' + tmp);
           end;
         end;
       end;

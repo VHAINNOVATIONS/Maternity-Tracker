@@ -117,6 +117,10 @@ object dlgPhysicalExam: TdlgPhysicalExam
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbComment: TLabel
         Left = 406
         Top = 8
@@ -1179,6 +1183,10 @@ object dlgPhysicalExam: TdlgPhysicalExam
     end
     object TabSheet2: TTabSheet
       Caption = 'Page 2'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label31: TLabel
         Left = 279
         Top = 8

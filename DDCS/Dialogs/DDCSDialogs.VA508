@@ -31,7 +31,7 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgLegPai
 14
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgMedical.dfm
-30245/1221223626
+66957/1223124275
 16
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgNausea.dfm
@@ -51,7 +51,7 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgRTClin
 24
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgSocial.dfm
-50220/1221223702
+66460/1223135297
 26
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgVagBleed.dfm
@@ -75,11 +75,11 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPelvic
 36
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPregHist.dfm
-7297/1221688874
+7297/1222730363
 38
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgGenetic.dfm
-40149/1221618482
+40689/1223120512
 40
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgSurgical.dfm
@@ -87,7 +87,7 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgSurgic
 42
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgOBSpread.dfm
-19701/1221223655
+8249/1222990202
 44
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgImmunizations.dfm
@@ -99,15 +99,15 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgROS.df
 48
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPhysicalExam.dfm
-53051/1221618918
+53247/1223120562
 50
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgEducation.dfm
-2697/1221419338
+2670/1222997075
 52
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\frmPregHistPreg.dfm
-1664/1221629039
+1664/1222730240
 54
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\frmPregHistChild.dfm
@@ -135,7 +135,7 @@ object dlgHeadache: TdlgHeadache
 object dlgInfectHist: TdlgInfectHist
 111
 object dlgLegPain: TdlgLegPain
-1293
+2616
 object dlgMedical: TdlgMedical
 322
 object dlgNausea: TdlgNausea
@@ -145,7 +145,7 @@ object dlgPalp: TdlgPalp
 object dlgRash: TdlgRash
 92
 object dlgRTClinic: TdlgRTClinic
-1820
+2519
 object dlgSocial: TdlgSocial
 181
 object dlgVagBleed: TdlgVagBleed
@@ -159,17 +159,17 @@ object dlgWheezing: TdlgWheezing
 object dlgPelvic: TdlgPelvic
 310
 object dlgPregHist: TdlgPregHist
-1559
+1579
 object dlgGenetic: TdlgGenetic
 710
 object dlgSurgical: TdlgSurgical
-772
+358
 object dlgOBSpread: TdlgOBSpread
 352
 object dlgImmunizations: TdlgImmunizations
 891
 object dlgROS: TdlgROS
-2078
+2086
 object dlgPhysicalExam: TdlgPhysicalExam
 87
 object dlgEducation: TdlgEducation

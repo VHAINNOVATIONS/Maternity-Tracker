@@ -37,6 +37,10 @@ object dlgGenetic: TdlgGenetic
     TabPosition = tpRight
     object TabSheet1: TTabSheet
       Caption = 'Page 1'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnllabels1: TPanel
         Left = 8
         Top = 4
@@ -1043,6 +1047,10 @@ object dlgGenetic: TdlgGenetic
     end
     object TabSheet2: TTabSheet
       Caption = 'Page 2'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object CheckBox43: TCheckBox
         Tag = 15
         Left = 164
@@ -1505,6 +1513,11 @@ object dlgGenetic: TdlgGenetic
       Align = alCustom
       Anchors = [akTop, akRight]
       Caption = 'OK'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
       Glyph.Data = {
         DE010000424DDE01000000000000760000002800000024000000120000000100
         0400000000006801000000000000000000001000000000000000000000000000
@@ -1524,6 +1537,7 @@ object dlgGenetic: TdlgGenetic
         0000}
       ModalResult = 1
       NumGlyphs = 2
+      ParentFont = False
       TabOrder = 1
       OnClick = btnOKClick
     end
@@ -1534,8 +1548,14 @@ object dlgGenetic: TdlgGenetic
       Height = 25
       Align = alCustom
       Anchors = [akTop, akRight]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
       Kind = bkCancel
       NumGlyphs = 2
+      ParentFont = False
       TabOrder = 2
     end
     object btnNeg: TBitBtn

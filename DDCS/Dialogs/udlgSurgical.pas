@@ -259,7 +259,7 @@ begin
             TmpStrList.Add('    Surgery Date: ' + tmp);
           tmp := GetNarrative(ck.Tag);
           if tmp <> '' then
-            TmpStrList.Add('    Narrative: ' + tmp);
+            TmpStrList.Add('    Comments: ' + tmp);
         end;
       end;
     end;
@@ -271,7 +271,7 @@ begin
     if dtOther1.Text <> '' then
       TmpStrList.Add('    Surgery Date: ' + dtOther1.Text);
     if edOtherComments1.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edOtherComments1.Text);
+      TmpStrList.Add('    Comments: ' + edOtherComments1.Text);
   end;
 
   if Trim(edOther2.Text) <> '' then
@@ -281,7 +281,7 @@ begin
     if dtOther2.Text <> '' then
       TmpStrList.Add('    Surgery Date: ' + dtOther2.Text);
     if edOtherComments2.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edOtherComments2.Text);
+      TmpStrList.Add('    Comments: ' + edOtherComments2.Text);
   end;
 
   if meComments.Lines.Count > 0 then

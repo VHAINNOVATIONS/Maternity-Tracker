@@ -381,7 +381,7 @@ begin
             TmpStrList.Add('    Treatment Date: ' + tmp);
           tmp := GetNarrative(ck.Tag);
           if tmp <> '' then
-            TmpStrList.Add('    Narrative: ' + tmp);
+            TmpStrList.Add('    Comments: ' + tmp);
         end;
       end;
 
@@ -392,7 +392,7 @@ begin
     if dtOther.Text <> '' then
       TmpStrList.Add('    Treatment Date: ' + dtOther.Text);
     if edOtherComments.Text <> '' then
-      TmpStrList.Add('    Narrative: ' + edOtherComments.Text);
+      TmpStrList.Add('    Comments: ' + edOtherComments.Text);
   end;
 
   if TmpStrList.Count > 0 then

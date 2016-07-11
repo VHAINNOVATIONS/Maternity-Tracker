@@ -193,7 +193,14 @@ begin
             if vPregInfo <> nil then
             begin
               if cItem.Piece[6] = 'CURRENT' then
-                vPregInfo.lbStatus.Caption := vPregInfo.lbStatus.Caption + ' (C)';
+              begin
+                vPregInfo.lbStatus.Visible := True;
+                if vPregInfo.lbStatus.Caption <> '' then
+                  vPregInfo.lbStatus.Caption := vPregInfo.lbStatus.Caption + ' (C)'
+                else vPregInfo.lbStatus.Caption := 'CURRENT';
+                vPregInfo.Enabled := False;
+                vPreg.btnDelete.Enabled := False;
+              end;
 
               vPregInfo.dtDelivery.Text := cItem.Piece[9];
 
@@ -314,7 +321,18 @@ begin
   end;
 
   if pgPregnancy.PageCount > 0 then
+  begin
+    for I := pgPregnancy.PageCount - 1 downto 0 do
+      if pgPregnancy.Pages[I].ControlCount > 0 then
+        if pgPregnancy.Pages[I].Controls[0] is TfPreg then
+        begin
+          vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
+          if vPreg.pgPreg.PageCount > 0 then
+            vPreg.pgPreg.ActivePageIndex := 0;
+        end;
+
     pgPregnancy.ActivePageIndex := 0;
+  end;
 end;
 
 procedure TdlgPregHist.CtrlTab(Sender: TObject);

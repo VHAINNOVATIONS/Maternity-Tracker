@@ -15,6 +15,7 @@ object dlgEducation: TdlgEducation
   OldCreateOrder = False
   Position = poMainFormCenter
   Scaled = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlfooter: TPanel
@@ -82,6 +83,5 @@ object dlgEducation: TdlgEducation
     ViewStyle = vsReport
     OnColumnClick = educationListViewColumnClick
     OnCompare = educationListViewCompare
-    OnSelectItem = educationListViewSelectItem
   end
 end

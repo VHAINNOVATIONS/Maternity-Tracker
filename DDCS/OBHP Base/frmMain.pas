@@ -23,7 +23,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.StdCtrls, Vcl.CheckLst, Vcl.ExtCtrls, Vcl.ComCtrls, ORCtrls,
-  uBase, frmVitals;
+  uBase, frmVitals, uReportItems;
 
 type
   TForm1 = class(TForm)
@@ -92,6 +92,12 @@ type
     memoMedicationsNar: TMemo;
     memoMedications: TMemo;
     ckAllergyLatex: TCheckBox;
+    ckPlannedAnesthesia: TCheckBox;
+    ckBloodTransfusion: TCheckBox;
+    ckACGeneral: TCheckBox;
+    ckACEpidural: TCheckBox;
+    ckACSpinal: TCheckBox;
+    ckACOther: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ClearTextClick(Sender: TObject);
@@ -103,7 +109,10 @@ type
     procedure ckAllergyLatexClick(Sender: TObject);
     procedure RadioGroupHistoryClick(Sender: TObject);
     procedure pnlHistoryCategoriesEnter(Sender: TObject);
+    procedure ckBloodTransfusionClick(Sender: TObject);
     procedure cklstProblemsClickCheck(Sender: TObject);
+    procedure ckPlannedAnesthesiaClick(Sender: TObject);
+    procedure ShowOnNote(Sender: TObject);
   private
     problemck: Boolean;
     problems: array of Boolean;
@@ -292,8 +301,8 @@ begin
   if not ckAllergyLatex.Checked then
     Exit;
 
-  if ShowMsg('By checking this box I do hereby certify that I have verified that ' +
-              RPCBrokerV.PatientName + ' is not allergic to Latex.', smiWarning, smbYesNo) <> smrYes then
+  if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.PatientName +
+             ' and verified NO known latex allergy.', smiWarning, smbYesNo) <> smrYes then
   begin
     ckAllergyLatex.OnClick := nil;
     ckAllergyLatex.Checked := False;
@@ -337,7 +346,20 @@ begin
 end;
 
 //-------------------------------------------------------------------- page 6
-// no additional code needed
+
+procedure TForm1.ckBloodTransfusionClick(Sender: TObject);
+begin
+  if not ckBloodTransfusion.Checked then
+    Exit;
+
+  if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.PatientName +
+             ' and verified that if necessary, a blood transfusion is acceptable.', smiWarning, smbYesNo) <> smrYes then
+  begin
+    ckBloodTransfusion.OnClick := nil;
+    ckBloodTransfusion.Checked := False;
+    ckBloodTransfusion.OnClick := ckBloodTransfusionClick;
+  end;
+end;
 
 //-------------------------------------------------------------------- page 7
 // no additional code needed
@@ -368,6 +390,92 @@ begin
         problems[I] := True;
       end;
     end;
+end;
+
+procedure TForm1.ckPlannedAnesthesiaClick(Sender: TObject);
+var
+  nItem: TDDCSNoteItem;
+begin
+  if not ckPlannedAnesthesia.Checked then
+  begin
+    ckACGeneral.Visible  := False;
+    ckACGeneral.Checked  := False;
+    ckACEpidural.Visible := False;
+    ckACEpidural.Checked := False;
+    ckACSpinal.Visible   := False;
+    ckACSpinal.Checked   := False;
+    ckACOther.Visible    := False;
+    ckACOther.Checked    := False;
+
+    Exit;
+  end;
+
+  if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.PatientName +
+             ' and verified type of anesthesia planned with delivery.', smiWarning, smbYesNo) <> smrYes then
+  begin
+    ckPlannedAnesthesia.OnClick := nil;
+    ckPlannedAnesthesia.Checked := False;
+    ckPlannedAnesthesia.OnClick := ckPlannedAnesthesiaClick;
+
+    ckACGeneral.Visible  := False;
+    ckACGeneral.Checked  := False;
+    ckACEpidural.Visible := False;
+    ckACEpidural.Checked := False;
+    ckACSpinal.Visible   := False;
+    ckACSpinal.Checked   := False;
+    ckACOther.Visible    := False;
+    ckACOther.Checked    := False;
+  end else
+  begin
+    ckACGeneral.Visible  := True;
+    ckACEpidural.Visible := True;
+    ckACSpinal.Visible   := True;
+    ckACOther.Visible    := True;
+  end;
+end;
+
+procedure TForm1.ShowOnNote(Sender: TObject);
+var
+  ck: TCheckBox;
+  nItem: TDDCSNoteItem;
+  I: Integer;
+begin
+  ck := TCheckBox(Sender);
+  if ck.Checked then
+  begin
+    nItem := DDCSForm1.ReportCollection.GetNoteItem(ck);
+    if nItem <> nil then
+      nItem.HideFromNote := False;
+
+    case ck.Tag of
+      1: begin
+           ckACEpidural.Checked := False;
+           ckACSpinal.Checked   := False;
+           ckACOther.Checked    := False;
+         end;
+      2: begin
+           ckACGeneral.Checked  := False;
+           ckACSpinal.Checked   := False;
+           ckACOther.Checked    := False;
+         end;
+      3: begin
+           ckACGeneral.Checked  := False;
+           ckACEpidural.Checked := False;
+           ckACOther.Checked    := False;
+         end;
+      4: begin
+           ckACGeneral.Checked  := False;
+           ckACEpidural.Checked := False;
+           ckACSpinal.Checked   := False;
+         end;
+    end;
+
+  end else if not ck.Checked then
+  begin
+    nItem := DDCSForm1.ReportCollection.GetNoteItem(ck);
+    if nItem <> nil then
+      nItem.HideFromNote := True;
+  end;
 end;
 
 end.

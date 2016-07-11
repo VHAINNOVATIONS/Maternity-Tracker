@@ -354,44 +354,6 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Label15: TLabel
-        Left = 555
-        Top = 18
-        Width = 16
-        Height = 13
-        Anchors = [akTop, akRight]
-        Caption = 'GA'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object lbFinalEDD: TLabel
-        Left = 372
-        Top = 18
-        Width = 58
-        Height = 13
-        Anchors = [akTop, akRight]
-        Caption = 'Final EDD'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object edtCurrentEDD: TEdit
-        Left = 435
-        Top = 15
-        Width = 103
-        Height = 21
-        Anchors = [akTop, akRight]
-        Color = clSilver
-        ReadOnly = True
-        TabOrder = 1
-      end
       object EDDGrid: TGridPanel
         Left = 10
         Top = 59
@@ -624,7 +586,7 @@ object DDCSVitals: TDDCSVitals
           item
             Value = 14.232425607342590000
           end>
-        TabOrder = 3
+        TabOrder = 2
         DesignSize = (
           632
           289)
@@ -636,12 +598,12 @@ object DDCSVitals: TDDCSVitals
           Anchors = []
           TabOrder = 0
           Text = 'Today'
-          OnChange = dtLMPChange
+          OnExit = dtLMPExit
           DateOnly = True
           RequireTime = False
           Caption = 'Last Menstrual Period Event Date'
         end
-        object edtEDDLMP: TEdit
+        object edtEDDLMP: TORDateBox
           Left = 403
           Top = 51
           Width = 103
@@ -650,6 +612,9 @@ object DDCSVitals: TDDCSVitals
           Color = clSilver
           ReadOnly = True
           TabOrder = 1
+          DateOnly = True
+          RequireTime = False
+          Caption = ''
         end
         object lblLMP: TLabel
           Left = 0
@@ -692,12 +657,12 @@ object DDCSVitals: TDDCSVitals
           Anchors = []
           TabOrder = 3
           Text = 'Today'
-          OnChange = dtECDChange
+          OnExit = dtECDExit
           DateOnly = True
           RequireTime = False
           Caption = 'Estimated Conception Date Event Date'
         end
-        object edtEDDECD: TEdit
+        object edtEDDECD: TORDateBox
           Left = 403
           Top = 92
           Width = 103
@@ -706,6 +671,9 @@ object DDCSVitals: TDDCSVitals
           Color = clSilver
           ReadOnly = True
           TabOrder = 4
+          DateOnly = True
+          RequireTime = False
+          Caption = ''
         end
         object dtUltra: TORDateBox
           Left = 165
@@ -715,7 +683,7 @@ object DDCSVitals: TDDCSVitals
           Anchors = []
           TabOrder = 6
           Text = 'Today'
-          OnChange = dtUltraChange
+          OnExit = dtUltraExit
           DateOnly = True
           RequireTime = False
           Caption = 'Ultrasound Event Date'
@@ -744,7 +712,7 @@ object DDCSVitals: TDDCSVitals
           Value = 0
           OnChange = spnDayUltraChange
         end
-        object edtEDDUltra: TEdit
+        object edtEDDUltra: TORDateBox
           Left = 403
           Top = 133
           Width = 103
@@ -753,6 +721,9 @@ object DDCSVitals: TDDCSVitals
           Color = clSilver
           ReadOnly = True
           TabOrder = 9
+          DateOnly = True
+          RequireTime = False
+          Caption = ''
         end
         object dtEmbryo: TORDateBox
           Left = 165
@@ -762,12 +733,12 @@ object DDCSVitals: TDDCSVitals
           Anchors = []
           TabOrder = 12
           Text = 'Today'
-          OnChange = dtEmbryoChange
+          OnExit = dtEmbryoExit
           DateOnly = True
           RequireTime = False
           Caption = 'Embryo Transfer Event Date'
         end
-        object edtEDDEmbryo: TEdit
+        object edtEDDEmbryo: TORDateBox
           Left = 403
           Top = 174
           Width = 103
@@ -776,6 +747,9 @@ object DDCSVitals: TDDCSVitals
           Color = clSilver
           ReadOnly = True
           TabOrder = 13
+          DateOnly = True
+          RequireTime = False
+          Caption = ''
         end
         object lblUnknown: TLabel
           Left = 0
@@ -796,7 +770,7 @@ object DDCSVitals: TDDCSVitals
           Anchors = []
           TabOrder = 16
           Text = 'Today'
-          OnChange = dtOtherChange
+          OnExit = lblOtherExit
           DateOnly = True
           RequireTime = False
           Caption = 'Other Criteria Event Date'
@@ -825,7 +799,7 @@ object DDCSVitals: TDDCSVitals
           Value = 0
           OnChange = spnDayOtherChange
         end
-        object edtEDDOther: TEdit
+        object edtEDDOther: TORDateBox
           Left = 403
           Top = 215
           Width = 103
@@ -834,6 +808,9 @@ object DDCSVitals: TDDCSVitals
           Color = clSilver
           ReadOnly = True
           TabOrder = 19
+          DateOnly = True
+          RequireTime = False
+          Caption = ''
         end
         object lblOther: TEdit
           Left = 0
@@ -1001,7 +978,7 @@ object DDCSVitals: TDDCSVitals
           Height = 21
           Anchors = []
           TabOrder = 21
-          OnChange = dtEDDUnknownChange
+          OnExit = dtEDDUnknownExit
           DateOnly = True
           RequireTime = False
           Caption = 'Unknown Estimated Delivery Date'
@@ -1015,15 +992,12 @@ object DDCSVitals: TDDCSVitals
           BevelOuter = bvNone
           TabOrder = 11
           object lblEmbryo: TLabel
-            Left = 0
-            Top = 0
-            Width = 150
-            Height = 41
-            Align = alClient
-            Caption = '                     Embryo Transfer'
+            Left = 65
+            Top = 13
+            Width = 80
+            Height = 13
+            Caption = 'Embryo Transfer'
             Layout = tlCenter
-            ExplicitWidth = 143
-            ExplicitHeight = 13
           end
           object cbTransferDay: TCaptionComboBox
             Left = 0
@@ -1051,15 +1025,61 @@ object DDCSVitals: TDDCSVitals
         ReadOnly = True
         TabOrder = 0
       end
-      object edtEDDGA: TEdit
-        Left = 577
-        Top = 15
-        Width = 65
-        Height = 21
+      object Panel4: TPanel
+        Left = 325
+        Top = 3
+        Width = 342
+        Height = 41
         Anchors = [akTop, akRight]
-        Color = clSilver
-        ReadOnly = True
-        TabOrder = 2
+        BevelOuter = bvNone
+        TabOrder = 1
+        object lbFinalEDD: TLabel
+          Left = 49
+          Top = 15
+          Width = 58
+          Height = 13
+          Caption = 'Final EDD'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label15: TLabel
+          Left = 230
+          Top = 14
+          Width = 16
+          Height = 13
+          Caption = 'GA'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object edtCurrentEDD: TORDateBox
+          Left = 113
+          Top = 11
+          Width = 103
+          Height = 21
+          Color = clSilver
+          ReadOnly = True
+          TabOrder = 0
+          DateOnly = True
+          RequireTime = False
+          Caption = ''
+        end
+        object edtEDDGA: TEdit
+          Left = 252
+          Top = 11
+          Width = 65
+          Height = 21
+          Color = clSilver
+          ReadOnly = True
+          TabOrder = 1
+        end
       end
     end
     object PageLMP: TTabSheet
@@ -1221,7 +1241,7 @@ object DDCSVitals: TDDCSVitals
         Width = 185
         Height = 21
         TabOrder = 0
-        OnChange = edtLMPChange
+        OnExit = edtLMPExit
         DateOnly = True
         RequireTime = False
         Caption = 'Last Menstrual Period'

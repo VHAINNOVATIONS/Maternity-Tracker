@@ -7092,7 +7092,7 @@ object DDCSAbout: TDDCSAbout
       208)
     object lbCompany: TStaticText
       Left = 0
-      Top = 92
+      Top = 70
       Width = 246
       Height = 16
       Alignment = taCenter
@@ -7110,7 +7110,7 @@ object DDCSAbout: TDDCSAbout
     end
     object lbApache: TStaticText
       Left = 0
-      Top = 136
+      Top = 92
       Width = 246
       Height = 16
       Alignment = taCenter
