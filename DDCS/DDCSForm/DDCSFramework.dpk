@@ -38,15 +38,14 @@ requires
 contains
   frmAbout in 'frmAbout.pas' {DDCSAbout},
   frmSplash in 'frmSplash.pas' {DDCSSplash},
-  frmPreview in 'frmPreview.pas' {ReviewNoteDlg},
   uExtndComBroker in 'uExtndComBroker.pas',
   frmConfiguration in 'frmConfiguration.pas' {DDCSConfiguration},
-  frmConfigMultiItemAdd in 'frmConfigMultiItemAdd.pas' {AddItem},
   uReportItems in 'uReportItems.pas',
   frmVitals in 'frmVitals.pas' {DDCSVitals: TFrame},
   uCommon in 'uCommon.pas',
   dBaseEditor in 'dBaseEditor.pas',
-  uBase in 'uBase.pas';
+  uBase in 'uBase.pas',
+  frmReview in 'frmReview.pas' {DDCSReview};
 
 end.
 

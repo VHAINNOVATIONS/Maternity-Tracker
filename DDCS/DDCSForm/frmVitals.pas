@@ -22,23 +22,14 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
   System.ConvUtils, System.StdConvs, System.DateUtils, System.StrUtils,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Samples.Spin,
-  Vcl.ComCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Graphics, ORDtTm, ORCtrls, ORFn;
+  System.Generics.Collections, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Vcl.Samples.Spin, Vcl.ComCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Graphics, ORDtTm, ORCtrls, ORFn;
 
 type
-  TSayOnFocus = record
+  TSayOnFocus = class(TObject)
     FOwningObject: TWinControl;
-    Text: string[100];
-  end;
-  PSayOnFocus = ^TSayOnFocus;
-
-  TSayOnFocusList = class(TList)
-  private
-    function Get(Index: Integer): PSayOnFocus;
-  public
-    destructor Destroy; override;
-    function Add(Value: PSayOnFocus): Integer;
-    property Items[Index: Integer]: PSayOnFocus read Get; default;
+    Text: string;
   end;
 
   TEventType = (evLMP,evECD,evUlt,evEmT,evOth,evUkn);
@@ -176,11 +167,11 @@ type
     procedure dtEDDUnknownExit(Sender: TObject);
     procedure IsFinalEDDClick(Sender: TObject);
     // Menstrual Page ----------------------------------------------------------
-    procedure spincheck(Sender: TObject);
+    procedure SpinCheck(Sender: TObject);
     procedure edtLMPExit(Sender: TObject);
     procedure ToggleCheckBoxes(Sender: TObject);
   private
-    FocusControlText: TSayOnFocusList;
+    FocusControlText: TObjectList<TSayOnFocus>;
     FNote: TStringList;
     TabSeen: array of Boolean;
     procedure BuildSayOnFocus(wControl: TWinControl; txt: string);
@@ -192,10 +183,10 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure Save;
-    function GetPatientVitals: TStringList;
-    function GetEDDNote: TStringList;
-    function GetLMPNote: TStringList;
-    function GetCompleteNote: TStringList;
+    procedure GetPatientVitals(var oText: TStringList);
+    procedure GetEDDNote(var oText: TStringList);
+    procedure GetLMPNote(var oText: TStringList);
+    procedure GetCompleteNote(var oText: TStringList);
     function GetTextforFocus(Value: TWinControl): string;
     property Vitals: TStringList read FNote;
   end;
@@ -209,34 +200,6 @@ uses
 
 const
   FMT_DATETIME = 'mm/dd/yyyy';
-
-{$REGION 'TSayOnFocusList'}
-
-// Private ---------------------------------------------------------------------
-
-function TSayOnFocusList.Get(Index: Integer): PSayOnFocus;
-begin
-  Result := PSayOnFocus(inherited Get(Index));
-end;
-
-// Public ----------------------------------------------------------------------
-
-destructor TSayOnFocusList.Destroy;
-var
-  I: Integer;
-begin
-  for I := 0 to Count - 1 do
-    FreeMem(Items[I]);
-
-  inherited;
-end;
-
-function TSayOnFocusList.Add(Value: PSayOnFocus): Integer;
-begin
-  Result := inherited Add(Value);
-end;
-
-{$ENDREGION}
 
    // LMP ****
 procedure TDDCSVitals.dtLMPExit(Sender: TObject);
@@ -544,7 +507,7 @@ end;
 
    // Menstrual Page -----------------------------------------------------------
 
-procedure TDDCSVitals.spincheck(Sender: TObject);
+procedure TDDCSVitals.SpinCheck(Sender: TObject);
 begin
   if TSpinEdit(Sender).Value < 0 then
     TSpinEdit(Sender).Value := 0;
@@ -646,8 +609,8 @@ begin
   end;
 end;
 
-   // Gestational Age ----------------------------------------------------------
-function TDDCSVitals.CalGestationalAge(EventType: TEventType; FromDate,ToDate: TFMDateTime): string;         // weeks^days
+   // Gestational Age ----------------------------------------------------------// weeks^days
+function TDDCSVitals.CalGestationalAge(EventType: TEventType; FromDate,ToDate: TFMDateTime): string;
 var
   GAgeDays,GAgeWeeks: Integer;
   tDate,fDate: TDateTime;
@@ -697,9 +660,9 @@ end;
 
 procedure TDDCSVitals.BuildSayOnFocus(wControl: TWinControl; txt: string);
 var
-  rText: PSayOnFocus;
+  rText: TSayOnFocus;
 begin
-  GetMem(rText, SizeOf(TSayOnFocus));
+  rText := TSayOnFocus.Create;
   rText.FOwningObject := wControl;
   rText.Text := txt;
   FocusControlText.Add(rText);
@@ -714,11 +677,14 @@ var
   procedure DisableButton(fDate: TORDateBox);
   var
     I: Integer;
+    bt: TORDateButton;
   begin
     for I := 0 to fDate.ControlCount - 1 do
       if fDate.Controls[I] is TORDateButton then
       begin
-        TORDateButton(fDate.Controls[I]).Enabled := False;
+        bt := TORDateButton(fDate.Controls[I]);
+        bt.Enabled := False;
+        bt.onClick := nil;
         Break;
       end;
   end;
@@ -768,8 +734,7 @@ begin
       if RPCBrokerV = nil then
         Exit;
 
-      sl.AddStrings(GetPatientVitals);
-	  
+      GetPatientVitals(sl);
       if sl.Count > 0 then
         if sl[0] <> '-1' then
         begin
@@ -847,7 +812,7 @@ begin
 
       sl.Clear;
       if UpdateContext(MENU_CONTEXT) then
-        tCallV(sl, 'DSIO DDCS VITALS LMP', [RPCBrokerV.PatientDFN, RPCBrokerV.DDCSInterface]);
+        tCallV(sl, 'DSIO DDCS VITALS LMP', [RPCBrokerV.Patient.DFN, RPCBrokerV.DDCSInterface]);
 
       // (0)LMP^MENSES^FREQUENCY^MENARCHE^HCG^AMOUNT^DURATION^ON_CONTRACEPTION^QUALIFIER^
       //    MENSES_MONTHLY^BIRTH_PILLS_CONCEPTION
@@ -937,7 +902,7 @@ begin
     sl.Free;
 
     // 508 support -----------------------------------------------------------
-    FocusControlText := TSayOnFocusList.Create;
+    FocusControlText := TObjectList<TSayOnFocus>.Create(True);
     BuildSayOnFocus(         FAgeValue, 'Patient age in years');
     BuildSayOnFocus(         FSexValue, 'Patient sex');
     BuildSayOnFocus(         FBMIValue, 'Patient B M I');
@@ -1010,7 +975,7 @@ end;
 procedure TDDCSVitals.Save;
 var
   sl: TStringList;
-  qual,return: string;
+  qual: string;
 
   function SetofCodes(cb1,cb2: TCheckBox): string;
   begin
@@ -1072,7 +1037,7 @@ begin
 
     try
       if UpdateContext(MENU_CONTEXT) then
-        return := sCallV('DSIO DDCS ORQQVI VITALS SAVE', [RPCBrokerV.ControlObject, RPCBrokerV.Source.IEN, sl])
+        sCallV('DSIO DDCS ORQQVI VITALS SAVE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN, sl])
     except
     end;
   finally
@@ -1081,119 +1046,117 @@ begin
 end;
 
 // Array of vital ien^vital type^rate/value^date/time taken
-function TDDCSVitals.GetPatientVitals: TStringList;
+procedure TDDCSVitals.GetPatientVitals(var oText: TStringList);
 begin
-  Result := TStringList.Create;
+  oText.Clear;
   try
     if RPCBrokerV <> nil then
     begin
       if UpdateContext(MENU_CONTEXT) then
-        tCallV(Result, 'DSIO DDCS ORQQVI VITALS', [RPCBrokerV.PatientDFN]);
+        tCallV(oText, 'DSIO DDCS ORQQVI VITALS', [RPCBrokerV.Patient.DFN]);
     end;
   except
   end;
 end;
 
-function TDDCSVitals.GetEDDNote;
+procedure TDDCSVitals.GetEDDNote(var oText: TStringList);
 begin
-  Result := TStringList.Create;
+  oText.Clear;
 
   if edtCurrentEDD.Text = '' then
     Exit;
 
-  Result.Add('ESTIMATED DELIVERY DATE:');
+  oText.Add('ESTIMATED DELIVERY DATE:');
 
-  Result.Add('  Final EDD: ' + edtCurrentEDD.Text);
+  oText.Add('  Final EDD: ' + edtCurrentEDD.Text);
   if edtEDDGA.Text <> '' then
-    Result.Add('   Gestational Age for Final EDD: ' + edtEDDGA.Text);
+    oText.Add('   Gestational Age for Final EDD: ' + edtEDDGA.Text);
   if edtFinalGA.Text <> '' then
-    Result.Add('   Gestational Age Today: ' + edtFinalGA.Text);
+    oText.Add('   Gestational Age Today: ' + edtFinalGA.Text);
   if ckFinalEDDLMP.Checked then
-    Result.Add('   The current calculation is based on  a Last Menstrual Period of ' + dtLMP.Text + '.')
+    oText.Add('   The current calculation is based on  a Last Menstrual Period of ' + dtLMP.Text + '.')
   else if ckFinalEDDECD.Checked then
-    Result.Add('   The current calculation is based on an Estimated Conception Date of ' + dtECD.Text + '.')
+    oText.Add('   The current calculation is based on an Estimated Conception Date of ' + dtECD.Text + '.')
   else if ckFinalEDDUltra.Checked then
-    Result.Add('   The current calculation is based on an Ultrasound conducted on ' + dtUltra.Text +
-               ' with an estimated gestational age of ' + IntToStr(spnWeekUltra.Value) + ' weeks and ' +
-               IntToStr(spnDayUltra.Value) + ' days.')
+    oText.Add('   The current calculation is based on an Ultrasound conducted on ' + dtUltra.Text +
+              ' with an estimated gestational age of ' + IntToStr(spnWeekUltra.Value) + ' weeks and ' +
+              IntToStr(spnDayUltra.Value) + ' days.')
   else if ckFinalEDDEmbryo.Checked then
-    Result.Add('   The current calculation is based on a ' + cbTransferDay.Text + '-day embryo transfer conducted on ' +
-               dtEmbryo.Text + '.')
+    oText.Add('   The current calculation is based on a ' + cbTransferDay.Text + '-day embryo transfer conducted on ' +
+              dtEmbryo.Text + '.')
   else if ckFinalEDDOther.Checked then
-    Result.Add('   The current calculation is based on an EDD Criteria of ' + lblOther.Text +
-               ' with an estimated gestational age of ' + IntToStr(spnWeekOther.Value) + ' weeks and ' +
-               IntToStr(spnDayOther.Value) + ' days.')
+    oText.Add('   The current calculation is based on an EDD Criteria of ' + lblOther.Text +
+              ' with an estimated gestational age of ' + IntToStr(spnWeekOther.Value) + ' weeks and ' +
+              IntToStr(spnDayOther.Value) + ' days.')
   else if ckFinalEDDUnknown.Checked then
-    Result.Add('   The current methodology for calculation is unknown.');
+    oText.Add('   The current methodology for calculation is unknown.');
 end;
 
-function TDDCSVitals.GetLMPNote;
+procedure TDDCSVitals.GetLMPNote(var oText: TStringList);
 var
   I: Integer;
 begin
-  Result := TStringList.Create;
+  oText.Clear;
 
-  if edtLMP.Text <> ''                 then Result.Add('  LMP: ' + edtLMP.Text);
-  if ckLMPQualifier.Checked            then Result.Add('   *Approximate');
-  if ckMensesYes.Checked               then Result.Add('  Menses Regular: YES');
-  if ckMensesNo.Checked                then Result.Add('  Menses Regular: NO');
-  if spnMonthly.Value > 0              then Result.Add('  Menses Monthly: ' + spnMonthly.Text + ' days');
-  if ckAmountYes.Checked               then Result.Add('  Normal Amount: YES');
-  if ckAmountNo.Checked                then Result.Add('  Normal Amount: NO');
-  if ckDurationYes.Checked             then Result.Add('  Normal Duration: YES');
-  if ckDurationNo.Checked              then Result.Add('  Normal Duration: NO');
-  if spnFreq.Value > 0                 then Result.Add('  Duration of Flow Frequency: ' + spnFreq.Text + ' days');
-  if spnMenarche.Value > 0             then Result.Add('  Menarche: ' + spnMenarche.Text + ' years old');
-  if edthcg.Text <> ''                 then Result.Add('  hCG+: ' + edthcg.Text);
-  if ckContraceptionYes.Checked        then Result.Add('  On Contraception: YES');
-  if ckContraceptionNo.Checked         then Result.Add('  On Contraception: NO');
-  if ckBirthPillsYes.Checked           then Result.Add('  On Birth Control Pills on Conception: YES');
-  if ckBirthPillsNo.Checked            then Result.Add('  On Birth Control Pills on Conception: NO');
+  if edtLMP.Text <> ''                 then oText.Add('  LMP: ' + edtLMP.Text);
+  if ckLMPQualifier.Checked            then oText.Add('   *Approximate');
+  if ckMensesYes.Checked               then oText.Add('  Menses Regular: YES');
+  if ckMensesNo.Checked                then oText.Add('  Menses Regular: NO');
+  if spnMonthly.Value > 0              then oText.Add('  Menses Monthly: ' + spnMonthly.Text + ' days');
+  if ckAmountYes.Checked               then oText.Add('  Normal Amount: YES');
+  if ckAmountNo.Checked                then oText.Add('  Normal Amount: NO');
+  if ckDurationYes.Checked             then oText.Add('  Normal Duration: YES');
+  if ckDurationNo.Checked              then oText.Add('  Normal Duration: NO');
+  if spnFreq.Value > 0                 then oText.Add('  Duration of Flow Frequency: ' + spnFreq.Text + ' days');
+  if spnMenarche.Value > 0             then oText.Add('  Menarche: ' + spnMenarche.Text + ' years old');
+  if edthcg.Text <> ''                 then oText.Add('  hCG+: ' + edthcg.Text);
+  if ckContraceptionYes.Checked        then oText.Add('  On Contraception: YES');
+  if ckContraceptionNo.Checked         then oText.Add('  On Contraception: NO');
+  if ckBirthPillsYes.Checked           then oText.Add('  On Birth Control Pills on Conception: YES');
+  if ckBirthPillsNo.Checked            then oText.Add('  On Birth Control Pills on Conception: NO');
   if edtContraceptionType.Text <> ''   then
   begin
-    Result.Add('  What type(s) of contraception were you using most recently?');
-    Result.Add('  ' + edtContraceptionType.Text);
+    oText.Add('  What type(s) of contraception were you using most recently?');
+    oText.Add('  ' + edtContraceptionType.Text);
   end;
 
   if memLMP.Lines.Count > 0 then
   begin
-    Result.Add(' Menstrual Narrative:');
+    oText.Add(' Menstrual Narrative:');
     for I := 0 to memLMP.Lines.Count - 1 do
-      Result.Add('  ' + memLMP.Lines[I]);
+      oText.Add('  ' + memLMP.Lines[I]);
   end;
 
-  if Result.Count > 0 then
-    Result.Insert(0, 'MENSTRUAL HISTORY: ');
+  if oText.Count > 0 then
+    oText.Insert(0, 'MENSTRUAL HISTORY: ');
 end;
 
-function TDDCSVitals.GetCompleteNote;
+procedure TDDCSVitals.GetCompleteNote(var oText: TStringList);
 var
   sl: TStringList;
 begin
-  Result := TStringList.Create;
+  oText.Clear;
 
   sl := TStringList.Create;
   try
-    Result.AddStrings(Vitals);
+    oText.AddStrings(Vitals);
     if fVitalsControl.Pages[1].TabVisible then
     begin
-      sl.AddStrings(GetEDDNote);
-
+      GetEDDNote(sl);
       if sl.Count > 0 then
       begin
-        Result.Add('');
-        Result.AddStrings(sl);
+        oText.Add('');
+        oText.AddStrings(sl);
       end;
       sl.Clear;
     end;
     if fVitalsControl.Pages[2].TabVisible then
     begin
-      sl.AddStrings(GetLMPNote);
-
+      GetLMPNote(sl);
       if sl.Count > 0 then
       begin
-        Result.Add('');
-        Result.AddStrings(sl);
+        oText.Add('');
+        oText.AddStrings(sl);
       end;
       sl.Clear;
     end;

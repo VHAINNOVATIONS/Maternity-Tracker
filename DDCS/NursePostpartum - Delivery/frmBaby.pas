@@ -29,23 +29,22 @@ type
   TfrmInner = class(TFrame)
     edAPGARone: TEdit;
     meComplications: TCaptionMemo;
-    spnOz: TSpinEdit;
     ckNICU: TCheckBox;
-    rgLife: TRadioGroup;
-    spnG: TSpinEdit;
     edAPGARfive: TEdit;
-    spnLb: TSpinEdit;
-    lbOz: TLabel;
     lbAPGAR: TLabel;
-    lbLbs: TLabel;
     rgSex: TRadioGroup;
     lbComplications: TLabel;
+    Panel1: TPanel;
+    lbOz: TLabel;
+    lbLbs: TLabel;
     lbTotalWeight: TLabel;
     lbG: TLabel;
+    spnLb: TSpinEdit;
+    spnOz: TSpinEdit;
+    spnG: TSpinEdit;
     procedure spnLbChange(Sender: TObject);
     procedure spnOzChange(Sender: TObject);
     procedure UpdateLbOz(Sender: TObject);
-    procedure rgLifeClick(Sender: TObject);
   private
     procedure OnChangeNil;
     procedure OnChangeRestore;
@@ -55,7 +54,7 @@ type
     IEN: string;
     constructor Create(AOwner: TComponent); override;
     procedure UpdateBirthWeightGrams(Value: string);
-    function GetText: TStringList;
+    procedure GetText(var oText: TStringList);
   end;
 
 implementation
@@ -121,20 +120,6 @@ begin
   OnChangeRestore;
 end;
 
-procedure TfrmInner.rgLifeClick(Sender: TObject);
-begin
-  if (Form1.cbOutcome.ItemIndex = -1) or (Form1.cbOutcome.Text = 'Unknown') or
-     (Form1.cbOutcome.Text = 'Full Term') or (Form1.cbOutcome.Text = 'Preterm') then
-    case rgLife.ItemIndex of
-      0: Form1.rgPretermDeliveryClick(nil);
-      1: begin
-           if Form1.cbOutcome.Items.IndexOf('Stillbirth') = -1 then
-             Form1.cbOutcome.Items.Add('Stillbirth');
-           Form1.cbOutcome.ItemIndex := Form1.cbOutcome.Items.IndexOf('Stillbirth');
-         end;
-    end;
-end;
-
 // Private ---------------------------------------------------------------------
 
 procedure TfrmInner.OnChangeNil;
@@ -168,12 +153,9 @@ end;
 
 constructor TfrmInner.Create(AOwner: TComponent);
 var
-  I: Integer;
   nItem: TDDCSNoteItem;
 begin
   inherited;
-
-  rgLifeClick(nil);
 
   nItem := Form1.DDCSForm1.ReportCollection.GetNoteItemAddifNil(spnLb);
   if nItem <> nil then
@@ -205,48 +187,42 @@ begin
   end;
 end;
 
-function TfrmInner.GetText: TStringList;
+procedure TfrmInner.GetText(var oText: TStringList);
 var
   I: Integer;
 begin
-  Result := TStringList.Create;
-
-  if rgLife.ItemIndex <> -1 then
-    Result.Add('  Baby ' + IntTostr(BabyNumber) + ' (' +
-               TRadioButton(rgLife.Controls[rgLife.ItemIndex]).Caption + '):')
-  else
-    Result.Add('  Baby ' + IntTostr(BabyNumber) + ':');
+  oText.Clear;
 
   if rgSex.ItemIndex <> -1 then
-    Result.Add('   Gender: ' + TRadioButton(rgSex.Controls[rgSex.ItemIndex]).Caption)
+    oText.Add('   Gender: ' + TRadioButton(rgSex.Controls[rgSex.ItemIndex]).Caption)
   else
-    Result.Add('   Gender: Unknown');
+    oText.Add('   Gender: Unknown');
 
   if Trim(edAPGARone.Text) <> '' then
-    Result.Add('   APGAR Score (one minute): ' + edAPGARone.Text)
+    oText.Add('   APGAR Score (one minute): ' + edAPGARone.Text)
   else
-    Result.Add('   APGAR Score (one minute): Unknown');
+    oText.Add('   APGAR Score (one minute): Unknown');
   if Trim(edAPGARfive.Text) <> '' then
-    Result.Add('   APGAR Score (five minute): ' + edAPGARfive.Text)
+    oText.Add('   APGAR Score (five minute): ' + edAPGARfive.Text)
   else
-    Result.Add('   APGAR Score (five minute): Unknown');
+    oText.Add('   APGAR Score (five minute): Unknown');
 
   if ckNICU.Checked then
-    Result.Add('   NICU Admission: Yes')
+    oText.Add('   NICU Admission: Yes')
   else
-    Result.Add('   NICU Admission: No');
+    oText.Add('   NICU Admission: No');
 
   if spnG.Text <> '0' then
-    Result.Add('   Birth Weight: ' + spnG.Text + 'g')
+    oText.Add('   Birth Weight: ' + spnG.Text + 'g')
   else
-    Result.Add('   Birth Weight: Unknown');
+    oText.Add('   Birth Weight: Unknown');
 
   if meComplications.Lines.Count > 0 then
   begin
-    Result.Add('   Complications: ');
+    oText.Add('   Complications: ');
 
     for I := 0 to meComplications.Lines.Count - 1 do
-      Result.Add('    ' + meComplications.Lines[I]);
+      oText.Add('    ' + meComplications.Lines[I]);
   end;
 end;
 

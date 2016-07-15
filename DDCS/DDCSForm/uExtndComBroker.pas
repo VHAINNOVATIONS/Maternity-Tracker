@@ -24,27 +24,7 @@ uses
   Vcl.Forms, Vcl.Dialogs, Trpcb, CPRSChart_TLB;
 
 type
-  TNote = class(TPersistent)
-  private
-    FImport: WideString;
-    FIEN: string;
-    FAuthor: string;
-    FAIEN: string;
-    FLines: TStrings;
-    procedure SetLines(const Value: TStrings);
-  protected
-    procedure ParseTIUXML(const Value: WideString);
-  public
-    constructor Create;
-    destructor Destroy; override;
-    property Import: WideString read FImport write ParseTIUXML;
-    property IEN: string read FIEN write FIEN;
-    property Author: string read FAuthor write FAuthor;
-    property AIEN: string read FAIEN write FAIEN;
-    property Lines: TStrings read FLines write SetLines;
-  end;
-
-  TVistaUser = class(TPersistent)
+  TVistAUser = class(TObject)
   private
     FDUZ: string;
     FName: string;
@@ -53,57 +33,87 @@ type
     property Name: string read FName write FName;
   end;
 
-  TCPRSComBroker = class(TRPCBroker)
+  TVistAPatient = class(TObject)
   private
-    FOwner: TComponent;
-    FUser: TVistaUser;
-    FNote: TNote;
-    FComBroker: ICPRSBroker;
-    FCPRSSTate: ICPRSState;
-    FCPRSHandle: HWND;
     FPatientDFN: string;
     FPatientName: string;
     FPatientDOB: string;
     FPatientSSN: string;
     FLocationIEN: Integer;
     FLocationName: string;
-    FRemoteProcedure: string;
-    FControlObject: string;
-    FDDCSInterface: string;
-    FDDCSInterfacePages: TStrings;
-    procedure SetComBroker(const Value: ICPRSBroker);
-    procedure SetCPRSState(const Value: ICPRSState);
-    procedure SetInterfacePages(const Value: TStrings);
-    function GetConnected: Boolean;
-  protected
-    procedure SetParams(const RPCName: string; const AParam: array of const);
-    function BrokerCall: WideString; safecall;
   public
-    constructor Create(AOwner: TComponent); override;
-    destructor Destroy; override;
-    property Owner: TComponent read FOwner write FOwner;
-    property Source: TNote read FNote write FNote;
-    property COMBroker: ICPRSBroker write SetComBroker;
-    property Connected: Boolean read GetConnected;
-    property RemoteProcedure: string read FRemoteProcedure write FRemoteProcedure;
-    property CPRSState: ICPRSState write SetCPRSSTate;
-    property CPRSHandle: HWND read FCPRSHandle write FCPRSHandle;
-    property PatientDFN: string read FPatientDFN;
-    property PatientName: string read FPatientName;
-    property PatientDOB: string read FPatientDOB;
-    property PatientSSN: string read FPatientSSN;
+    property DFN: string read FPatientDFN;
+    property Name: string read FPatientName;
+    property DOB: string read FPatientDOB;
+    property SSN: string read FPatientSSN;
     property LocationIEN: Integer read FLocationIEN;
     property LocationName: string read FLocationName;
-    // DDCS Specific -----------------------------------------------------------
+  end;
+
+  TVistANote = class(TObject)
+  private
+    FImport: WideString;
+    FIEN: string;
+    FAuthor: string;
+    FAIEN: string;
+    FLines: TStringList;
+  protected
+    procedure ParseTIUXML(const Value: WideString);
+  public
+    property Import: WideString read FImport write ParseTIUXML;
+    property IEN: string read FIEN write FIEN;
+    property Author: string read FAuthor write FAuthor;
+    property AIEN: string read FAIEN write FAIEN;
+  end;
+
+  TCPRSComBroker = class(TObject)
+  private
+    FUser: TVistAUser;
+    FPatient: TVistAPatient;
+    FNote: TVistANote;
+    FComBroker: ICPRSBroker;
+    FRemoteProcedure: string;
+    FResults: TStrings;
+    FCPRSSTate: ICPRSState;
+    FCPRSHandle: HWND;
+    FWindowList: TTaskWindowList;
+    FControlObject: string;
+    FDDCSInterface: string;
+    FDDCSInterfacePages: TStringList;
+  protected
+    procedure SetClearParameters(Value: Boolean);
+    procedure SetClearResults(Value: Boolean);
+    procedure SetComBroker(const Value: ICPRSBroker);
+    procedure SetResults(Lines: TStrings);
+    procedure SetCPRSState(const Value: ICPRSState);
+    procedure SetParams(const RPCName: string; const AParam: array of const);
+    procedure BrokerCall;
+    function GetConnected: Boolean;
+  public
+    constructor Create(AOwner: TComponent);
+    destructor Destroy; override;
+    property ClearParameters: Boolean write SetClearParameters;
+    property ClearResults: Boolean write SetClearResults;
+    property User: TVistAUser read FUser;
+    property Patient: TVistAPatient read FPatient;
+    property TIUNote: TVistANote read FNote;
+    property COMBroker: ICPRSBroker read FComBroker write SetComBroker;
+    property RemoteProcedure: string read FRemoteProcedure write FRemoteProcedure;
+    property Results: TStrings read FResults write SetResults;
+    property Connected: Boolean read GetConnected;
+    property CPRSState: ICPRSState write SetCPRSSTate;
+    property CPRSHandle: HWND read FCPRSHandle write FCPRSHandle;
+    property DisabledWindow: TTaskWindowList read FWindowList write FWindowList;
     property ControlObject: string read FControlObject write FControlObject;
     property DDCSInterface: string read FDDCSInterface write FDDCSInterface;
-    property DDCSInterfacePages: TStrings read FDDCSInterfacePages write SetInterfacePages;
+    property DDCSInterfacePages: TStringList read FDDCSInterfacePages write FDDCSInterfacePages;
   end;
   PCPRSComBroker = ^TCPRSComBroker;
 
   procedure CallV(const RPCName: string; const AParam: array of const);
   procedure tCallV(ReturnData: TStrings; const RPCName: string; const AParam: array of const);
   function sCallV(const RPCName: string; const AParam: array of const): string;
+  function IsConnected: Boolean;
   function AuthorizedOption(const OptionName: string): Boolean;
   function UpdateContext(NewContext: string): Boolean;
 
@@ -115,148 +125,54 @@ implementation
 uses
   ORFn, ORNet, uCommon;
 
-// From ORNet (internal to this unit)
-function GetRPCCursor: TCursor;
-var
-  pt: TPoint;
-begin
-  Result := crHourGlass;
-  if (Assigned(AppStartedCursorForm) and (AppStartedCursorForm.Visible)) then
-  begin
-    pt := Mouse.CursorPos;
-    if PtInRect(AppStartedCursorForm.BoundsRect, pt) then
-      Result := crAppStart;
-  end;
-end;
-
-// Exposed Methods -------------------------------------------------------------
+{$REGION 'Exposed Methods'}
 
 { Calls the broker and returns no value }
 procedure CallV(const RPCName: string; const AParam: array of const);
-var
-  SavedCursor: TCursor;
-  CallResults: TStrings;
-  BrokerError: EBrokerError;
 begin
-  if RPCBrokerV = nil then
-    Exit;
-  if RPCBrokerV.FComBroker = nil then
+  if not IsConnected then
     Exit;
 
-  SavedCursor := Screen.Cursor;
-  Screen.Cursor := GetRPCCursor;
-
-  CallResults := TStringList.Create;
-  try
-    RPCBrokerV.FComBroker.ClearResults := True;
-
-    RPCBrokerV.SetParams(RPCName, AParam);
-    CallResults.Text := RPCBrokerV.BrokerCall;
-
-    if (CallResults.Count > 0) and (Piece(CallResults[0],U,1) = '-%%999^') then
-    begin
-      BrokerError := EBrokerError.Create(Piece(CallResults[0],U,2));
-      if CallResults.Count > 1 then
-        BrokerError.Code := StrToIntDef(CallResults[1],0);
-      if CallResults.Count > 2 then
-        BrokerError.Action := CallResults[2];
-    end;
-
-    Screen.Cursor := SavedCursor;
-  finally
-    RPCBrokerV.FComBroker.ClearParameters := True;
-
-    if BrokerError <> nil then
-      Raise BrokerError;
-  end;
+  RPCBrokerV.SetParams(RPCName, AParam);
+  RPCBrokerV.BrokerCall;
 end;
 
 { Calls the broker and returns TStrings data }
 procedure tCallV(ReturnData: TStrings; const RPCName: string; const AParam: array of const);
-var
-  SavedCursor: TCursor;
-  BrokerError: EBrokerError;
 begin
-  if RPCBrokerV = nil then
+  if not IsConnected then
     Exit;
-  if RPCBrokerV.FComBroker = nil then
-    Exit;
-
-  SavedCursor := Screen.Cursor;
-  Screen.Cursor := GetRPCCursor;
 
   if ReturnData = nil then
-    raise Exception.Create('TString not created');
+    raise Exception.Create('TStrings not created');
 
-  try
-    RPCBrokerV.FComBroker.ClearResults := True;
-    RPCBrokerV.SetParams(RPCName, AParam);
-    ReturnData.Text := RPCBrokerV.BrokerCall;
-
-    if (ReturnData.Count > 0) and (Piece(ReturnData[0],U,1) = '-%%999^') then
-    begin
-      BrokerError := EBrokerError.Create(Piece(ReturnData[0],U,2));
-      if ReturnData.Count > 1 then
-        BrokerError.Code := StrToIntDef(ReturnData[1],0);
-      if ReturnData.Count > 2 then
-        BrokerError.Action := ReturnData[2];
-
-      ReturnData.Clear;
-    end;
-
-    Screen.Cursor := SavedCursor;
-  finally
-    RPCBrokerV.FComBroker.ClearParameters := True;
-
-    if BrokerError <> nil then
-      Raise BrokerError;
-  end;
+  RPCBrokerV.SetParams(RPCName, AParam);
+  RPCBrokerV.BrokerCall;
+  FastAssign(RPCBrokerV.Results, ReturnData);
 end;
 
-{ Calls the broker and returns a scalar value }
+{ Calls the broker and returns a string value }
 function sCallV(const RPCName: string; const AParam: array of const): string;
-var
-  SavedCursor: TCursor;
-  CallResults: TStrings;
-  BrokerError: EBrokerError;
 begin
   Result := '';
 
-  if RPCBrokerV = nil then
-    Exit;
-  if RPCBrokerV.FComBroker = nil then
+  if not IsConnected then
     Exit;
 
-  SavedCursor := Screen.Cursor;
-  Screen.Cursor := GetRPCCursor;
+  RPCBrokerV.SetParams(RPCName, AParam);
+  RPCBrokerV.BrokerCall;
 
-  CallResults := TStringList.Create;
-  try
-    RPCBrokerV.FComBroker.ClearResults := True;
+  if RPCBrokerV.Results.Count > 0 then
+    Result := RPCBrokerV.Results[0] else
+  Result := '';
+end;
 
-    RPCBrokerV.SetParams(RPCName, AParam);
-    CallResults.Text := RPCBrokerV.BrokerCall;
-
-    if (CallResults.Count > 0) and (Piece(CallResults[0],U,1) = '-%%999^') then
-    begin
-      BrokerError := EBrokerError.Create(Piece(CallResults[0],U,2));
-      if CallResults.Count > 1 then
-        BrokerError.Code := StrToIntDef(CallResults[1],0);
-      if CallResults.Count > 2 then
-        BrokerError.Action := CallResults[2];
-    end;
-
-    if CallResults.Count > 0 then
-      Result := CallResults[0]
-    else Result := '';
-
-    Screen.Cursor := SavedCursor;
-  finally
-    RPCBrokerV.FComBroker.ClearParameters := True;
-
-    if BrokerError <> nil then
-      Raise BrokerError;
-  end;
+function IsConnected: Boolean;
+begin
+  Result := False;
+  if RPCBrokerV <> nil then
+    if RPCBrokerV.FComBroker <> nil then
+      Result := True;
 end;
 
 // The Following function will set the RPC Context which replaces SetContext.
@@ -270,9 +186,7 @@ function AuthorizedOption(const OptionName: string): Boolean;
 begin
   Result := False;
 
-  if RPCBrokerV = nil then
-    Exit;
-  if RPCBrokerV.FComBroker = nil then
+  if not IsConnected then
     Exit;
 
   Result := True;
@@ -288,20 +202,13 @@ begin
   Result := AuthorizedOption(NewContext);
 end;
 
-// RPCBrokerV ------------------------------------------------------------------
+{$ENDREGION}
 
-{$REGION 'TNote'}
-
-// Private ---------------------------------------------------------------------
-
-procedure TNote.SetLines(const Value: TStrings);
-begin
-  FLines.Assign(Value);
-end;
+{$REGION 'TVistANote'}
 
 // Protected -------------------------------------------------------------------
 
-procedure TNote.ParseTIUXML(const Value: WideString);
+procedure TVistANote.ParseTIUXML(const Value: WideString);
 var
   XML: IXMLDOMDocument;
   Nlist: IXMLDOMNodeList;
@@ -313,94 +220,83 @@ begin
 
   Nlist := XML.getElementsByTagName('DOC_IEN');
   if Nlist <> nil then
-  for I := 0 to Nlist.length - 1 do
-  begin
-    Node := Nlist[I];
-    if Node.nodeName = 'DOC_IEN' then
-    FIEN := Node.text;
-  end;
+    for I := 0 to Nlist.length - 1 do
+    begin
+      Node := Nlist[I];
+      if Node.nodeName = 'DOC_IEN' then
+        FIEN := Node.text;
+    end;
 
   Nlist := XML.getElementsByTagName('AUTHOR_IEN');
   if Nlist <> nil then
-  for I := 0 to Nlist.length - 1 do
-  begin
-    Node := Nlist[I];
-    if Node.nodeName = 'AUTHOR_IEN' then
-    FAIEN := Node.text;
-  end;
+    for I := 0 to Nlist.length - 1 do
+    begin
+      Node := Nlist[I];
+      if Node.nodeName = 'AUTHOR_IEN' then
+        FAIEN := Node.text;
+    end;
 
   Nlist := XML.getElementsByTagName('AUTHOR_NAME');
   if Nlist <> nil then
-  for I := 0 to Nlist.length - 1 do
-  begin
-    Node := Nlist[I];
-    if Node.nodeName = 'AUTHOR_NAME' then
-    FAuthor := Node.text;
-  end;
-end;
-
-// Public ----------------------------------------------------------------------
-
-constructor TNote.Create;
-begin
-  inherited;
-
-  FLines := TStringList.Create;
-end;
-
-destructor TNote.Destroy;
-begin
-  FLines.Free;
-
-  inherited;
+    for I := 0 to Nlist.length - 1 do
+    begin
+      Node := Nlist[I];
+      if Node.nodeName = 'AUTHOR_NAME' then
+        FAuthor := Node.text;
+    end;
 end;
 
 {$ENDREGION}
 
 {$REGION 'TCPRSComBroker'}
 
-// Private ---------------------------------------------------------------------
+// Protected -------------------------------------------------------------------
 
-procedure TCPRSComBroker.SetComBroker(const Value: ICPRSBroker);
+procedure TCPRSComBroker.SetClearParameters(Value: Boolean);
 begin
-  FCOMBroker := Value;
-  if Value <> nil then
-  begin
+  if (FComBroker <> nil) and Value then
     FComBroker.ClearParameters := True;
+end;
+
+procedure TCPRSComBroker.SetClearResults(Value: Boolean);
+begin
+  if (FComBroker <> nil) and Value then
+  begin
+    FResults.Clear;
     FComBroker.ClearResults := True;
   end;
 end;
 
-procedure TCPRSComBroker.SetCPRSState(const Value: ICPRSState);
+procedure TCPRSComBroker.SetComBroker(const Value: ICPRSBroker);
 begin
-  FCPRSSTate    := Value;
-  if Value <> nil then
+  FCOMBroker := Value;
+  if FCOMBroker <> nil then
   begin
-    FUser.FName   := FCPRSState.UserName;
-    FUser.FDUZ    := FCPRSState.UserDUZ;
-    FPatientDFN   := FCPRSState.PatientDFN;
-    FPatientName  := FCPRSState.PatientName;
-    FPatientDOB   := FCPRSState.PatientDOB;
-    FPatientSSN   := FCPRSState.PatientSSN;
-    FLocationIEN  := FCPRSState.LocationIEN;
-    FLocationName := FCPRSState.LocationName;
+    ClearParameters := True;
+    ClearResults := True;
   end;
 end;
 
-procedure TCPRSComBroker.SetInterfacePages(const Value: TStrings);
+procedure TCPRSComBroker.SetResults(Lines: TStrings);
 begin
-  FDDCSInterfacePages.Assign(Value);
+  FResults.Assign(Lines);
 end;
 
-function TCPRSComBroker.GetConnected: Boolean;
+procedure TCPRSComBroker.SetCPRSState(const Value: ICPRSState);
 begin
-  Result := False;
-  if RPCBrokerV <> nil then
-    if RPCBrokerV.FComBroker <> nil then
-      Result := True;
+  FCPRSSTate := Value;
+  if FCPRSSTate <> nil then
+  begin
+    FUser.FName            := FCPRSState.UserName;
+    FUser.FDUZ             := FCPRSState.UserDUZ;
+    FPatient.FPatientDFN   := FCPRSState.PatientDFN;
+    FPatient.FPatientName  := FCPRSState.PatientName;
+    FPatient.FPatientDOB   := FCPRSState.PatientDOB;
+    FPatient.FPatientSSN   := FCPRSState.PatientSSN;
+    FPatient.FLocationIEN  := FCPRSState.LocationIEN;
+    FPatient.FLocationName := FCPRSState.LocationName;
+  end;
 end;
-
-// Protected -------------------------------------------------------------------
 
 { Takes the params (array of const) passed to xCallV and sets them into FComBroker.Param[I] }
 procedure TCPRSComBroker.SetParams(const RPCName: string; const AParam: array of const);
@@ -424,7 +320,7 @@ var
   I: Integer;
   wValueStr: WideString;
 begin
-  FComBroker.ClearParameters := True;
+  ClearParameters := True;
   RemoteProcedure := RPCName;
 
   if RPCName = '' then
@@ -506,43 +402,66 @@ begin
     end;
   except
     on E: Exception do
-      raise Exception.Create(E.Message);
+    raise Exception.Create(E.Message);
   end;
 end;
 
-function TCPRSComBroker.BrokerCall: WideString;
+procedure TCPRSComBroker.BrokerCall;
+var
+  tmp: string;
+const
+  XWB_M_REJECT =  20000 + 2;  // M error
 begin
   if FComBroker <> nil then
   begin
     try
       FComBroker.CallRPC(RemoteProcedure);
-      Result := FComBroker.Results;
+      FResults.Clear;
+      FResults.Text := FComBroker.Results;
     except
-      on E: Exception do
-      Result := '-%%999^' + E.Message + #13
-                + EBrokerError(E).Action + #13
-                + EBrokerError(E).Mnemonic + #13
-                + IntToStr(EBrokerError(E).Code) + #13
-                + '[RPCDebugInfo]';
+      on E: EBrokerError do
+      begin
+        if E.Code = XWB_M_REJECT then
+        begin
+          tmp := 'An error occurred on the server.' + CRLF + CRLF + E.Action;
+          Application.MessageBox(PChar(tmp), 'Server Error', MB_OK);
+        end
+        else raise;
+      end;
     end;
   end;
+end;
+
+function TCPRSComBroker.GetConnected: Boolean;
+begin
+  Result := False;
+  if FComBroker <> nil then
+    Result := True;
 end;
 
 // Public ----------------------------------------------------------------------
 
 constructor TCPRSComBroker.Create(AOwner: TComponent);
 begin
-  inherited;
+  RPCBrokerV := Self;
 
-  FUser := TVistaUser.Create;
-  FNote := TNote.Create;
+  FUser := TVistAUser.Create;
+  FPatient := TVistAPatient.Create;
+  FNote := TVistANote.Create;
+
+  FResults := TStringList.Create;
   FDDCSInterfacePages := TStringList.Create;
 end;
 
 destructor TCPRSComBroker.Destroy;
 begin
+  RPCBrokerV := nil;
+
   FUser.Free;
+  FPatient.Free;
   FNote.Free;
+
+  FreeAndNil(FResults);
   FDDCSInterfacePages.Free;
 
   inherited;

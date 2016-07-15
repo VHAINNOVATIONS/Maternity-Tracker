@@ -984,7 +984,7 @@ object dlgSocial: TdlgSocial
         Enabled = False
         TabOrder = 33
       end
-      object Edit8: TEdit
+      object edEmployed: TEdit
         Tag = 8
         Left = 338
         Top = 249
@@ -1068,7 +1068,7 @@ object dlgSocial: TdlgSocial
         TabOrder = 52
         OnClick = CheckClick1
       end
-      object Edit12: TEdit
+      object edToxic: TEdit
         Tag = 12
         Left = 338
         Top = 377
@@ -1077,7 +1077,7 @@ object dlgSocial: TdlgSocial
         Enabled = False
         TabOrder = 53
       end
-      object Edit13: TEdit
+      object edDiet: TEdit
         Tag = 13
         Left = 338
         Top = 193

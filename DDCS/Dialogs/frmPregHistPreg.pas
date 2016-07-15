@@ -182,8 +182,8 @@ begin
           if cItem = nil then
           begin
             cItem := TConfigItem.Create(dlgPregHist.Configuration);
-            cItem.ID[0] := 'B';
-            cItem.ID[1] := BabyID;
+            cItem.ID[1] := 'B';
+            cItem.ID[2] := BabyID;
           end;
           cItem.Data.Clear;
 

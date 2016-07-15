@@ -27,7 +27,7 @@ uses
 
 const
   U = '^';
-  MENU_CONTEXT    = 'DSIO DDCS CONTEXT';
+  MENU_CONTEXT = 'DSIO DDCS CONTEXT';
 
 type
         TDisplayDialog = function(AOwner: PDDCSForm; Broker: PCPRSComBroker; dlgName: WideString;
@@ -79,6 +79,7 @@ var
   lvcolumn: TListColumn;
   sl: TStringList;
   sg: TStringGrid;
+  Ic,Ir: Integer;
 begin
   if iValue = '' then
     Exit;
@@ -231,13 +232,22 @@ begin
       else if wControl.InheritsFrom(TStringGrid) then
       begin
         sg := TStringGrid(wControl);
-        // Columns
-        if StrToInt(Piece(iIndex,',',1)) > sg.ColCount - 1 then
-          sg.ColCount := (StrToInt(Piece(iIndex,',',1)) - (sg.ColCount - 1));
-        // Rows
-        if StrToInt(Piece(iIndex,',',2)) > sg.RowCount - 1 then
-          sg.RowCount := (StrToInt(Piece(iIndex,',',2)) - (sg.RowCount - 1));
-        sg.Cells[StrToInt(Piece(iIndex,',',1)), StrToInt(Piece(iIndex,',',2))] := iValue;
+
+        Ic := StrToIntDef(Piece(iIndex,',',1), -1);
+        Ir := StrToIntDef(Piece(iIndex,',',2), -1);
+        if (Ic < 0) or (Ir < 0) then
+          Exit;
+        if Ic <= (sg.FixedCols - 1) then
+          Exit;
+        if Ir <= (sg.FixedRows - 1) then
+          Exit;
+
+        if Ic > sg.ColCount - 1 then
+          sg.ColCount := Ic + 1;
+        if Ir > sg.RowCount - 1 then
+          sg.RowCount := Ir + 1;
+
+        sg.Cells[Ic,Ir] := iValue;
       end;
     // -------------------------------------------------------------------------
   except
@@ -251,6 +261,8 @@ var
   PathLen,I: Integer;
 begin
   Result := 0;
+  DLLDialogList.Clear;
+
   Path := ExtractFilePath(GetModuleName(HInstance));
 
   if FileExists(Path + 'DDCSDialogs.dll') then

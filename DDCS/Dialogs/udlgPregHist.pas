@@ -64,7 +64,6 @@ type
     procedure PregHeaderChangeOff;
     procedure PregHeaderChangeOn;
     procedure Navigate(Value: Boolean);
-    function GetPregInfobyIEN(Value: Integer): TfPreg;
   public
     procedure ModifyPreterm(Value: Integer);
     procedure ModifyFullTerm(Value: Integer);
@@ -169,7 +168,7 @@ begin
     begin
       cItem := Configuration.Items[I];
 
-      if cItem.ID[0] = 'L' then
+      if cItem.ID[1] = 'L' then
       begin
         // ---- Add the Pregnancy Tab ------------------------------------------
         tmp := Uppercase(cItem.Piece[20]);    // Outcome
@@ -284,12 +283,6 @@ begin
                         // Weight
                         vPregChild.spnG.Value := StrToIntDef(Piece(btmp,';',5), 0);
 
-                        // Stillborn - set status to demise
-                        vPregChild.rgLife.ItemIndex := StrToIntDef(Piece(btmp,';',6), 0);
-                        // Status
-                        if Piece(btmp,';',9) = 'D' then
-                         vPregChild.rgLife.ItemIndex := 1;
-
                         // APGAR1
                         vPregChild.edAPGARone.Text := Piece(btmp,';',7);
 
@@ -304,7 +297,7 @@ begin
                                                       vPregChild.BabyIEN + '|' + vPregChild.BabyNumber, '');
                         if cItem <> nil then
                           for L := 0 to cItem.Data.Count - 1 do
-                            vPregChild.meComplications.Lines.Add(Pieces(cItem.Data[L],U,3,9999));
+                            vPregChild.meComplications.Lines.Add(Pieces(cItem.Data[L],U,3,999));
                       end;
                 end;
               end;
@@ -313,7 +306,7 @@ begin
               cItem := Configuration.LookUp('C', IntToStr(vPreg.PregnancyIEN), '');
               if cItem <> nil then
                 for J := 0 to cItem.Data.Count - 1 do
-                  vPregInfo.meDeliveryNotes.Lines.Add(Pieces(cItem.Data[J],U,3,9999));
+                  vPregInfo.meDeliveryNotes.Lines.Add(Pieces(cItem.Data[J],U,3,999));
             end;
           end;
       end;
@@ -455,9 +448,8 @@ end;
 
 procedure TdlgPregHist.btnOKClick(Sender: TObject);
 var
-  I,J,nPreg: Integer;
+  I,nPreg: Integer;
   vPreg: TfPreg;
-  vPregInfo: TfPregInfo;
   PregID: string;
   cItem: TConfigItem;
 begin
@@ -489,8 +481,8 @@ begin
         if cItem = nil then
         begin
           cItem := TConfigItem.Create(Configuration);
-          cItem.ID[0] := 'L';
-          cItem.ID[1] := PregID;
+          cItem.ID[1] := 'L';
+          cItem.ID[2] := PregID;
           cItem.Data.Add('');
         end;
         cItem.Data[0] := vPreg.GetSavePregInfo(PregID);
@@ -500,8 +492,8 @@ begin
         if cItem = nil then
         begin
           cItem := TConfigItem.Create(Configuration);
-          cItem.ID[0] := 'C';
-          cItem.ID[1] := PregID;
+          cItem.ID[1] := 'C';
+          cItem.ID[2] := PregID;
         end;
         cItem.Data.Clear;
         cItem.Data.AddStrings(vPreg.GetSavePregComments(PregID));
@@ -565,28 +557,28 @@ begin
   end;
 end;
 
-function TdlgPregHist.GetPregInfobyIEN(Value: Integer): TfPreg;
-var
-  I: Integer;
-  vPreg: TfPreg;
-begin
-  Result := nil;
-
-  if Value < 1 then
-    Exit;
-
-  for I := 0 to pgPregnancy.PageCount - 1 do
-    if pgPregnancy.Pages[I].ControlCount > 0 then
-      if pgPregnancy.Pages[I].Controls[0] is TfPreg then
-      begin
-        vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
-        if vPreg.PregnancyIEN = Value then
-        begin
-          Result := vPreg;
-          Break;
-        end;
-      end;
-end;
+//function TdlgPregHist.GetPregInfobyIEN(Value: Integer): TfPreg;
+//var
+//  I: Integer;
+//  vPreg: TfPreg;
+//begin
+//  Result := nil;
+//
+//  if Value < 1 then
+//    Exit;
+//
+//  for I := 0 to pgPregnancy.PageCount - 1 do
+//    if pgPregnancy.Pages[I].ControlCount > 0 then
+//      if pgPregnancy.Pages[I].Controls[0] is TfPreg then
+//      begin
+//        vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
+//        if vPreg.PregnancyIEN = Value then
+//        begin
+//          Result := vPreg;
+//          Break;
+//        end;
+//      end;
+//end;
 
 // Public ----------------------------------------------------------------------
 

@@ -176,16 +176,8 @@ begin
                     fBaby.rgSex.ItemIndex := 2;
                 end;
             4 : fBaby.UpdateBirthWeightGrams(val);               // Birth Weight in grams
-            5 : if val = '1' then                                // StillBorn
-                  fBaby.rgLife.ItemIndex := 1;
             6 : fBaby.edAPGARone.Text := val;                    // APGAR1
             7 : fBaby.edAPGARfive.Text := val;                   // APGAR2
-            8 : begin                                            // Status
-                  if val = 'L' then
-                    fBaby.rgLife.ItemIndex := 0
-                  else if val = 'D' then
-                    fBaby.rgLife.ItemIndex := 1;
-                end;
             9 : if val = '1' then
                   fBaby.ckNICU.Checked := True;                  // NICU
           end;
@@ -258,7 +250,6 @@ begin
 
     fBaby.BabyNumber := spnBirthCount.Value;
     fBaby.rgSex.OnEnter := DDCSForm1.RadioGroupEnter;
-    fBaby.rgLife.OnEnter := DDCSForm1.RadioGroupEnter;
   end else
     pgBaby.Pages[pgBaby.PageCount - 1].Free;
 
@@ -304,56 +295,61 @@ var
   end;
 
 begin
-  DDCSForm1.Validated := True;
-
-  DDCSForm1.TmpStrList.Add('Delivery Details:');
-  DDCSForm1.TmpStrList.Add('  Delivery Date: ' + dtDelivery.Text);
-  DDCSForm1.TmpStrList.Add('  Maternal Date: ' + dtMaternal.Text);
-  DDCSForm1.TmpStrList.Add('  Days in Hospital following Delivery '+ edtDeliveryAt.text);
-  DDCSForm1.TmpStrList.Add('  Gestational Age: ' + spnGAWeeks.Text + ' Weeks ' + spnGADays.Text + ' Days');
-
-  if cbAnesthesia.ItemIndex <> -1 then
-    DDCSForm1.TmpStrList.Add('  Anesthesia: ' + cbAnesthesia.Text);
-
-  if rgPretermDelivery.ItemIndex = 0 then
-    DDCSForm1.TmpStrList.Add('  Preterm Labor: No')
-  else if rgPretermDelivery.ItemIndex = 1 then
-    DDCSForm1.TmpStrList.Add('  Preterm Labor: Yes');
-
-  if cbLabor.ItemIndex <> -1 then
-    DDCSForm1.TmpStrList.Add('  Labor: ' + cbLabor.Items[cbLabor.ItemIndex]);
-
-  DDCSForm1.TmpStrList.Add('  Length of Labor: ' + spnLaborLength.Text + ' hrs');
-
-  if cbOutcome.ItemIndex <> -1 then
-    DDCSForm1.TmpStrList.Add('  Outcome: ' + cbOutcome.Items[cbOutcome.ItemIndex]);
-
-  if Trim(cbDeliveryPlace.Text) <> '' then
-    DDCSForm1.TmpStrList.Add('  Place of Delivery: ' + Trim(cbDeliveryPlace.Text));
-
-  if meDeliveryNotes.Lines.Count > 0 then
-  begin
-    DDCSForm1.TmpStrList.Add('  Delivery Notes: ');
-    for I := 0 to meDeliveryNotes.Lines.Count - 1 do
-      DDCSForm1.TmpStrList.Add('   ' + meDeliveryNotes.Lines[I]);
-  end;
-
-  if BirthCount > 0 then
-  begin
-    DDCSForm1.TmpStrList.Add('Neonatal Information:');
-    DDCSForm1.tmpStrList.Add('  Number of Babies: ' + IntToStr(BirthCount));
-
-    for I := 0 to pgBaby.PageCount - 1 do
-    begin
-      fBaby := GetBaby(pgBaby.Pages[I]);
-      if fBaby <> nil then
-        DDCSForm1.TmpStrList.AddStrings(fBaby.GetText);
-    end;
-  end;
-
   sl := TStringList.Create;
   tl := TStringList.Create;
   try
+    DDCSForm1.Validated := True;
+
+    DDCSForm1.TmpStrList.Add('Delivery Details:');
+    DDCSForm1.TmpStrList.Add('  Delivery Date: ' + dtDelivery.Text);
+    DDCSForm1.TmpStrList.Add('  Maternal Date: ' + dtMaternal.Text);
+    DDCSForm1.TmpStrList.Add('  Days in Hospital following Delivery '+ edtDeliveryAt.text);
+    DDCSForm1.TmpStrList.Add('  Gestational Age: ' + spnGAWeeks.Text + ' Weeks ' + spnGADays.Text + ' Days');
+
+    if cbAnesthesia.ItemIndex <> -1 then
+      DDCSForm1.TmpStrList.Add('  Anesthesia: ' + cbAnesthesia.Text);
+
+    if rgPretermDelivery.ItemIndex = 0 then
+      DDCSForm1.TmpStrList.Add('  Preterm Labor: No')
+    else if rgPretermDelivery.ItemIndex = 1 then
+      DDCSForm1.TmpStrList.Add('  Preterm Labor: Yes');
+
+    if cbLabor.ItemIndex <> -1 then
+      DDCSForm1.TmpStrList.Add('  Labor: ' + cbLabor.Items[cbLabor.ItemIndex]);
+
+    DDCSForm1.TmpStrList.Add('  Length of Labor: ' + spnLaborLength.Text + ' hrs');
+
+    if cbOutcome.ItemIndex <> -1 then
+      DDCSForm1.TmpStrList.Add('  Outcome: ' + cbOutcome.Items[cbOutcome.ItemIndex]);
+
+    if Trim(cbDeliveryPlace.Text) <> '' then
+      DDCSForm1.TmpStrList.Add('  Place of Delivery: ' + Trim(cbDeliveryPlace.Text));
+
+    if meDeliveryNotes.Lines.Count > 0 then
+    begin
+      DDCSForm1.TmpStrList.Add('  Delivery Notes: ');
+      for I := 0 to meDeliveryNotes.Lines.Count - 1 do
+        DDCSForm1.TmpStrList.Add('   ' + meDeliveryNotes.Lines[I]);
+    end;
+
+    if BirthCount > 0 then
+    begin
+      DDCSForm1.TmpStrList.Add('Neonatal Information:');
+      DDCSForm1.tmpStrList.Add('  Number of Babies: ' + IntToStr(BirthCount));
+
+      for I := 0 to pgBaby.PageCount - 1 do
+      begin
+        fBaby := GetBaby(pgBaby.Pages[I]);
+        if fBaby <> nil then
+        begin
+          fBaby.GetText(sl);
+          if sl.Count > 0 then
+            DDCSForm1.TmpStrList.AddStrings(sl);
+        end;
+      end;
+    end;
+    sl.Clear;
+
     if ckVagSVD.Checked then
       sl.Add('  - Normal Spontaneous Vaginal Delivery');
     if ckVagVacuum.Checked then
@@ -403,6 +399,7 @@ begin
       sl.Add('  Indications for Cesarean:');
       sl.AddStrings(tl);
     end;
+    tl.Clear;
 
     if rgIncision.ItemIndex <> -1 then
     begin
@@ -447,51 +444,47 @@ begin
       DDCSForm1.TmpStrList.Add('Other Procedures done during same Hospitalization:');
       DDCSForm1.TmpStrList.AddStrings(sl);
     end;
+    sl.Clear;
+
+    CleanLv(lstDelivery);
+
+    for I := 0 to pgBaby.PageCount - 1 do
+    begin
+      fBaby := GetBaby(pgBaby.Pages[I]);
+      if fBaby = nil then
+        Continue;
+
+      lvItem := lstDelivery.Items.Add;
+      lvItem.Caption := 'L';
+      for J := 0 to 10 do
+        lvitem.SubItems.Add('');
+
+      lvitem.SubItems[0] := fBaby.IEN;
+
+      case fBaby.rgSex.ItemIndex of                                             // Gender
+        0 : lvItem.SubItems[3] := 'M';
+        1 : lvItem.SubItems[3] := 'F';
+        2 : lvItem.SubItems[3] := 'U';
+      end;
+
+      lvItem.SubItems[4] := fBaby.spnG.Text;                                    // Birth Weight
+      lvItem.SubItems[6] := fBaby.edAPGARone.Text;                              // APGAR one
+      lvItem.SubItems[7] := fBaby.edAPGARfive.Text;                             // APGAR five
+
+      if fBaby.ckNICU.Checked then                                              // NICU
+        lvItem.SubItems[9] := '1';
+
+      for J := 0 to fBaby.meComplications.Lines.Count - 1 do                    // Complications
+      begin
+        lvItem := lstDelivery.Items.Add;
+        lvItem.Caption := 'C';
+        lvItem.SubItems.Add(fBaby.IEN);
+        lvItem.SubItems.Add(fBaby.meComplications.Lines[J]);
+      end;
+    end;
   finally
     sl.Free;
     tl.Free;
-  end;
-
-  CleanLv(lstDelivery);
-
-  for I := 0 to pgBaby.PageCount - 1 do
-  begin
-    fBaby := GetBaby(pgBaby.Pages[I]);
-    if fBaby = nil then
-      Continue;
-
-    lvItem := lstDelivery.Items.Add;
-    lvItem.Caption := 'L';
-    for J := 0 to 10 do
-      lvitem.SubItems.Add('');
-
-    lvitem.SubItems[0] := fBaby.IEN;
-
-    case fBaby.rgSex.ItemIndex of                                        // Gender
-      0 : lvItem.SubItems[3] := 'M';
-      1 : lvItem.SubItems[3] := 'F';
-      2 : lvItem.SubItems[3] := 'U';
-    end;
-
-    lvItem.SubItems[4] := fBaby.spnG.Text;                               // Birth Weight
-    lvItem.SubItems[6] := fBaby.edAPGARone.Text;                         // APGAR one
-    lvItem.SubItems[7] := fBaby.edAPGARfive.Text;                        // APGAR five
-
-    case fBaby.rgLife.ItemIndex of                                       // Status
-      0 : lvItem.SubItems[8] := 'L';
-      1 : lvItem.SubItems[8] := 'D';
-    end;
-
-    if fBaby.ckNICU.Checked then                                         // NICU
-      lvItem.SubItems[9] := '1';
-
-    for J := 0 to fBaby.meComplications.Lines.Count - 1 do               // Complications
-    begin
-      lvItem := lstDelivery.Items.Add;
-      lvItem.Caption := 'C';
-      lvItem.SubItems.Add(fBaby.IEN);
-      lvItem.SubItems.Add(fBaby.meComplications.Lines[J]);
-    end;
   end;
 end;
 
@@ -499,6 +492,8 @@ end;
 
 function TForm1.GetBaby(Value: TTabSheet): TfrmInner;
 begin
+  Result := nil;
+
   if Value.ControlCount > 0 then
     if Value.Controls[0] is TfrmInner then
       Result := TfrmInner(Value.Controls[0]);

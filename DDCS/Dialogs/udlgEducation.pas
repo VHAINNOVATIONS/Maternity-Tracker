@@ -55,14 +55,13 @@ procedure TdlgEducation.FormShow(Sender: TObject);
 var
   cBit: TBitmap;
   I,J: Integer;
-  cWidth,nWidth: Integer;
+  nWidth: Integer;
 const
   EXTRA_WD = 40;
 begin
   cBit := TBitmap.Create;
   try
-    cWidth := educationListView.Columns[0].Width;
-    nWidth := cWidth;
+    nWidth := educationListView.Columns[0].Width;
     for J := 0 to educationListView.Items.Count - 1 do
       if (cBit.Canvas.TextWidth(educationListView.Items[J].Caption) + EXTRA_WD) > nWidth then
         nWidth := cBit.Canvas.TextWidth(educationListView.Items[J].Caption) + EXTRA_WD;
@@ -71,7 +70,6 @@ begin
     if educationListView.Columns.Count > 1 then
       for I := 1 to educationListView.Columns.Count - 1 do
       begin
-        cWidth := educationListView.Columns[I].Width;
         nWidth := 0;
         for J := 0 to educationListView.Items.Count - 1 do
           if (cBit.Canvas.TextWidth(educationListView.Items[J].SubItems[I-1]) + EXTRA_WD) > nWidth then

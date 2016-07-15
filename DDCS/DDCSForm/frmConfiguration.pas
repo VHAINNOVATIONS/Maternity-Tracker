@@ -113,7 +113,6 @@ type
     procedure btnCloseClick(Sender: TObject);
   private
     FDDCSForm: TDDCSForm;
-    FObjects: TStringList;
     Descending: Boolean;
     SortedColumn: Integer;
     procedure ClearReportItemEditor;
@@ -131,7 +130,7 @@ var
 implementation
 
 uses
-  frmConfigMultiItemAdd, frmVitals, uCommon, uReportItems, uExtndComBroker;
+  frmVitals, uCommon, uReportItems, uExtndComBroker;
 
 {$R *.dfm}
 
@@ -524,7 +523,6 @@ begin
   inherited Create(AOwner);
 
   FDDCSForm := AOwner;
-  FObjects := TStringList.Create;
 
   if Assigned(DLLDialogList) then
     for I := 0 to DLLDialogList.Count - 1 do
@@ -539,8 +537,6 @@ end;
 
 destructor TDDCSFormConfig.Destroy;
 begin
-  FObjects.Free;
-
   inherited;
 end;
 

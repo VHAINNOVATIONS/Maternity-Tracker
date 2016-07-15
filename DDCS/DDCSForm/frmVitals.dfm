@@ -334,10 +334,6 @@ object DDCSVitals: TDDCSVitals
     object PageEDD: TTabSheet
       Caption = 'Estimated Delivery Date'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         670
         370)
@@ -563,7 +559,9 @@ object DDCSVitals: TDDCSVitals
             Column = 2
             Row = 4
           end>
-        ExpandStyle = emAddColumns
+        DoubleBuffered = False
+        ExpandStyle = emFixedSize
+        ParentDoubleBuffered = False
         RowCollection = <
           item
             Value = 14.279327102523720000
@@ -586,6 +584,7 @@ object DDCSVitals: TDDCSVitals
           item
             Value = 14.232425607342590000
           end>
+        ShowCaption = False
         TabOrder = 2
         DesignSize = (
           632
@@ -1085,10 +1084,6 @@ object DDCSVitals: TDDCSVitals
     object PageLMP: TTabSheet
       Caption = 'Menstrual History'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label7: TLabel
         Left = 309
         Top = 127
@@ -1514,7 +1509,7 @@ object DDCSVitals: TDDCSVitals
         Font.Style = []
         ParentFont = False
         TabOrder = 4
-        DateOnly = False
+        DateOnly = True
         RequireTime = False
         Caption = 'Human Chorionic Gonadotropin'
       end

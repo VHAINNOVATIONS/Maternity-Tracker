@@ -65,9 +65,9 @@ type
     function TotalPages: Integer;
   protected
     procedure KeyDown(var Key: Word; Shift: TShiftState); override;
-    procedure DrawSection(Section: THeaderSection; const Rect: TRect;
-      Pressed: Boolean); override;
+    procedure DrawSection(Section: THeaderSection; const Rect: TRect; Pressed: Boolean); override;
     procedure SectionClick(Section: THeaderSection); override;
+    procedure SectionTrack(Section: THeaderSection; Width: Integer; State: TSectionTrackState); override;
   public
     constructor Create(AOwner: TComponent); override;
     procedure UpdateControlPanel;
@@ -79,7 +79,7 @@ type
     procedure DrawTab(Canvas: TCanvas; Index: Integer); override;
   end;
 
-    TpbSaveEvent = procedure(Sender: TObject; AutoSave: Boolean) of object;
+  TpbSaveEvent   = procedure(Sender: TObject; AutoSave: Boolean) of object;
   TpbFinishEvent = procedure(Sender: TObject; pbFinish: Boolean) of object;
 
   TDDCSForm = class(TPageControl)
@@ -112,7 +112,6 @@ type
     procedure WMSave(var Message: TMessage); message WM_SAVE;
     // Properties --------------------------------------------------------------
     procedure SetVitals(Page: TTabSheet);
-    procedure SetDisableSplash(const Value: Boolean);
     procedure SetNoteCollection(const Value: TDDCSNoteCollection);
     // Timer
     procedure OnAutoSaveTimer(Sender: TObject);
@@ -146,7 +145,6 @@ type
     procedure Cancel;
     procedure GoToPageFirstTabItem;
     procedure GoToPageLastTabItem;
-    function GenerateNote(bFinishBtn: Boolean): Boolean;
     function Preview(bFinishBtn: Boolean): Boolean;
   public
     constructor Create(AOwner: TComponent); override;
@@ -158,19 +156,19 @@ type
     // TRadioGroup
     procedure RadioGroupEnter(Sender: TObject);
     // Support and 508 ---------------------------------------------------------
+    procedure GetPatientAllergies(var oText: TStringList);
+    procedure GetPatientActiveProblems(var oText: TStringList);
+    procedure GetPatientActiveMedications(var oText: TStringList);
     function HasSecurityKey(const KeyName: string): Boolean;
-    function GetPatientAllergies: TStringList;
-    function GetPatientActiveProblems: TStringList;
-    function GetPatientActiveMedications: TStringList;
     property MultiInterface: Boolean read FMultiInterface write FMultiInterface;
     property TmpStrList: TStringList read FReturnList write FReturnList;
-    property Validated: Boolean read FValidated write FValidated;
+    property Validated: Boolean read FValidated write FValidated default False;
     property VitalsControl: TDDCSVitals read GetVitalsForm;
     property ScreenReader: TScreenReader read FScreenReader;
   published
     property VitalsPage: TTabSheet read FVitalsPage write SetVitals;
     property AutoTimer: TTimer read FAutoSaveTimer write FAutoSaveTimer;
-    property DisableSplash: Boolean read FDisableSplash write SetDisableSplash default False;
+    property DisableSplash: Boolean read FDisableSplash write FDisableSplash default False;
     property ReportCollection: TDDCSNoteCollection read FReportCollection write SetNoteCollection;
     property OnSave: TpbSaveEvent read FOnpbSave write FOnpbSave;
     property OnFinish: TpbFinishEvent read FOnpbFinish write FOnpbFinish;
@@ -185,7 +183,7 @@ type
 implementation
 
 uses
-  frmSplash, frmPreview, frmConfiguration, frmAbout, uCommon, uExtndComBroker;
+  frmSplash, frmReview, frmConfiguration, frmAbout, uCommon, uExtndComBroker;
 
 procedure Register;
 begin
@@ -491,8 +489,6 @@ begin
 end;
 
 procedure TDDCSHeaderControl.SectionClick(Section: THeaderSection);
-var
-  I: Integer;
 
   procedure ShowMenu;
   var
@@ -527,17 +523,14 @@ begin
     3: FDDCSForm.Finish;
     4: FDDCSForm.Cancel;
     5: FDDCSForm.SelectNextPage(False);
-//         if IsPrev(I) then
-//           FDDCSForm.ActivePageIndex := I;
-//         FDDCSForm.Change;
-//       end;
     6: ;
     7: FDDCSForm.SelectNextPage(True);
-//         if IsNext(I) then
-//           FDDCSForm.ActivePageIndex := I;
-//         FDDCSForm.Change;
-//       end;
   end;
+end;
+
+procedure TDDCSHeaderControl.SectionTrack(Section: THeaderSection; Width: Integer; State: TSectionTrackState);
+begin
+  Abort;
 end;
 
 // Public ----------------------------------------------------------------------
@@ -606,11 +599,11 @@ begin
   Align := alBottom;
   Height := 30;
   Style := hsButtons;
-  DoubleBuffered := True;
   TabStop := True;
   TabOrder := 1;
 
-  for I := 0 to 7 do AddControlPanelButton(I);
+  for I := 0 to 7 do
+    AddControlPanelButton(I);
 
   if csDesigning in ComponentState then
     Exit;
@@ -835,11 +828,6 @@ begin
   end;
 end;
 
-procedure TDDCSForm.SetDisableSplash(const Value: Boolean);
-begin
-  FDisableSplash := Value;
-end;
-
 procedure TDDCSForm.SetNoteCollection(const Value: TDDCSNoteCollection);
 begin
   FReportCollection.Assign(Value);
@@ -869,6 +857,10 @@ begin
     Exit;
   nItem := FReportCollection.GetNoteItem(TWinControl(Sender));
   if nItem = nil then
+    Exit;
+  if nItem.Configuration.Count - 1 < ls.ItemIndex then
+    Exit;
+  if nItem.Configuration[ls.ItemIndex] = '' then
     Exit;
 
   sl := TStringList.Create;
@@ -910,7 +902,7 @@ begin
   nItem := FReportCollection.GetNoteItem(TWinControl(Sender));
   if nItem = nil then
     Exit;
-  if nItem.Configuration.Count < 1 then
+  if nItem.Configuration.Count - 1 < ls.ItemIndex then
     Exit;
   if nItem.Configuration[ls.ItemIndex] = '' then
     Exit;
@@ -1124,7 +1116,7 @@ end;
 
 procedure TDDCSForm.Save(aSave: Boolean);
 var
-  sl: TStringList;
+  sl,cl: TStringList;
   I: Integer;
   nItem: TDDCSNoteItem;
 begin
@@ -1134,6 +1126,7 @@ begin
   FControlPanel.Sections[1].AllowClick := False;
 
   sl := TStringList.Create;
+  cl := TStringList.Create;
   try
     for I := 0 to ReportCollection.Count - 1 do
     begin
@@ -1143,28 +1136,34 @@ begin
       //   CONTROL^(INDEXED^VALUE)
 
       if not nItem.DoNotSave then
-        sl.AddStrings(nItem.GetValueSave);
+      begin
+        nItem.GetValueSave(sl);
+        if sl.Count > 0 then
+          cl.AddStrings(sl);
+      end;
     end;
 
     if Assigned(VitalsControl) then
       VitalsControl.Save;
 
-    if sl.Count > 0 then
+    if cl.Count > 0 then
     try
-      if not UpdateContext(MENU_CONTEXT) then
-        Exit;
-
-      if aSave then
-        Tasks.Add(sCallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject,
-                                             RPCBrokerV.Source.IEN, RPCBrokerV.DDCSInterface, sl, 1]))
-      else
-        CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.Source.IEN, RPCBrokerV.DDCSInterface, sl]);
+      if UpdateContext(MENU_CONTEXT) then
+      begin
+        if aSave then
+          Tasks.Add(sCallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject,
+                                               RPCBrokerV.TIUNote.IEN, RPCBrokerV.DDCSInterface, cl, 1]))
+        else
+          CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN,
+                                    RPCBrokerV.DDCSInterface, cl]);
+      end;
     except
       on E: Exception do
       if not aSave then
         ShowMsg(E.Message, smiError, smbOK);
     end;
   finally
+    cl.Free;
     sl.Free;
 
     FControlPanel.Sections[1].AllowClick := True;
@@ -1223,94 +1222,89 @@ begin
   end;
 end;
 
-function TDDCSForm.GenerateNote(bFinishBtn: Boolean): Boolean;
+function TDDCSForm.Preview(bFinishBtn: Boolean): Boolean;
 var
+  sl: TStringList;
   I: Integer;
-  tmpstrE: string;
   nItem: TDDCSNoteItem;
   wControl: TWinControl;
+  errMsg: string;
+  cBool: Boolean;
 begin
-  TmpStrList.Clear;
-  tmpstrE := 'The following elements are required but are currently invalid.';
-  nItem := nil;
-  wControl := nil;
-  FValidated := True;
+  Result := False;
+  FReturnList.Clear;
 
+  sl := TStringList.Create;
   try
+    wControl := nil;
+    errMsg := 'The following elements are required but are currently invalid.';
+
+    cBool := True;
     for I := 0 to ReportCollection.Count - 1 do
     begin
       nItem := ReportCollection.Items[I];
       if ((nItem.Page <> nil) and ((nItem.Page.TabVisible) or
           (not (nItem.Page.TabVisible) and (PageCount = 1)))) then
-      begin
         if not nItem.IsValid then
         begin
-          FValidated := False;
-          if nItem.IdentifyingName <> '' then
-            tmpstrE := tmpstrE + #13#10 + '  - ' + nItem.IdentifyingName
-          else
-            tmpstrE := tmpstrE + #13#10 + '  - ' + nItem.OwningObject.Name;
-
+          cBool := False;
+          // Collection all the errors (above) but just jump to the first control
           if wControl = nil then
             wControl := nItem.OwningObject;
+          if nItem.IdentifyingName <> '' then
+            errMsg := errMsg + #13#10 + '  - ' + nItem.IdentifyingName
+          else
+            errMsg := errMsg + #13#10 + '  - ' + nItem.OwningObject.Name;
         end else
-          TmpStrList.AddStrings(nItem.GetValueNote);
-      end;
+        begin
+          nItem.GetValueNote(sl);
+          if sl.Count > 0 then
+            FReturnList.AddStrings(sl);
+        end;
     end;
+    // ReportItems have checked out but if we were to set Result like cBool and there
+    // was a booboo then we could exit resulting in True, and we don't want that.
+    Result := cBool;
 
-    if FValidated and Assigned(FOnpbOverrideNote) then
+    if not Result then
     begin
-      TmpStrList.Clear;
-      onOverrideNote(nil);
-    end;
-
-    if not FValidated then
-    begin
-      ShowMsg(tmpstrE, smiWarning, smbOK);
-
+      ShowMsg(errMsg);
       nItem := ReportCollection.GetNoteItem(wControl);
-      if ((nItem <> nil) and (nItem.Page <> nil)) then
+      if nItem <> nil then
+        if nItem.Page <> nil then
+        begin
+          ActivePageIndex := nItem.Page.PageIndex;
+          Change;
+          if wControl.Visible then
+            wControl.SetFocus;
+        end;
+      Exit;
+    end;
+
+    if Assigned(FOnpbOverrideNote) then
+    begin
+      FReturnList.Clear;
+      onOverrideNote(nil);
+      Result := FValidated;
+    end;
+
+    if (Result and (DDCSReview <> nil)) then
+    begin
+      DDCSReview.btnAccept.Enabled := bFinishBtn;
+      DDCSReview.meNote.Lines.AddStrings(FReturnList);
+
+      DDCSReview.ShowModal;
+      if DDCSReview.ModalResult = mrOK then
       begin
-        ActivePageIndex := nItem.Page.PageIndex;
-        Change;
-
-        if wControl.Visible then
-          wControl.SetFocus;
-      end;
+        Result := True;
+        FReturnList.Clear;
+        FReturnList.AddStrings(DDCSReview.meNote.Lines);
+      end else
+        Result := False;
     end;
   finally
-    Result := FValidated;
-  end;
-end;
-
-function TDDCSForm.Preview(bFinishBtn: Boolean): Boolean;
-begin
-  Result := False;
-
-  if not GenerateNote(bFinishBtn) then
-    Exit;
-
-  ReviewNoteDlg := TReviewNoteDlg.Create(Self);
-  try
-    ReviewNoteDlg.btnAccept.Enabled := bFinishBtn;
-    ReviewNoteDlg.SetNote(TmpStrList);
-
-    if not bFinishBtn = True then
-    begin
-      ReviewNoteDlg.NoteMemo.Font.Color := clGray;
-      ReviewNoteDlg.NoteMemo.ReadOnly := True;
-    end;
-
-    ReviewNoteDlg.ShowModal;
-
-    if ReviewNoteDlg.ModalResult = mrOK then
-    begin
-      Result := True;
-      TmpStrList.SetText(ReviewNoteDlg.DialogResult.GetText);
-    end else
-      Result := False;
-  finally
-    ReviewNoteDlg.Free;
+    sl.Free;
+    FValidated := Result;
   end;
 end;
 
@@ -1382,14 +1376,13 @@ end;
 
 procedure TDDCSForm.FormOverrideShow(Sender: TObject);
 var
-  tmp: string;
-  dl,sl: TStringList;
+  tmp,sHold: string;
+  sl,dl: TStringList;
   I,J,P: Integer;
   vPropertyList,vProp,vValue: string;
   wControl: TWinControl;
   cControl,dReturn: TComponent;
   nItem: TDDCSNoteItem;
-  vKey: Word;
 
   function SubCount(str: string; d: Char): Integer;
   var
@@ -1402,8 +1395,8 @@ var
   end;
 
 begin
-  dl := TStringList.Create;
   sl := TStringList.Create;
+  dl := TStringList.Create;
   try
     try
       if RPCBrokerV <> nil then
@@ -1420,6 +1413,11 @@ begin
         PostMessage(Handle, WM_SHOW_SPLASH, 0, 0);
 
       DDCSFormConfig := TDDCSFormConfig.Create(Self);
+      DDCSReview := TDDCSReview.Create(Self);
+
+      sHold := '0';
+      if UpdateContext(MENU_CONTEXT) then
+        sHold := sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'HOLD ON SHOW']);
 
       // We're going through all of the component's controls rather than just the report collection
       // because we're adding the TWinControls to the Configuration form and adding click methods to
@@ -1428,7 +1426,6 @@ begin
         for J := 0 to Pages[I].ControlCount - 1 do
           if Pages[I].Controls[J] is TWinControl then
             SetUpControl(I, TWinControl(Pages[I].Controls[J]));
-
 
       if RPCBrokerV <> nil then
       begin
@@ -1446,124 +1443,123 @@ begin
         end;
 
         if UpdateContext(MENU_CONTEXT) then
-          tCallV(sl, 'DSIO DDCS BUILD FORM', [dl, RPCBrokerV.ControlObject, RPCBrokerV.Source.IEN]);
-
-        if sl.Count < 1 then
-          Exit;
-
-        for I := 0 to sl.Count - 1 do
         begin
-          // Form --------------------------------------------------------------
-          //           I^TITLE|VALUE
-          if Piece(sl[I],U,1) = 'I' then
+          tCallV(sl, 'DSIO DDCS BUILD FORM', [dl, RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN]);
+
+          for I := 0 to sl.Count - 1 do
           begin
-            // Set Properties
-            vPropertyList := Pieces(sl[I],U,2,99);
-            J := SubCount(vPropertyList,U) + 1;
-
-            for P := 1 to J do
+            // Form --------------------------------------------------------------
+            //           I^TITLE|VALUE
+            if Piece(sl[I],U,1) = 'I' then
             begin
-              vProp := Piece(Piece(vPropertyList,U,P),'|',1);
-
-              if IsPublishedProp(TForm(Owner), vProp) then
-              begin
-                vValue := Piece(Piece(vPropertyList,U,P),'|',2);
-
-                if vValue <> '' then
-                  SetPropValue(TForm(Owner), vProp, vValue);
-              end;
-            end;
-          end;
-
-          // Page --------------------------------------------------------------
-          //      P^NUMBER^CAPTION^HIDE
-          if Piece(sl[I],U,1) = 'P' then
-           if ((TryStrToInt(Piece(sl[I],U,2),J)) and (J <= PageCount)) then
-            begin
-              if Piece(sl[I],U,3) <> '' then
-                Pages[J - 1].Caption := Piece(sl[I],U,3);
-              if Piece(sl[I],U,4) <> '' then
-                Pages[J - 1].TabVisible := not StrToBool(Piece(sl[I],U,4));
-            end;
-
-          // Control --------------------------------------------------------
-          //         CC^NAME^^^PROPERTY|VALUE
-          if Piece(sl[I],U,1) = 'CC' then
-          begin
-            cControl := TForm(Owner).FindComponent(Piece(sl[I],U,2));
-            if ((cControl <> nil) and (cControl is TWinControl)) then
-            begin
-              wControl := TWinControl(cControl);
-              nItem := FReportCollection.GetNoteItemAddifNil(wControl);
-
               // Set Properties
-              vPropertyList := Pieces(sl[I],U,3,99);
+              vPropertyList := Pieces(sl[I],U,2,99);
               J := SubCount(vPropertyList,U) + 1;
 
               for P := 1 to J do
               begin
                 vProp := Piece(Piece(vPropertyList,U,P),'|',1);
-                vValue := Piece(Piece(vPropertyList,U,P),'|',2);
 
-                  //  IdentifyingName := nItem.IdentifyingName;
-                  //  Order           := nItem.Order;
-                  //  Title           := nItem.Title;
-                  //  Prefix          := nItem.Prefix;
-                  //  Suffix          := nItem.Suffix;
-                  //  DoNotSpace      := nItem.DoNotSpace;
-                  //  DoNotSave       := nItem.DoNotSave;
-                  //  DoNotRestoreV   := nItem.DoNotRestoreV;
-                  //  HideFromNote    := nItem.HideFromNote;
-                  //  Required        := nItem.Required;
-                  //  DialogReturn    := nItem.DialogReturn;
-
-                if ((vProp = 'IDENTIFYINGNAME') and (vValue <> '')) then
-                  nItem.IdentifyingName := vValue
-                else if ((vProp = 'ORDER') and (vValue <> '')) then
-                  nItem.Order := StrToInt(vValue)
-                else if ((vProp = 'TITLE') and (vValue <> '')) then
-                  nItem.Title := vValue
-                else if ((vProp = 'PREFIX') and (vValue <> '')) then
-                  nItem.Prefix := vValue
-                else if ((vProp = 'SUFFIX') and (vValue <> '')) then
-                  nItem.Suffix := vValue
-                else if ((vProp = 'DONOTSPACE') and (vValue <> '')) then
-                  nItem.DoNotSpace := StrToBool(vValue)
-                else if ((vProp = 'DONOTSAVE') and (vValue <> '')) then
-                  nItem.DoNotSave := StrToBool(vValue)
-                else if ((vProp = 'DONOTRESTORE') and (vValue <> '')) then
-                  nItem.DoNotRestoreV := StrToBool(vValue)
-                else if ((vProp = 'HIDEFROMNOTE') and (vValue <> '')) then
-                  nItem.HideFromNote := StrToBool(vValue)
-                else if ((vProp = 'REQUIRED') and (vValue <> '')) then
-                  nItem.Required := StrToBool(vValue)
-                else if ((vProp = 'DIALOGRETURN') and (vValue <> '')) then
+                if IsPublishedProp(TForm(Owner), vProp) then
                 begin
-                  dReturn := TForm(Owner).FindComponent(vValue);
-                  if dReturn is TWinControl then
-                    nItem.DialogReturn := TWinControl(dReturn);
+                  vValue := Piece(Piece(vPropertyList,U,P),'|',2);
+
+                  if vValue <> '' then
+                    SetPropValue(TForm(Owner), vProp, vValue);
                 end;
               end;
             end;
-          end;
 
-          // Control Value --------------------------------------------------
-          //               CV^NAME^F^(INDEXED^VALUE)
-          //               CV^NAME^D^IEN|NAME|CLASS
-          if Piece(sl[I],U,1) = 'CV' then
-          begin
-            cControl := TForm(Owner).FindComponent(Piece(sl[I],U,2));
-            if ((cControl <> nil) and (cControl is TWinControl)) then
-            begin
-              wControl := TWinControl(cControl);
-              nItem := FReportCollection.GetNoteItemAddifNil(wControl);
-
-              if Piece(sl[I],U,3) = 'F' then
-                Fill(wControl, Piece(sl[I],U,4), Pieces(sl[I],U,5,9999))
-              else if Piece(sl[I],U,3) = 'D' then
+            // Page --------------------------------------------------------------
+            //      P^NUMBER^CAPTION^HIDE
+            if Piece(sl[I],U,1) = 'P' then
+             if ((TryStrToInt(Piece(sl[I],U,2),J)) and (J <= PageCount)) then
               begin
-                nItem.Configuration.Add(Piece(sl[I],U,4));
-                Fill(wControl, '', Piece(Piece(sl[I],U,4),'|',2));
+                if Piece(sl[I],U,3) <> '' then
+                  Pages[J - 1].Caption := Piece(sl[I],U,3);
+                if Piece(sl[I],U,4) <> '' then
+                  Pages[J - 1].TabVisible := not StrToBool(Piece(sl[I],U,4));
+              end;
+
+            // Control --------------------------------------------------------
+            //         CC^NAME^^^PROPERTY|VALUE
+            if Piece(sl[I],U,1) = 'CC' then
+            begin
+              cControl := TForm(Owner).FindComponent(Piece(sl[I],U,2));
+              if ((cControl <> nil) and (cControl is TWinControl)) then
+              begin
+                wControl := TWinControl(cControl);
+                nItem := FReportCollection.GetNoteItemAddifNil(wControl);
+
+                // Set Properties
+                vPropertyList := Pieces(sl[I],U,3,99);
+                J := SubCount(vPropertyList,U) + 1;
+
+                for P := 1 to J do
+                begin
+                  vProp := Piece(Piece(vPropertyList,U,P),'|',1);
+                  vValue := Piece(Piece(vPropertyList,U,P),'|',2);
+
+                    //  IdentifyingName := nItem.IdentifyingName;
+                    //  Order           := nItem.Order;
+                    //  Title           := nItem.Title;
+                    //  Prefix          := nItem.Prefix;
+                    //  Suffix          := nItem.Suffix;
+                    //  DoNotSpace      := nItem.DoNotSpace;
+                    //  DoNotSave       := nItem.DoNotSave;
+                    //  DoNotRestoreV   := nItem.DoNotRestoreV;
+                    //  HideFromNote    := nItem.HideFromNote;
+                    //  Required        := nItem.Required;
+                    //  DialogReturn    := nItem.DialogReturn;
+
+                  if ((vProp = 'IDENTIFYINGNAME') and (vValue <> '')) then
+                    nItem.IdentifyingName := vValue
+                  else if ((vProp = 'ORDER') and (vValue <> '')) then
+                    nItem.Order := StrToInt(vValue)
+                  else if ((vProp = 'TITLE') and (vValue <> '')) then
+                    nItem.Title := vValue
+                  else if ((vProp = 'PREFIX') and (vValue <> '')) then
+                    nItem.Prefix := vValue
+                  else if ((vProp = 'SUFFIX') and (vValue <> '')) then
+                    nItem.Suffix := vValue
+                  else if ((vProp = 'DONOTSPACE') and (vValue <> '')) then
+                    nItem.DoNotSpace := StrToBool(vValue)
+                  else if ((vProp = 'DONOTSAVE') and (vValue <> '')) then
+                    nItem.DoNotSave := StrToBool(vValue)
+                  else if ((vProp = 'DONOTRESTORE') and (vValue <> '')) then
+                    nItem.DoNotRestoreV := StrToBool(vValue)
+                  else if ((vProp = 'HIDEFROMNOTE') and (vValue <> '')) then
+                    nItem.HideFromNote := StrToBool(vValue)
+                  else if ((vProp = 'REQUIRED') and (vValue <> '')) then
+                    nItem.Required := StrToBool(vValue)
+                  else if ((vProp = 'DIALOGRETURN') and (vValue <> '')) then
+                  begin
+                    dReturn := TForm(Owner).FindComponent(vValue);
+                    if dReturn is TWinControl then
+                      nItem.DialogReturn := TWinControl(dReturn);
+                  end;
+                end;
+              end;
+            end;
+
+            // Control Value --------------------------------------------------
+            //               CV^NAME^F^(INDEXED^VALUE)
+            //               CV^NAME^D^IEN|NAME|CLASS
+            if Piece(sl[I],U,1) = 'CV' then
+            begin
+              cControl := TForm(Owner).FindComponent(Piece(sl[I],U,2));
+              if ((cControl <> nil) and (cControl is TWinControl)) then
+              begin
+                wControl := TWinControl(cControl);
+                nItem := FReportCollection.GetNoteItemAddifNil(wControl);
+
+                if Piece(sl[I],U,3) = 'F' then
+                  Fill(wControl, Piece(sl[I],U,4), Pieces(sl[I],U,5,999))
+                else if Piece(sl[I],U,3) = 'D' then
+                begin
+                  nItem.Configuration.Add(Piece(sl[I],U,4));
+                  Fill(wControl, '', Piece(Piece(sl[I],U,4),'|',2));
+                end;
               end;
             end;
           end;
@@ -1576,6 +1572,9 @@ begin
   finally
     dl.Free;
     sl.Free;
+
+    if sHold <> '1'  then
+      EnableTaskWindows(RPCBrokerV.DisabledWindow);
 
     TabHeight := 30;
     for I := 0 to PageCount - 1 do
@@ -1787,6 +1786,71 @@ begin
     SelectNextPage(False);
 end;
 
+procedure TDDCSForm.GetPatientAllergies(var oText: TStringList);
+// Array of patient allergies.  Returned data is delimited by "^" and
+// includes: allergen/reactant, reactions/symptoms (multiple symptoms/
+// reactions are possible - delimited by ";"), severity, allergy id (record
+// number from the Patient Allergies file (#120.8).
+// DSSTFF20140715 DSIO ORQQAL LIST created to return formatting
+begin
+  oText.Clear;
+
+  if RPCBrokerV = nil then
+    Exit;
+
+  try
+    if UpdateContext(MENU_CONTEXT) then
+      tCallV(oText, 'DSIO DDCS ORQQAL LIST', [RPCBrokerV.Patient.DFN]);
+  except
+    on E: Exception do
+    begin
+      oText.Clear;
+      oText.Add(E.Message);
+    end;
+  end;
+end;
+
+procedure TDDCSForm.GetPatientActiveProblems(var oText: TStringList);
+// Array of patient problems in the format: problem id^problem name^status
+begin
+  oText.Clear;
+
+  if RPCBrokerV = nil then
+    Exit;
+
+  try
+    if UpdateContext(MENU_CONTEXT) then
+      tCallV(oText, 'DSIO DDCS ORQQPL LIST', [RPCBrokerV.Patient.DFN]);
+  except
+    on E: Exception do
+    begin
+      oText.Clear;
+      oText.Add(E.Message);
+    end;
+  end;
+end;
+
+procedure TDDCSForm.GetPatientActiveMedications(var oText: TStringList);
+// Array medications in the format: medication id^nameform (orderable item)^
+// stop date/time^route^schedule/iv rate^refills remaining
+begin
+  oText.Clear;
+
+  if RPCBrokerV = nil then
+    Exit;
+
+  try
+    if UpdateContext(MENU_CONTEXT) then
+      tCallV(oText, 'DSIO DDCS ORQQPS LIST', [RPCBrokerV.Patient.DFN]);
+  except
+    on E: Exception do
+    begin
+      oText.Clear;
+      oText.Add(E.Message);
+    end;
+  end;
+end;
+
 function TDDCSForm.GetVitalsForm: TDDCSVitals;
 var
   I: Integer;
@@ -1821,71 +1885,6 @@ begin
   except
     on E: Exception do
     ShowMsg(E.Message, smiError, smbOK);
-  end;
-end;
-
-function TDDCSForm.GetPatientAllergies: TStringList;
-// Array of patient allergies.  Returned data is delimited by "^" and
-// includes: allergen/reactant, reactions/symptoms (multiple symptoms/
-// reactions are possible - delimited by ";"), severity, allergy id (record
-// number from the Patient Allergies file (#120.8).
-// DSSTFF20140715 DSIO ORQQAL LIST created to return formatting
-begin
-  Result := TStringList.Create;
-
-  if RPCBrokerV = nil then
-    Exit;
-
-  try
-    if UpdateContext(MENU_CONTEXT) then
-      tCallV(Result, 'DSIO DDCS ORQQAL LIST', [RPCBrokerV.PatientDFN]);
-  except
-    on E: Exception do
-    begin
-      Result.Clear;
-      Result.Add(E.Message);
-    end;
-  end;
-end;
-
-function TDDCSForm.GetPatientActiveProblems: TStringList;
-// Array of patient problems in the format: problem id^problem name^status
-begin
-  Result := TStringList.Create;
-
-  if RPCBrokerV = nil then
-    Exit;
-
-  try
-    if UpdateContext(MENU_CONTEXT) then
-      tCallV(Result, 'DSIO DDCS ORQQPL LIST', [RPCBrokerV.PatientDFN]);
-  except
-    on E: Exception do
-    begin
-      Result.Clear;
-      Result.Add(E.Message);
-    end;
-  end;
-end;
-
-function TDDCSForm.GetPatientActiveMedications: TStringList;
-// Array medications in the format: medication id^nameform (orderable item)^
-// stop date/time^route^schedule/iv rate^refills remaining
-begin
-  Result := TStringList.Create;
-
-  if RPCBrokerV = nil then
-    Exit;
-
-  try
-    if UpdateContext(MENU_CONTEXT) then
-      tCallV(Result, 'DSIO DDCS ORQQPS LIST', [RPCBrokerV.PatientDFN]);
-  except
-    on E: Exception do
-    begin
-      Result.Clear;
-      Result.Add(E.Message);
-    end;
   end;
 end;
 

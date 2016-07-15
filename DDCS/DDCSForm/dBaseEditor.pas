@@ -123,6 +123,4 @@ begin
   Result := 4;
 end;
 
-
-
 end.

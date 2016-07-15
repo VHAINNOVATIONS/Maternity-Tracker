@@ -4,51 +4,12 @@ object fChild: TfChild
   Width = 512
   Height = 364
   TabOrder = 0
-  object lbG: TLabel
-    Left = 432
-    Top = 77
-    Width = 8
-    Height = 13
-    Caption = 'g'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object lbTotalWeight: TLabel
-    Left = 266
-    Top = 77
-    Width = 74
-    Height = 13
-    Caption = 'Total Weight'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
   object lbComplications: TLabel
     Left = 11
     Top = 155
     Width = 180
     Height = 13
     Caption = 'Complications and or Anomalies'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object lbLbs: TLabel
-    Left = 432
-    Top = 105
-    Width = 17
-    Height = 13
-    Caption = 'lbs'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -69,19 +30,6 @@ object fChild: TfChild
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object lbOz: TLabel
-    Left = 432
-    Top = 133
-    Width = 20
-    Height = 13
-    Caption = 'ozs'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
   object meComplications: TCaptionMemo
     Left = 11
     Top = 173
@@ -90,7 +38,7 @@ object fChild: TfChild
     Align = alCustom
     Anchors = [akLeft, akTop, akRight, akBottom]
     ScrollBars = ssVertical
-    TabOrder = 8
+    TabOrder = 5
     Caption = 'Complications and or Anomalies'
   end
   object rgSex: TRadioGroup
@@ -114,56 +62,13 @@ object fChild: TfChild
     TabOrder = 0
     TabStop = True
   end
-  object spnLb: TSpinEdit
-    Left = 346
-    Top = 102
-    Width = 81
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 6
-    Value = 0
-    OnChange = spnLbChange
-  end
   object edAPGARfive: TEdit
     Left = 120
     Top = 74
     Width = 54
     Height = 21
     NumbersOnly = True
-    TabOrder = 3
-  end
-  object spnG: TSpinEdit
-    Left = 346
-    Top = 74
-    Width = 81
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 5
-    Value = 0
-    OnChange = UpdateLbOz
-  end
-  object rgLife: TRadioGroup
-    Left = 266
-    Top = 9
-    Width = 173
-    Height = 54
-    Caption = 'Status'
-    Columns = 2
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
-    ItemIndex = 0
-    Items.Strings = (
-      'Living'
-      'Demise')
-    ParentFont = False
-    TabOrder = 1
-    TabStop = True
-    OnClick = rgLifeClick
+    TabOrder = 2
   end
   object ckNICU: TCheckBox
     Left = 11
@@ -177,18 +82,7 @@ object fChild: TfChild
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 4
-  end
-  object spnOz: TSpinEdit
-    Left = 346
-    Top = 130
-    Width = 81
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 7
-    Value = 0
-    OnChange = spnOzChange
+    TabOrder = 3
   end
   object edAPGARone: TEdit
     Left = 60
@@ -196,7 +90,7 @@ object fChild: TfChild
     Width = 54
     Height = 21
     NumbersOnly = True
-    TabOrder = 2
+    TabOrder = 1
   end
   object btnDelete: TBitBtn
     Left = 475
@@ -222,7 +116,100 @@ object fChild: TfChild
       3333333333333333333888330000333333333333333333333333333333333333
       0000}
     NumGlyphs = 2
-    TabOrder = 9
+    TabOrder = 6
     OnClick = btnDeleteClick
+  end
+  object Panel1: TPanel
+    Left = 265
+    Top = 29
+    Width = 197
+    Height = 86
+    BevelOuter = bvNone
+    TabOrder = 4
+    object lbOz: TLabel
+      Left = 172
+      Top = 60
+      Width = 20
+      Height = 13
+      Caption = 'ozs'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lbLbs: TLabel
+      Left = 172
+      Top = 32
+      Width = 17
+      Height = 13
+      Caption = 'lbs'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lbTotalWeight: TLabel
+      Left = 5
+      Top = 4
+      Width = 74
+      Height = 13
+      Caption = 'Total Weight'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lbG: TLabel
+      Left = 172
+      Top = 4
+      Width = 8
+      Height = 13
+      Caption = 'g'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object spnLb: TSpinEdit
+      Left = 85
+      Top = 29
+      Width = 81
+      Height = 22
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 1
+      Value = 0
+      OnChange = spnLbChange
+    end
+    object spnOz: TSpinEdit
+      Left = 85
+      Top = 57
+      Width = 81
+      Height = 22
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 2
+      Value = 0
+      OnChange = spnOzChange
+    end
+    object spnG: TSpinEdit
+      Left = 85
+      Top = 1
+      Width = 81
+      Height = 22
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 0
+      Value = 0
+      OnChange = UpdateLbOz
+    end
   end
 end

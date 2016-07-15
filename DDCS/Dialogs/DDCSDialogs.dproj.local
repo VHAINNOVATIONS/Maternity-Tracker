@@ -108,7 +108,6 @@
     <Transaction>2016/06/10 14:26:33.000.301,=C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPhysicalExam.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="uDialog.pas"/>
     <File Path="udlgAbdomPain.pas"/>
     <File Path="udlgAbdomPain.dfm"/>
     <File Path="udlgBackPain.pas"/>
@@ -167,6 +166,7 @@
     <File Path="frmPregHistChild.dfm"/>
     <File Path="frmPregHistPregInfo.pas"/>
     <File Path="frmPregHistPregInfo.dfm"/>
+    <File Path="uDialog.pas"/>
     <File Path="udlgPhysicalExam.pas"/>
     <File Path="udlgPhysicalExam.dfm"/>
   </ProjectSortOrder>

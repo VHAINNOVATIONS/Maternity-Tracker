@@ -125,7 +125,7 @@ begin
   try
     if DebugMode then
     begin
-      hp := Application.HintPause;
+      hp  := Application.HintPause;
       hhp := Application.HintHidePause;
 
       Application.HintPause := 0;
@@ -146,12 +146,13 @@ begin
     if dlg.ModalResult = mrOK then
       Result := dlg.TmpStrList.Text;
   finally
+    dlg.Free;
+
     if DebugMode then
     begin
       Application.HintPause := hp;
       Application.HintHidePause := hhp;
     end;
-    dlg.Free;
   end;
 end;
 
@@ -178,8 +179,8 @@ begin
   if dlgClass = nil then
     Exit;
 
-  sl := TStringList.Create;
   dlg := dlgClass.Create;
+  sl := TStringList.Create;
   try
     for I := 0 to dlg.ComponentCount - 1 do
     begin
@@ -188,9 +189,9 @@ begin
       // sl.Add('R^' + dlg.Components[I].Name + U);    // Once this is enabled you will be able to pass it to VistA
     end;
   finally
-    dlg.Free;
     Result := sl.Text;
     sl.Free;
+    dlg.Free;
   end;
 end;
 

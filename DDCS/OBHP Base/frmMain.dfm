@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'OB History Consult'
+  Caption = 'OB'
   ClientHeight = 523
   ClientWidth = 742
   Color = clBtnFace
@@ -497,6 +497,12 @@ object Form1: TForm1
         Height = 266
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
         ScrollBars = ssVertical
         TabOrder = 2
         Caption = 'Chief Complaint'
@@ -522,10 +528,6 @@ object Form1: TForm1
     end
     object oPage2: TTabSheet
       Caption = 'Vitals'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DDCSVitals: TDDCSVitals
         Left = 0
         Top = 0

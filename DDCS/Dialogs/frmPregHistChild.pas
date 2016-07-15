@@ -31,24 +31,23 @@ type
   TfChild = class(TFrame)
     meComplications: TCaptionMemo;
     rgSex: TRadioGroup;
-    spnLb: TSpinEdit;
     edAPGARfive: TEdit;
-    spnG: TSpinEdit;
-    rgLife: TRadioGroup;
     ckNICU: TCheckBox;
-    spnOz: TSpinEdit;
     edAPGARone: TEdit;
-    lbG: TLabel;
-    lbTotalWeight: TLabel;
     lbComplications: TLabel;
-    lbLbs: TLabel;
     lbAPGAR: TLabel;
-    lbOz: TLabel;
     btnDelete: TBitBtn;
+    Panel1: TPanel;
+    spnLb: TSpinEdit;
+    spnOz: TSpinEdit;
+    spnG: TSpinEdit;
+    lbOz: TLabel;
+    lbLbs: TLabel;
+    lbTotalWeight: TLabel;
+    lbG: TLabel;
     procedure spnLbChange(Sender: TObject);
     procedure spnOzChange(Sender: TObject);
     procedure UpdateLbOz(Sender: TObject);
-    procedure rgLifeClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
   private
     FBabyIEN: string;
@@ -59,7 +58,6 @@ type
     function GetBabyNumber: string;
   public
     constructor Create(AOwner: TComponent); override;
-    destructor Destroy; override;
     function GetText: TStringList;
     function GetV: string;
     property BabyIEN: string read GetBabyIEN write FBabyIEN;
@@ -127,36 +125,6 @@ begin
   end;
 
   OnChangeRestore;
-end;
-
-procedure TfChild.rgLifeClick(Sender: TObject);
-var
-  vPregInfo: TfPregInfo;
-begin
-  if Owner <> nil then
-    if Owner is TTabSheet then
-      if TTabSheet(Owner).PageControl.Owner is TfPreg then
-        vPregInfo := TfPreg(TTabSheet(Owner).PageControl.Owner).GetPregInfo;
-
-  if rgLife.ItemIndex = 0 then
-  begin
-    dlgPregHist.ModifyLiving(1);
-
-    if vPregInfo <> nil then
-      if vPregInfo.cbOutcome.Enabled then
-        vPregInfo.rgPretermDeliveryClick(nil);
-  end else if rgLife.ItemIndex = 1 then
-  begin
-    dlgPregHist.ModifyLiving(-1);
-
-    if vPregInfo <> nil then
-      if vPregInfo.cbOutcome.Enabled then
-      begin
-        if vPregInfo.cbOutcome.Items.IndexOf('Stillbirth') = -1 then
-          vPregInfo.cbOutcome.Items.Add('Stillbirth');
-        vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf('Stillbirth');
-      end;
-  end;
 end;
 
 procedure TfChild.btnDeleteClick(Sender: TObject);
@@ -243,14 +211,6 @@ begin
     nItem.SayOnFocus := 'Click to delete current child record.';
 end;
 
-destructor TfChild.Destroy;
-begin
-  if rgLife.ItemIndex = 0 then
-    dlgPregHist.ModifyLiving(-1);
-
-  inherited;
-end;
-
 function TfChild.GetText: TStringList;
 var
   BabyNumber,I: Integer;
@@ -261,12 +221,6 @@ begin
   if Owner <> nil then
     if Owner is TTabSheet then
       BabyNumber := TTabSheet(Owner).TabIndex;
-
-  if rgLife.ItemIndex <> -1 then
-    Result.Add('  Baby ' + IntTostr(BabyNumber) + ' (' +
-               TRadioButton(rgLife.Controls[rgLife.ItemIndex]).Caption + '):')
-  else
-    Result.Add('  Baby ' + IntTostr(BabyNumber) + ':');
 
   if rgSex.ItemIndex <> -1 then
     Result.Add('   Gender: ' + TRadioButton(rgSex.Controls[rgSex.ItemIndex]).Caption)
@@ -312,14 +266,6 @@ function TfChild.GetV: string;
     end;
   end;
 
-  function GetLife: string;
-  begin
-    case rgLife.ItemIndex of
-      0: Result := 'L';
-      1: Result := 'D';
-    end;
-  end;
-
   function GetNICU: string;
   begin
     if ckNICU.Checked then
@@ -330,9 +276,8 @@ function TfChild.GetV: string;
 
 begin
   // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
-  Result := BabyIEN + ';' + BabyNumber + ';;' + GetSex + ';' +
-            spnG.Text + ';' + IntToStr(rgLife.ItemIndex) + ';' + edAPGARone.Text +
-            ';' + edAPGARfive.Text + ';' + GetLife + ';' + GetNICU + '|';
+  Result := BabyIEN + ';' + BabyNumber + ';;' + GetSex + ';' + spnG.Text + ';;'
+            + edAPGARone.Text + ';' + edAPGARfive.Text + ';;' + GetNICU + '|';
 end;
 
 end.

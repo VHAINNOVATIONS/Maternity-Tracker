@@ -119,7 +119,7 @@ type
     Edit5: TEdit;
     Edit6: TEdit;
     edExercise: TEdit;
-    Edit8: TEdit;
+    edEmployed: TEdit;
     Edit9: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -200,12 +200,12 @@ type
     CheckBox7: TCheckBox;
     CheckBox8: TCheckBox;
     CheckBox17: TCheckBox;
-    Edit12: TEdit;
+    edToxic: TEdit;
     Label2: TLabel;
     CheckBox18: TCheckBox;
     CheckBox19: TCheckBox;
     CheckBox20: TCheckBox;
-    Edit13: TEdit;
+    edDiet: TEdit;
     lbLifeOther: TLabel;
     meLifeOther: TCaptionMemo;
     Panel1: TPanel;
@@ -805,7 +805,7 @@ begin
   // Tobacco
   TmpStrList.Add('  Tobacco:');
   if ckMaster.Checked then
-    TmpStrList.Add('   ' + ck.Caption)
+    TmpStrList.Add('   ' + ckMaster.Caption)
   else
   begin
     if ckSecondYes.Checked or ckSecondNo.Checked then

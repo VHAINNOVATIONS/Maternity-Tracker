@@ -212,7 +212,10 @@ end;
 //-------------------------------------------------------------------- page 4
 
 procedure TForm1.RadioGroupImportClick(Sender: TObject);
+var
+  sl: TStringList;
 begin
+  sl := TStringList.Create;
   try
     case RadioGroupImport.ItemIndex of
       0: begin
@@ -220,7 +223,11 @@ begin
            pnlMedications.BringToFront;
            memoMedications.TabStop := True;
            memoMedicationsNar.TabStop := True;
-           memoMedications.Lines.AddStrings(DDCSForm1.GetPatientActiveMedications);
+
+           DDCSForm1.GetPatientActiveMedications(sl);
+           if sl.Count > 0 then
+             memoMedications.Lines.AddStrings(sl);
+
            memoProblems.TabStop := False;
            memoProblemsNar.TabStop := False;
            memoAllergies.TabStop := False;
@@ -232,7 +239,11 @@ begin
            pnlProblems.BringToFront;
            memoProblems.TabStop := True;
            memoProblemsNar.TabStop := True;
-           memoProblems.Lines.AddStrings(DDCSForm1.GetPatientActiveProblems);
+
+           DDCSForm1.GetPatientActiveProblems(sl);
+           if sl.Count > 0 then
+             memoProblems.Lines.AddStrings(sl);
+
            memoMedications.TabStop := False;
            memoMedicationsNar.TabStop := False;
            memoAllergies.TabStop := False;
@@ -244,7 +255,11 @@ begin
            pnlAllergies.BringToFront;
            memoAllergies.TabStop := True;
            memoAllergiesNar.TabStop := True;
-           memoAllergies.Lines.AddStrings(DDCSForm1.GetPatientAllergies);
+
+           DDCSForm1.GetPatientAllergies(sl);
+           if sl.Count > 0 then
+             memoAllergies.Lines.AddStrings(sl);
+
            memoMedications.TabStop := False;
            memoMedicationsNar.TabStop := False;
            memoProblems.TabStop := False;
@@ -252,7 +267,8 @@ begin
            pnlAllergiesResize(pnlAllergies);
          end;
     end;
-  except
+  finally
+    sl.Free;
   end;
 end;
 
@@ -301,7 +317,7 @@ begin
   if not ckAllergyLatex.Checked then
     Exit;
 
-  if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.PatientName +
+  if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.Patient.Name +
              ' and verified NO known latex allergy.', smiWarning, smbYesNo) <> smrYes then
   begin
     ckAllergyLatex.OnClick := nil;
@@ -352,7 +368,7 @@ begin
   if not ckBloodTransfusion.Checked then
     Exit;
 
-  if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.PatientName +
+  if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.Patient.Name +
              ' and verified that if necessary, a blood transfusion is acceptable.', smiWarning, smbYesNo) <> smrYes then
   begin
     ckBloodTransfusion.OnClick := nil;
@@ -393,8 +409,6 @@ begin
 end;
 
 procedure TForm1.ckPlannedAnesthesiaClick(Sender: TObject);
-var
-  nItem: TDDCSNoteItem;
 begin
   if not ckPlannedAnesthesia.Checked then
   begin
@@ -410,7 +424,7 @@ begin
     Exit;
   end;
 
-  if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.PatientName +
+  if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.Patient.Name +
              ' and verified type of anesthesia planned with delivery.', smiWarning, smbYesNo) <> smrYes then
   begin
     ckPlannedAnesthesia.OnClick := nil;
@@ -438,7 +452,6 @@ procedure TForm1.ShowOnNote(Sender: TObject);
 var
   ck: TCheckBox;
   nItem: TDDCSNoteItem;
-  I: Integer;
 begin
   ck := TCheckBox(Sender);
   if ck.Checked then

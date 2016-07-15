@@ -18,19 +18,28 @@ library DDCSOBInitialBase;
 }
 
 uses
+  Winapi.Windows,
+  Vcl.Forms,
   uExtndComBroker,
   frmMain in 'frmMain.pas' {Form1};
 
 {$R *.res}
 
-function Launch(Broker: PCPRSComBroker): Pointer; stdcall;
+function Launch(Broker: PCPRSComBroker): WideString; stdcall;
 begin
-  RPCBrokerV := Broker^;             // set the broker first so the create method has access to VistA
+  Result := '';
 
-  Form1 := TForm1.Create(nil);       // nil - let the ComObject Free it
-  if Form1 <> nil then
-    Result := @Form1.DDCSForm1       // the component uses caFree on Close of the form so it is freed
-  else Result := nil;
+  RPCBrokerV := Broker^;
+
+  Form1 := TForm1.Create(nil);
+  try
+    RPCBrokerV.DisabledWindow := DisableTaskWindows(0);
+    Form1.ShowModal;
+    if Form1.DDCSForm1.Validated then
+      Result := Form1.DDCSForm1.TmpStrList.Text;
+  finally
+    Form1.Free;
+  end;
 end;
 
 exports
