@@ -261,6 +261,8 @@ type
     procedure AlcoholClick(Sender: TObject);
     procedure DrugsClick(Sender: TObject);
     procedure bbtnOKClick(Sender: TObject);
+  private
+  public
   end;
 
 var

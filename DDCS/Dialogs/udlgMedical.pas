@@ -215,6 +215,8 @@ type
     procedure btnNegClick(Sender: TObject);
     procedure CheckBoxClick(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
+  private
+  public
   end;
 
 var

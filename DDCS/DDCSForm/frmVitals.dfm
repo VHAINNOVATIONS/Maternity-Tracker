@@ -3,7 +3,7 @@ object DDCSVitals: TDDCSVitals
   Top = 0
   Width = 698
   Height = 378
-  DoubleBuffered = True
+  DoubleBuffered = False
   ParentDoubleBuffered = False
   TabOrder = 0
   object fVitalsControl: TPageControl
@@ -13,7 +13,9 @@ object DDCSVitals: TDDCSVitals
     Height = 378
     ActivePage = PageMain
     Align = alClient
+    DoubleBuffered = False
     MultiLine = True
+    ParentDoubleBuffered = False
     TabOrder = 0
     TabPosition = tpRight
     OnChange = fVitalsControlChange
@@ -333,13 +335,17 @@ object DDCSVitals: TDDCSVitals
     end
     object PageEDD: TTabSheet
       Caption = 'Estimated Delivery Date'
+      DoubleBuffered = False
       ImageIndex = 1
+      ParentDoubleBuffered = False
+      OnResize = PageEDDResize
+      OnShow = PageEDDShow
       DesignSize = (
         670
         370)
       object Label14: TLabel
-        Left = 10
-        Top = 18
+        Left = 18
+        Top = 16
         Width = 140
         Height = 13
         Caption = 'Gestational Age Today is'
@@ -350,674 +356,449 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object EDDGrid: TGridPanel
-        Left = 10
-        Top = 59
-        Width = 632
-        Height = 289
-        Anchors = [akLeft, akTop, akRight, akBottom]
-        BevelOuter = bvNone
-        ColumnCollection = <
-          item
-            SizeStyle = ssAbsolute
-            Value = 150.000000000000000000
-          end
-          item
-            Value = 27.325016587741300000
-          end
-          item
-            Value = 10.182254772595770000
-          end
-          item
-            Value = 10.078233029364070000
-          end
-          item
-            Value = 32.055131976864300000
-          end
-          item
-            Value = 20.359363633434560000
-          end>
-        ControlCollection = <
-          item
-            Column = 1
-            Control = dtLMP
-            Row = 1
-          end
-          item
-            Column = 4
-            Control = edtEDDLMP
-            Row = 1
-          end
-          item
-            Column = 0
-            Control = lblLMP
-            Row = 1
-          end
-          item
-            Column = 0
-            Control = lblECD
-            Row = 2
-          end
-          item
-            Column = 0
-            Control = lblUltra
-            Row = 3
-          end
-          item
-            Column = 1
-            Control = dtECD
-            Row = 2
-          end
-          item
-            Column = 4
-            Control = edtEDDECD
-            Row = 2
-          end
-          item
-            Column = 1
-            Control = dtUltra
-            Row = 3
-          end
-          item
-            Column = 2
-            Control = spnWeekUltra
-            Row = 3
-          end
-          item
-            Column = 3
-            Control = spnDayUltra
-            Row = 3
-          end
-          item
-            Column = 4
-            Control = edtEDDUltra
-            Row = 3
-          end
-          item
-            Column = 1
-            Control = dtEmbryo
-            Row = 4
-          end
-          item
-            Column = 4
-            Control = edtEDDEmbryo
-            Row = 4
-          end
-          item
-            Column = 0
-            Control = lblUnknown
-            Row = 6
-          end
-          item
-            Column = 1
-            Control = dtOther
-            Row = 5
-          end
-          item
-            Column = 2
-            Control = spnWeekOther
-            Row = 5
-          end
-          item
-            Column = 3
-            Control = spnDayOther
-            Row = 5
-          end
-          item
-            Column = 4
-            Control = edtEDDOther
-            Row = 5
-          end
-          item
-            Column = 0
-            Control = lblOther
-            Row = 5
-          end
-          item
-            Column = 0
-            Control = Label9
-            Row = 0
-          end
-          item
-            Column = 1
-            Control = Label10
-            Row = 0
-          end
-          item
-            Column = 2
-            ColumnSpan = 2
-            Control = Label11
-            Row = 0
-          end
-          item
-            Column = 4
-            Control = Label12
-            Row = 0
-          end
-          item
-            Column = 5
-            Control = Label13
-            Row = 0
-          end
-          item
-            Column = 5
-            Control = ckFinalEDDLMP
-            Row = 1
-          end
-          item
-            Column = 5
-            Control = ckFinalEDDECD
-            Row = 2
-          end
-          item
-            Column = 5
-            Control = ckFinalEDDUltra
-            Row = 3
-          end
-          item
-            Column = 5
-            Control = ckFinalEDDEmbryo
-            Row = 4
-          end
-          item
-            Column = 5
-            Control = ckFinalEDDOther
-            Row = 5
-          end
-          item
-            Column = 5
-            Control = ckFinalEDDUnknown
-            Row = 6
-          end
-          item
-            Column = 4
-            Control = dtEDDUnknown
-            Row = 6
-          end
-          item
-            Column = 0
-            Control = Panel1
-            Row = 4
-          end
-          item
-            Column = 2
-            Row = 1
-          end
-          item
-            Column = 3
-            Row = 1
-          end
-          item
-            Column = 2
-            Row = 2
-          end
-          item
-            Column = 3
-            Row = 2
-          end
-          item
-            Column = 2
-            Row = 4
-          end>
-        DoubleBuffered = False
-        ExpandStyle = emFixedSize
-        ParentDoubleBuffered = False
-        RowCollection = <
-          item
-            Value = 14.279327102523720000
-          end
-          item
-            Value = 14.327356831229780000
-          end
-          item
-            Value = 14.258276649000580000
-          end
-          item
-            Value = 14.241672209497000000
-          end
-          item
-            Value = 14.383561643835620000
-          end
-          item
-            Value = 14.277379956570730000
-          end
-          item
-            Value = 14.232425607342590000
-          end>
-        ShowCaption = False
+      object lblLMP: TLabel
+        Left = 18
+        Top = 109
+        Width = 103
+        Height = 13
+        Anchors = []
+        Caption = 'Last Menstrual Period'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Layout = tlCenter
+      end
+      object lblECD: TLabel
+        Left = 18
+        Top = 150
+        Width = 130
+        Height = 13
+        Anchors = []
+        Caption = 'Estimated Conception Date'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Layout = tlCenter
+      end
+      object lblUltra: TLabel
+        Left = 18
+        Top = 190
+        Width = 52
+        Height = 13
+        Anchors = []
+        Caption = 'Ultrasound'
+        Layout = tlCenter
+      end
+      object lblUnknown: TLabel
+        Left = 18
+        Top = 315
+        Width = 44
+        Height = 13
+        Anchors = []
+        Caption = 'Unknown'
+        Layout = tlCenter
+      end
+      object Label9: TLabel
+        Left = 18
+        Top = 69
+        Width = 149
+        Height = 13
+        Alignment = taCenter
+        Anchors = []
+        AutoSize = False
+        Caption = 'EDD Criteria'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label10: TLabel
+        Left = 183
+        Top = 69
+        Width = 100
+        Height = 13
+        Alignment = taCenter
+        Anchors = []
+        AutoSize = False
+        Caption = 'Event Date'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label11: TLabel
+        Left = 300
+        Top = 56
+        Width = 103
+        Height = 26
+        Alignment = taCenter
+        Anchors = []
+        AutoSize = False
+        Caption = 'Gestational Age'#13#10'Weeks   Days'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label12: TLabel
+        Left = 421
+        Top = 69
+        Width = 103
+        Height = 13
+        Alignment = taCenter
+        Anchors = []
+        AutoSize = False
+        Caption = 'EDD'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label13: TLabel
+        Left = 558
+        Top = 69
+        Width = 75
+        Height = 13
+        Alignment = taCenter
+        Anchors = []
+        AutoSize = False
+        Caption = 'Is Final?'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object dtLMP: TORDateBox
+        Left = 183
+        Top = 106
+        Width = 100
+        Height = 21
+        Anchors = []
         TabOrder = 2
+        Text = 'Today'
+        OnExit = dtLMPExit
+        DateOnly = True
+        RequireTime = False
+        Caption = 'Last Menstrual Period Event Date'
+      end
+      object edtEDDLMP: TORDateBox
+        Left = 421
+        Top = 106
+        Width = 103
+        Height = 21
+        Anchors = []
+        Color = clSilver
+        ReadOnly = True
+        TabOrder = 3
+        DateOnly = True
+        RequireTime = False
+        Caption = ''
+      end
+      object dtECD: TORDateBox
+        Left = 183
+        Top = 147
+        Width = 100
+        Height = 21
+        Anchors = []
+        TabOrder = 5
+        Text = 'Today'
+        OnExit = dtECDExit
+        DateOnly = True
+        RequireTime = False
+        Caption = 'Estimated Conception Date Event Date'
+      end
+      object edtEDDECD: TORDateBox
+        Left = 421
+        Top = 147
+        Width = 103
+        Height = 21
+        Anchors = []
+        Color = clSilver
+        ReadOnly = True
+        TabOrder = 6
+        DateOnly = True
+        RequireTime = False
+        Caption = ''
+      end
+      object dtUltra: TORDateBox
+        Left = 183
+        Top = 188
+        Width = 100
+        Height = 21
+        Anchors = []
+        TabOrder = 8
+        Text = 'Today'
+        OnExit = dtUltraExit
+        DateOnly = True
+        RequireTime = False
+        Caption = 'Ultrasound Event Date'
+      end
+      object spnWeekUltra: TSpinEdit
+        Left = 300
+        Top = 187
+        Width = 49
+        Height = 22
+        Anchors = []
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 9
+        Value = 0
+        OnChange = spnWeekUltraChange
+      end
+      object spnDayUltra: TSpinEdit
+        Left = 355
+        Top = 187
+        Width = 48
+        Height = 22
+        Anchors = []
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 10
+        Value = 0
+        OnChange = spnDayUltraChange
+      end
+      object edtEDDUltra: TORDateBox
+        Left = 421
+        Top = 188
+        Width = 103
+        Height = 21
+        Anchors = []
+        Color = clSilver
+        ReadOnly = True
+        TabOrder = 11
+        DateOnly = True
+        RequireTime = False
+        Caption = ''
+      end
+      object dtEmbryo: TORDateBox
+        Left = 183
+        Top = 229
+        Width = 100
+        Height = 21
+        Anchors = []
+        TabOrder = 14
+        Text = 'Today'
+        OnExit = dtEmbryoExit
+        DateOnly = True
+        RequireTime = False
+        Caption = 'Embryo Transfer Event Date'
+      end
+      object edtEDDEmbryo: TORDateBox
+        Left = 421
+        Top = 229
+        Width = 103
+        Height = 21
+        Anchors = []
+        Color = clSilver
+        ReadOnly = True
+        TabOrder = 15
+        DateOnly = True
+        RequireTime = False
+        Caption = ''
+      end
+      object dtOther: TORDateBox
+        Left = 183
+        Top = 270
+        Width = 100
+        Height = 21
+        Anchors = []
+        TabOrder = 18
+        Text = 'Today'
+        OnExit = lblOtherExit
+        DateOnly = True
+        RequireTime = False
+        Caption = 'Other Criteria Event Date'
+      end
+      object spnWeekOther: TSpinEdit
+        Left = 300
+        Top = 269
+        Width = 49
+        Height = 22
+        Anchors = []
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 19
+        Value = 0
+        OnChange = spnWeekOtherChange
+      end
+      object spnDayOther: TSpinEdit
+        Left = 355
+        Top = 269
+        Width = 48
+        Height = 22
+        Anchors = []
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 20
+        Value = 0
+        OnChange = spnDayOtherChange
+      end
+      object edtEDDOther: TORDateBox
+        Left = 421
+        Top = 270
+        Width = 103
+        Height = 21
+        Anchors = []
+        Color = clSilver
+        ReadOnly = True
+        TabOrder = 21
+        DateOnly = True
+        RequireTime = False
+        Caption = ''
+      end
+      object lblOther: TEdit
+        Left = 18
+        Top = 270
+        Width = 149
+        Height = 21
+        Anchors = []
+        MaxLength = 75
+        TabOrder = 17
+        Text = 'Other Criteria'
+        OnChange = lblOtherChange
+        OnExit = lblOtherExit
+        OnMouseEnter = lblOtherMouseEnter
+      end
+      object ckFinalEDDLMP: TCheckBox
+        Tag = 1
+        Left = 575
+        Top = 108
+        Width = 50
+        Height = 17
+        Hint = 'IsFinal'
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 4
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDECD: TCheckBox
+        Tag = 2
+        Left = 575
+        Top = 149
+        Width = 50
+        Height = 17
+        Hint = 'IsFinal'
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 7
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDUltra: TCheckBox
+        Tag = 3
+        Left = 575
+        Top = 190
+        Width = 50
+        Height = 17
+        Hint = 'IsFinal'
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 12
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDEmbryo: TCheckBox
+        Tag = 4
+        Left = 575
+        Top = 231
+        Width = 50
+        Height = 17
+        Hint = 'IsFinal'
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 16
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDOther: TCheckBox
+        Tag = 5
+        Left = 575
+        Top = 272
+        Width = 50
+        Height = 17
+        Hint = 'IsFinal'
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 22
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDUnknown: TCheckBox
+        Tag = 6
+        Left = 575
+        Top = 314
+        Width = 50
+        Height = 17
+        Hint = 'IsFinal'
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 24
+        OnClick = IsFinalEDDClick
+      end
+      object dtEDDUnknown: TORDateBox
+        Left = 421
+        Top = 312
+        Width = 103
+        Height = 21
+        Anchors = []
+        TabOrder = 23
+        OnExit = dtEDDUnknownExit
+        DateOnly = True
+        RequireTime = False
+        Caption = 'Unknown Estimated Delivery Date'
+      end
+      object Panel1: TPanel
+        Left = 18
+        Top = 219
+        Width = 150
+        Height = 41
+        Anchors = []
+        BevelOuter = bvNone
+        TabOrder = 13
         DesignSize = (
-          632
-          289)
-        object dtLMP: TORDateBox
-          Left = 165
-          Top = 51
-          Width = 100
-          Height = 21
+          150
+          41)
+        object lblEmbryo: TLabel
+          Left = 0
+          Top = 13
+          Width = 80
+          Height = 13
           Anchors = []
+          Caption = 'Embryo Transfer'
+          Layout = tlCenter
+        end
+        object cbTransferDay: TCaptionComboBox
+          Left = 89
+          Top = 10
+          Width = 60
+          Height = 21
+          Style = csDropDownList
+          Anchors = []
+          DropDownCount = 3
           TabOrder = 0
-          Text = 'Today'
-          OnExit = dtLMPExit
-          DateOnly = True
-          RequireTime = False
-          Caption = 'Last Menstrual Period Event Date'
-        end
-        object edtEDDLMP: TORDateBox
-          Left = 403
-          Top = 51
-          Width = 103
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          ReadOnly = True
-          TabOrder = 1
-          DateOnly = True
-          RequireTime = False
-          Caption = ''
-        end
-        object lblLMP: TLabel
-          Left = 0
-          Top = 41
-          Width = 150
-          Height = 41
-          Align = alClient
-          Caption = 'Last Menstrual Period'
-          Layout = tlCenter
-          ExplicitWidth = 103
-          ExplicitHeight = 13
-        end
-        object lblECD: TLabel
-          Left = 0
-          Top = 82
-          Width = 150
-          Height = 41
-          Align = alClient
-          Caption = 'Estimated Conception Date'
-          Layout = tlCenter
-          ExplicitWidth = 130
-          ExplicitHeight = 13
-        end
-        object lblUltra: TLabel
-          Left = 0
-          Top = 123
-          Width = 150
-          Height = 41
-          Align = alClient
-          Caption = 'Ultrasound'
-          Layout = tlCenter
-          ExplicitWidth = 52
-          ExplicitHeight = 13
-        end
-        object dtECD: TORDateBox
-          Left = 165
-          Top = 92
-          Width = 100
-          Height = 21
-          Anchors = []
-          TabOrder = 3
-          Text = 'Today'
-          OnExit = dtECDExit
-          DateOnly = True
-          RequireTime = False
-          Caption = 'Estimated Conception Date Event Date'
-        end
-        object edtEDDECD: TORDateBox
-          Left = 403
-          Top = 92
-          Width = 103
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          ReadOnly = True
-          TabOrder = 4
-          DateOnly = True
-          RequireTime = False
-          Caption = ''
-        end
-        object dtUltra: TORDateBox
-          Left = 165
-          Top = 133
-          Width = 100
-          Height = 21
-          Anchors = []
-          TabOrder = 6
-          Text = 'Today'
-          OnExit = dtUltraExit
-          DateOnly = True
-          RequireTime = False
-          Caption = 'Ultrasound Event Date'
-        end
-        object spnWeekUltra: TSpinEdit
-          Left = 281
-          Top = 132
-          Width = 49
-          Height = 22
-          Anchors = []
-          MaxValue = 0
-          MinValue = 0
-          TabOrder = 7
-          Value = 0
-          OnChange = spnWeekUltraChange
-        end
-        object spnDayUltra: TSpinEdit
-          Left = 330
-          Top = 132
-          Width = 48
-          Height = 22
-          Anchors = []
-          MaxValue = 0
-          MinValue = 0
-          TabOrder = 8
-          Value = 0
-          OnChange = spnDayUltraChange
-        end
-        object edtEDDUltra: TORDateBox
-          Left = 403
-          Top = 133
-          Width = 103
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          ReadOnly = True
-          TabOrder = 9
-          DateOnly = True
-          RequireTime = False
-          Caption = ''
-        end
-        object dtEmbryo: TORDateBox
-          Left = 165
-          Top = 174
-          Width = 100
-          Height = 21
-          Anchors = []
-          TabOrder = 12
-          Text = 'Today'
-          OnExit = dtEmbryoExit
-          DateOnly = True
-          RequireTime = False
-          Caption = 'Embryo Transfer Event Date'
-        end
-        object edtEDDEmbryo: TORDateBox
-          Left = 403
-          Top = 174
-          Width = 103
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          ReadOnly = True
-          TabOrder = 13
-          DateOnly = True
-          RequireTime = False
-          Caption = ''
-        end
-        object lblUnknown: TLabel
-          Left = 0
-          Top = 246
-          Width = 150
-          Height = 43
-          Align = alClient
-          Caption = 'Unknown'
-          Layout = tlCenter
-          ExplicitWidth = 44
-          ExplicitHeight = 13
-        end
-        object dtOther: TORDateBox
-          Left = 165
-          Top = 215
-          Width = 100
-          Height = 21
-          Anchors = []
-          TabOrder = 16
-          Text = 'Today'
-          OnExit = lblOtherExit
-          DateOnly = True
-          RequireTime = False
-          Caption = 'Other Criteria Event Date'
-        end
-        object spnWeekOther: TSpinEdit
-          Left = 281
-          Top = 214
-          Width = 49
-          Height = 22
-          Anchors = []
-          MaxValue = 0
-          MinValue = 0
-          TabOrder = 17
-          Value = 0
-          OnChange = spnWeekOtherChange
-        end
-        object spnDayOther: TSpinEdit
-          Left = 330
-          Top = 214
-          Width = 48
-          Height = 22
-          Anchors = []
-          MaxValue = 0
-          MinValue = 0
-          TabOrder = 18
-          Value = 0
-          OnChange = spnDayOtherChange
-        end
-        object edtEDDOther: TORDateBox
-          Left = 403
-          Top = 215
-          Width = 103
-          Height = 21
-          Anchors = []
-          Color = clSilver
-          ReadOnly = True
-          TabOrder = 19
-          DateOnly = True
-          RequireTime = False
-          Caption = ''
-        end
-        object lblOther: TEdit
-          Left = 0
-          Top = 215
-          Width = 149
-          Height = 21
-          Anchors = []
-          MaxLength = 75
-          TabOrder = 15
-          Text = 'Other Criteria'
-          OnChange = lblOtherChange
-          OnExit = lblOtherExit
-          OnMouseEnter = lblOtherMouseEnter
-        end
-        object Label9: TLabel
-          Left = 39
-          Top = 14
-          Width = 71
-          Height = 13
-          Anchors = []
-          Caption = 'EDD Criteria'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitLeft = 38
-          ExplicitTop = 12
-        end
-        object Label10: TLabel
-          Left = 183
-          Top = 14
-          Width = 65
-          Height = 13
-          Anchors = []
-          Caption = 'Event Date'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitLeft = 181
-          ExplicitTop = 12
-        end
-        object Label11: TLabel
-          Left = 281
-          Top = 0
-          Width = 97
-          Height = 41
-          Align = alClient
-          Caption = 'Gestational Age'#13#10'Weeks   Days'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitWidth = 91
-          ExplicitHeight = 26
-        end
-        object Label12: TLabel
-          Left = 441
-          Top = 14
-          Width = 27
-          Height = 13
-          Anchors = []
-          Caption = 'EDD'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitLeft = 440
-          ExplicitTop = 12
-        end
-        object Label13: TLabel
-          Left = 553
-          Top = 14
-          Width = 58
-          Height = 13
-          Anchors = []
-          Caption = 'Final EDD'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitLeft = 551
-          ExplicitTop = 12
-        end
-        object ckFinalEDDLMP: TCheckBox
-          Tag = 9
-          Left = 572
-          Top = 53
-          Width = 19
-          Height = 17
-          Hint = 'IsFinal'
-          Anchors = []
-          TabOrder = 2
-          OnClick = IsFinalEDDClick
-        end
-        object ckFinalEDDECD: TCheckBox
-          Tag = 9
-          Left = 572
-          Top = 94
-          Width = 20
-          Height = 17
-          Hint = 'IsFinal'
-          Anchors = []
-          TabOrder = 5
-          OnClick = IsFinalEDDClick
-        end
-        object ckFinalEDDUltra: TCheckBox
-          Tag = 9
-          Left = 573
-          Top = 135
-          Width = 18
-          Height = 17
-          Hint = 'IsFinal'
-          Anchors = []
-          TabOrder = 10
-          OnClick = IsFinalEDDClick
-        end
-        object ckFinalEDDEmbryo: TCheckBox
-          Tag = 9
-          Left = 572
-          Top = 176
-          Width = 19
-          Height = 17
-          Hint = 'IsFinal'
-          Anchors = []
-          TabOrder = 14
-          OnClick = IsFinalEDDClick
-        end
-        object ckFinalEDDOther: TCheckBox
-          Tag = 9
-          Left = 572
-          Top = 217
-          Width = 20
-          Height = 17
-          Hint = 'IsFinal'
-          Anchors = []
-          TabOrder = 20
-          OnClick = IsFinalEDDClick
-        end
-        object ckFinalEDDUnknown: TCheckBox
-          Tag = 9
-          Left = 573
-          Top = 259
-          Width = 18
-          Height = 17
-          Hint = 'IsFinal'
-          Anchors = []
-          TabOrder = 22
-          OnClick = IsFinalEDDClick
-        end
-        object dtEDDUnknown: TORDateBox
-          Left = 403
-          Top = 257
-          Width = 104
-          Height = 21
-          Anchors = []
-          TabOrder = 21
-          OnExit = dtEDDUnknownExit
-          DateOnly = True
-          RequireTime = False
-          Caption = 'Unknown Estimated Delivery Date'
-        end
-        object Panel1: TPanel
-          Left = 0
-          Top = 164
-          Width = 150
-          Height = 41
-          Anchors = []
-          BevelOuter = bvNone
-          TabOrder = 11
-          object lblEmbryo: TLabel
-            Left = 65
-            Top = 13
-            Width = 80
-            Height = 13
-            Caption = 'Embryo Transfer'
-            Layout = tlCenter
-          end
-          object cbTransferDay: TCaptionComboBox
-            Left = 0
-            Top = 10
-            Width = 60
-            Height = 21
-            Style = csDropDownList
-            DropDownCount = 3
-            TabOrder = 0
-            OnChange = spnTransferDayChange
-            Items.Strings = (
-              '3'
-              '3-5'
-              '5')
-            Caption = 'Embryo Transfer Blastocyst Transfer'
-          end
+          OnChange = spnTransferDayChange
+          Items.Strings = (
+            '3'
+            '3-5'
+            '5')
+          Caption = 'Embryo Transfer Blastocyst Transfer'
         end
       end
       object edtFinalGA: TEdit
-        Left = 157
-        Top = 15
+        Left = 164
+        Top = 13
         Width = 65
         Height = 21
         Color = clSilver
@@ -1025,8 +806,8 @@ object DDCSVitals: TDDCSVitals
         TabOrder = 0
       end
       object Panel4: TPanel
-        Left = 325
-        Top = 3
+        Left = 322
+        Top = 4
         Width = 342
         Height = 41
         Anchors = [akTop, akRight]
@@ -1034,7 +815,7 @@ object DDCSVitals: TDDCSVitals
         TabOrder = 1
         object lbFinalEDD: TLabel
           Left = 49
-          Top = 15
+          Top = 12
           Width = 58
           Height = 13
           Caption = 'Final EDD'
@@ -1047,7 +828,7 @@ object DDCSVitals: TDDCSVitals
         end
         object Label15: TLabel
           Left = 230
-          Top = 14
+          Top = 12
           Width = 16
           Height = 13
           Caption = 'GA'
@@ -1060,7 +841,7 @@ object DDCSVitals: TDDCSVitals
         end
         object edtCurrentEDD: TORDateBox
           Left = 113
-          Top = 11
+          Top = 9
           Width = 103
           Height = 21
           Color = clSilver
@@ -1072,7 +853,7 @@ object DDCSVitals: TDDCSVitals
         end
         object edtEDDGA: TEdit
           Left = 252
-          Top = 11
+          Top = 9
           Width = 65
           Height = 21
           Color = clSilver
@@ -1084,6 +865,10 @@ object DDCSVitals: TDDCSVitals
     object PageLMP: TTabSheet
       Caption = 'Menstrual History'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label7: TLabel
         Left = 309
         Top = 127

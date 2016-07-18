@@ -1394,6 +1394,10 @@ object dlgMedical: TdlgMedical
     end
     object TabSheet2: TTabSheet
       Caption = 'Page 2'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object CheckBox43: TCheckBox
         Tag = 15
         Left = 181

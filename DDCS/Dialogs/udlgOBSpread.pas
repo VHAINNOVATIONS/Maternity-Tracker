@@ -19,17 +19,22 @@ unit udlgOBSpread;
    v2.0.0.0
 }
 
+
+// When the exam date is added it must be compared and rejected if the date already exists
+// When the exam date is added it must be sorted amoung the existing rows
+
+
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, System.StrUtils, Vcl.Graphics, Vcl.Controls, Vcl.Forms,
   Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
-  Vcl.Grids, Vcl.Samples.Spin, JvStringGrid, JvExControls,  JvExGrids,
-  ORDtTm, ORFn, uDialog, uCommon, uExtndComBroker;
+  Vcl.Grids, Vcl.Samples.Spin, Vcl.ActnList, Vcl.Menus, JvStringGrid,
+  JvExControls, JvExGrids, ORDtTm, ORFn, uDialog, uCommon, uExtndComBroker;
 
 const
-  WM_CELLSELECT = WM_USER + 290;
+  WM_CELLSELECT  = WM_USER + 200;
 
 type
   TdlgOBSpread = class(TDDCSDialog)
@@ -38,34 +43,52 @@ type
     cbUrineProtein: TComboBox;
     cbUrineGlucose: TComboBox;
     cbEdema: TComboBox;
-    cbFetalHeart: TComboBox;
     sgStandard: TJvStringGrid;
     pnlfooter: TPanel;
     btnOK: TBitBtn;
     btnCancel: TBitBtn;
     spnFundalHt: TSpinEdit;
     spnWeight: TSpinEdit;
-    pnlCol0: TPanel;
-    dtExamDate: TORDateBox;
-    btnDelete: TBitBtn;
     btnAddRow: TBitBtn;
     spnAge: TSpinEdit;
+    spnDilation: TSpinEdit;
+    spnEffacement: TSpinEdit;
+    spnLong: TSpinEdit;
+    spnSystolic: TSpinEdit;
+    spnDiastolic: TSpinEdit;
+    spnPain: TSpinEdit;
+    spnFetalHeart: TSpinEdit;
+    btnDeleteRow: TBitBtn;
+    dtExam: TORDateBox;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormResize(Sender: TObject);
+    procedure sgStandardColWidthsChanged(Sender: TObject);
     procedure sgStandardSelectCell(Sender: TObject; ACol, ARow: Integer; var CanSelect: Boolean);
-    procedure GridSortColumn(Sender: TJvStringGrid; AColumn, ARow: Integer);
+    procedure sgStandardGetEditText(Sender: TObject; ACol, ARow: Integer; var Value: string);
     procedure btnAddRowClick(Sender: TObject);
     procedure btnDeleteRowClick(Sender: TObject);
     procedure InnerControlChange(Sender: TObject);
     procedure InnerControlExit(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
+    procedure sgStandardHorizontalScroll(Sender: TObject);
+    procedure sgStandardVerticalScroll(Sender: TObject);
   private
+    FNavControl: TActionList;
     FObjectList: TStringList;
-    Ascending: Boolean;
+    FResizeOK: Boolean;
+    FFMDates: array of Double;
+    procedure BuildFMDateList;
     procedure WMCellSelect(var Message: TMessage); message WM_CELLSELECT;
-    procedure InnerControlEnter;
-    function GetCumlWt: string;
+    procedure InnerControlEnter; overload;
+    procedure InnerControlEnter(Value: string); overload;
+    procedure Tab(Sender: TObject);
+    procedure ShiftTab(Sender: TObject);
+    procedure HideControl;
+    function GetControl(iPos: Integer): TWinControl;
+    function GetControlCol(wControl: TWinControl): Integer;
+    function GetCumlWt(iRow: Integer): string;
   end;
 
 var
@@ -75,122 +98,189 @@ implementation
 
 {$R *.dfm}
 
+function ServerParseFMDate(const AString: string): TFMDateTime;
+begin
+  try
+    Result := StrToFloat(sCallV('ORWU DT', [AString, 'TSX']));
+  except
+    on E: Exception do
+    Result := 0;
+  end;
+end;
+
 procedure TdlgOBSpread.FormCreate(Sender: TObject);
 var
+  nAct: TAction;
   I: Integer;
 begin
-  dtExamDate.Format := 'MM/DD/YY@HH:MM';
+  FNavControl := TActionList.Create(Self);
+  nAct := TAction.Create(FNavControl);
+  nAct.ActionList := FNavControl;
+  nAct.ShortCut := ShortCut(VK_TAB, []);
+  nAct.OnExecute := Tab;
+  nAct := TAction.Create(FNavControl);
+  nAct.ActionList := FNavControl;
+  nAct.ShortCut := ShortCut(VK_TAB, [ssShift]);
+  nAct.OnExecute := ShiftTab;
+
+  dtExam.Format := 'MM/DD/YYYY@hh:nn';
+  dtExam.Text := sgStandard.Cells[0, 1];
 
   FObjectList := TStringList.Create;
-  FObjectList.AddObject( '0', pnlCol0);
+  FObjectList.AddObject( '0', dtExam);
   FObjectList.AddObject( '1', spnAge);
   FObjectList.AddObject( '2', spnFundalHt);
   FObjectList.AddObject( '3', spnWeight);
-  // Cumulative Weight    4
-  // BP                   5
-  FObjectList.AddObject( '6', cbFetalAct);
-  FObjectList.AddObject( '7', cbUrineProtein);
-  FObjectList.AddObject( '8', cbUrineGlucose);
-  FObjectList.AddObject( '9', cbEdema);
-  FObjectList.AddObject('10', cbFetalHeart);
-  FObjectList.AddObject('11', cbPresentation);
-  // Cervical Exam       12
+  // Cumulative Weight        4
+  FObjectList.AddObject( '5', cbUrineProtein);
+  FObjectList.AddObject( '6', cbUrineGlucose);
+  FObjectList.AddObject( '7', cbEdema);
+  FObjectList.AddObject( '8', spnFetalHeart);
+  FObjectList.AddObject( '9', cbPresentation);
+  FObjectList.AddObject('10', cbFetalAct);
+  // Preterm Labor Symptoms   11
+  FObjectList.AddObject('12', spnDilation);
+  FObjectList.AddObject('13', spnEffacement);
+  FObjectList.AddObject('14', spnLong);
+  FObjectList.AddObject('15', spnSystolic);
+  FObjectList.AddObject('16', spnDiastolic);
+  FObjectList.AddObject('17', spnPain);
+  // Cervical Exam            18
 
-  if sgStandard.Cells[0,1] = '' then
-  begin
-    sgStandard.Cells[0,0]  := 'Date';
-    sgStandard.Cells[1,0]  := 'Age (wks)';
-    sgStandard.Cells[2,0]  := 'Fundal Height';
-    sgStandard.Cells[3,0]  := 'Weight';
-    sgStandard.Cells[4,0]  := 'Cumulative Weight';
-    sgStandard.Cells[5,0]  := 'BP';
-    sgStandard.Cells[6,0]  := 'Fetal Activity';
-    sgStandard.Cells[7,0]  := 'Urine Protein';
-    sgStandard.Cells[8,0]  := 'Urine Glucose';
-    sgStandard.Cells[9,0]  := 'Edema';
-    sgStandard.Cells[10,0] := 'Fetal Heart';
-    sgStandard.Cells[11,0] := 'Presentation';
-    sgStandard.Cells[12,0] := 'Cervical Exam';
-  end;
+  sgStandard.Cells[0,0]  := 'Exam Date';
+  sgStandard.Cells[1,0]  := 'Gestational Age (wks)';
+  sgStandard.Cells[2,0]  := 'Fundal Height (cm)';
+  sgStandard.Cells[3,0]  := 'Weight (lbs)';
+  sgStandard.Cells[4,0]  := 'Cumulative Weight (lbs)';
+  sgStandard.Cells[5,0]  := 'Albumin';
+  sgStandard.Cells[6,0]  := 'Glucose';
+  sgStandard.Cells[7,0]  := 'Edema';
+  sgStandard.Cells[8,0]  := 'Fetal Heart(s)';              // this will create additional columns of Fetal Heart Rate (min)
+  sgStandard.Cells[9,0]  := 'Fetal Presentation';
+  sgStandard.Cells[10,0] := 'Movement';
+  sgStandard.Cells[11,0] := 'Preterm Labor Symptoms';
+  sgStandard.Cells[12,0] := 'Dilation (cm)';
+  sgStandard.Cells[13,0] := 'Effacement (%)';
+  sgStandard.Cells[14,0] := 'Long Axis (cm)';
+  sgStandard.Cells[15,0] := 'Intravascular Systolic (mmHg)';
+  sgStandard.Cells[16,0] := 'Intravascular Diastolic (mmHg)';
+  sgStandard.Cells[17,0] := 'Pain Severity';
+  sgStandard.Cells[18,0] := 'Cervical Exam';
 
-  for I := 1 to sgStandard.ColCount - 1 do
-    sgStandard.AutoSizeCol(I, 70, 10);
+  // 508
+  SayOnFocus(        dtExam, 'Date');
+  SayOnFocus(        spnAge, 'Gestational Age in weeks');
+  SayOnFocus(   spnFundalHt, 'Fundal Height in centimeters');
+  SayOnFocus(     spnWeight, 'Weight in pounds');
+  SayOnFocus(cbUrineProtein, 'Albumin');
+  SayOnFocus(cbUrineGlucose, 'Glucose');
+  SayOnFocus(       cbEdema, 'Edema');
+  SayOnFocus( spnFetalHeart, 'Fetal Hearts');
+  SayOnFocus(cbPresentation, 'Fetal Presentation');
+  SayOnFocus(    cbFetalAct, 'Movement');
+  SayOnFocus(   spnDilation, 'Dilation in centimeters');
+  SayOnFocus( spnEffacement, 'Effacement in percentage');
+  SayOnFocus(       spnLong, 'Long Cervix in centimeters');
+  SayOnFocus(   spnSystolic, 'Intravascular Systolic');
+  SayOnFocus(  spnDiastolic, 'Intravascular Diastolic');
+  SayOnFocus(       spnPain, 'Pain Severity between one and ten');
 end;
 
 procedure TdlgOBSpread.FormShow(Sender: TObject);
 var
-  bool: Boolean;
+  I: Integer;
 begin
-  sgStandardSelectCell(sgStandard, 0, 1, bool);
+  BuildFMDateList;
+
+  if sgStandard.ColCount > 19 then
+    for I := 19 to sgStandard.ColCount - 1 do
+      sgStandard.Cells[I, 0] := 'Heart Rate #' + IntToStr(I - 18);
+
+  FResizeOK := False;
+  for I := 1 to sgStandard.ColCount - 1 do
+    sgStandard.AutoSizeCol(I, 70, 10);
+  FResizeOK := True;
 end;
 
 procedure TdlgOBSpread.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FObjectList.Free;
+  SetLength(FFMDates, 0);
+end;
+
+procedure TdlgOBSpread.FormResize(Sender: TObject);
+begin
+  HideControl;
+end;
+
+procedure TdlgOBSpread.sgStandardColWidthsChanged(Sender: TObject);
+begin
+  if FResizeOK then
+    HideControl;
+end;
+
+procedure TdlgOBSpread.sgStandardGetEditText(Sender: TObject; ACol, ARow: Integer; var Value: string);
+var
+  R: TRect;
+  wControl: TWinControl;
+begin
+  if ARow = 0 then
+    Exit;
+
+  wControl := GetControl(ACol);
+  if wControl <> nil then
+  begin
+    R := sgStandard.CellRect(ACol, ARow);
+    R.Left := R.Left + sgStandard.Left;
+    R.Right := R.Right + sgStandard.Left;
+    R.Top := R.Top + sgStandard.Top;
+    R.Bottom := R.Bottom + sgStandard.Top;
+
+    wControl.Left := R.Left + 1;
+    wControl.Top := R.Top + 1;
+    wControl.Width := (R.Right + 1) - R.Left;
+    wControl.Height := (R.Bottom + 1) - R.Top;
+    wControl.BringToFront;
+    wControl.Visible := True;
+    wControl.SetFocus;
+    InnerControlEnter(Value);
+  end;
+end;
+
+procedure TdlgOBSpread.sgStandardVerticalScroll(Sender: TObject);
+begin
+  HideControl;
+end;
+
+procedure TdlgOBSpread.sgStandardHorizontalScroll(Sender: TObject);
+begin
+  HideControl;
 end;
 
 procedure TdlgOBSpread.sgStandardSelectCell(Sender: TObject; ACol,
   ARow: Integer; var CanSelect: Boolean);
-var
-  R: TRect;
-  wControl: TWinControl;
-
-  function GetControl(iPos: Integer): TWinControl;
-  var
-    I: Integer;
-  begin
-    Result := nil;
-
-    I := FObjectList.IndexOf(IntToStr(iPos));
-    if I <> -1 then
-      Result := TWinControl(FObjectList.Objects[I]);
-  end;
-
 begin
   CanSelect := True;
 
-  if ARow <> 0 then
-  begin
-    if ACol = 4 then
-    begin
-      sgStandard.Cells[4, ARow] := GetCumlWt;
-      Exit;
-    end;
+  HideControl;
 
-    wControl := GetControl(ACol);
-    if wControl <> nil then
-    begin
-      R := sgStandard.CellRect(ACol, ARow);
-      R.Left := R.Left + sgStandard.Left;
-      R.Right := R.Right + sgStandard.Left;
-      R.Top := R.Top + sgStandard.Top;
-      R.Bottom := R.Bottom + sgStandard.Top;
-
-      wControl.Left := R.Left + 1;
-      wControl.Top := R.Top + 1;
-      wControl.Width := (R.Right + 1) - R.Left;
-      wControl.Height := (R.Bottom + 1) - R.Top;
-      wControl.BringToFront;
-      wControl.Visible := True;
-      wControl.SetFocus;
-
-      PostMessage(Handle, WM_CELLSELECT, 0, 0);
-    end;
-  end;
-end;
-
-procedure TdlgOBSpread.GridSortColumn(Sender: TJvStringGrid; AColumn,ARow: Integer);
-begin
-  if ARow <> 0 then
+  if ARow = 0 then
     Exit;
 
-  Ascending := not Ascending;
-  sgStandard.SortGrid(AColumn, Ascending, True, stAutomatic, True);
+  if ACol = 4 then
+    DDCSForm.ScreenReader.Say('Cumulative Weight', False)
+  else if ACol = 11 then
+    DDCSForm.ScreenReader.Say('Preterm Labor Symptoms', False)
+  else if ACol = 18 then
+    DDCSForm.ScreenReader.Say('Cervical Exam', False);
+
+  PostMessage(Handle, WM_CELLSELECT, 0, 0);
 end;
 
 procedure TdlgOBSpread.btnAddRowClick(Sender: TObject);
 begin
   sgStandard.RowCount := sgStandard.RowCount + 1;
+  SetLength(FFMDates, sgStandard.RowCount);
 end;
 
 procedure TdlgOBSpread.btnDeleteRowClick(Sender: TObject);
@@ -204,15 +294,17 @@ var
     Result := True;
     for I := sgStandard.RowCount - 1 downto 1 do
       if sgStandard.Cells[iCol, I] <> '' then
+      begin
         Result := False;
+        Break;
+      end;
   end;
 
 begin
   if sgStandard.Row < 1 then
     Exit;
 
-  if ShowMsg('Are you sure you want to delete the entire selected table row?',
-              smiWarning, smbYesNo) = smrYes then
+  if ShowMsg('Are you sure you want to delete the entire row?', smiWarning, smbYesNo) = smrYes then
   begin
     if sgStandard.Row <> 0 then
     begin
@@ -228,6 +320,8 @@ begin
       for I := sgStandard.ColCount - 1 downto 13 do
         if IsColumnEmpty(I) then
           sgStandard.RemoveCol(I);
+
+    BuildFMDateList;
   end;
 end;
 
@@ -235,37 +329,152 @@ procedure TdlgOBSpread.InnerControlChange(Sender: TObject);
 var
   sp: TSpinEdit;
   dt: TORDateBox;
+  iCol,I: Integer;
+
+  procedure HeartCols(iValue: Integer);
+  var
+    I,iCols: Integer;
+  begin
+    if iValue < 0 then
+      Exit;
+
+    if sgStandard.ColCount = 19 then
+    begin
+      sgStandard.ColCount := sgStandard.ColCount + iValue;
+      for I := 19 to sgStandard.ColCount - 1 do
+        sgStandard.Cells[I, 0] := 'Heart Rate #' + IntToStr(I - 18);
+
+      Exit;
+    end else
+    begin
+      for I := 1 to sgStandard.RowCount - 1 do
+      begin
+        iCols := StrToIntDef(sgStandard.Cells[8, I], 0);
+        if iCols > iValue then
+          iValue := iCols;
+      end;
+      iValue := 18 + iValue;
+      if iValue > (sgStandard.ColCount - 1) then
+      begin
+        for I := sgStandard.ColCount to iValue do
+        begin
+          sgStandard.ColCount := sgStandard.ColCount + 1;
+          sgStandard.Cells[I, 0] := 'Heart Rate #' + IntToStr(I - 18);
+        end;
+      end else
+        sgStandard.ColCount := (iValue + 1);
+
+      FResizeOK := False;
+      if sgStandard.ColCount > 19 then
+        for I := 19 to sgStandard.ColCount - 1 do
+          sgStandard.AutoSizeCol(I, 70, 10);
+      FResizeOK := True;
+    end;
+  end;
+
 begin
+  iCol := GetControlCol(TWinControl(Sender));
+  if iCol = -1 then
+    Exit;
+
   if Sender is TComboBox then
-    sgStandard.Cells[sgStandard.Col, sgStandard.Row] := TComboBox(Sender).Text
+    sgStandard.Cells[iCol, sgStandard.Row] := TComboBox(Sender).Text
   else if Sender is TSpinEdit then
   begin
     sp := TSpinEdit(Sender);
-    sgStandard.Cells[sgStandard.Col, sgStandard.Row] := sp.Text;
+    if sp.Value < 0 then
+      sp.Value := 0;
+
+    if sp = spnPain then
+      if sp.Value > 10 then
+        sp.Value := 10;
+
+    sgStandard.Cells[iCol, sgStandard.Row] := sp.Text;
+
+    if sp = spnFetalHeart then
+      HeartCols(sp.Value);
 
     if sp = spnWeight then
-      sgStandard.Cells[4, sgStandard.Row] := GetCumlWt;
+      for I := sgStandard.Row to sgStandard.RowCount - 1 do
+        sgStandard.Cells[4, I] := GetCumlWt(I);
+
   end else if Sender is TORDateBox then
   begin
     dt := TORDateBox(Sender);
-    sgStandard.Cells[sgStandard.Col, sgStandard.Row] := dt.Text;
-    GridSortColumn(sgStandard, 0, sgStandard.Row);
+    sgStandard.Cells[iCol, sgStandard.Row] := dt.Text;
   end;
 end;
 
 procedure TdlgOBSpread.InnerControlExit(Sender: TObject);
 var
   wControl: TWinControl;
+  dt: TORDateBox;
+  iOld,iRow: Integer;
+
+  function DateUnique(iRow: Integer; sDate: string): Boolean;
+  var
+    I: Integer;
+  begin
+    Result := True;
+
+    for I := 0 to sgStandard.RowCount - 1 do
+      if ((I <> iRow) and (sgStandard.Cells[0, I] = sDate)) then
+      begin
+        Result := False;
+        Break;
+      end;
+  end;
+
+  function NewRowIndex(sFMDate: Double): Integer;
+  var
+    sl: TStringList;
+    I: Integer;
+  begin
+    Result := -1;
+    sl := TStringList.Create;
+    try
+      for I := 0 to Length(FFMDates) - 1 do
+        sl.Add(FloatToStr(FFMDates[I]));
+      sl.Sort;
+
+      FFMDates[0] := 0;
+      for I := 1 to sl.Count - 1 do
+      begin
+        FFMDates[I] := StrToFloat(sl[I]);
+        if FFMDates[I] = sFMDate then
+          Result := I;
+      end;
+    finally
+      sl.Free;
+    end;
+  end;
+
 begin
-  InnerControlChange(Sender);
-
   wControl := TWinControl(Sender);
-  if wControl = dtExamDate then
-    pnlCol0.Visible := False
-  else
-    wControl.Visible := False;
 
-//  sgStandard.SetFocus;
+  if wControl is TORDateBox then
+  begin
+    dt := TORDateBox(wControl);
+
+    if not dt.IsValid then
+      dt.Text := ''
+    else if not DateUnique(sgStandard.Row, dt.Text) then
+      dt.Text := ''
+    else if dt.Text <> '' then
+    begin
+      iOld := sgStandard.Row;
+      FFMDates[iOld] := dt.FMDateTime;
+      iRow := NewRowIndex(FFMDates[iOld]);
+      if ((iRow <> -1) and (iRow <> iOld)) then
+      begin
+        sgStandard.MoveRow(iOld, iRow);
+        BuildFMDateList;
+      end;
+    end;
+  end;
+
+  InnerControlChange(Sender);
+  wControl.Visible := False;
 end;
 
 procedure TdlgOBSpread.btnOKClick(Sender: TObject);
@@ -282,8 +491,7 @@ var
     slTemp: TStringList;
     slHeader: TStringList;
   begin
-    if not Assigned(NoteText) then
-      NoteText := TStringList.Create;
+    NoteText.Clear;
 
     slTemp := TStringList.Create;
     slHeader := TStringList.Create;
@@ -291,83 +499,94 @@ var
       if sgStandard.Cols[0].Count > 1 then
       begin
         NoteText.Add('OB Flow Sheet:');
+
         for cntr := 0 to sgStandard.Rows[0].Count - 1 do
-        slTemp.Add('| ');
+          slTemp.Add('| ');
 
         row_ptr := 0;
         row_width := 0;
+
         for cntr := 0 to sgStandard.Rows[0].Count - 1 do
-        begin
          if (row_width < Length(Trim(sgStandard.Cells[cntr, row_ptr]))) then
-         row_width := Length(Trim(sgStandard.Cells[cntr, row_ptr]));
-        end;
+           row_width := Length(Trim(sgStandard.Cells[cntr, row_ptr]));
+
         if (row_ptr = 0) then
-        header_width := row_width + 3;
+          header_width := row_width + 3;
+
         for cntr := 0 to sgStandard.Rows[0].Count - 1 do
         begin
           sVal := Trim(sgStandard.Cells[cntr, row_ptr]);
+
           while Length(sVal) < row_width do
-          sVal := sVal + ' ';
+            sVal := sVal + ' ';
+
           slTemp[cntr] := slTemp[cntr] + sVal + ' | ';
+
           if row_ptr = 0 then
-          slHeader.Add(sVal);
+            slHeader.Add(sVal);
         end;
+
         for row_ptr := sgStandard.Cols[0].Count - 1 downto 1 do
         begin
           row_width := 0;
+
           for cntr := 0 to sgStandard.Rows[0].Count - 1 do
-          begin
             if (row_width < Length(Trim(sgStandard.Cells[cntr, row_ptr]))) then
-            row_width := Length(Trim(sgStandard.Cells[cntr, row_ptr]));
-          end;
+              row_width := Length(Trim(sgStandard.Cells[cntr, row_ptr]));
+
           if (row_ptr = 0) then
-          header_width := row_width + 3;
+            header_width := row_width + 3;
+
           if (Length(slTemp[0]) + row_width + 3 > 70) then
           begin
-
             // Row Lines
             sVal := '|-';
+
             while Length(sVal) < Length(slTemp[0]) do
-            sVal := sVal + '-';
+              sVal := sVal + '-';
+
             for cntr := sgStandard.Rows[0].Count downto 1 do
-            slTemp.Insert(cntr,sVal);
+              slTemp.Insert(cntr,sVal);
 
             NoteText.AddStrings(slTemp);
             NoteText.Add('');
             NoteText.Add('');
             NoteText.Add('OB FLOW SHEET (cont.):');
             slTemp.Clear;
+
             for cntr := 0 to sgStandard.Rows[0].Count - 1 do
-            slTemp.Add('| ' +  slHeader[cntr] + ' | ');
+              slTemp.Add('| ' +  slHeader[cntr] + ' | ');
           end;
+
           for cntr := 0 to sgStandard.Rows[0].Count - 1 do
           begin
             sVal := Trim(sgStandard.Cells[cntr, row_ptr]);
+
             while Length(sVal) < row_width do
-            sVal := ' ' + sVal;
+              sVal := ' ' + sVal;
 
             slTemp[cntr] := slTemp[cntr] + sVal + ' | ';
+
             if row_ptr = 0 then
-            slHeader.Add(sVal);
+              slHeader.Add(sVal);
           end;
         end;
 
         // Row Lines
         sVal := '|-';
+
         while Length(sVal) < Length(slTemp[0]) do
-        sVal := sVal + '-';
+          sVal := sVal + '-';
+
         for cntr := sgStandard.Rows[0].Count downto 1 do
-        slTemp.Insert(cntr,sVal);
+          slTemp.Insert(cntr,sVal);
 
         if Length(slTemp[0]) > 2 + header_width then
-        begin
-          NoteText.AddStrings(slTemp);
-        end
-        else
-        begin
-          NoteText.Delete(NoteText.Count-1);
-          NoteText.Delete(NoteText.Count-1);
-          NoteText.Delete(NoteText.Count-1);
+          NoteText.AddStrings(slTemp)
+        else begin
+          NoteText.Delete(NoteText.Count - 1);
+          NoteText.Delete(NoteText.Count - 1);
+          NoteText.Delete(NoteText.Count - 1);
         end;
       end;
     finally
@@ -389,16 +608,88 @@ end;
 
 // Private ---------------------------------------------------------------------
 
-procedure TdlgOBSpread.WMCellSelect(var Message: TMessage);
+procedure TdlgOBSpread.BuildFMDateList;
+var
+  I: Integer;
 begin
-  InnerControlEnter;
+  SetLength(FFMDates, 0);
+  SetLength(FFMDates, sgStandard.RowCount);
+  for I := 0 to sgStandard.RowCount - 1 do
+    if sgStandard.Cells[0, I] <> '' then
+      FFMDates[I] := ServerParseFMDate(sgStandard.Cells[0, I]);
+end;
+
+procedure TdlgOBSpread.WMCellSelect(var Message: TMessage);
+var
+  wControl: TWinControl;
+  R: TRect;
+begin
+  wControl := GetControl(sgStandard.Col);
+  if wControl <> nil then
+  begin
+    R := sgStandard.CellRect(sgStandard.Col, sgStandard.Row);
+    R.Left := R.Left + sgStandard.Left;
+    R.Right := R.Right + sgStandard.Left;
+    R.Top := R.Top + sgStandard.Top;
+    R.Bottom := R.Bottom + sgStandard.Top;
+
+    wControl.Left := R.Left + 1;
+    wControl.Top := R.Top + 1;
+    wControl.Width := (R.Right + 1) - R.Left;
+    wControl.Height := (R.Bottom + 1) - R.Top;
+    wControl.BringToFront;
+    wControl.Visible := True;
+    wControl.SetFocus;
+  end;
+
+  if sgStandard.Col = 4 then
+    sgStandard.Cells[4, sgStandard.Row] := GetCumlWt(sgStandard.Row)
+  else
+    InnerControlEnter;
 end;
 
 procedure TdlgOBSpread.InnerControlEnter;
 var
   wControl: TWinControl;
+  iCol: Integer;
   cb: TComboBox;
   sp: TSpinEdit;
+  dt: TORDateBox;
+begin
+  wControl := ActiveControl;
+  if wControl = nil then
+    Exit;
+
+  iCol := GetControlCol(wControl);
+  if iCol = -1 then
+    Exit;
+
+  if wControl is TComboBox then
+  begin
+    cb := TComboBox(wControl);
+    cb.ItemIndex := cb.Items.IndexOf(sgStandard.Cells[iCol, sgStandard.Row]);
+  end else if wControl is TSpinEdit then
+  begin
+    sp := TSpinEdit(wControl);
+    sp.Value := StrToIntDef(sgStandard.Cells[iCol, sgStandard.Row], 0);
+    sp.SelectAll;
+  end else if wControl is TORDateBox then
+  begin
+    dt := TORDateBox(wControl);
+    dt.Text := sgStandard.Cells[iCol, sgStandard.Row];
+    if not dt.IsValid then
+      dt.Text := '';
+    dt.SelectAll;
+    FFMDates[sgStandard.Row] := dt.FMDateTime;
+  end;
+end;
+
+procedure TdlgOBSpread.InnerControlEnter(Value: string);
+var
+  wControl: TWinControl;
+  cb: TComboBox;
+  sp: TSpinEdit;
+  dt: TORDateBox;
 begin
   wControl := ActiveControl;
   if wControl = nil then
@@ -407,57 +698,197 @@ begin
   if wControl is TComboBox then
   begin
     cb := TComboBox(wControl);
-    cb.ItemIndex := cb.Items.IndexOf(sgStandard.Cells[sgStandard.Col, sgStandard.Row])
+    cb.ItemIndex := cb.Items.IndexOf(Value);
   end else if wControl is TSpinEdit then
   begin
     sp := TSpinEdit(wControl);
-    sp.Value := StrToIntDef(sgStandard.Cells[sgStandard.Col, sgStandard.Row], 0);
-  end else if ((wControl is TORDateBox) or (wControl is TPanel)) then
+    sp.Value := StrToIntDef(Value, 0);
+    sp.SelectAll;
+  end else if wControl is TORDateBox then
   begin
-    dtExamDate.Text := sgStandard.Cells[sgStandard.Col, sgStandard.Row];
-    if not dtExamDate.IsValid then
-      dtExamDate.Text := '';
+    dt := TORDateBox(wControl);
+    dt.Text := Value;
+    if not dt.IsValid then
+      dt.Text := '';
+    dt.SelectAll;
+    FFMDates[sgStandard.Row] := dt.FMDateTime;
   end;
 end;
 
-function TdlgOBSpread.GetCumlWt: string;
+procedure TdlgOBSpread.Tab(Sender: TObject);
 var
-  sdt,pdt,cdt: TORDateBox;
-  I,wRow: Integer;
+  wControl: TWinControl;
+begin
+  if btnAddRow.Focused then
+    btnDeleteRow.SetFocus
+  else if btnDeleteRow.Focused then
+    btnOK.SetFocus
+  else if btnOK.Focused then
+    btnCancel.SetFocus
+  else if btnCancel.Focused then
+  begin
+    sgStandard.SetFocus;
+    sgStandard.Col := 0;
+    sgStandard.Row := 1;
+  end else
+  begin
+    if sgStandard.Col = sgStandard.ColCount - 1 then
+    begin
+      if sgStandard.Row = sgStandard.RowCount - 1 then
+      begin
+        if btnAddRow.Focused then
+          btnDeleteRow.SetFocus
+        else if btnDeleteRow.Focused then
+          btnOK.SetFocus
+        else if btnOK.Focused then
+          btnCancel.SetFocus
+        else if btnCancel.Focused then
+        begin
+          sgStandard.SetFocus;
+          sgStandard.Col := 0;
+          sgStandard.Row := 1;
+        end else
+          btnAddRow.SetFocus;
+      end else
+      begin
+        sgStandard.Col := 0;
+        sgStandard.Row := sgStandard.Row + 1;
+      end;
+    end else
+    begin
+      if sgStandard.Col = 0 then
+        InnerControlExit(dtExam);
+
+      sgStandard.Col := sgStandard.Col + 1;
+    end;
+  end;
+end;
+
+procedure TdlgOBSpread.ShiftTab(Sender: TObject);
+begin
+  if btnCancel.Focused then
+    btnOK.SetFocus
+  else if btnOK.Focused then
+    btnDeleteRow.SetFocus
+  else if btnDeleteRow.Focused then
+    btnAddRow.SetFocus
+  else if btnAddRow.Focused then
+  begin
+    sgStandard.SetFocus;
+    sgStandard.Col := sgStandard.ColCount - 1;
+    sgStandard.Row := sgStandard.RowCount - 1;
+  end else
+  begin
+    if sgStandard.Col > 0 then
+      sgStandard.Col := sgStandard.Col - 1
+    else
+    begin
+      InnerControlExit(dtExam);
+
+      if sgStandard.Row > 1 then
+      begin
+        sgStandard.Col := sgStandard.ColCount - 1;
+        sgStandard.Row := sgStandard.Row - 1;
+      end else
+      begin
+        if btnCancel.Focused then
+          btnOK.SetFocus
+        else if btnOK.Focused then
+          btnDeleteRow.SetFocus
+        else if btnDeleteRow.Focused then
+          btnAddRow.SetFocus
+        else if btnAddRow.Focused then
+        begin
+          sgStandard.SetFocus;
+          sgStandard.Col := sgStandard.ColCount - 1;
+          sgStandard.Row := sgStandard.RowCount - 1;
+        end else
+          btnCancel.SetFocus;
+      end;
+    end;
+  end;
+end;
+
+procedure TdlgOBSpread.HideControl;
+var
+  wControl: TWinControl;
+begin
+  wControl := GetControl(sgStandard.Col);
+  if wControl <> nil then
+  begin
+    if wControl is TComboBox then
+      TComboBox(wControl).OnExit := nil
+    else if wControl is TSpinEdit then
+      TSpinEdit(wControl).OnExit := nil
+    else if wControl is TORDateBox then
+    begin
+      TORDateBox(wCOntrol).OnExit := nil;
+      if not TORDateBox(wControl).IsValid then
+        TORDateBox(wControl).Text := '';
+    end;
+
+    InnerControlChange(wControl);
+    wControl.Visible := False;
+
+    sgStandard.SetFocus;
+
+    if wControl is TComboBox then
+      TComboBox(wControl).OnExit := InnerControlExit
+    else if wControl is TSpinEdit then
+      TSpinEdit(wControl).OnExit := InnerControlExit
+    else if wControl is TORDateBox then
+      TORDateBox(wControl).OnExit := InnerControlExit;
+  end;
+end;
+
+function TdlgOBSpread.GetControl(iPos: Integer): TWinControl;
+var
+  I: Integer;
+begin
+  Result := nil;
+
+  if not Assigned(FObjectList) then
+    Exit;
+
+  I := FObjectList.IndexOf(IntToStr(iPos));
+  if I <> -1 then
+    Result := TWinControl(FObjectList.Objects[I]);
+end;
+
+function TdlgOBSpread.GetControlCol(wControl: TWinControl): Integer;
+var
+  I: Integer;
+begin
+  Result := -1;
+
+  if not Assigned(FObjectList) then
+    Exit;
+
+  for I := 0 to FObjectList.Count - 1 do
+    if FObjectList.Objects[I] = wControl then
+    begin
+      Result := StrToIntDef(FObjectList[I], -1);
+      Break;
+    end;
+end;
+
+function TdlgOBSpread.GetCumlWt(iRow: Integer): string;
+var
+  I,iWt,iRwt: Integer;
 begin
   Result := '0';
 
-  if sgStandard.Cells[0, sgStandard.Row] = '' then
+  if sgStandard.Cells[3, iRow] = ''  then
     Exit;
+  iWt := StrToIntDef(sgStandard.Cells[3, iRow], 0);
 
-  wRow := 0;
-  sdt := TORDateBox.Create(nil);
-  pdt := TORDateBox.Create(nil);
-  cdt := TORDateBox.Create(nil);
-  try
-    sdt.Text := sgStandard.Cells[0, sgStandard.Row];
-    if sdt.IsValid then
+  for I := iRow - 1 downto 1 do
+    if sgStandard.Cells[3, I] <> '' then
     begin
-      for I := 1 to sgStandard.RowCount - 1 do
-      begin
-        cdt.Text := sgStandard.Cells[0, I];
-        if cdt.IsValid then
-          if ((cdt.FMDateTime < sdt.FMDateTime) and
-              (cdt.FMDateTime > pdt.FMDateTime)) then
-          begin
-            pdt.Text := cdt.Text;
-            wRow := I;
-          end;
-      end;
-      if wRow <> 0 then
-        Result := IntToStr(StrToIntDef(sgStandard.Cells[3, sgStandard.Row], 0) -
-                           StrToIntDef(sgStandard.Cells[3, wRow], 0));
+      iRwt := StrToIntDef(sgStandard.Cells[3, I], 0);
+      Result := IntToStr(iWt - iRwt);
+      Break;
     end;
-  finally
-    cdt.Free;
-    pdt.Free;
-    sdt.Free;
-  end;
 end;
 
 end.

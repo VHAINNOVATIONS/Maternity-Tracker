@@ -92,7 +92,6 @@ type
     FBMI: TLabel;
    	Label14: TLabel;
   	lblEmbryo: TLabel;
-	  EDDGrid: TGridPanel;
     ckContraceptionNo: TCheckBox;
     ckContraceptionYes: TCheckBox;
     ckFinalEDDLMP: TCheckBox;
@@ -166,6 +165,8 @@ type
     procedure lblOtherExit(Sender: TObject);
     procedure dtEDDUnknownExit(Sender: TObject);
     procedure IsFinalEDDClick(Sender: TObject);
+    procedure PageEDDResize(Sender: TObject);
+    procedure PageEDDShow(Sender: TObject);
     // Menstrual Page ----------------------------------------------------------
     procedure SpinCheck(Sender: TObject);
     procedure edtLMPExit(Sender: TObject);
@@ -232,7 +233,7 @@ begin
   end;
 end;
 
-   // ECD ****
+// ECD ****
 procedure TDDCSVitals.dtECDExit(Sender: TObject);
 begin
   if AnsiCompareText(dtECD.Text, 'Today') = 0 then
@@ -368,22 +369,39 @@ end;
 
 procedure TDDCSVitals.IsFinalEDDClick(Sender: TObject);
 var
-  I,Row,GA,GAgeWeeks: Integer;
+  ck: TCheckBox;
+  GA,GAgeWeeks: Integer;
 
-  procedure StopChecked;
-  var
-    Row: Integer;
+  procedure StopChecked(ck: TCheckbox);
   begin
-    for Row := 1 to 6 do
-      TCheckBox(EDDGrid.ControlCollection.Controls[5, Row]).OnClick := nil;
+    ckFinalEDDLMP.OnClick     := nil;
+    if ck <> ckFinalEDDLMP then
+      ckFinalEDDLMP.Checked := False;
+    ckFinalEDDECD.OnClick     := nil;
+    if ck <> ckFinalEDDECD then
+      ckFinalEDDECD.Checked := False;
+    ckFinalEDDUltra.OnClick   := nil;
+    if ck <> ckFinalEDDUltra then
+      ckFinalEDDUltra.Checked := False;
+    ckFinalEDDEmbryo.OnClick  := nil;
+    if ck <> ckFinalEDDEmbryo then
+      ckFinalEDDEmbryo.Checked := False;
+    ckFinalEDDOther.OnClick   := nil;
+    if ck <> ckFinalEDDOther then
+      ckFinalEDDOther.Checked := False;
+    ckFinalEDDUnknown.OnClick := nil;
+    if ck <> ckFinalEDDUnknown then
+      ckFinalEDDUnknown.Checked := False;
   end;
 
   procedure StartChecked;
-  var
-    Row: Integer;
   begin
-    for Row := 1 to 6 do
-      TCheckBox(EDDGrid.ControlCollection.Controls[5, Row]).OnClick := IsFinalEDDClick;
+    ckFinalEDDLMP.OnClick     := IsFinalEDDClick;
+    ckFinalEDDECD.OnClick     := IsFinalEDDClick;
+    ckFinalEDDUltra.OnClick   := IsFinalEDDClick;
+    ckFinalEDDEmbryo.OnClick  := IsFinalEDDClick;
+    ckFinalEDDOther.OnClick   := IsFinalEDDClick;
+    ckFinalEDDUnknown.OnClick := IsFinalEDDClick;
   end;
 
   procedure UpdateGestation(EventType: TEventType; EDD,EventDate: TFMDateTime);
@@ -406,103 +424,112 @@ var
 begin
   if not (Sender is TCheckBox) then
     Exit;
+  ck := TCheckBox(Sender);
+  if not ck.Checked then
+    Exit;
 
-  edtFinalGA.Text := '';
+  edtFinalGA.Text    := '';
   edtCurrentEDD.Text := '';
-  edtEDDGA.Text := '';
+  edtEDDGA.Text      := '';
 
-  StopChecked;
+  StopChecked(ck);
   try
-    for I := 1 to 6 do
-    begin
-      if not (Sender = TCheckBox(EDDGrid.ControlCollection.Controls[5, I])) then
-        TCheckBox(EDDGrid.ControlCollection.Controls[5, I]).Checked := False
-      else
-      begin
-        if TCheckBox(Sender).Checked then
-        begin
-          Row := EDDGrid.ControlCollection.Items[EDDGrid.ControlCollection.IndexOf(TControl(Sender))].Row;
-          case Row of
-            1: begin                                                            // LMP
-                 dtLMPExit(dtLMP);
+    case ck.Tag of
+      1: begin                                                                  // LMP
+           dtLMPExit(dtLMP);
 
-                 if edtEDDLMP.IsValid then
-                 begin
-                   edtCurrentEDD.Text := edtEDDLMP.Text;
-                   UpdateGestation(evLMP, edtEDDLMP.FMDateTime, dtLMP.FMDateTime);
-                   TCheckBox(Sender).Checked := True;
-                 end;
-               end;
-            2: begin                                                            // ECD
-                 dtECDExit(dtECD);
+           if edtEDDLMP.IsValid then
+           begin
+             edtCurrentEDD.Text := edtEDDLMP.Text;
+             UpdateGestation(evLMP, edtEDDLMP.FMDateTime, dtLMP.FMDateTime);
+             TCheckBox(Sender).Checked := True;
+           end;
+         end;
+      2: begin                                                                  // ECD
+           dtECDExit(dtECD);
 
-                 if edtEDDECD.IsValid then
-                 begin
-                   edtCurrentEDD.Text := edtEDDECD.Text;
-                   UpdateGestation(evECD, edtEDDECD.FMDateTime, dtECD.FMDateTime);
-                   TCheckBox(Sender).Checked := True;
-                 end;
-               end;
-            3: begin                                                            // Ultrasound
-                 dtUltraExit(dtUltra);
+           if edtEDDECD.IsValid then
+           begin
+             edtCurrentEDD.Text := edtEDDECD.Text;
+             UpdateGestation(evECD, edtEDDECD.FMDateTime, dtECD.FMDateTime);
+             TCheckBox(Sender).Checked := True;
+           end;
+         end;
+      3: begin                                                                  // Ultrasound
+           dtUltraExit(dtUltra);
 
-                 if edtEDDUltra.IsValid then
-                 begin
-                   edtCurrentEDD.Text := edtEDDUltra.Text;
-                   UpdateGestation(evUlt, edtEDDUltra.FMDateTime, FMDateTimeOffsetBy(dtUltra.FMDateTime,
-                                                                  -((spnWeekUltra.Value * 7) + spnDayUltra.Value)));
-                   TCheckBox(Sender).Checked := True;
-                 end;
-               end;
-            4: begin                                                            // Embryo Transfer
-                 dtEmbryoExit(dtEmbryo);
+           if edtEDDUltra.IsValid then
+           begin
+             edtCurrentEDD.Text := edtEDDUltra.Text;
+             UpdateGestation(evUlt, edtEDDUltra.FMDateTime, FMDateTimeOffsetBy(dtUltra.FMDateTime,
+                                                            -((spnWeekUltra.Value * 7) + spnDayUltra.Value)));
+             TCheckBox(Sender).Checked := True;
+           end;
+         end;
+      4: begin                                                                  // Embryo Transfer
+           dtEmbryoExit(dtEmbryo);
 
-                 if edtEDDEmbryo.IsValid then
-                 begin
-                   edtCurrentEDD.Text := edtEDDEmbryo.Text;
-                   UpdateGestation(evEmT, edtEDDEmbryo.FMDateTime, dtEmbryo.FMDateTime);
-                   TCheckBox(Sender).Checked := True;
-                 end;
-               end;
-            5: begin                                                            // Other
-                 dtOtherExit(dtOther);
+           if edtEDDEmbryo.IsValid then
+           begin
+             edtCurrentEDD.Text := edtEDDEmbryo.Text;
+             UpdateGestation(evEmT, edtEDDEmbryo.FMDateTime, dtEmbryo.FMDateTime);
+             TCheckBox(Sender).Checked := True;
+           end;
+         end;
+      5: begin                                                                  // Other
+           dtOtherExit(dtOther);
 
-                 if lblOther.Text = 'Other Criteria' then
-                 begin
-                   ckFinalEDDOther.Checked := False;
-                   ShowMsg('"Other Criteria" must be defined.');
-                 end else if edtEDDOther.IsValid then
-                 begin
-                   edtCurrentEDD.Text := edtEDDOther.Text;
-                   UpdateGestation(evOth, edtEDDOther.FMDateTime, FMDateTimeOffsetBy(dtOther.FMDateTime,
-                                                                  -((spnWeekOther.Value * 7) + spnDayOther.Value)));
-                   TCheckBox(Sender).Checked := True;
-                 end;
-               end;
-            6: begin                                                            // Unknown
-                 if dtEDDUnknown.IsValid then
-                 begin
-                   edtCurrentEDD.Text := dtEDDUnknown.Text;
-                   if FMDateTimeToDateTime(dtEDDUnknown.FMDateTime) > Today then
-                   begin
-                     GA := 279 - DaysBetween(FMDateTimeToDateTime(dtEDDUnknown.FMDateTime), Now);
-                     GAgeWeeks := Trunc(GA div 7);
-                     edtEDDGA.Text := IntToStr(GAgeWeeks) + 'w ' + IntToStr(GA - Trunc(GAgeWeeks * 7)) + 'd';
-                     edtFinalGA.Text := edtEDDGA.Text;
-                   end;
-                 end else
-                 begin
-                   TCheckBox(Sender).Checked := False;
-                   ShowMsg('The estimated date of delivery must be defined.');
-                 end;
-               end;
-          end;
-        end;
-      end;
+           if lblOther.Text = 'Other Criteria' then
+           begin
+             ckFinalEDDOther.Checked := False;
+             ShowMsg('"Other Criteria" must be defined.');
+           end else if edtEDDOther.IsValid then
+           begin
+             edtCurrentEDD.Text := edtEDDOther.Text;
+             UpdateGestation(evOth, edtEDDOther.FMDateTime, FMDateTimeOffsetBy(dtOther.FMDateTime,
+                                                            -((spnWeekOther.Value * 7) + spnDayOther.Value)));
+             TCheckBox(Sender).Checked := True;
+           end;
+         end;
+      6: begin                                                                  // Unknown
+           if dtEDDUnknown.IsValid then
+           begin
+             edtCurrentEDD.Text := dtEDDUnknown.Text;
+             if FMDateTimeToDateTime(dtEDDUnknown.FMDateTime) > Today then
+             begin
+               GA := 279 - DaysBetween(FMDateTimeToDateTime(dtEDDUnknown.FMDateTime), Now);
+               GAgeWeeks := Trunc(GA div 7);
+               edtEDDGA.Text := IntToStr(GAgeWeeks) + 'w ' + IntToStr(GA - Trunc(GAgeWeeks * 7)) + 'd';
+               edtFinalGA.Text := edtEDDGA.Text;
+             end;
+           end else
+           begin
+             TCheckBox(Sender).Checked := False;
+             ShowMsg('The estimated date of delivery must be defined.');
+           end;
+         end;
     end;
   finally
     StartChecked;
   end;
+end;
+
+   // --------------------------------------------------------------------------
+
+procedure TDDCSVitals.PageEDDResize(Sender: TObject);
+var
+  I: Integer;
+begin
+  I := lblOther.Left;
+  lblLMP.Left     := I;
+  lblECD.Left     := I;
+  lblUltra.Left   := I;
+  lblUnknown.Left := I;
+end;
+
+procedure TDDCSVitals.PageEDDShow(Sender: TObject);
+begin
+  PageEDDResize(Sender);
 end;
 
    // Menstrual Page -----------------------------------------------------------

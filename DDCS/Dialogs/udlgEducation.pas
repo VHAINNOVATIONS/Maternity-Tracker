@@ -42,6 +42,7 @@ type
   private
     Descending: Boolean;
     SortedColumn: Integer;
+  public
   end;
 
 var

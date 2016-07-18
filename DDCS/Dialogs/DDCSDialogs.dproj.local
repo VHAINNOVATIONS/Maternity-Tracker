@@ -108,6 +108,7 @@
     <Transaction>2016/06/10 14:26:33.000.301,=C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPhysicalExam.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="uDialog.pas"/>
     <File Path="udlgAbdomPain.pas"/>
     <File Path="udlgAbdomPain.dfm"/>
     <File Path="udlgBackPain.pas"/>
@@ -146,8 +147,6 @@
     <File Path="udlgWheezing.dfm"/>
     <File Path="udlgPelvic.pas"/>
     <File Path="udlgPelvic.dfm"/>
-    <File Path="udlgPregHist.pas"/>
-    <File Path="udlgPregHist.dfm"/>
     <File Path="udlgGenetic.pas"/>
     <File Path="udlgGenetic.dfm"/>
     <File Path="udlgSurgical.pas"/>
@@ -160,14 +159,15 @@
     <File Path="udlgROS.dfm"/>
     <File Path="udlgEducation.pas"/>
     <File Path="udlgEducation.dfm"/>
+    <File Path="udlgPhysicalExam.pas"/>
+    <File Path="udlgPhysicalExam.dfm"/>
+    <File Path="udlgPregHist.pas"/>
+    <File Path="udlgPregHist.dfm"/>
     <File Path="frmPregHistPreg.pas"/>
     <File Path="frmPregHistPreg.dfm"/>
     <File Path="frmPregHistChild.pas"/>
     <File Path="frmPregHistChild.dfm"/>
     <File Path="frmPregHistPregInfo.pas"/>
     <File Path="frmPregHistPregInfo.dfm"/>
-    <File Path="uDialog.pas"/>
-    <File Path="udlgPhysicalExam.pas"/>
-    <File Path="udlgPhysicalExam.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

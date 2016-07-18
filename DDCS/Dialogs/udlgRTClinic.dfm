@@ -3,7 +3,7 @@ object dlgRTClinic: TdlgRTClinic
   Top = 174
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
-  Caption = 'Return to Clinic Time Span'
+  Caption = 'Return to Clinic'
   ClientHeight = 78
   ClientWidth = 268
   Color = clBtnFace

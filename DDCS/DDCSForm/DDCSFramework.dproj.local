@@ -149,9 +149,9 @@
     <Transaction>2016/03/14 17:24:57.000.342,=VA_All_XE8.dcp</Transaction>
     <Transaction>2016/03/14 17:24:57.000.368,=JvCore.dcp</Transaction>
     <Transaction>2016/03/14 17:24:57.000.330,=VclSmp.dcp</Transaction>
-    <Transaction>2016/03/14 17:24:57.000.316,=dbrtl.dcp</Transaction>
-    <Transaction>2016/03/14 17:24:57.000.384,=JvStdCtrls.dcp</Transaction>
     <Transaction>2016/03/14 17:24:57.000.356,=Jcl.dcp</Transaction>
+    <Transaction>2016/03/14 17:24:57.000.384,=JvStdCtrls.dcp</Transaction>
+    <Transaction>2016/03/14 17:24:57.000.316,=dbrtl.dcp</Transaction>
     <Transaction>2016/03/15 15:06:16.000.510,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\2.0\DDCSForm\dBaseEditor.pas=</Transaction>
     <Transaction>2016/03/16 10:11:21.000.874,=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\2.0\DDCSForm\dBaseEditor.pas</Transaction>
     <Transaction>2016/03/16 14:43:24.000.586,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\2.0\DDCSForm\frmBase.pas=</Transaction>

@@ -1164,6 +1164,10 @@ object dlgSocial: TdlgSocial
     object TabSheet2: TTabSheet
       Caption = 'Relationship && Sexual History'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbViolence: TLabel
         Left = 12
         Top = 81
@@ -1386,6 +1390,10 @@ object dlgSocial: TdlgSocial
     object TabSheet3: TTabSheet
       Caption = 'Tobacco'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlMaster: TPanel
         Left = 0
         Top = 41
@@ -1902,6 +1910,10 @@ object dlgSocial: TdlgSocial
     object TabSheet4: TTabSheet
       Caption = 'Alcohol && Drugs'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object gbAlcohol: TGroupBox
         Left = 0
         Top = 0

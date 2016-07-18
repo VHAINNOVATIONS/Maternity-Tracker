@@ -31,7 +31,7 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgLegPai
 14
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgMedical.dfm
-66957/1223124275
+67055/1223719218
 16
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgNausea.dfm
@@ -47,11 +47,11 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgRash.d
 22
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgRTClinic.dfm
-1938/1221618958
+1928/1223719264
 24
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgSocial.dfm
-66466/1223532080
+66760/1223719282
 26
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgVagBleed.dfm
@@ -87,7 +87,7 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgSurgic
 42
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgOBSpread.dfm
-7143/1223641811
+10507/1223852566
 44
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgImmunizations.dfm
@@ -135,7 +135,7 @@ object dlgHeadache: TdlgHeadache
 object dlgInfectHist: TdlgInfectHist
 111
 object dlgLegPain: TdlgLegPain
-2616
+2620
 object dlgMedical: TdlgMedical
 322
 object dlgNausea: TdlgNausea
@@ -145,7 +145,7 @@ object dlgPalp: TdlgPalp
 object dlgRash: TdlgRash
 92
 object dlgRTClinic: TdlgRTClinic
-2519
+2531
 object dlgSocial: TdlgSocial
 181
 object dlgVagBleed: TdlgVagBleed
@@ -163,7 +163,7 @@ object dlgPregHist: TdlgPregHist
 object dlgGenetic: TdlgGenetic
 710
 object dlgSurgical: TdlgSurgical
-289
+388
 object dlgOBSpread: TdlgOBSpread
 352
 object dlgImmunizations: TdlgImmunizations
