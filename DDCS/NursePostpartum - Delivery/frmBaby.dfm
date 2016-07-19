@@ -46,12 +46,12 @@ object frmInner: TfrmInner
     Align = alCustom
     Anchors = [akLeft, akTop, akRight, akBottom]
     ScrollBars = ssVertical
-    TabOrder = 4
+    TabOrder = 5
     Caption = 'Complications and or Anomalies'
   end
   object ckNICU: TCheckBox
     Left = 17
-    Top = 110
+    Top = 118
     Width = 244
     Height = 17
     Caption = 'Neonatal Intensive Care Unit Admission'
@@ -93,12 +93,12 @@ object frmInner: TfrmInner
     TabStop = True
   end
   object Panel1: TPanel
-    Left = 265
-    Top = 29
+    Left = 267
+    Top = 12
     Width = 197
     Height = 86
     BevelOuter = bvNone
-    TabOrder = 6
+    TabOrder = 4
     object lbOz: TLabel
       Left = 172
       Top = 60

@@ -86,6 +86,7 @@ type
     procedure Tab(Sender: TObject);
     procedure ShiftTab(Sender: TObject);
     procedure HideControl;
+    procedure UpdateAllCumlWts;
     function GetControl(iPos: Integer): TWinControl;
     function GetControlCol(wControl: TWinControl): Integer;
     function GetCumlWt(iRow: Integer): string;
@@ -111,7 +112,6 @@ end;
 procedure TdlgOBSpread.FormCreate(Sender: TObject);
 var
   nAct: TAction;
-  I: Integer;
 begin
   FNavControl := TActionList.Create(Self);
   nAct := TAction.Create(FNavControl);
@@ -157,7 +157,7 @@ begin
   sgStandard.Cells[7,0]  := 'Edema';
   sgStandard.Cells[8,0]  := 'Fetal Heart(s)';              // this will create additional columns of Fetal Heart Rate (min)
   sgStandard.Cells[9,0]  := 'Fetal Presentation';
-  sgStandard.Cells[10,0] := 'Movement';
+  sgStandard.Cells[10,0] := 'Fetal Movement';
   sgStandard.Cells[11,0] := 'Preterm Labor Symptoms';
   sgStandard.Cells[12,0] := 'Dilation (cm)';
   sgStandard.Cells[13,0] := 'Effacement (%)';
@@ -168,7 +168,7 @@ begin
   sgStandard.Cells[18,0] := 'Cervical Exam';
 
   // 508
-  SayOnFocus(        dtExam, 'Date');
+  SayOnFocus(        dtExam, 'Exam Date');
   SayOnFocus(        spnAge, 'Gestational Age in weeks');
   SayOnFocus(   spnFundalHt, 'Fundal Height in centimeters');
   SayOnFocus(     spnWeight, 'Weight in pounds');
@@ -177,13 +177,14 @@ begin
   SayOnFocus(       cbEdema, 'Edema');
   SayOnFocus( spnFetalHeart, 'Fetal Hearts');
   SayOnFocus(cbPresentation, 'Fetal Presentation');
-  SayOnFocus(    cbFetalAct, 'Movement');
+  SayOnFocus(    cbFetalAct, 'Fetal Movement');
   SayOnFocus(   spnDilation, 'Dilation in centimeters');
   SayOnFocus( spnEffacement, 'Effacement in percentage');
-  SayOnFocus(       spnLong, 'Long Cervix in centimeters');
-  SayOnFocus(   spnSystolic, 'Intravascular Systolic');
-  SayOnFocus(  spnDiastolic, 'Intravascular Diastolic');
-  SayOnFocus(       spnPain, 'Pain Severity between one and ten');
+  SayOnFocus(       spnLong, 'Long Axis in centimeters');
+  SayOnFocus(   spnSystolic, 'Intravascular Systolic in millimeters of mercury');
+  SayOnFocus(  spnDiastolic, 'Intravascular Diastolic in millimeters of mercury');
+  SayOnFocus(       spnPain, 'Pain Severity as a range between zero and ten with' +
+                             ' zero being not painful and ten being extremely painful.');
 end;
 
 procedure TdlgOBSpread.FormShow(Sender: TObject);
@@ -200,6 +201,8 @@ begin
   for I := 1 to sgStandard.ColCount - 1 do
     sgStandard.AutoSizeCol(I, 70, 10);
   FResizeOK := True;
+
+  DDCSForm.ScreenReader.Say('Exam Date', False);
 end;
 
 procedure TdlgOBSpread.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -268,19 +271,28 @@ begin
     Exit;
 
   if ACol = 4 then
-    DDCSForm.ScreenReader.Say('Cumulative Weight', False)
+    DDCSForm.ScreenReader.Say('Cumulative Weight in pounds Read Only', False)
   else if ACol = 11 then
-    DDCSForm.ScreenReader.Say('Preterm Labor Symptoms', False)
+    DDCSForm.ScreenReader.Say('Preterm Labor Symptoms Type in Text', False)
   else if ACol = 18 then
-    DDCSForm.ScreenReader.Say('Cervical Exam', False);
+    DDCSForm.ScreenReader.Say('Cervical Exam Type in Text', False)
+  else if ACol > 18 then
+    DDCSForm.ScreenReader.Say(sgStandard.Cells[ACol, 0] + ' Type in Text', False);
 
   PostMessage(Handle, WM_CELLSELECT, 0, 0);
 end;
 
 procedure TdlgOBSpread.btnAddRowClick(Sender: TObject);
+var
+  I: Integer;
 begin
   sgStandard.RowCount := sgStandard.RowCount + 1;
   SetLength(FFMDates, sgStandard.RowCount);
+
+  for I := 0 to sgStandard.ColCount - 1 do
+    sgStandard.Cells[I, sgStandard.RowCount - 1] := '';
+
+  UpdateAllCumlWts;
 end;
 
 procedure TdlgOBSpread.btnDeleteRowClick(Sender: TObject);
@@ -313,7 +325,11 @@ begin
         for I := 0 to sgStandard.ColCount - 1 do
           sgStandard.Cells[I, sgStandard.Row] := '';
       end else
+      begin
+        for I := 0 to sgStandard.ColCount - 1 do
+          sgStandard.Cells[I, sgStandard.Row] := '';
         sgStandard.RemoveRow(sgStandard.Row);
+      end;
     end;
 
     if sgStandard.ColCount > 12 then
@@ -322,6 +338,7 @@ begin
           sgStandard.RemoveCol(I);
 
     BuildFMDateList;
+    UpdateAllCumlWts;
   end;
 end;
 
@@ -329,7 +346,7 @@ procedure TdlgOBSpread.InnerControlChange(Sender: TObject);
 var
   sp: TSpinEdit;
   dt: TORDateBox;
-  iCol,I: Integer;
+  iCol: Integer;
 
   procedure HeartCols(iValue: Integer);
   var
@@ -395,8 +412,7 @@ begin
       HeartCols(sp.Value);
 
     if sp = spnWeight then
-      for I := sgStandard.Row to sgStandard.RowCount - 1 do
-        sgStandard.Cells[4, I] := GetCumlWt(I);
+      UpdateAllCumlWts;
 
   end else if Sender is TORDateBox then
   begin
@@ -427,24 +443,32 @@ var
 
   function NewRowIndex(sFMDate: Double): Integer;
   var
-    sl: TStringList;
+    sl,rl: TStringList;
     I: Integer;
   begin
     Result := -1;
+
     sl := TStringList.Create;
+    rl := TStringList.Create;
     try
       for I := 0 to Length(FFMDates) - 1 do
         sl.Add(FloatToStr(FFMDates[I]));
       sl.Sort;
 
+      // Reverse the Sort
+      for I := sl.Count - 1 downto 1 do
+        rl.Add(sl[I]);
+      rl.Insert(0, '0');
+
       FFMDates[0] := 0;
-      for I := 1 to sl.Count - 1 do
+      for I := 0 to rl.Count - 1 do
       begin
-        FFMDates[I] := StrToFloat(sl[I]);
+        FFMDates[I] := StrToFloat(rl[I]);
         if FFMDates[I] = sFMDate then
           Result := I;
       end;
     finally
+      rl.Free;
       sl.Free;
     end;
   end;
@@ -465,11 +489,12 @@ begin
       iOld := sgStandard.Row;
       FFMDates[iOld] := dt.FMDateTime;
       iRow := NewRowIndex(FFMDates[iOld]);
-      if ((iRow <> -1) and (iRow <> iOld)) then
+      if ((iRow > 0) and (iRow <> iOld)) then
       begin
         sgStandard.MoveRow(iOld, iRow);
         BuildFMDateList;
       end;
+      UpdateAllCumlWts;
     end;
   end;
 
@@ -526,7 +551,7 @@ var
             slHeader.Add(sVal);
         end;
 
-        for row_ptr := sgStandard.Cols[0].Count - 1 downto 1 do
+        for row_ptr := 1 to sgStandard.Cols[0].Count - 1 do
         begin
           row_width := 0;
 
@@ -716,8 +741,6 @@ begin
 end;
 
 procedure TdlgOBSpread.Tab(Sender: TObject);
-var
-  wControl: TWinControl;
 begin
   if btnAddRow.Focused then
     btnDeleteRow.SetFocus
@@ -841,6 +864,14 @@ begin
   end;
 end;
 
+procedure TdlgOBSpread.UpdateAllCumlWts;
+var
+  iRow: Integer;
+begin
+  for iRow := 1 to sgStandard.RowCount - 1 do
+    sgStandard.Cells[4, iRow] := GetCumlWt(iRow);
+end;
+
 function TdlgOBSpread.GetControl(iPos: Integer): TWinControl;
 var
   I: Integer;
@@ -882,13 +913,14 @@ begin
     Exit;
   iWt := StrToIntDef(sgStandard.Cells[3, iRow], 0);
 
-  for I := iRow - 1 downto 1 do
-    if sgStandard.Cells[3, I] <> '' then
-    begin
-      iRwt := StrToIntDef(sgStandard.Cells[3, I], 0);
-      Result := IntToStr(iWt - iRwt);
-      Break;
-    end;
+  if iRow + 1 <= sgStandard.RowCount - 1 then
+    for I := iRow + 1 to sgStandard.RowCount - 1 do
+      if sgStandard.Cells[3, I] <> '' then
+      begin
+        iRwt := StrToIntDef(sgStandard.Cells[3, I], 0);
+        Result := IntToStr(iWt - iRwt);
+        Break;
+      end;
 end;
 
 end.

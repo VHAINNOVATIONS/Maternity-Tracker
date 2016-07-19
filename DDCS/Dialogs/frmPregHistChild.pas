@@ -51,17 +51,19 @@ type
     procedure btnDeleteClick(Sender: TObject);
   private
     FBabyIEN: string;
+    FBabyNumber: string;
     procedure OnChangeNil;
     procedure OnChangeRestore;
     procedure UpdateGrams;
+    procedure SetBabyNumber(const Value: string);
     function GetBabyIEN: string;
     function GetBabyNumber: string;
   public
     constructor Create(AOwner: TComponent); override;
-    function GetText: TStringList;
+    procedure GetText(var oText: TStringList);
     function GetV: string;
     property BabyIEN: string read GetBabyIEN write FBabyIEN;
-    property BabyNumber: string read GetBabyNumber;
+    property BabyNumber: string read GetBabyNumber write SetBabyNumber;
   end;
 
 implementation
@@ -166,6 +168,11 @@ begin
   OnChangeRestore;
 end;
 
+procedure TfChild.SetBabyNumber(const Value: string);
+begin
+  FBabyNumber := Value;
+end;
+
 function TfChild.GetBabyIEN: string;
 begin
   if StrToIntDef(FBabyIEN, 0) < 1 then
@@ -176,6 +183,12 @@ end;
 
 function TfChild.GetBabyNumber: string;
 begin
+  if FBabyNumber <> '' then
+  begin
+    Result := FBabyNumber;
+    Exit;
+  end;
+
   if Owner <> nil then
     if Owner is TTabSheet then
       Result := IntToStr(TTabSheet(Owner).TabIndex);
@@ -188,8 +201,6 @@ var
   nItem: TDDCSNoteItem;
 begin
   inherited;
-
-  dlgPregHist.ModifyLiving(1);
 
   nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(spnLb);
   if nItem <> nil then
@@ -211,11 +222,11 @@ begin
     nItem.SayOnFocus := 'Click to delete current child record.';
 end;
 
-function TfChild.GetText: TStringList;
+procedure TfChild.GetText(var oText: TStringList);
 var
   BabyNumber,I: Integer;
 begin
-  Result := TStringList.Create;
+  oText.Clear;
 
   BabyNumber := 0;
   if Owner <> nil then
@@ -223,35 +234,35 @@ begin
       BabyNumber := TTabSheet(Owner).TabIndex;
 
   if rgSex.ItemIndex <> -1 then
-    Result.Add('   Gender: ' + TRadioButton(rgSex.Controls[rgSex.ItemIndex]).Caption)
+    oText.Add('   Gender: ' + TRadioButton(rgSex.Controls[rgSex.ItemIndex]).Caption)
   else
-    Result.Add('   Gender: Unknown');
+    oText.Add('   Gender: Unknown');
 
   if Trim(edAPGARone.Text) <> '' then
-    Result.Add('   APGAR Score (one minute): ' + edAPGARone.Text)
+    oText.Add('   APGAR Score (one minute): ' + edAPGARone.Text)
   else
-    Result.Add('   APGAR Score (one minute): Unknown');
+    oText.Add('   APGAR Score (one minute): Unknown');
   if Trim(edAPGARfive.Text) <> '' then
-    Result.Add('   APGAR Score (five minute): ' + edAPGARfive.Text)
+    oText.Add('   APGAR Score (five minute): ' + edAPGARfive.Text)
   else
-    Result.Add('   APGAR Score (five minute): Unknown');
+    oText.Add('   APGAR Score (five minute): Unknown');
 
   if ckNICU.Checked then
-    Result.Add('   NICU Admission: Yes')
+    oText.Add('   NICU Admission: Yes')
   else
-    Result.Add('   NICU Admission: No');
+    oText.Add('   NICU Admission: No');
 
   if spnG.Text <> '0' then
-    Result.Add('   Birth Weight: ' + spnG.Text + 'g')
+    oText.Add('   Birth Weight: ' + spnG.Text + 'g')
   else
-    Result.Add('   Birth Weight: Unknown');
+    oText.Add('   Birth Weight: Unknown');
 
   if meComplications.Lines.Count > 0 then
   begin
-    Result.Add('   Complications/Anomalies: ');
+    oText.Add('   Complications/Anomalies: ');
 
     for I := 0 to meComplications.Lines.Count - 1 do
-      Result.Add('    ' + meComplications.Lines[I]);
+      oText.Add('    ' + meComplications.Lines[I]);
   end;
 end;
 

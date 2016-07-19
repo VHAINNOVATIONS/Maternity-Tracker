@@ -72,7 +72,7 @@ object fChild: TfChild
   end
   object ckNICU: TCheckBox
     Left = 11
-    Top = 107
+    Top = 115
     Width = 244
     Height = 17
     Caption = 'Neonatal Intensive Care Unit Admission'
@@ -120,8 +120,8 @@ object fChild: TfChild
     OnClick = btnDeleteClick
   end
   object Panel1: TPanel
-    Left = 265
-    Top = 29
+    Left = 261
+    Top = 9
     Width = 197
     Height = 86
     BevelOuter = bvNone

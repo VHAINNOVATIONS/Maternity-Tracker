@@ -75,7 +75,7 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPelvic
 36
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgPregHist.dfm
-7297/1223655975
+5407/1223908080
 38
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgGenetic.dfm
@@ -107,15 +107,15 @@ C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\udlgEducat
 52
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\frmPregHistPreg.dfm
-1664/1223654869
+1664/1223910131
 54
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\frmPregHistChild.dfm
-5410/1223655291
+5409/1223915053
 56
 2
 C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\Dialogs\frmPregHistPregInfo.dfm
-7491/1223654908
+7491/1223910520
 58
 2
 |EOINDEX|
@@ -157,7 +157,7 @@ object dlgVisualChanges: TdlgVisualChanges
 object dlgWheezing: TdlgWheezing
 387
 object dlgPelvic: TdlgPelvic
-310
+220
 object dlgPregHist: TdlgPregHist
 1579
 object dlgGenetic: TdlgGenetic

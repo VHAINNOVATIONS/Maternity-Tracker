@@ -33,22 +33,14 @@ type
     btnOK: TBitBtn;
     btnCancel: TBitBtn;
     lbTotalPreg: TLabel;
-    lbFullTerm: TLabel;
-    lbPremature: TLabel;
     lbInduced: TLabel;
     lbSpontaneous: TLabel;
     lbEctopics: TLabel;
-    lbMultipleBirths: TLabel;
-    lbLiving: TLabel;
     pgPregnancy: TPageControl;
     edtAbInduced: TSpinEdit;
     edtAbSpont: TSpinEdit;
     edtTotPreg: TSpinEdit;
     edtEctopic: TSpinEdit;
-    lbFullTermValue: TStaticText;
-    lbPrematureValue: TStaticText;
-    lbMultipleBirthsValue: TStaticText;
-    lbLivingValue: TStaticText;
     NavControl: TActionList;
     cbOutcome: TComboBox;
     cbAnesthesia: TComboBox;
@@ -65,10 +57,6 @@ type
     procedure PregHeaderChangeOn;
     procedure Navigate(Value: Boolean);
   public
-    procedure ModifyPreterm(Value: Integer);
-    procedure ModifyFullTerm(Value: Integer);
-    procedure ModifyMultiBirth(Value: Integer);
-    procedure ModifyLiving(Value: Integer);
     procedure DeletePregnancy(iIndex: Integer);
   end;
 
@@ -95,14 +83,13 @@ end;
 procedure TdlgPregHist.FormCreate(Sender: TObject);
 var
   nAct: TAction;
-  nItem: TDDCSNoteItem;
 begin
+  dlgPregHist := Self;
+
   TotalPreg := 0;
   TotalAI   := 0;
   TotalAS   := 0;
   TotalE    := 0;
-
-  dlgPregHist := Self;
 
   nAct := TAction.Create(NavControl);
   nAct.ActionList := NavControl;
@@ -112,19 +99,6 @@ begin
   nAct.ActionList := NavControl;
   nAct.ShortCut := ShortCut(VK_TAB, [ssShift, ssCtrl]);
   nAct.OnExecute := CtrlShiftTab;
-
-  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(lbFullTermValue);
-  if nItem <> nil then
-    nItem.SayOnFocus := 'Full Term';
-  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(lbPrematureValue);
-  if nItem <> nil then
-    nItem.SayOnFocus := 'Premature';
-  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(lbMultipleBirthsValue);
-  if nItem <> nil then
-    nItem.SayOnFocus := 'Multiple Births';
-  nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(lbLivingValue);
-  if nItem <> nil then
-    nItem.SayOnFocus := 'Living';
 end;
 
 procedure TdlgPregHist.FormShow(Sender: TObject);
@@ -134,8 +108,9 @@ var
   vPregInfo: TfPregInfo;
   vPregChild: TfChild;
   cItem: TConfigItem;
-  tmp,btmp: string;
+  tmp,btmp,sLkup: string;
 begin
+
   //   1) L
   //   2) IEN
   //   3) DATE RECORDED
@@ -187,7 +162,11 @@ begin
           if pgPregnancy.Pages[pgPregnancy.PageCount - 1].Controls[0] is TfPreg then
           begin
             vPreg := TfPreg(pgPregnancy.Pages[pgPregnancy.PageCount - 1].Controls[0]);
+
+            if AnsiContainsText(cItem.Piece[2], '+') then
+              vPreg.Added := True;
             vPreg.PregnancyIEN := StrToIntDef(cItem.Piece[2], 0);
+
             vPregInfo := vPreg.GetPregInfo;
             if vPregInfo <> nil then
             begin
@@ -196,8 +175,10 @@ begin
                 vPregInfo.lbStatus.Visible := True;
                 if vPregInfo.lbStatus.Caption <> '' then
                   vPregInfo.lbStatus.Caption := vPregInfo.lbStatus.Caption + ' (C)'
-                else vPregInfo.lbStatus.Caption := 'CURRENT';
-                vPregInfo.Enabled := False;
+                else
+                  vPregInfo.lbStatus.Caption := 'CURRENT';
+
+                vPregInfo.Disable := True;
                 vPreg.btnDelete.Enabled := False;
               end;
 
@@ -270,7 +251,7 @@ begin
                         vPregChild.BabyIEN := Piece(btmp,';',1);
 
                         // Baby #
-                        // vPregChild.BabyNumber := Piece(btmp,';',2);
+                        vPregChild.BabyNumber := Piece(btmp,';',2);
 
                         // Sex
                         if Piece(btmp,';',4) = 'M' then
@@ -293,8 +274,13 @@ begin
                         vPregChild.ckNICU.Checked := (Piece(btmp,';',10) = '1');
 
                         // Baby Notes
-                        cItem := Configuration.LookUp('B', IntToStr(vPreg.PregnancyIEN) + '|' +
-                                                      vPregChild.BabyIEN + '|' + vPregChild.BabyNumber, '');
+                        if vPreg.Added then
+                          sLkup := '+' + IntToStr(vPreg.PregnancyIEN)
+                        else
+                          sLkup := IntToStr(vPreg.PregnancyIEN);
+                        sLkup := sLkup + '|' + vPregChild.BabyIEN + '|' + vPregChild.BabyNumber;
+
+                        cItem := Configuration.LookUp('B', sLkup, '');
                         if cItem <> nil then
                           for L := 0 to cItem.Data.Count - 1 do
                             vPregChild.meComplications.Lines.Add(Pieces(cItem.Data[L],U,3,999));
@@ -303,7 +289,12 @@ begin
               end;
 
               // Delivery Notes
-              cItem := Configuration.LookUp('C', IntToStr(vPreg.PregnancyIEN), '');
+              if vPreg.Added then
+                sLkup := '+' + IntToStr(vPreg.PregnancyIEN)
+              else
+                sLkup := IntToStr(vPreg.PregnancyIEN);
+
+              cItem := Configuration.LookUp('C', sLkup, '');
               if cItem <> nil then
                 for J := 0 to cItem.Data.Count - 1 do
                   vPregInfo.meDeliveryNotes.Lines.Add(Pieces(cItem.Data[J],U,3,999));
@@ -406,7 +397,6 @@ begin
              vPregInfo.spnBirthCount.Enabled := False;
              vPregInfo.lbBirthCount.Enabled := False;
              vPregInfo.rgPretermDelivery.ItemIndex := -1;
-             dlgPregHist.ModifyFullTerm(-1);
              vPregInfo.rgPretermDelivery.Visible := False;
              if vPregInfo.cbOutcome.Items.IndexOf('Termination') = -1 then
                vPregInfo.cbOutcome.Items.Add('Termination');
@@ -418,7 +408,6 @@ begin
              vPregInfo.spnBirthCount.Enabled := False;
              vPregInfo.lbBirthCount.Enabled := False;
              vPregInfo.rgPretermDelivery.ItemIndex := -1;
-             dlgPregHist.ModifyFullTerm(-1);
              vPregInfo.rgPretermDelivery.Visible := False;
              if vPregInfo.cbOutcome.Items.IndexOf('Spontaneous Abortion') = -1 then
                vPregInfo.cbOutcome.Items.Add('Spontaneous Abortion');
@@ -448,59 +437,73 @@ end;
 
 procedure TdlgPregHist.btnOKClick(Sender: TObject);
 var
+  sl: TStringList;
   I,nPreg: Integer;
   vPreg: TfPreg;
   PregID: string;
   cItem: TConfigItem;
 begin
-  TmpStrList.Add('Pregnancy History: ');
-  TmpStrList.Add('  Total Pregnancies: ' + edtTotPreg.Text);
-  TmpStrList.Add('  Full Term: ' + lbFullTermValue.Caption);
-  TmpStrList.Add('  Premature: ' + lbPrematureValue.Caption);
-  TmpStrList.Add('  Induced Abortion: ' + edtAbInduced.Text);
-  TmpStrList.Add('  Spontaneous Abortion: ' + edtAbSpont.Text);
-  TmpStrList.Add('  Ectopic: ' + edtEctopic.Text);
-  TmpStrList.Add('  Multiple Births: ' + lbMultipleBirthsValue.Caption);
-  TmpStrList.Add('  Living: ' + lbLivingValue.Caption);
+  sl := TStringList.Create;
+  try
+    TmpStrList.Add('Pregnancy History: ');
+    TmpStrList.Add('  Total Pregnancies: ' + edtTotPreg.Text);
+    TmpStrList.Add('  Induced Abortion: ' + edtAbInduced.Text);
+    TmpStrList.Add('  Spontaneous Abortion: ' + edtAbSpont.Text);
+    TmpStrList.Add('  Ectopic: ' + edtEctopic.Text);
 
-  nPreg := 0;
-  for I := 0 to pgPregnancy.PageCount - 1 do
-    if pgPregnancy.Pages[I].ControlCount > 0 then
-      if pgPregnancy.Pages[I].Controls[0] is TfPreg then
-      begin
-        vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
-        TmpStrList.AddStrings(vPreg.GetText);
-
-        inc(nPreg);
-        if vPreg.PregnancyIEN < 1 then
-          PregID := '+' + IntToStr(nPreg)
-        else PregID := IntToStr(vPreg.PregnancyIEN);
-
-        // Pregnancy Info
-        cItem := Configuration.LookUp('L', PregID, '');
-        if cItem = nil then
+    nPreg := 0;
+    for I := 0 to pgPregnancy.PageCount - 1 do
+      if pgPregnancy.Pages[I].ControlCount > 0 then
+        if pgPregnancy.Pages[I].Controls[0] is TfPreg then
         begin
-          cItem := TConfigItem.Create(Configuration);
-          cItem.ID[1] := 'L';
-          cItem.ID[2] := PregID;
-          cItem.Data.Add('');
-        end;
-        cItem.Data[0] := vPreg.GetSavePregInfo(PregID);
+          vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
 
-        // Pregnancy Comments
-        cItem := Configuration.LookUp('C', PregID, '');
-        if cItem = nil then
-        begin
-          cItem := TConfigItem.Create(Configuration);
-          cItem.ID[1] := 'C';
-          cItem.ID[2] := PregID;
-        end;
-        cItem.Data.Clear;
-        cItem.Data.AddStrings(vPreg.GetSavePregComments(PregID));
+          vPreg.GetText(sl);
+          if sl.Count > 0 then
+            TmpStrList.AddStrings(sl);
+          sl.Clear;
 
-        // Baby Comments
-        vPreg.GetSaveChildComments(PregID);
-      end;
+          inc(nPreg);
+          if vPreg.PregnancyIEN < 1 then
+            PregID := '+' + IntToStr(nPreg)
+          else begin
+            if vPreg.Added then
+              PregID := '+' + IntToStr(vPreg.PregnancyIEN)
+            else
+              PregID := IntToStr(vPreg.PregnancyIEN);
+          end;
+
+          // Pregnancy Info
+          cItem := Configuration.LookUp('L', PregID, '');
+          if cItem = nil then
+          begin
+            cItem := TConfigItem.Create(Configuration);
+            cItem.ID[1] := 'L';
+            cItem.ID[2] := PregID;
+            cItem.Data.Add('');
+          end;
+          cItem.Data[0] := vPreg.GetSavePregInfo(PregID);
+
+          // Pregnancy Comments
+          cItem := Configuration.LookUp('C', PregID, '');
+          if cItem = nil then
+          begin
+            cItem := TConfigItem.Create(Configuration);
+            cItem.ID[1] := 'C';
+            cItem.ID[2] := PregID;
+          end;
+          cItem.Data.Clear;
+          vPreg.GetSavePregComments(PregID, sl);
+          if sl.Count > 0 then
+            cItem.Data.AddStrings(sl);
+          sl.Clear;
+
+          // Baby Comments
+          vPreg.GetSaveChildComments(PregID);
+        end;
+  finally
+    sl.Free;
+  end;
 end;
 
 // Private ---------------------------------------------------------------------
@@ -557,66 +560,7 @@ begin
   end;
 end;
 
-//function TdlgPregHist.GetPregInfobyIEN(Value: Integer): TfPreg;
-//var
-//  I: Integer;
-//  vPreg: TfPreg;
-//begin
-//  Result := nil;
-//
-//  if Value < 1 then
-//    Exit;
-//
-//  for I := 0 to pgPregnancy.PageCount - 1 do
-//    if pgPregnancy.Pages[I].ControlCount > 0 then
-//      if pgPregnancy.Pages[I].Controls[0] is TfPreg then
-//      begin
-//        vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
-//        if vPreg.PregnancyIEN = Value then
-//        begin
-//          Result := vPreg;
-//          Break;
-//        end;
-//      end;
-//end;
-
 // Public ----------------------------------------------------------------------
-
-procedure TdlgPregHist.ModifyPreterm(Value: Integer);
-var
-  I: Integer;
-begin
-  I := StrToIntDef(lbPrematureValue.Caption, 0);
-  I := I + Value;
-  lbPrematureValue.Caption := IntToStr(I);
-end;
-
-procedure TdlgPregHist.ModifyFullTerm(Value: Integer);
-var
-  I: Integer;
-begin
-  I := StrToIntDef(lbFullTermValue.Caption, 0);
-  I := I + Value;
-  lbFullTermValue.Caption := IntToStr(I);
-end;
-
-procedure TdlgPregHist.ModifyMultiBirth(Value: Integer);
-var
-  I: Integer;
-begin
-  I := StrToIntDef(lbMultipleBirthsValue.Caption, 0);
-  I := I + Value;
-  lbMultipleBirthsValue.Caption := IntToStr(I);
-end;
-
-procedure TdlgPregHist.ModifyLiving(Value: Integer);
-var
-  I: Integer;
-begin
-  I := StrToIntDef(lbLivingValue.Caption, 0);
-  I := I + Value;
-  lbLivingValue.Caption := IntToStr(I);
-end;
 
 procedure TdlgPregHist.DeletePregnancy(iIndex: Integer);
 var

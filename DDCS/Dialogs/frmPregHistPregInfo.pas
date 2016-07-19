@@ -61,12 +61,13 @@ type
     procedure rgPretermDeliveryClick(Sender: TObject);
     procedure spnGADaysChange(Sender: TObject);
   private
+    FDisable: Boolean;
+    procedure SetDisable(const Value: Boolean);
   public
     ChildCount: Integer;
-    MultiBirth: Boolean;
     constructor Create(AOwner: TComponent); override;
-    destructor Destroy; override;
-    function GetText: TStringList;
+    procedure GetText(var oText: TStringList);
+    property Disable: Boolean read FDisable write SetDisable default False;
   end;
 
 implementation
@@ -106,12 +107,6 @@ begin
   begin
     Inc(ChildCount);
 
-    if ((ChildCount > 1) and not (MultiBirth)) then
-    begin
-      MultiBirth := True;
-      dlgPregHist.ModifyMultiBirth(1);
-    end;
-
     if Owner <> nil then
       if Owner is TTabSheet then
       begin
@@ -130,44 +125,22 @@ end;
 
 procedure TfPregInfo.rgPretermDeliveryClick(Sender: TObject);
 
-  procedure UpdateOutCome;
-
-    function GetRg: string;
-    begin
-      if rgPretermDelivery.ItemIndex = 0 then
-        Result := 'Full Term'
-      else
-        Result := 'Preterm';
-    end;
-
+  function GetRg: string;
   begin
-    if ((cbOutcome.Enabled) and (cbOutcome.Text <> 'Stillbirth')) then
-    begin
-      if cbOutcome.Items.IndexOf(GetRg) = -1 then
-        cbOutcome.Items.Add(GetRg);
-
-      cbOutcome.ItemIndex := cbOutcome.Items.IndexOf(GetRg);
-    end;
+    if rgPretermDelivery.ItemIndex = 0 then
+      Result := 'Full Term'
+    else
+      Result := 'Preterm';
   end;
 
 begin
-  if Sender = nil then
+  if ((cbOutcome.Enabled) and (cbOutcome.Text <> 'Stillbirth')) then
   begin
-    UpdateOutCome;
-    Exit;
-  end;
+    if cbOutcome.Items.IndexOf(GetRg) = -1 then
+      cbOutcome.Items.Add(GetRg);
 
-  if rgPretermDelivery.ItemIndex = 0 then
-  begin
-    dlgPregHist.ModifyFullTerm(1);
-    dlgPregHist.ModifyPreterm(-1);
-  end else if rgPretermDelivery.ItemIndex = 1 then
-  begin
-    dlgPregHist.ModifyFullTerm(-1);
-    dlgPregHist.ModifyPreterm(1);
+    cbOutcome.ItemIndex := cbOutcome.Items.IndexOf(GetRg);
   end;
-
-  UpdateOutCome;
 end;
 
 procedure TfPregInfo.spnGADaysChange(Sender: TObject);
@@ -185,6 +158,33 @@ begin
   end;
 end;
 
+// Private ---------------------------------------------------------------------
+
+procedure TfPregInfo.SetDisable(const Value: Boolean);
+var
+  I: Integer;
+begin
+  if Value then
+  begin
+    for I := 0 to ComponentCount - 1 do
+    begin
+      if ((Components[I] is TWinControl) and (Components[I] <> lbStatus)) then
+        TWinControl(Components[I]).Enabled := False
+      else if Components[I] is TLabel then
+        TLabel(Components[I]).Enabled := False;
+    end;
+  end else
+  begin
+    for I := 0 to ComponentCount - 1 do
+    begin
+      if ((Components[I] is TWinControl) and (Components[I] <> lbStatus)) then
+        TWinControl(Components[I]).Enabled := True
+      else if Components[I] is TLabel then
+        TLabel(Components[I]).Enabled := True;
+    end;
+  end;
+end;
+
 // Public ----------------------------------------------------------------------
 
 constructor TfPregInfo.Create(AOwner: TComponent);
@@ -194,8 +194,6 @@ begin
   inherited;
 
   ChildCount := 0;
-  dlgPregHist.ModifyFullTerm(1);
-  MultiBirth := False;
 
   nItem := dlgPregHist.ReportCollection.GetNoteItemAddifNil(spnLaborLength);
   if nItem <> nil then
@@ -211,59 +209,49 @@ begin
     nItem.SayOnFocus := 'Gestational age in days';
 end;
 
-destructor TfPregInfo.Destroy;
-begin
-  if rgPretermDelivery.ItemIndex = 0 then
-    dlgPregHist.ModifyFullTerm(-1)
-  else if  rgPretermDelivery.ItemIndex = 1 then
-    dlgPregHist.ModifyPreterm(-1);
-
-  inherited;
-end;
-
-function TfPregInfo.GetText: TStringList;
+procedure TfPregInfo.GetText(var oText: TStringList);
 var
   I: Integer;
 begin
-  Result := TStringList.Create;
+  oText.Clear;
 
-  Result.Add(' Delivery Details:');
+  oText.Add(' Delivery Details:');
 
   if lbStatus.Caption <> '' then
-    Result.Add('  Complication: ' + lbStatus.Caption);
+    oText.Add('  Complication: ' + lbStatus.Caption);
 
-  Result.Add('  Delivery Date: ' + dtDelivery.Text);
+  oText.Add('  Delivery Date: ' + dtDelivery.Text);
 
   if cbOutcome.ItemIndex <> -1 then
-    Result.Add('  Outcome: ' + cbOutcome.Items[cbOutcome.ItemIndex]);
+    oText.Add('  Outcome: ' + cbOutcome.Items[cbOutcome.ItemIndex]);
 
-  Result.Add('  Length of Labor: ' + spnLaborLength.Text + ' hrs');
+  oText.Add('  Length of Labor: ' + spnLaborLength.Text + ' hrs');
 
   if rgTypeDelivery.ItemIndex = 0 then
-    Result.Add('  Type of Delivery: Vaginal')
+    oText.Add('  Type of Delivery: Vaginal')
   else if rgTypeDelivery.ItemIndex = 1 then
-    Result.Add('  Type of Delivery: Cesarean');
+    oText.Add('  Type of Delivery: Cesarean');
 
   if rgPretermDelivery.ItemIndex = 0 then
-    Result.Add('  Preterm Labor: No')
+    oText.Add('  Preterm Labor: No')
   else if rgPretermDelivery.ItemIndex = 1 then
-    Result.Add('  Preterm Labor: Yes');
+    oText.Add('  Preterm Labor: Yes');
 
-  Result.Add('  Gestational Age: ' + spnGAWeeks.Text + ' Weeks ' + spnGADays.Text + ' Days');
+  oText.Add('  Gestational Age: ' + spnGAWeeks.Text + ' Weeks ' + spnGADays.Text + ' Days');
 
-  Result.Add('  Days in Hospital following Delivery: '+ edtDeliveryAt.text);
+  oText.Add('  Days in Hospital following Delivery: '+ edtDeliveryAt.text);
 
   if cbAnesthesia.ItemIndex <> -1 then
-    Result.Add('  Anesthesia: ' + cbAnesthesia.Text);
+    oText.Add('  Anesthesia: ' + cbAnesthesia.Text);
 
   if Trim(cbDeliveryPlace.Text) <> '' then
-    Result.Add('  Place of Delivery: ' + Trim(cbDeliveryPlace.Text));
+    oText.Add('  Place of Delivery: ' + Trim(cbDeliveryPlace.Text));
 
   if meDeliveryNotes.Lines.Count > 0 then
   begin
-    Result.Add('  Delivery Notes: ');
+    oText.Add('  Delivery Notes: ');
     for I := 0 to meDeliveryNotes.Lines.Count - 1 do
-      Result.Add('   ' + meDeliveryNotes.Lines[I]);
+      oText.Add('   ' + meDeliveryNotes.Lines[I]);
   end;
 end;
 

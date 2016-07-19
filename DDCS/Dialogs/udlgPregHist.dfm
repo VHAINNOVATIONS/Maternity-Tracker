@@ -4,7 +4,7 @@ object dlgPregHist: TdlgPregHist
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Pregnancy History'
-  ClientHeight = 585
+  ClientHeight = 518
   ClientWidth = 524
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -32,35 +32,9 @@ object dlgPregHist: TdlgPregHist
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object lbFullTerm: TLabel
-    Left = 17
-    Top = 42
-    Width = 51
-    Height = 14
-    Caption = 'Full Term'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object lbPremature: TLabel
-    Left = 17
-    Top = 70
-    Width = 59
-    Height = 14
-    Caption = 'Premature'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
   object lbInduced: TLabel
     Left = 17
-    Top = 98
+    Top = 42
     Width = 95
     Height = 14
     Caption = 'Induced Abortion'
@@ -97,32 +71,6 @@ object dlgPregHist: TdlgPregHist
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object lbMultipleBirths: TLabel
-    Left = 244
-    Top = 70
-    Width = 80
-    Height = 14
-    Caption = 'Multiple Births'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object lbLiving: TLabel
-    Left = 244
-    Top = 98
-    Width = 33
-    Height = 14
-    Caption = 'Living'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
   object cbOutcome: TComboBox
     Left = 137
     Top = 291
@@ -131,7 +79,7 @@ object dlgPregHist: TdlgPregHist
     Align = alCustom
     Style = csDropDownList
     Anchors = [akLeft, akTop, akRight]
-    TabOrder = 10
+    TabOrder = 6
   end
   object cbAnesthesia: TComboBox
     Left = 137
@@ -140,7 +88,7 @@ object dlgPregHist: TdlgPregHist
     Height = 22
     Align = alCustom
     Style = csDropDownList
-    TabOrder = 11
+    TabOrder = 7
   end
   object cbDeliveryPlace: TComboBox
     Left = 137
@@ -149,16 +97,17 @@ object dlgPregHist: TdlgPregHist
     Height = 22
     Align = alCustom
     Anchors = [akLeft, akTop, akRight]
-    TabOrder = 12
+    TabOrder = 8
   end
   object pnlfooter: TPanel
     Left = 0
-    Top = 556
+    Top = 489
     Width = 524
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 9
+    TabOrder = 5
+    ExplicitTop = 556
     object btnOK: TBitBtn
       Left = 367
       Top = 3
@@ -204,23 +153,24 @@ object dlgPregHist: TdlgPregHist
   end
   object pgPregnancy: TPageControl
     Left = 2
-    Top = 138
+    Top = 71
     Width = 520
     Height = 415
     Align = alCustom
     Anchors = [akLeft, akRight, akBottom]
-    TabOrder = 8
+    TabOrder = 4
+    ExplicitTop = 74
   end
   object edtAbInduced: TSpinEdit
     Tag = 2
     Left = 121
-    Top = 95
+    Top = 39
     Width = 85
     Height = 23
     Hint = 'Induced Abortion'
     MaxValue = 0
     MinValue = 0
-    TabOrder = 3
+    TabOrder = 1
     Value = 0
     OnChange = TotPregChange
   end
@@ -233,7 +183,7 @@ object dlgPregHist: TdlgPregHist
     Hint = 'Spontaneous Abortion'
     MaxValue = 0
     MinValue = 0
-    TabOrder = 4
+    TabOrder = 2
     Value = 0
     OnChange = TotPregChange
   end
@@ -259,49 +209,9 @@ object dlgPregHist: TdlgPregHist
     Hint = 'Ectopic'
     MaxValue = 0
     MinValue = 0
-    TabOrder = 5
+    TabOrder = 3
     Value = 0
     OnChange = TotPregChange
-  end
-  object lbFullTermValue: TStaticText
-    Left = 121
-    Top = 42
-    Width = 85
-    Height = 18
-    AutoSize = False
-    Caption = '0'
-    TabOrder = 1
-    TabStop = True
-  end
-  object lbPrematureValue: TStaticText
-    Left = 121
-    Top = 70
-    Width = 85
-    Height = 18
-    AutoSize = False
-    Caption = '0'
-    TabOrder = 2
-    TabStop = True
-  end
-  object lbMultipleBirthsValue: TStaticText
-    Left = 374
-    Top = 70
-    Width = 85
-    Height = 18
-    AutoSize = False
-    Caption = '0'
-    TabOrder = 6
-    TabStop = True
-  end
-  object lbLivingValue: TStaticText
-    Left = 374
-    Top = 95
-    Width = 85
-    Height = 18
-    AutoSize = False
-    Caption = '0'
-    TabOrder = 7
-    TabStop = True
   end
   object NavControl: TActionList
     Left = 376
