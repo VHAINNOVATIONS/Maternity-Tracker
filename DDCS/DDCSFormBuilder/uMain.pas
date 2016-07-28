@@ -33,7 +33,7 @@ type
              Param2, Param3: WideString; var Data1, Data2: WideString): WordBool; safecall;
   end;
 
-  TLaunch = function(Broker: PCPRSComBroker): WideString; stdcall;
+  TLaunch = function(Broker: PCPRSComBroker; out Return: WideString): WordBool; stdcall;
 
 var
   DllHandle: THandle;
@@ -45,7 +45,7 @@ uses
   ComServ, uCommon;
 
 function TDDCS.Execute(const CPRSBroker: ICPRSBroker; const CPRSState: ICPRSState;
-          const Param1, Param2, Param3: WideString; var Data1, Data2: WideString): WordBool;
+         const Param1, Param2, Param3: WideString; var Data1, Data2: WideString): WordBool;
 var
   Broker: TCPRSComBroker;
   Controlled,vPropertyList,Config: string;
@@ -126,11 +126,7 @@ begin
         begin
           Launch := GetProcAddress(DllHandle, 'Launch');
           if Assigned(Launch) then
-          begin
-            Data1 := Launch(@Broker);
-            if Data1 <> '' then
-              Result := True;
-          end;
+            Result := Launch(@Broker, Data1);
         end else
           raise Exception.Create('Unable to load library.');
       end else

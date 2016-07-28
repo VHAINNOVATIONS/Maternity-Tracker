@@ -105,7 +105,7 @@ type
     procedure lvDialogComponentDblClick(Sender: TObject);
     procedure ReloadDialogs(Sender: TObject);
     procedure btnDialogShowClick(Sender: TObject);
-    // Command
+    // Command -----------------------------------------------------------------
     procedure btnSaveClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
@@ -239,6 +239,7 @@ end;
 procedure TDDCSFormConfig.lvDialogDblClick(Sender: TObject);
 var
   sl: TStringList;
+  wStr: WideString;
   I: Integer;
   lvItem: TListItem;
 begin
@@ -250,13 +251,16 @@ begin
 
   sl := TStringList.Create;
   try
-    sl.Text := GetDialogComponents(lvDialog.Items[lvDialog.ItemIndex].Caption);
-
-    for I := 0 to sl.Count - 1 do
+    if Assigned(FDDCSForm.GetDialogComponents) then
     begin
-      lvItem := lvDialogComponent.Items.Add;
-      lvItem.Caption := Piece(sl[I],U,2);
-      lvItem.SubItems.Add(Piece(sl[I],u,3));
+      FDDCSForm.GetDialogComponents(lvDialog.Items[lvDialog.ItemIndex].Caption, wStr);
+      sl.Text := wStr;
+      for I := 0 to sl.Count - 1 do
+      begin
+        lvItem := lvDialogComponent.Items.Add;
+        lvItem.Caption := Piece(sl[I],U,2);
+        lvItem.SubItems.Add(Piece(sl[I],u,3));
+      end;
     end;
   finally
     sl.Free;
@@ -277,44 +281,39 @@ begin
   lvDialog.SortType := stNone;
   lvDialog.Clear;
 
-  DialogDLL := LoadDialogs;
+  FDDCSForm.LoadDialogs;
 
-  if Assigned(DLLDialogList) then
-    for I := 0 to DLLDialogList.Count - 1 do
+  if FDDCSForm.DLLDialogList.Count > 0 then
+    for I := 0 to FDDCSForm.DLLDialogList.Count - 1 do
     begin
       lvItem := lvDialog.Items.Add;
-      lvItem.Caption := Piece(DLLDialogList[I],U,1);
-      lvItem.SubItems.Add(Piece(DLLDialogList[I],u,2));
+      lvItem.Caption := Piece(FDDCSForm.DLLDialogList[I],U,1);
+      lvItem.SubItems.Add(Piece(FDDCSForm.DLLDialogList[I],u,2));
     end;
 end;
 
 procedure TDDCSFormConfig.btnDialogShowClick(Sender: TObject);
 var
-  sl: TStringList;
+  wSave,wConfig,wText: WideString;
 begin
   if lvDialog.ItemIndex < 0 then
     Exit;
 
-  if DialogDLL <> 0 then
-  begin
-    sl := TStringList.Create;
-    try
-      try
-        sl.Text := DisplayDialog(@FDDCSForm, @RPCBrokerV,
-                   '||' + lvDialog.Items[lvDialog.ItemIndex].Caption, True);
-      except
-        on E: Exception do
-        ShowMsg(E.Message, smiError, smbOK);
-      end;
-    finally
-      if sl.Count > 0 then
+  try
+    if Assigned(FDDCSForm.DisplayDialog) then
+    begin
+      FDDCSForm.DisplayDialog(@FDDCSForm, nil, '||' + lvDialog.Items[lvDialog.ItemIndex].Caption,
+                              True, wSave, wConfig, wText);
+      if wText <> '' then
       begin
         meDialogOutput.Clear;
         pgDialogOutput.ActivePageIndex := 1;
-        meDialogOutput.Lines.Text := sl.Text;
+        meDialogOutput.Lines.Text := wText;
       end;
-      sl.Free;
     end;
+  except
+    on E: Exception do
+    ShowMsg(E.Message, smiError, smbOK);
   end;
 
   lvDialog.Selected := lvDialog.Items[lvDialog.ItemIndex];
@@ -351,6 +350,7 @@ end;
 procedure TDDCSFormConfig.btnUpdateClick(Sender: TObject);
 var
   sl: TStringList;
+  wStr: WideString;
   I: Integer;
   cControl: TComponent;
   nItem: TDDCSNoteItem;
@@ -419,9 +419,10 @@ begin
         begin
           sl.Clear;
 
-          if DialogDLL <> 0 then
+          if Assigned(FDDCSForm.GetDialogComponents) then
           begin
-            sl.Text := GetDialogComponents(lvDialog.Items[I].Caption);
+            FDDCSForm.GetDialogComponents(lvDialog.Items[I].Caption, wStr);
+            sl.Text := wStr;
 
             // Need to collect changes made in this form and apply them to the
             // return of the existing configuration
@@ -429,7 +430,8 @@ begin
             if sl.Count > 0 then
             begin
               if UpdateContext(MENU_CONTEXT) then
-                CallV('DSIO DDCS DIALOG IMPORT', [Piece(DLLDialogList[I],U,2), Piece(DLLDialogList[I],U,1), sl]);
+                CallV('DSIO DDCS DIALOG IMPORT', [Piece(FDDCSForm.DLLDialogList[I],U,2),
+                      Piece(FDDCSForm.DLLDialogList[I],U,1), sl]);
             end;
           end;
         end;
@@ -466,6 +468,7 @@ var
 begin
   meConfigValuesC.Clear;
   edConfigRoutineC.Clear;
+
   for I := 0 to cklConfigDialogsC.Count - 1 do
     cklConfigDialogsC.Checked[I] := False;
 
@@ -487,6 +490,7 @@ var
   I: Integer;
 begin
   lvDialog.ItemIndex := -1;
+
   for I := 0 to lvDialog.Items.Count - 1 do
     lvDialog.Items[I].Selected := False;
 
@@ -509,7 +513,6 @@ begin
   ckDoNotRestoreD.Checked := False;
   ckRequiredD.Checked := False;
   cbDialogReturnD.ItemIndex := -1;
-
   meDialogOutput.Clear;
 end;
 
@@ -524,12 +527,12 @@ begin
 
   FDDCSForm := AOwner;
 
-  if Assigned(DLLDialogList) then
-    for I := 0 to DLLDialogList.Count - 1 do
+  if FDDCSForm.DLLDialogList.Count > 0 then
+    for I := 0 to FDDCSForm.DLLDialogList.Count - 1 do
     begin
       lvItem := lvDialog.Items.Add;
-      lvItem.Caption := Piece(DLLDialogList[I],U,1);
-      lvItem.SubItems.Add(Piece(DLLDialogList[I],u,2));
+      lvItem.Caption := Piece(FDDCSForm.DLLDialogList[I],U,1);
+      lvItem.SubItems.Add(Piece(FDDCSForm.DLLDialogList[I],u,2));
 
       cklConfigDialogsC.Items.Add(lvItem.Caption);
     end;

@@ -59,7 +59,7 @@ uses
 
 {$R *.res}
 
-function RegisterDialogs: WideString; stdcall;
+procedure RegisterDialogs(out Return: WideString); stdcall;
 var
   sl: TStringList;
 begin
@@ -93,24 +93,62 @@ begin
     RegisterClass(TdlgVisualChanges);          sl.Add('TdlgVisualChanges^udlgVisualChanges');
     RegisterClass(TdlgWheezing);               sl.Add('TdlgWheezing^udlgWheezing');
   finally
-    Result := sl.Text;
+    Return := sl.Text;
     sl.Free;
   end;
 end;
 
-function DisplayDialog(AOwner: PDDCSForm; Broker: PCPRSComBroker; Build: WideString;
-                       DebugMode: Boolean): WideString; stdcall;
+procedure GetDialogComponents(dlgName: WideString; out Return: WideString); stdcall;
 var
   dlgP: TPersistentClass;
   dlgClass: TDialogClass;
   dlg: TDDCSDialog;
+  sl: TStringList;
+  I: Integer;
+
+  // Return --------------------------------------------------------------------
+  //   (H) - CONTROL ^ CONTROL_NAME ^ CONTROL_CLASS ^ PUSH ^ ID ^ OBSERVATION
+
+begin
+  if dlgName = '' then
+    Exit;
+  dlgP := FindClass(dlgName);
+  if dlgP = nil then
+    Exit;
+  dlgClass := TDialogClass(dlgP);
+  if dlgClass = nil then
+    Exit;
+
+  dlg := dlgClass.Create;
+  sl := TStringList.Create;
+  try
+    for I := 0 to dlg.ComponentCount - 1 do
+    begin
+      sl.Add('H^' + dlg.Components[I].Name + U + dlg.Components[I].ClassName);
+      // sl.Add('C^' + dlg.Components[I].Name + U);    // This would be updated by DDCSFramework configuration
+      // sl.Add('R^' + dlg.Components[I].Name + U);    // Once this is enabled you will be able to pass it to VistA
+    end;
+  finally
+    Return := sl.Text;
+    sl.Free;
+    dlg.Free;
+  end;
+end;
+
+function DisplayDialog(AOwner: PDDCSForm; Broker: PCPRSComBroker; Build: WideString; DebugMode: Boolean;
+                       out rSave,rConfig,rText: WideString): WordBool; stdcall;
+var
+  dlgP: TPersistentClass;
+  dlgClass: TDialogClass;
+  dlg: TDDCSDialog;
+  sl: TStringList;
   hp,hhp,I: Integer;
   wControl: TWinControl;
 
   // Build = IEN | NAME | CLASS
 
 begin
-  Result := '';
+  Result := False;
 
   if Piece(Build,'|',3) = '' then
     Exit;
@@ -121,7 +159,8 @@ begin
   if dlgClass = nil then
     Exit;
 
-  dlg := dlgClass.Create(AOwner, Broker, DebugMode, Piece(Build,'|',1));
+  sl := TStringList.Create;
+  dlg := dlgClass.Create(AOwner, Broker, Piece(Build,'|',1), DebugMode);
   try
     if DebugMode then
     begin
@@ -142,11 +181,24 @@ begin
     end;
 
     dlg.ShowModal;
-
     if dlg.ModalResult = mrOK then
-      Result := dlg.TmpStrList.Text;
+    begin
+      Result := True;
+
+      dlg.BuildSaveList(sl);
+      if sl.Count > 0 then
+        rSave := sl.Text;
+      sl.Clear;
+
+      dlg.Configuration.GetCollectiveText(sl);
+      if sl.Count > 0 then
+        rConfig := sl.Text;
+
+      rText := dlg.TmpStrList.Text;
+    end;
   finally
     dlg.Free;
+    sl.Free;
 
     if DebugMode then
     begin
@@ -156,49 +208,10 @@ begin
   end;
 end;
 
-function GetDialogComponents(dlgName: WideString): WideString; stdcall;
-var
-  dlgP: TPersistentClass;
-  dlgClass: TDialogClass;
-  dlg: TDDCSDialog;
-  sl: TStringList;
-  I: Integer;
-
-  // Return --------------------------------------------------------------------
-  //   (H) - CONTROL ^ CONTROL_NAME ^ CONTROL_CLASS ^ PUSH ^ ID ^ OBSERVATION
-
-begin
-  Result := '';
-
-  if dlgName = '' then
-    Exit;
-  dlgP := FindClass(dlgName);
-  if dlgP = nil then
-    Exit;
-  dlgClass := TDialogClass(dlgP);
-  if dlgClass = nil then
-    Exit;
-
-  dlg := dlgClass.Create;
-  sl := TStringList.Create;
-  try
-    for I := 0 to dlg.ComponentCount - 1 do
-    begin
-      sl.Add('H^' + dlg.Components[I].Name + U + dlg.Components[I].ClassName);
-      // sl.Add('C^' + dlg.Components[I].Name + U);    // This would be updated by DDCSFramework configuration
-      // sl.Add('R^' + dlg.Components[I].Name + U);    // Once this is enabled you will be able to pass it to VistA
-    end;
-  finally
-    Result := sl.Text;
-    sl.Free;
-    dlg.Free;
-  end;
-end;
-
 exports
   RegisterDialogs,
-  DisplayDialog,
-  GetDialogComponents;
+  GetDialogComponents,
+  DisplayDialog;
 
 begin
 end.

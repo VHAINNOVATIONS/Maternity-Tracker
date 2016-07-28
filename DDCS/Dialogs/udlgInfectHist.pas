@@ -187,7 +187,7 @@ begin
       if pnlbody.Controls[I].Tag = ick.Tag then
       begin
         ce := TEdit(pnlbody.Controls[I]);
-        if ick.Caption = 'No' then
+        if (ick.Caption = 'No') or (not ick.Checked) then
         begin
           ce.Clear;
           ce.Enabled := False;

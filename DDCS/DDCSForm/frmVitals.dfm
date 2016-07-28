@@ -21,29 +21,36 @@ object DDCSVitals: TDDCSVitals
     OnChange = fVitalsControlChange
     object PageMain: TTabSheet
       Caption = 'Vitals'
+      DesignSize = (
+        670
+        370)
       object FTempdt: TLabel
         Left = 92
         Top = 143
         Width = 3
         Height = 13
+        Anchors = []
       end
       object FHeightdt: TLabel
         Left = 92
         Top = 214
         Width = 3
         Height = 13
+        Anchors = []
       end
       object FWeightdt: TLabel
         Left = 92
         Top = 285
         Width = 3
         Height = 13
+        Anchors = []
       end
       object FTempl: TLabel
         Left = 12
         Top = 120
         Width = 75
         Height = 13
+        Anchors = []
         Caption = 'Temperature'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -57,6 +64,7 @@ object DDCSVitals: TDDCSVitals
         Top = 191
         Width = 37
         Height = 13
+        Anchors = []
         Caption = 'Height'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -70,6 +78,7 @@ object DDCSVitals: TDDCSVitals
         Top = 262
         Width = 40
         Height = 13
+        Anchors = []
         Caption = 'Weight'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -83,12 +92,14 @@ object DDCSVitals: TDDCSVitals
         Top = 143
         Width = 3
         Height = 13
+        Anchors = []
       end
       object FPulsel: TLabel
         Left = 301
         Top = 120
         Width = 30
         Height = 13
+        Anchors = []
         Caption = 'Pulse'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -102,6 +113,7 @@ object DDCSVitals: TDDCSVitals
         Top = 191
         Width = 65
         Height = 13
+        Anchors = []
         Caption = 'Respiration'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -115,12 +127,14 @@ object DDCSVitals: TDDCSVitals
         Top = 214
         Width = 3
         Height = 13
+        Anchors = []
       end
       object FPainl: TLabel
         Left = 307
         Top = 262
         Width = 24
         Height = 13
+        Anchors = []
         Caption = 'Pain'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -134,12 +148,14 @@ object DDCSVitals: TDDCSVitals
         Top = 285
         Width = 3
         Height = 13
+        Anchors = []
       end
       object FSystolicl: TLabel
         Left = 457
         Top = 120
         Width = 44
         Height = 13
+        Anchors = []
         Caption = 'Systolic'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -153,12 +169,14 @@ object DDCSVitals: TDDCSVitals
         Top = 143
         Width = 3
         Height = 13
+        Anchors = []
       end
       object FDiastolicl: TLabel
         Left = 453
         Top = 191
         Width = 48
         Height = 13
+        Anchors = []
         Caption = 'Diastolic'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -172,12 +190,14 @@ object DDCSVitals: TDDCSVitals
         Top = 214
         Width = 3
         Height = 13
+        Anchors = []
       end
       object FTemps: TEdit
         Left = 92
         Top = 116
         Width = 103
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 1
       end
@@ -186,6 +206,7 @@ object DDCSVitals: TDDCSVitals
         Top = 187
         Width = 103
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 3
       end
@@ -194,6 +215,7 @@ object DDCSVitals: TDDCSVitals
         Top = 258
         Width = 103
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 5
       end
@@ -202,6 +224,7 @@ object DDCSVitals: TDDCSVitals
         Top = 116
         Width = 49
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 2
       end
@@ -210,6 +233,7 @@ object DDCSVitals: TDDCSVitals
         Top = 187
         Width = 49
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 4
       end
@@ -218,6 +242,7 @@ object DDCSVitals: TDDCSVitals
         Top = 258
         Width = 49
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 6
       end
@@ -226,6 +251,7 @@ object DDCSVitals: TDDCSVitals
         Top = 116
         Width = 103
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 7
       end
@@ -234,6 +260,7 @@ object DDCSVitals: TDDCSVitals
         Top = 187
         Width = 103
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 8
       end
@@ -242,6 +269,7 @@ object DDCSVitals: TDDCSVitals
         Top = 258
         Width = 103
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 9
       end
@@ -250,6 +278,7 @@ object DDCSVitals: TDDCSVitals
         Top = 116
         Width = 103
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 10
       end
@@ -258,6 +287,7 @@ object DDCSVitals: TDDCSVitals
         Top = 187
         Width = 103
         Height = 21
+        Anchors = []
         ReadOnly = True
         TabOrder = 11
       end
@@ -266,13 +296,18 @@ object DDCSVitals: TDDCSVitals
         Top = 8
         Width = 238
         Height = 96
+        Anchors = []
         BevelOuter = bvNone
         TabOrder = 0
+        DesignSize = (
+          238
+          96)
         object FAge: TLabel
           Left = 21
           Top = 13
           Width = 31
           Height = 16
+          Anchors = []
           Caption = 'Age:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -286,6 +321,7 @@ object DDCSVitals: TDDCSVitals
           Top = 39
           Width = 28
           Height = 16
+          Anchors = []
           Caption = 'Sex:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -299,6 +335,7 @@ object DDCSVitals: TDDCSVitals
           Top = 65
           Width = 29
           Height = 16
+          Anchors = []
           Caption = 'BMI:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -312,6 +349,7 @@ object DDCSVitals: TDDCSVitals
           Top = 16
           Width = 4
           Height = 4
+          Anchors = []
           TabOrder = 0
           TabStop = True
         end
@@ -320,6 +358,7 @@ object DDCSVitals: TDDCSVitals
           Top = 42
           Width = 4
           Height = 4
+          Anchors = []
           TabOrder = 1
           TabStop = True
         end
@@ -328,6 +367,7 @@ object DDCSVitals: TDDCSVitals
           Top = 68
           Width = 4
           Height = 4
+          Anchors = []
           TabOrder = 2
           TabStop = True
         end
@@ -675,78 +715,6 @@ object DDCSVitals: TDDCSVitals
         OnExit = lblOtherExit
         OnMouseEnter = lblOtherMouseEnter
       end
-      object ckFinalEDDLMP: TCheckBox
-        Tag = 1
-        Left = 575
-        Top = 108
-        Width = 50
-        Height = 17
-        Hint = 'IsFinal'
-        Anchors = []
-        Caption = 'Yes'
-        TabOrder = 4
-        OnClick = IsFinalEDDClick
-      end
-      object ckFinalEDDECD: TCheckBox
-        Tag = 2
-        Left = 575
-        Top = 149
-        Width = 50
-        Height = 17
-        Hint = 'IsFinal'
-        Anchors = []
-        Caption = 'Yes'
-        TabOrder = 7
-        OnClick = IsFinalEDDClick
-      end
-      object ckFinalEDDUltra: TCheckBox
-        Tag = 3
-        Left = 575
-        Top = 190
-        Width = 50
-        Height = 17
-        Hint = 'IsFinal'
-        Anchors = []
-        Caption = 'Yes'
-        TabOrder = 12
-        OnClick = IsFinalEDDClick
-      end
-      object ckFinalEDDEmbryo: TCheckBox
-        Tag = 4
-        Left = 575
-        Top = 231
-        Width = 50
-        Height = 17
-        Hint = 'IsFinal'
-        Anchors = []
-        Caption = 'Yes'
-        TabOrder = 16
-        OnClick = IsFinalEDDClick
-      end
-      object ckFinalEDDOther: TCheckBox
-        Tag = 5
-        Left = 575
-        Top = 272
-        Width = 50
-        Height = 17
-        Hint = 'IsFinal'
-        Anchors = []
-        Caption = 'Yes'
-        TabOrder = 22
-        OnClick = IsFinalEDDClick
-      end
-      object ckFinalEDDUnknown: TCheckBox
-        Tag = 6
-        Left = 575
-        Top = 314
-        Width = 50
-        Height = 17
-        Hint = 'IsFinal'
-        Anchors = []
-        Caption = 'Yes'
-        TabOrder = 24
-        OnClick = IsFinalEDDClick
-      end
       object dtEDDUnknown: TORDateBox
         Left = 421
         Top = 312
@@ -861,19 +829,85 @@ object DDCSVitals: TDDCSVitals
           TabOrder = 1
         end
       end
+      object ckFinalEDDLMP: TCheckBox
+        Tag = 1
+        Left = 578
+        Top = 108
+        Width = 40
+        Height = 17
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 4
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDUltra: TCheckBox
+        Tag = 3
+        Left = 578
+        Top = 189
+        Width = 40
+        Height = 17
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 12
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDEmbryo: TCheckBox
+        Tag = 4
+        Left = 578
+        Top = 231
+        Width = 40
+        Height = 17
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 16
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDOther: TCheckBox
+        Tag = 5
+        Left = 578
+        Top = 272
+        Width = 40
+        Height = 17
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 22
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDUnknown: TCheckBox
+        Tag = 6
+        Left = 578
+        Top = 314
+        Width = 40
+        Height = 17
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 24
+        OnClick = IsFinalEDDClick
+      end
+      object ckFinalEDDECD: TCheckBox
+        Tag = 2
+        Left = 578
+        Top = 149
+        Width = 40
+        Height = 17
+        Anchors = []
+        Caption = 'Yes'
+        TabOrder = 7
+        OnClick = IsFinalEDDClick
+      end
     end
     object PageLMP: TTabSheet
       Caption = 'Menstrual History'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      DesignSize = (
+        670
+        370)
       object Label7: TLabel
         Left = 309
         Top = 127
         Width = 295
         Height = 13
+        Anchors = []
         Caption = 'What type(s) of contraception were you using most recently?'
       end
       object Label6: TLabel
@@ -881,6 +915,7 @@ object DDCSVitals: TDDCSVitals
         Top = 179
         Width = 61
         Height = 13
+        Anchors = []
         Caption = 'Comments'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -894,6 +929,7 @@ object DDCSVitals: TDDCSVitals
         Top = 71
         Width = 98
         Height = 13
+        Anchors = []
         Caption = 'On Contraception'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -907,6 +943,7 @@ object DDCSVitals: TDDCSVitals
         Top = 18
         Width = 123
         Height = 13
+        Anchors = []
         Caption = 'Last Menstrual Period'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -920,6 +957,7 @@ object DDCSVitals: TDDCSVitals
         Top = 98
         Width = 195
         Height = 13
+        Anchors = []
         Caption = 'On Birth Control Pills at Conception'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -933,6 +971,7 @@ object DDCSVitals: TDDCSVitals
         Top = 38
         Width = 31
         Height = 13
+        Anchors = []
         Caption = 'hCG+'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -946,6 +985,7 @@ object DDCSVitals: TDDCSVitals
         Top = 298
         Width = 56
         Height = 13
+        Anchors = []
         Caption = 'Menarche'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -959,6 +999,7 @@ object DDCSVitals: TDDCSVitals
         Top = 298
         Width = 64
         Height = 13
+        Anchors = []
         Caption = 'Age of Onset'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -973,6 +1014,7 @@ object DDCSVitals: TDDCSVitals
         Width = 339
         Height = 21
         Style = csDropDownList
+        Anchors = []
         TabOrder = 9
         Caption = 
           'What type or types of contraception were you using most recently' +
@@ -983,6 +1025,7 @@ object DDCSVitals: TDDCSVitals
         Top = 196
         Width = 339
         Height = 121
+        Anchors = []
         ScrollBars = ssVertical
         TabOrder = 10
         Caption = 'Comments'
@@ -993,6 +1036,7 @@ object DDCSVitals: TDDCSVitals
         Top = 70
         Width = 37
         Height = 17
+        Anchors = []
         Caption = 'No'
         TabOrder = 6
         OnClick = ToggleCheckBoxes
@@ -1003,6 +1047,7 @@ object DDCSVitals: TDDCSVitals
         Top = 70
         Width = 52
         Height = 17
+        Anchors = []
         Caption = 'Yes'
         TabOrder = 5
         OnClick = ToggleCheckBoxes
@@ -1012,6 +1057,7 @@ object DDCSVitals: TDDCSVitals
         Top = 37
         Width = 80
         Height = 17
+        Anchors = []
         Caption = 'Approximate'
         TabOrder = 1
       end
@@ -1020,6 +1066,7 @@ object DDCSVitals: TDDCSVitals
         Top = 35
         Width = 185
         Height = 21
+        Anchors = []
         TabOrder = 0
         OnExit = edtLMPExit
         DateOnly = True
@@ -1031,6 +1078,7 @@ object DDCSVitals: TDDCSVitals
         Top = 71
         Width = 271
         Height = 199
+        Anchors = []
         Caption = 'Menses'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -1039,24 +1087,15 @@ object DDCSVitals: TDDCSVitals
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 2
-        object lbMonthly: TLabel
-          Left = 20
-          Top = 55
-          Width = 46
-          Height = 13
-          Caption = 'Monthly'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
+        DesignSize = (
+          271
+          199)
         object lbFrequency: TLabel
           Left = 17
-          Top = 143
+          Top = 135
           Width = 153
           Height = 13
+          Anchors = []
           Caption = 'Duration of Flow Frequency'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1067,22 +1106,10 @@ object DDCSVitals: TDDCSVitals
         end
         object Label2: TLabel
           Left = 108
-          Top = 163
+          Top = 157
           Width = 35
           Height = 13
-          Caption = '# Days'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label16: TLabel
-          Left = 152
-          Top = 55
-          Width = 35
-          Height = 13
+          Anchors = []
           Caption = '# Days'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1093,10 +1120,11 @@ object DDCSVitals: TDDCSVitals
         end
         object ckMensesYes: TCheckBox
           Tag = 1
-          Left = 49
+          Left = 76
           Top = 22
           Width = 63
           Height = 17
+          Anchors = []
           Caption = 'Normal'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1109,10 +1137,11 @@ object DDCSVitals: TDDCSVitals
         end
         object ckMensesNo: TCheckBox
           Tag = 2
-          Left = 137
+          Left = 150
           Top = 22
           Width = 80
           Height = 17
+          Anchors = []
           Caption = 'Abnormal'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1123,28 +1152,12 @@ object DDCSVitals: TDDCSVitals
           TabOrder = 1
           OnClick = ToggleCheckBoxes
         end
-        object spnMonthly: TSpinEdit
-          Left = 78
-          Top = 52
-          Width = 68
-          Height = 22
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          MaxValue = 0
-          MinValue = 0
-          ParentFont = False
-          TabOrder = 2
-          Value = 0
-          OnChange = spincheck
-        end
         object spnFreq: TSpinEdit
           Left = 34
-          Top = 160
+          Top = 154
           Width = 68
           Height = 22
+          Anchors = []
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -1153,15 +1166,16 @@ object DDCSVitals: TDDCSVitals
           MaxValue = 0
           MinValue = 0
           ParentFont = False
-          TabOrder = 4
+          TabOrder = 3
           Value = 0
           OnChange = spincheck
         end
         object Panel3: TPanel
           Left = 11
-          Top = 78
+          Top = 45
           Width = 251
-          Height = 62
+          Height = 82
+          Anchors = []
           BevelOuter = bvNone
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1169,12 +1183,16 @@ object DDCSVitals: TDDCSVitals
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 2
+          DesignSize = (
+            251
+            82)
           object Label4: TLabel
             Left = 10
-            Top = 11
+            Top = 34
             Width = 45
             Height = 13
+            Anchors = []
             Caption = 'Amount'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -1185,10 +1203,25 @@ object DDCSVitals: TDDCSVitals
           end
           object Label8: TLabel
             Left = 6
-            Top = 36
+            Top = 59
             Width = 49
             Height = 13
+            Anchors = []
             Caption = 'Duration'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lbMonthly: TLabel
+            Left = 9
+            Top = 10
+            Width = 46
+            Height = 13
+            Anchors = []
+            Caption = 'Monthly'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -1198,42 +1231,11 @@ object DDCSVitals: TDDCSVitals
           end
           object ckAmountNo: TCheckBox
             Tag = 4
-            Left = 149
-            Top = 10
+            Left = 139
+            Top = 33
             Width = 66
             Height = 17
-            Caption = 'Abnormal'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 1
-            OnClick = ToggleCheckBoxes
-          end
-          object ckAmountYes: TCheckBox
-            Tag = 3
-            Left = 67
-            Top = 10
-            Width = 61
-            Height = 17
-            Caption = 'Normal'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-            OnClick = ToggleCheckBoxes
-          end
-          object ckDurationNo: TCheckBox
-            Tag = 8
-            Left = 149
-            Top = 35
-            Width = 66
-            Height = 17
+            Anchors = []
             Caption = 'Abnormal'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -1244,12 +1246,13 @@ object DDCSVitals: TDDCSVitals
             TabOrder = 3
             OnClick = ToggleCheckBoxes
           end
-          object ckDurationYes: TCheckBox
-            Tag = 7
-            Left = 67
-            Top = 35
+          object ckAmountYes: TCheckBox
+            Tag = 3
+            Left = 65
+            Top = 33
             Width = 61
             Height = 17
+            Anchors = []
             Caption = 'Normal'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -1260,6 +1263,74 @@ object DDCSVitals: TDDCSVitals
             TabOrder = 2
             OnClick = ToggleCheckBoxes
           end
+          object ckDurationNo: TCheckBox
+            Tag = 8
+            Left = 139
+            Top = 58
+            Width = 66
+            Height = 17
+            Anchors = []
+            Caption = 'Abnormal'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 5
+            OnClick = ToggleCheckBoxes
+          end
+          object ckDurationYes: TCheckBox
+            Tag = 7
+            Left = 65
+            Top = 58
+            Width = 61
+            Height = 17
+            Anchors = []
+            Caption = 'Normal'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 4
+            OnClick = ToggleCheckBoxes
+          end
+          object ckMonthlyYes: TCheckBox
+            Tag = 11
+            Left = 65
+            Top = 9
+            Width = 47
+            Height = 17
+            Anchors = []
+            Caption = 'Yes'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            OnClick = ToggleCheckBoxes
+          end
+          object ckMonthlyNo: TCheckBox
+            Tag = 12
+            Left = 139
+            Top = 9
+            Width = 47
+            Height = 17
+            Anchors = []
+            Caption = 'No'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
+            OnClick = ToggleCheckBoxes
+          end
         end
       end
       object ckBirthPillsYes: TCheckBox
@@ -1268,6 +1339,7 @@ object DDCSVitals: TDDCSVitals
         Top = 97
         Width = 52
         Height = 17
+        Anchors = []
         Caption = 'Yes'
         TabOrder = 7
         OnClick = ToggleCheckBoxes
@@ -1278,6 +1350,7 @@ object DDCSVitals: TDDCSVitals
         Top = 97
         Width = 37
         Height = 17
+        Anchors = []
         Caption = 'No'
         TabOrder = 8
         OnClick = ToggleCheckBoxes
@@ -1287,6 +1360,7 @@ object DDCSVitals: TDDCSVitals
         Top = 35
         Width = 185
         Height = 21
+        Anchors = []
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -1303,6 +1377,7 @@ object DDCSVitals: TDDCSVitals
         Top = 295
         Width = 68
         Height = 22
+        Anchors = []
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11

@@ -83,7 +83,6 @@ object dlgWheezing: TdlgWheezing
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 5
-    ExplicitTop = 147
     object bbtnOK: TBitBtn
       Left = 108
       Top = 3
@@ -123,7 +122,6 @@ object dlgWheezing: TdlgWheezing
     Align = alCustom
     Anchors = [akLeft, akBottom]
     TabOrder = 4
-    ExplicitTop = 118
   end
   object leDur: TEdit
     Left = 66

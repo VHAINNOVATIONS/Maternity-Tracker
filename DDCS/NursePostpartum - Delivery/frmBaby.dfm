@@ -19,7 +19,7 @@ object frmInner: TfrmInner
   end
   object lbComplications: TLabel
     Left = 17
-    Top = 158
+    Top = 135
     Width = 142
     Height = 13
     Caption = 'Complications/Anomalies'
@@ -33,16 +33,16 @@ object frmInner: TfrmInner
   object edAPGARone: TEdit
     Left = 66
     Top = 77
-    Width = 54
+    Width = 53
     Height = 21
     NumbersOnly = True
     TabOrder = 1
   end
   object meComplications: TCaptionMemo
     Left = 17
-    Top = 176
+    Top = 152
     Width = 580
-    Height = 134
+    Height = 160
     Align = alCustom
     Anchors = [akLeft, akTop, akRight, akBottom]
     ScrollBars = ssVertical
@@ -51,7 +51,7 @@ object frmInner: TfrmInner
   end
   object ckNICU: TCheckBox
     Left = 17
-    Top = 118
+    Top = 109
     Width = 244
     Height = 17
     Caption = 'Neonatal Intensive Care Unit Admission'
@@ -61,12 +61,12 @@ object frmInner: TfrmInner
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 4
   end
   object edAPGARfive: TEdit
-    Left = 126
+    Left = 125
     Top = 77
-    Width = 54
+    Width = 53
     Height = 21
     NumbersOnly = True
     TabOrder = 2
@@ -93,12 +93,12 @@ object frmInner: TfrmInner
     TabStop = True
   end
   object Panel1: TPanel
-    Left = 267
-    Top = 12
+    Left = 206
+    Top = 75
     Width = 197
-    Height = 86
+    Height = 23
     BevelOuter = bvNone
-    TabOrder = 4
+    TabOrder = 3
     object lbOz: TLabel
       Left = 172
       Top = 60
@@ -111,6 +111,7 @@ object frmInner: TfrmInner
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
+      Visible = False
     end
     object lbLbs: TLabel
       Left = 172
@@ -124,9 +125,10 @@ object frmInner: TfrmInner
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
+      Visible = False
     end
     object lbTotalWeight: TLabel
-      Left = 5
+      Left = 3
       Top = 4
       Width = 74
       Height = 13
@@ -139,7 +141,7 @@ object frmInner: TfrmInner
       ParentFont = False
     end
     object lbG: TLabel
-      Left = 172
+      Left = 170
       Top = 4
       Width = 8
       Height = 13
@@ -160,6 +162,7 @@ object frmInner: TfrmInner
       MinValue = 0
       TabOrder = 1
       Value = 0
+      Visible = False
       OnChange = spnLbChange
     end
     object spnOz: TSpinEdit
@@ -171,10 +174,11 @@ object frmInner: TfrmInner
       MinValue = 0
       TabOrder = 2
       Value = 0
+      Visible = False
       OnChange = spnOzChange
     end
     object spnG: TSpinEdit
-      Left = 85
+      Left = 83
       Top = 1
       Width = 81
       Height = 22

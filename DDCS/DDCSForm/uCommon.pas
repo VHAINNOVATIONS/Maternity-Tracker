@@ -30,15 +30,9 @@ const
   MENU_CONTEXT = 'DSIO DDCS CONTEXT';
 
 type
-        TDisplayDialog = function(AOwner: PDDCSForm; Broker: PCPRSComBroker; dlgName: WideString;
-                                  DebugMode: Boolean): WideString; stdcall;
-      TRegisterDialogs = function: WideString; stdcall;
-  TGetDialogComponents = function(dlgName: WideString): WideString; stdcall;
-
   // Replacement of and Redirection to VAUtils ---------------------------------
     TShow508MessageIcon = (smiNone, smiInfo, smiWarning, smiError, smiQuestion);
-  TShow508MessageButton = (smbOK, smbOKCancel, smbAbortRetryCancel, smbYesNoCancel,
-                           smbYesNo, smbRetryCancel);
+  TShow508MessageButton = (smbOK, smbOKCancel, smbAbortRetryCancel, smbYesNoCancel, smbYesNo, smbRetryCancel);
   TShow508MessageResult = (smrOK, srmCancel, smrAbort, smrRetry, smrIgnore, smrYes, smrNo);
 
   function ShowMsg(const Msg, Caption: string; Icon: TShow508MessageIcon = smiNone;
@@ -51,14 +45,6 @@ type
   // ---------------------------------------------------------------------------
 
   procedure Fill(wControl: TWinControl; iIndex,iValue: string);
-  function LoadDialogs: THandle;
-
-var
-  DLLDialogList: TStringList;
-  DialogDLL: THandle;
-  RegisterDialogs: TRegisterDialogs;
-  GetDialogComponents: TGetDialogComponents;
-  DisplayDialog: TDisplayDialog;
 
 implementation
 
@@ -251,67 +237,6 @@ begin
       end;
     // -------------------------------------------------------------------------
   except
-  end;
-end;
-
-// Used by both the DDCSForm Component and directly from the configuration forms
-function LoadDialogs: THandle;
-var
-  Path,tmp,messtxt: string;
-  PathLen,I: Integer;
-begin
-  Result := 0;
-  DLLDialogList.Clear;
-
-  Path := ExtractFilePath(GetModuleName(HInstance));
-
-  if FileExists(Path + 'DDCSDialogs.dll') then
-    Path := Path + 'DDCSDialogs.dll'
-  else if DirectoryExists(Path + 'Extensions\') then
-    Path := Path + 'Extensions\DDCSDialogs.dll'
-  else
-  begin
-    Path := ExtractFileDir(GetModuleName(HInstance));
-    PathLen := Length(Path);
-    for I := PathLen downto 1 do
-    begin
-      if ((Path[I] = ':') or (Path[I] = '\')) then
-        Break
-      else
-        Delete(Path,I,Length(Path));
-    end;
-    Path := Path + 'Extensions\DDCSDialogs.dll';
-  end;
-
-  try
-    Result := SafeLoadLibrary(Path);
-
-    if Result <> 0 then
-    begin
-      RegisterDialogs := GetProcAddress(Result, 'RegisterDialogs');
-      DisplayDialog := GetProcAddress(Result, 'DisplayDialog');
-      GetDialogComponents := GetProcAddress(Result, 'GetDialogComponents');
-
-      DLLDialogList.Text := RegisterDialogs;
-    end else
-    begin
-      if RPCBrokerV <> nil then
-      begin
-        if UpdateContext(MENU_CONTEXT) then
-        begin
-          tmp := sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'DIALOGS REQUIRED']);
-
-          if ((tmp <> '') and (StrToBool(tmp))) then
-            messtxt := 'This interface requires the DDCSDialogs.dll to be present but was not found.';
-        end;
-      end;
-
-      ShowMsg(messtxt + 'Once the DDCSDialogs.dll is in place you can attempt to reload it via the "Load Dialogs" ' +
-                        'open accessed from the commend menu.', smiWarning, smbOK);
-    end;
-  except
-    on E: Exception do
-    ShowMsg(E.Message, smiError, smbOK);
   end;
 end;
 

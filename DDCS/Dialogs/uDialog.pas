@@ -79,10 +79,10 @@ Type
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
   public
     constructor Create; overload;
-    constructor Create(AOwner: PDDCSForm; Broker: PCPRSComBroker; DebugMode: Boolean; iIEN: string); overload;
+    constructor Create(AOwner: PDDCSForm; Broker: PCPRSComBroker; sIEN: string; DebugMode: Boolean); overload;
     destructor Destroy; override;
     procedure SayOnFocus(wControl: TWinControl; tSay: string);
-    procedure Save;
+    procedure BuildSaveList(var oText: TStringList);
     property DDCSForm: TDDCSForm read FDDCSForm;
     property TmpStrList: TStringList read FReturnList write FReturnList;
     property DebugMode: Boolean read FDebugMode write FDebugMode;
@@ -407,8 +407,7 @@ begin
   FReportCollection := TDDCSNoteCollection.Create(Self, TDDCSNoteItem);
 end;
 
-constructor TDDCSDialog.Create(AOwner: PDDCSForm; Broker: PCPRSComBroker;
-                               DebugMode: Boolean; iIEN: string);
+constructor TDDCSDialog.Create(AOwner: PDDCSForm; Broker: PCPRSComBroker; sIEN: string; DebugMode: Boolean);
 var
   sl,dl: TStringList;
   I,cI,cII,cIII: Integer;
@@ -454,7 +453,7 @@ var
   end;
 
 begin
-  inherited Create(AOwner^);
+  inherited Create(nil);
 
   FDDCSForm := AOwner^;
 
@@ -462,7 +461,7 @@ begin
 
   RPCBrokerV := Broker^;
   FDebugMode := DebugMode;
-  FIEN := iIEN;
+  FIEN := sIEN;
 
   FReturnList := TStringList.Create;
 
@@ -480,16 +479,15 @@ begin
   dl := TStringList.Create;
   try
     try
-      if (FIEN = '') and UpdateContext(MENU_CONTEXT) then
-        FIEN := sCallV('DSIO DDCS DIALOG LOOKUP', [ClassName]);
-
-      if StrToIntDef(FIEN, 0) < 1 then
-        Exit;
-
-      dl.Add(IEN + ';DSIO(19641.49,');
+//      if (FIEN = '') and UpdateContext(MENU_CONTEXT) then
+//        FIEN := sCallV('DSIO DDCS DIALOG LOOKUP', [ClassName]);
+//
+//      if StrToIntDef(FIEN, 0) < 1 then
+//        Exit;
 
       if UpdateContext(MENU_CONTEXT) then
       begin
+        dl.Add(IEN + ';DSIO(19641.49,');
         tCallV(sl, 'DSIO DDCS BUILD FORM', [dl, RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN]);
 
         for I := 0 to sl.Count - 1 do
@@ -504,11 +502,9 @@ begin
               Fill(wControl, Piece(sl[I],U,4), Pieces(sl[I],U,5,999));
           end;
         end;
-
         sl.Clear;
 
         tCallV(sl, 'DSIO DDCS BUILD FORM', [dl, RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN, '1']);
-
         if sl.Count > 1 then
         begin
           cI   := StrToIntDef(Piece(Piece(sl[0],':',1),',',1), 0);
@@ -560,16 +556,11 @@ end;
 
 destructor TDDCSDialog.Destroy;
 begin
-  if ModalResult <> mrCancel then
-    if not DebugMode then
-      Save;
-
   Screen.OnActiveControlChange := nil;
 
-  FReturnList.Free;
-
-  FConfiguration.Free;
-  FReportCollection.Free;
+  FreeAndNil(FReturnList);
+  FreeAndNil(FConfiguration);
+  FreeAndNil(FReportCollection);
 
   inherited;
 end;
@@ -583,47 +574,30 @@ begin
     nItem.SayOnFocus := tSay;
 end;
 
-procedure TDDCSDialog.Save;
+procedure TDDCSDialog.BuildSaveList(var oText: TStringList);
 var
-  sl,cl: TStringList;
+  sl: TStringList;
   I: Integer;
   nItem: TDDCSNoteItem;
 begin
-  if (StrToIntDef(IEN, 0) < 1) or (RPCBrokerV = nil) then
-    Exit;
+  oText.Clear;
 
   sl := TStringList.Create;
-  cl := TStringList.Create;
   try
-    for I := 0 to FReportCollection.Count - 1 do
-    begin
-      nItem := FReportCollection.Items[I];
-
-      // Data format -----------------------------------------------------------
-      //   CONTROL^(INDEXED^VALUE)
-
-      if not nItem.DoNotSave then
-      begin
-        nItem.GetValueSave(cl);
-        if cl.Count > 0 then
-          sl.AddStrings(cl);
-      end;
-    end;
-    cl.Clear;
-
-    if sl.Count > 0 then
     try
-      if UpdateContext(MENU_CONTEXT) then
+      for I := 0 to FReportCollection.Count - 1 do
       begin
-        CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN,
-                                  FIEN + ';DSIO(19641.49,', sl]);
+        nItem := FReportCollection.Items[I];
 
-        if Configuration.Count > 0 then
+        // Data format ---------------------------------------------------------
+        //   CONTROL^(INDEXED^VALUE)
+
+        if not nItem.DoNotSave then
         begin
-          Configuration.GetCollectiveText(cl);
-          if cl.Count > 0 then
-            CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN,
-                                      FIEN + ';DSIO(19641.49,', cl, 'C']);
+          nItem.GetValueSave(sl);
+          if sl.Count > 0 then
+            oText.AddStrings(sl);
+          sl.Clear;
         end;
       end;
     except
@@ -631,7 +605,6 @@ begin
       ShowMsg(E.Message, smiError, smbOK);
     end;
   finally
-    cl.Free;
     sl.Free;
   end;
 end;

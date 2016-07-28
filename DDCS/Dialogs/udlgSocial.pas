@@ -377,7 +377,7 @@ begin
       if pgBody.Pages[0].Controls[I].Tag = ick.Tag then
       begin
         ce := TEdit(pgBody.Pages[0].Controls[I]);
-        if ick.Caption = 'No' then
+        if (ick.Caption = 'No') or (not ick.Checked) then
         begin
           ce.Clear;
           ce.Enabled := False;
@@ -388,7 +388,7 @@ begin
       if pgBody.Pages[0].Controls[I].Tag = ick.Tag then
       begin
         se := TSpinEdit(pgBody.Pages[0].Controls[I]);
-        if ick.Caption = 'No' then
+        if (ick.Caption = 'No') or (not ick.Checked) then
         begin
           se.Value := 0;
           se.Enabled := False;

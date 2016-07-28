@@ -82,7 +82,7 @@ object dlgInfectHist: TdlgInfectHist
       Left = 11
       Top = 9
       Width = 226
-      Height = 26
+      Height = 28
       Caption = 'Live with someone with Tuberculosis or exposed to Tuberculosis?'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

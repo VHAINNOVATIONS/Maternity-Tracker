@@ -114,6 +114,7 @@ type
     procedure ckPlannedAnesthesiaClick(Sender: TObject);
     procedure ShowOnNote(Sender: TObject);
   private
+    FActive: Boolean;
     problemck: Boolean;
     problems: array of Boolean;
     oSummary: string;
@@ -132,6 +133,8 @@ uses
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
+  FActive := True;
+
   oSummary := lbSummary.Caption;
 
   RadioGroup3.OnClick := RadioGroup3Click;
@@ -314,7 +317,7 @@ end;
 
 procedure TForm1.ckAllergyLatexClick(Sender: TObject);
 begin
-  if not ckAllergyLatex.Checked then
+  if (not ckAllergyLatex.Checked) or (not FActive) then
     Exit;
 
   if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.Patient.Name +
@@ -365,7 +368,7 @@ end;
 
 procedure TForm1.ckBloodTransfusionClick(Sender: TObject);
 begin
-  if not ckBloodTransfusion.Checked then
+  if (not ckBloodTransfusion.Checked) or (not FActive) then
     Exit;
 
   if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.Patient.Name +
@@ -423,6 +426,9 @@ begin
 
     Exit;
   end;
+
+  if not FActive then
+    Exit;
 
   if ShowMsg('By checking this box, I certify that I have asked ' + RPCBrokerV.Patient.Name +
              ' and verified type of anesthesia planned with delivery.', smiWarning, smbYesNo) <> smrYes then

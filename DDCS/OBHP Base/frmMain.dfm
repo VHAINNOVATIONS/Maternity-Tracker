@@ -121,8 +121,8 @@ object Form1: TForm1
       item
         Order = 5
         IdentifyingName = 
-          'Additional Complints and or History of Present Illness Section N' +
-          'ote Text'
+          'Additional Complaints and or History of Present Illness Section ' +
+          'Note Text'
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -272,7 +272,7 @@ object Form1: TForm1
       end
       item
         Order = 19
-        IdentifyingName = 'Review of Symptoms since Last Menstrual Period'
+        IdentifyingName = 'Review of Systems since Last Menstrual Period'
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -283,7 +283,7 @@ object Form1: TForm1
       end
       item
         Order = 20
-        IdentifyingName = 'Review of Symptoms since Last Menstrual Period Section Note Text'
+        IdentifyingName = 'Review of Systems since Last Menstrual Period Section Note Text'
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
@@ -528,6 +528,10 @@ object Form1: TForm1
     end
     object oPage2: TTabSheet
       Caption = 'Vitals'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DDCSVitals: TDDCSVitals
         Left = 0
         Top = 0
@@ -541,6 +545,10 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'History of Present Illness'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbAdditionalComplaints: TLabel
         Left = 19
         Top = 30
@@ -870,6 +878,10 @@ object Form1: TForm1
     end
     object oPage5: TTabSheet
       Caption = 'History'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbHistorySection: TLabel
         Left = 272
         Top = 66
@@ -976,7 +988,11 @@ object Form1: TForm1
       end
     end
     object oPage6: TTabSheet
-      Caption = 'Review of Symptoms'
+      Caption = 'Review of Systems'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -998,7 +1014,7 @@ object Form1: TForm1
         Top = 30
         Width = 310
         Height = 25
-        Caption = 'Review of Symptoms since Last Menstrual Period'
+        Caption = 'Review of Systems since Last Menstrual Period'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -1053,6 +1069,10 @@ object Form1: TForm1
     end
     object oPage7: TTabSheet
       Caption = 'Physical Exam'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -1114,6 +1134,10 @@ object Form1: TForm1
     end
     object oPage8: TTabSheet
       Caption = 'Pelvic Exam'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -1189,6 +1213,10 @@ object Form1: TForm1
     end
     object oPage9: TTabSheet
       Caption = 'Plan'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         734
         458)

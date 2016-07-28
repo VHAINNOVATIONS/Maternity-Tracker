@@ -223,7 +223,7 @@ begin
         if pgBody.Pages[I].Controls[J].Tag = ick.Tag then
         begin
           ce := TEdit(pgBody.Pages[I].Controls[J]);
-          if ick.Caption = 'No' then
+          if (ick.Caption = 'No') or (not ick.Checked) then
           begin
             ce.Clear;
             ce.Enabled := False;

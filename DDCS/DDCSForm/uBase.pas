@@ -24,7 +24,8 @@ uses
   System.TypInfo, System.Classes, System.Actions, System.Win.ComObj,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, Vcl.Themes, Vcl.Styles, Vcl.Consts,
-  Vcl.CheckLst, Vcl.ActnList, FSAPILib_TLB, uReportItems, frmVitals;
+  Vcl.CheckLst, Vcl.ActnList, FSAPILib_TLB,
+  uReportItems, frmVitals, uExtndComBroker;
 
 const
   WM_SHOW_SPLASH = WM_USER + 270;
@@ -79,19 +80,18 @@ type
     procedure DrawTab(Canvas: TCanvas; Index: Integer); override;
   end;
 
+  PDDCSForm = ^TDDCSForm;
+
+      TRegisterDialogs = procedure(out Return: WideString); stdcall;
+  TGetDialogComponents = procedure(dlgName: WideString; out Return: WideString); stdcall;
+        TDisplayDialog = function(AOwner: PDDCSForm; Broker: PCPRSComBroker; dlgName: WideString; DebugMode: Boolean;
+                                  out rSave,rConfig,rText: WideString): WordBool; stdcall;
+
   TpbSaveEvent   = procedure(Sender: TObject; AutoSave: Boolean) of object;
   TpbFinishEvent = procedure(Sender: TObject; pbFinish: Boolean) of object;
 
   TDDCSForm = class(TPageControl)
   private
-    // Components --------------------------------------------------------------
-    FControlPanel: TDDCSHeaderControl;
-    FNavControl: TActionList;
-    FAutoSaveTimer: TTimer;
-    FVitalsPage: TTabSheet;
-    FReportCollection: TDDCSNoteCollection;
-    FScreenReader: TScreenReader;
-    // -------------------------------------------------------------------------
     FDisableSplash: Boolean;
     Tasks: TStringList;    //array of autosave tasks to be canceled onClose of the DDCS Form
     FMultiInterface: Boolean;
@@ -99,6 +99,13 @@ type
     FValidated: Boolean;
     FTabSwitch: Boolean;
     TabSeen: array of Boolean;
+    // Components --------------------------------------------------------------
+    FControlPanel: TDDCSHeaderControl;
+    FNavControl: TActionList;
+    FAutoSaveTimer: TTimer;
+    FVitalsPage: TTabSheet;
+    FReportCollection: TDDCSNoteCollection;
+    FScreenReader: TScreenReader;
     // Events ------------------------------------------------------------------
     FOnpbSave: TpbSaveEvent;
     FOnpbFinish: TpbFinishEvent;
@@ -106,6 +113,12 @@ type
     FOnpbRestore: TNotifyEvent;
     FOnpbOverrideNote: TNotifyEvent;
     FSaveShow: TNotifyEvent;
+    // Dialogs -----------------------------------------------------------------
+    FDialogDLL: THandle;
+    FRegisterDialogs: TRegisterDialogs;
+    FDLLDialogList: TStringList;
+    // Broker ------------------------------------------------------------------
+    FBroker: TCPRSComBroker;
     procedure WMGetMSAAObject(var Message: TMessage); message WM_GETOBJECT;
     procedure WMSetFocus(var Message: TWMSetFocus); message WM_SETFOCUS;
     procedure WMShowSplash(var Message: TMessage); message WM_SHOW_SPLASH;
@@ -115,10 +128,11 @@ type
     procedure SetNoteCollection(const Value: TDDCSNoteCollection);
     // Timer
     procedure OnAutoSaveTimer(Sender: TObject);
-    // TCustomListBox   (TListBox and TCheckListBox)
+    // Helpers to Display Dialogs ----------------------------------------------
+    //    TCustomListBox   (TListBox and TCheckListBox)
     procedure ListBoxGetDialogDBClick(Sender: TObject);
     procedure ListBoxGetDialogKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    // TButton
+    //    TButton
     procedure ButtonGetDialogClick(Sender: TObject);
     // TForm -------------------------------------------------------------------
     procedure FormOverrideShow(Sender: TObject);
@@ -131,6 +145,8 @@ type
     procedure CtrlShiftTab(Sender: TObject);
     // Properties --------------------------------------------------------------
     function GetVitalsForm: TDDCSVitals;
+    // Helpers to Display Dialogs ----------------------------------------------
+    function ShowDialogandReturn(sBuild: string; var sl: TStringList): Boolean;
   protected
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
     procedure SetUpControl(iPage: Integer; wControl: TWinControl);
@@ -147,6 +163,9 @@ type
     procedure GoToPageLastTabItem;
     function Preview(bFinishBtn: Boolean): Boolean;
   public
+    // Dialogs -----------------------------------------------------------------
+    DisplayDialog: TDisplayDialog;
+    GetDialogComponents: TGetDialogComponents;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure Change; override;
@@ -159,12 +178,17 @@ type
     procedure GetPatientAllergies(var oText: TStringList);
     procedure GetPatientActiveProblems(var oText: TStringList);
     procedure GetPatientActiveMedications(var oText: TStringList);
+    procedure LoadDialogs;
     function HasSecurityKey(const KeyName: string): Boolean;
     property MultiInterface: Boolean read FMultiInterface write FMultiInterface;
     property TmpStrList: TStringList read FReturnList write FReturnList;
     property Validated: Boolean read FValidated write FValidated default False;
     property VitalsControl: TDDCSVitals read GetVitalsForm;
     property ScreenReader: TScreenReader read FScreenReader;
+    // Dialogs -----------------------------------------------------------------
+    property DLLDialogList: TStringList read FDLLDialogList;
+    // Broker ------------------------------------------------------------------
+    property Broker: TCPRSComBroker read FBroker write FBroker;
   published
     property VitalsPage: TTabSheet read FVitalsPage write SetVitals;
     property AutoTimer: TTimer read FAutoSaveTimer write FAutoSaveTimer;
@@ -176,14 +200,13 @@ type
     property OnRestore: TNotifyEvent read FOnpbRestore write FOnpbRestore;
     property OnOverrideNote: TNotifyEvent read FOnpbOverrideNote write FOnpbOverrideNote;
   end;
-  PDDCSForm = ^TDDCSForm;
 
   procedure Register;
 
 implementation
 
 uses
-  frmSplash, frmReview, frmConfiguration, frmAbout, uCommon, uExtndComBroker;
+  frmSplash, frmReview, frmConfiguration, frmAbout, uCommon;
 
 procedure Register;
 begin
@@ -359,9 +382,8 @@ end;
 
 procedure TDDCSHeaderControl.FcLoadDialogsClick(Sender: TObject);
 begin
-  DialogDLL := LoadDialogs;
-
-  if DialogDLL <> 0 then
+  FDDCSForm.LoadDialogs;
+  if FDDCSForm.FDialogDLL <> 0 then
     ShowMsg('Successfully loaded the shared dialogs.');
 end;
 
@@ -840,6 +862,42 @@ end;
 
 {$REGION 'Helpers'}
 
+function TDDCSForm.ShowDialogandReturn(sBuild: string; var sl: TStringList): Boolean;
+var
+  wSave,wConfig,wText: WideString;
+begin
+  Result := False;
+  sl.Clear;
+  try
+    if Assigned(DisplayDialog) then
+      if DisplayDialog(@Self, @RPCBrokerV, sBuild, False, wSave, wConfig, wText) then
+      begin
+        Result := True;
+        if UpdateContext(MENU_CONTEXT) then
+        begin
+          if wSave <> '' then
+          begin
+            sl.Text := wSave;
+            CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN,
+                                      Piece(sBuild,'|',1) + ';DSIO(19641.49,', sl]);
+          end;
+          sl.Clear;
+          if wConfig <> '' then
+          begin
+            sl.Text := wConfig;
+            CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN,
+                                       Piece(sBuild,'|',1) + ';DSIO(19641.49,', sl, 'C']);
+          end;
+          sl.Clear;
+        end;
+        sl.Text := wText;
+      end;
+  except
+    on E: Exception do
+    ShowMessage(E.Message);
+  end;
+end;
+
 procedure TDDCSForm.ListBoxGetDialogDBClick(Sender: TObject);
 var
   ls: TCustomListBox;
@@ -848,7 +906,7 @@ var
 begin
   inherited;
 
-  if DialogDLL = 0 then
+  if FDialogDLL = 0 then
     Exit;
   if not Sender.InheritsFrom(TCustomListBox) then
     Exit;
@@ -865,15 +923,12 @@ begin
 
   sl := TStringList.Create;
   try
-    try
-      sl.Text := DisplayDialog(@Self, @RPCBrokerV, nItem.Configuration[ls.ItemIndex], False);
-
-      if ((Sender.InheritsFrom(TCheckListBox)) and (sl.Count > 0)) then
+    if ShowDialogandReturn(nItem.Configuration[ls.ItemIndex], sl) then
+    begin
+      if Sender.InheritsFrom(TCheckListBox) then
         TCheckListBox(Sender).Checked[ls.ItemIndex] := True;
-
       if nItem.DialogReturn <> nil then
         TCustomMemo(nItem.DialogReturn).Lines.AddStrings(sl);
-    except
     end;
   finally
     sl.Free;
@@ -892,7 +947,7 @@ begin
   if ((Key <> VK_SPACE) and (Key <> VK_RETURN)) then
     Exit;
 
-  if DialogDLL = 0 then
+  if FDialogDLL = 0 then
     Exit;
   if not Sender.InheritsFrom(TCustomListBox) then
     Exit;
@@ -926,15 +981,12 @@ begin
 
   sl := TStringList.Create;
   try
-    try
-      sl.Text := DisplayDialog(@Self, @RPCBrokerV, nItem.Configuration[ls.ItemIndex], False);
-
-      if ((Sender.InheritsFrom(TCheckListBox)) and (sl.Count > 0)) then
+    if ShowDialogandReturn(nItem.Configuration[ls.ItemIndex], sl) then
+    begin
+      if Sender.InheritsFrom(TCheckListBox) then
         TCheckListBox(Sender).Checked[ls.ItemIndex] := True;
-
       if nItem.DialogReturn <> nil then
         TCustomMemo(nItem.DialogReturn).Lines.AddStrings(sl);
-    except
     end;
   finally
     sl.Free;
@@ -948,7 +1000,7 @@ var
 begin
   inherited;
 
-  if DialogDLL = 0 then
+  if FDialogDLL = 0 then
     Exit;
   if not Sender.InheritsFrom(TButton) then
     Exit;
@@ -962,13 +1014,9 @@ begin
 
   sl := TStringList.Create;
   try
-    try
-      sl.Text := DisplayDialog(@Self, @RPCBrokerV, nItem.Configuration[0], False);
-
+    if ShowDialogandReturn(nItem.Configuration[0], sl) then
       if nItem.DialogReturn <> nil then
         TCustomMemo(nItem.DialogReturn).Lines.AddStrings(sl);
-    except
-    end;
   finally
     sl.Free;
   end;
@@ -1291,14 +1339,14 @@ begin
     if (Result and (DDCSReview <> nil)) then
     begin
       DDCSReview.btnAccept.Enabled := bFinishBtn;
-      DDCSReview.meNote.Lines.AddStrings(FReturnList);
+      DDCSReview.meNote.Lines.Assign(FReturnList);
 
       DDCSReview.ShowModal;
       if DDCSReview.ModalResult = mrOK then
       begin
         Result := True;
         FReturnList.Clear;
-        FReturnList.AddStrings(DDCSReview.meNote.Lines);
+        FReturnList.Assign(DDCSReview.meNote.Lines);
       end else
         Result := False;
     end;
@@ -1350,15 +1398,19 @@ begin
   TForm(AOwner).OnCloseQuery := FormCloseQuery;
   TForm(AOwner).OnClose := FormClose;
 
-  FNavControl := TActionList.Create(AOwner);
-  nAct := TAction.Create(FNavControl);
-  nAct.ActionList := FNavControl;
-  nAct.ShortCut := ShortCut(VK_TAB, [ssCtrl]);
-  nAct.OnExecute := CtrlTab;
-  nAct := TAction.Create(FNavControl);
-  nAct.ActionList := FNavControl;
-  nAct.ShortCut := ShortCut(VK_TAB, [ssShift, ssCtrl]);
-  nAct.OnExecute := CtrlShiftTab;
+// *****************************************************************************
+//  Now that the program is owned by the host (CPRS) this causes errors
+//  -------------------------------------------------------------------
+//  FNavControl := TActionList.Create(AOwner);
+//  nAct := TAction.Create(FNavControl);
+//  nAct.ActionList := FNavControl;
+//  nAct.ShortCut := ShortCut(VK_TAB, [ssCtrl]);
+//  nAct.OnExecute := CtrlTab;
+//  nAct := TAction.Create(FNavControl);
+//  nAct.ActionList := FNavControl;
+//  nAct.ShortCut := ShortCut(VK_TAB, [ssShift, ssCtrl]);
+//  nAct.OnExecute := CtrlShiftTab;
+// *****************************************************************************
 
   FScreenReader := TScreenReader.Create;
 
@@ -1367,11 +1419,11 @@ begin
   FAutoSaveTimer.Interval := 600000;
   FAutoSaveTimer.OnTimer := OnAutoSaveTimer;
 
-  DLLDialogList := TStringList.Create;
+  FDLLDialogList := TStringList.Create;
   Tasks := TStringList.Create;
   FReturnList := TStringList.Create;
 
-  DialogDLL := LoadDialogs;
+  LoadDialogs;
 end;
 
 procedure TDDCSForm.FormOverrideShow(Sender: TObject);
@@ -1626,19 +1678,25 @@ begin
   if not (csDesigning in ComponentState) then
     Screen.OnActiveControlChange := nil;
 
-  FReportCollection.Free;
+  FreeAndNil(FReportCollection);
+  FreeAndNil(FScreenReader);
+  FreeAndNil(FDLLDialogList);
+  FreeAndNil(Tasks);
+  FreeAndNil(FReturnList);
+
   SetLength(TabSeen, 0);
 
-  if Assigned(FScreenReader) then
-    FScreenReader.Free;
-  if Assigned(DLLDialogList) then
-    DLLDialogList.Free;
-  if Assigned(Tasks) then
-    Tasks.Free;
-  if Assigned(FReturnList) then
-    FReturnList.Free;
-  if DialogDLL <> 0 then
-    FreeLibrary(DialogDLL);
+//  if Assigned(FScreenReader) then
+//    FScreenReader.Free;
+//  if Assigned(FDLLDialogList) then
+//    FDLLDialogList.Free;
+//  if Assigned(Tasks) then
+//    Tasks.Free;
+//  if Assigned(FReturnList) then
+//    FReturnList.Free;
+
+  if FDialogDLL <> 0 then
+    FreeLibrary(FDialogDLL);
 
   inherited;
 end;
@@ -1864,6 +1922,87 @@ begin
         Result := TDDCSVitals(FVitalsPage.Controls[I]);
         Break;
       end;
+end;
+
+procedure TDDCSForm.LoadDialogs;
+var
+  sPathToDLLs: string;
+  I: Integer;
+  wStr: WideString;
+
+  procedure ReportDLLnotFound;
+  var
+    sMsg,sReturn: string;
+  begin
+    sMsg := 'Once the DDCSDialogs.dll is in place you can attempt to reload it via the "Load Dialogs" ' +
+            'option accessed from the commend menu.';
+
+    if RPCBrokerV <> nil then
+      if UpdateContext(MENU_CONTEXT) then
+      begin
+        sReturn := sCallV('DSIO DDCS CONFIGURATION', [RPCBrokerV.DDCSInterface, 'DIALOGS REQUIRED']);
+        if sReturn = '1' then
+          ShowMsg('This interface requires the DDCSDialogs.dll to be present but was not found.' + #13#10 + sMsg)
+        else
+          ShowMsg(sMsg);
+      end;
+  end;
+
+begin
+  FDLLDialogList.Clear;
+
+  if FDialogDLL <> 0 then
+    FreeLibrary(FDialogDLL);
+
+  sPathToDLLs := ExtractFilePath(GetModuleName(HInstance));
+
+  if FileExists(sPathToDLLs + 'DDCSDialogs.dll') then
+    sPathToDLLs := sPathToDLLs + 'DDCSDialogs.dll'
+  else if DirectoryExists(sPathToDLLs + 'Extensions\') then
+  begin
+    if FileExists(sPathToDLLs + 'Extensions\DDCSDialogs.dll') then
+      sPathToDLLs := sPathToDLLs + 'Extensions\DDCSDialogs.dll'
+    else sPathToDLLs := '';
+  end else
+  begin
+    sPathToDLLs := ExtractFileDir(GetModuleName(HInstance));
+
+    for I := Length(sPathToDLLs) downto 1 do
+    begin
+      if ((sPathToDLLs[I] = ':') or (sPathToDLLs[I] = '\')) then
+        Break
+      else
+        Delete(sPathToDLLs, I, Length(sPathToDLLs));
+    end;
+
+    if FileExists(sPathToDLLs + 'Extensions\DDCSDialogs.dll') then
+      sPathToDLLs := sPathToDLLs + 'Extensions\DDCSDialogs.dll'
+    else
+      sPathToDLLs := '';
+  end;
+
+  if sPathToDLLs = '' then
+  begin
+    ReportDLLnotFound;
+    Exit;
+  end;
+
+  try
+    FDialogDLL := SafeLoadLibrary(sPathToDLLs);
+    if FDialogDLL <> 0 then
+    begin
+      FRegisterDialogs    := GetProcAddress(FDialogDLL, 'RegisterDialogs');
+      GetDialogComponents := GetProcAddress(FDialogDLL, 'GetDialogComponents');
+      DisplayDialog       := GetProcAddress(FDialogDLL, 'DisplayDialog');
+
+      FRegisterDialogs(wStr);
+      FDLLDialogList.Text := wStr;
+    end else
+      ReportDLLnotFound;
+  except
+    on E: Exception do
+    ShowMsg(E.Message, smiError, smbOK);
+  end;
 end;
 
 function TDDCSForm.HasSecurityKey(const KeyName: string): Boolean;

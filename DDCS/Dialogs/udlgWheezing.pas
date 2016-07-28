@@ -43,7 +43,6 @@ type
     procedure checkboxClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    hdiff: Integer;
   public
   end;
 
@@ -56,8 +55,7 @@ implementation
 
 procedure TdlgWheezing.FormCreate(Sender: TObject);
 begin
-  hdiff := leDur.Height + 10;
-  Height := Height - hdiff;
+  Height := Height - 32;
 
   SayOnFocus(cbSOBY, 'Shortness of breath?');
   SayOnFocus(cbSOBN, 'Shortness of breath?');
@@ -93,7 +91,7 @@ begin
       cbSOBN.Checked := False;
       cbSOBN.OnClick := checkboxClick;
 
-      Height := Height + hdiff;
+      Height := Height + 32;
 
       lbDur.Visible := True;
       leDur.Visible := True;
@@ -105,7 +103,7 @@ begin
         leDur.Clear;
         leDur.Visible := False;
 
-        Height := Height - hdiff;
+        Height := Height - 32;
       end;
     end;
   end else if (Sender as TCheckBox).Tag = 2 then
@@ -120,7 +118,7 @@ begin
       leDur.Clear;
       leDur.Visible := False;
 
-      Height := Height - hdiff;
+      Height := Height - 32;
     end;
   end;
 end;

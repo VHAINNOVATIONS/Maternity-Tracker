@@ -341,7 +341,7 @@ object dlgOBSpread: TdlgOBSpread
     Height = 510
     ParentCustomHint = False
     Align = alClient
-    ColCount = 19
+    ColCount = 20
     DefaultColWidth = 180
     DefaultRowHeight = 21
     DoubleBuffered = False
@@ -362,6 +362,7 @@ object dlgOBSpread: TdlgOBSpread
     OnVerticalScroll = sgStandardVerticalScroll
     OnHorizontalScroll = sgStandardHorizontalScroll
     ColWidths = (
+      180
       180
       180
       180

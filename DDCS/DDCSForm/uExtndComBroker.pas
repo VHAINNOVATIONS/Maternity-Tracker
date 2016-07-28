@@ -129,16 +129,26 @@ uses
 
 { Calls the broker and returns no value }
 procedure CallV(const RPCName: string; const AParam: array of const);
+var
+  oldCursor: TCursor;
 begin
   if not IsConnected then
     Exit;
 
+  oldCursor := Screen.Cursor;
+  Screen.Cursor := crHourGlass;
+
   RPCBrokerV.SetParams(RPCName, AParam);
   RPCBrokerV.BrokerCall;
+  RPCBrokerV.FResults.Clear;
+
+  Screen.Cursor := oldCursor;
 end;
 
 { Calls the broker and returns TStrings data }
 procedure tCallV(ReturnData: TStrings; const RPCName: string; const AParam: array of const);
+var
+  oldCursor: TCursor;
 begin
   if not IsConnected then
     Exit;
@@ -146,25 +156,40 @@ begin
   if ReturnData = nil then
     raise Exception.Create('TStrings not created');
 
+  oldCursor := Screen.Cursor;
+  Screen.Cursor := crHourGlass;
+
   RPCBrokerV.SetParams(RPCName, AParam);
   RPCBrokerV.BrokerCall;
   FastAssign(RPCBrokerV.Results, ReturnData);
+  RPCBrokerV.FResults.Clear;
+
+  Screen.Cursor := oldCursor;
 end;
 
 { Calls the broker and returns a string value }
 function sCallV(const RPCName: string; const AParam: array of const): string;
+var
+  oldCursor: TCursor;
 begin
   Result := '';
 
   if not IsConnected then
     Exit;
 
+  oldCursor := Screen.Cursor;
+  Screen.Cursor := crHourGlass;
+
   RPCBrokerV.SetParams(RPCName, AParam);
   RPCBrokerV.BrokerCall;
 
   if RPCBrokerV.Results.Count > 0 then
-    Result := RPCBrokerV.Results[0] else
-  Result := '';
+    Result := RPCBrokerV.Results[0]
+  else
+    Result := '';
+  RPCBrokerV.FResults.Clear;
+
+  Screen.Cursor := oldCursor;
 end;
 
 function IsConnected: Boolean;
@@ -179,8 +204,8 @@ end;
 // UpdateContext calls out to AuthorizedOption but both are listed as to override
 // ORNet when this unit is in the uses clause following ORNet.
 
-  // Cannot use the same context as the host application (CPRS)
-  // thus you cannot use "OR CPRS GUI CHART" for VA VistA
+// Cannot use the same context as the host application (CPRS)
+// thus you cannot use "OR CPRS GUI CHART" for VA VistA
 
 function AuthorizedOption(const OptionName: string): Boolean;
 begin

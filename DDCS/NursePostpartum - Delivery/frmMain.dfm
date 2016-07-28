@@ -123,10 +123,6 @@ object Form1: TForm1
     OnOverrideNote = Finished
     object oPage1: TTabSheet
       Caption = 'Delivery Details'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         398)
@@ -422,10 +418,6 @@ object Form1: TForm1
     end
     object oPage2: TTabSheet
       Caption = 'Neonatal Information'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object pnlBirthCount: TPanel
         Left = 0
         Top = 0
@@ -480,10 +472,6 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'Delivery Method'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object gbVaginal: TGroupBox
         Left = 14
         Top = 19
@@ -920,10 +908,6 @@ object Form1: TForm1
     object oPage4: TTabSheet
       Caption = 'Data Control'
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lstDelivery: TListView
         Left = 0
         Top = 0

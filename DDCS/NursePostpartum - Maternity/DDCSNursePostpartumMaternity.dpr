@@ -25,20 +25,27 @@ uses
 
 {$R *.res}
 
-function Launch(Broker: PCPRSComBroker): WideString; stdcall;
+function Launch(Broker: PCPRSComBroker; out Return: WideString): WordBool; stdcall;
+var
+  oldHandle: HWND;
 begin
-  Result := '';
-
+  Result := False;
   RPCBrokerV := Broker^;
 
+  oldHandle := Application.Handle;
+  Application.Handle := GetActiveWindow;
   Form1 := TForm1.Create(nil);
   try
     RPCBrokerV.DisabledWindow := DisableTaskWindows(0);
     Form1.ShowModal;
     if Form1.DDCSForm1.Validated then
-      Result := Form1.DDCSForm1.TmpStrList.Text;
+    begin
+      Result := True;
+      Return := Form1.DDCSForm1.TmpStrList.Text;
+    end;
   finally
     Form1.Free;
+    Application.Handle := oldHandle;
   end;
 end;
 

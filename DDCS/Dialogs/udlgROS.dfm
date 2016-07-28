@@ -764,7 +764,7 @@ object dlgROS: TdlgROS
       Tag = 9
       Left = 12
       Top = 213
-      Width = 213
+      Width = 208
       Height = 26
       Caption = 'Genitourinary Symptoms of Burning, Pain, or Blood'
       Font.Charset = DEFAULT_CHARSET

@@ -19,11 +19,6 @@ unit udlgOBSpread;
    v2.0.0.0
 }
 
-
-// When the exam date is added it must be compared and rejected if the date already exists
-// When the exam date is added it must be sorted amoung the existing rows
-
-
 interface
 
 uses
@@ -135,17 +130,18 @@ begin
   FObjectList.AddObject( '5', cbUrineProtein);
   FObjectList.AddObject( '6', cbUrineGlucose);
   FObjectList.AddObject( '7', cbEdema);
-  FObjectList.AddObject( '8', spnFetalHeart);
-  FObjectList.AddObject( '9', cbPresentation);
-  FObjectList.AddObject('10', cbFetalAct);
-  // Preterm Labor Symptoms   11
-  FObjectList.AddObject('12', spnDilation);
-  FObjectList.AddObject('13', spnEffacement);
-  FObjectList.AddObject('14', spnLong);
-  FObjectList.AddObject('15', spnSystolic);
-  FObjectList.AddObject('16', spnDiastolic);
-  FObjectList.AddObject('17', spnPain);
-  // Cervical Exam            18
+  // Fetal Weight             8
+  FObjectList.AddObject( '9', spnFetalHeart);
+  FObjectList.AddObject('10', cbPresentation);
+  FObjectList.AddObject('11', cbFetalAct);
+  // Preterm Labor Symptoms   12
+  FObjectList.AddObject('13', spnDilation);
+  FObjectList.AddObject('14', spnEffacement);
+  FObjectList.AddObject('15', spnLong);
+  FObjectList.AddObject('16', spnSystolic);
+  FObjectList.AddObject('17', spnDiastolic);
+  FObjectList.AddObject('18', spnPain);
+  // Cervical Exam            19
 
   sgStandard.Cells[0,0]  := 'Exam Date';
   sgStandard.Cells[1,0]  := 'Gestational Age (wks)';
@@ -155,17 +151,18 @@ begin
   sgStandard.Cells[5,0]  := 'Albumin';
   sgStandard.Cells[6,0]  := 'Glucose';
   sgStandard.Cells[7,0]  := 'Edema';
-  sgStandard.Cells[8,0]  := 'Fetal Heart(s)';              // this will create additional columns of Fetal Heart Rate (min)
-  sgStandard.Cells[9,0]  := 'Fetal Presentation';
-  sgStandard.Cells[10,0] := 'Fetal Movement';
-  sgStandard.Cells[11,0] := 'Preterm Labor Symptoms';
-  sgStandard.Cells[12,0] := 'Dilation (cm)';
-  sgStandard.Cells[13,0] := 'Effacement (%)';
-  sgStandard.Cells[14,0] := 'Long Axis (cm)';
-  sgStandard.Cells[15,0] := 'Intravascular Systolic (mmHg)';
-  sgStandard.Cells[16,0] := 'Intravascular Diastolic (mmHg)';
-  sgStandard.Cells[17,0] := 'Pain Severity';
-  sgStandard.Cells[18,0] := 'Cervical Exam';
+  sgStandard.Cells[8,0]  := 'Fetal Weight';
+  sgStandard.Cells[9,0]  := 'Fetal Heart(s)';              // this will create additional columns of Fetal Heart Rate (min)
+  sgStandard.Cells[10,0] := 'Fetal Presentation';
+  sgStandard.Cells[11,0] := 'Fetal Movement';
+  sgStandard.Cells[12,0] := 'Preterm Labor Symptoms';
+  sgStandard.Cells[13,0] := 'Dilation (cm)';
+  sgStandard.Cells[14,0] := 'Effacement (%)';
+  sgStandard.Cells[15,0] := 'Long Axis (cm)';
+  sgStandard.Cells[16,0] := 'Intravascular Systolic (mmHg)';
+  sgStandard.Cells[17,0] := 'Intravascular Diastolic (mmHg)';
+  sgStandard.Cells[18,0] := 'Pain Severity';
+  sgStandard.Cells[19,0] := 'Cervical Exam';
 
   // 508
   SayOnFocus(        dtExam, 'Exam Date');
@@ -193,9 +190,9 @@ var
 begin
   BuildFMDateList;
 
-  if sgStandard.ColCount > 19 then
-    for I := 19 to sgStandard.ColCount - 1 do
-      sgStandard.Cells[I, 0] := 'Heart Rate #' + IntToStr(I - 18);
+  if sgStandard.ColCount > 20 then
+    for I := 20 to sgStandard.ColCount - 1 do
+      sgStandard.Cells[I, 0] := 'Heart Rate #' + IntToStr(I - 19);
 
   FResizeOK := False;
   for I := 1 to sgStandard.ColCount - 1 do
@@ -272,11 +269,13 @@ begin
 
   if ACol = 4 then
     DDCSForm.ScreenReader.Say('Cumulative Weight in pounds Read Only', False)
-  else if ACol = 11 then
+  else if ACol = 8 then
+    DDCSForm.ScreenReader.Say('Fetal Weight', False)
+  else if ACol = 12 then
     DDCSForm.ScreenReader.Say('Preterm Labor Symptoms Type in Text', False)
-  else if ACol = 18 then
+  else if ACol = 19 then
     DDCSForm.ScreenReader.Say('Cervical Exam Type in Text', False)
-  else if ACol > 18 then
+  else if ACol > 19 then
     DDCSForm.ScreenReader.Say(sgStandard.Cells[ACol, 0] + ' Type in Text', False);
 
   PostMessage(Handle, WM_CELLSELECT, 0, 0);
@@ -332,8 +331,8 @@ begin
       end;
     end;
 
-    if sgStandard.ColCount > 12 then
-      for I := sgStandard.ColCount - 1 downto 13 do
+    if sgStandard.ColCount > 20 then
+      for I := sgStandard.ColCount - 1 downto 20 do
         if IsColumnEmpty(I) then
           sgStandard.RemoveCol(I);
 
@@ -355,35 +354,35 @@ var
     if iValue < 0 then
       Exit;
 
-    if sgStandard.ColCount = 19 then
+    if sgStandard.ColCount = 20 then
     begin
       sgStandard.ColCount := sgStandard.ColCount + iValue;
-      for I := 19 to sgStandard.ColCount - 1 do
-        sgStandard.Cells[I, 0] := 'Heart Rate #' + IntToStr(I - 18);
+      for I := 20 to sgStandard.ColCount - 1 do
+        sgStandard.Cells[I, 0] := 'Heart Rate #' + IntToStr(I - 19);
 
       Exit;
     end else
     begin
       for I := 1 to sgStandard.RowCount - 1 do
       begin
-        iCols := StrToIntDef(sgStandard.Cells[8, I], 0);
+        iCols := StrToIntDef(sgStandard.Cells[9, I], 0);
         if iCols > iValue then
           iValue := iCols;
       end;
-      iValue := 18 + iValue;
+      iValue := 19 + iValue;
       if iValue > (sgStandard.ColCount - 1) then
       begin
         for I := sgStandard.ColCount to iValue do
         begin
           sgStandard.ColCount := sgStandard.ColCount + 1;
-          sgStandard.Cells[I, 0] := 'Heart Rate #' + IntToStr(I - 18);
+          sgStandard.Cells[I, 0] := 'Heart Rate #' + IntToStr(I - 19);
         end;
       end else
         sgStandard.ColCount := (iValue + 1);
 
       FResizeOK := False;
-      if sgStandard.ColCount > 19 then
-        for I := 19 to sgStandard.ColCount - 1 do
+      if sgStandard.ColCount > 20 then
+        for I := 20 to sgStandard.ColCount - 1 do
           sgStandard.AutoSizeCol(I, 70, 10);
       FResizeOK := True;
     end;
