@@ -1,8 +1,7 @@
-Routine DSIO4 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO4^INT^63922,50010^Jan 05, 2016@13:53
+Routine DSIO4 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO4^INT^64127,41205^Jul 28, 2016@11:26
 DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 1
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**1,2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -49,68 +48,98 @@ PGEL(DFN) ; Get last PREGNANCY HISTORY record with a live birth
  . . . S FLG=IEN
  Q $G(FLG)
  ;
-GA(PREG,FLG) ; Return Gestational Age of Pregnancy
- Q:'PREG ""
- N AGE,EDC,EDD,END,DAYS
- S AGE=$TR($$UP^XLFSTR($$GET1^DIQ(19641.13,PREG_",",3.1))," ") Q:AGE?.N1"W".N1"D" $S($G(FLG):$$G1(AGE),1:AGE)
+GA(DFN,PREG,FLG) ; Return Gestational Age of Pregnancy
+ ;
+ ; If FLG then return in number of days
+ ;
+ I '$G(PREG) S PREG=$$PG($G(DFN)) Q:'PREG ""
+ N AGE,EDC,EDD,END,DAYS S DAYS=""
+ S AGE=$$G1($TR($$UP^XLFSTR($$GET1^DIQ(19641.13,PREG_",",3.1))," "))
  S EDC=$$GET1^DIQ(19641.13,PREG_",",.02,"I")
  S EDD=$$GET1^DIQ(19641.03,$$GET1^DIQ(19641.13,PREG_",",.06,"I")_",",.01,"I")
  S END=$$GET1^DIQ(19641.13,PREG_",",.07,"I")
  ; *** EDC, END
- I EDC,END S DAYS=$$FMDIFF^XLFDT(END,EDC) Q:$G(FLG) DAYS
+ I EDC,END S DAYS=$$FMDIFF^XLFDT(END,EDC) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
  ; *** EDC, EDD
- I EDC,EDD,'END S DAYS=$$FMDIFF^XLFDT(EDD,EDC) Q:$G(FLG) DAYS
+ I EDC,EDD,'END S DAYS=$$FMDIFF^XLFDT(EDD,EDC)
  ; *** EDD
- I EDD,'EDC,'END S DAYS=$$FMDIFF^XLFDT(DT,$$FMADD^XLFDT(EDD,-266)) Q:$G(FLG) DAYS
- Q:'$G(DAYS) ""
- Q $$G2(DAYS)
+ I EDD,'EDC,'END S DAYS=$$FMDIFF^XLFDT(DT,$$FMADD^XLFDT(EDD,-266))
+ ; OUTPUT
+ I (AGE&(-DAYS))!(AGE&(DAYS)&(AGE>DAYS)) Q $S($G(FLG):AGE,1:$$G2(AGE))
+ I (-AGE&(DAYS))!(AGE&(DAYS)&(AGE<DAYS)) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
+ Q ""
  ;
 G1(AGE) ; Convert #W#D to Numeric
  Q:AGE?.N1"W".N1"D" +AGE*7+$P($P(AGE,"D"),"W",2)
  Q:AGE?.N1"W" +AGE*7
  Q:AGE?.N1"D" +AGE
- Q ""
+ Q:AGE?.N +AGE
+ Q 0
  ;
 G2(DAYS) ; Convert # to #W#D
  Q ((DAYS/7)\1)_"W"_(DAYS-(((DAYS/7)\1)*7))_"D"
  ;
+GP(DFN) ; Return GravidaParaSummary
+ Q:'$G(DFN) "G? P????"
+ Q "G"_$$TOTAL(DFN)_" P"_$$FULLT(DFN)_$$PRETM(DFN)_$$ABORT(DFN)_$$LIVIG(DFN)
+ ;
 TOTAL(DFN) ; Return TOTAL PREGNANCIES
- N DATE,IEN,FLG Q:'$G(DFN) ""
+ N DATE,IEN,FLG Q:'$G(DFN) "?"
  S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
  . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
  . . S FLG=FLG+1
- Q +$G(FLG)
+ Q $S($G(FLG):FLG,1:"?")
  ;
-STILL(DFN) ; Return STILLBIRTHS
- N DATE,IEN,BABY,FLG Q:'$G(DFN) ""
- S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
- . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:'IEN  D
- . . S BABY=0 F  S BABY=$O(^DSIO(19641.13,IEN,2,"B",BABY)) Q:'BABY  D
- . . . I $$GET1^DIQ(19641.112,BABY_",",.07,"I") S FLG=FLG+1 Q
- . . . I $$GET1^DIQ(19641.112,BABY_",",.011,"I")="D",+$$GA(IEN,1)>140 S FLG=FLG+1
- Q +$G(FLG)
- ;
-PRETM(DFN) ; Return PRETERM (including stillborn)
- N DATE,IEN,GA,FLG Q:'$G(DFN) ""
+ABORT(DFN) ; Return Abortions, Terminations, and Ectopics
+ N DATE,IEN,TYP,FLG Q:'$G(DFN) "?"
  S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
  . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
- . . S GA=+$$GA(IEN,1) I 'GA,$$GET1^DIQ(19641.13,IEN_",",3.5,"I") S FLG=FLG+1 Q
- . . I GA,GA<259 S FLG=FLG+1
- Q +$G(FLG)
+ . . S TYP=$$OT^DSIO03($P($G(^DSIO(19641.13,IEN,3)),U,6))
+ . . Q:TYP'="SpontaneousAbortion"&(TYP'="PregnancyTermination")&(TYP'="Ectopic")
+ . . S FLG=FLG+1
+ Q $S($G(FLG):FLG,1:"?")
  ;
-LIVIG(DFN) ; Return LIVING
- N DATE,IEN,BABY,FLG Q:'$G(DFN) ""
+STILL(DFN) ; Return STILLBIRTHS
+ N DATE,IEN,BABY,OUT,FLG Q:'$G(DFN) "?"
  S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
  . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:'IEN  D
+ . . Q:$$GET1^DIQ(19641.13,IEN_",",999.1)="NONE"
+ . . S OUT=$S($$OT^DSIO03($P($G(^DSIO(19641.13,IEN,3)),U,6))="StillBirth":1,1:0)
  . . S BABY=0 F  S BABY=$O(^DSIO(19641.13,IEN,2,"B",BABY)) Q:'BABY  D
- . . . I $$GET1^DIQ(19641.112,BABY_",",.011,"I")="L" S FLG=FLG+1 Q
- . . . I '$$GET1^DIQ(19641.112,BABY_",",.07,"I") S FLG=FLG+1
- Q +$G(FLG)
+ . . . I OUT S FLG=FLG+1 Q
+ . . . I $P($G(^DSIO(19641.112,BABY,0)),U,7) S FLG=FLG+1 Q
+ . . . I $P($G(^DSIO(19641.112,BABY,0)),U,11)="D",+$$GA(DFN,IEN,1)>140 S FLG=FLG+1
+ Q $S($G(FLG):FLG,1:"?")
+ ;
+PRETM(DFN) ; Return PRETERM (including stillborn)
+ N DATE,IEN,GA,IFLG,BABY,FLG Q:'$G(DFN) "?"
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+ . S (IFLG,IEN)="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
+ . . Q:$$GET1^DIQ(19641.13,IEN_",",999.1)="NONE"
+ . . Q:$P($G(^DSIO(19641.13,IEN,3)),U,5)=0
+ . . S GA=+$$GA(DFN,IEN,1) I GA,GA<259 S IFLG=1
+ . . I $$OT^DSIO03($P($G(^DSIO(19641.13,IEN,3)),U,6))="PretermDelivery" S IFLG=1
+ . . Q:'IFLG
+ . . S BABY=0 F  S BABY=$O(^DSIO(19641.13,IEN,2,"B",BABY)) Q:'BABY  D
+ . . . Q:$P($G(^DSIO(19641.112,BABY,0)),U,11)="D"
+ . . . S FLG=FLG+1
+ Q $S($G(FLG):FLG,1:"?")
+ ;
+LIVIG(DFN) ; Return LIVING
+ N DATE,IEN,BABY,FLG Q:'$G(DFN) "?"
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+ . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:'IEN  D
+ . . Q:$$GET1^DIQ(19641.13,IEN_",",999.1)="NONE"
+ . . S BABY=0 F  S BABY=$O(^DSIO(19641.13,IEN,2,"B",BABY)) Q:'BABY  D
+ . . . Q:$P($G(^DSIO(19641.112,BABY,0)),U,7)
+ . . . Q:$P($G(^DSIO(19641.112,BABY,0)),U,11)="D"
+ . . . S FLG=FLG+1
+ Q $S($G(FLG):FLG,1:"?")
  ;
 FULLT(DFN) ; Return TERM BIRTHS (including stillborn)
  N OUT
  S OUT=$$LIVIG(DFN)-$$PRETM(DFN)
- Q $S(OUT<0:0,1:OUT)
+ Q $S(OUT<0:"?",1:OUT)
  ;
 EDDC(DFN) ; Get EDD for computed fields
  N PG,EDD

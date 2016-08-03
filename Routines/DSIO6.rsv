@@ -1,8 +1,7 @@
-Routine DSIO6 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO6^INT^63929,60487^Jan 12, 2016@16:48
+Routine DSIO6 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO6^INT^64124,46486^Jul 25, 2016@12:54
 DSIO6 ;DSS/TFF - DSIO DISCREET DATA - DDCS;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -22,10 +21,10 @@ DSIO6 ;DSS/TFF - DSIO DISCREET DATA - DDCS;06/28/2013 15:19
  ; DSIO67  -  DSIO DDCS ELEMENT OBSERVATIONS
  ;
  ;CONTROL & SAVE --------------------------------------------------------------
- ; 19641.4    (DSIO DDCS CONTROL)      - CONTROL, Validate to Continue
- ; 19641.41   (DSIO DDCS DATA)         - COLLECTION, of data elements for a control
- ; 19641.4941 (DSIO DDCS SHARED DATA)  - COLLECTION, of data elements for a control by DFN
- ; 19641.45   (DSIO DDCS ELEMENT)      - ELEMENT, the discreet data element
+ ; 19641.4    (DSIO DDCS CONTROL)            - CONTROL, Validate to Continue
+ ; 19641.41   (DSIO DDCS DATA)               - COLLECTION, of data elements for a control
+ ; 19641.4941 (DSIO DDCS SHARED DATA)        - COLLECTION, of data elements for a control by DFN
+ ; 19641.45   (DSIO DDCS ELEMENT)            - ELEMENT, the discreet data element
  ;
  ;CONFIGURE & REPORT ----------------------------------------------------------
  ; 19641.42   (DSIO DDCS FORM CONFIGURATION) - THE FORM TO BE RENDERED
@@ -67,7 +66,7 @@ STORED(RET,OBJECT,SIEN,INFACE,IDATA,ACT) ; RPC: DSIO DDCS STORE
  S INFACE=$$INFACE^DSIO65($G(INFACE),1)
  S CONTROL=$$OBJECT^DSIO65(OBJECT) Q:'CONTROL
  Q:$$GET1^DIQ(19641.4,CONTROL_",",.02,"I")  ; INACTIVE
- I $G(ACT) S RET=$$TASK Q
+ I $G(ACT)=1 S RET=$$TASK Q
  D SETDATA
  Q
  ;
@@ -116,7 +115,7 @@ SETDATA ; Save data as DISCREET ELEMENTS for a RECORD
  ;
 SETDATA1(FLE,IENS,DATA) ; Continue
  ;
- ; ARRAY OF: CONTROL^(INDEXED^VALUE)
+ ; ARRAY OF DATA: CONTROL^(INDEXED^VALUE)
  ;           (If a CONTROL is repeated then it will be considered multi-valued)
  ;                CONTROL = The name of the control that was passed up from
  ;                          configuration
@@ -124,12 +123,17 @@ SETDATA1(FLE,IENS,DATA) ; Continue
  ;                          a list rather than word processing (stored within wp)
  ;                  VALUE = The user supplied value
  ;
- N CT,CONTROL,BUILD,FDA,IEN,EIEN
+ N CT,CI,CONTROL,BUILD,FDA,IEN,EIEN
  S SAVE=$NA(^TMP($J,"SETDATA1")) K @SAVE
- S CT=$NA(DATA) F  S CT=$Q(@CT) Q:CT=""  D
- . S CONTROL=$$UP^XLFSTR($P(@CT,U)) Q:CONTROL=""
- . S BUILD(CONTROL)=""
- . S @SAVE@(CONTROL,($O(@SAVE@(CONTROL,""),-1)+1))=$P(@CT,U,2,999)
+ I $G(ACT)="C" D
+ . S CONTROL="##TCONFIGCOLLECTION##",BUILD(CONTROL)=""
+ . S CI=1,CT=$NA(DATA) F  S CT=$Q(@CT) Q:CT=""  D
+ . . S @SAVE@(CONTROL,CI)=@CT,CI=CI+1
+ I '$D(ACT) D
+ . S CT=$NA(DATA) F  S CT=$Q(@CT) Q:CT=""  D
+ . . S CONTROL=$$UP^XLFSTR($P(@CT,U)) Q:CONTROL=""
+ . . S BUILD(CONTROL)=""
+ . . S @SAVE@(CONTROL,($O(@SAVE@(CONTROL,""),-1)+1))=$P(@CT,U,2,9999)
  S CONTROL="" F  S CONTROL=$O(BUILD(CONTROL)) Q:CONTROL=""  D
  . K IEN,EIEN
  . ; *** Find the IEN for the CONTROL within the DATA or SHARED DATA entry
@@ -139,14 +143,13 @@ SETDATA1(FLE,IENS,DATA) ; Continue
  . I IEN S EIEN=^DSIO($E(FLE,1,($L(FLE)-2)),$P(IENS,",",2),1,$P(IENS,","),1,IEN,0)
  . ; *** If this DATA ELEMENT has already been collected  for this CONTROLled
  . ;     INTERFACE then overwrite the value, else create new
- . S EIEN=$$ELE($G(EIEN),CONTROL,BUILD(CONTROL),IENS_$S(FLE[".4941":"S",1:"D"))
- . Q:'$G(EIEN)
+ . S EIEN=$$ELE($G(EIEN),CONTROL) Q:'$G(EIEN)
  . S FDA(FLE,$S($G(IEN):IEN,1:"+1")_","_IENS,.01)=EIEN
  . D UPDATE^DIE(,"FDA") K FDA
  K @SAVE
  Q
  ;
-ELE(IEN,CONTROL,INX,IENS) ; Set DSIO DDCS ELEMENT
+ELE(IEN,CONTROL) ; Set DSIO DDCS ELEMENT
  ;
  ; *** The ELEMENT of form control may already exist but it is
  ;     only required to be unique among a single instance of an
@@ -155,15 +158,12 @@ ELE(IEN,CONTROL,INX,IENS) ; Set DSIO DDCS ELEMENT
  ;
  ;     IEN = Record of 19641.45
  ; CONTROL = Name of GUI Control
- ;    IENS = FORM(1)_","_DATA(1)_","
- ;           FORM(1)_","_DFN_","
- ;           * Followed by 'S' for 19641.4941 or 'D' for 19641.41
  ;
  N FDA,CCLASS
  S:'$G(IEN) IEN="+1"
- S FDA(19641.45,IEN_",",.01)=CONTROL                                            ; CONTROL
- S FDA(19641.45,IEN_",",.02)=IENS                                               ; IENS
- S CCLASS=+$$CCLASS^DSIO62(CONTROL) S:CCLASS FDA(19641.45,IEN_",",.03)=CCLASS   ; CLASS
+ S FDA(19641.45,IEN_",",.01)=CONTROL         ; CONTROL
+ S CCLASS=$$CCLASS^DSIO62(INFACE,CONTROL)
+ S:CCLASS FDA(19641.45,IEN_",",.02)=CCLASS   ; CLASS
  D UPDATE^DIE(,"FDA",$S(IEN'["+":"",1:"IEN")) K FDA
  S IEN=$S(IEN'["+":+IEN,$G(IEN(1)):IEN(1),1:"") Q:'IEN ""
  D WP^DIE(19641.45,IEN_",",1,"K","^TMP($J,""SETDATA1"",CONTROL)")
@@ -181,29 +181,40 @@ PUSH(DATA) ; PUSH Data out of DDCS
  ;   SIEN(DESTINATION IEN), DESTINATION FILE(DDCSFLE),
  ;   DFN, INTERFACE/FORM(DDCSFRM), ELEMENT IEN(DDCSE), ELEMENT NAME(DDCSEN)
  ;
- Q:$$GET1^DIQ(19641.41,DATA_",",.03)'=""   ; ALREADY PUSHED
+ Q:$$GET1^DIQ(19641.41,DATA_",",.03)'=""       ; *** ALREADY PUSHED
+ Q:$D(^DSIO(19641.41,"ERROR"))                 ; *** PUSH has ERRORed - maybe in another entry
+ ; *** PUSH START (It must have started and failed!)
+ I $$GET1^DIQ(19641.41,DATA_",",.04)'="" S ^DSIO(19641.41,"ERROR")="" Q
  N DDCSC,DDCSR,SIEN,DDCSFLE,DFN,INFACE,DDCSFRM,FIEN,RPT,DDCSEN,EIEN
  N DDCSE,PRE,POST,FDA,DIE,DA,X,Y
+ S FDA(19641.41,DATA_",",.04)=$$NOW^XLFDT      ; *** If PUSH fails we shouldn't keep retrying!
+ D FILE^DIE(,"FDA") K FDA
  S DDCSC=$$GET1^DIQ(19641.41,DATA_",",.02,"I") Q:'DDCSC
  S DDCSR=$$GET1^DIQ(19641.41,DATA_",",.01),SIEN=+DDCSR
  S DDCSFLE=$$GET1^DIQ(19641.4,DDCSC_",",.03,"I")
  S DFN=$$DFN^DSIO6(DDCSC,+DDCSR)
- Q:'$$TRIGGER(DDCSC)
+ I '$$TRIGGER(DDCSC) D  Q                      ; *** Not ready to PUSH
+ . S FDA(19641.41,DATA_",",.03)=""
+ . S FDA(19641.41,DATA_",",.04)=""
+ . D FILE^DIE(,"FDA") K FDA
  S PRE=$$GET1^DIQ(19641.4,DDCSC_",",3) X:PRE'="" PRE
  ; *** VITALS
  D VP^DSIO65(DFN,DDCSR)
  ; *** MULTIPLE INTERFACES/FORMS
+ ;     - Push the whole form at once if the option exists, then traverse the elements and push
+ ;       that way if you have to run a routine for some heavy lifting you can still take
+ ;       advantage of the smaller configurable elements.
  S INFACE="" F  S INFACE=$O(^DSIO(19641.41,DATA,1,"B",INFACE)) Q:INFACE=""  D
  . S DDCSFRM=$$INFACE^DSIO65(INFACE)
  . S FIEN=$O(^DSIO(19641.41,DATA,1,"B",INFACE,""))
- . K RPT I DDCSFRM[";DSIO(19641.42," D  Q:$G(RPT)
+ . K RPT I DDCSFRM[";DSIO(19641.42," D
  . . ; *** PUSH the whole FORM at once
- . . S RPT=$$GET1^DIQ(19641.42,+DDCSFRM_",",.04,"I")
- . . I RPT D REPORT(RPT),OBI^DSIO67
- . K RPT I DDCSFRM[";DSIO(19641.49," D  Q:$G(RPT)
+ . . S RPT=$$GET1^DIQ(19641.42,+DDCSFRM_",",.04,"I") D:RPT REPORT(RPT)
+ . . ;D OBI^DSIO67
+ . K RPT I DDCSFRM[";DSIO(19641.49," D
  . . ; *** PUSH the whole FORM at once
- . . S RPT=$$GET1^DIQ(19641.49,+DDCSFRM_",",.06,"I")
- . . I RPT D REPORT(RPT),OBI^DSIO67
+ . . S RPT=$$GET1^DIQ(19641.49,+DDCSFRM_",",.06,"I") D:RPT REPORT(RPT)
+ . . ;D OBI^DSIO67
  . ; *** BY SAVED ELEMENTS
  . S DDCSEN="" F  S DDCSEN=$O(^DSIO(19641.41,DATA,1,FIEN,1,"C",DDCSEN)) Q:DDCSEN=""  D
  . . S EIEN=$O(^DSIO(19641.41,DATA,1,FIEN,1,"C",DDCSEN,""))
@@ -292,6 +303,18 @@ TRIGGER(IEN) ; Check the Trigger logic from the Controlled Object to
  S TRIG=$$GET1^DIQ(19641.4,IEN_",",2) Q:TRIG="" 1
  I 1 X TRIG Q:'$T 0
  Q 1
+ ;
+ERROR ; Remove the Error Lock on 19641.41 and delete any PUSH START entries that
+ ;      do not have a PUSHED entry
+ ;
+ N IEN,FDA
+ K ^DSIO(19641.41,"ERROR")
+ S IEN=0 F  S IEN=$O(^DSIO(19641.41,"PUSH",IEN)) Q:'IEN  D
+ . I $P($G(^DSIO(19641.41,IEN,0)),U,4)'="",$P($G(^DSIO(19641.41,IEN,0)),U,3)="" D
+ . . W !!,"   RECORD UPDATED: ",IEN
+ . . S FDA(19641.41,IEN_",",.04)="" D FILE^DIE(,"FDA") K FDA
+ W !!,$$CJ^XLFSTR(" FINISHED CLEAN UP ",79,"*"),!
+ Q
  ;
  ; --------------------------------- TRIGGER ----------------------------------
  ;

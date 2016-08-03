@@ -1,8 +1,7 @@
-Routine DSIO1 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO1^INT^63889,34206^Dec 03, 2015@09:30
+Routine DSIO1 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO1^INT^64090,34937^Jun 21, 2016@09:42
 DSIO1 ;DSS/TFF - DSIO GENERAL RPCS;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 1
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**1,2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -285,12 +284,17 @@ REC(RET,DFN,ACT,RES,COM,SOR) ; RPC: DSIO CREATE TRACKING LOG
  ;
  ; MCC DASHBOARD PURPOSE -  TO CHANGE THE TRACKING STATUS OF A PATIENT
  ;
- ; ACT: ACTION    INPUT PARAMETER:
- ;   0: STOP           DFN : PATIENT NUMBER
- ;   1: START          ACT : ACTION (0:STOP,1:START,2:FLAG,3:REJECT,4:ACCEPT)
- ;   2: FLAG           RES : REASON  - #^#^#
- ;   3: REJECT         COM : COMMENT - ARRAY
- ;   4: ACCEPT         SOR : SOURCE  - DEFAULT IS DASHBOARD
+ ;  INPUT PARAMETER:
+ ;         DFN : PATIENT NUMBER
+ ;         ACT : ACTION 
+ ;                0: STOP
+ ;                1: START
+ ;                2: FLAG
+ ;                3: REJECT
+ ;                4: ACCEPT
+ ;         RES : REASON  - #^#^#
+ ;         COM : COMMENT - ARRAY
+ ;         SOR : SOURCE  - DEFAULT IS DASHBOARD
  ;
  ; RETURN: -1^ERROR OR IEN
  ;
@@ -303,6 +307,7 @@ REC(RET,DFN,ACT,RES,COM,SOR) ; RPC: DSIO CREATE TRACKING LOG
  S ACT=$E($G(ACT),1) S ACT=$S(ACT?1N:ACT,1:"")
  I ACT="" S RET="-1^EVENT TYPE could not be identified." Q
  I ACT<0!(ACT>4) S RET="-1^EVENT TYPE reference number is invalid." Q
+ I $$TRACK^DSIO4(DFN,1)=1,ACT'=0 S RET="-1^EVENT TYPE can only be to STOP an already TRACKED patient." Q
  S SOR=$$UP^XLFSTR($G(SOR,"DASHBOARD"))
  S IPT(19641.22,"?+1,",.01)=SOR
  S:SOR="DASHBOARD"!(SOR="FILEMAN") IPT(19641.22,"?+1,",.02)=1

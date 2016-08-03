@@ -1,0 +1,21 @@
+﻿<div class="jumbotron mt-info-section mt-info-section-success" id="mt-cur-preg-pregs">
+    <div class="container">
+        <h1>Past pregnancies</h1>
+        <div class="mt-ul-section">
+            <ul class="list-unstyled">
+                <li><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;&nbsp;You had a pregnancy in 2012 which resulted in a term birth on 12/12/2012</li>                
+                <li><span class="glyphicon glyphicon-flag text-danger"></span>&nbsp;&nbsp;you had a pregnancy in 2014 which resulted in a spontaneous abortion on 4/15/2014</li>                
+                <li><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;&nbsp;You had a pregnancy in 2010 which resulted in a term birth on 11/11/2010</li>                
+            </ul>
+        </div>
+        <p>Is this information correct?</p>
+        <div class="row">
+            <div class="col col-sm-12">
+                <button class="btn btn-warning"  data-toggle="modal" data-target="#pregs-modal">Update This Data</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#pregs-table">Table</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("PastPregnanciesModal")
+@Html.Partial("PastPregnanciesTable")

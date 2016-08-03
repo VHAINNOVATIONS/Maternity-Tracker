@@ -1,0 +1,110 @@
+H^Education Topic^Code^Category
+^1st Tri-Abnormal weight gain^237288003^1st Trimester
+^1st Tri-Insufficient weight gain^53024001^1st Trimester
+^1st Tri-Dental care during pregnancy^171059009^1st Trimester
+^1st Tri-Diet^171054004^1st Trimester
+^1st Tri-Eligible for travel pay^^1st Trimester
+^1st Tri-Exercise^171056002^1st Trimester
+^1st Tri-HIV^313077009^1st Trimester
+^1st Tri-Hazards in the home^224260008^1st Trimester
+^1st Tri-Immunization during pregnancy^^1st Trimester
+^1st Tri-Important telephone numbers^^1st Trimester
+^1st Tri-Infection related risk: Coxsackie virus^^1st Trimester
+^1st Tri-Infection-related risk: Cytomegalovirus^^1st Trimester
+^1st Tri-Infection-related risk: High fever^^1st Trimester
+^1st Tri-Infection-related risk: Influenza^^1st Trimester
+^1st Tri-Infection-related risk: Parvovirus^^1st Trimester
+^1st Tri-Infection-related risk: Toxoplasmosis^439733009^1st Trimester
+^1st Tri-Influenza vaccine (seasonally)^439165004^1st Trimester
+^1st Tri-Intimate partner violence yes/no^^1st Trimester
+^1st Tri-Labor and delivery coverage and planning^^1st Trimester
+^1st Tri-MMR necessary^^1st Trimester
+^1st Tri-Medications^440670004^1st Trimester
+^1st Tri-Mood disorder risk yes/no^^1st Trimester
+^1st Tri-NVCC authorization obtained^^1st Trimester
+^1st Tri-Nausea & vomiting in pregnancy^^1st Trimester
+^1st Tri-Patient enrollment/eligibility review^^1st Trimester
+^1st Tri-Pregnancy booklet given and reviewed^^1st Trimester
+^1st Tri-Prenatal vitamins^400572001^1st Trimester
+^1st Tri-Prenatal screening options^^1st Trimester
+^1st Tri-Rhogam necessary^104071009^1st Trimester
+^1st Tri-Safety of medications in pregnancy^440670004^1st Trimester
+^1st Tri-Sauna & hot tub exposure^^1st Trimester
+^1st Tri-Sexual activity^^1st Trimester
+^1st Tri-TDap vaccine offered^^1st Trimester
+^1st Tri-Tobacco use^171055003^1st Trimester
+^1st Tri-Drug use^171058001^1st Trimester
+^1st Tri-Alcohol Use^171057006^1st Trimester
+^2nd Tri-Abnormal weight gain^237288003^2nd Trimester
+^2nd Tri-Insufficient weight gain^53024001^2nd Trimester
+^2nd Tri-Birthing classes^^2nd Trimester
+^2nd Tri-Breastfeeding^243094003^2nd Trimester
+^2nd Tri-Dental care during pregnancy^171059009^2nd Trimester
+^2nd Tri-Diet^171054004^2nd Trimester
+^2nd Tri-Eligible for travel pay^^2nd Trimester
+^2nd Tri-Exercise^171056002^2nd Trimester
+^2nd Tri-Immunization during pregnancy^^2nd Trimester
+^2nd Tri-Influenza vaccine (seasonally)^439165004^2nd Trimester
+^2nd Tri-Intimate partner violence^^2nd Trimester
+^2nd Tri-MMR necessary^^2nd Trimester
+^2nd Tri-Mood disorder risk^^2nd Trimester
+^2nd Tri-NVCC authorization obtained^^2nd Trimester
+^2nd Tri-PP contraception education^398780007^2nd Trimester
+^2nd Tri-Parenting classes^^2nd Trimester
+^2nd Tri-Patient enrollment/eligibility review^^2nd Trimester
+^2nd Tri-Records sent to delivery hospital^^2nd Trimester
+^2nd Tri-Reviewed important telephone numbers^^2nd Trimester
+^2nd Tri-Rhogam necessary^104071009^2nd Trimester
+^2nd Tri-Screening for hypertensive disorders^440536005^2nd Trimester
+^2nd Tri-Signs/Symptoms:Decreased fetal movement^^2nd Trimester
+^2nd Tri-Signs/Symptoms:PPROM (leaking fluid)^^2nd Trimester
+^2nd Tri-Signs/Symptoms:Pre-E(HA,visual changes,RUQ pain)^^2nd Trimester
+^2nd Tri-Signs/Symptoms rpt. to clinician:PTL (cramping, CTX)^^2nd Trimester
+^2nd Tri-TDap vaccine offered^^2nd Trimester
+^2nd Tri-Tobacco use^171055003^2nd Trimester
+^2nd Tri-Drug use^171058001^2nd Trimester
+^2nd Tri-Alcohol Use^171057006^2nd Trimester
+^3rd Tri-Abnormal weight gain^237288003^3rd Trimester
+^3rd Tri-Insufficient weight gain^53024001^3rd Trimester
+^3rd Tri-Birthing classes^^3rd Trimester
+^3rd Tri-Breastfeeding^243094003^3rd Trimester
+^3rd Tri-Diet^171054004^3rd Trimester
+^3rd Tri-Discussed labor and ruptured membranes^^3rd Trimester
+^3rd Tri-Eligible for travel pay^^3rd Trimester
+^3rd Tri-Exercise^171056002^3rd Trimester
+^3rd Tri-Influenza vaccine (seasonally)^^3rd Trimester
+^3rd Tri-Insurance for infant beyond first 7 days of life^^3rd Trimester
+^3rd Tri-Intimate partner violence^^3rd Trimester
+^3rd Tri-Kick counts^251682005^3rd Trimester
+^3rd Tri-MMR necessary^^3rd Trimester
+^3rd Tri-Mood disorder risk^^3rd Trimester
+^3rd Tri-NVCC authorization obtained^^3rd Trimester
+^3rd Tri-Newborn car seat^^3rd Trimester
+^3rd Tri-Parenting classes^^3rd Trimester
+^3rd Tri-Patient enrollment/eligibility review^^3rd Trimester
+^3rd Tri-PP contraception education^398780007^3rd Trimester
+^3rd Tri-Records sent to delivery hospital^^3rd Trimester
+^3rd Tri-Reviewed important telephone numbers^^3rd Trimester
+^3rd Tri-Reviewed postpartum depression^439366005^3rd Trimester
+^3rd Tri-Rhogam necessary^104071009^3rd Trimester
+^3rd Tri-Screening for hypertensive disorders^440536005^3rd Trimester
+^3rd Tri-Selection of pediatrician^^3rd Trimester
+^3rd Tri-Signs/Symptoms:Decreased fetal movement^^3rd Trimester
+^3rd Tri-Signs/Symptoms:PPROM (leaking fluid)^^3rd Trimester
+^3rd Tri-Signs/Symptoms:Pre-E(HA,visual changes,RUQ pain)^^3rd Trimester
+^3rd Tri-Signs/Symptoms rpt. to clinician:PTL (cramping, CTX)^^3rd Trimester
+^3rd Tri-TDap vaccine offered^^3rd Trimester
+^3rd Tri-Testing and exams 36 weeks and beyond^^3rd Trimester
+^3rd Tri-Tobacco use^171055003^3rd Trimester
+^3rd Tri-Drug use^171058001^3rd Trimester
+^3rd Tri-Alcohol Use^171057006^3rd Trimester
+^3rd Tri-Tour of labor and delivery^61324002^3rd Trimester
+^3rd Tri-PTL symptoms^440669000^3rd Trimester
+^Abdominal binder^^End of 3rd Trimester
+^Breast pump^^End of 3rd Trimester
+^Contraception education^398780007^End of 3rd Trimester
+^Delivery plans^702396006^End of 3rd Trimester
+^Name of baby^446231000124108^End of 3rd Trimester
+^Nursing bras^^End of 3rd Trimester
+^Pediatrician^^End of 3rd Trimester
+^Plans for feeding baby^171053005^End of 3rd Trimester

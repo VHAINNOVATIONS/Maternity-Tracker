@@ -1,8 +1,7 @@
-Routine DSIO11 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO11^INT^63826,55371^Oct 01, 2015@15:22
+Routine DSIO11 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO11^INT^64107,39678^Jul 08, 2016@11:01
 DSIO11 ;DSS/CMW - DSIO MCC CHECKLIST;07/28/2013 15:19
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 18
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**1,2,5**;Feb 06, 2015;Build 18
  ;
  ; External References      DBIA#
  ; -------------------      -----

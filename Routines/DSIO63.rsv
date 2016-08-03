@@ -1,8 +1,7 @@
-Routine DSIO63 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO63^INT^63915,47725^Dec 29, 2015@13:15
+Routine DSIO63 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO63^INT^64086,58604^Jun 17, 2016@16:16
 DSIO63 ;DSS/TFF - DSIO DDCS CONFIGURE AND REPORT;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -109,7 +108,7 @@ PAGE() ; Did the user indicate a correct page
  Q 1
  ;
 CONTROL(FORM,PAGE) ; Add a Control to a Page
- N DA,DIC,X,Y,DIRUT,CONTROL,CIEN,DIE,DR,CON,OB
+ N DA,DIC,X,Y,DIRUT,CONTROL,CIEN,DIE,DR,OB
  S DA(2)=FORM,DA(1)=PAGE
  S DIC("W")="W ?40,$P(^(0),U,4)"
  S DIC="^DSIO(19641.42,"_DA(2)_",1,"_DA(1)_",1,",DIC(0)="AEQL"
@@ -119,8 +118,6 @@ CONTROL(FORM,PAGE) ; Add a Control to a Page
  K X,Y S DA(2)=FORM,DA(1)=PAGE,DA=CIEN
  S DIE="^DSIO(19641.42,"_DA(2)_",1,"_DA(1)_",1,",DR=".01" D ^DIE Q:'$D(DA)!($D(DIRUT)) 1
  S DR=".02;.03;.04" D ^DIE Q:$D(DIRUT) 1
- S CON=$$GET1^DIQ(19641.4211,CIEN_","_PAGE_","_FORM_",",.02,"I")
- D:CON PROP(CON,CIEN,PAGE,FORM)
  ; *** CONFIGURATION
  W !!,"A CONTROL can be configured with free text values (these entries must start"
  W " with a caret as the first piece of each free text value is the index). Other "
@@ -134,8 +131,8 @@ CONTROL(FORM,PAGE) ; Add a Control to a Page
  W !,"  2. DIALOGS"
  W !,"  3. WORD PROCESSING",!
  K X,Y S DR="4;3;2" D ^DIE Q:$D(DIRUT) 1
- W !!,"CONTROL SETTINGS **These values will override the GUI defaults**",!
- K X,Y S DR="9.01:9.99" D ^DIE Q:$D(DIRUT) 1
+ W !!,"CONTROL REPORT ITEM **These values will override the GUI defaults**",!
+ K X,Y S DR=9 D ^DIE Q:$D(DIRUT) 1
  ; *** OBSERVATION
  W !!,"Should this CONTROL create an observation on PUSH? If so, then you will be",!
  W "asked to complete the configuration here or identify an existing one in order ",!
@@ -143,29 +140,9 @@ CONTROL(FORM,PAGE) ; Add a Control to a Page
  S OB=$$SET^DSIO67(CIEN,PAGE,FORM) I OB K X,Y S DR=".05////"_OB D ^DIE
  Q 1
  ;
-PROP(CONTROL,CIEN,PAGE,FORM) ; Get Properties of a CONTROL for a Page
- N OUT,DIR,X,Y,DIRUT,CT,FDA
- D GETS^DIQ(19641.425,CONTROL_",","1*",,"OUT")
- S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
- . K X,Y,DIRUT
- . S DIR(0)="FO^1:245",DIR("A")=@CT
- . S DIR("B")=$$PROPB(@CT,CIEN,PAGE,FORM)
- . D ^DIR
- . I Y'=""&('$D(DIRUT)) D
- . . S FDA(19641.42111,"?+1,"_CIEN_","_PAGE_","_FORM_",",.01)=@CT
- . . S FDA(19641.42111,"?+1,"_CIEN_","_PAGE_","_FORM_",",1)=Y
- . . D UPDATE^DIE(,"FDA") K FDA
- Q
- ;
-PROPB(PROP,CIEN,PAGE,FORM) ; Get Form, Page, CONTROL property value
- Q:$G(PROP)="" ""
- N IEN
- S IEN=$O(^DSIO(19641.42,FORM,1,PAGE,1,CIEN,1,"B",PROP,"")) Q:'IEN ""
- Q $$GET1^DIQ(19641.42111,IEN_","_CIEN_","_PAGE_","_FORM_",",1)
- ;
  ; -------------------------------- EXTERNAL ----------------------------------
  ;
-CONFIG(RET,INFACE,OBJECT,SIEN) ; RPC: DSIO DDCS BUILD FORM
+CONFIG(RET,INFACE,OBJECT,SIEN,CITEM) ; RPC: DSIO DDCS BUILD FORM
  ;
  ; INPUT PARAMETERS:
  ; -----------------
@@ -182,16 +159,17 @@ CONFIG(RET,INFACE,OBJECT,SIEN) ; RPC: DSIO DDCS BUILD FORM
  ;
  ;   SIEN = Destination IEN - Record of Control
  ;
+ ;  CITEM = If set then run the interface's configuration routine
+ ;
  ; RETURN:
  ;   INTERFACE:  I^PROPERTY|VALUE
  ;        PAGE:  P^NUMBER^CAPTION^HIDE
- ;     CONTROL:  C^NAME^CLASS^PAGE NUMBER^PROPERTY|VALUE
  ;     CONTROL: CC^COLLECTION_NAME|VALUE
  ;     CONTROL: CV^NAME^(D,F)^(INDEX^VALUE)
  ;
- ; ------------------------
- D TRIG^DSIO6  ; *** PUSH |
- ; ------------------------
+ ; -----------------------------------
+ D:'$D(CITEM) TRIG^DSIO6  ; *** PUSH |
+ ; -----------------------------------
  S RET=$NA(^TMP($J,"DSIO63")) K @RET S @RET@(0)=""
  N CONTROL,DFN,I,CT,TMP,FLG,IEN,IGRP,DFLG
  S CONTROL=$$OBJECT^DSIO65($G(OBJECT)),DFN=$$DFN^DSIO6(CONTROL,$G(SIEN))
@@ -202,7 +180,9 @@ CONFIG(RET,INFACE,OBJECT,SIEN) ; RPC: DSIO DDCS BUILD FORM
  . . S IEN=+TMP I $O(^DSIO(19641.42,"P",INFACE(CT),"")) S IGRP(INFACE(CT))=""
  . I TMP[";DSIO(19641.49," S DFLG=TMP
  ; *** A Dialog must be presented by itself
- I $D(DFLG) Q:I>1  D DIALOG^DSIO66(+DFLG,$G(OBJECT),$G(SIEN)) Q
+ I $D(DFLG) Q:I>1  D  Q
+ . I $D(CITEM) D DCITEM^DSIO66(+DFLG,$G(OBJECT),$G(SIEN)) Q
+ . D DIALOG^DSIO66(+DFLG,$G(OBJECT),$G(SIEN))
  D:'$D(FLG)&($G(IEN)) CG(IEN,$$GET1^DIQ(19641.42,IEN_",",.07,"I"),.IGRP)
  Q
  ;
@@ -225,7 +205,7 @@ CG(IEN,TYP,PAGES) ; Continue with 19641.42
  . S @RET@(PG)="P^"_PG_U_NAM_U_HIDE Q:HIDE
  . S CON="" F  S CON=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CON)) Q:CON=""  D
  . . S CIEN=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CON,""))
- . . D C(CIEN,PG,IEN,CON),CC(CIEN,PG,IEN,CON),CV(CIEN,PG,IEN,CON,$G(SIEN))
+ . . D CC(CIEN,PG,IEN,CON),CV(CIEN,PG,IEN,CON,$G(SIEN))
  K:$D(SINFACE) ^DSIO(19641.4941,DFN,1,"S",SINFACE)
  Q
  ;
@@ -234,26 +214,19 @@ HIDE() ; Page Hide (TabVisible)
  I TYP Q "FALSE"
  Q $S($$GET1^DIQ(19641.421,PG_","_IEN_",",.03,"I"):"TRUE",1:"FALSE")
  ;
-C(IEN,PG,FORM,CON) ; CONTROL Properties
- ; *** CONTROL: C^NAME^CLASS^PAGE NUMBER^PROPERTY|VALUE
- N PROP,PI
- S @RET@(PG,IEN)="C^"_CON_U_$$GET1^DIQ(19641.4211,IEN_","_PG_","_FORM_",",.02)_U_PG
- S PROP="" F  S PROP=$O(^DSIO(19641.42,FORM,1,PG,1,IEN,1,"B",PROP)) Q:PROP=""  D
- . S PI=$O(^DSIO(19641.42,FORM,1,PG,1,IEN,1,"B",PROP,""))
- . S @RET@(PG,IEN)=@RET@(PG,IEN)_U_PROP_"|"
- . S @RET@(PG,IEN)=@RET@(PG,IEN)_$$GET1^DIQ(19641.42111,PI_","_IEN_","_PG_","_FORM_",",1)
- Q
- ;
 CC(IEN,PG,FORM,CON) ; CONTROL Collection
  ; *** CONTROL: CC^NAME^COLLECTION_NAME|VALUE
- N COL,STR,I
- S COL=$G(^DSIO(19641.42,FORM,1,PG,1,IEN,"CC"))
- S STR="" F I=1:1:9 S STR=STR_$$GET1^DID(19641.4211,"9.0"_I,"","LABEL")_"|"_$P(COL,U,I)_U
+ N STR,CT,PRP,VAL
+ S STR="",CT=0 F  S CT=$O(^DSIO(19641.42,FORM,1,IEN,9,CT)) Q:'CT  D
+ . K PRP,VAL
+ . S PRP=$G(^DSIO(19641.42,FORM,1,IEN,9,CT,0))
+ . S VAL=$G(^DSIO(19641.42,FORM,1,IEN,9,CT,1))
+ . S:VAL'="" STR=STR_PRP_"|"_VAL_U
  S @RET@(PG,IEN,"CC")="CC^"_CON_U_STR
  Q
  ;
 CV(DDCSCI,DDCSPG,FORM,DDCSCON,SIEN) ; CONTROL Configuration Value
- N DDCSCT,FLG,IENS,LOG S DDCSCT=1
+ N DDCSCT,FLG,IENS,LOG,LN S DDCSCT=1
  ; *** RUN ROUTINE
  ;     Needs to build either of the two formats
  ;     S @RET@(PG,IEN,CT)="CV^"_CON_U_(D,F)_U
@@ -270,15 +243,23 @@ CV(DDCSCI,DDCSPG,FORM,DDCSCON,SIEN) ; CONTROL Configuration Value
  ;     CV^NAME^F^(INDEX^VALUE)
  I '$D(FLG),$P($G(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,2,0)),U,4)>0 D
  . S IENS=0 F  S IENS=$O(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,2,IENS)) Q:'IENS  D
- . . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^F^"_^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,2,IENS,0)
- . . S DDCSCT=DDCSCT+1
+ . . S LN=^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,2,IENS,0)
+ . . I LN'[U!(($P(LN,U)'?.N)&($P(LN,U)'["TRUE")) I $D(@RET@(DDCSCT-1)) D  Q
+ . . . S @RET@(DDCSCT-1)=@RET@(DDCSCT-1)_LN
+ . . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^F^"_LN,DDCSCT=DDCSCT+1
  ; *** RESTORE
  Q:$$GET1^DIQ(19641.42,FORM_",",.02)["A"                     ; DO NOT RESTORE (FORM)
- Q:$P($G(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,"CC")),U,10)  ; DO NOT RESTORE (CONTROL)
+ Q:$$UP^XLFSTR($$RITEM(FORM,IEN,"DONOTRESTORE"))="TRUE"      ; DO NOT RESTORE (CONTROL)
  ;     DATA SHUFFLE
  I $G(SI) Q:'$$DSCON(SI,DDCSCON)
  D:$G(SIEN)&($G(FLG)'=2) RESTF^DSIO64(.RET,1,DDCSCI,DDCSPG,DDCSCON,OBJECT,FORM_";DSIO(19641.42,",SIEN)
  Q
+ ;
+RITEM(FORM,CON,PROP) ; Get the Report Item Value for a Control
+ N IEN
+ S PROP=$$UP^XLFSTR($G(PROP)) Q:PROP="" -1
+ S IEN=$O(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,9,"B",PROP,"")) Q:'IEN -1
+ Q ^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,9,IEN,1)
  ;
 DSCON(IEN,CON) ; Determine if a "restore as" form should use a control
  I '$D(^DSIO(19641.42,IEN,1,"CONTROL",CON)) Q 0

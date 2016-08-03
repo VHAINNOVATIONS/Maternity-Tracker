@@ -1,8 +1,7 @@
-Routine DSIO7 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO7^INT^63830,46902^Oct 05, 2015@13:01
+Routine DSIO7 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO7^INT^64078,45770^Jun 09, 2016@12:42
 DSIO7 ;DSS/TFF - DSIO VPR FOR IHE;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 23
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**1,2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -233,7 +232,7 @@ XMLA(ITEM) ; -- Return current user information as XML in @VPR@(n)
 PAR(DFN,BEG,END,MAX,ID) ; -- find patient family information (Participant)
  ; [BEG,END,MAX,ID not currently used]
  S DFN=+$G(DFN) Q:DFN<1  ;invalid patient
- N PAT,OUT,ERR,I,RT,FOF,FOFIEN
+ N PAT,OUT,ERR,I,RT,FLE,FOF,FOFIEN
  D LIST^DIC(408.12,,"@;.01;.02;.03","P",,,,,"I $P(^(0),U)=DFN",,"OUT","ERR")
  I $D(OUT) S I=$NA(OUT) F  S I=$Q(@I) Q:I=""  D
  .Q:$QS(I,2)<1
@@ -242,7 +241,8 @@ PAR(DFN,BEG,END,MAX,ID) ; -- find patient family information (Participant)
  .S PAT("family_member",$QS(I,2))=$P(@I,U,4)_U_$P(@I,U,3)
  .; POINTER TO (2) OR (408.13)
  .S RT=$$GET1^DIQ(408.12,+@I_",",.03,"I")
- .D ATCS($TR($P($P(RT,U,";",2),"(",2),",",""),+RT,$QS(I,2))
+ .S FLE=$S(RT["DPT,":2,1:$TR($P($P(RT,U,";",2),"(",2),",",""))
+ .D ATCS(FLE,+RT)
  ;
  ; *** GET ONLY CURRENT FOF
  D PREGG^DSIO15(.OUT,"C",DFN) I $G(@OUT@(0)) D

@@ -1,0 +1,95 @@
+Routine DSIO0P saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO0P^INT^64127,54563^Jul 28, 2016@15:09
+DSIO0P ;DSS/TFF - PRE INSTALL;06/28/2013 15:19
+ ;;1.0;DSIO 1.0;**1,2,5**;Feb 06, 2015;Build 18
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;
+ ;
+ ;
+ ;
+ Q
+ ;
+PRE ; PRE-INSTALL ACTIONS
+ N DIU D BMES^XPDUTL("  Deleting data dictionaries:")
+ ; ----------------------------------------------------------------
+ S DIU=19641.01,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO MENSTRUAL HISTORY (#19641.01)")
+ ; ----------------------------------------------------------------
+ K ^DSIO(19641.122) S ^DSIO(19641.122,0)="DSIO DDCS OBSERVATION CONFIG^19641.122^^0"
+ S DIU=19641.122,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS OBSERVATION CONFIG (#19641.122)")
+ ; ----------------------------------------------------------------
+ K ^DSIO(19641.123) S ^DSIO(19641.123,0)="DSIO OBSERVATION PUSH^19641.123OI^^0"
+ S DIU=19641.123,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO OBSERVATION PUSH (#19641.123)")
+ ; ----------------------------------------------------------------
+ S DIU=19641.13,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO PREGNANCY HISTORY (#19641.13)")
+ ; ----------------------------------------------------------------
+ K ^DSIO(19641.401) S ^DSIO(19641.401,0)="DSIO DDCS REPORT ITEMS^19641.401I^^0"
+ S DIU=19641.401,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS REPORT ITEMS (#19641.401)")
+ ; ----------------------------------------------------------------
+ K ^DSIO(19641.42) S ^DSIO(19641.42,0)="DSIO DDCS FORM CONFIGURATION^19641.42I^^0"
+ S DIU=19641.42,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS FORMS CONFIGURATION (#19641.42)")
+ ; ----------------------------------------------------------------
+ K ^DSIO(19641.425) S ^DSIO(19641.425,0)="DSIO DDCS CONTROLS^19641.425^^0"
+ S DIU=19641.425,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS CONTROLS (#19641.425)")
+ ; ----------------------------------------------------------------
+ S DIU=19641.45,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS ELEMENT (#19641.45)")
+ ; ----------------------------------------------------------------
+ K ^DSIO(19641.49) S ^DSIO(19641.49,0)="DSIO DDCS DIALOGS^19641.49^^0"
+ S DIU=19641.49,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS DIALOG CONFIGURATION (#19641.49)")
+ ; ----------------------------------------------------------------
+ K ^DSIO(19641.492) S ^DSIO(19641.492,0)="DSIO DDCS PARAMETER^19641.492IP^^0"
+ S DIU=19641.492,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS PARAMETER (#19641.492)")
+ ; ----------------------------------------------------------------
+ K ^DSIO(19641.493) S ^DSIO(19641.493,0)="DSIO DDCS VITALS CONTRACEPTION^19641.493^^0"
+ S DIU=19641.493,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS VITALS CONTRACEPTION (#19641.493)")
+ ; ----------------------------------------------------------------
+ S DIU=19641.4941,DIU(0)="T" D EN^DIU2
+ D MES^XPDUTL("    DSIO DDCS SHARED DATA (#19641.4941)")
+ ; ----------------------------------------------------------------
+ S DIU=19641.402,DIU(0)="T" D EN^DIU2 K ^DSIO(19641.402)
+ D MES^XPDUTL("    DELETING FILE #19641.402")
+ ; ----------------------------------------------------------------
+ S DIU=19641.48,DIU(0)="T" D EN^DIU2 K ^DSIO(19641.48)
+ D MES^XPDUTL("    DELETING FILE #19641.48")
+ Q
+ ;
+POST ; POST-INSTALL ACTIONS
+ N IEN,FDA,CON,CODE,DIK,DA
+ S IEN=0 F  S IEN=$O(^DSIO(19641.13,IEN)) Q:'IEN  D
+ . S FDA(19641.13,IEN_",",3.6)=$$OUT($$GET1^DIQ(19641.13,IEN_",",3.6,"I"))
+ . D UPDATE^DIE(,"FDA") K FDA
+ ; *** DELETE OSERVATIONS
+ ;     11996-6, 57062-2, 11637-6, 11638-4, 11639-2, GravidaParaSummary
+ S DIK="^DSIO(19641.12,",IEN=0 F  S IEN=$O(^DSIO(19641.12,IEN)) Q:'IEN  D
+ . S CODE=$$GETCODE^DSIO10(IEN,"C",1)
+ . I CODE="11996-6"!(CODE="57062-2")!(CODE="11637-6")!(CODE="11638-4")!(CODE="11639-2")!(CODE="GravidaParaSummary") D
+ . . S DA=IEN D ^DIK
+ Q
+ ;
+OUT(X) ; Determine Outcome
+ Q:X="U" "Unknown"
+ Q:X="F" "Full Term"
+ Q:X="P" "Preterm"
+ Q:X="AS" "Spontaneous Abortion"
+ Q:X="S" "Stillbirth"
+ Q:X="AI" "Termination"
+ Q:X="E" "Ectopic"
+ Q X
+ ;
+FIX ; Correct class pointers for controls for 19641.49
+ N IEN,CON,ELE
+ S IEN=0 F  S IEN=$O(^DSIO(19641.49,IEN)) Q:'IEN  D
+ . S CON=0 F  S CON=$O(^DSIO(19641.49,IEN,1,CON)) Q:'CON  D
+ . . S ELE=$$UP^XLFSTR($P($G(^DSIO(19641.49,IEN,1,CON,0)),U,2)) Q:ELE=""
+ . . S $P(^DSIO(19641.49,IEN,1,CON,0),U,2)=$O(^DSIO(19641.425,"B",ELE,""))
+ Q

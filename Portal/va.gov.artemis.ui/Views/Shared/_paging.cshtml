@@ -1,0 +1,43 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Common.Paging
+
+@if (Model.TotalPages > 1)
+{
+    <div class="centered-txt">
+        <ul class="pagination">
+
+            @if (Model.CurrentPage <= 1)
+            {
+                <li class="disabled"><a href="#">&laquo;</a></li>
+            }
+            else
+            {
+                string previousUrl = string.Format("{0}/{1}",Model.BaseUrl, Model.PreviousPage);
+                <li><a href="@previousUrl" aria-label="Previous Page">&laquo;</a> </li>
+            }
+
+            @for (int i = Model.FirstPageToShow; i <= Model.LastPageToShow; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                <li class="active"><a href="#" aria-label="Current Page">@i.ToString()</a></li>
+                }
+                else
+                {
+                string pageUrl = string.Format("{0}/{1}", Model.BaseUrl, i);
+                string pageDesc = string.Format("Page {0} of {1}", i, Model.TotalPages);
+                <li><a href="@pageUrl" aria-label="@pageDesc">@i.ToString()</a></li>
+                }
+            }
+
+            @if (Model.CurrentPage == Model.TotalPages)
+            {
+                <li class="disabled"><a href="#" aria-label="Next Page Disabled">&raquo;</a></li>
+            }
+            else
+            {                    
+                string nextUrl = string.Format("{0}/{1}", Model.BaseUrl, Model.NextPage);
+                <li><a href="@nextUrl" aria-label="Next Page">&raquo;</a></li>
+            }
+        </ul>
+    </div>
+}

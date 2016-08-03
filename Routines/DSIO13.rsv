@@ -1,8 +1,7 @@
-Routine DSIO13 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO13^INT^63799,56316^Sep 04, 2015@15:38
+Routine DSIO13 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO13^INT^64107,39679^Jul 08, 2016@11:01
 DSIO13 ;DSS/CMW/TFF - DSIO ORDER RPCS;06/06/2014 15:19
- ;;1.0;DSIO 1.0;**1,2**;Feb 06, 2015;Build 1
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**1,2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----

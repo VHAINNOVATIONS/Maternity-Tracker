@@ -1,8 +1,7 @@
-Routine DSIO67 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO67^INT^63929,61780^Jan 12, 2016@17:09
+Routine DSIO67 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO67^INT^64120,15062^Jul 21, 2016@04:11
 DSIO67 ;DSS/TFF - DSIO DDCS ELEMENT OBSERVATIONS;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -25,7 +24,7 @@ OBF(FORM,CON,EIEN) ; Create the Observation for a Control for an Interface/Form 
 OBD(FORM,CON,EIEN) ; Create the Observation for a Control for an Interface/Form - DIALOG
  N IEN,OBS,VAL
  S IEN=$O(^DSIO(19641.49,FORM,1,"B",CON,"")) Q:'IEN
- S OBS=$P($G(^DSIO(19641.49,FORM,1,IEN,0)),U,2) Q:'OBS
+ S OBS=$P($G(^DSIO(19641.49,FORM,1,IEN,0)),U,5) Q:'OBS
  S $P(VAL,U,3)=$$VALUE(EIEN)
  D OBG(OBS)
  Q
@@ -63,21 +62,24 @@ OBG(IEN) ; Get Observation Configuration and create
  ;   BOOL = BOOLEAN VALUE (T/F)
  ;   QUAL = QUALIFIERS (ARRAY OF QUALIFIER^VALUE)
  ;    NAR = NARRATIVE (ARRAY OF TEXT)
+ ;  LIMIT = CREATE ONLY IF (the boolean value matches)
  ;  **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
  ;
- N OUT,REF,LN,CAT,REL,NEG,BOOL,NAR,OBJ,CODE,VALCD,QUAL,OB
+ N OUT,REF,LN,CAT,REL,NEG,BOOL,NAR,CT,OBJ,CODE,VALCD,QUAL,OB,FLG
  I DDCSFLE=8925 S REF(1)="TIU."_+DDCSR                ; OBJECTS OF REFERENCE
  D GETS^DIQ(19641.122,IEN_",","**","I","OUT") Q:'$D(OUT)
- S LN=$NA(OUT) F  S LN=$Q(@LN) Q:LN=""  D
+ S LN=$NA(OUT) F  S LN=$Q(@LN) Q:LN=""  D  Q:$D(FLG)
  . I $QS(LN,1)=19641.122 D  Q
  . . I $QS(LN,3)=.03 S CAT=@LN Q                      ; CATEGORY
  . . I $QS(LN,3)=.04 S REL=@LN Q                      ; RELATIONSHIP
  . . I $QS(LN,3)=4.1 S $P(VAL,U)=@LN Q                ; VALUE TYPE
  . . I $QS(LN,3)=4.3 S $P(VAL,U,2)=@LN Q              ; VALUE UNIT
  . . I $QS(LN,3)=4.4 S NEG=@LN Q                      ; NEGATION
- . . I $QS(LN,3)=4.5 I @LN S $P(VAL,U,3)=$S($P(VAL,U,3)'="":"True",1:"False")  ; BOOLEAN VALUE
- . . I $QS(LN,3)=6 D  Q                               ; NARRATIVE
- . . . Q:'$QS(LN,4)  S NAR($QS(LN,4))=@LN               ; TEXT
+ . . I $QS(LN,3)=4.5 I @LN S BOOL=1,$P(VAL,U,3)=$$BOOL($P(VAL,U,3)) Q  ; BOOLEAN VALUE
+ . . I $QS(LN,3)=4.6 I @LN D  Q
+ . . . S CT=0 F  S CT=$O(^DSIO(19641.45,+$G(DDCSE),1,CT)) Q:'CT  D
+ . . . . S NAR(CT)=$P($G(^DSIO(19641.45,DDCSE,1,CT,0)),U,2,999)
+ . . I $QS(LN,3)=4.7 I @LN'="",'$$LIMIT($D(BOOL),@LN,$P(VAL,U,3)) S FLG=1 Q
  . I $QS(LN,1)=19641.1221 D  Q                        ; OBJECTS OF OBSERVATION
  . . I @LN="PG" S OBJ(1)="PG."_$$PG^DSIO4($G(DFN))      ; CURRENT PREGNANCY FLAG
  . I $QS(LN,1)=19641.1223,$QS(LN,3)=.01 D  Q
@@ -88,8 +90,30 @@ OBG(IEN) ; Get Observation Configuration and create
  . I $QS(LN,1)=19641.1225 D                           ; QUALIFIERS
  . . I $QS(LN,3)=.01 S $P(QUAL(+$QS(LN,2)),U)=@LN Q     ; QUALIFIER
  . . I $QS(LN,3)=.02 S $P(QUAL(+$QS(LN,2)),U,2)=@LN     ; VALUE
- D OBS^DSIO10(.OB,,$G(DFN),,.OBJ,.REF,$G(REL),$G(CAT),$G(CODE),$G(VAL),$G(VALCD),$G(NEG),.QUAL,.NAR,1)
+ D:'$D(FLG) OBS^DSIO10(.OB,,$G(DFN),,.OBJ,.REF,$G(REL),$G(CAT),$G(CODE),$S('$D(NAR):$G(VAL),1:""),$G(VALCD),$G(NEG),.QUAL,.NAR,1)
  Q
+ ;
+BOOL(VAL) ; Set value based on Boolean type and check type control
+ Q:$G(DDCSEN)=""!($G(DDCSFRM)="") "False"
+ I $$CHECK^DSIO62(DDCSFRM,DDCSEN) Q $S($$TGET1^DSIO62(DDCSEN):"True",1:"False")
+ Q $S(VAL'="":"True",1:"False")
+ ;
+LIMIT(BOOL,FLD,VAL) ; The CREATE ONLY IF field is set...
+ ;                    - If we are working with boolean values and the value matches
+ ;                      this field's value - so create only if the value is True
+ ;                      or create only if the value is False
+ ;                    - If we are not working with boolean values but the type of
+ ;                      control is a boolean type (checkbox) then we do like the
+ ;                      above condition
+ N OUT,VCHK
+ I BOOL D
+ . I FLD=1,VAL="True" S OUT=1
+ . I FLD=0,VAL="False" S OUT=1
+ I 'BOOL,$$CHECK^DSIO62(DDCSFRM,DDCSEN) D
+ . S VCK=$$TGET1^DSIO62(DDCSEN)
+ . I FLD=1,VCK S OUT=$S(VAL'="":1,1:0)
+ . I FLD=0,'VCK S OUT=$S(VAL="":1,1:0)
+ Q +$G(OUT)
  ;
 ND(Q) ; Return node value for CODES
  Q OUT($QS(LN,1),$QS(LN,2),Q,"I")

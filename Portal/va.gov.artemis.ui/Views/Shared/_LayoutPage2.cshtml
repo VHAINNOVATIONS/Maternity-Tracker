@@ -1,0 +1,120 @@
+﻿@using System.Web.Optimization;
+@using Microsoft.Web.Mvc;
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" media="screen" />
+    <link href="@Url.Content("~/Content/bs-dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/mt-portal.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/offcanvas.css")" rel="stylesheet" />
+</head>
+
+<body style="padding-top: 0px">
+    <div class="container-fluid">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="col-sm-3 col-md-2 sidebar sidebar-offcanvas" style="padding-top: 0px; background-color: #b4b2b2" id="sidebar">
+                <a href="@Url.Action("Index", "Home")" id="mcc-dashboard-link">
+                    <p class="text-center h3" style="color: white; margin-top: 10px">Pregnancy Portal</p>
+                    <p class="text-center" style="font-size: 48px"><span class="glyphicon glyphicon-dashboard" style="color: white"></span></p>
+                </a>
+
+                <a class="sr-only sr-only-focusable" id="skipTo" href="#content" style="display: block; padding: 10px 15px; margin: 10px; background-color: #fff; border: 1px solid #ddd">Skip To Content</a>
+
+                <ul class="nav nav-sidebar">
+                    <li class="list-group-item disabled text-center thin-header">Home</li>
+                    <li><a id="nav-welcome" class="list-group-item" href="@Url.Action("Index", "Home")">Welcome</a></li>
+                    <li><a id="nav-msgs" class="list-group-item" href="@Url.Action("Index", "Home")#mt-msgs">
+                        <span class="badge" title="You have 3 unread messages">3</span>
+                        Messages</a></li>
+                    <li><a id="nav-summary" class="list-group-item" href="@Url.Action("Index", "Home")#mt-summary">Summary</a></li>
+                    <li><a id="nav-ed" class="list-group-item" href="@Url.Action("Index", "Home")#mt-education">Education Resources</a></li>
+                    <li><a id="nav-comm" class="list-group-item" href="@Url.Action("Index", "Home")#mt-resources">Community Resources</a></li>
+                    <li><a id="nav-down" class="list-group-item" href="@Url.Action("Index", "Home")#mt-download">Download</a></li>
+                    <li><a id="nav-help" class="list-group-item" href="@Url.Action("Index", "Home")#mt-help">Help</a></li>
+                </ul>
+
+                <ul class="nav nav-sidebar">
+                    <li class="list-group-item disabled text-center thin-header">Current Pregnancy</li>
+                    <li><a id="nav-pat-summ" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")">Summary</a></li>
+                    <li><a id="nav-pat-edd" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")#mt-cur-preg-edd">EDD</a></li>
+                    <li><a id="nav-pat-screen" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")#mt-cur-preg-screening">Screening/Dx</a></li>
+                    <li><a id="nav-pat-psy" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")#mt-cur-preg-psycho">Psychosocial</a></li>
+                    <li><a id="nav-pat-labs" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")#mt-cur-preg-labs">Labs</a></li>
+                    <li><a id="nav-pat-vis" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")#mt-cur-preg-visits">Visits</a></li>
+                    <li><a id="nav-pat-ult" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")#mt-cur-preg-ultra">Ultrasounds</a></li>
+                    <li><a id="nav-pat-pln" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")#mt-cur-preg-plans">Plans</a></li>
+                    <li><a id="nav-pat-out" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")#mt-cur-preg-out">Outcome</a></li>
+                    <li><a id="nav-pat-pos" class="list-group-item" href="@Url.Action("Index", "CurrentPregnancy")#mt-cur-preg-pp">Postpartum</a></li>
+                </ul>
+
+                <ul class="nav nav-sidebar">
+                    <li class="list-group-item disabled text-center thin-header">Health History</li>
+                    <li><a id="nav-pat-gp" class="list-group-item" href="@Url.Action("Index", "HealthHistory")">Gravida/Para</a></li>
+                    <li><a id="nav-pat-pregs" class="list-group-item" href="@Url.Action("Index", "HealthHistory")#mt-cur-preg-pregs">Past Pregnancies</a></li>
+                    <li><a id="nav-pat-vacc" class="list-group-item" href="@Url.Action("Index", "HealthHistory")#mt-cur-preg-vacc">Vaccinations/Immunizations</a></li>
+                    <li><a id="nav-pat-probs" class="list-group-item" href="@Url.Action("Index", "HealthHistory")#mt-cur-preg-probs">Problems</a></li>
+                    <li><a id="nav-pat-alg" class="list-group-item" href="@Url.Action("Index", "HealthHistory")#mt-cur-preg-allergies">Allergies</a></li>
+                    <li><a id="nav-pat-med" class="list-group-item" href="@Url.Action("Index", "HealthHistory")#mt-cur-preg-meds">Medications</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 top-row">
+                <p class="pull-left visible-xs">
+                    <button type="button" class="btn btn-default btn-xs" data-toggle="offcanvas" style="background-color: #808080; color: white; margin-left: -16px; margin-right: 10px">Menu</button>
+                </p>
+                <div class="row wrap" id="content">
+                    <div class="content-row" style="padding: 20px">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <a href="http://www.innovation.va.gov">
+                                    <img src="~/Content/images/VA Innovation Logo.png" alt="US Department of Veterans Affairs Center For Innovation" width="282" height="84" style="border: 1px solid lightgray; padding: 6px" /></a>
+                            </div>
+                            <div class="col-md-4 col-sm-12 centered-txt">
+                                <a href="http://www.va.gov">
+                                    <img src="~/Content/images/VA_PrimaryLogo_1color_navy.jpg" alt="US Department of Veterans Affairs" width="282" height="84" style="border: 1px solid lightgray; padding: 6px" /></a>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <a href="http://www.dssinc.com">
+                                    <img class="pull-right" src="~/Content/images/dss logo.jpg" alt="Document Storage Systems, Inc.  EHR + Innovation" width="273" height="84" style="border: 1px solid lightgray" /></a>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        @Html.Partial("_alerts")
+                        @RenderBody()
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <hr style="margin-top: 6px; margin-bottom: 3px" />
+                    <div class="pull-right" style="padding-right: 10px">
+                        <p class="text-primary">@ViewBag.AppVersion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/MyBundle")
+
+    @RenderSection("Scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#skipTo').click(function () {
+                $('#content').attr('tabIndex', -1).focus();
+            });
+        });
+    </script>
+
+    @*    @if (!ViewBag.NoTimeout)
+    {
+        Html.RenderPartial("~\\Views\\Shared\\_Timeout.cshtml"); 
+    }*@
+
+</body>
+</html>

@@ -1,8 +1,7 @@
-Routine DSIO03 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO03^INT^63936,61781^Jan 19, 2016@17:09
+Routine DSIO03 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO03^INT^64128,39251^Jul 29, 2016@10:54
 DSIO03 ;DSS/TFF - DSIO OBSERVATION PUSH;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -30,7 +29,7 @@ CREATE(RET,NA,CD,SY,DL) ; Create Observation PUSH
  ;
  ; OBSERVATION CREATION -------------------------------------------------------
  ;
-O(DFN,OBJECT,REL,CAT,CODE,SYS,DIS,VAL,NEG,NAR) ; Generic Entry
+O(DFN,OBJECT,REL,CAT,CODE,SYS,DIS,VAL,NEG,NAR,DATES,REF,IEN) ; Generic Entry
  ;
  ;    DFN = PATIENT
  ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
@@ -38,18 +37,24 @@ O(DFN,OBJECT,REL,CAT,CODE,SYS,DIS,VAL,NEG,NAR) ; Generic Entry
  ;          PG.IEN (PREGNANCY)
  ;    REL = RELATIONSHIP
  ;    CAT = CATEGORY
- ;   CODE = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
- ;    VAL = TYPE^UNIT^VALUE
- ;    NEG = NEGATION (T/F)
+ ;   CODE = STANDARD CODE
+ ;    SYS = STANDARD SYSTEM ^ OID
+ ;          ** OBSERVATION 9TH INPUT
+ ;             SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+ ;             $P(SYS,U)_U_$P(SYS,U,2)_U_CODE_U_DIS
+ ;    VAL = (input = VALUE^UNIT) -> OBS = TYPE^UNIT^VALUE
+ ;    NEG = NEGATION  (T/F)
  ;    NAR = NARRATIVE (ARRAY OF TEXT)
- ;  **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+ ;  DATES = OBSERVATION^START^END
  ;
  Q:'$G(DFN)!($G(CODE)="")
- N REF,OUT,CT
- S REF(0)="TIU."_+DDCSR
- S REL=$G(REL),CAT=$G(CAT),DIS=$G(DIS),VAL=$G(VAL),NEG=$G(NEG)
- S SYS=$S($G(SYS)'="":SYS,1:"OTHER")
- D OBS^DSIO10(.OUT,,DFN,$$NOW^XLFDT,.OBJECT,.REF,,CAT,SYS_"^^"_CODE_U_DIS,"^^"_VAL,,,,.NAR,1)
+ N I,OUT,CT,UNT,SYSN,SYSV
+ I $G(REF)'=-1 K REF S REF(0)="TIU."_+DDCSR
+ S DATES=$G(DATES) F I=1:1:3 S $P(DATES,U,I)=$$DT^DSIO2($P(DATES,U,I))
+ I $P(DATES,U)="" S $P(DATES,U)=$$NOW^XLFDT
+ S REL=$G(REL),CAT=$G(CAT),DIS=$G(DIS),UNT=$P($G(VAL),U,2),VAL=$P($G(VAL),U),NEG=$G(NEG)
+ S SYSN=$S($P($G(SYS),U)'="":$P(SYS,U),1:"OTHER"),SYSV=$P($G(SYS),U,2)
+ D OBS^DSIO10(.OUT,$G(IEN),DFN,DATES,.OBJECT,.REF,REL,CAT,SYSN_U_SYSV_U_CODE_U_DIS,U_UNT_U_VAL,,,,.NAR,1)
  Q
  ;
  ; PUSH -----------------------------------------------------------------------
@@ -85,16 +90,47 @@ BABY(FLD) ; Update Baby Information
  Q:'$G(DFN)!('$G(OIEN))
  N IEN,IPT
  S IEN=$$OBJ("DSIO(19641.112,") Q:'IEN
+ I FLD=.06 S X=$$BW(X)
  S IPT(19641.112,IEN_",",FLD)=X
  D UPDATE^DIE("E","IPT")
  Q
  ;
+BW(VAL) ; Convert Birth Weight
+ Q:VAL?.N +VAL
+ N V,L,O
+ S V=$TR($$UP^XLFSTR(VAL)," "),L="",O=""
+ Q:V["G" +V
+ I V["LB" D
+ . S L=$P(V,"LB") S:L'="" L=+$$WEIGHT^XLFMSMT(L,"LB","G")
+ . S V=$S(V["LBS":$P(V,"LBS",2),1:$P(V,"LB",2))
+ I V["OZ" S O=$P(V,"OZ") S:O'="" O=+$$WEIGHT^XLFMSMT(O,"OZ","G")
+ Q L+O
+ ;
 PREG(FLD) ; Update Pregnancy Element
  Q:$G(X)=""!('$G(DFN))
- N IEN,IPT
- I FLD=3.1,X?.N S X=$$G2^DSIO4(X)
+ N V,IEN,IPT S V=X
+ I FLD=3.1 D
+ . I V["|" S V=$$G2^DSIO4($P(V,"|",3)) D EDD("ULT") Q
+ . I V?.N S V=$$G2^DSIO4(V)
+ I FLD=3.6 D
+ . S V=$$OTV(V)
+ . I V="Preterm" S X="YES" D PREG(3.5) Q
+ . I V="Full Term" S X="NO" D PREG(3.5) Q
+ . I V="Stillbirth" S X="YES" D BABY(.07)
+ . I V="Stillbirth"!(V="Spontaneous Abortion")!(V="Termination") D
+ . . S X="DEMISE" D BABY(.011)
  S IEN=$$OBJ("DSIO(19641.13,") Q:'IEN
- S IPT(19641.13,IEN_",",FLD)=X
+ S IPT(19641.13,IEN_",",FLD)=V
+ D UPDATE^DIE("E","IPT")
+ Q
+ ;
+MHIST(FLD) ; Update Menstrual History
+ Q:$G(X)=""!('$G(DFN))
+ N LMP,IEN,IPT
+ S LMP=$$GET1^DIQ(19641,DFN_",",1.2,"I") Q:'LMP
+ I FLD=1.5!(FLD=1.8)!(FLD=1.9) D
+ . S X=$$UP^XLFSTR($E(X,1)),X=$S(X="Y"!(X="T"):"YES",1:"NO")
+ S IPT(19641.01,LMP_",",FLD)=X
  D UPDATE^DIE("E","IPT")
  Q
  ;
@@ -102,27 +138,25 @@ ODM(VAL) ; Validate and transform a obsteric delivery method
  S VAL=$$UP^XLFSTR($G(VAL))
  Q $S("^V^C^O^"[(U_VAL_U):VAL,VAL["VAGIN":"V",VAL["CESAR":"C",1:"O")
  ;
-OUT ; Update Pregnancy Outcome
+OT(VAL) ; Transform OutcomeType from End User to Observation value
+ S VAL=$$UP^XLFSTR($TR(VAL," "))
+ Q:VAL["FULLTERM" "FullTermDelivery"
+ Q:VAL["PRETERM" "PretermDelivery"
+ Q:VAL["SPONTANEOUS" "SpontaneousAbortion"
+ Q:VAL["STILLBIRTH" "StillBirth"
+ Q:VAL["TERMINATION" "PregnancyTermination"
+ Q:VAL["ECTOPIC" "Ectopic"
+ Q "Unknown"
  ;
- ; OutcomeType
- ;    Unknown                  U
- ;    FullTermDelivery         F
- ;    PretermDelivery          P
- ;    SpontaneousAbortion      AS *** Spontaneous
- ;    Stillbirth               S  *** Demise or Stillbirth
- ;    PregnancyTermination     AI *** Induced
- ;    Ectopic                  E
- ;
- ; VistA - DSIO PREGNANCY HISTORY - 3.6 (OUTCOME)
- ;
- Q:$G(X)=""!('$G(DFN))
- N VAL
- S X=$$UP^XLFSTR($G(X))
- S VAL=$S("^E^AI^AS^S^F^U^P^"[(U_X_U):X,1:"")
- S:VAL="" VAL=$S(X["UNKNOWN":"U",X["FULLTERM":"F",X["PRETERM":"P",X["SPONTANEOUS":"AS",1:"")
- S:VAL="" VAL=$S(X["STILLBIRTH":"S",X["TERMINATION"!(X["INDUCED"):"AI",X["ECTOPIC":"E",1:"")
- S X=VAL D PREG(3.6)
- Q
+OTV(VAL) ; Transform OutcomeType from observation value to VistA (End User)
+ S VAL=$$UP^XLFSTR(VAL)
+ Q:VAL="FULLTERMDELIVERY" "Full Term"
+ Q:VAL="PRETERMDELIVERY" "Preterm"
+ Q:VAL="SPONTANEOUSABORTION" "Spontaneous Abortion"
+ Q:VAL="STILLBIRTH" "Stillbirth"
+ Q:VAL="PREGNANCYTERMINATION" "Termination"
+ Q:VAL="ECTOPIC" "Ectopic"
+ Q "Unknown"
  ;
 GA(TYP) ; Update Gestational Age for Pregnancy
  ;
@@ -158,23 +192,21 @@ TXT(FLE,FLD,OBJ) ; Observation narrative as a value
  ;
 EDD(TYP) ; EDD Observation
  ;
- ; EDD BY ECD              "ECD"   33067-0           LOINC    X: EVENT|ISFINAL|GA
- ; EDD BY EMBRYO TRANSFER  "EMB"   EmbryoTransfer    OTHER    X: EVENT|ISFINAL|GA
- ; EDD BY OTHER            "OTH"   OtherEdd          OTHER    X: EVENT|ISFINAL|GA
- ; EDD BY ULTRASOUND       "ULT"   UltraSound        OTHER    X: EVENT|ISFINAL|GA
+ ; EDD BY LMP              "LMP"  11779-6         LOINC  X: EDD  |TRUE
+ ; EDD BY ECD              "ECD"  33067-0         LOINC  X: EVENT|TRUE
+ ; EDD BY ULTRASOUND       "ULT"  11884-4         LOINC  X: EVENT|TRUE|GA
+ ; EDD BY EMBRYO TRANSFER  "EMB"  EmbryoTransfer  OTHER  X: EVENT|TRUE
+ ; EDD BY OTHER            "OTH"  OtherEdd        OTHER  X: EVENT|TRUE|GA
+ ; EDD BY UNKNOWN          "EDD"  11778-8         LOINC  X: EDD  |TRUE
  ;
- ; EDD BY UNKNOWN          "EDD"   11778-8           LOINC    X: EDD|ISFINAL|GA
- ; EDD BY LMP              "LMP"   11779-6           LOINC    X: EDD|ISFINAL|GA
- ;
- N PREG,ISF,DATE,PG,EDD,IED,FDA
+ N PREG,ISF,DATE,PG,EDD,GA,IED,FDA
  S PREG=$$PG^DSIO4(DFN) Q:'PREG
  S ISF=$$UP^XLFSTR($E($P($G(X),"|",2),1)) S ISF=$S(ISF="T"!(ISF="Y")!(ISF=1):1,1:0) Q:'ISF
  S DATE=$$DT^DSIO2($P(X,"|")) Q:DATE=""
  D:TYP="ECD" PREG^DSIO15(.PG,PREG,DFN,DATE,,,,,,,,,1)               ; ECD
- ; *** Why not pass the EDD? Another delightful decision!
- I TYP="EDD"!(TYP="LMP") S EDD=DATE
- S:'$D(EDD) EDD=$$CAL(TYP,DATE,$P(X,"|",3)) Q:EDD=""
- D PREG^DSIO15(.PG,PREG,DFN,"^^"_EDD,,,,,,,,,1)                     ; EDD
+ S EDD=$S(TYP="EDD"!(TYP="LMP"):DATE,1:$$CALEDD(TYP,DATE,$P(X,"|",3))) Q:EDD=""
+ S GA=$$CALGA(TYP,DATE,EDD)
+ D PREG^DSIO15(.PG,PREG,DFN,"^^"_EDD,,,,,,GA,,,1)                   ; EDD and GA
  S IED=$$GET1^DIQ(19641.13,PREG_",",.06,"I") Q:'IED
  S FDA(19641.03,IED_",",.02)=DFN                                    ; PATIENT
  S FDA(19641.03,IED_",",.03)=DUZ                                    ; ENTERED BY
@@ -186,28 +218,39 @@ EDD(TYP) ; EDD Observation
  D FILE^DIE(,"FDA")
  Q
  ;
-CAL(TYP,DATE,GA) ; Calculate EDD (Again?)
- ;                 * The M Developer does not agree with calculating EDD when it has already
- ;                   been calculated and accepted by the user.
- I TYP="ECD" Q $$FMADD^XLFDT(DATE,266)
- I TYP="EMB" Q $$FMADD^XLFDT(DATE,262)
+CALEDD(TYP,DATE,GA) ; Calculate EDD (Again?)
  I GA["W"!(GA["D") S GA=$$G1^DSIO4(GA)
- I TYP="OTH" Q $$FMADD^XLFDT(DATE,(280-GA))
+ I TYP="ECD" Q $$FMADD^XLFDT(DATE,266)
  I TYP="ULT" Q $$FMADD^XLFDT(DATE,(280-GA))
+ I TYP="EMB" Q $$FMADD^XLFDT(DATE,262)
+ I TYP="OTH" Q $$FMADD^XLFDT(DATE,(280-GA))
  Q
+ ;
+CALGA(TYP,EVENT,EDD) ; Calculate the GA (Again?) - in Days
+ N DATE,GA
+ S DATE=$S(EDD>DT:DT,1:EDD),GA=$$FMDIFF^XLFDT(EVENT,DATE)
+ I TYP="LMP" Q GA
+ I TYP="ECD" Q GA+14
+ I TYP="ULT" Q GA
+ I TYP="EMB" Q GA+18
+ I TYP="OTH" Q GA
+ Q 0
  ;
 LMP ; Push LMP
  ;
- ; Last Menstrual Period         8665-2            LOINC    X: EVENT|QUALIIER
+ ; Last Menstrual Period  8665-2    LNC  X: DATE|QUALIIER
+ ;                        21840007  SCT  X: DATE
+ ;                        11779-6   LNC  X: DATE|isFinal|GA  **DATE = EDD
  ;
- Q:$P($G(X),"|")=""
- N DATE,FDA,LEN
- S DATE=$$DT^DSIO2($P(X,"|")) Q:DATE=""
- S FDA(19641.01,"?+1,",.01)=DATE                                    ; LAST MENSTRAL PERIOD
- S FDA(19641.01,"?+1,",.02)=DFN                                     ; PATIENT
- S FDA(19641.01,"?+1,",.03)=DUZ                                     ; ENTERED BY
- S FDA(19641.01,"?+1,",.04)=$$NOW^XLFDT                             ; DATE ENTERED
- S FDA(19641.01,"?+1,",.05)=$$UP^XLFSTR($E($P(X,"|",2),1))          ; QUALIFIER
+ N DATE,FDA,QU,LEN
+ S DATE=$$DT^DSIO2($P(X,"|"))
+ S DATE=$S($G(CODE)="11779-6":$$FMADD^XLFDT(DATE,-280),1:DATE) Q:DATE=""
+ S FDA(19641.01,"?+1,",.01)=DATE                        ; LAST MENSTRAL PERIOD
+ S FDA(19641.01,"?+1,",.02)=DFN                         ; PATIENT
+ S FDA(19641.01,"?+1,",.03)=DUZ                         ; ENTERED BY
+ S FDA(19641.01,"?+1,",.04)=$$NOW^XLFDT                 ; DATE ENTERED
+ S:$G(CODE)="8665-2" QU=$$UP^XLFSTR($E($P(X,"|",2),1))
+ S:$D(QU) FDA(19641.01,"?+1,",.05)=QU                   ; QUALIFIER
  D UPDATE^DIE(,"FDA","LEN") K FDA Q:'$G(LEN(1))
  S FDA(19641,DFN_",",1.2)=LEN(1)
  D UPDATE^DIE(,"FDA") K FDA
@@ -221,3 +264,11 @@ OBJ(TYP) ; Get Object of Observation IEN from Observation
  . Q:CT'[TYP
  . S IEN=+CT
  Q +$G(IEN)
+ ;
+OBX(DFN,OBJ,DATES,REF,REL,CAT,SYS,CODE) ; Observation Exists
+ N RET,OUT
+ S DFN=$G(DFN),DATES=$G(DATES),REF=$G(REF),REL=$G(REL)
+ S CAT=$G(CAT),SYS=$G(SYS),CODE=$G(CODE)
+ D OBG^DSIO10(.RET,,DFN,.OBJ,REF,DATES,DATES,REL,CAT,SYS,CODE)
+ S OUT=$S($G(@RET@(0)):1,1:0) K @RET
+ Q OUT

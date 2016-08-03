@@ -1,0 +1,48 @@
+﻿    .mt-info-section {
+    }
+
+        .mt-info-section li {
+            margin: 6px;
+        }
+
+    .mt-ul-section {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+
+    .mt-info-section-primary {
+        background-color: #428bca;
+        color: #fff;
+    }
+
+        .mt-info-section-primary h1,
+        .mt-info-section-primary h3,
+        .mt-info-section-primary p {
+            color: #fff;
+        }
+
+    .mt-info-section h1 {
+        font-size: 36px;
+    }
+
+    .mt-info-section p {
+        font-size: 14px;
+        line-height: 1.4285;
+    }
+
+    .mt-info-section-success {
+        background-color: #dff0d8;
+    }
+
+    .mt-info-section-info {
+        background-color: #d9edf7;
+    }
+
+    .mt-info-section-warning {
+        background-color: #fcf8e3;
+    }
+
+    .mt-info-section-danger {
+        background-color: #f2dede;
+    }

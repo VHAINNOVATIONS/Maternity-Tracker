@@ -1,8 +1,7 @@
-Routine DSIO61 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO61^INT^63798,73802^Sep 03, 2015@20:30
+Routine DSIO61 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO61^INT^64078,45717^Jun 09, 2016@12:41
 DSIO61 ;DSS/TFF - DSIO DDCS SPECIAL LOOKUP;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -31,7 +30,7 @@ S1 ; Continue
  . I '$$GET1^DIQ(19641.4,IEN(1)_",",.05,"I") D
  . . W !!,"If no patient field then excute M code to lookup the Patient DFN.",!!
  . . S DR=1 D ^DIE
- . I '$$GET1^DIQ(19641.4,IEN(1)_",",.05,"I"),$$GET1^DIQ(19641.4,IEN(1)_",",1,"I")="" D  Q
+ . I $$GET1^DIQ(19641.4,IEN(1)_",",.05,"I")="",$$GET1^DIQ(19641.4,IEN(1)_",",1,"I")="" D  Q
  . . S DR=".04////0" D ^DIE
  . W !!,"SHARE this data across all interfaces?",!
  . W "      NO: Data belongs to a single instance of an interface.",!
@@ -59,7 +58,7 @@ S1 ; Continue
  ;
 VIEW(IEN) ; Display Current Data
  N OUT,CT,FLD
- D GETS^DIQ(19641.4,IEN_",",".01:2","E","OUT")
+ D GETS^DIQ(19641.4,IEN_",",".01:4","E","OUT")
  S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  S FLD($QS(CT,3))=@CT
  W !,$$REPEAT^XLFSTR("=",79)
  W !,"   CONTROL OBJECT: ",FLD(.01)
@@ -69,8 +68,10 @@ VIEW(IEN) ; Display Current Data
  W !,"    PATIENT FIELD: ",FLD(.05)
  W !,"            SHARE: ",FLD(.06)
  W !,"             FORM: ",FLD(.07),!
- W !," PATIENT LOOKUP CODE: ",FLD(1)
- W !,"           PUSH CODE: ",FLD(2)
+ W !," PATIENT LOOKUP CODE: ",FLD(1),!
+ W !,"           PUSH CODE: ",FLD(2),!
+ W !,"       PRE PUSH CODE: ",FLD(3),!
+ W !,"      POST PUSH CODE: ",FLD(4)
  W !,$$REPEAT^XLFSTR("=",79),!
  Q
  ;
@@ -109,14 +110,20 @@ F1 ; Continue
  S DIR("??")="^D F2^DSIO61"
  S DIR(0)="F^1:100" S:$G(VAL)'="" DIR("B")=VAL D ^DIR Q:$D(DIRUT) ""
  I Y=""!(Y[U) W "??" G F1
- I Y'="",'$D(FDD(Y)) W "??" G F1
+ I Y'="",'$$F3 W "??" G F1
  Q $S(Y'="":Y,1:$G(VAL))
 F2 ; Continue
- S FLD=0 F I=1:1 S FLD=$O(FDD(FLD)) Q:'FLD  D  Q:$D(FLG)
+ K FLG S FLD=0 F I=1:1 S FLD=$O(FDD(FLD)) Q:'FLD  D  Q:$D(FLG)
  . W !,"  ",FLD,?15,FDD(FLD)
  . I '(I#20),'$$GOON^VALM1 S FLG=1
  W ! G F1
  Q
+F3() ; Continue
+ Q:$D(FDD(Y)) 1
+ N CT,FLG
+ S CT=0 F  S CT=$O(FDD(CT)) Q:'CT  D  Q:$D(FLG)
+ . I FDD(CT)=Y S Y=CT,FLG=1
+ Q $S($D(FLG):1,1:0)
  ;
 FLDV(VAL,FLE) ; FIELDS of FILE Validation
  N FIELD,FLD,FDD,FLG

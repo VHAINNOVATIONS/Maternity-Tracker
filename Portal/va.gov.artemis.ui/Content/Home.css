@@ -1,0 +1,16 @@
+﻿#welcomeMessageDiv {
+    padding: 40px; 
+    border-right: 1px solid #c0c0c0;
+}
+
+#loginMessageDiv {
+    padding-top: 78px;
+}
+
+#loginButtonDiv {
+    margin-top: 30px;
+}
+
+#accessHelpDiv {
+    margin-top: 50px;
+}

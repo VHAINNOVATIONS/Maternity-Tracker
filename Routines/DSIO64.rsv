@@ -1,8 +1,7 @@
-Routine DSIO64 saved using VFDXTRS routine on Feb 23, 2016 14:03
-DSIO64^INT^63915,48601^Dec 29, 2015@13:30
+Routine DSIO64 saved using VFDXTRS routine on Aug 03, 2016 11:34
+DSIO64^INT^64107,50896^Jul 08, 2016@14:08
 DSIO64 ;DSS/TFF - DSIO DDCS DATA RETURN;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2**;Feb 06, 2015;Build 18
- ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+ ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -111,24 +110,53 @@ VAL(IEN) ; Get Value
  . S VAL=$S(VAL'="":VAL_$C(13,10),1:"")_@CT
  Q VAL
  ;
-IMPORT(RET,INFACE,ELES) ; RPC: DSIO DDCS IMPORT FORM
+IMPORT(RET,INFACE,CON) ; RPC: DSIO DDCS IMPORT FORM
  ;
  ; INFACE = IEN;DSIO(19641.42, (or NAME)
  ;          or IEN;DSIO(19641.49,
  ;
- ;   ELES = (ARRAY)
- ;          PAGE#^CONTROL_NAME^CLASS
+ ; CON(TROLS):
+ ;   (H) - CONTROL       ^ PAGE# ^ CONTROL_NAME ^ CONTROL_CLASS ^ PUSH ^ ID ^ OBSERVATION
+ ;   (C) - CONFIGURATION ^ PAGE# ^ CONTROL_NAME ^ VALUE
+ ;   (R) - REPORT ITEM   ^ PAGE# ^ CONTROL_NAME ^ NAME | VALUE
  ;
- N IEN,CT,IPT,PG,ERR S RET=0
+ N IEN,CT,CTRN,SAVE,IPT,PG,CTRI,DIK,DA S RET=0
  S INFACE=$$INFACE^DSIO65($G(INFACE)) Q:INFACE'[";DSIO(19641.42,"
- S IEN=+INFACE,CT=$NA(ELES) F  S CT=$Q(@CT) Q:CT=""  K PG D
- . Q:'@CT
- . S IPT(19641.421,"?+1,"_IEN_",",.01)=+@CT
- . D UPDATE^DIE("E","IPT","PG") K IPT Q:'$G(PG(1))
- . S IPT(19641.4211,"?+1,"_PG(1)_","_IEN_",",.01)=$TR($$UP^XLFSTR($P(@CT,U,2))," ","_")
- . S IPT(19641.4211,"?+1,"_PG(1)_","_IEN_",",.02)=$P(@CT,U,3)
- . D UPDATE^DIE("E","IPT",,"ERR") K IPT
- S:'$D(ERR) RET=1
+ S IEN=+INFACE,CT=$NA(CON) F  S CT=$Q(@CT) Q:CT=""  D
+ . Q:'$P(@CT,U,2)
+ . S CTRN=$$UP^XLFSTR($P(@CT,U,3)) S:CTRN'="" SAVE(CTRN)=""
+ . S IPT(19641.421,"?+1,"_IEN_",",.01)=+$P(@CT,U,2)
+ . K PG D UPDATE^DIE("E","IPT","PG") K IPT Q:'$G(PG(1))
+ . S IPT(19641.4211,"?+1,"_PG(1)_","_IEN_",",.01)=CTRN
+ . K CTRI D UPDATE^DIE("E","IPT","CTRI") K IPT Q:'$G(CTRI(1))
+ . I $P(@CT,U)="H" D  Q
+ . . S IPT(19641.4211,CTRI(1)_","_PG(1)_","_IEN_",",.02)=$P(@CT,U,4)
+ . . D UPDATE^DIE("E","IPT") K IPT
+ . I $P(@CT,U)="C" D CCTR(IEN,PG(1),CTRI(1),$P(@CT,U,4)) Q
+ . I $P(@CT,U)="R" D RCTR(IEN,PG(1),CTRI(1),$P(@CT,U,4,999))
+ ; *** Delete controls no longer used
+ S RET=1 Q:'$D(SAVE)
+ K PG S PG=0 F  S PG=$O(^DSIO(19641.42,IEN,1,PG)) Q:'PG  D
+ . S DIK="^DSIO(19641.42,"_IEN_",1,"_PG_",1,",DA(1)=PG,DA(2)=IEN
+ . S CTRN="" F  S CTRN=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CTRN)) Q:CTRN=""  D
+ . . Q:$D(SAVE(CTRN))
+ . . S DA=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CTRN,"")) D ^DIK
+ Q
+ ;
+CCTR(IEN,PG,CTRI,VAL) ; CONFIGURATION (WP)
+ K ^TMP($J,"DSIO64-CCTR")
+ S ^TMP($J,"DSIO64-CCTR",1)=U_VAL
+ D WP^DIE(19641.4211,CTRI_","_PG_","_IEN_",",2,"A","^TMP($J,""DSIO64-CCTR"")")
+ K ^TMP($J,"DSIO64-CCTR")
+ Q
+ ;
+RCTR(IEN,PG,CTRI,ITEM) ; REPORT ITEM
+ N PC,STR,IPT
+ F PC=1:1:$L(ITEM,U) D
+ . S STR=$P(ITEM,U,PC) Q:$P(STR,"|")=""!($P(STR,"|",2)="")
+ . S IPT(19641.42119,"?+1,"_CTRI_","_PG_","_IEN_",",.01)=$P(STR,"|")
+ . S IPT(19641.42119,"?+1,"_CTRI_","_PG_","_IEN_",",1)=$P(STR,"|",2)
+ . D UPDATE^DIE(,"IPT") K IPT
  Q
  ;
  ; ----------------------------------------------------------------------------
@@ -154,16 +182,23 @@ IMPORT(RET,INFACE,ELES) ; RPC: DSIO DDCS IMPORT FORM
 RESTF(RET,STRT,IEN,PG,CON,OBJECT,INFACE,SIEN) ; Restore Saved Data (FORMS)
  N OUT,I,VAL,CT
  D ELE(.OUT,OBJECT,$S($D(SINFACE):SINFACE,1:INFACE),SIEN,CON) Q:$D(OUT(0))
- F I=STRT:1:$O(@RET@(PG,IEN,0),-1) K @RET@(PG,IEN,I)
  S VAL=$P(OUT(1),U,4,999)
+ I $$LIST^DSIO62(INFACE,CON) D  Q
+ . F I=STRT:1:$O(@RET@(""),-1) D
+ . . I $P(@RET@(I),U,5)=$P(VAL,U,2) S $P(@RET@(I),U,4)="TRUE"
+ F I=STRT:1:$O(@RET@(PG,IEN,0),-1) K @RET@(PG,IEN,I)
  S CT=STRT F I=1:1:$L(VAL,$C(13,10)) S @RET@(PG,IEN,CT)="CV^"_CON_"^F^"_$P(VAL,$C(13,10),I),CT=CT+1
  Q
  ;
-RESTD(RET,STRT,CON,OBJECT,INFACE,SIEN) ; Restore Saved Data (DIALOGS)
+RESTD(RET,STRT,CON,OBJECT,INFACE,SIEN,CITEM) ; Restore Saved Data (DIALOGS)
  N OUT,I,VAL
  D ELE(.OUT,OBJECT,INFACE,SIEN,CON) Q:$D(OUT(0))
+ S VAL=$P(OUT(1),U,4,9999)
+ I $$LIST^DSIO62(INFACE,CON) D  Q
+ . F I=STRT:1:$O(@RET@(""),-1) D
+ . . I $P(@RET@(I),U,5)=$P(VAL,U,2) S $P(@RET@(I),U,4)="TRUE"
  F I=STRT:1:$O(@RET@(""),-1) K @RET@(I)
- S VAL=$P(OUT(1),U,4,999)
  S DDCSCT=STRT F I=1:1:$L(VAL,$C(13,10)) D
+ . I $G(CITEM) S @RET@(DDCSCT)=$P(VAL,$C(13,10),I),DDCSCT=DDCSCT+1 Q
  . S @RET@(DDCSCT)="CV^"_CON_"^F^"_$P(VAL,$C(13,10),I),DDCSCT=DDCSCT+1
  Q
