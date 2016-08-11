@@ -94,16 +94,27 @@ type
     Panel1: TPanel;
     spnGAWeeks: TSpinEdit;
     rgTypeDelivery: TRadioGroup;
+    btnIncisionReset: TButton;
+    btnSecondaryReset: TButton;
+    btnPrimaryReset: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpinCheck(Sender: TObject);
     procedure spnGADaysChange(Sender: TObject);
     procedure spnBirthCountChange(Sender: TObject);
+    procedure cbOutcomeChange(Sender: TObject);
     procedure rgPretermDeliveryClick(Sender: TObject);
+    procedure btnPrimaryResetClick(Sender: TObject);
+    procedure btnSecondaryResetClick(Sender: TObject);
+    procedure btnIncisionResetClick(Sender: TObject);
+    procedure rgTypeDeliveryClick(Sender: TObject);
+    procedure Vaginal(Sender: TObject);
+    procedure Cesarean(Sender: TObject);
     procedure Finished(Sender: TObject);
   private
     FPregIEN: Integer;
     BirthCount: Integer;
+    procedure GroupControls(gb: TGroupBox; bState: Boolean);
     function GetBaby(Value: TTabSheet): TfChild;
   public
     property PregnancyIEN: Integer read FPregIEN write FPregIEN default 0;
@@ -238,7 +249,7 @@ begin
             // -------------------------------------------------------------
 
             // ---- Get the Baby Info Form ---------------------------------
-            if pgBaby.PageCount > 1 then
+            if pgBaby.PageCount > 0 then
               if pgBaby.Pages[pgBaby.PageCount - 1].ControlCount > 0 then
                 if pgBaby.Pages[pgBaby.PageCount - 1].Controls[0] is TfChild then
                 begin
@@ -294,6 +305,7 @@ begin
 
   if pgBaby.PageCount > 0 then
     pgBaby.ActivePageIndex := 0;
+  DDCSForm1.ActivePageIndex := 0;
 end;
 
 procedure TForm1.SpinCheck(Sender: TObject);
@@ -354,9 +366,18 @@ begin
   BirthCount := spnBirthCount.Value;
 end;
 
+procedure TForm1.cbOutcomeChange(Sender: TObject);
+begin
+  if cbOutcome.Text = 'Full Term' then
+    rgPretermDelivery.ItemIndex := 0
+  else if cbOutcome.Text = 'Preterm' then
+    rgPretermDelivery.ItemIndex := 1;
+end;
+
 procedure TForm1.rgPretermDeliveryClick(Sender: TObject);
 begin
-  if (cbOutcome.ItemIndex = -1) or (cbOutcome.Text = 'Unknown') then
+  if (cbOutcome.ItemIndex = -1) or (cbOutcome.Text = 'Unknown') or
+     (cbOutcome.Text = 'Preterm') or (cbOutcome.Text = 'Full Term') then
     case rgPretermDelivery.ItemIndex of
       0: begin
            if cbOutcome.Items.IndexOf('Full Term') = -1 then
@@ -369,6 +390,85 @@ begin
            cbOutcome.ItemIndex := cbOutcome.Items.IndexOf('Preterm');
          end;
     end;
+end;
+
+procedure TForm1.btnPrimaryResetClick(Sender: TObject);
+begin
+  cbReasonsCPrimary.ItemIndex := -1;
+  edReasonsCOthPrimary.Clear;
+  Cesarean(nil);
+end;
+
+procedure TForm1.btnSecondaryResetClick(Sender: TObject);
+begin
+  cbReasonsCSecondary.ItemIndex := -1;
+  edReasonsCOthSecondary.Clear;
+  Cesarean(nil);
+end;
+
+procedure TForm1.btnIncisionResetClick(Sender: TObject);
+begin
+  rgIncision.ItemIndex := -1;
+  Cesarean(nil);
+end;
+
+procedure TForm1.rgTypeDeliveryClick(Sender: TObject);
+begin
+  if rgTypeDelivery.ItemIndex = 0 then
+  begin
+    ckDeliveryMethodV.Checked := True;
+    ckDeliveryMethodC.Checked := False;
+    GroupControls(gbVaginal, True);
+    GroupControls(gbCesarean, False);
+  end else if rgTypeDelivery.ItemIndex = 1 then
+  begin
+    ckDeliveryMethodV.Checked := False;
+    ckDeliveryMethodC.Checked := True;
+    GroupControls(gbVaginal, False);
+    GroupControls(gbCesarean, True);
+  end;
+end;
+
+procedure TForm1.Vaginal(Sender: TObject);
+begin
+  if ckVagSVD.Checked or ckVagVacuum.Checked or ckVagForceps.Checked or
+     ckVagEpisiotomy.Checked or ckVagLacerations.Checked or ckVagVBAC.Checked then
+  begin
+    ckDeliveryMethodV.Checked := True;
+    ckDeliveryMethodC.Checked := False;
+    GroupControls(gbCesarean, False);
+    rgTypeDelivery.ItemIndex := 0;
+    rgTypeDelivery.Enabled := False;
+  end else
+  begin
+    ckDeliveryMethodV.Checked := False;
+    GroupControls(gbCesarean, True);
+    rgTypeDelivery.ItemIndex := -1;
+    rgTypeDelivery.Enabled := True;
+  end;
+end;
+
+procedure TForm1.Cesarean(Sender: TObject);
+begin
+  if (ckCPrimaryFor.Checked) or (edCPrimaryFor.Text <> '') or
+     (ckRepeatwoLabor.Checked) or
+     (ckCUnsuccessfulVBAC.Checked) or
+     (cbReasonsCPrimary.ItemIndex <> -1) or (edReasonsCOthPrimary.Text <> '') or
+     (cbReasonsCSecondary.ItemIndex <> -1) or (edReasonsCOthSecondary.Text <> '') or
+     (rgIncision.ItemIndex <> -1) then
+  begin
+    ckDeliveryMethodV.Checked := False;
+    ckDeliveryMethodC.Checked := True;
+    GroupControls(gbVaginal, False);
+    rgTypeDelivery.ItemIndex := 1;
+    rgTypeDelivery.Enabled := False;
+  end else
+  begin
+    ckDeliveryMethodC.Checked := False;
+    GroupControls(gbVaginal, True);
+    rgTypeDelivery.ItemIndex := -1;
+    rgTypeDelivery.Enabled := True;
+  end;
 end;
 
 procedure TForm1.Finished(Sender: TObject);
@@ -390,8 +490,8 @@ var
     PregID := IntToStr(PregnancyIEN);
 
     //  B^IEN|BABY|#^COMMENT
-    if pgBaby.PageCount > 1 then
-      for I := 1 to pgBaby.PageCount - 1 do
+    if pgBaby.PageCount > 0 then
+      for I := 0 to pgBaby.PageCount - 1 do
         if pgBaby.Pages[I].ControlCount > 0 then
           if pgBaby.Pages[I].Controls[0] is TfChild then
           begin
@@ -431,8 +531,8 @@ var
   begin
     Result := '';
 
-    if pgBaby.PageCount > 1 then
-      for I := 1 to pgBaby.PageCount - 1 do
+    if pgBaby.PageCount > 0 then
+      for I := 0 to pgBaby.PageCount - 1 do
         if pgBaby.Pages[I].ControlCount > 0 then
           if pgBaby.Pages[I].Controls[0] is TfChild then
             Result := Result + TfChild(pgBaby.Pages[I].Controls[0]).GetV;
@@ -552,7 +652,10 @@ begin
         begin
           fBaby.GetText(sl);
           if sl.Count > 0 then
+          begin
+            DDCSForm1.TmpStrList.Add('   Baby #' + fBaby.BabyNumber);
             DDCSForm1.TmpStrList.AddStrings(sl);
+          end;
         end;
       end;
     end;
@@ -688,6 +791,15 @@ begin
 end;
 
 // Private ---------------------------------------------------------------------
+
+procedure TForm1.GroupControls(gb: TGroupBox; bState: Boolean);
+var
+  I: Integer;
+begin
+  for I := 0 to gb.ControlCount - 1 do
+    if gb.Controls[I] is TWinControl then
+      TWinControl(gb.Controls[I]).Enabled := bState;
+end;
 
 function TForm1.GetBaby(Value: TTabSheet): TfChild;
 begin

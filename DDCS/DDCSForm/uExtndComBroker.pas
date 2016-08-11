@@ -111,7 +111,7 @@ type
   PCPRSComBroker = ^TCPRSComBroker;
 
   procedure CallV(const RPCName: string; const AParam: array of const);
-  procedure tCallV(ReturnData: TStrings; const RPCName: string; const AParam: array of const);
+  procedure tCallV(ReturnData: TStringList; const RPCName: string; const AParam: array of const);
   function sCallV(const RPCName: string; const AParam: array of const): string;
   function IsConnected: Boolean;
   function AuthorizedOption(const OptionName: string): Boolean;
@@ -127,7 +127,6 @@ uses
 
 {$REGION 'Exposed Methods'}
 
-{ Calls the broker and returns no value }
 procedure CallV(const RPCName: string; const AParam: array of const);
 var
   oldCursor: TCursor;
@@ -137,35 +136,39 @@ begin
 
   oldCursor := Screen.Cursor;
   Screen.Cursor := crHourGlass;
-
-  RPCBrokerV.SetParams(RPCName, AParam);
-  RPCBrokerV.BrokerCall;
-  RPCBrokerV.Results.Clear;
-
-  Screen.Cursor := oldCursor;
+  try
+    RPCBrokerV.SetParams(RPCName, AParam);
+    RPCBrokerV.BrokerCall;
+  finally
+    Screen.Cursor := oldCursor;
+  end;
 end;
 
-{ Calls the broker and returns TStrings data }
-procedure tCallV(ReturnData: TStrings; const RPCName: string; const AParam: array of const);
+procedure tCallV(ReturnData: TStringList; const RPCName: string; const AParam: array of const);
 var
   oldCursor: TCursor;
+  sl: TStringList;
 
-  function BrokerRepeat: Boolean;
+  function BrokerRepeat(s,d: TStringList): Boolean;
   begin
     Result := False;
-    if ((RPCBrokerV.Results.Count > 0) and (RPCBrokerV.Results[0] = '##CONT##')) then
-      Result := True;
+    if s.Count > 0 then
+    begin
+      if s[0] = '##CONT##' then
+      begin
+        s.Delete(0);
+        Result := True;
+      end;
+      if s.Count > 0 then
+        d.AddStrings(s);
+      s.Clear;
+    end;
   end;
 
-  procedure CallMe;
+  procedure CallMe(s: TStringList);
   begin
-    if BrokerRepeat then
-    begin
-      RPCBrokerV.Results.Delete(0);
-      ReturnData.AddStrings(RPCBrokerV.Results);
-      RPCBrokerV.Results.Clear;
-    end;
     RPCBrokerV.BrokerCall;
+    RPCBrokerV.GetResults(s);
   end;
 
 begin
@@ -178,26 +181,24 @@ begin
 
   oldCursor := Screen.Cursor;
   Screen.Cursor := crHourGlass;
-
-  RPCBrokerV.SetParams(RPCName, AParam);
-  RPCBrokerV.Results.Clear;
-
-  // if the first line is ##CONT## then we need to remove it and make the call
-  // again and add to our return
-  repeat
-    CallMe;
-  until not BrokerRepeat;
-
-  ReturnData.AddStrings(RPCBrokerV.Results);
-  RPCBrokerV.Results.Clear;
-
-  Screen.Cursor := oldCursor;
+  sl := TStringList.Create;
+  try
+    RPCBrokerV.SetParams(RPCName, AParam);
+    // if the first line is ##CONT## then we need to remove it and make the call
+    // again and add to our return
+    repeat
+      CallMe(sl);
+    until not BrokerRepeat(sl,ReturnData);
+  finally
+    sl.Free;
+    Screen.Cursor := oldCursor;
+  end;
 end;
 
-{ Calls the broker and returns a string value }
 function sCallV(const RPCName: string; const AParam: array of const): string;
 var
   oldCursor: TCursor;
+  sl: TStringList;
 begin
   Result := '';
 
@@ -206,17 +207,20 @@ begin
 
   oldCursor := Screen.Cursor;
   Screen.Cursor := crHourGlass;
+  sl := TStringList.Create;
+  try
+    RPCBrokerV.SetParams(RPCName, AParam);
+    RPCBrokerV.BrokerCall;
 
-  RPCBrokerV.SetParams(RPCName, AParam);
-  RPCBrokerV.BrokerCall;
-
-  if RPCBrokerV.Results.Count > 0 then
-    Result := RPCBrokerV.Results[0]
-  else
-    Result := '';
-  RPCBrokerV.Results.Clear;
-
-  Screen.Cursor := oldCursor;
+    RPCBrokerV.GetResults(sl);
+    if sl.Count > 0 then
+      Result := sl[0]
+    else
+      Result := '';
+  finally
+    sl.Free;
+    Screen.Cursor := oldCursor;
+  end;
 end;
 
 function IsConnected: Boolean;
@@ -313,10 +317,7 @@ end;
 procedure TCPRSComBroker.SetClearResults(Value: Boolean);
 begin
   if (FComBroker <> nil) and Value then
-  begin
-    FResults.Clear;
     FComBroker.ClearResults := True;
-  end;
 end;
 
 procedure TCPRSComBroker.SetComBroker(const Value: ICPRSBroker);
@@ -463,8 +464,6 @@ begin
   begin
     try
       FComBroker.CallRPC(RemoteProcedure);
-      Results.Clear;
-      Results.Text := FComBroker.Results;
     except
       on E: EBrokerError do
       begin
@@ -479,6 +478,12 @@ begin
         Application.MessageBox(PChar(E.Message), 'Broker Error', MB_OK);
     end;
   end;
+end;
+
+procedure TCPRSComBroker.GetResults(var oText: TStringList);
+begin
+  oText.Clear;
+  oText.Text := FComBroker.Results;
 end;
 
 function TCPRSComBroker.GetConnected: Boolean;
@@ -498,7 +503,6 @@ begin
   FPatient := TVistAPatient.Create;
   FNote := TVistANote.Create;
 
-  FResults := TStringList.Create;
   FDDCSInterfacePages := TStringList.Create;
 end;
 
@@ -510,7 +514,6 @@ begin
   FPatient := TVistAPatient.Create;
   FNote := TVistANote.Create;
 
-  FResults := TStringList.Create;
   FDDCSInterfacePages := TStringList.Create;
 
   FComBroker := iBroker;
@@ -524,7 +527,6 @@ begin
   FPatient := TVistAPatient.Create;
   FNote := TVistANote.Create;
 
-  FResults := TStringList.Create;
   FDDCSInterfacePages := TStringList.Create;
 
   FComBroker := iBroker;
@@ -538,7 +540,6 @@ begin
   FUser.Free;
   FPatient.Free;
   FNote.Free;
-  FResults.Free;
   FDDCSInterfacePages.Free;
 
   inherited;

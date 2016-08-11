@@ -121,14 +121,43 @@ object Form1: TForm1
         HideFromNote = False
         OwningObject = spnGADays
         Required = False
+      end
+      item
+        SayOnFocus = 'Activate to reset Indications for Cesarean Primary'
+        Order = 6
+        IdentifyingName = 'X'
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
+        OwningObject = btnPrimaryReset
+        Required = False
+      end
+      item
+        SayOnFocus = 'Activate to reset Indications for Cesarean Secondary'
+        Order = 7
+        IdentifyingName = 'X'
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
+        OwningObject = btnSecondaryReset
+        Required = False
+      end
+      item
+        SayOnFocus = 'Activate to reset Uterine Incision'
+        Order = 8
+        IdentifyingName = 'X'
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
+        OwningObject = btnIncisionReset
+        Required = False
       end>
     OnOverrideNote = Finished
     object oPage1: TTabSheet
       Caption = 'Delivery Details'
-      ExplicitLeft = 8
-      ExplicitTop = 65
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         398)
@@ -397,6 +426,7 @@ object Form1: TForm1
         Height = 21
         Style = csDropDownList
         TabOrder = 9
+        OnChange = cbOutcomeChange
         Caption = 'Outcome'
       end
       object meDeliveryNotes: TCaptionMemo
@@ -441,14 +471,11 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 8
         TabStop = True
+        OnClick = rgTypeDeliveryClick
       end
     end
     object oPage2: TTabSheet
       Caption = 'Neonatal Information'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object pnlBirthCount: TPanel
         Left = 0
         Top = 0
@@ -503,10 +530,6 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'Delivery Method'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object gbVaginal: TGroupBox
         Left = 14
         Top = 19
@@ -534,6 +557,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 0
+          OnClick = Vaginal
         end
         object ckVagVacuum: TCheckBox
           Left = 15
@@ -548,6 +572,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 1
+          OnClick = Vaginal
         end
         object ckVagForceps: TCheckBox
           Left = 15
@@ -562,6 +587,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 2
+          OnClick = Vaginal
         end
         object ckVagEpisiotomy: TCheckBox
           Left = 15
@@ -576,6 +602,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 3
+          OnClick = Vaginal
         end
         object ckVagLacerations: TCheckBox
           Left = 15
@@ -590,6 +617,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 4
+          OnClick = Vaginal
         end
         object ckVagVBAC: TCheckBox
           Left = 15
@@ -604,6 +632,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 5
+          OnClick = Vaginal
         end
       end
       object gbCesarean: TGroupBox
@@ -673,6 +702,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 0
+          OnClick = Cesarean
         end
         object edCPrimaryFor: TEdit
           Left = 78
@@ -686,6 +716,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 1
+          OnChange = Cesarean
         end
         object ckCUnsuccessfulVBAC: TCheckBox
           Left = 19
@@ -700,6 +731,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 3
+          OnClick = Cesarean
         end
         object rgIncision: TRadioGroup
           Left = 19
@@ -712,8 +744,9 @@ object Form1: TForm1
             'Low Transverse'
             'Low Vertical'
             'Classical')
-          TabOrder = 8
+          TabOrder = 10
           TabStop = True
+          OnClick = Cesarean
         end
         object ckRepeatwoLabor: TCheckBox
           Left = 19
@@ -728,6 +761,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 2
+          OnClick = Cesarean
         end
         object cbReasonsCPrimary: TCaptionComboBox
           Left = 74
@@ -742,6 +776,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 4
+          OnChange = Cesarean
           Caption = 'Primary Indications for Cesarean'
         end
         object cbReasonsCSecondary: TCaptionComboBox
@@ -756,13 +791,14 @@ object Form1: TForm1
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 6
+          TabOrder = 7
+          OnChange = Cesarean
           Caption = 'Secondary Indications for Cesarean'
         end
         object edReasonsCOthPrimary: TEdit
           Left = 275
           Top = 117
-          Width = 179
+          Width = 158
           Height = 21
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -771,11 +807,12 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 5
+          OnChange = Cesarean
         end
         object edReasonsCOthSecondary: TEdit
           Left = 275
           Top = 144
-          Width = 179
+          Width = 158
           Height = 21
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -783,7 +820,35 @@ object Form1: TForm1
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 7
+          TabOrder = 8
+          OnChange = Cesarean
+        end
+        object btnIncisionReset: TButton
+          Left = 438
+          Top = 185
+          Width = 27
+          Height = 25
+          Caption = 'X'
+          TabOrder = 11
+          OnClick = btnIncisionResetClick
+        end
+        object btnSecondaryReset: TButton
+          Left = 438
+          Top = 144
+          Width = 27
+          Height = 21
+          Caption = 'X'
+          TabOrder = 9
+          OnClick = btnSecondaryResetClick
+        end
+        object btnPrimaryReset: TButton
+          Left = 438
+          Top = 117
+          Width = 27
+          Height = 21
+          Caption = 'X'
+          TabOrder = 6
+          OnClick = btnPrimaryResetClick
         end
       end
       object gbOtherProcedures: TGroupBox

@@ -834,7 +834,7 @@ begin
           begin
             sl.Text := wConfig;
             CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN,
-                                       Piece(sBuild,'|',1) + ';DSIO(19641.49,', sl, 'C']);
+                                      Piece(sBuild,'|',1) + ';DSIO(19641.49,', sl, 'C']);
           end;
           sl.Clear;
         end;
@@ -1124,34 +1124,42 @@ begin
   sl := TStringList.Create;
   cl := TStringList.Create;
   try
-    for I := 0 to ReportCollection.Count - 1 do
-    begin
-      nItem := ReportCollection.Items[I];
-
-      // Data format -----------------------------------------------------------
-      //   CONTROL^(INDEXED^VALUE)
-
-      if not nItem.DoNotSave then
-      begin
-        nItem.GetValueSave(sl);
-        if sl.Count > 0 then
-          cl.AddStrings(sl);
-      end;
-    end;
-
-    if Assigned(VitalsControl) then
-      VitalsControl.Save;
-
-    if cl.Count > 0 then
     try
       if UpdateContext(MENU_CONTEXT) then
       begin
-        if aSave then
-          Tasks.Add(sCallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject,
-                                               RPCBrokerV.TIUNote.IEN, RPCBrokerV.DDCSInterface, cl, 1]))
-        else
+        for I := 0 to ReportCollection.Count - 1 do
+        begin
+          nItem := ReportCollection.Items[I];
+
+          // Data format -----------------------------------------------------------
+          //   CONTROL^(INDEXED^VALUE)
+
+          if not nItem.DoNotSave then
+          begin
+            nItem.GetValueSave(sl);
+            if sl.Count > 0 then
+              cl.AddStrings(sl);
+          end;
+        end;
+
+        if Assigned(VitalsControl) then
+          VitalsControl.Save;
+
+        if cl.Count > 0 then
+        begin
+          if aSave then
+            Tasks.Add(sCallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject,
+                                                 RPCBrokerV.TIUNote.IEN, RPCBrokerV.DDCSInterface, cl, 1]))
+          else
+            CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN,
+                                      RPCBrokerV.DDCSInterface, cl]);
+        end;
+        cl.Clear;
+
+        Configuration.GetCollectiveText(cl);
+        if cl.Count > 0 then
           CallV('DSIO DDCS STORE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN,
-                                    RPCBrokerV.DDCSInterface, cl]);
+                                    RPCBrokerV.DDCSInterface, cl, 'C']);
       end;
     except
       on E: Exception do

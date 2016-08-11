@@ -227,35 +227,35 @@ begin
   oText.Clear;
 
   if rgSex.ItemIndex <> -1 then
-    oText.Add('   Gender: ' + TRadioButton(rgSex.Controls[rgSex.ItemIndex]).Caption)
+    oText.Add('    Gender: ' + TRadioButton(rgSex.Controls[rgSex.ItemIndex]).Caption)
   else
-    oText.Add('   Gender: Unknown');
+    oText.Add('    Gender: Unknown');
 
   if Trim(edAPGARone.Text) <> '' then
-    oText.Add('   APGAR Score (one minute): ' + edAPGARone.Text)
+    oText.Add('    APGAR Score (one minute): ' + edAPGARone.Text)
   else
-    oText.Add('   APGAR Score (one minute): Unknown');
+    oText.Add('    APGAR Score (one minute): Unknown');
   if Trim(edAPGARfive.Text) <> '' then
-    oText.Add('   APGAR Score (five minute): ' + edAPGARfive.Text)
+    oText.Add('    APGAR Score (five minute): ' + edAPGARfive.Text)
   else
-    oText.Add('   APGAR Score (five minute): Unknown');
+    oText.Add('    APGAR Score (five minute): Unknown');
 
   if ckNICU.Checked then
-    oText.Add('   NICU Admission: Yes')
+    oText.Add('    NICU Admission: Yes')
   else
-    oText.Add('   NICU Admission: No');
+    oText.Add('    NICU Admission: No');
 
   if spnG.Text <> '0' then
-    oText.Add('   Birth Weight: ' + spnG.Text + 'g')
+    oText.Add('    Birth Weight: ' + spnG.Text + 'g')
   else
-    oText.Add('   Birth Weight: Unknown');
+    oText.Add('    Birth Weight: Unknown');
 
   if meComplications.Lines.Count > 0 then
   begin
-    oText.Add('   Complications: ');
+    oText.Add('    Complications: ');
 
     for I := 0 to meComplications.Lines.Count - 1 do
-      oText.Add('    ' + meComplications.Lines[I]);
+      oText.Add('     ' + meComplications.Lines[I]);
   end;
 end;
 
