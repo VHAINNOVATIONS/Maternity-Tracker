@@ -117,6 +117,7 @@ object fChild: TfChild
       0000}
     NumGlyphs = 2
     TabOrder = 6
+    Visible = False
     OnClick = btnDeleteClick
   end
   object Panel1: TPanel

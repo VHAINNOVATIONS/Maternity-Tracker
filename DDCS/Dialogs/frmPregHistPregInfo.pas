@@ -102,7 +102,8 @@ begin
     spnBirthCount.OnChange := nil;
     spnBirthCount.Value := spnBirthCount.Value + 1;
     spnBirthCount.OnChange := spnBabyCountChange;
-    ShowMsg('Use the "X" button on the child you wish to remove.', smiWarning, smbOK);
+    ShowMsg('If you wish to delete this baby you must close this dialog ' +
+            'without saving to restore previously entered data.', smiWarning, smbOK);
   end else
   begin
     Inc(ChildCount);

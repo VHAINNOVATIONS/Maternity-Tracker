@@ -20,8 +20,8 @@ unit uExtndComBroker;
 interface
 
 uses
-  Winapi.Windows, Winapi.msxml, System.SysUtils, System.Classes, Vcl.Controls,
-  Vcl.Forms, Vcl.Dialogs, Trpcb, CPRSChart_TLB;
+  Winapi.Windows, Winapi.msxml, Winapi.ActiveX, System.SysUtils, System.Classes,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Trpcb, CPRSChart_TLB;
 
 type
   TVistAUser = class(TObject)
@@ -73,7 +73,6 @@ type
     FNote: TVistANote;
     FComBroker: ICPRSBroker;
     FRemoteProcedure: string;
-    FResults: TStrings;
     FCPRSSTate: ICPRSState;
     FCPRSHandle: HWND;
     FWindowList: TTaskWindowList;
@@ -84,13 +83,15 @@ type
     procedure SetClearParameters(Value: Boolean);
     procedure SetClearResults(Value: Boolean);
     procedure SetComBroker(const Value: ICPRSBroker);
-    procedure SetResults(Lines: TStrings);
     procedure SetCPRSState(const Value: ICPRSState);
     procedure SetParams(const RPCName: string; const AParam: array of const);
     procedure BrokerCall;
+    procedure GetResults(var oText: TStringList);
     function GetConnected: Boolean;
   public
-    constructor Create(AOwner: TComponent);
+    constructor Create(AOwner: TComponent); overload;
+    constructor Create(AOwner: TComponent; iBroker: ICPRSBroker); overload;
+    constructor Create(AOwner: TComponent; iBroker: ICPRSBroker; iCPRSState: ICPRSState); overload;
     destructor Destroy; override;
     property ClearParameters: Boolean write SetClearParameters;
     property ClearResults: Boolean write SetClearResults;
@@ -99,7 +100,6 @@ type
     property TIUNote: TVistANote read FNote;
     property COMBroker: ICPRSBroker read FComBroker write SetComBroker;
     property RemoteProcedure: string read FRemoteProcedure write FRemoteProcedure;
-    property Results: TStrings read FResults write SetResults;
     property Connected: Boolean read GetConnected;
     property CPRSState: ICPRSState write SetCPRSSTate;
     property CPRSHandle: HWND read FCPRSHandle write FCPRSHandle;
@@ -140,7 +140,7 @@ begin
 
   RPCBrokerV.SetParams(RPCName, AParam);
   RPCBrokerV.BrokerCall;
-  RPCBrokerV.FResults.Clear;
+  RPCBrokerV.Results.Clear;
 
   Screen.Cursor := oldCursor;
 end;
@@ -149,20 +149,47 @@ end;
 procedure tCallV(ReturnData: TStrings; const RPCName: string; const AParam: array of const);
 var
   oldCursor: TCursor;
+
+  function BrokerRepeat: Boolean;
+  begin
+    Result := False;
+    if ((RPCBrokerV.Results.Count > 0) and (RPCBrokerV.Results[0] = '##CONT##')) then
+      Result := True;
+  end;
+
+  procedure CallMe;
+  begin
+    if BrokerRepeat then
+    begin
+      RPCBrokerV.Results.Delete(0);
+      ReturnData.AddStrings(RPCBrokerV.Results);
+      RPCBrokerV.Results.Clear;
+    end;
+    RPCBrokerV.BrokerCall;
+  end;
+
 begin
   if not IsConnected then
     Exit;
 
   if ReturnData = nil then
     raise Exception.Create('TStrings not created');
+  ReturnData.Clear;
 
   oldCursor := Screen.Cursor;
   Screen.Cursor := crHourGlass;
 
   RPCBrokerV.SetParams(RPCName, AParam);
-  RPCBrokerV.BrokerCall;
-  FastAssign(RPCBrokerV.Results, ReturnData);
-  RPCBrokerV.FResults.Clear;
+  RPCBrokerV.Results.Clear;
+
+  // if the first line is ##CONT## then we need to remove it and make the call
+  // again and add to our return
+  repeat
+    CallMe;
+  until not BrokerRepeat;
+
+  ReturnData.AddStrings(RPCBrokerV.Results);
+  RPCBrokerV.Results.Clear;
 
   Screen.Cursor := oldCursor;
 end;
@@ -187,7 +214,7 @@ begin
     Result := RPCBrokerV.Results[0]
   else
     Result := '';
-  RPCBrokerV.FResults.Clear;
+  RPCBrokerV.Results.Clear;
 
   Screen.Cursor := oldCursor;
 end;
@@ -196,7 +223,7 @@ function IsConnected: Boolean;
 begin
   Result := False;
   if RPCBrokerV <> nil then
-    if RPCBrokerV.FComBroker <> nil then
+    if RPCBrokerV.ComBroker <> nil then
       Result := True;
 end;
 
@@ -216,7 +243,7 @@ begin
 
   Result := True;
   try
-    RPCBrokerV.FComBroker.SetContext(OptionName);
+    RPCBrokerV.ComBroker.SetContext(OptionName);
   except
     Result := False;
   end;
@@ -300,11 +327,6 @@ begin
     ClearParameters := True;
     ClearResults := True;
   end;
-end;
-
-procedure TCPRSComBroker.SetResults(Lines: TStrings);
-begin
-  FResults.Assign(Lines);
 end;
 
 procedure TCPRSComBroker.SetCPRSState(const Value: ICPRSState);
@@ -441,8 +463,8 @@ begin
   begin
     try
       FComBroker.CallRPC(RemoteProcedure);
-      FResults.Clear;
-      FResults.Text := FComBroker.Results;
+      Results.Clear;
+      Results.Text := FComBroker.Results;
     except
       on E: EBrokerError do
       begin
@@ -453,6 +475,8 @@ begin
         end
         else raise;
       end;
+      on E: Exception do
+        Application.MessageBox(PChar(E.Message), 'Broker Error', MB_OK);
     end;
   end;
 end;
@@ -478,6 +502,35 @@ begin
   FDDCSInterfacePages := TStringList.Create;
 end;
 
+constructor TCPRSComBroker.Create(AOwner: TComponent; iBroker: ICPRSBroker);
+begin
+  RPCBrokerV := Self;
+
+  FUser := TVistAUser.Create;
+  FPatient := TVistAPatient.Create;
+  FNote := TVistANote.Create;
+
+  FResults := TStringList.Create;
+  FDDCSInterfacePages := TStringList.Create;
+
+  FComBroker := iBroker;
+end;
+
+constructor TCPRSComBroker.Create(AOwner: TComponent; iBroker: ICPRSBroker; iCPRSState: ICPRSState);
+begin
+  RPCBrokerV := Self;
+
+  FUser := TVistAUser.Create;
+  FPatient := TVistAPatient.Create;
+  FNote := TVistANote.Create;
+
+  FResults := TStringList.Create;
+  FDDCSInterfacePages := TStringList.Create;
+
+  FComBroker := iBroker;
+  CPRSState := iCPRSState;
+end;
+
 destructor TCPRSComBroker.Destroy;
 begin
   RPCBrokerV := nil;
@@ -485,8 +538,7 @@ begin
   FUser.Free;
   FPatient.Free;
   FNote.Free;
-
-  FreeAndNil(FResults);
+  FResults.Free;
   FDDCSInterfacePages.Free;
 
   inherited;

@@ -286,7 +286,7 @@ begin
   end;
 
   if TmpStrList.Count > 0 then
-    TmpStrList.Insert(0, 'Review of Symptoms since Last Menstrual Period: ');
+    TmpStrList.Insert(0, 'Review of Systems since Last Menstrual Period: ');
 end;
 
 end.

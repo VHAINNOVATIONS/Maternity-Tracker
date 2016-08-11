@@ -23,10 +23,10 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, System.ConvUtils, System.StdConvs, Vcl.Graphics, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Samples.Spin,
-  ORCtrls;
+  Vcl.ComCtrls, ORCtrls;
 
 type
-  TfrmInner = class(TFrame)
+  TfChild = class(TFrame)
     edAPGARone: TEdit;
     meComplications: TCaptionMemo;
     ckNICU: TCheckBox;
@@ -46,15 +46,22 @@ type
     procedure spnOzChange(Sender: TObject);
     procedure UpdateLbOz(Sender: TObject);
   private
+    FBabyIEN: string;
+    FBabyNumber: string;
     procedure OnChangeNil;
     procedure OnChangeRestore;
     procedure UpdateGrams;
+    procedure SetBabyNumber(const Value: string);
+    function GetBabyIEN: string;
+    function GetBabyNumber: string;
   public
-    BabyNumber: Integer;
     IEN: string;
     constructor Create(AOwner: TComponent); override;
     procedure UpdateBirthWeightGrams(Value: string);
     procedure GetText(var oText: TStringList);
+    function GetV: string;
+    property BabyIEN: string read GetBabyIEN write FBabyIEN;
+    property BabyNumber: string read GetBabyNumber write SetBabyNumber;
   end;
 
 implementation
@@ -64,7 +71,7 @@ implementation
 uses
   frmMain, uBase, uReportItems;
 
-procedure TfrmInner.spnLbChange(Sender: TObject);
+procedure TfChild.spnLbChange(Sender: TObject);
 begin
   OnChangeNil;
 
@@ -76,7 +83,7 @@ begin
   OnChangeRestore;
 end;
 
-procedure TfrmInner.spnOzChange(Sender: TObject);
+procedure TfChild.spnOzChange(Sender: TObject);
 var
   lb: double;
 begin
@@ -97,7 +104,7 @@ begin
   OnChangeRestore;
 end;
 
-procedure TfrmInner.UpdateLbOz(Sender: TObject);
+procedure TfChild.UpdateLbOz(Sender: TObject);
 var
   lb: double;
 begin
@@ -122,21 +129,21 @@ end;
 
 // Private ---------------------------------------------------------------------
 
-procedure TfrmInner.OnChangeNil;
+procedure TfChild.OnChangeNil;
 begin
   spnLb.OnChange := nil;
   spnOz.OnChange := nil;
   spnG.OnChange := nil;
 end;
 
-procedure TfrmInner.OnChangeRestore;
+procedure TfChild.OnChangeRestore;
 begin
   spnLb.OnChange := spnLbChange;
   spnOz.OnChange := spnOzChange;
   spnG.OnChange := UpdateLbOz;
 end;
 
-procedure TfrmInner.UpdateGrams;
+procedure TfChild.UpdateGrams;
 var
   lbs,ozs: double;
 begin
@@ -149,9 +156,35 @@ begin
   OnChangeRestore;
 end;
 
+procedure TfChild.SetBabyNumber(const Value: string);
+begin
+  FBabyNumber := Value;
+end;
+
+function TfChild.GetBabyIEN: string;
+begin
+  if StrToIntDef(FBabyIEN, 0) < 1 then
+    FBabyIEN := '+';
+
+  Result := FBabyIEN;
+end;
+
+function TfChild.GetBabyNumber: string;
+begin
+  if FBabyNumber <> '' then
+  begin
+    Result := FBabyNumber;
+    Exit;
+  end;
+
+  if Owner <> nil then
+    if Owner is TTabSheet then
+      Result := IntToStr(TTabSheet(Owner).TabIndex);
+end;
+
 // Public ----------------------------------------------------------------------
 
-constructor TfrmInner.Create(AOwner: TComponent);
+constructor TfChild.Create(AOwner: TComponent);
 var
   nItem: TDDCSNoteItem;
 begin
@@ -174,7 +207,7 @@ begin
     nItem.SayOnFocus := 'A P G A R Score five minutes after birth';
 end;
 
-procedure TfrmInner.UpdateBirthWeightGrams(Value: string);
+procedure TfChild.UpdateBirthWeightGrams(Value: string);
 var
   iVal: Integer;
 begin
@@ -187,7 +220,7 @@ begin
   end;
 end;
 
-procedure TfrmInner.GetText(var oText: TStringList);
+procedure TfChild.GetText(var oText: TStringList);
 var
   I: Integer;
 begin
@@ -224,6 +257,31 @@ begin
     for I := 0 to meComplications.Lines.Count - 1 do
       oText.Add('    ' + meComplications.Lines[I]);
   end;
+end;
+
+function TfChild.GetV: string;
+
+  function GetSex: string;
+  begin
+    case rgSex.ItemIndex of
+      0: Result := 'M';
+      1: Result := 'F';
+      2: Result := 'U';
+    end;
+  end;
+
+  function GetNICU: string;
+  begin
+    if ckNICU.Checked then
+      Result := '1'
+    else
+      Result := '0';
+  end;
+
+begin
+  // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
+  Result := BabyIEN + ';' + BabyNumber + ';;' + GetSex + ';' + spnG.Text + ';;'
+            + edAPGARone.Text + ';' + edAPGARfive.Text + ';;' + GetNICU + '|';
 end;
 
 end.

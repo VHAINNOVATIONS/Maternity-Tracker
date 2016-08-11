@@ -1,4 +1,4 @@
-object frmInner: TfrmInner
+object fChild: TfChild
   Left = 0
   Top = 0
   Width = 614

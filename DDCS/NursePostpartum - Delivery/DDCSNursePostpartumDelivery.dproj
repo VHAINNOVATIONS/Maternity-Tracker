@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <MainSource>DDCSNursePostpartumDelivery.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Library</AppType>
@@ -103,6 +103,7 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <DCC_DebugDCUs>true</DCC_DebugDCUs>
         <VerInfo_MinorVer>8</VerInfo_MinorVer>
         <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
@@ -124,7 +125,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="frmBaby.pas">
-            <Form>frmInner</Form>
+            <Form>fChild</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>

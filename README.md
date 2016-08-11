@@ -173,7 +173,7 @@ Set the LOCATION parameter to the location of the dlls.
 
 Select PARAMETER DEFINITION NAME: DSIO DDCS LOCATION     DSIO DDCS LOCATION
 
------- Setting DSIO DDCS LOCATION  for System: SMA.FO-ALBANY.MED.VA.GOV ------
+------ Setting DSIO DDCS LOCATION  for System: ... ------
 LOCATION: C:\Users\DSSDeveloper\Desktop\DDCS\_output
   Replace 
 
@@ -189,11 +189,11 @@ ORWCOM ORDER ACCEPTED may be set for the following:
      1   User          USR    [choose from NEW PERSON]
      3   Service       SRV    [choose from SERVICE/SECTION]
      5   Division      DIV    [choose from INSTITUTION]
-     6   System        SYS    [SMA.FO-ALBANY.MED.VA.GOV]
+     6   System        SYS    [...]
 
-Enter selection: 6  System   SMA.FO-ALBANY.MED.VA.GOV
+Enter selection: 6  System   ...
 
----- Setting ORWCOM ORDER ACCEPTED  for System: SMA.FO-ALBANY.MED.VA.GOV ----
+---- Setting ORWCOM ORDER ACCEPTED  for System: ... ----
 Select Order Display Group: LAB  LABORATORY
 
 Order Display Group: LABORATORY//   LABORATORY   LABORATORY

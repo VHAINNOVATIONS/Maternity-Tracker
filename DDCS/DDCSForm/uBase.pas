@@ -32,19 +32,6 @@ const
   WM_SAVE        = WM_USER + 280;
 
 type
-  TScreenReader = class(TObject)
-  private
-    FActive: Boolean;
-    ObjGUID: TGUID;
-    ObjIntf: IUnknown;
-    Obj: IJawsApi;
-    function IsObjectRegistered: Boolean;
-  public
-    constructor Create;
-    procedure Say(txt: string; flush: Boolean);
-    procedure Stop;
-  end;
-
   TDDCSForm = class;
 
   TDDCSHeaderControl = class(THeaderControl)
@@ -84,7 +71,7 @@ type
 
       TRegisterDialogs = procedure(out Return: WideString); stdcall;
   TGetDialogComponents = procedure(dlgName: WideString; out Return: WideString); stdcall;
-        TDisplayDialog = function(AOwner: PDDCSForm; Broker: PCPRSComBroker; dlgName: WideString; DebugMode: Boolean;
+        TDisplayDialog = function(Broker: PCPRSComBroker; dlgName: WideString; DebugMode: Boolean; sTheme: WideString;
                                   out rSave,rConfig,rText: WideString): WordBool; stdcall;
 
   TpbSaveEvent   = procedure(Sender: TObject; AutoSave: Boolean) of object;
@@ -99,13 +86,16 @@ type
     FValidated: Boolean;
     FTabSwitch: Boolean;
     TabSeen: array of Boolean;
+    FStyleChange: Boolean;
+    FStyle: string;
     // Components --------------------------------------------------------------
     FControlPanel: TDDCSHeaderControl;
     FNavControl: TActionList;
     FAutoSaveTimer: TTimer;
     FVitalsPage: TTabSheet;
+    FConfiguration: TConfigCollection;
     FReportCollection: TDDCSNoteCollection;
-    FScreenReader: TScreenReader;
+    FScreenReader: IJawsApi;
     // Events ------------------------------------------------------------------
     FOnpbSave: TpbSaveEvent;
     FOnpbFinish: TpbFinishEvent;
@@ -117,14 +107,13 @@ type
     FDialogDLL: THandle;
     FRegisterDialogs: TRegisterDialogs;
     FDLLDialogList: TStringList;
-    // Broker ------------------------------------------------------------------
-    FBroker: TCPRSComBroker;
     procedure WMGetMSAAObject(var Message: TMessage); message WM_GETOBJECT;
     procedure WMSetFocus(var Message: TWMSetFocus); message WM_SETFOCUS;
     procedure WMShowSplash(var Message: TMessage); message WM_SHOW_SPLASH;
     procedure WMSave(var Message: TMessage); message WM_SAVE;
     // Properties --------------------------------------------------------------
     procedure SetVitals(Page: TTabSheet);
+    procedure SetConfigCollection(const Value: TConfigCollection);
     procedure SetNoteCollection(const Value: TDDCSNoteCollection);
     // Timer
     procedure OnAutoSaveTimer(Sender: TObject);
@@ -184,11 +173,11 @@ type
     property TmpStrList: TStringList read FReturnList write FReturnList;
     property Validated: Boolean read FValidated write FValidated default False;
     property VitalsControl: TDDCSVitals read GetVitalsForm;
-    property ScreenReader: TScreenReader read FScreenReader;
+    property ScreenReader: IJawsApi read FScreenReader;
+    property CurrentStyle: string read FStyle write FStyle;
+    property Configuration: TConfigCollection read FConfiguration write SetConfigCollection;
     // Dialogs -----------------------------------------------------------------
     property DLLDialogList: TStringList read FDLLDialogList;
-    // Broker ------------------------------------------------------------------
-    property Broker: TCPRSComBroker read FBroker write FBroker;
   published
     property VitalsPage: TTabSheet read FVitalsPage write SetVitals;
     property AutoTimer: TTimer read FAutoSaveTimer write FAutoSaveTimer;
@@ -217,59 +206,6 @@ begin
   RegisterComponents('DDCSForm', [TDDCSForm]);
 end;
 
-{$REGION 'TScreenReader'}
-
-// Private ---------------------------------------------------------------------
-
-function TScreenReader.IsObjectRegistered;
-begin
-  Result := FActive;
-
-  if not Result then
-  try
-    ObjIntf := CreateComObject(ObjGUID);
-    if assigned(ObjIntf) then
-    begin
-      ObjIntf.QueryInterface(IID_IJawsApi, Obj);
-      if assigned(Obj) then
-      begin
-        FActive := True;
-        Result := True;
-      end;
-    end;
-  except
-  end;
-end;
-
-// Public ----------------------------------------------------------------------
-
-constructor TScreenReader.Create;
-begin
-  inherited;
-
-  ObjGUID := StringToGUID('{CCE5B1E5-B2ED-45D5-B09F-8EC54B75ABF4}');     // Change this to an entry in OE/RR?
-  FActive := IsObjectRegistered;
-end;
-
-procedure TScreenReader.Say(txt: string; flush: Boolean);
-begin
-  if not FActive then
-    Exit;
-
-  if flush then
-    Obj.StopSpeech;
-
-  Obj.SayString(txt, flush);
-end;
-
-procedure TScreenReader.Stop;
-begin
-  if FActive then
-    Obj.StopSpeech;
-end;
-
-{$ENDREGION}
-
 {$REGION 'TDDCSHeaderControl'}
 
 // Private ---------------------------------------------------------------------
@@ -296,8 +232,8 @@ begin
   if Sections[FSelectedSectionIndex].AllowClick then
     SayText := SayText + ', press space or enter to activate.';
 
-  if FDDCSForm.FScreenReader <> nil then
-    FDDCSForm.FScreenReader.Say(SayText, False);
+  if Assigned(FDDCSForm.ScreenReader) then
+    FDDCSForm.ScreenReader.SayString(SayText, False);
 end;
 
 procedure TDDCSHeaderControl.WMSetFocus(var Message: TWMSetFocus);
@@ -400,6 +336,7 @@ end;
 procedure TDDCSHeaderControl.FcChangeThemeClick(Sender: TObject);
 var
   Style: string;
+  I: Integer;
 begin
   if Assigned(TStyleManager.ActiveStyle) and (TStyleManager.ActiveStyle.Name <> TMenuItem(Sender).Caption) then
   begin
@@ -413,6 +350,10 @@ begin
       else
         TStyleManager.TrySetStyle(Style);
 
+      FDDCSForm.FStyle := Style;
+
+      for I := 0 to FCommandMenu.Items[3].Count - 1 do
+        TMenuItem(FCommandMenu.Items[3].Items[I]).Checked := False;
       TMenuItem(Sender).Checked := True;
     except
     end;
@@ -483,31 +424,33 @@ var
 begin
   inherited;
 
-  R := Rect;
+  Canvas.Brush.Style := bsClear;
+  Canvas.FillRect(Rect);
+
+  X := Round(Rect.Left + (Rect.Width div 2) - (Canvas.TextWidth(Section.Text) div 2));
+  Y := Round(Rect.Top + (Rect.Height div 2) - (Canvas.TextHeight(Section.Text) div 2));
 
   if Section.Index = FSelectedSectionIndex then
   begin
-    Canvas.Brush.Style := bsSolid;
-    Canvas.Brush.Color := clGray;
-    Canvas.Font.Style := [fsBold];
-  end else
-  begin
-    Canvas.Brush.Style := bsClear;
-  end;
-  Canvas.FillRect(R);
+    Canvas.Font.Color := clGrayText;
+    Canvas.TextOut(X, Y, Section.Text);
+    R := Rect;
+    InflateRect(R, -3, -3);
+    Canvas.DrawFocusRect(R);
 
-  if ((not Section.AllowClick) and (Section.Index <> 6)) then
-  begin
-    if Section.Index = FSelectedSectionIndex then
-      Canvas.Font.Color := clBlack
+    if (not Section.AllowClick) or (Section.Index = 6) then
+      Canvas.Font.Color := clGrayText
     else
-      Canvas.Font.Color := clGrayText;
+      Canvas.Font.Color := clMenuText;
+    Canvas.TextOut(X, Y, Section.Text);
   end else
-    Canvas.Font.Color := clWindowText;
-
-  X := Round(R.Left + (R.Width div 2) - (Canvas.TextWidth(Section.Text) div 2));
-  Y := Round(R.Top + (R.Height div 2) - (Canvas.TextHeight(Section.Text) div 2));
-  Canvas.TextOut(X, Y, Section.Text);
+  begin
+    if (not Section.AllowClick) or (Section.Index = 6) then
+      Canvas.Font.Color := clGrayText
+    else
+      Canvas.Font.Color := clMenuText;
+    Canvas.TextOut(X, Y, Section.Text);
+  end;
 end;
 
 procedure TDDCSHeaderControl.SectionClick(Section: THeaderSection);
@@ -850,6 +793,11 @@ begin
   end;
 end;
 
+procedure TDDCSForm.SetConfigCollection(const Value: TConfigCollection);
+begin
+  FConfiguration.Assign(Value);
+end;
+
 procedure TDDCSForm.SetNoteCollection(const Value: TDDCSNoteCollection);
 begin
   FReportCollection.Assign(Value);
@@ -870,7 +818,7 @@ begin
   sl.Clear;
   try
     if Assigned(DisplayDialog) then
-      if DisplayDialog(@Self, @RPCBrokerV, sBuild, False, wSave, wConfig, wText) then
+      if DisplayDialog(@RPCBrokerV, sBuild, False, CurrentStyle, wSave, wConfig, wText) then
       begin
         Result := True;
         if UpdateContext(MENU_CONTEXT) then
@@ -973,7 +921,7 @@ begin
       else
         tmp := tmp + ' checked';
 
-      FScreenReader.Say(tmp, False);
+      ScreenReader.SayString(tmp, False);
     end;
 
     Exit;
@@ -1380,6 +1328,7 @@ begin
   FControlPanel := TDDCSHeaderControl.Create(Self);
   FControlPanel.Parent := Self;
 
+  FConfiguration := TConfigCollection.Create(Self, TConfigItem);
   FReportCollection := TDDCSNoteCollection.Create(Self, TDDCSNoteItem);         // Create last to prevent adding ReportCollection Items we shouldn't have
                                                                                 // - components that are part of TDDCSForm
   if csDesigning in ComponentState then
@@ -1412,7 +1361,7 @@ begin
 //  nAct.OnExecute := CtrlShiftTab;
 // *****************************************************************************
 
-  FScreenReader := TScreenReader.Create;
+  FScreenReader := CreateComObject(CLASS_JawsApi) as IJawsApi;
 
   FAutoSaveTimer := TTimer.Create(Self);
   FAutoSaveTimer.Name := 'DDCSAutoTimer';
@@ -1430,11 +1379,13 @@ procedure TDDCSForm.FormOverrideShow(Sender: TObject);
 var
   tmp,sHold: string;
   sl,dl: TStringList;
-  I,J,P: Integer;
-  vPropertyList,vProp,vValue: string;
+  I,J,P,cI,cII,cIII: Integer;
+  vPropertyList,vProp,vValue,p1,p2,p3: string;
   wControl: TWinControl;
   cControl,dReturn: TComponent;
   nItem: TDDCSNoteItem;
+  cD: Char;
+  cItem: TConfigItem;
 
   function SubCount(str: string; d: Char): Integer;
   var
@@ -1447,6 +1398,10 @@ var
   end;
 
 begin
+  if FStyleChange then
+    Exit;
+  FStyleChange := True;
+
   sl := TStringList.Create;
   dl := TStringList.Create;
   try
@@ -1497,7 +1452,6 @@ begin
         if UpdateContext(MENU_CONTEXT) then
         begin
           tCallV(sl, 'DSIO DDCS BUILD FORM', [dl, RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN]);
-
           for I := 0 to sl.Count - 1 do
           begin
             // Form --------------------------------------------------------------
@@ -1615,6 +1569,47 @@ begin
               end;
             end;
           end;
+          sl.Clear;
+
+          tCallV(sl, 'DSIO DDCS BUILD FORM', [dl, RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN, '1']);
+          if sl.Count > 1 then
+          begin
+            cI   := StrToIntDef(Piece(Piece(sl[0],':',1),',',1), 0);
+            cII  := StrToIntDef(Piece(Piece(sl[0],':',1),',',2), 0);
+            cIII := StrToIntDef(Piece(Piece(sl[0],':',1),',',3), 0);
+            FConfiguration.Pieces[1] := cI;
+            FConfiguration.Pieces[2] := cII;
+            FConfiguration.Pieces[3] := cIII;
+
+            tmp := Piece(sl[0],':',2);
+            if tmp <> '' then
+              cD := tmp[1]
+            else cD := U;
+            FConfiguration.Delimiter := cD;
+
+            for I := 1 to sl.Count - 1 do
+            begin
+              if CI > 0 then
+                p1 := Piece(sl[I],cD,cI)
+              else p1 := '';
+              if CII > 0 then
+                p2 := Piece(sl[I],cD,cII)
+              else p2 := '';
+              if CIII > 0 then
+                p3 := Piece(sl[I],cD,cIII)
+              else p3 := '';
+
+              cItem := FConfiguration.LookUp(p1, p2, p3);
+              if cItem = nil then
+              begin
+                cItem := TConfigItem.Create(FConfiguration);
+                cItem.ID[1] := p1;
+                cItem.ID[2] := p2;
+                cItem.ID[3] := p3;
+              end;
+              cItem.Data.Add(sl[I]);
+            end;
+          end;
         end;
       end;
     except
@@ -1678,27 +1673,18 @@ begin
   if not (csDesigning in ComponentState) then
     Screen.OnActiveControlChange := nil;
 
+  FreeAndNil(FConfiguration);
   FreeAndNil(FReportCollection);
-  FreeAndNil(FScreenReader);
   FreeAndNil(FDLLDialogList);
   FreeAndNil(Tasks);
   FreeAndNil(FReturnList);
 
   SetLength(TabSeen, 0);
 
-//  if Assigned(FScreenReader) then
-//    FScreenReader.Free;
-//  if Assigned(FDLLDialogList) then
-//    FDLLDialogList.Free;
-//  if Assigned(Tasks) then
-//    Tasks.Free;
-//  if Assigned(FReturnList) then
-//    FReturnList.Free;
-
   if FDialogDLL <> 0 then
     FreeLibrary(FDialogDLL);
 
-  inherited;
+  inherited Destroy;
 end;
 
 procedure TDDCSForm.WMGetMSAAObject(var Message: TMessage);
@@ -1734,9 +1720,9 @@ begin
     Exit;
 
   if ActivePage.TabVisible then
-    if FScreenReader <> nil then
+    if Assigned(ScreenReader) then
     begin
-      FScreenReader.Say(ActivePage.Caption + ' Currently on page ' + FControlPanel.Sections.Items[6].Text, False);
+      ScreenReader.SayString(ActivePage.Caption + ' Currently on page ' + FControlPanel.Sections.Items[6].Text, False);
 
       if ActivePage = VitalsPage then
         VitalsControl.fVitalsControlChange(nil);
@@ -1781,15 +1767,15 @@ begin
     if VitalsPage = ActivePage then
     begin
       tmp := VitalsControl.GetTextforFocus(TForm(Owner).ActiveControl);
-      if ((tmp <> '') and (FScreenReader <> nil)) then
-        FScreenReader.Say(tmp, False);
+      if ((tmp <> '') and (Assigned(ScreenReader))) then
+        ScreenReader.SayString(tmp, False);
     end else
     begin
       nItem := FReportCollection.GetNoteItem(TForm(Owner).ActiveControl);
       if nItem <> nil then
         if nItem.SayOnFocus <> '' then
-          if FScreenReader <> nil then
-            FScreenReader.Say(nItem.SayOnFocus, False);
+          if Assigned(ScreenReader) then
+            ScreenReader.SayString(nItem.SayOnFocus, False);
     end;
   end;
 end;

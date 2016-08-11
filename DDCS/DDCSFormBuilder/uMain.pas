@@ -64,9 +64,7 @@ var
 begin
   Result := False;
 
-  Broker := TCPRSComBroker.Create(nil);
-  Broker.COMBroker  := CPRSBroker;
-  Broker.CPRSState  := CPRSState;
+  Broker := TCPRSComBroker.Create(nil, CPRSBroker, CPRSState);
   Broker.CPRSHandle := Cardinal(CPRSState.Handle);
   try
     try

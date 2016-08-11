@@ -21,9 +21,9 @@ object dlgVagBleed: TdlgVagBleed
   object lbassociated: TLabel
     Left = 241
     Top = 14
-    Width = 258
+    Width = 261
     Height = 14
-    Caption = 'Associated wth cramping and or contractions?'
+    Caption = 'Associated with cramping and or contractions?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -92,7 +92,6 @@ object dlgVagBleed: TdlgVagBleed
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 7
-    ExplicitTop = 109
     object bbtnOK: TBitBtn
       Left = 356
       Top = 3

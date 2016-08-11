@@ -42,6 +42,7 @@ object fPreg: TfPreg
       0000}
     NumGlyphs = 2
     TabOrder = 0
+    Visible = False
     OnClick = btnDeleteClick
   end
 end

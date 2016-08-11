@@ -3,7 +3,7 @@ object dlgROS: TdlgROS
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
-  Caption = 'Review of Symptoms since Last Menstrual Period'
+  Caption = 'Review of Systems since Last Menstrual Period'
   ClientHeight = 409
   ClientWidth = 651
   Color = clBtnFace
@@ -623,8 +623,6 @@ object dlgROS: TdlgROS
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 55
-    ExplicitTop = 360
-    ExplicitWidth = 653
     object btnOK: TBitBtn
       Left = 494
       Top = 3
@@ -636,7 +634,6 @@ object dlgROS: TdlgROS
       NumGlyphs = 2
       TabOrder = 1
       OnClick = btnOKClick
-      ExplicitLeft = 496
     end
     object btnCancel: TBitBtn
       Left = 575
@@ -648,7 +645,6 @@ object dlgROS: TdlgROS
       Kind = bkCancel
       NumGlyphs = 2
       TabOrder = 2
-      ExplicitLeft = 577
     end
     object btnNeg: TBitBtn
       Left = 1

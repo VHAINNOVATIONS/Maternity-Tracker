@@ -302,8 +302,8 @@ begin
   try
     if Assigned(FDDCSForm.DisplayDialog) then
     begin
-      FDDCSForm.DisplayDialog(@FDDCSForm, nil, '||' + lvDialog.Items[lvDialog.ItemIndex].Caption,
-                              True, wSave, wConfig, wText);
+      FDDCSForm.DisplayDialog(nil, '||' + lvDialog.Items[lvDialog.ItemIndex].Caption,
+                              True, 'Default', wSave, wConfig, wText);
       if wText <> '' then
       begin
         meDialogOutput.Clear;

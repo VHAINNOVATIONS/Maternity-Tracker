@@ -3,7 +3,7 @@
         <ProjectGuid>{DE3F3C6C-A627-42F1-ADCF-C843E325A92D}</ProjectGuid>
         <ProjectVersion>18.1</ProjectVersion>
         <MainSource>DDCSOBInitialBase.dpr</MainSource>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
@@ -84,6 +84,7 @@
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <DCC_DebugDCUs>true</DCC_DebugDCUs>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
@@ -100,6 +101,11 @@
         <DCCReference Include="frmMain.pas">
             <Form>Form1</Form>
         </DCCReference>
+        <RcItem Include="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf">
+            <ContainerId>ResourceItem</ContainerId>
+            <ResourceType>VCLSTYLE</ResourceType>
+            <ResourceId>Resource_1</ResourceId>
+        </RcItem>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -161,19 +167,28 @@
                 <Platform value="Win64">False</Platform>
             </Platforms>
             <Deployment Version="2">
-                <DeployFile LocalName="..\..\..\_output\v2\DDCSOBInitialBase.dll" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\_output\v2\DDCSOBInitialBase.dll" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>DDCSOBInitialBase.dll</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\..\_output\DDCSOBInitialBase.dll" Configuration="Release" Class="ProjectOutput">
+                <DeployFile LocalName="..\_output\v2\DDCSOBInitialBase.dll" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>DDCSOBInitialBase.dll</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
                 <DeployClass Name="ProjectOSXResource">
                     <Platform Name="OSX32">
                         <RemoteDir>Contents\Resources</RemoteDir>
@@ -487,16 +502,7 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>

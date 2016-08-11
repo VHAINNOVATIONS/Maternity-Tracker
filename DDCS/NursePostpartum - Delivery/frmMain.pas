@@ -31,7 +31,6 @@ type
     oPage1: TTabSheet;
     oPage2: TTabSheet;
     oPage3: TTabSheet;
-    oPage4: TTabSheet;
     lbDeliveryDate: TLabel;
     lbDischargeDate: TLabel;
     lbDaysIn: TLabel;
@@ -87,7 +86,6 @@ type
     ckVagSVD: TCheckBox;
     ckDeliveryMethodV: TCheckBox;
     ckDeliveryMethodC: TCheckBox;
-    lstDelivery: TListView;
     spnBirthCount: TSpinEdit;
     lbBirthCount: TLabel;
     lbProceduresOther: TLabel;
@@ -95,6 +93,7 @@ type
     lbGADays: TLabel;
     Panel1: TPanel;
     spnGAWeeks: TSpinEdit;
+    rgTypeDelivery: TRadioGroup;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpinCheck(Sender: TObject);
@@ -103,9 +102,11 @@ type
     procedure rgPretermDeliveryClick(Sender: TObject);
     procedure Finished(Sender: TObject);
   private
+    FPregIEN: Integer;
     BirthCount: Integer;
-    function GetBaby(Value: TTabSheet): TfrmInner;
+    function GetBaby(Value: TTabSheet): TfChild;
   public
+    property PregnancyIEN: Integer read FPregIEN write FPregIEN default 0;
   end;
 
 var
@@ -118,84 +119,181 @@ implementation
 uses
   uCommon, uReportItems, uExtndComBroker;
 
-procedure TForm1.FormCreate(Sender: TObject);
+function SubCount(str: string; d: Char): Integer;
 var
-  nItem: TDDCSNoteItem;
+  I: Integer;
+begin
+  Result := 0;
+  for I := 0 to Length(str) - 1 do
+    if str[I] = d then
+      inc(Result);
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
 begin
   BirthCount := 0;
   Form1 := Self;
-
-  nItem := DDCSForm1.ReportCollection.GetNoteItemAddifNil(spnGAWeeks);
-  if nItem <> nil then
-    nItem.SayOnFocus := 'Gestation Age in Weeks';
-  nItem := DDCSForm1.ReportCollection.GetNoteItemAddifNil(spnGADays);
-  if nItem <> nil then
-    nItem.SayOnFocus := 'Gestation Age in Days';
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
 var
-  I,J: Integer;
-  fBaby: TfrmInner;
-  val: string;
+  I,G,J,L: Integer;
+  vPregChild: TfChild;
+  cItem: TConfigItem;
+  tmp,btmp,sLkup: string;
 begin
-  oPage4.TabVisible := False;
 
-  //  ID^IEN^NUMBER^NAME^GENDER^BIRTH WEIGHT^STILLBORN^APGAR1^APGAR2^STATUS^NICU
+  //   1) L
+  //   2) IEN
+  //   3) DATE RECORDED
+  //   4) EDC
+  //   5) DFN|PATIENT
+  //   6) STATUS
+  //   7) FOF|(IEN OR IDENTIFIER)
+  //   8) EDD
+  //   9) PREGNANCY END
+  //  10) OB IEN|OB
+  //  11) FACILITY IEN|FACILITY
+  //  12) UPDATED BY IEN|UPDATED BY
+  //  13) GESTATIONAL AGE
+  //  14) LENGTH OF LABOR
+  //  15) TYPE OF DELIVERY
+  //  16) ANESTHESIA
+  //  17) PRETERM DELIVERY
+  //  18) BIRTH TYPE
+  //  19) IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU|
+  //  20) OUTCOME
+  //  21) HIGH RISK FLAG
+  //  22) DAYS IN HOSPITAL
+  //
+  //  C^IEN^COMMENT
+  //  B^IEN|BABY|#^COMMENT
 
-  for I := 0 to lstDelivery.Items.Count - 1 do
+  if DDCSForm1.Configuration.Count > 0 then
   begin
-    for J := lstDelivery.Items.item[I].SubItems.Count - 1 to 8 do
-      lstDelivery.Items.Item[I].SubItems.Add('');
-  end;
-
-  for I := 0 to lstDelivery.Items.Count - 1 do
-  begin
-    if lstDelivery.Items.Item[I].Caption = 'L' then
+    for I := 0 to DDCSForm1.Configuration.Count - 1 do
     begin
-      spnBirthCount.Value := spnBirthCount.Value + 1;
+      cItem := DDCSForm1.Configuration.Items[I];
 
-      fBaby := GetBaby(pgBaby.Pages[pgBaby.PageCount - 1]);
-      if fBaby = nil then
-        Continue;
-
-      for J := 0 to lstDelivery.Items.Item[I].SubItems.Count - 1 do
+      if cItem.ID[1] = 'L' then
       begin
-        val := lstDelivery.Items.Item[I].SubItems[J];
-        if val <> '' then
-          case J of
-            0 : fBaby.IEN := val;                                // IEN
-            1 : ;                                                // Baby Number
-            2 : ;                                                // Name
-            3 : begin                                            // Gender
-                  if val = 'M' then
-                    fBaby.rgSex.ItemIndex := 0
-                  else if val = 'F' then
-                    fBaby.rgSex.ItemIndex := 1
-                  else
-                    fBaby.rgSex.ItemIndex := 2;
-                end;
-            4 : fBaby.UpdateBirthWeightGrams(val);               // Birth Weight in grams
-            6 : fBaby.edAPGARone.Text := val;                    // APGAR1
-            7 : fBaby.edAPGARfive.Text := val;                   // APGAR2
-            9 : if val = '1' then
-                  fBaby.ckNICU.Checked := True;                  // NICU
+        PregnancyIEN := StrToIntDef(cItem.Piece[2], 0);
+
+        dtDelivery.Text := cItem.Piece[9];
+
+        tmp := cItem.Piece[11];
+        if tmp <> '' then
+        begin
+          if cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2)) <> -1 then
+            cbDeliveryPlace.ItemIndex := cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2))
+          else
+            cbDeliveryPlace.Text := Piece(tmp,'|',2);
+        end;
+
+        tmp := cItem.Piece[13];
+        spnGAWeeks.Value := StrToIntDef(Piece(tmp,'W',1), 0);
+        spnGADays.Value  := StrToIntDef(Piece(Piece(tmp,'D',1),'W',2), 0);
+
+        spnLaborLength.Value := StrToIntDef(cItem.Piece[14], 0);
+
+        tmp := cItem.Piece[15];
+        if tmp = 'V' then
+          rgTypeDelivery.ItemIndex := 0
+        else if tmp = 'C' then
+          rgTypeDelivery.ItemIndex := 1;
+
+        tmp := cItem.Piece[16];
+        if tmp <> '' then
+        begin
+          if cbAnesthesia.Items.IndexOf(tmp) = -1 then
+            cbAnesthesia.Items.Add(tmp);
+          cbAnesthesia.ItemIndex := cbAnesthesia.Items.IndexOf(tmp);
+        end;
+
+        rgPretermDelivery.ItemIndex := StrToIntDef(cItem.Piece[17], 0);
+
+        if cbOutcome.Enabled then
+        begin
+          tmp := cItem.Piece[20];
+          if tmp <> '' then
+          begin
+            if cbOutcome.Items.IndexOf(tmp) = -1 then
+              cbOutcome.Items.Add(tmp);
+            cbOutcome.ItemIndex := cbOutcome.Items.IndexOf(tmp);
           end;
-      end;
-    end
-    else if lstDelivery.Items.Item[I].Caption = 'C' then         // Complications
-    begin
-      for J := 0 to pgBaby.PageCount - 1 do
-      begin
-        fBaby := GetBaby(pgBaby.Pages[J]);
-        if fBaby <> nil then
-          if lstDelivery.Items.Item[I].SubItems[0] = fBaby.IEN then
-            fBaby.meComplications.Lines.Add(lstDelivery.Items.Item[I].SubItems[1]);
+        end;
+
+        edtDeliveryAt.Value := StrToIntDef(cItem.Piece[22], 0);
+
+        // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
+        tmp := cItem.Piece[19];
+        if tmp <> '' then
+        begin
+          G := SubCount(tmp,'|') + 1;
+          for J := 1 to G do
+          begin
+            btmp := Piece(tmp,'|',J);
+            // ---- Add the Baby Tab ---------------------------------------
+            spnBirthCount.Value := spnBirthCount.Value + 1;
+            // -------------------------------------------------------------
+
+            // ---- Get the Baby Info Form ---------------------------------
+            if pgBaby.PageCount > 1 then
+              if pgBaby.Pages[pgBaby.PageCount - 1].ControlCount > 0 then
+                if pgBaby.Pages[pgBaby.PageCount - 1].Controls[0] is TfChild then
+                begin
+                  vPregChild := TfChild(pgBaby.Pages[pgBaby.PageCount - 1].Controls[0]);
+
+                  // IEN
+                  vPregChild.BabyIEN := Piece(btmp,';',1);
+
+                  // Baby #
+                  vPregChild.BabyNumber := Piece(btmp,';',2);
+
+                  // Sex
+                  if Piece(btmp,';',4) = 'M' then
+                    vPregChild.rgSex.ItemIndex := 0
+                  else if Piece(btmp,';',4) = 'F' then
+                    vPregChild.rgSex.ItemIndex := 1
+                  else if Piece(btmp,';',4) = 'U' then
+                    vPregChild.rgSex.ItemIndex := 2;
+
+                  // Weight
+                  vPregChild.spnG.Value := StrToIntDef(Piece(btmp,';',5), 0);
+
+                  // APGAR1
+                  vPregChild.edAPGARone.Text := Piece(btmp,';',7);
+
+                  // APGAR2
+                  vPregChild.edAPGARfive.Text := Piece(btmp,';',8);
+
+                  // NICU
+                  vPregChild.ckNICU.Checked := (Piece(btmp,';',10) = '1');
+
+                  // Baby Notes
+                  sLkup := IntToStr(PregnancyIEN) + '|' + vPregChild.BabyIEN + '|' + vPregChild.BabyNumber;
+
+                  cItem := DDCSForm1.Configuration.LookUp('B', sLkup, '');
+                  if cItem <> nil then
+                    for L := 0 to cItem.Data.Count - 1 do
+                      vPregChild.meComplications.Lines.Add(Pieces(cItem.Data[L],U,3,999));
+                end;
+          end;
+        end;
+
+        // Delivery Notes
+        sLkup := IntToStr(PregnancyIEN);
+
+        cItem := DDCSForm1.Configuration.LookUp('C', sLkup, '');
+        if cItem <> nil then
+          for J := 0 to cItem.Data.Count - 1 do
+            meDeliveryNotes.Lines.Add(Pieces(cItem.Data[J],U,3,999));
       end;
     end;
   end;
 
-  DDCSForm1.ActivePageIndex := 0;
+  if pgBaby.PageCount > 0 then
+    pgBaby.ActivePageIndex := 0;
 end;
 
 procedure TForm1.SpinCheck(Sender: TObject);
@@ -224,7 +322,7 @@ procedure TForm1.spnBirthCountChange(Sender: TObject);
 var
   vTabSheet: TTabsheet;
   vPN: string;
-  fBaby: TfrmInner;
+  fBaby: TfChild;
 begin
   if spnBirthCount.Value < 1 then
   begin
@@ -242,13 +340,13 @@ begin
     vPN := IntToStr(spnBirthCount.Value);
     vTabSheet.Caption := 'Baby '+ vPN;
 
-    fBaby := TfrmInner.Create(vTabSheet);
+    fBaby := TfChild.Create(vTabSheet);
     fBaby.Parent := vTabSheet;
     fBaby.Name := 'fBaby' + vPN;
     fBaby.Align := alClient;
     fBaby.Show;
 
-    fBaby.BabyNumber := spnBirthCount.Value;
+    fBaby.BabyNumber := IntToStr(spnBirthCount.Value);
     fBaby.rgSex.OnEnter := DDCSForm1.RadioGroupEnter;
   end else
     pgBaby.Pages[pgBaby.PageCount - 1].Free;
@@ -275,23 +373,128 @@ end;
 
 procedure TForm1.Finished(Sender: TObject);
 var
-  fBaby: TfrmInner;
+  fBaby: TfChild;
   I,J: Integer;
   sl,tl: TStringList;
   tmpStr: string;
   lvItem: TListItem;
+  cItem: TConfigItem;
 
-  procedure CleanLv(Lv: TListView);
+  procedure GetSaveChildComments;
+  var
+    PregID,BabyID: string;
+    I,J: Integer;
+    vChild: TfChild;
+    cItem: TConfigItem;
+  begin
+    PregID := IntToStr(PregnancyIEN);
+
+    //  B^IEN|BABY|#^COMMENT
+    if pgBaby.PageCount > 1 then
+      for I := 1 to pgBaby.PageCount - 1 do
+        if pgBaby.Pages[I].ControlCount > 0 then
+          if pgBaby.Pages[I].Controls[0] is TfChild then
+          begin
+            vChild := TfChild(pgBaby.Pages[I].Controls[0]);
+            BabyID := PregID + '|' + vChild.BabyIEN + '|' + vChild.BabyNumber;
+
+            cItem := DDCSForm1.Configuration.LookUp('B', BabyID, '');
+            if cItem = nil then
+            begin
+              cItem := TConfigItem.Create(DDCSForm1.Configuration);
+              cItem.ID[1] := 'B';
+              cItem.ID[2] := BabyID;
+            end;
+            cItem.Data.Clear;
+
+            for J := 0 to vChild.meComplications.Lines.Count - 1 do
+              cItem.Data.Add('B^' + BabyID + U + vChild.meComplications.Lines[J]);
+          end;
+  end;
+
+  procedure GetSavePregComments(var oText: TStringList);
+  var
+    I: Integer;
+    PregID: string;
+  begin
+    oText.Clear;
+
+    PregID := IntToStr(PregnancyIEN);
+    //  C^IEN^COMMENT
+    for I := 0 to meDeliveryNotes.Lines.Count - 1 do
+      oText.Add('C^' + PregID + U + meDeliveryNotes.Lines[I])
+  end;
+
+  function GetChildrenV: string;
   var
     I: Integer;
   begin
-    for I := 0 to Lv.Items.Count - 1 do
-      if ((Lv.Items[I].Caption = 'L') or (Lv.Items[I].Caption = 'C')) then
-      begin
-        Lv.Items[I].Delete;
-        CleanLv(Lv);
-        Break;
-      end;
+    Result := '';
+
+    if pgBaby.PageCount > 1 then
+      for I := 1 to pgBaby.PageCount - 1 do
+        if pgBaby.Pages[I].ControlCount > 0 then
+          if pgBaby.Pages[I].Controls[0] is TfChild then
+            Result := Result + TfChild(pgBaby.Pages[I].Controls[0]).GetV;
+  end;
+
+  function GetSavePregInfo: string;
+  begin
+    Result := '';
+
+    //   1) L
+    //   2) IEN
+    //   3) DATE RECORDED
+    //   4) EDC
+    //   5) DFN|PATIENT
+    //   6) STATUS
+    //   7) FOF|(IEN OR IDENTIFIER)
+    //   8) EDD
+    //   9) PREGNANCY END
+    //  10) OB IEN|OB
+    //  11) FACILITY IEN|FACILITY
+    //  12) UPDATED BY IEN|UPDATED BY
+    //  13) GESTATIONAL AGE
+    //  14) LENGTH OF LABOR
+    //  15) TYPE OF DELIVERY
+    //  16) ANESTHESIA
+    //  17) PRETERM DELIVERY
+    //  18) BIRTH TYPE
+    //  19) IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU|
+    //  20) OUTCOME
+    //  21) HIGH RISK FLAG
+    //  22) DAYS IN HOSPITAL
+
+    Result := 'L^';                                                             // ID (L)
+    Result := Result + IntToStr(PregnancyIEN) + U;                              // IEN (Replaced upstream if 0)
+    Result := Result + U;                                                       // DATE RECORDED
+    Result := Result + U;                                                       // EDC
+    Result := Result + U;                                                       // DFN| PATIENT (handled by routine)
+    Result := Result + 'CURRENT^';                                              // STATUS
+    Result := Result + U;                                                       // FOF|(IEN OR IDENTIFIER)
+    Result := Result + U;                                                       // EDD
+    Result := Result + dtDelivery.Text + U;                                     // PREGNANCY END
+    Result := Result + U;                                                       // OB IEN|OB
+    Result := Result + '|' + cbDeliveryPlace.Text + U;                          // FACILITY IEN|FACILITY
+    Result := Result + U;                                                       // UPDATED BY IEN|UPDATED BY
+    Result := Result + spnGAWeeks.Text + 'W' + spnGADays.Text  + 'D^';          // GESTATIONAL AGE
+    Result := Result + spnLaborLength.Text + U;                                 // LENGTH OF LABOR
+
+    // TYPE OF DELIVERY
+    if rgTypeDelivery.ItemIndex = 0 then
+      Result := Result + 'V^'
+    else if rgTypeDelivery.ItemIndex = 1 then
+      Result := Result + 'C^'
+    else
+      Result := Result + U;
+
+    Result := Result + cbAnesthesia.Text + U;                                   // ANESTHESIA
+    Result := Result + IntToStr(rgPretermDelivery.ItemIndex) + U;               // PRETERM DELIVERY
+    Result := Result + U;                                                       // BIRTH TYPE
+    Result := Result + GetChildrenV + U;                                        // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU|
+    Result := Result + cbOutcome.Text + U;                                      // OUTCOME
+    Result := Result + U;                                                       // HIGH RISK FLAG
+    Result := Result + edtDeliveryAt.Text;                                      // DAYS IN HOSPITAL
   end;
 
 begin
@@ -309,18 +512,23 @@ begin
     if cbAnesthesia.ItemIndex <> -1 then
       DDCSForm1.TmpStrList.Add('  Anesthesia: ' + cbAnesthesia.Text);
 
-    if rgPretermDelivery.ItemIndex = 0 then
-      DDCSForm1.TmpStrList.Add('  Preterm Labor: No')
-    else if rgPretermDelivery.ItemIndex = 1 then
-      DDCSForm1.TmpStrList.Add('  Preterm Labor: Yes');
-
     if cbLabor.ItemIndex <> -1 then
       DDCSForm1.TmpStrList.Add('  Labor: ' + cbLabor.Items[cbLabor.ItemIndex]);
 
     DDCSForm1.TmpStrList.Add('  Length of Labor: ' + spnLaborLength.Text + ' hrs');
 
+    if rgTypeDelivery.ItemIndex = 0 then
+      DDCSForm1.TmpStrList.Add('  Type of Delivery: Vaginal')
+    else if rgTypeDelivery.ItemIndex = 1 then
+      DDCSForm1.TmpStrList.Add('  Type of Delivery: Cesarean');
+
     if cbOutcome.ItemIndex <> -1 then
       DDCSForm1.TmpStrList.Add('  Outcome: ' + cbOutcome.Items[cbOutcome.ItemIndex]);
+
+    if rgPretermDelivery.ItemIndex = 0 then
+      DDCSForm1.TmpStrList.Add('  Preterm Labor: No')
+    else if rgPretermDelivery.ItemIndex = 1 then
+      DDCSForm1.TmpStrList.Add('  Preterm Labor: Yes');
 
     if Trim(cbDeliveryPlace.Text) <> '' then
       DDCSForm1.TmpStrList.Add('  Place of Delivery: ' + Trim(cbDeliveryPlace.Text));
@@ -446,42 +654,33 @@ begin
     end;
     sl.Clear;
 
-    CleanLv(lstDelivery);
-
-    for I := 0 to pgBaby.PageCount - 1 do
+    // Pregnancy Info
+    cItem := DDCSForm1.Configuration.LookUp('L', IntToStr(PregnancyIEN), '');
+    if cItem = nil then
     begin
-      fBaby := GetBaby(pgBaby.Pages[I]);
-      if fBaby = nil then
-        Continue;
-
-      lvItem := lstDelivery.Items.Add;
-      lvItem.Caption := 'L';
-      for J := 0 to 10 do
-        lvitem.SubItems.Add('');
-
-      lvitem.SubItems[0] := fBaby.IEN;
-
-      case fBaby.rgSex.ItemIndex of                                             // Gender
-        0 : lvItem.SubItems[3] := 'M';
-        1 : lvItem.SubItems[3] := 'F';
-        2 : lvItem.SubItems[3] := 'U';
-      end;
-
-      lvItem.SubItems[4] := fBaby.spnG.Text;                                    // Birth Weight
-      lvItem.SubItems[6] := fBaby.edAPGARone.Text;                              // APGAR one
-      lvItem.SubItems[7] := fBaby.edAPGARfive.Text;                             // APGAR five
-
-      if fBaby.ckNICU.Checked then                                              // NICU
-        lvItem.SubItems[9] := '1';
-
-      for J := 0 to fBaby.meComplications.Lines.Count - 1 do                    // Complications
-      begin
-        lvItem := lstDelivery.Items.Add;
-        lvItem.Caption := 'C';
-        lvItem.SubItems.Add(fBaby.IEN);
-        lvItem.SubItems.Add(fBaby.meComplications.Lines[J]);
-      end;
+      cItem := TConfigItem.Create(DDCSForm1.Configuration);
+      cItem.ID[1] := 'L';
+      cItem.ID[2] := IntToStr(PregnancyIEN);
+      cItem.Data.Add('');
     end;
+    cItem.Data[0] := GetSavePregInfo;
+
+    // Pregnancy Comments
+    cItem := DDCSForm1.Configuration.LookUp('C', IntToStr(PregnancyIEN), '');
+    if cItem = nil then
+    begin
+      cItem := TConfigItem.Create(DDCSForm1.Configuration);
+      cItem.ID[1] := 'C';
+      cItem.ID[2] := IntToStr(PregnancyIEN);
+    end;
+    cItem.Data.Clear;
+    GetSavePregComments(sl);
+    if sl.Count > 0 then
+      cItem.Data.AddStrings(sl);
+    sl.Clear;
+
+    // Baby Comments
+    GetSaveChildComments;
   finally
     sl.Free;
     tl.Free;
@@ -490,13 +689,13 @@ end;
 
 // Private ---------------------------------------------------------------------
 
-function TForm1.GetBaby(Value: TTabSheet): TfrmInner;
+function TForm1.GetBaby(Value: TTabSheet): TfChild;
 begin
   Result := nil;
 
   if Value.ControlCount > 0 then
-    if Value.Controls[0] is TfrmInner then
-      Result := TfrmInner(Value.Controls[0]);
+    if Value.Controls[0] is TfChild then
+      Result := TfChild(Value.Controls[0]);
 end;
 
 end.

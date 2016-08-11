@@ -355,7 +355,8 @@ begin
     if notAllowed then
     begin
       TSpinEdit(Sender).Value := TSpinEdit(Sender).Value + 1;
-      ShowMsg('Use the "X" button on the pregnancy you wish to remove.', smiWarning, smbOK);
+      ShowMsg('If you wish to delete this pregnancy you must close this dialog ' +
+              'without saving to restore previously entered data.', smiWarning, smbOK);
     end else
     begin
       Inc(TotalPreg);

@@ -17,6 +17,8 @@ library DDCSDialogs;
    VA Contract: TAC-13-06464
 }
 
+{$R *.dres}
+
 uses
   Winapi.Windows,
   System.Classes,
@@ -135,7 +137,7 @@ begin
   end;
 end;
 
-function DisplayDialog(AOwner: PDDCSForm; Broker: PCPRSComBroker; Build: WideString; DebugMode: Boolean;
+function DisplayDialog(Broker: PCPRSComBroker; Build: WideString; DebugMode: Boolean; sTheme: WideString;
                        out rSave,rConfig,rText: WideString): WordBool; stdcall;
 var
   dlgP: TPersistentClass;
@@ -160,7 +162,7 @@ begin
     Exit;
 
   sl := TStringList.Create;
-  dlg := dlgClass.Create(AOwner, Broker, Piece(Build,'|',1), DebugMode);
+  dlg := dlgClass.Create(Broker, Piece(Build,'|',1), DebugMode, sTheme);
   try
     if DebugMode then
     begin

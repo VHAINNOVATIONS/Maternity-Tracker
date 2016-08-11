@@ -686,7 +686,7 @@ begin
     begin
       DDCSF := TDDCSForm(Parent.Parent);
       if DDCSF.ScreenReader <> nil then
-        DDCSF.ScreenReader.Say('Currently on the ' + fVitalsControl.ActivePage.Caption +
+        DDCSF.ScreenReader.SayString('Currently on the ' + fVitalsControl.ActivePage.Caption +
                                ' tab of the vitals page. To navigate between vitals tabs' +
                                ' use the up and down arrows.', False);
     end;

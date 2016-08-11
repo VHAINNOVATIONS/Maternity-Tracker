@@ -74,10 +74,10 @@ end;
 
 procedure TfPreg.pgPregChange(Sender: TObject);
 begin
-  if pgPreg.ActivePageIndex <> 0 then
-    btnDelete.Visible := False
-  else
-    btnDelete.Visible := True;
+//  if pgPreg.ActivePageIndex <> 0 then
+//    btnDelete.Visible := False
+//  else
+//    btnDelete.Visible := True;
 end;
 
 // Private ---------------------------------------------------------------------

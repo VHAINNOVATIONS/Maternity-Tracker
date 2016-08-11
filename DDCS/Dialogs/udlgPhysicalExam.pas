@@ -272,7 +272,7 @@ begin
             TORDateBox(pgBody.Pages[I].Controls[J]).Enabled := True;
         end else if pgBody.Pages[I].Controls[J] is TEdit then
         begin
-          if not ick.Checked then
+          if not ick.Checked or ((ick.Checked) and (ick.Caption = 'Abnormal')) then
           begin
             TEdit(pgBody.Pages[I].Controls[J]).Clear;
             TEdit(pgBody.Pages[I].Controls[J]).Enabled := False;
@@ -303,9 +303,8 @@ end;
 procedure TdlgPhysicalExam.EditReadMe(Sender: TObject);
 begin
   if ((Sender is TEdit) and (TEdit(Sender).Text <> '')) then
-    if DDCSForm <> nil then
-      if DDCSForm.ScreenReader <> nil then
-        DDCSForm.ScreenReader.Say(TEdit(Sender).Text, False);
+    if Assigned(ScreenReader) then
+      ScreenReader.SayString(TEdit(Sender).Text, False);
 end;
 
 procedure TdlgPhysicalExam.btnOKClick(Sender: TObject);

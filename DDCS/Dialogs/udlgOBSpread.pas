@@ -199,7 +199,8 @@ begin
     sgStandard.AutoSizeCol(I, 70, 10);
   FResizeOK := True;
 
-  DDCSForm.ScreenReader.Say('Exam Date', False);
+  if Assigned(ScreenReader) then
+    ScreenReader.SayString('Exam Date', False);
 end;
 
 procedure TdlgOBSpread.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -267,16 +268,19 @@ begin
   if ARow = 0 then
     Exit;
 
-  if ACol = 4 then
-    DDCSForm.ScreenReader.Say('Cumulative Weight in pounds Read Only', False)
-  else if ACol = 8 then
-    DDCSForm.ScreenReader.Say('Fetal Weight', False)
-  else if ACol = 12 then
-    DDCSForm.ScreenReader.Say('Preterm Labor Symptoms Type in Text', False)
-  else if ACol = 19 then
-    DDCSForm.ScreenReader.Say('Cervical Exam Type in Text', False)
-  else if ACol > 19 then
-    DDCSForm.ScreenReader.Say(sgStandard.Cells[ACol, 0] + ' Type in Text', False);
+  if Assigned(ScreenReader) then
+  begin
+    if ACol = 4 then
+      ScreenReader.SayString('Cumulative Weight in pounds Read Only', False)
+    else if ACol = 8 then
+      ScreenReader.SayString('Fetal Weight', False)
+    else if ACol = 12 then
+      ScreenReader.SayString('Preterm Labor Symptoms Type in Text', False)
+    else if ACol = 19 then
+      ScreenReader.SayString('Cervical Exam Type in Text', False)
+    else if ACol > 19 then
+      ScreenReader.SayString(sgStandard.Cells[ACol, 0] + ' Type in Text', False);
+  end;
 
   PostMessage(Handle, WM_CELLSELECT, 0, 0);
 end;

@@ -21,6 +21,10 @@ object DDCSVitals: TDDCSVitals
     OnChange = fVitalsControlChange
     object PageMain: TTabSheet
       Caption = 'Vitals'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         670
         370)
@@ -380,6 +384,10 @@ object DDCSVitals: TDDCSVitals
       ParentDoubleBuffered = False
       OnResize = PageEDDResize
       OnShow = PageEDDShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         670
         370)
@@ -899,6 +907,10 @@ object DDCSVitals: TDDCSVitals
     object PageLMP: TTabSheet
       Caption = 'Menstrual History'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         670
         370)

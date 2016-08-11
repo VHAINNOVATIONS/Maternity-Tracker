@@ -107,7 +107,6 @@ object dlgPregHist: TdlgPregHist
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 5
-    ExplicitTop = 556
     object btnOK: TBitBtn
       Left = 367
       Top = 3
@@ -159,7 +158,6 @@ object dlgPregHist: TdlgPregHist
     Align = alCustom
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 4
-    ExplicitTop = 74
   end
   object edtAbInduced: TSpinEdit
     Tag = 2

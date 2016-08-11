@@ -22,7 +22,7 @@ uses
   Vcl.Forms,
   uExtndComBroker,
   frmMain in 'frmMain.pas' {Form1},
-  frmBaby in 'frmBaby.pas' {frmInner: TFrame};
+  frmBaby in 'frmBaby.pas' {fChild: TFrame};
 
 {$R *.res}
 

@@ -103,26 +103,32 @@ object Form1: TForm1
         Required = False
       end
       item
+        SayOnFocus = 'Gestation Age in Weeks'
         Order = 4
-        DoNotSpace = False
-        DoNotSave = False
-        DoNotRestoreV = False
-        HideFromNote = False
-        OwningObject = Panel1
-        Required = False
-      end
-      item
-        Order = 5
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
         HideFromNote = False
         OwningObject = spnGAWeeks
         Required = False
+      end
+      item
+        SayOnFocus = 'Gestation Age in Days'
+        Order = 5
+        DoNotSpace = False
+        DoNotSave = False
+        DoNotRestoreV = False
+        HideFromNote = False
+        OwningObject = spnGADays
+        Required = False
       end>
     OnOverrideNote = Finished
     object oPage1: TTabSheet
       Caption = 'Delivery Details'
+      ExplicitLeft = 8
+      ExplicitTop = 65
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         734
         398)
@@ -186,8 +192,8 @@ object Form1: TForm1
         ParentFont = False
       end
       object lbLabor: TLabel
-        Left = 395
-        Top = 79
+        Left = 19
+        Top = 172
         Width = 33
         Height = 13
         Caption = 'Labor'
@@ -200,7 +206,7 @@ object Form1: TForm1
       end
       object lbDeliveryNotes: TLabel
         Left = 19
-        Top = 209
+        Top = 236
         Width = 84
         Height = 13
         Caption = 'Delivery Notes'
@@ -226,7 +232,7 @@ object Form1: TForm1
       end
       object lbLaborLength: TLabel
         Left = 395
-        Top = 111
+        Top = 19
         Width = 140
         Height = 13
         Caption = 'Length of Labor in hours'
@@ -239,7 +245,7 @@ object Form1: TForm1
       end
       object lbDeliveryPlace: TLabel
         Left = 19
-        Top = 178
+        Top = 204
         Width = 98
         Height = 13
         Caption = 'Place of Delivery'
@@ -252,7 +258,7 @@ object Form1: TForm1
       end
       object lbOutcome: TLabel
         Left = 395
-        Top = 142
+        Top = 111
         Width = 51
         Height = 13
         Caption = 'Outcome'
@@ -298,7 +304,7 @@ object Form1: TForm1
       end
       object edtDeliveryAt: TSpinEdit
         Left = 225
-        Top = 75
+        Top = 76
         Width = 50
         Height = 22
         MaxValue = 0
@@ -317,18 +323,18 @@ object Form1: TForm1
         Caption = 'Anesthesia'
       end
       object cbLabor: TCaptionComboBox
-        Left = 455
-        Top = 76
-        Width = 162
+        Left = 187
+        Top = 169
+        Width = 166
         Height = 21
         Style = csDropDownList
-        TabOrder = 7
+        TabOrder = 6
         Caption = 'Labor'
       end
       object rgPretermDelivery: TRadioGroup
         Left = 395
-        Top = 15
-        Width = 222
+        Top = 139
+        Width = 219
         Height = 45
         Caption = 'Preterm Delivery'
         Columns = 2
@@ -341,18 +347,18 @@ object Form1: TForm1
           'No'
           'Yes')
         ParentFont = False
-        TabOrder = 6
+        TabOrder = 10
         TabStop = True
         OnClick = rgPretermDeliveryClick
       end
       object spnLaborLength: TSpinEdit
-        Left = 544
-        Top = 107
+        Left = 541
+        Top = 16
         Width = 73
         Height = 22
         MaxValue = 0
         MinValue = 0
-        TabOrder = 8
+        TabOrder = 7
         Value = 0
         OnChange = SpinCheck
       end
@@ -376,17 +382,17 @@ object Form1: TForm1
         end
       end
       object cbDeliveryPlace: TCaptionComboBox
-        Left = 132
-        Top = 174
-        Width = 485
+        Left = 123
+        Top = 201
+        Width = 590
         Height = 21
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 10
+        TabOrder = 11
         Caption = 'Place of Delivery'
       end
       object cbOutcome: TCaptionComboBox
-        Left = 455
-        Top = 138
+        Left = 452
+        Top = 108
         Width = 162
         Height = 21
         Style = csDropDownList
@@ -395,13 +401,13 @@ object Form1: TForm1
       end
       object meDeliveryNotes: TCaptionMemo
         Left = 19
-        Top = 228
+        Top = 253
         Width = 694
-        Height = 152
+        Height = 129
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
         ScrollBars = ssVertical
-        TabOrder = 11
+        TabOrder = 12
         Caption = 'Delivery Notes'
       end
       object spnGAWeeks: TSpinEdit
@@ -415,9 +421,34 @@ object Form1: TForm1
         Value = 0
         OnChange = SpinCheck
       end
+      object rgTypeDelivery: TRadioGroup
+        Left = 395
+        Top = 48
+        Width = 219
+        Height = 45
+        Align = alCustom
+        Caption = 'Type of Delivery'
+        Columns = 2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ItemIndex = 0
+        Items.Strings = (
+          'Vaginal'
+          'Cesarean')
+        ParentFont = False
+        TabOrder = 8
+        TabStop = True
+      end
     end
     object oPage2: TTabSheet
       Caption = 'Neonatal Information'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlBirthCount: TPanel
         Left = 0
         Top = 0
@@ -472,6 +503,10 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'Delivery Method'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object gbVaginal: TGroupBox
         Left = 14
         Top = 19
@@ -903,21 +938,6 @@ object Form1: TForm1
         Caption = 'Cesarean'
         TabOrder = 4
         Visible = False
-      end
-    end
-    object oPage4: TTabSheet
-      Caption = 'Data Control'
-      TabVisible = False
-      object lstDelivery: TListView
-        Left = 0
-        Top = 0
-        Width = 734
-        Height = 398
-        Align = alClient
-        Columns = <>
-        TabOrder = 0
-        TabStop = False
-        ViewStyle = vsReport
       end
     end
   end

@@ -21,55 +21,19 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
-  System.Character, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.ComCtrls, uBase, uCommon, uReportItems, uExtndComBroker;
+  System.Win.ComObj, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Themes, Vcl.Styles,
+  FSAPILib_TLB, uBase, uCommon, uReportItems, uExtndComBroker;
 
 Type
-  TConfigItem = class(TCollectionItem)
-  private
-    FData: TStringList;
-    FID1,FID2,FID3: string;
-    procedure SetValue(Index: Integer; Value: string);
-    procedure SetPiece(Index: Integer; Value: string);
-    function GetValue(Index: Integer): string;
-    function GetPiece(Index: Integer): string;
-  public
-    constructor Create(Collection: TCollection); override;
-    destructor Destroy; override;
-    property ID[Index: Integer]: string read GetValue write SetValue;
-    property Piece[Index: Integer]: string read GetPiece write SetPiece;
-    property Data: TStringList read FData write FData;
-  end;
-
-  TConfigCollection = class(TOwnedCollection)
-  private
-    FDelimiter: Char;
-    FPieces1,FPieces2,FPieces3: Integer;
-    procedure SetValue(Index: Integer; Value: Integer);
-    procedure SetItem(Index: Integer; Value: TConfigItem);
-    function GetValue(Index: Integer): Integer;
-    function GetCount: Integer;
-    function GetItem(Index: Integer): TConfigItem; overload;
-  public
-    procedure GetCollectiveText(var oText: TStringList);
-    function Add: TConfigItem; overload;
-    function Insert(Index: Integer): TConfigItem;
-    function LookUp(p1,p2,p3: string): TConfigItem;
-    function ValidPieces(p1,p2,p3: string): Boolean;
-    property Pieces[Index: Integer]: Integer read GetValue write SetValue;
-    property TotalIDPieces: Integer read GetCount;
-    property Delimiter: Char read FDelimiter write FDelimiter default '^';
-    property Items[Index: Integer]: TConfigItem read GetItem write SetItem;
-  end;
-
   TDDCSDialog = class(TForm)
   private
-    FDDCSForm: TDDCSForm;
     FConfiguration: TConfigCollection;
     FReportCollection: TDDCSNoteCollection;
     FReturnList: TStringList;
     FDebugMode: Boolean;
     FIEN: string;
+    FScreenReader: IJawsApi;
     procedure SetConfigCollection(const Value: TConfigCollection);
     procedure SetNoteCollection(const Value: TDDCSNoteCollection);
     procedure cbAutoWidth(Sender: TObject);
@@ -77,17 +41,18 @@ Type
     procedure ActiveControlChanged(Sender: TObject);
   protected
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
+    procedure ChangeTheme(Style: string);
   public
     constructor Create; overload;
-    constructor Create(AOwner: PDDCSForm; Broker: PCPRSComBroker; sIEN: string; DebugMode: Boolean); overload;
+    constructor Create(Broker: PCPRSComBroker; sIEN: string; DebugMode: Boolean; sTheme: string); overload;
     destructor Destroy; override;
     procedure SayOnFocus(wControl: TWinControl; tSay: string);
     procedure BuildSaveList(var oText: TStringList);
-    property DDCSForm: TDDCSForm read FDDCSForm;
     property TmpStrList: TStringList read FReturnList write FReturnList;
     property DebugMode: Boolean read FDebugMode write FDebugMode;
     property IEN: string read FIEN write FIEN;
     property Configuration: TConfigCollection read FConfiguration write SetConfigCollection;
+    property ScreenReader: IJawsApi read FScreenReader;
   published
     property ReportCollection: TDDCSNoteCollection read FReportCollection write SetNoteCollection;
   end;
@@ -102,214 +67,6 @@ procedure Register;
 begin
   RegisterClass(TDDCSDialog);
 end;
-
-{$REGION 'TConfigItem'}
-
-// Private ---------------------------------------------------------------------
-
-procedure TConfigItem.SetValue(Index: Integer; Value: string);
-begin
-  if (Index < 1) or (Index > 3) then
-    Exit;
-
-  if Index = 1 then
-    FID1 := Value
-  else if Index = 2 then
-    FID2 := Value
-  else if Index = 3 then
-    FID3 := Value;
-end;
-
-procedure TConfigItem.SetPiece(Index: Integer; Value: string);
-var
-  sl: TStringList;
-begin
-  if FData.Count < 1 then
-    Exit;
-
-  sl := TStringList.Create;
-  try
-    sl.Delimiter := TConfigCollection(Collection).Delimiter;
-    sl.StrictDelimiter := True;
-    sl.DelimitedText := FData[0];
-
-    if ((Index >= 1) and (Index <= sl.Count)) then
-    begin
-      sl[Index - 1] := Value;
-      FData[0] := sl.DelimitedText;
-    end;
-  finally
-    sl.Free;
-  end;
-end;
-
-function TConfigItem.GetValue(Index: Integer): string;
-begin
-  Result := '';
-
-  if Index = 1 then
-    Result :=  FID1
-  else if Index = 2 then
-    Result := FID2
-  else if Index = 3 then
-    Result := FID3;
-end;
-
-function TConfigItem.GetPiece(Index: Integer): string;
-begin
-  Result := '';
-
-  if FData.Count > 0 then
-    Result := uCommon.Piece(FData[0], TConfigCollection(Collection).Delimiter, Index);
-end;
-
-// Public ----------------------------------------------------------------------
-
-constructor TConfigItem.Create(Collection: TCollection);
-begin
-  inherited;
-
-  FData := TStringList.Create;
-end;
-
-destructor TConfigItem.Destroy;
-begin
-  FData.Free;
-
-  inherited;
-end;
-
-{$ENDREGION}
-
-{$REGION 'TConfigCollection'}
-
-// Private ---------------------------------------------------------------------
-
-procedure TConfigCollection.SetValue(Index: Integer; Value: Integer);
-begin
-  if (Index < 1) or (Index > 3) then
-    Exit;
-
-  if Index = 1 then
-    FPieces1 := Value
-  else if Index = 2 then
-    FPieces2 := Value
-  else if Index = 3 then
-    FPieces3 := Value;
-end;
-
-procedure TConfigCollection.SetItem(Index: Integer; Value: TConfigItem);
-begin
-  inherited SetItem(Index, Value);
-end;
-
-function TConfigCollection.GetValue(Index: Integer): Integer;
-begin
-  Result := 0;
-
-  if Index = 1 then
-    Result := FPieces1
-  else if Index = 2 then
-    Result := FPieces2
-  else if Index = 3 then
-    Result := FPieces3;
-end;
-
-function TConfigCollection.GetCount: Integer;
-var
-  I: Integer;
-begin
-  Result := 0;
-
-  for I := 1 to 3 do
-    if Pieces[I] <> 0 then
-      Inc(Result);
-end;
-
-function TConfigCollection.GetItem(Index: Integer): TConfigItem;
-begin
-  Result := TConfigItem(inherited Items[Index]);
-end;
-
-// Public ----------------------------------------------------------------------
-
-procedure TConfigCollection.GetCollectiveText(var oText: TStringList);
-var
-  I: Integer;
-begin
-  oText.Clear;
-
-  for I := 0 to Count - 1 do
-    oText.AddStrings(Items[I].Data);
-end;
-
-function TConfigCollection.Add: TConfigItem;
-begin
-  Result := TConfigItem(inherited Add);
-end;
-
-function TConfigCollection.Insert(Index: Integer): TConfigItem;
-begin
-  Result := TConfigItem(inherited Insert(Index));
-end;
-
-function TConfigCollection.LookUp(p1,p2,p3: string): TConfigItem;
-var
-  I: Integer;
-begin
-  Result := nil;
-
-  for I := 0 to Count - 1 do
-    if ((Items[I].ID[1] = p1) and (Items[I].ID[2] = p2) and (Items[I].ID[3] = p3)) then
-    begin
-      Result := Items[I];
-      Break;
-    end;
-end;
-
-function TConfigCollection.ValidPieces(p1,p2,p3: string): Boolean;
-
-  function CheckPiece(p: string): Boolean;
-  var
-    c: Char;
-  begin
-    Result := False;
-
-    if p = '' then
-      Exit;
-
-    if StrToIntDef(p, 0) > 0 then
-      Result := True
-    else begin
-      c := p[1];
-      if c.IsLetter then
-        Result := True;
-    end;
-  end;
-
-begin
-  Result := True;
-  if GetCount < 1 then
-    Exit;
-
-  Result := CheckPiece(p1);
-  if not Result then
-    Exit;
-
-  if GetCount < 2 then
-    Exit;
-
-  Result := CheckPiece(p2);
-  if not Result then
-    Exit;
-
-  if GetCount < 3 then
-    Exit;
-
-  Result := CheckPiece(p3);
-end;
-
-{$ENDREGION}
 
 {$REGION 'TDDCSDialog'}
 
@@ -364,9 +121,8 @@ begin
   nItem := FReportCollection.GetNoteItem(ActiveControl);
   if nItem <> nil then
     if nItem.SayOnFocus <> '' then
-      if FDDCSForm <> nil then
-        if FDDCSForm.ScreenReader <> nil then
-          FDDCSForm.ScreenReader.Say(nItem.SayOnFocus, False);
+      if Assigned(ScreenReader) then
+        ScreenReader.SayString(nItem.SayOnFocus, False);
 end;
 
 // Protected -------------------------------------------------------------------
@@ -390,13 +146,24 @@ begin
   end;
 end;
 
+procedure TDDCSDialog.ChangeTheme(Style: string);
+begin
+  if Assigned(TStyleManager.ActiveStyle) then
+  try
+    if Style = 'Default' then
+      TStyleManager.TrySetStyle('Windows')
+    else
+      TStyleManager.TrySetStyle(Style);
+  except
+  end;
+end;
+
 // Public ----------------------------------------------------------------------
 
 constructor TDDCSDialog.Create;
 begin
   inherited Create(nil);
 
-  FDDCSForm := nil;
   RPCBrokerV := nil;
   FDebugMode := True;
   FIEN := '';
@@ -407,7 +174,7 @@ begin
   FReportCollection := TDDCSNoteCollection.Create(Self, TDDCSNoteItem);
 end;
 
-constructor TDDCSDialog.Create(AOwner: PDDCSForm; Broker: PCPRSComBroker; sIEN: string; DebugMode: Boolean);
+constructor TDDCSDialog.Create(Broker: PCPRSComBroker; sIEN: string; DebugMode: Boolean; sTheme: string);
 var
   sl,dl: TStringList;
   I,cI,cII,cIII: Integer;
@@ -455,13 +222,15 @@ var
 begin
   inherited Create(nil);
 
-  FDDCSForm := AOwner^;
+  ChangeTheme(sTheme);
 
   Screen.OnActiveControlChange := ActiveControlChanged;
 
   RPCBrokerV := Broker^;
   FDebugMode := DebugMode;
   FIEN := sIEN;
+
+  FScreenReader := CreateComObject(CLASS_JawsApi) as IJawsApi;
 
   FReturnList := TStringList.Create;
 
@@ -479,12 +248,6 @@ begin
   dl := TStringList.Create;
   try
     try
-//      if (FIEN = '') and UpdateContext(MENU_CONTEXT) then
-//        FIEN := sCallV('DSIO DDCS DIALOG LOOKUP', [ClassName]);
-//
-//      if StrToIntDef(FIEN, 0) < 1 then
-//        Exit;
-
       if UpdateContext(MENU_CONTEXT) then
       begin
         dl.Add(IEN + ';DSIO(19641.49,');
@@ -518,7 +281,7 @@ begin
           if tmp <> '' then
             cD := tmp[1]
           else cD := U;
-          FConfiguration.FDelimiter := cD;
+          FConfiguration.Delimiter := cD;
 
           for I := 1 to sl.Count - 1 do
           begin
