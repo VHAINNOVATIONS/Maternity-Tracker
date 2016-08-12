@@ -137,7 +137,7 @@ begin
   end;
 end;
 
-function DisplayDialog(Broker: PCPRSComBroker; Build: WideString; DebugMode: Boolean; sTheme: WideString;
+function DisplayDialog(const Broker: PCPRSComBroker; Build: WideString; DebugMode: Boolean; sTheme: WideString;
                        out rSave,rConfig,rText: WideString): WordBool; stdcall;
 var
   dlgP: TPersistentClass;

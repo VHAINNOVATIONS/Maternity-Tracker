@@ -71,7 +71,7 @@ type
 
       TRegisterDialogs = procedure(out Return: WideString); stdcall;
   TGetDialogComponents = procedure(dlgName: WideString; out Return: WideString); stdcall;
-        TDisplayDialog = function(Broker: PCPRSComBroker; dlgName: WideString; DebugMode: Boolean; sTheme: WideString;
+        TDisplayDialog = function(const Broker: PCPRSComBroker; dlgName: WideString; DebugMode: Boolean; sTheme: WideString;
                                   out rSave,rConfig,rText: WideString): WordBool; stdcall;
 
   TpbSaveEvent   = procedure(Sender: TObject; AutoSave: Boolean) of object;
@@ -1369,8 +1369,6 @@ begin
 //  nAct.OnExecute := CtrlShiftTab;
 // *****************************************************************************
 
-  FScreenReader := CreateComObject(CLASS_JawsApi) as IJawsApi;
-
   FAutoSaveTimer := TTimer.Create(Self);
   FAutoSaveTimer.Name := 'DDCSAutoTimer';
   FAutoSaveTimer.Interval := 600000;
@@ -1381,6 +1379,11 @@ begin
   FReturnList := TStringList.Create;
 
   LoadDialogs;
+
+  try
+    FScreenReader := CreateComObject(CLASS_JawsApi) as IJawsApi;
+  except
+  end;
 end;
 
 procedure TDDCSForm.FormOverrideShow(Sender: TObject);
@@ -1692,7 +1695,7 @@ begin
   if FDialogDLL <> 0 then
     FreeLibrary(FDialogDLL);
 
-  inherited Destroy;
+  inherited;
 end;
 
 procedure TDDCSForm.WMGetMSAAObject(var Message: TMessage);

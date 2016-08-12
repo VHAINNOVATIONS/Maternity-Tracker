@@ -230,8 +230,6 @@ begin
   FDebugMode := DebugMode;
   FIEN := sIEN;
 
-  FScreenReader := CreateComObject(CLASS_JawsApi) as IJawsApi;
-
   FReturnList := TStringList.Create;
 
   FConfiguration := TConfigCollection.Create(Self, TConfigItem);
@@ -314,6 +312,11 @@ begin
   finally
     sl.Free;
     dl.Free;
+  end;
+
+  try
+    FScreenReader := CreateComObject(CLASS_JawsApi) as IJawsApi;
+  except
   end;
 end;
 

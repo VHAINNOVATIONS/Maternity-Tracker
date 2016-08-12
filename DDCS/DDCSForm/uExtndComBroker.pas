@@ -167,6 +167,7 @@ var
 
   procedure CallMe(s: TStringList);
   begin
+    RPCBrokerV.SetParams(RPCName, AParam);
     RPCBrokerV.BrokerCall;
     RPCBrokerV.GetResults(s);
   end;
@@ -183,7 +184,6 @@ begin
   Screen.Cursor := crHourGlass;
   sl := TStringList.Create;
   try
-    RPCBrokerV.SetParams(RPCName, AParam);
     // if the first line is ##CONT## then we need to remove it and make the call
     // again and add to our return
     repeat

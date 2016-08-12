@@ -26,15 +26,16 @@ uses
 
 {$R *.res}
 
-function Launch(Broker: PCPRSComBroker; out Return: WideString): WordBool; stdcall;
+function Launch(const CPRSBroker: PCPRSComBroker; out Return: WideString): WordBool; stdcall;
 var
   oldHandle: HWND;
 begin
   Result := False;
-  RPCBrokerV := Broker^;
 
   oldHandle := Application.Handle;
   Application.Handle := GetActiveWindow;
+
+  RPCBrokerV := CPRSBroker^;
   Form1 := TForm1.Create(nil);
   try
     RPCBrokerV.DisabledWindow := DisableTaskWindows(0);
@@ -46,6 +47,7 @@ begin
     end;
   finally
     Form1.Free;
+    RPCBrokerV := nil;
     Application.Handle := oldHandle;
   end;
 end;

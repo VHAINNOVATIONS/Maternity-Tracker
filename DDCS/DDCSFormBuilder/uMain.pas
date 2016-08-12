@@ -23,17 +23,18 @@ interface
 
 uses
   Winapi.Windows, Winapi.ActiveX, System.Classes, System.Win.ComObj,
-  System.SysUtils, System.StrUtils, Vcl.Forms,
-  DDCSFormBuilder_TLB, CPRSChart_TLB, uBase, uExtndComBroker, StdVcl;
+  System.Win.StdVcl, System.SysUtils, System.StrUtils, Vcl.Forms,
+  DDCSFormBuilder_TLB, CPRSChart_TLB, uBase, uExtndComBroker;
 
 type
   TDDCS = class(TAutoObject, IDDCS, ICPRSExtension)
   protected
-    function Execute(const CPRSBroker: ICPRSBroker; const CPRSState: ICPRSState; const Param1,
-             Param2, Param3: WideString; var Data1, Data2: WideString): WordBool; safecall;
+    function Execute(const CPRSBroker: ICPRSBroker; const CPRSState: ICPRSState;
+                     const Param1, Param2, Param3: WideString;
+                     var Data1, Data2: WideString): WordBool; safecall;
   end;
 
-  TLaunch = function(Broker: PCPRSComBroker; out Return: WideString): WordBool; stdcall;
+  TLaunch = function(const CPRSBroker: PCPRSComBroker; out Return: WideString): WordBool; stdcall;
 
 var
   DllHandle: THandle;
@@ -45,7 +46,8 @@ uses
   ComServ, uCommon;
 
 function TDDCS.Execute(const CPRSBroker: ICPRSBroker; const CPRSState: ICPRSState;
-         const Param1, Param2, Param3: WideString; var Data1, Data2: WideString): WordBool;
+                       const Param1, Param2, Param3: WideString;
+                       var Data1, Data2: WideString): WordBool;
 var
   Broker: TCPRSComBroker;
   Controlled,vPropertyList,Config: string;
