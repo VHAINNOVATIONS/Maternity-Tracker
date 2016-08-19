@@ -1,7 +1,7 @@
-Routine DSIO01 saved using VFDXTRS routine on Aug 03, 2016 11:34
-DSIO01^INT^64127,45285^Jul 28, 2016@12:34
+Routine DSIO01 saved using VFDXTRS routine on Aug 19, 2016 11:25
+DSIO01^INT^64141,61154^Aug 11, 2016@16:59
 DSIO01 ;DSS/TFF - DSIO OCNT PUSH SUPPORT;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1,2,5**;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**1,2,5,7**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -17,70 +17,93 @@ DSIO01 ;DSS/TFF - DSIO OCNT PUSH SUPPORT;06/28/2013 15:19
  ; ----------------------------------------------------------------------------
  ;
 DELV ; NURSE POSTPARTUM - DELIVERY
- N PREG,OBJ,IEN,OUT,BCT,CT,LN,PG,BY,FDA,STATUS,BC,IFC,IFCF,FAC,FA,STR
- S PREG=$$PG^DSIO4($G(DFN)) Q:'PREG  S OBJ(0)="PG."_PREG
- D GETS^DSIO62(.OUT,$$IEN^DSIO62("LSTDELIVERY")) Q:'$D(OUT)
+ ;
+ ;   1) L
+ ;   2) IEN
+ ;   3) DATE RECORDED
+ ;   4) EDC
+ ;   5) DFN|PATIENT
+ ;   6) STATUS
+ ;   7) FOF|(IEN OR IDENTIFIER)
+ ;   8) EDD
+ ;   9) PREGNANCY END
+ ;  10) OB IEN|OB
+ ;  11) FACILITY IEN|FACILITY
+ ;  12) UPDATED BY IEN|UPDATED BY
+ ;  13) GESTATIONAL AGE
+ ;  14) LENGTH OF LABOR
+ ;  15) TYPE OF DELIVERY  (C or V)
+ ;  16) ANESTHESIA
+ ;  17) PRETERM DELIVERY
+ ;  18) BIRTH TYPE
+ ;  19) IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU|
+ ;  20) OUTCOME
+ ;  21) HIGH RISK FLAG
+ ;  22) DAYS IN HOSPITAL
+ ;
+ ;  C^IEN^COMMENT
+ ;  B^IEN|BABY|#^COMMENT
+ ;
+ N ROWS,CT,LN,PREG,DATES,FAC,FA,STR,OBJ,I,BCT,DNOTES,OUT,IFC,IFCF
+ D GETS^DSIO62(.ROWS,$$IEN^DSIO62("##TCONFIGCOLLECTION##")) Q:'$D(ROWS)
  ; *** PREGNANCY
- ; Update Pregnancy with Babies, and the Babies with their data
- S (BCT,CT)=0 F  S CT=$O(OUT(CT)) Q:'CT  S LN=OUT(CT) D
- . I $P(LN,U,2)="L" S BCT=BCT+1 D
- . . I '$P(LN,U,3) K PG D PREG^DSIO15(.PG,PREG,DFN,,,,,,"+",,,,1) Q:'$P(PG,U,2)  S $P(LN,U,3)=+$P(PG,U,2)
- . . S BY=$P(LN,U,3),OBJ(1)="FB."_BY
- . . ; *** OBSERVATIONS ---------------------------------------------------------------------------
+ ; Update Pregnancies and Babies
+ S CT=0 F  S CT=$O(ROWS(CT)) Q:'CT  S LN=ROWS(CT) D
+ . K OLD,PREG,DATES,FAC,FA,STR
+ . I $P(LN,U)="L" D
+ . . S OBJ(0)="PG."_$P(LN,U,2)
+ . . ; DATES = EDC^END^EDD
+ . . F I=4,9,8 S DATES=$S($D(DATES):DATES_U,1:"")_$$DT^DSIO2($P(LN,U,I))
+ . . I $P($P(LN,U,11),"|",2)'="" D  K:$G(FAC)'?1"NVA.".N FAC
+ . . . S FAC=$$UP^XLFSTR($P($P(LN,U,11),"|",2))
+ . . . I $D(^DSIO(19641.1,"F",FAC)) D  Q
+ . . . . S FAC="NVA."_$O(^DSIO(19641.1,"F",FAC,""))
+ . . . D SENT^DSIO1(.FA,,FAC,"F",,,,,1) I FA S FAC="NVA."_+FA
+ . . ; *** OBSERVATIONS -------------------------------------------------------
  . . ;     BABY LEVEL
- . . D O^DSIO03(DFN,.OBJ,,"BabyDetails","46098-0","LOINC","Sex",$$SEX($P(LN,U,6)))                      ; OBS GENDER
- . . D O^DSIO03(DFN,.OBJ,,"BabyDetails","9272-6","LOINC","One Minute APGAR",$P(LN,U,9))                 ; OBS APGAR1 (1 MINUTE)
- . . D O^DSIO03(DFN,.OBJ,,"BabyDetails","9274-2","LOINC","Five Minute APGAR",$P(LN,U,10))               ; OBS APGAR2 (5 MINUTE)
- . . D O^DSIO03(DFN,.OBJ,,"BabyDetails","AdmittedToIcu","OTHER","",$S($P(LN,U,12):"True",1:"False"))    ; OBS NICU
- . . D O^DSIO03(DFN,.OBJ,,"BabyDetails","8339-4","LOINC","Birth Weight",$P($P(LN,U,7),"."))             ; OBS BIRTH WEIGHT IN GRAMS
- . . D UPDATE^DIE(,"FDA") K FDA
- . I $P(LN,U,2)="C",$G(BY) S BC(BY,$O(BC(BY,""),-1)+1)=$P(LN,U,4,99)                                    ; COMPLICATIONS/ANOMALIES
- ; *** OBSERVATIONS -------------------------------------------------------------------------------
- ;     PREGNANCY LEVEL
- K OBJ(1)
- ;     OBS BABY COUNT
- D O^DSIO03(DFN,.OBJ,,"Pregnancy","FetusBabyCount","OTHER","Fetus/Baby Count",BCT)
- ;     OBS BIRTH DATE OF FETUS
- D O^DSIO03(DFN,.OBJ,,"Outcome","75092-7","LOINC","Birth Date of Fetus",$$FMTE^XLFDT($$EGET1^DSIO62("DTDELIVERY"),"5ZD"))
- ;     OBS GESTATIONAL AGE
- D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","412726003","SNOMED-CT","Gestational Age at Birth",$$G1^DSIO4($$EGET1^DSIO62("SPNGAWEEKS")_"W"_$$EGET1^DSIO62("SPNGADAYS")_"D"))
- ;     OBS DAYS IN HOSPITAL
- D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","DaysInHospital","OTHER",,$$EGET1^DSIO62("EDTDELIVERYAT"))
- ;     OBS CESAREAN INCISION
- S STR=$$EGET1^DSIO62("RGINCISION") I STR'="" D
- . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","11466000","SNOMED-CT","Cesarean Delivery",STR)
- ;     OBS DELIVERY TYPE
- D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","CesareanDelivery","OTHER",,$S($$TGET1^DSIO62("CKDELIVERYMETHODC"):"True",1:"False"))
- D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","NormalSpontaneousVaginalDelivery","OTHER",,$S($$TGET1^DSIO62("CKDELIVERYMETHODV"):"True",1:"False"))
- S STR=$S('$$TGET1^DSIO62("CKDELIVERYMETHODC")&('$$TGET1^DSIO62("CKDELIVERYMETHODV")):"True",1:"False")
- D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","OtherDelivery","OTHER",,STR)
- ;     OBS OBSTETRIC DELIVERY METHOD
+ . . ; Add/Update Babies
+ . . S BCT=0 F I=1:1:$L($P(LN,U,19),"|") S STR=$P($P(LN,U,19),"|",I) D
+ . . . D:STR'="" PR2^DSIO04($P(LN,U,2),STR) K OBJ(1)
+ . . ; *** OBSERVATIONS -------------------------------------------------------
+ . . ;     PREGNANCY LEVEL
+ . . I BCT D
+ . . . ;     OBS BABY COUNT
+ . . . D O^DSIO03(DFN,.OBJ,,"Pregnancy","FetusBabyCount","OTHER","Fetus/Baby Count",BCT)
+ . . . ;     OBS BIRTH DATE OF FETUS
+ . . . D O^DSIO03(DFN,.OBJ,,"Outcome","75092-7","LOINC","Birth Date of Fetus",$P(LN,U,9))
+ . . ;     OBS GESTATIONAL AGE
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","412726003","SNOMED-CT","Gestational Age at Birth",$$G1^DSIO4($P(LN,U,13)))
+ . . S STR=$$UP^XLFSTR($E($P(LN,U,15),1))
+ . . ;     OBS DELIVERY TYPE
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","CesareanDelivery","OTHER",,$S(STR="C":"True",1:"False"))
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","NormalSpontaneousVaginalDelivery","OTHER",,$S(STR="V":"True",1:"False"))
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","OtherDelivery","OTHER",,$S(STR="":"True",1:"False"))
+ . . ;     OBS DAYS IN HOSPITAL
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","DaysInHospital","OTHER",,$P(LN,U,22))
+ . . ;     OBS PREGNANCY OUTCOME
+ . . I $$UP^XLFSTR($P(LN,U,20))="TERMINATION" D
+ . . . D O^DSIO03(DFN,.OBJ,,"PregnancyTerminationOutcome","Indication","OTHER",,"Unknown")
+ . . D O^DSIO03(DFN,.OBJ,,"Outcome","OutcomeType","OTHER","Pregnancy Outcome",$$OT^DSIO03($P(LN,U,20)))
+ . . ; *** PREGNANCY - Close it out
+ . . K PREG D PREG^DSIO15(.PREG,$P(LN,U,2),DFN,DATES,,,,$G(FAC),,U_$P(LN,U,14)_"^^"_$P(LN,U,16),,,1)
+ . ; *** DELIVERY COMMENTS
+ . I $P(LN,U)="C" D
+ . . S DNOTES(+$P(LN,U,2),+$O(DNOTES(+$P(LN,U,2),""),-1)+1)=$P(LN,U,3,9999)
+ ;     *** OBS PREGANCY NOTES
+ I $D(DNOTES) D
+ . S CT=0 F  S CT=$O(DNOTES(CT)) Q:'CT  D
+ . . S OBJ(0)="PG."_CT K OUT M OUT=DNOTES(CT)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","Notes","OTHER",,,,.OUT)
+ ; *** OBS OBSTETRIC DELIVERY METHOD
  D D1($S($$TGET1^DSIO62("CKDELIVERYMETHODC"):"Cesarean Delivery",$$TGET1^DSIO62("CKDELIVERYMETHODV"):"Normal Spontaneous Vaginal Delivery (NSVD)",1:"Other"))
- ;     OBS PREGNANCY OUTCOME
- S STR=$$OT^DSIO03($$EGET1^DSIO62("CBOUTCOME"))
- I STR="PregnancyTermination" D
- . D O^DSIO03(DFN,.OBJ,,"PregnancyTerminationOutcome","Indication","OTHER",,"Unknown")
- D O^DSIO03(DFN,.OBJ,,"Outcome","OutcomeType","OTHER","Pregnancy Outcome",STR)
  ;     OBS FailedForcepVacuumDelivery
  F IFC="EDCPRIMARYFOR","CBREASONSCPRIMARY","EDREASONSCOTHPRIMARY","CBREASONSCSECONDARY","EDREASONSCOTHSECONDARY" D  Q:$D(IFCF)
  . I $TR($$UP^XLFSTR($$EGET1^DSIO62(IFC))," ")["FAILEDFORCEP" S IFCF=1
  I $D(IFCF),$$TGET1^DSIO62("CKVAGVACUUM") D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","FailedForcepVacuumDelivery","OTHER",,"True")
- ;     OBS PREGANCY NOTES
- K OUT D TXT^DSIO62(.OUT,$$IEN^DSIO62("MEDELIVERYNOTES")) D:$D(OUT)
- . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","Notes","OTHER",,,,.OUT)
- ;     OBS BABY NOTES (NEWBORN DELIVERY)
- I $D(BC) S BY=0 F  S BY=$O(BC(BY)) Q:'BY  D
- . K OUT S CT=0 F  S CT=$O(BC(BY,CT)) Q:'CT  S OUT(CT+1)=BC(BY,CT)
- . S OBJ(1)="FB."_BY
- . D O^DSIO03(DFN,.OBJ,,"BabyDetails","57075-4","LOINC",,,,.OUT)
- ; *** FACILITY
- S FAC=$$UP^XLFSTR($$EGET1^DSIO62("CBDELIVERYPLACE")) I FAC'="" D  K:$G(FAC)'?1"NVA.".N FAC
- . I $D(^DSIO(19641.1,"F",FAC)) S FAC="NVA."_$O(^DSIO(19641.1,"F",FAC,"")) Q
- . D SENT^DSIO1(.FA,,FAC,"F",,,,,1) I FA S FAC="NVA."_+FA
- ; *** PREGNANCY - Close it out
- ; Update Pregnancy with DELIVERY DATE, LOCATION, ANESTHESIA, LENGTH OF LABOR
- K PG D PREG^DSIO15(.PG,PREG,DFN,U_$$DT^DSIO2($$EGET1^DSIO62("DTDELIVERY"))_U,,,,$G(FAC),,$$D2,,,1)
- ;     OBS TOTAL PREGNANCIES, STILLBIRTHS, PRETERM, LIVING, TERM BIRTHS
+ ; *** OBS CESAREAN INCISION
+ S STR=$$EGET1^DSIO62("RGINCISION") I STR'="" D
+ . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","11466000","SNOMED-CT","Cesarean Delivery",STR)
+ ; *** OBS TOTAL PREGNANCIES, STILLBIRTHS, PRETERM, LIVING, TERM BIRTHS
  D CALC
  Q
  ;

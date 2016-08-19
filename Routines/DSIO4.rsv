@@ -1,7 +1,7 @@
-Routine DSIO4 saved using VFDXTRS routine on Aug 03, 2016 11:34
-DSIO4^INT^64127,41205^Jul 28, 2016@11:26
+Routine DSIO4 saved using VFDXTRS routine on Aug 19, 2016 11:25
+DSIO4^INT^64141,60924^Aug 11, 2016@16:55
 DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1,2,5**;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**1,2,5,7**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -65,8 +65,8 @@ GA(DFN,PREG,FLG) ; Return Gestational Age of Pregnancy
  ; *** EDD
  I EDD,'EDC,'END S DAYS=$$FMDIFF^XLFDT(DT,$$FMADD^XLFDT(EDD,-266))
  ; OUTPUT
- I (AGE&(-DAYS))!(AGE&(DAYS)&(AGE>DAYS)) Q $S($G(FLG):AGE,1:$$G2(AGE))
- I (-AGE&(DAYS))!(AGE&(DAYS)&(AGE<DAYS)) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
+ I (AGE&('DAYS))!(AGE&(DAYS)&(AGE>DAYS)) Q $S($G(FLG):AGE,1:$$G2(AGE))
+ I ('AGE&(DAYS))!(AGE&(DAYS)&(AGE<DAYS)) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
  Q ""
  ;
 G1(AGE) ; Convert #W#D to Numeric

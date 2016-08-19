@@ -1,7 +1,7 @@
-Routine DSIO63 saved using VFDXTRS routine on Aug 03, 2016 11:34
-DSIO63^INT^64086,58604^Jun 17, 2016@16:16
+Routine DSIO63 saved using VFDXTRS routine on Aug 19, 2016 11:25
+DSIO63^INT^64142,66856^Aug 12, 2016@18:34
 DSIO63 ;DSS/TFF - DSIO DDCS CONFIGURE AND REPORT;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**2,5,7**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -170,8 +170,8 @@ CONFIG(RET,INFACE,OBJECT,SIEN,CITEM) ; RPC: DSIO DDCS BUILD FORM
  ; -----------------------------------
  D:'$D(CITEM) TRIG^DSIO6  ; *** PUSH |
  ; -----------------------------------
- S RET=$NA(^TMP($J,"DSIO63")) K @RET S @RET@(0)=""
- N CONTROL,DFN,I,CT,TMP,FLG,IEN,IGRP,DFLG
+ S RET=$NA(^TMP($J,"DSIO63")) Q:$$CONT  K @RET S @RET@(0)=""
+ N CONTROL,DFN,I,CT,TMP,IEN,FLG,IGRP,DFLG
  S CONTROL=$$OBJECT^DSIO65($G(OBJECT)),DFN=$$DFN^DSIO6(CONTROL,$G(SIEN))
  S I=0,CT="" F  S CT=$O(INFACE(CT)) Q:CT=""  S I=I+1 D
  . S TMP=$$INFACE^DSIO65(INFACE(CT))
@@ -180,28 +180,55 @@ CONFIG(RET,INFACE,OBJECT,SIEN,CITEM) ; RPC: DSIO DDCS BUILD FORM
  . . S IEN=+TMP I $O(^DSIO(19641.42,"P",INFACE(CT),"")) S IGRP(INFACE(CT))=""
  . I TMP[";DSIO(19641.49," S DFLG=TMP
  ; *** A Dialog must be presented by itself
- I $D(DFLG) Q:I>1  D  Q
+ I $D(DFLG) Q:I>1  D  D CONT Q
  . I $D(CITEM) D DCITEM^DSIO66(+DFLG,$G(OBJECT),$G(SIEN)) Q
  . D DIALOG^DSIO66(+DFLG,$G(OBJECT),$G(SIEN))
- D:'$D(FLG)&($G(IEN)) CG(IEN,$$GET1^DIQ(19641.42,IEN_",",.07,"I"),.IGRP)
+ I $G(IEN) D
+ . I $D(CITEM) D CITEM(IEN,$G(OBJECT),$G(SIEN)) Q
+ . D CG(IEN,$P($G(^DSIO(19641.42,IEN,0)),U,7),.IGRP)
+ D CONT
+ Q
+ ;
+CONT() ; Continue Cummulative Return
+ N CONT,STRT,END,I,CT,FLG
+ S CONT=$NA(^TMP($J,"DSIO63 CONT")) K @CONT
+ S STRT=$G(@RET@("##CONT##")),END=$G(@RET@("##CONT##"))+500
+ S CT=RET F I=1:1 S CT=$Q(@CT) Q:CT=""  Q:$QS(CT,1)'=$J!($QS(CT,2)'="DSIO63")  D  Q:$D(FLG)
+ . Q:I<STRT
+ . S @CONT@(I)=@CT
+ . I I=END S @CONT@(0)="##CONT##",FLG=1
+ I $D(FLG) S @RET@("##CONT##")=$G(@RET@("##CONT##"))+501,RET=CONT Q 1
+ K @RET I '$D(@CONT) Q 0
+ S RET=CONT
+ Q 1
+ ;
+CITEM(IEN,OBJECT,SIEN) ; Return data for the configuration collection
+ ;
+ ; *This will happen after all the interface's controls are populated
+ ;  with configuration and/or restored data.
+ ;
+ Q:$P($G(^DSIO(19641.42,+$G(IEN),3)),U,3)=""
+ N TMP,ROU,DDCSCT
+ S TMP=^DSIO(19641.42,+IEN,3),ROU=$TR($P(TMP,U,3),"|",U)
+ I $L($T(@ROU)) D
+ . S @RET@(0)=$P(TMP,U)_":"_$$D^DSIO66($P(TMP,U,2)),DDCSCT=1 D @ROU
+ D:$G(SIEN) RESTF^DSIO64(.RET,1,,,"##TCONFIGCOLLECTION##",OBJECT,IEN_";DSIO(19641.42,",SIEN,1)
  Q
  ;
 CG(IEN,TYP,PAGES) ; Continue with 19641.42
- N OUT,CT,SI,SN,SINFACE,PG,NAM,HIDE,CON,CIEN
- D GETS^DIQ(19641.42,IEN_",","2*",,"OUT")
+ N CT,SI,SN,SINFACE,PG,NAM,HIDE,CON,CIEN
  ; *** INTERFACE: I^PROPERTY|VALUE
  S @RET@(0)="I" D
- . S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
- . . I $QS(CT,3)=.01 S @RET@(0)=@RET@(0)_U_@CT_"|" Q
- . . S @RET@(0)=@RET@(0)_@CT
+ . S CT=0 F  S CT=$O(^DSIO(19641.42,IEN,2,CT)) Q:'CT  D
+ . . S @RET@(0)=@RET@(0)_U_$G(^DSIO(19641.42,IEN,2,CT,0))_"|"_$G(^DSIO(19641.42,IEN,2,CT,1))
  ; *** DATA SHUFFLE
- S SI=$$GET1^DIQ(19641.42,IEN_",",.06,"I") I SI D
+ S SI=$P($G(^DSIO(19641.42,IEN,0)),U,6) I SI D
  . S SN=SI_";DSIO(19641.42,"
  . S DFN=$$DFN^DSIO6($$OBJECT^DSIO65($G(OBJECT)),$G(SIEN))
  . I DFN,$O(^DSIO(19641.4941,DFN,1,"S",SN,"")) S SINFACE=SN
  S PG=0 F  S PG=$O(^DSIO(19641.42,IEN,1,PG)) Q:'PG  D
  . ; *** PAGE: P^NUMBER^CAPTION^HIDE
- . S NAM=$$GET1^DIQ(19641.421,PG_","_IEN_",",.02),HIDE=$$HIDE
+ . S NAM=$P($G(^DSIO(19641.42,IEN,1,PG,0)),U,2),HIDE=$$HIDE
  . S @RET@(PG)="P^"_PG_U_NAM_U_HIDE Q:HIDE
  . S CON="" F  S CON=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CON)) Q:CON=""  D
  . . S CIEN=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CON,""))
@@ -212,7 +239,7 @@ CG(IEN,TYP,PAGES) ; Continue with 19641.42
 HIDE() ; Page Hide (TabVisible)
  I TYP,NAM'="",'$D(PAGES(NAM)) Q "TRUE"
  I TYP Q "FALSE"
- Q $S($$GET1^DIQ(19641.421,PG_","_IEN_",",.03,"I"):"TRUE",1:"FALSE")
+ Q $S($P($G(^DSIO(19641.42,IEN,1,PG,0)),U,3):"TRUE",1:"FALSE")
  ;
 CC(IEN,PG,FORM,CON) ; CONTROL Collection
  ; *** CONTROL: CC^NAME^COLLECTION_NAME|VALUE
@@ -237,7 +264,7 @@ CV(DDCSCI,DDCSPG,FORM,DDCSCON,SIEN) ; CONTROL Configuration Value
  I '$D(FLG),$P($G(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,3,0)),U,4)>0 S FLG=2 D
  . S IENS=0 F  S IENS=$O(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,3,IENS)) Q:'IENS  D
  . . S LOG=^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,3,IENS,0)
- . . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^D^"_LOG_"|"_$$GET1^DIQ(19641.49,LOG_",",.01)_"|"_$$GET1^DIQ(19641.49,LOG_",",.03)
+ . . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^D^"_LOG_"|"_$P($G(^DSIO(19641.49,LOG,0)),U)_"|"_$P($G(^DSIO(19641.49,LOG,0)),U,3)
  . . S DDCSCT=DDCSCT+1
  ; *** FREE TEXT
  ;     CV^NAME^F^(INDEX^VALUE)
@@ -248,7 +275,7 @@ CV(DDCSCI,DDCSPG,FORM,DDCSCON,SIEN) ; CONTROL Configuration Value
  . . . S @RET@(DDCSCT-1)=@RET@(DDCSCT-1)_LN
  . . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^F^"_LN,DDCSCT=DDCSCT+1
  ; *** RESTORE
- Q:$$GET1^DIQ(19641.42,FORM_",",.02)["A"                     ; DO NOT RESTORE (FORM)
+ Q:$P($G(^DSIO(19641.42,FORM,0)),U,2)["A"                    ; DO NOT RESTORE (FORM)
  Q:$$UP^XLFSTR($$RITEM(FORM,IEN,"DONOTRESTORE"))="TRUE"      ; DO NOT RESTORE (CONTROL)
  ;     DATA SHUFFLE
  I $G(SI) Q:'$$DSCON(SI,DDCSCON)
@@ -264,4 +291,4 @@ RITEM(FORM,CON,PROP) ; Get the Report Item Value for a Control
 DSCON(IEN,CON) ; Determine if a "restore as" form should use a control
  I '$D(^DSIO(19641.42,IEN,1,"CONTROL",CON)) Q 0
  N PG S PG=$O(^DSIO(19641.42,IEN,1,"CONTROL",CON,""))
- Q $S($$GET1^DIQ(19641.421,PG_","_IEN_",",.03,"I"):0,1:1)
+ Q $S($P($G(^DSIO(19641.42,IEN,1,PG,0)),U,3):0,1:1)

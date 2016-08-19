@@ -1,7 +1,7 @@
-Routine DSIO02 saved using VFDXTRS routine on Aug 03, 2016 11:34
-DSIO02^INT^64127,54519^Jul 28, 2016@15:08
+Routine DSIO02 saved using VFDXTRS routine on Aug 19, 2016 11:25
+DSIO02^INT^64141,61154^Aug 11, 2016@16:59
 DSIO02 ;DSS/TFF - DSIO FORM CONFIGURATION;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1,2,5**;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**1,2,5,7**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -46,11 +46,12 @@ PREG ; Get list of Historical Pregnancies
  ;  B^IEN|BABY|#^COMMENT    (Baby Notes)
  ;
  N OUT,CT,LN,I,STR,BABY,CTC
- D PREGG^DSIO15(.OUT,,DFN) Q:'$G(@OUT@(0))
+ D PREGG^DSIO15(.OUT,$G(PG),DFN) Q:'$G(@OUT@(0))
  S CT=0 F  S CT=$O(@OUT@(CT)) Q:'CT  S LN=@OUT@(CT) D
  . I $P(LN,U)="L" D
  . . I $P(LN,U,19)'="" D  S $P(LN,U,19)=STR                                         ; BABIES
  . . . S STR=$P(LN,U,19) F I=1:1:$L(STR,"|") S $P(STR,"|",I)=$$PB(+$P(STR,"|",I))
+ . . S $P(LN,U,13)=$$GA^DSIO4(,$P(LN,U,2))                                          ; GESTATIONAL AGE
  . . S $P(LN,U,17)=$S($P(LN,U,17)="YES":1,1:0)                                      ; PRETERM
  . . S $P(LN,U,20)=$$OTV^DSIO03($P(LN,U,20))                                        ; OUTCOME
  . S @RET@(DDCSCT)=LN,DDCSCT=DDCSCT+1
@@ -79,30 +80,12 @@ PBC(IEN) ; B^IEN|BABY|#^COMMENT
  ;
  ; ----------------------------------------------------------------------------
  ;
-BABY ; Get babies for current pregnancy
- ; *19641.42 : NURSE POSTPARTUM-DELIVERY : LSTDELIVERY
+DELV ; Current Pregnancy
+ ; *19641.42 : NURSE POSTPARTUM-DELIVERY
  ;
- N PG,CT,STR,WP
- S PG=$$PG^DSIO4(DFN) Q:'PG
- S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^F^H^ID^IEN^NUMBER^NAME^GENDER^BIRTH WEIGHT^STILLBORN^APGAR1^APGAR2^STATUS^NICU"
- S DDCSCT=DDCSCT+1,CT=0 F  S CT=$O(^DSIO(19641.112,"PG",PG,CT)) Q:'CT  D
- . S STR=$G(^DSIO(19641.112,CT,0))
- . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^F^^L^"_CT_U_$P(STR,U)_U_$P(STR,U,4,9)_U_$P(STR,U,11,12)
- . S DDCSCT=DDCSCT+1
- . I $P($G(^DSIO(19641.112,CT,1,0)),U,4) D
- . . S WP=0 F  S WP=$O(^DSIO(19641.112,CT,1,WP)) Q:'WP  D
- . . . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^F^^C^"_CT_U_^DSIO(19641.112,CT,1,WP,0)
- . . . S DDCSCT=DDCSCT+1
+ N PG S PG=$$PG^DSIO4(DFN) Q:'PG
+ D PREG
  Q
- ;
-PNOTES ; Get the pregnancy notes
- ; *19641.42 : NURSE POSTPARTUM-DELIVERY : MEDELIVERYNOTES
- ;
- N PREG,CT,STR
- S PREG=$$PG^DSIO4(DFN) Q:'PREG
- S DDCSCT=DDCSCT+1,CT=0 F  S CT=$O(^DSIO(19641.13,PREG,4,CT)) Q:'CT  D
- . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^F^^"_$G(^DSIO(19641.13,PREG,4,CT,0)),DDCSCT=DDCSCT+1
- Q 
  ;
  ; ----------------------------------------------------------------------------
  ;
@@ -122,15 +105,4 @@ PERSON ; Get list of people associated with the patient
  . S $P(@RET@(DDCSCT),U,14)=$$GET1^DIQ(19641.11,+LN_",",1.5)
  . S $P(@RET@(DDCSCT),U,25)=$$GET1^DIQ(19641.11,+LN_",",4)
  . S DDCSCT=DDCSCT+1
- Q
- ;
- ; ----------------------------------------------------------------------------
- ;
-VIT(VITAL) ; Get vital
- ; *19641.49 : OB FLOW SHEET : LBLWT,LBLBP
- ;
- N OUT,CT Q:$G(VITAL)=""
- D FASTVIT^ORQQVI(.OUT,DFN)
- N CT S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
- . I $P(@CT,U,2)=VITAL S @RET@(DDCSCT)="CV^"_DDCSCON_"^F^^"_$P(@CT,U,3),DDCSCT=DDCSCT+1
  Q

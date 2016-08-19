@@ -1,7 +1,7 @@
-Routine DSIO61 saved using VFDXTRS routine on Aug 03, 2016 11:34
-DSIO61^INT^64078,45717^Jun 09, 2016@12:41
+Routine DSIO61 saved using VFDXTRS routine on Aug 19, 2016 11:25
+DSIO61^INT^64141,61204^Aug 11, 2016@17:00
 DSIO61 ;DSS/TFF - DSIO DDCS SPECIAL LOOKUP;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**2,5,7**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----

@@ -1,7 +1,7 @@
-Routine DSIO66 saved using VFDXTRS routine on Aug 03, 2016 11:34
-DSIO66^INT^64107,56973^Jul 08, 2016@15:49
+Routine DSIO66 saved using VFDXTRS routine on Aug 19, 2016 11:25
+DSIO66^INT^64141,61204^Aug 11, 2016@17:00
 DSIO66 ;DSS/TFF - DSIO DDCS DIALOG SUPPORT;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**2,5,7**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -12,7 +12,7 @@ DSIO66 ;DSS/TFF - DSIO DDCS DIALOG SUPPORT;06/28/2013 15:19
  ;
 LOOK(RET,CLASS,IEN) ; RPC: DSIO DDCS DIALOG LOOKUP
  I $G(IEN) D  Q
- . S RET=$$GET1^DIQ(19641.49,IEN_",",.03)
+ . S RET=$P($G(^DSIO(19641.49,IEN,0)),U,3)
  S RET=$$FIND1^DIC(19641.49,,"X",$G(CLASS),"C")
  Q
  ;
@@ -25,7 +25,7 @@ DCITEM(IEN,OBJECT,SIEN) ; Return data for the DIALOG configuration collection
  ;
  Q:$P($G(^DSIO(19641.49,+$G(IEN),2)),U,3)=""
  N TMP,ROU,DDCSCT
- S TMP=^DSIO(19641.49,+$G(IEN),2),ROU=$TR($P(TMP,U,3),"|",U)
+ S TMP=^DSIO(19641.49,IEN,2),ROU=$TR($P(TMP,U,3),"|",U)
  I $L($T(@ROU)) D
  . S @RET@(0)=$P(TMP,U)_":"_$$D($P(TMP,U,2)),DDCSCT=1 D @ROU
  D:$G(SIEN) RESTD^DSIO64(.RET,1,"##TCONFIGCOLLECTION##",OBJECT,IEN_";DSIO(19641.49,",SIEN,1)
@@ -76,7 +76,7 @@ DCV(FORM,IEN,SIEN) ; CONTROL Configuration Value for Dialogs
  . . S @RET@(DDCSCT)="CV^"_DDCSCON_"^F^"_LN,DDCSCT=DDCSCT+1
  ; *** RESTORE
  ;     A = DO NOT RESTORE
- Q:$$GET1^DIQ(19641.49,FORM_",",.05)["A"
+ Q:$P($G(^DSIO(19641.49,FORM,0)),U,5)["A"
  Q:$$UP^XLFSTR($$RITEM(FORM,IEN,"DONOTRESTORE"))="TRUE"
  D:$G(SIEN) RESTD^DSIO64(.RET,STRT,DDCSCON,OBJECT,FORM_";DSIO(19641.49,",SIEN)
  Q
@@ -84,7 +84,7 @@ DCV(FORM,IEN,SIEN) ; CONTROL Configuration Value for Dialogs
 OWNER(OBJECT) ; Get Owner IEN from OBJECT
  N CONTROL
  S CONTROL=$$OBJECT^DSIO65($G(OBJECT))
- Q $$GET1^DIQ(19641.4,CONTROL_",",.07,"I")
+ Q $P($G(^DSIO(19641.4,CONTROL,0)),U,7)
  ;
 REPORT(FORM,CON) ; Get the Report Item for a Control for an Interface/Form
  N IEN

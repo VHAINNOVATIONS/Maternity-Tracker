@@ -1,7 +1,7 @@
-Routine DSIO62 saved using VFDXTRS routine on Aug 03, 2016 11:34
-DSIO62^INT^64110,52075^Jul 11, 2016@14:27
+Routine DSIO62 saved using VFDXTRS routine on Aug 19, 2016 11:25
+DSIO62^INT^64141,61204^Aug 11, 2016@17:00
 DSIO62 ;DSS/TFF - DSIO DDCS SPECIAL LOOKUP;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**2,5,7**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -131,4 +131,3 @@ CHECK(FORM,NAM) ; Is a class marked as a Check
  Q:'$G(FORM)!($G(NAM)="") 0
  N CLASS S CLASS=$$CCLASS(FORM,NAM) Q:'CLASS 0
  Q +$$GET1^DIQ(19641.425,CLASS_",",.04,"I")
- ;

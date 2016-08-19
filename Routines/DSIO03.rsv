@@ -1,7 +1,7 @@
-Routine DSIO03 saved using VFDXTRS routine on Aug 03, 2016 11:34
-DSIO03^INT^64128,39251^Jul 29, 2016@10:54
+Routine DSIO03 saved using VFDXTRS routine on Aug 19, 2016 11:25
+DSIO03^INT^64141,61154^Aug 11, 2016@16:59
 DSIO03 ;DSS/TFF - DSIO OBSERVATION PUSH;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2,5**;Feb 06, 2015;Build 1
+ ;;1.0;DSIO 1.0;**2,5,7**;Feb 06, 2015;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -111,6 +111,7 @@ PREG(FLD) ; Update Pregnancy Element
  N V,IEN,IPT S V=X
  I FLD=3.1 D
  . I V["|" S V=$$G2^DSIO4($P(V,"|",3)) D EDD("ULT") Q
+ . I $$UP^XLFSTR($P(V,U,2))="WKS" S V=$$G2^DSIO4(+V_"W") Q
  . I V?.N S V=$$G2^DSIO4(V)
  I FLD=3.6 D
  . S V=$$OTV(V)
