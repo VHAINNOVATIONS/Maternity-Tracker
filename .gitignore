@@ -1,4 +1,7 @@
 *.dcu
+*.VA508
+*.stat
+*.identcache
 
 # Windows image file caches
 Thumbs.db

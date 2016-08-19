@@ -55,6 +55,7 @@ type
     spnFetalHeart: TSpinEdit;
     btnDeleteRow: TBitBtn;
     dtExam: TORDateBox;
+    cbPretermLabor: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -134,7 +135,7 @@ begin
   FObjectList.AddObject( '9', spnFetalHeart);
   FObjectList.AddObject('10', cbPresentation);
   FObjectList.AddObject('11', cbFetalAct);
-  // Preterm Labor Symptoms   12
+  FObjectList.AddObject('12', cbPretermLabor);
   FObjectList.AddObject('13', spnDilation);
   FObjectList.AddObject('14', spnEffacement);
   FObjectList.AddObject('15', spnLong);
@@ -174,6 +175,7 @@ begin
   SayOnFocus(       cbEdema, 'Edema');
   SayOnFocus( spnFetalHeart, 'Fetal Hearts');
   SayOnFocus(cbPresentation, 'Fetal Presentation');
+  SayOnFocus(cbPretermLabor, 'Preterm Labor Symptoms');
   SayOnFocus(    cbFetalAct, 'Fetal Movement');
   SayOnFocus(   spnDilation, 'Dilation in centimeters');
   SayOnFocus( spnEffacement, 'Effacement in percentage');
@@ -274,8 +276,6 @@ begin
       ScreenReader.SayString('Cumulative Weight in pounds Read Only', False)
     else if ACol = 8 then
       ScreenReader.SayString('Fetal Weight', False)
-    else if ACol = 12 then
-      ScreenReader.SayString('Preterm Labor Symptoms Type in Text', False)
     else if ACol = 19 then
       ScreenReader.SayString('Cervical Exam Type in Text', False)
     else if ACol > 19 then

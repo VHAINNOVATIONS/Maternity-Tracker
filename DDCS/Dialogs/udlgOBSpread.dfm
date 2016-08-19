@@ -51,6 +51,18 @@ object dlgOBSpread: TdlgOBSpread
     538)
   PixelsPerInch = 96
   TextHeight = 13
+  object cbPretermLabor: TComboBox
+    Left = 304
+    Top = 463
+    Width = 124
+    Height = 21
+    Align = alCustom
+    Style = csDropDownList
+    TabOrder = 19
+    Visible = False
+    OnChange = InnerControlChange
+    OnExit = InnerControlExit
+  end
   object spnAge: TSpinEdit
     Left = 210
     Top = 327
@@ -80,7 +92,7 @@ object dlgOBSpread: TdlgOBSpread
   object cbFetalAct: TComboBox
     Left = 304
     Top = 327
-    Width = 68
+    Width = 124
     Height = 21
     Align = alCustom
     Style = csDropDownList
@@ -92,7 +104,7 @@ object dlgOBSpread: TdlgOBSpread
   object cbUrineProtein: TComboBox
     Left = 304
     Top = 355
-    Width = 74
+    Width = 124
     Height = 21
     Align = alCustom
     Style = csDropDownList
@@ -104,7 +116,7 @@ object dlgOBSpread: TdlgOBSpread
   object cbUrineGlucose: TComboBox
     Left = 304
     Top = 382
-    Width = 84
+    Width = 124
     Height = 21
     Align = alCustom
     Style = csDropDownList
@@ -116,7 +128,7 @@ object dlgOBSpread: TdlgOBSpread
   object cbEdema: TComboBox
     Left = 304
     Top = 409
-    Width = 77
+    Width = 124
     Height = 21
     Align = alCustom
     Style = csDropDownList
@@ -361,6 +373,7 @@ object dlgOBSpread: TdlgOBSpread
     OnColWidthsChanged = sgStandardColWidthsChanged
     OnVerticalScroll = sgStandardVerticalScroll
     OnHorizontalScroll = sgStandardHorizontalScroll
+    ExplicitHeight = 289
     ColWidths = (
       180
       180
