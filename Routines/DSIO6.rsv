@@ -1,7 +1,7 @@
-Routine DSIO6 saved using VFDXTRS routine on Aug 19, 2016 11:25
-DSIO6^INT^64142,61012^Aug 12, 2016@16:56
-DSIO6 ;DSS/TFF - DSIO DISCREET DATA - DDCS;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**2,5,7**;Feb 06, 2015;Build 1
+Routine DSIO6 saved using VFDXTRS routine on Sep 06, 2016 14:43
+DSIO6^INT^64156,60027^Aug 26, 2016@16:40
+DSIO6 ;DSS/TFF - DSIO DISCREET DATA - DDCS;08/26/2016 16:00
+ ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----

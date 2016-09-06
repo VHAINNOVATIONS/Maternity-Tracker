@@ -1,7 +1,7 @@
-Routine DSIO4 saved using VFDXTRS routine on Aug 19, 2016 11:25
-DSIO4^INT^64141,60924^Aug 11, 2016@16:55
-DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;06/28/2013 15:19
- ;;1.0;DSIO 1.0;**1,2,5,7**;Feb 06, 2015;Build 1
+Routine DSIO4 saved using VFDXTRS routine on Sep 06, 2016 14:43
+DSIO4^INT^64156,60015^Aug 26, 2016@16:40
+DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;08/26/2016 16:00
+ ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -53,21 +53,20 @@ GA(DFN,PREG,FLG) ; Return Gestational Age of Pregnancy
  ; If FLG then return in number of days
  ;
  I '$G(PREG) S PREG=$$PG($G(DFN)) Q:'PREG ""
- N AGE,EDC,EDD,END,DAYS S DAYS=""
- S AGE=$$G1($TR($$UP^XLFSTR($$GET1^DIQ(19641.13,PREG_",",3.1))," "))
- S EDC=$$GET1^DIQ(19641.13,PREG_",",.02,"I")
- S EDD=$$GET1^DIQ(19641.03,$$GET1^DIQ(19641.13,PREG_",",.06,"I")_",",.01,"I")
- S END=$$GET1^DIQ(19641.13,PREG_",",.07,"I")
- ; *** EDC, END
- I EDC,END S DAYS=$$FMDIFF^XLFDT(END,EDC) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
- ; *** EDC, EDD
- I EDC,EDD,'END S DAYS=$$FMDIFF^XLFDT(EDD,EDC)
- ; *** EDD
- I EDD,'EDC,'END S DAYS=$$FMDIFF^XLFDT(DT,$$FMADD^XLFDT(EDD,-266))
- ; OUTPUT
- I (AGE&('DAYS))!(AGE&(DAYS)&(AGE>DAYS)) Q $S($G(FLG):AGE,1:$$G2(AGE))
- I ('AGE&(DAYS))!(AGE&(DAYS)&(AGE<DAYS)) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
- Q ""
+ N AGE S AGE=$$G1($TR($$UP^XLFSTR($$GET1^DIQ(19641.13,PREG_",",3.1))," "))
+ Q $S($G(FLG):AGE,1:$$G2(AGE))
+ ; *** Need to record How it was calucated in the DSIO EDD HISTORY file
+ ;N EDC,EDD,END,DAYS,DATE
+ ;S EDC=$$GET1^DIQ(19641.13,PREG_",",.02,"I")
+ ;S EDD=$$GET1^DIQ(19641.03,$$GET1^DIQ(19641.13,PREG_",",.06,"I")_",",.01,"I")
+ ;S END=$$GET1^DIQ(19641.13,PREG_",",.07,"I"),DAYS=""
+ ;; *** Pregnancy has ENDed
+ ;I EDC,END S DAYS=$$FMDIFF^XLFDT(END,EDC) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
+ ;Q:END!('EDD) $S($G(FLG):AGE,1:$$G2(AGE))
+ ; *** Pregnancy is ongoing
+ ;I EDC S DAYS=$$FMDIFF^XLFDT(DT,EDC) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
+ ; *** no END, no EDD, no EDC
+ ;Q $S($G(FLG):AGE,1:$$G2(AGE))
  ;
 G1(AGE) ; Convert #W#D to Numeric
  Q:AGE?.N1"W".N1"D" +AGE*7+$P($P(AGE,"D"),"W",2)
