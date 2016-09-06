@@ -226,7 +226,9 @@ begin
 
   Screen.OnActiveControlChange := ActiveControlChanged;
 
-  RPCBrokerV := Broker^;
+  if Broker <> nil then
+    RPCBrokerV := Broker^;
+
   FDebugMode := DebugMode;
   FIEN := sIEN;
 

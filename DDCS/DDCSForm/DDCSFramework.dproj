@@ -156,14 +156,13 @@
         <DCC_MapFile>3</DCC_MapFile>
         <DCC_DebugInformation>2</DCC_DebugInformation>
         <DCC_LocalDebugSymbols>true</DCC_LocalDebugSymbols>
-        <VerInfo_Release>1</VerInfo_Release>
         <VerInfo_MinorVer>8</VerInfo_MinorVer>
         <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
-        <VerInfo_Build>0</VerInfo_Build>
+        <VerInfo_Build>1</VerInfo_Build>
         <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
-        <VerInfo_Keys>CompanyName=Veterans Health Administration;FileDescription=Delphi DDCS Base Component;FileVersion=2.8.1.0;InternalName=DDCSFramework.bpl;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.8.1.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Veterans Health Administration;FileDescription=Delphi DDCS Base Component;FileVersion=2.8.2.1;InternalName=DDCSFramework.bpl;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=;ProductName=DSIO DDCS;ProductVersion=2.8.2.1;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice32)'!=''">
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
@@ -299,16 +298,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
                 <DeployClass Name="ProjectOSXResource">
                     <Platform Name="OSX32">
                         <RemoteDir>Contents\Resources</RemoteDir>
@@ -622,7 +612,16 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>

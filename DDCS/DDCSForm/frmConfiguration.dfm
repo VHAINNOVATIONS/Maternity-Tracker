@@ -48,7 +48,7 @@ object DDCSFormConfig: TDDCSFormConfig
     Top = 0
     Width = 891
     Height = 528
-    ActivePage = tabDialog
+    ActivePage = tabReport
     Align = alClient
     MultiLine = True
     Style = tsButtons
@@ -57,10 +57,6 @@ object DDCSFormConfig: TDDCSFormConfig
     object tabDialog: TTabSheet
       Caption = 'Configuration && Reporting'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         883
         488)
@@ -114,10 +110,6 @@ object DDCSFormConfig: TDDCSFormConfig
         TabOrder = 1
         object TabSheet3: TTabSheet
           Caption = 'Configuration'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object meConfigValuesC: TCaptionMemo
             Left = 16
             Top = 28
@@ -188,10 +180,6 @@ object DDCSFormConfig: TDDCSFormConfig
         end
         object TabSheet4: TTabSheet
           Caption = 'Reporting'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object pnlReport: TPanel
             Left = -8
             Top = 0
@@ -390,7 +378,6 @@ object DDCSFormConfig: TDDCSFormConfig
               ParentFont = False
               TabOrder = 1
               TabStop = True
-              ExplicitWidth = 4
             end
             object edIdentifyingNameCR: TCaptionEdit
               Left = 16
@@ -422,10 +409,6 @@ object DDCSFormConfig: TDDCSFormConfig
     object tabReport: TTabSheet
       Caption = 'Dialog Editor'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         883
         488)
@@ -514,10 +497,6 @@ object DDCSFormConfig: TDDCSFormConfig
         TabOrder = 4
         object TabSheet1: TTabSheet
           Caption = 'Report Items'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Panel1: TPanel
             Left = 5
             Top = 0
@@ -716,7 +695,6 @@ object DDCSFormConfig: TDDCSFormConfig
               ParentFont = False
               TabOrder = 1
               TabStop = True
-              ExplicitWidth = 4
             end
             object edIdentifyingNameD: TCaptionEdit
               Left = 16
@@ -745,10 +723,6 @@ object DDCSFormConfig: TDDCSFormConfig
         end
         object TabSheet2: TTabSheet
           Caption = 'Output'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object meDialogOutput: TMemo
             Left = 0
             Top = 0
