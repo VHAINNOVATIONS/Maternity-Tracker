@@ -29,7 +29,7 @@ User Setup
 - Assign the Menu Context DSIO GUI CONTEXT to users needing access to the MCC Dashboard.
 - Assign the Menu Context DSIO MAIN to users needing access to the VistA side configuration options.
 
-![alt text](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Secondary_Menu_Option.png "Secondary Menu Context")
+![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Secondary_Menu_Option.png)
 
 Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
 
