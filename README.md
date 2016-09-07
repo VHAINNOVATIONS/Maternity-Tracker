@@ -1,10 +1,9 @@
 Maternity-Tracker
 =================
 
-| The VistA namespace for Maternity tracker is: | DSIO          |
-| --------------------------------------------- |:-------------:|
-| The VistA numberspace for DSIO is:            | 19641         |
-| --------------------------------------------- |:-------------:|
+| Namespace   | DSIO  |
+| ------------|:-----:|
+| <b>Numberspace</b> | <b>19641</b> |
 
 Installation Instructions
 -------------------------
