@@ -8,7 +8,7 @@ Maternity-Tracker
 Installation Instructions
 -------------------------
 #### Pre-Installation
-Extract TITLES.zip to your database’s default directory. If you don’t know you can find the information in the KERNEL SYSTEM PARAMERTS file under record IEN 1 as the PRIMARY HFS DIRECTORY field. During installation you will be prompted with “Enter directory name or path” with it defaulted to your PRIMARY HFS DIRECTORY this is asking where your extracted XML title documents are. 
+Move/copy the [TITLES](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/kids/TITLES) folder with containing text files to somewhere where you VistA database has read access. If you don’t know, you can find the information in the KERNEL SYSTEM PARAMERTS file under record IEN 1 as the PRIMARY HFS DIRECTORY field. During installation you will be prompted with “Enter directory name or path” with it defaulted to your PRIMARY HFS DIRECTORY this is asking where your extracted XML title documents are. 
 
 During installation you will also be asked for the hospital location you wish to use for the Dashboard – if a selection is not made during this step then the Dashboard will not be able to create any TIU notes. This selection can be changed after installation through FileMan via the Enter/Edit option selecting the file DSIO TITLE CONFIGURATION.
 
@@ -31,56 +31,17 @@ During installation you will see…
 > Select HOSPITAL LOCATION: <Select the dashboard hospital location>
 > ** This is required for configuring the dashboard to use maternity related TIU notes, if not completed the dashboard will be unable to save a note and will have to be configured manually. Otherwise, the location can be changed after installation. In either case, the edits can be accomplished through FileMan via the DSIO TITLE CONFIGURATION file. To run post installation again you can “D ^DSIO99” at programmer prompt (without quotes).
 
+
 #### Post Installation
 DDCSFramework.bpl is a Delphi package used for created new DDCS Forms. If you are not a developer and don’t plan on creating new DDCS Forms then you don’t need this package.
 
 User Setup
 ----------
-Assign the Menu Context DSIO DDCS CONTEXT to users needing access to the DDCS Form Templates (DDCS Forms).
-Assign the Menu Context DSIO GUI CONTEXT to users needing access to the MCC Dashboard.
+- Assign the Menu Context DSIO DDCS CONTEXT to users needing access to the DDCS Form Templates (DDCS Forms).
+- Assign the Menu Context DSIO GUI CONTEXT to users needing access to the MCC Dashboard.
+- Assign the Menu Context DSIO MAIN to users needing access to the VistA side configuration options.
 
-Assign the Menu Context DSIO MAIN to users needing access to the VistA side configuration options.
-
-From the “Systems Manager Menu” option…
-
----Core Applications ...
----Device Management ...
----FM     VA FileMan ...
----Menu Management ...
----Programmer Options ...
----Operations Management ...
----Spool Management ...
----Information Security Officer Menu ...
----Taskman Management ...
----User Management ...
----Application Utilities ...
----Capacity Planning ...
----HL7 Main Menu ...
----Manage Mailman ...
-
-Select Systems Manager Menu <TEST ACCOUNT> Option: USER Management
-
----Add a New User to the System
----Grant Access by Profile
----Edit an Existing User
----Deactivate a User
----Reactivate a User
----List users
----User Inquiry
----Switch Identities
----File Access Security ...
----Clear Electronic signature code
----Electronic Signature Block Edit
----List Inactive Person Class Users
----Manage User File ...
----OAA Trainee Registration Menu ...
----Person Class Edit
----Reprint Access agreement letter
-
-Select User Management <TEST ACCOUNT> Option: EDIT an Existing User
-Select NEW PERSON NAME: TF
-
-<image>
+![alt text](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Secondary_Menu_Option.png)
 
 Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
 
