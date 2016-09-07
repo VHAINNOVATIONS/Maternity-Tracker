@@ -1,9 +1,9 @@
 Maternity-Tracker
 =================
 
-| Namespace   | DSIO  |
-| ----------- | -----:|
-| **Numberspace**|**19641**|
+ Namespace   | DSIO
+ ----------- | ----
+ Numberspace | 19641
 
 Installation Instructions
 -------------------------
@@ -32,7 +32,7 @@ During installation you will see…
           Choose your Maternity Tracker hospital location. All TIU notes created via the
 		  dashboard will use this hospital location.
           
-          Select HOSPITAL LOCATION: **Select the Dashboard Hospital Location**
+          Select HOSPITAL LOCATION: Select the Dashboard Hospital Location
 
 
 *This is required for configuring the dashboard to use maternity related TIU notes, if not completed the dashboard will be unable to save a note and will have to be configured manually. Otherwise, the location can be changed after installation. In either case, the edits can be accomplished through FileMan via the DSIO TITLE CONFIGURATION file. To run post installation again you can “D ^DSIO99” at programmer prompt (without quotes).*
@@ -88,8 +88,7 @@ User Setup
           Select NEW PERSON NAME: Enter Name Here
 
 
-IMAGE
-
+![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Register_Secondary_Option.png)
 
 ##### Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
 
@@ -135,12 +134,13 @@ IMAGE
 #### Triggers:
 Set the following parameters to “YES” if the site wishes to flag patients for tracking during dashboard use. This would mean that the program will check for patients that should be flagged when a patient search action is performed within the dashboard – this compensates for not being able to flag patients at real-time. The alternative is to set the options, name the same as these parameters, as scheduled tasks.
 
-| Parameters             | Options            |
-| ---------------------- | ------------------:|
-| DSIO EVAL CONSULTS NOW | DSIO EVAL CONSULTS |
-| DSIO EVAL LABS NOW	 | DSIO EVAL LABS     |
-| DSIO EVAL PROBLEMS NOW | DSIO EVAL PROBLEMS |
+ Parameters             | Options
+ ---------------------- | ------------------
+ DSIO EVAL CONSULTS NOW | DSIO EVAL CONSULTS
+ DSIO EVAL LABS NOW	    | DSIO EVAL LABS
+ DSIO EVAL PROBLEMS NOW | DSIO EVAL PROBLEMS
 
+ 
 Create OE/RR ENTRY
 ------------------
 This file is accessed by CPRS to use COM. There are only two fields required to use DSIO DDCS and that’s the NAME and OBJECT GUID fields. The GUID must look EXACTLY as seen below (with braces {}) but the name can be determined by the site.
@@ -159,18 +159,18 @@ INPUT TO WHAT FILE: OE/RR COM OBJECTS//
             Edit? NO//
 
 
+			
 Link TIU Titles in CPRS
 -----------------------
 The title must have be edited through the EDIT SHARED TEMPLATE option in CPRS with the title and COM entry.
 
 In CPRS select a patient and navigate to the “Notes” tab and select the “Edit Templates” option under the “Options” menu. Select Document Titles and add a new template. This template must be a “Template Type” of “COM Object” with the “Associated Title” linked to the TIU Note Title you wish to have access this program with the “COM Object” field linked to the DSIO DDCS COM entry you created in the OE/RR COM Objects file.
 
-
-IMAGE
-
+![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/CPRS_Title_Link.png)
 
 For more information check out the [VA Software Document Library](
 http://www.va.gov/vdl/application.asp?appid=61).
+
 
 Schedule the Task to PUSH Discreet Data
 ---------------------------------------
@@ -195,14 +195,15 @@ In the “Taskman Management” option…
             Are you adding 'DSIO DDCS CHECK STATUS' as a new OPTION SCHEDULING (the 143RD)? No// Y  (Yes)
 
 
+![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Option_Schedule.png)
+
 *Set the fields appropriate to your site.*
 
 Register the COM Object
 -----------------------
 In Windows, open the command prompt as an administrator and navigate to the COM Object that is located on the workstation that is accessing the DDCS Form Templates/oCNTs. Once your terminal is pointing to the same directory in which your COM resides run the command “regsvr32 DDCSFormBuilder.dll” without quotes.
 
-
-IMAGE
+![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/COM_regsvr32.png)
 
 
 Setting the Location Parameter
