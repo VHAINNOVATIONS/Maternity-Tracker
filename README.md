@@ -8,7 +8,7 @@ Maternity-Tracker
 Installation Instructions
 -------------------------
 #### Pre-Installation
-Move/copy the [TITLES](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/kids/TITLES) folder with containing text files to somewhere where you VistA database has read access. If you don’t know, you can find the information in the KERNEL SYSTEM PARAMERTS file under record IEN 1 as the PRIMARY HFS DIRECTORY field. During installation you will be prompted with “Enter directory name or path” with it defaulted to your PRIMARY HFS DIRECTORY this is asking where your extracted XML title documents are. 
+Move/copy the [TITLES](/kids/TITLES) folder with containing text files to somewhere where you VistA database has read access. If you don’t know, you can find the information in the KERNEL SYSTEM PARAMERTS file under record IEN 1 as the PRIMARY HFS DIRECTORY field. During installation you will be prompted with “Enter directory name or path” with it defaulted to your PRIMARY HFS DIRECTORY this is asking where your extracted XML title documents are. 
 
 During installation you will also be asked for the hospital location you wish to use for the Dashboard – if a selection is not made during this step then the Dashboard will not be able to create any TIU notes. This selection can be changed after installation through FileMan via the Enter/Edit option selecting the file DSIO TITLE CONFIGURATION.
 
@@ -88,7 +88,7 @@ User Setup
           Select NEW PERSON NAME: Enter Name Here
 
 
-![](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Register_Secondary_Option.png?raw=true)
+![](/Documentation/readme_images/Register_Secondary_Option.png?raw=true)
 
 ##### Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
 
@@ -166,7 +166,7 @@ The title must have be edited through the EDIT SHARED TEMPLATE option in CPRS wi
 
 In CPRS select a patient and navigate to the “Notes” tab and select the “Edit Templates” option under the “Options” menu. Select Document Titles and add a new template. This template must be a “Template Type” of “COM Object” with the “Associated Title” linked to the TIU Note Title you wish to have access this program with the “COM Object” field linked to the DSIO DDCS COM entry you created in the OE/RR COM Objects file.
 
-![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/CPRS_Title_Link.png)
+![Image](/Documentation/readme_images/CPRS_Title_Link.png)
 
 For more information check out the [VA Software Document Library](
 http://www.va.gov/vdl/application.asp?appid=61).
@@ -195,7 +195,7 @@ In the “Taskman Management” option…
             Are you adding 'DSIO DDCS CHECK STATUS' as a new OPTION SCHEDULING (the 143RD)? No// Y  (Yes)
 
 
-![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Option_Schedule.png)
+![Image](/Documentation/readme_images/Option_Schedule.png)
 
 *Set the fields appropriate to your site.*
 
@@ -203,7 +203,7 @@ Register the COM Object
 -----------------------
 In Windows, open the command prompt as an administrator and navigate to the COM Object that is located on the workstation that is accessing the DDCS Form Templates/oCNTs. Once your terminal is pointing to the same directory in which your COM resides run the command “regsvr32 DDCSFormBuilder.dll” without quotes.
 
-![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/COM_regsvr32.png)
+![Image](/Documentation/readme_images/COM_regsvr32.png)
 
 
 Setting the Location Parameter
