@@ -31,13 +31,13 @@ During installation you will see…
 > ******************************************************************************
 > Choose your Maternity Tracker hospital location. All TIU notes created via the dashboard will use this hospital location.
 > 
-> Select HOSPITAL LOCATION: <b>Select the Dashboard Hospital Location</b>
+> Select HOSPITAL LOCATION: **Select the Dashboard Hospital Location**
 
 
 *This is required for configuring the dashboard to use maternity related TIU notes, if not completed the dashboard will be unable to save a note and will have to be configured manually. Otherwise, the location can be changed after installation. In either case, the edits can be accomplished through FileMan via the DSIO TITLE CONFIGURATION file. To run post installation again you can “D ^DSIO99” at programmer prompt (without quotes).*
 
 #### Post Installation
-DDCSFramework.bpl is a Delphi package used for created new DDCS Forms. If you are not a developer and don’t plan on creating new DDCS Forms then you don’t need this package.
+*DDCSFramework.bpl* is a Delphi package used for created new DDCS Forms. If you are not a developer and don’t plan on creating new DDCS Forms then you don’t need this file.
 
 User Setup
 ----------
@@ -47,84 +47,89 @@ User Setup
 
 *From the “Systems Manager Menu” option...*
 
-          Core Applications ...
-          Device Management ...
-          VA FileMan ...
-          Menu Management ...
-          Programmer Options ...
-          Operations Management ...
-          Spool Management ...
-          Information Security Officer Menu ...
-          Taskman Management ...
-          <b>User Management ...</b>
-          Application Utilities ...
-          Capacity Planning ...
-          HL7 Main Menu ...
-          Manage Mailman ...
 
-          Select Systems Manager Menu Option: <b>USER Management</b>
+> Core Applications ...
+> Device Management ...
+> VA FileMan ...
+> Menu Management ...
+> Programmer Options ...
+> Operations Management ...
+> Spool Management ...
+> Information Security Officer Menu ...
+> Taskman Management ...
+> **User Management ...**
+> Application Utilities ...
+> Capacity Planning ...
+> HL7 Main Menu ...
+> Manage Mailman ...
+> 
+> Select Systems Manager Menu Option: **USER Management**
+> 
+> Add a New User to the System
+> Grant Access by Profile
+> **Edit an Existing User**
+> Deactivate a User
+> Reactivate a User
+> List users
+> User Inquiry
+> Switch Identities
+> File Access Security ...
+> Clear Electronic signature code
+> Electronic Signature Block Edit
+> List Inactive Person Class Users
+> Manage User File ...
+> OAA Trainee Registration Menu ...
+> Person Class Edit
+> Reprint Access agreement letter
+>
+> Select User Management Option: **EDIT an Existing User**
+>
+> Select NEW PERSON NAME: **Enter Name Here**
 
-          Add a New User to the System
-          Grant Access by Profile
-          <b>Edit an Existing User</b>
-          Deactivate a User
-          Reactivate a User
-          List users
-          User Inquiry
-          Switch Identities
-          File Access Security ...
-          Clear Electronic signature code
-          Electronic Signature Block Edit
-          List Inactive Person Class Users
-          Manage User File ...
-          OAA Trainee Registration Menu ...
-          Person Class Edit
-          Reprint Access agreement letter
 
-          Select User Management Option: <b>EDIT an Existing User</b>
-		  
-          Select NEW PERSON NAME: <b>Enter Name Here</b>
-		  
 IMAGE
+
 
 ##### Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
 
 *From the “Key Management” option...*
 
-          <b>Allocation of Security Keys</b>
-          De-allocation of Security Keys
-          Enter/Edit of Security Keys
-          All the Keys a User Needs
-          Allocate/De-Allocate Exclusive Key(s)
-          Change user's allocated keys to delegated keys
-          Delegate keys
-          Keys For a Given Menu Tree
-          List users holding a certain key
-          Remove delegated keys
-          Show the keys of a particular user
 
-          Select Key Management Option: <b>ALLOCATION of Security Keys</b>
+> **Allocation of Security Keys**
+> De-allocation of Security Keys
+> Enter/Edit of Security Keys
+> All the Keys a User Needs
+> Allocate/De-Allocate Exclusive Key(s)
+> Change user's allocated keys to delegated keys
+> Delegate keys
+> Keys For a Given Menu Tree
+> List users holding a certain key
+> Remove delegated keys
+> Show the keys of a particular user
+>
+> Select Key Management Option: **ALLOCATION of Security Keys**
+>
+> Allocate key: <b>DSIO DDCS CONFIG</b>
+>
+> Another key: 
+>
+> Holder of key: **Enter Name Here**
+>
+> Another holder: 
+>
+> You've selected the following keys: 
+>
+> **DSIO DDCS CONFIG**
+>
+>You've selected the following holders: 
+>
+>**Entered Name Would Appear Here**
+>
+>You are allocating keys.  Do you wish to proceed? **YES//**
+>
+>DSIO DDCS CONFIG being assigned to:
+>**Entered Name Would Appear Here**
 
-          Allocate key: <b>DSIO DDCS CONFIG</b>
-
-          Another key: 
-
-          Holder of key: <b>Enter Name Here</b>
-
-          Another holder: 
-
-          You've selected the following keys: 
-
-          <b>DSIO DDCS CONFIG</b>
-
-          You've selected the following holders: 
-
-          <b>Entered Name Would Appear Here</b>
-
-          You are allocating keys.  Do you wish to proceed? <b>YES//</b>
-
-          DSIO DDCS CONFIG being assigned to:
-          <b>Entered Name Would Appear Here</b>
 
 Create OE/RR ENTRY
 ------------------
@@ -132,15 +137,17 @@ This file is accessed by CPRS to use COM. There are only two fields required to 
 
 *For file OE/RR COM OBJECTS create the following entry...*
 
-          INPUT TO WHAT FILE: OE/RR COM OBJECTS// 
 
-          NAME: DSIO DDCS FORM BUILDER 
-          OBJECT GUID: {F4401FE9-4F5C-4633-B409-E7CEC0CE863F}
-          INACTIVE: 
-          PARAM1: 
-          DESCRIPTION:
-            No existing text
-            Edit? NO//
+INPUT TO WHAT FILE: OE/RR COM OBJECTS// 
+
+> NAME: **DSIO DDCS FORM BUILDER**
+> OBJECT GUID: **{F4401FE9-4F5C-4633-B409-E7CEC0CE863F}**
+> INACTIVE: 
+> PARAM1: 
+> DESCRIPTION:
+>   No existing text
+>   Edit? NO//
+
 
 Link TIU Titles in CPRS
 -----------------------
@@ -224,39 +231,3 @@ Order Display Group: LABORATORY//   LABORATORY   LABORATORY
 COM Object: DSIO DDCS FORM BUILDER//   DSIO DDCS FORM BUILDER
 
 The following is done by the post install build but for knowledge and understanding some of the associations has been listed here so if something is not opening up correctly then you may have to check this associations.
-
-Advanced Setup
-==============
-This patch transports configuration data so nothing below this line is required at the installation site.
-
-Create CONTROL entries that allow you capture discreet data:
-
-Create your control entries. You can use FileMan or the DSIO DDCS CONTROL option to assist you. You will need to know the object you wish to control and the expected destination of the data (the object that data is associated to).
-
-For example, we need to CONTROL the TIU document title OB H&P INITIAL which is IEN 93 (in my database – you would have to check yours) in file 8925.1. So I need to CONTROL 93;TIU(8925.1, where 93 is the IEN and the right of the semi-colon is the global reference. I know that notes are stored in 8925 so I will use this file as my destination file and that entries in this file are directly associated to a patient because the patient pointer is field .02.
-
-Select DSIO DDCS CONTROL CONTROL OBJECT:    93;TIU(8925.1,     TEXT INTEGRATION UTILITIES
-CONTROL OBJECT: 93;TIU(8925.1,// 
-INACTIVE: 
-DESTINATION FILE: TIU DOCUMENT// 
-PATIENT ORIENTED: YES// 
-PATIENT FIELD: .02// 
-SHARE: LIMITED// 
-FORM: OB HISTORY NOTE - NURSE// 
-PATIENT LOOKUP CODE: 
-TRIGGER LOGIC: I $$GET1^DIQ(DDCSFLE,SIEN_",",.05)="COMPLETED"
-           Replace 
-PRE PUSH: N LNK S LNK=$$SPG^DSIO3($G(DFN),SIEN,$$PG^DSIO4($G(DFN)))
-           Replace 
-POST PUSH: 
-PACKAGE: TEXT INTEGRATION UTILITIES//
-
-Next we will create our FORM (interface) and link back to our control object we just created.
-
-Now, we need to create our FORM which will inform the GUI how it should be configured. We will be using two files which exist as the newer 19641.42.
-
-First we should create the new form configuration. We can add on overrides to every control within the dll. For the purposes of creating additional interfaces from a single dll you first need to create copies, name them appropriately, and create new entries in this file using those file names. You may then need to create a CONTROL NAME within the configuration of PAGE# where # is one through nine – you can hide the display of these pages by setting HIDE FROM NOTE equal to TRUE.
-
-DSIO DDCS FORM CONFIGURATION (19641.42) will guide us through creating a form configuration entry.
-
-DSIO DDCS PARAMETER (#19641.492) allows for additional form settings to be changed.
