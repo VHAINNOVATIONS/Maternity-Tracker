@@ -22,12 +22,13 @@ During installation you will see…
           ******************************************************************************
           Set the path where the TIU TITLE import files are located.
 
-          Enter directory name or path: <b>Pre-Installation Step Extraction Location</b>
+          Enter directory name or path: **Pre-Installation Step Extraction Location**
 		  
 *Change this value to the location of the text files you extracted in the pre-installation step.*
 
           ******************************************************************************
-          Choose your Maternity Tracker hospital location. All TIU notes created via the dashboard will use this hospital location.
+          Choose your Maternity Tracker hospital location. All TIU notes created via the
+          dashboard will use this hospital location.
 
           Select HOSPITAL LOCATION: <b>Select the Dashboard Hospital Location</b>
 		  
@@ -46,7 +47,7 @@ User Setup
 
           Core Applications ...
           Device Management ...
-   FM     VA FileMan ...
+          VA FileMan ...
           Menu Management ...
           Programmer Options ...
           Operations Management ...
