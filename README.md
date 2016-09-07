@@ -15,19 +15,19 @@ Normal KIDS install through Kernel Installation & Distribution System.
 
 During installation you will see…
 
-   Running Post-Install Routine: POST^DSIO0P.
+> Running Post-Install Routine: POST^DSIO0P.
 
-   ******************************************************************************
-   Set the path where the TIU TITLE import files are located.
+> ******************************************************************************
+> Set the path where the TIU TITLE import files are located.
 
-   Enter directory name or path: <pre-installation step extraction location>
-   ** Change this value to the location of the text files you extracted in the pre-installation step.
+> Enter directory name or path: <pre-installation step extraction location>
+> ** Change this value to the location of the text files you extracted in the pre-installation step.
 
-   ******************************************************************************
-   Choose your Maternity Tracker hospital location. All TIU notes created via the dashboard will use this hospital location.
+> ******************************************************************************
+> Choose your Maternity Tracker hospital location. All TIU notes created via the dashboard will use this hospital location.
 
-   Select HOSPITAL LOCATION: <Select the dashboard hospital location>
-   ** This is required for configuring the dashboard to use maternity related TIU notes, if not completed the dashboard will be unable to save a note and will have to be configured manually. Otherwise, the location can be changed after installation. In either case, the edits can be accomplished through FileMan via the DSIO TITLE CONFIGURATION file. To run post installation again you can “D ^DSIO99” at programmer prompt (without quotes).
+> Select HOSPITAL LOCATION: <Select the dashboard hospital location>
+> ** This is required for configuring the dashboard to use maternity related TIU notes, if not completed the dashboard will be unable to save a note and will have to be configured manually. Otherwise, the location can be changed after installation. In either case, the edits can be accomplished through FileMan via the DSIO TITLE CONFIGURATION file. To run post installation again you can “D ^DSIO99” at programmer prompt (without quotes).
 
 #### Post Installation
 DDCSFramework.bpl is a Delphi package used for created new DDCS Forms. If you are not a developer and don’t plan on creating new DDCS Forms then you don’t need this package.
