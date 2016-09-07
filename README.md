@@ -88,7 +88,7 @@ User Setup
           Select NEW PERSON NAME: Enter Name Here
 
 
-<img>https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Register_Secondary_Option.png</img>
+![](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Register_Secondary_Option.png?raw=true)
 
 ##### Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
 
