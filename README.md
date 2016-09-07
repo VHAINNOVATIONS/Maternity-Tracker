@@ -17,8 +17,21 @@ Normal KIDS install through Kernel Installation & Distribution System.
 
 During installation you will see…
 
+          Running Post-Install Routine: POST^DSIO0P.
 
+          ******************************************************************************
+          Set the path where the TIU TITLE import files are located.
 
+          Enter directory name or path: <b>Pre-Installation Step Extraction Location</b>
+		  
+*Change this value to the location of the text files you extracted in the pre-installation step.*
+
+          ******************************************************************************
+          Choose your Maternity Tracker hospital location. All TIU notes created via the dashboard will use this hospital location.
+
+          Select HOSPITAL LOCATION: <b>Select the Dashboard Hospital Location</b>
+		  
+*This is required for configuring the dashboard to use maternity related TIU notes, if not completed the dashboard will be unable to save a note and will have to be configured manually. Otherwise, the location can be changed after installation. In either case, the edits can be accomplished through FileMan via the DSIO TITLE CONFIGURATION file. To run post installation again you can “D ^DSIO99” at programmer prompt (without quotes).*
 
 #### Post Installation
 DDCSFramework.bpl is a Delphi package used for created new DDCS Forms. If you are not a developer and don’t plan on creating new DDCS Forms then you don’t need this package.
@@ -29,13 +42,53 @@ User Setup
 - Assign the Menu Context DSIO GUI CONTEXT to users needing access to the MCC Dashboard.
 - Assign the Menu Context DSIO MAIN to users needing access to the VistA side configuration options.
 
-![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Secondary_Menu_Option.png)
+*From the “Systems Manager Menu” option...*
 
-Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
+          Core Applications ...
+          Device Management ...
+   FM     VA FileMan ...
+          Menu Management ...
+          Programmer Options ...
+          Operations Management ...
+          Spool Management ...
+          Information Security Officer Menu ...
+          Taskman Management ...
+          <b>User Management ...</b>
+          Application Utilities ...
+          Capacity Planning ...
+          HL7 Main Menu ...
+          Manage Mailman ...
 
-From the “Key Management” option…
+          Select Systems Manager Menu Option: <b>USER Management</b>
 
-          Allocation of Security Keys
+          Add a New User to the System
+          Grant Access by Profile
+          <b>Edit an Existing User</b>
+          Deactivate a User
+          Reactivate a User
+          List users
+          User Inquiry
+          Switch Identities
+          File Access Security ...
+          Clear Electronic signature code
+          Electronic Signature Block Edit
+          List Inactive Person Class Users
+          Manage User File ...
+          OAA Trainee Registration Menu ...
+          Person Class Edit
+          Reprint Access agreement letter
+
+          Select User Management Option: <b>EDIT an Existing User</b>
+		  
+          Select NEW PERSON NAME: <b>Enter Name Here</b>
+		  
+IMAGE
+
+##### Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
+
+*From the “Key Management” option...*
+
+          <b>Allocation of Security Keys</b>
           De-allocation of Security Keys
           Enter/Edit of Security Keys
           All the Keys a User Needs
@@ -47,56 +100,58 @@ From the “Key Management” option…
           Remove delegated keys
           Show the keys of a particular user
 
-Select Key Management <TEST ACCOUNT> Option: allocation of Security Keys
+          Select Key Management Option: <b>ALLOCATION of Security Keys</b>
 
-Allocate key: DSIO DDCS CONFIG  
+          Allocate key: <b>DSIO DDCS CONFIG</b>
 
-Another key: 
+          Another key: 
 
-Holder of key: FONTANA,THEO F            TF       
+          Holder of key: <b>Enter Name Here</b>
 
-Another holder: 
+          Another holder: 
 
-You've selected the following keys: 
+          You've selected the following keys: 
 
-DSIO DDCS CONFIG
+          <b>DSIO DDCS CONFIG</b>
 
-You've selected the following holders: 
+          You've selected the following holders: 
 
-FONTANA,THEO F
+          <b>Entered Name Would Appear Here</b>
 
-You are allocating keys.  Do you wish to proceed? YES//
+          You are allocating keys.  Do you wish to proceed? <b>YES//</b>
 
-DSIO DDCS CONFIG being assigned to:
-     FONTANA,THEO F
+          DSIO DDCS CONFIG being assigned to:
+          <b>Entered Name Would Appear Here</b>
 
 Create OE/RR ENTRY
-==================
+------------------
 This file is accessed by CPRS to use COM. There are only two fields required to use DSIO DDCS and that’s the NAME and OBJECT GUID fields. The GUID must look EXACTLY as seen below (with braces {}) but the name can be determined by the site.
 
-INPUT TO WHAT FILE: OE/RR COM OBJECTS// 
-EDIT WHICH FIELD: ALL// 
+*For file OE/RR COM OBJECTS create the following entry...*
 
-Select OE/RR COM OBJECTS NAME:    DSIO DDCS FORM BUILDER
-NAME: DSIO DDCS FORM BUILDER  Replace 
-OBJECT GUID: {F4401FE9-4F5C-4633-B409-E7CEC0CE863F}
-           Replace 
-INACTIVE: 
-PARAM1: 
-DESCRIPTION:
-  No existing text
-  Edit? NO//
+          INPUT TO WHAT FILE: OE/RR COM OBJECTS// 
+
+          NAME: DSIO DDCS FORM BUILDER 
+          OBJECT GUID: {F4401FE9-4F5C-4633-B409-E7CEC0CE863F}
+          INACTIVE: 
+          PARAM1: 
+          DESCRIPTION:
+            No existing text
+            Edit? NO//
 
 Link TIU Titles in CPRS
-=======================
+-----------------------
 The title must have be edited through the EDIT SHARED TEMPLATE option in CPRS with the title and COM entry.
 
 In CPRS select a patient and navigate to the “Notes” tab and select the “Edit Templates” option under the “Options” menu. Select Document Titles and add a new template. This template must be a “Template Type” of “COM Object” with the “Associated Title” linked to the TIU Note Title you wish to have access this program with the “COM Object” field linked to the DSIO DDCS COM entry you created in the OE/RR COM Objects file.
 
-<image>
 
-For more information check out the documentation in the VA VDL.
-http://www.va.gov/vdl/application.asp?appid=61 
+
+
+
+
+For more information check out the [VA Software Document Library](
+http://www.va.gov/vdl/application.asp?appid=61).
 
 Schedule the Task to PUSH Discreet Data
 =======================================
