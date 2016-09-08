@@ -215,4 +215,98 @@ This parameter is required as it and the configuration file needs to be able to 
           Select PARAMETER DEFINITION NAME: DSIO DDCS LOCATION     DSIO DDCS LOCATION
           
           ------ Setting DSIO DDCS LOCATION for System: ... ------
-          LOCATION: C:\Users\DSSDeveloper\Desktop\DDCS\_output\
+          LOCATION: C:\Users\USERNAME\Desktop\DDCS\_output\
+
+
+DDCS FORMS (Delphi XE10)
+========================
+To install the DDCSFramework from source load the project DDCSFramework.dproj and then in the project manager you can right click the package name "DDCSFramework.bpl" and select install.
+
+To load from DDCSFramework.bpl you can select the "Component" option "Install Packages" then select ADD and navigate to the .bpl and open.
+
+You should now have the cagegory "DDCSForm" in your tool palette with TDDCSForm as an entry.
+
+Quick Start - Your First DDCS (as a CPRS Note Extension) DLL
+------------------------------------------------------------
+1. In Delphi (XE10) create a New Project - Delphi Projects - Dynamic-link Library.
+
+2. Right click the project name (Project1.dll) from the project manager and select "Add New" - "VCL Form". I changed the name of the form unit to frmMain. The source should now look like this...
+
+```pascal
+
+library Project1;
+
+{ Important note about DLL memory management: ShareMem must be the
+  first unit in your library's USES clause AND your project's (select
+  Project-View Source) USES clause if your DLL exports any procedures or
+  functions that pass strings as parameters or function results. This
+  applies to all strings passed to and from your DLL--even those that
+  are nested in records and classes. ShareMem is the interface unit to
+  the BORLNDMM.DLL shared memory manager, which must be deployed along
+  with your DLL. To avoid using BORLNDMM.DLL, pass string information
+  using PChar or ShortString parameters. }
+
+uses
+  System.SysUtils,
+  System.Classes,
+  frmMain in 'frmMain.pas' {Form1};
+
+{$R *.res}
+
+begin
+end.
+
+```
+3. In your VCL Form unit go to your tool pallet and look for TDDCSForm (it's in the DDCSForm cagegory) and add it to your form. Make sure you add at least one page (right click the body of the component and select "New Page") before you add anything else. All components must be placed on a page in order to be picked up by DDCS.
+
+4. Now lets go back to the source and make it look like the following...
+
+```pascal
+
+library Project1;
+
+{$R *.dres}
+
+uses
+  Winapi.Windows,
+  Vcl.Forms,
+  uExtndComBroker,
+  frmMain in 'frmMain.pas' {Form1};
+
+{$R *.res}
+
+function Launch(const CPRSBroker: PCPRSComBroker; out Return: WideString): WordBool; stdcall;
+var
+  oldHandle: HWND;
+begin
+  Result := False;
+
+  oldHandle := Application.Handle;
+  Application.Handle := GetActiveWindow;
+
+  RPCBrokerV := CPRSBroker^;
+  Form1 := TForm1.Create(nil);
+  try
+    RPCBrokerV.DisabledWindow := DisableTaskWindows(0);
+    Form1.ShowModal;
+    if Form1.DDCSForm1.Validated then
+    begin
+      Result := True;
+      Return := Form1.DDCSForm1.TmpStrList.Text;
+    end;
+  finally
+    Form1.Free;
+    RPCBrokerV := nil;
+    Application.Handle := oldHandle;
+  end;
+end;
+
+exports
+  Launch;
+
+begin
+end.
+
+```
+
+5. The rest is up to you. Check out [Documentation](/Documentation) for an advanced guide to developing DDCS forms for CPRS TIU notes. (Will be updated at a later date.)
