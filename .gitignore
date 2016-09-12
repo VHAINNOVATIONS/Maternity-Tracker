@@ -56,3 +56,5 @@ __history
 ProjectGroupAOE.groupproj
 __recovery
 _obsolete
+*.mes
+*.tvsconfig
