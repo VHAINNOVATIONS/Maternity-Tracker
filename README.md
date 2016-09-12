@@ -205,6 +205,13 @@ In Windows, open the command prompt as an administrator and navigate to the COM 
 
 ![Image](/Documentation/readme_images/COM_regsvr32.png)
 
+If this is your first time using COM Object with CPRS then you may have to also register CPRS. To do this repeat the steps above but navigate to the location of the CPRS executable and run the command "CPRSChart /register" without quotes.
+
+Both of the above commands just need to be run once on each of the machines accessing COM Objects for CPRS. If CPRS is on a server then it needs to be registered there; however, the DDCSFormBuilder.dll needs to be on each machine and registered there.
+
+For more information check out the [VA Software Document Library](
+http://www.va.gov/vdl/documents/Clinical/Comp_Patient_Recrd_Sys_(CPRS)/cprsguitm.pdf).
+
 
 Setting the Location Parameter
 ------------------------------
@@ -223,6 +230,8 @@ DDCS FORMS (Delphi XE10)
 To install the DDCSFramework from source load the project DDCSFramework.dproj and then in the project manager you can right click the package name "DDCSFramework.bpl" and select install.
 
 To load from DDCSFramework.bpl you can select the "Component" option "Install Packages" then select ADD and navigate to the .bpl and open.
+
+Be sure to add the DDCSForm directory to your Library. Do this by going to "Tools" "Options" and under "Delphi Options" select "Library". Once here go to "Library path" and add the full path (including DDCSForm) by using the "..." button to the right, then the folder icon to select the path and "Add".
 
 You should now have the cagegory "DDCSForm" in your tool palette with TDDCSForm as an entry.
 
