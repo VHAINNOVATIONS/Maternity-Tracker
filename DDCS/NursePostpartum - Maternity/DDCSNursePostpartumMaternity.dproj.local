@@ -20,8 +20,17 @@
     <Transaction>2016/02/17 15:55:29.000.456,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\frmMain.dfm=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\Unit1.dfm</Transaction>
     <Transaction>2016/03/30 17:13:18.000.438,=C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.pas</Transaction>
     <Transaction>2016/04/06 16:32:17.000.872,C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.pas=</Transaction>
+    <Transaction>2016/09/12 11:18:16.797,=C:\Users\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="C:\Users"/>
+    <File Path="..\..\..\..\..\..\Public"/>
+    <File Path="..\..\..\..\..\..\Public\Documents"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf"/>
     <File Path="frmMain.pas"/>
     <File Path="frmMain.dfm"/>
   </ProjectSortOrder>
