@@ -320,3 +320,11 @@ Quick Start - Your First DDCS (as a CPRS Note Extension) DLL
 	```
 
 5. The rest is up to you. Check out [Documentation](/Documentation) for an advanced guide to developing DDCS forms for CPRS TIU notes. *Will be updated at a later date.*
+
+Adding Themes
+-------------
+Add the Windows theme to your project. This step is optional and at the time of this writting the component's option to change the theme was disabled but if you wish to use it your project will also have to have the appropriate themes added as a resource.
+
+Select the "Project" option and under it select "Resources and Images...". Then select "Add..." and navigate to the theme .vsf file resource you wish to add (mine were located at C:\Users\Public\Documents\Embarcadero\Studio\17.0\Styles\). Once added, set the type to VCLSTYLE and set the identifier to Resource_1 for the first one and just incrememt the number for each addtional entry.
+
+![Image](/Documentation/readme_images/Resource_Theme.png)
