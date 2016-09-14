@@ -1,0 +1,81 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.SmokingCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+    <tr class="active"><td colspan="2">Assess/Verify smoking status (complete clinical reminder if not done)</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.SmokingStatus, SmokingStatus.NeverASmoker, new { @id = "rdo-stat-nvr" })&nbsp;&nbsp;@Html.LabelFor(m => m.SmokingStatus, "Non-Smoker: Assess/educate on second and third hand smoke", new { @for = "rdo-stat-nvr" })</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.SmokingStatus, SmokingStatus.PastSmoker, new {@id = "rdo-stat-pst"}) &nbsp;&nbsp;@Html.LabelFor(m => m.SmokingStatus, "Past Smoker: Recently Quit?", new {@for="rdo-stat-pst"})</td></tr>
+
+    @if (Model.CallType == MccPatientCallType.PhoneCall_1)
+    {
+        <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.RecentlyQuit, true, new {@class="past-smoker", @id="rdo-rq-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.RecentlyQuit, "Yes", new {@for="rdo-rq-y"})</td></tr>
+        <tr><td colspan="2" style="padding-left: 120px">@Html.CheckBoxFor(m => m.RecentlyQuitResources, new {@class="past-smoker recently-quit" })&nbsp;&nbsp;@Html.LabelFor(m => m.RecentlyQuitResources, "Offer resources and referral")</td></tr>
+    }
+    else 
+    {
+        <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.RecentlyQuit, true, new {@class="past-smoker", @id="rdo-rq-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.RecentlyQuit, "Yes", new {@for="rdo-rq-y"})</td></tr>
+        <tr><td colspan="2" style="padding-left: 120px">@Html.CheckBoxFor(m => m.RecentlyQuitCongratulate, new {@class="past-smoker" })&nbsp;&nbsp;@Html.LabelFor(m => m.RecentlyQuitCongratulate, "Congratulate")</td></tr>
+        <tr><td colspan="2" style="padding-left: 120px">@Html.CheckBoxFor(m => m.RecentlyQuitImportance, new {@class="past-smoker" })&nbsp;&nbsp;@Html.LabelFor(m => m.RecentlyQuitImportance, "Reinforce Importance")</td></tr>
+        <tr><td colspan="2" style="padding-left: 120px">@Html.CheckBoxFor(m => m.RecentlyQuitResources, new {@class="past-smoker" })&nbsp;&nbsp;@Html.LabelFor(m => m.RecentlyQuitResources, "Offer resources and referral")</td></tr>
+        <tr><td colspan="2" style="padding-left: 120px">@Html.CheckBoxFor(m => m.RecentlyQuitEducate, new {@class="past-smoker" })&nbsp;&nbsp;@Html.LabelFor(m => m.RecentlyQuitEducate, "Educate about second and third-hand smoke")</td></tr>
+    }
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.RecentlyQuit, false, new {@class="past-smoker", @id="rdo-rq-n" })&nbsp;&nbsp;@Html.LabelFor(m => m.RecentlyQuit, "No", new {@for="rdo-rq-n"})</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.SmokingStatus, SmokingStatus.CurrentSmoker) &nbsp;&nbsp;@Html.LabelFor(m => m.SmokingStatus, "Current Smoker")</td></tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.TextBoxFor(m => m.CigarettesPerDay, new { @style="width: 60px; display: inline", @class="form-control current-smoker" })&nbsp;&nbsp;@Html.LabelFor(m => m.CigarettesPerDay, "Cigarettes/Day")</td></tr>
+    <tr><td colspan="2" style="padding-left: 80px">&nbsp;&nbsp;Contemplating Quitting?</td></tr>
+    <tr><td colspan="2" style="padding-left: 120px">@Html.RadioButtonFor(m => m.ContemplatingQuitting, true, new {@class="current-smoker", @id="rdo-cq-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.ContemplatingQuitting, "Yes (Offer resources/referral)", new {@for="rdo-cq-y"})</td></tr>
+    <tr><td colspan="2" style="padding-left: 120px">@Html.RadioButtonFor(m => m.ContemplatingQuitting, false, new {@class="current-smoker", @id="rdo-cq-n" })&nbsp;&nbsp;@Html.LabelFor(m => m.ContemplatingQuitting, "No (Educate on importance for baby)", new {@for="rdo-cq-n"})</td></tr>    
+</tbody>
+
+@section Scripts
+{
+<script>
+    $(document).ready(function () {
+
+        @if (Model.SmokingStatus == SmokingStatus.NeverASmoker)
+        {
+            <text>
+                $('.recently-quit-yes').attr('disabled', 'disabled');
+                $('.past-smoker').attr('disabled', 'disabled');
+                $('.current-smoker').attr('disabled', 'disabled');
+            </text>
+        }else if (Model.SmokingStatus == SmokingStatus.PastSmoker)
+        {
+            <text>
+                $('.current-smoker').attr('disabled', 'disabled');
+            </text>            
+        }
+        else if (Model.SmokingStatus == SmokingStatus.CurrentSmoker)
+        {
+            <text>
+                $('.recently-quit-yes').attr('disabled', 'disabled');
+                $('.past-smoker').attr('disabled', 'disabled');
+            </text>            
+        }
+
+        $('input[name="SmokingStatus"]:radio').change(function () {
+            if ($(this).val() == "PastSmoker") {
+                $('.past-smoker').removeAttr('disabled');
+                $('.current-smoker').attr('disabled', 'disabled');
+            } else {
+                $('.past-smoker').attr('disabled', 'disabled');
+                $('.current-smoker').removeAttr('disabled');
+            };            
+        });
+
+        $('input[name="RecentlyQuit"]:radio').change(function () {
+            if ($(this).val() == "True") {
+                $('.recently-quit').removeAttr('disabled');
+            } else {
+                $('.recently-quit').attr('disabled', 'disabled');
+            }
+        });
+    });
+</script>
+}

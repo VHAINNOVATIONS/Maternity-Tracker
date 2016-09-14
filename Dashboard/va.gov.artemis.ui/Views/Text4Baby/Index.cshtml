@@ -1,0 +1,69 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.Text4Baby
+
+@model Text4BabyModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - text4baby";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<img src="~/Content/images/t4b-logo.png" alt="Text 4 Baby" style="width: 40px; height: 40px; display: inline; margin-right: 20px"/>
+<span class="h3 page-header" style="display:inline">text4baby</span>
+
+<br />
+
+@using (Html.BeginForm("NotInterested", "Text4Baby", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn)
+
+    <div class="row" style="margin-top: 30px">
+        <div class="col-md-5">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Text4Baby Enrollment
+                </div>
+                <table class="table table-db">
+                    <tr>
+                        <td>Text4Baby Enrollment Status:</td>
+                        <td>@Model.Patient.Text4BabyEnrollmentDescription</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-7"></div>
+    </div>
+    
+    <br />
+    
+    <div class="row">
+        <div class="col-md-5">
+            <div class="pull-right">
+                <button type="submit" class="btn btn-danger">Not Interested</button>
+                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Enroll", "Text4Baby", new { dfn = Model.Patient.Dfn })'">Enroll Now</button>
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { dfn = Model.Patient.Dfn })'">Patient Summary</button>
+            </div>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+
+    <br />
+}
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#nav-pat-t4b').addClass('active').siblings().removeClass('active');
+
+
+        });
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

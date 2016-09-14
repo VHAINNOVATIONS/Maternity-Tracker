@@ -1,0 +1,76 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Reminders.ReminderListModel
+@using VA.Gov.Artemis.UI.Data.Models.Reminders
+
+@{
+    ViewBag.Title = "MCC Dashboard - Reminders";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Clinical Reminders</h1>
+
+<p><i>Click a row to select the reminder</i></p>
+
+<table class="table table-bordered table-hover" style="font-size: 12px">
+    <thead class="centered-header">
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Due</th>
+        </tr>
+    </thead>
+    @if (Model.Reminders.Count > 0)
+    {
+        @:<tbody>
+            foreach (Reminder item in Model.Reminders)
+            {    
+            <tr data-id="@item.Ien" >
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.ReminderText)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.ReminderDate)</td>
+            </tr>
+            }
+        @:</tbody>
+    }
+    else
+    {
+        <tfoot>
+            <tr>
+                <td colspan="2" class="centered-txt">(No Reminders)</td>
+            </tr>
+        </tfoot> 
+    }
+</table>
+
+@{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);}
+
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button id="view-selected" type="button" class="btn btn-default" disabled="disabled">View Selected</button>
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { dfn = Model.Patient.Dfn })'">Patient Summary</button>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#nav-pat-remind').addClass('active').siblings().removeClass('active');
+            $("tbody > tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#view-selected").removeAttr("disabled");
+            });
+
+            $("#view-selected").click(function () {
+                var id = $("tr.info").attr("data-id");
+                if (id != "")
+                    location.href = '@Url.Action("Detail", "Reminders", new { @dfn = Model.Patient.Dfn })' + "/" + id;
+            });
+        });
+    </script>
+}
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

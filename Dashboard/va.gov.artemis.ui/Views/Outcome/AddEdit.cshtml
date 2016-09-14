@@ -1,0 +1,396 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Outcomes.PatientOutcomeAddEdit
+@using VA.Gov.Artemis.UI.Data.Models.Pregnancy
+
+@{
+    ViewBag.Title = "MCC Dashboard - Outcome Details";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Pregnancy Outcome Details</h1>
+
+@using (Html.BeginForm("AddEdit", "Outcome", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn)
+    @Html.HiddenFor(m => m.PregnancyIen)
+    @Html.HiddenFor(m => m.Edd) 
+    
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered table-db table-horizontal">
+                <tbody>
+                    <tr class="centered-txt" id="outcome-row">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m=>m.OutcomeDetails.OutcomeType, "Outcome:")</th>
+                        <td colspan="2">@Html.DropDownListFor(m => m.OutcomeDetails.OutcomeType, new SelectList(Model.OutcomeList, "Key", "Value", ""), new { @class = "form-control" })</td>
+                    </tr>
+                    <tr class="centered-txt" id="outcome-date-row">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.OutcomeDate,"Outcome/Delivery Date:", new {@id="out-dt-lbl"})</th>
+                        <td colspan="2">@Html.TextBoxFor(m => m.OutcomeDetails.OutcomeDate, new { @class = "form-control" })</td>
+                    </tr>
+
+                    <tr class="delivery-outcome" id="outcome-ga-row">
+                        <th scope="row" style="vertical-align: middle">Gestational Age At Delivery:</th>
+                        <td class="centered-txt">
+                            @Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.GestationalAgeWeeks, "Gestational Age Weeks", new { @class = "sr-only" })
+                            @Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.GestationalAgeWeeks, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px"})&nbsp;&nbsp;Weeks</td>
+                        <td class="centered-txt">
+                            @Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.GestationalAgeDays, "Gestational Age Days", new { @class = "sr-only" })
+                            @Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.GestationalAgeDays, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px"})&nbsp;&nbsp;Days</td>
+                    </tr>
+                    
+
+                    @* *** Delivery Details *** *@
+
+                    <tr class="info delivery-outcome">
+                        <td colspan="3" class="centered-txt">Delivery Method</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.NormalSpontaneousVaginalDelivery, "Normal Spontaneous Vaginal Delivery (NSVD):")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.NormalSpontaneousVaginalDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.ForcepVacuumDelivery, "Forcep or Vacuum Delivery:")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.ForcepVacuumDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.FailedForcepVacuumDelivery, "Failed Forcep or Vacuum Delivery:")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.FailedForcepVacuumDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.CesareanDelivery, "Cesarean Delivery:")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.CesareanDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.CesareanIncisionType, "Cesarean Incision Type:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.CesareanIncisionType, new { @class = "form-control has-placeholder", @placeholder = "Enter cesarean incision type" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.OtherDelivery, "Other Delivery:")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.OtherDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <td colspan="3" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.OtherDeliveryDetails, new { @class = "form-control has-placeholder", @placeholder = "Other Delivery Details" })</td>
+                    </tr>
+                    <tr class="info delivery-outcome">
+                        <td colspan="3" class="centered-txt">Infant Feeding</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.BreastFeeding, "Breast Feeding:")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.BreastFeeding)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.BottleFeeding, "Bottle Feeding:")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.BottleFeeding)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.FormulaFeeding, "Formula:")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.FormulaFeeding)</td>
+                    </tr>
+
+                    <tr class="info delivery-outcome">
+                        <td colspan="3" class="centered-txt">Other</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.DeliveryHospital, "Place of Delivery:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.DeliveryHospital, new { @class = "form-control has-placeholder", @placeholder = "Enter place of delivery" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.DeliveryProvider, "Delivery Provider:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.DeliveryProvider, new { @class = "form-control has-placeholder", @placeholder = "Enter delivery provider" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.DisplayMotherDischargeDate, "Mother Discharge Date:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.DisplayMotherDischargeDate, new { @class = "form-control has-placeholder", @placeholder = "Enter date" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.DaysInHospital, "Days In Hospital Following Delivery:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.DaysInHospital, new { @class = "form-control has-placeholder", @placeholder = "Enter # of days" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.PostPartumComplications, "Postpartum Complications:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.PostPartumComplications, new { @class = "form-control has-placeholder", @placeholder = "Enter complications" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.PpDepressionScreening, "Postpartum Depression Screening:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.PpDepressionScreening, new { @class = "form-control has-placeholder", @placeholder = "Enter details" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.PpIpv, "Risk of IPV:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.PpIpv, new { @class = "form-control has-placeholder", @placeholder = "Enter risks" })</td>
+                    </tr>
+@*                    <tr class="delivery-outcome">
+                        <th scope="row">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.PretermLabor, "Preterm Labor:")</td>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.PretermLabor)</td>
+                    </tr>*@
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.Notes, "Notes:")</th>
+                        <td colspan="2">@Html.TextAreaFor(m => m.OutcomeDetails.DeliveryDetails.Notes, new { @class = "form-control", @rows = 4 })</td>
+                    </tr>
+                    <tr class="info delivery-outcome">
+                        <td colspan="3" class="centered-txt">Postpartum Hospital Treatment</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.PpHospitalTreatment, "Treatment:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextAreaFor(m => m.OutcomeDetails.DeliveryDetails.PpHospitalTreatment, new { @class = "form-control has-placeholder", @placeholder = "Enter treatment", @rows="4" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.PpHospitalProcedures, "Procedures:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextAreaFor(m => m.OutcomeDetails.DeliveryDetails.PpHospitalProcedures, new { @class = "form-control has-placeholder", @placeholder = "Enter procedures", @rows="4" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.PpHospitalDischargeDiet, "Discharge Diet:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextAreaFor(m => m.OutcomeDetails.DeliveryDetails.PpHospitalDischargeDiet, new { @class = "form-control has-placeholder", @placeholder = "Enter discharge diet", @rows="4" })</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.CarePlan, "Plan of Care:")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextAreaFor(m => m.OutcomeDetails.DeliveryDetails.CarePlan, new { @class = "form-control has-placeholder", @placeholder = "Enter care plan", @rows="4" })</td>
+                    </tr>
+
+                    @* *** Ectopic Details *** *@
+                    <tr class="info ectopic">
+                        <td colspan="3" class="centered-txt">Details</td>
+                    </tr>
+
+                    <tr class="warning ectopic">
+                        <td colspan="3" class="centered-txt">Retain patient in tracking until negative pregnancy test documented</td>
+                    </tr>
+                    <tr class="ectopic">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.EctopicDetails.Methotrexate, "Methotrexate:") </th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.EctopicDetails.Methotrexate)</td>
+                    </tr>
+                    <tr class="ectopic">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.EctopicDetails.Salpingostomy, "Salpingostomy (Surgery with Removal of Pregnancy but not Fallopian Tube):")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.EctopicDetails.Salpingostomy)</td>
+                    </tr>
+                    <tr class="ectopic">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.EctopicDetails.Salpingectomy, "Salpingectomy (Surgery with Removal of Pregnancy AND Fallopian Tube):")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.EctopicDetails.Salpingectomy)</td>
+                    </tr>
+                    <tr class="ectopic">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.EctopicDetails.SpontaneousResolution, "Spontaneous Resolution (Followed with Pregnancy Tests, No Surgery or Medicine):")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.EctopicDetails.SpontaneousResolution)</td>
+                    </tr>
+                    <tr class="ectopic">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.EctopicDetails.Notes,"Notes:")</th>
+                        <td colspan="2">@Html.TextAreaFor(m => m.OutcomeDetails.EctopicDetails.Notes, new { @class = "form-control", @rows = 4 })</td>
+                    </tr>
+                    @* *** Pregnancy Termination *** *@
+                    <tr class="info termination">
+                        <td colspan="3" class="centered-txt">Details</td>
+                    </tr>
+
+@*                    <tr class="termination">
+                        <th scope="row">Gestational Age:</td>
+                        <td class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.TerminationDetails.GestationalAgeWeeks, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Weeks</td>
+                        <td class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.TerminationDetails.GestationalAgeDays, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Days</td>
+                    </tr>*@
+                    <tr class="termination">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.TerminationDetails.Trimester,"Trimester:")</th>
+                        @{ Dictionary<string, int> triDict = new Dictionary<string, int>();
+                           triDict.Add("(Select)", -1);
+                           triDict.Add("First", 1);
+                           triDict.Add("Second", 2);
+
+                           SelectList triList = new SelectList(triDict, "value", "key"); 
+                        }
+                        <td colspan="2">@Html.DropDownListFor(m => m.OutcomeDetails.TerminationDetails.Trimester, triList, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr class="termination">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.TerminationDetails.Indication,"Indication:")</th>
+                        @{ Dictionary<string, string> indicationDictionary = new Dictionary<string, string>();
+                           indicationDictionary.Add("Unknown", "Unknown");
+                           indicationDictionary.Add("Therapeutic", "Therapeutic");
+                           indicationDictionary.Add("Elective", "Therapeutic");
+
+                           SelectList indicationList = new SelectList(indicationDictionary, "value", "key"); 
+                        }
+                        <td colspan="2">@Html.DropDownListFor(m => m.OutcomeDetails.TerminationDetails.Indication, indicationList, new { @class = "form-control" })</td>
+                    </tr>                    
+                    <tr class="termination">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.TerminationDetails.FetalAbnormalities, "Known Fetal Abnormalities:") </th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.TerminationDetails.FetalAbnormalities)</td>
+                    </tr>
+                    <tr class="termination">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.TerminationDetails.Notes,"Notes:")</th>
+                        <td colspan="2">@Html.TextAreaFor(m => m.OutcomeDetails.TerminationDetails.Notes, new { @class = "form-control", @rows = 4 })</td>
+                    </tr>
+
+                    @* *** Spontaneous Abortion *** *@
+
+                    <tr class="info spont">
+                        <td colspan="3" class="centered-txt">Details</td>
+                    </tr>
+                    
+                    <tr class="warning spont">
+                        <td colspan="3" class="centered-txt">A pregnancy loss that occurs at or after 20 weeks gestation should be classified as a stillbirth or preterm birth</td>
+                    </tr>
+
+                    <tr class="spont">
+                        <th scope="row" style="vertical-align: middle">Gestational Age:</th>
+                        <td class="centered-txt">
+                            @Html.LabelFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.GestationalAgeWeeks, "Gestational Age Weeks", new { @class = "sr-only" })
+                            @Html.TextBoxFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.GestationalAgeWeeks, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Weeks</td>
+                        <td class="centered-txt">
+                            @Html.LabelFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.GestationalAgeDays, "Gestational Age Days", new { @class = "sr-only" })
+                            @Html.TextBoxFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.GestationalAgeDays, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Days</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.Trimester, "Trimester:")</th>
+                        <td colspan="2">@Html.DropDownListFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.Trimester, triList, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.WithoutSurgery, "Completed Without Surgery or Medication:") </th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.WithoutSurgery)</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.DilationCurettage, "Dilation and Curettage (D&C):")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.DilationCurettage)</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.VacuumAspiration, "Vacuum Aspiration in Office or Emergency Room:")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.VacuumAspiration)</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.MedicationsNeeded, "Medications Needed (Cytotec, Methergen):")</th>
+                        <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.MedicationsNeeded, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr class="spont" style="vertical-align: middle">
+                        <th scope="row">@Html.LabelFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.IncompetentCervix, "Cervical Incompetence (Painless Dilation of Cervix with Delivery):")</th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.IncompetentCervix)</td>
+                    </tr>
+                    
+                    <tr class="spont" style="vertical-align: middle">
+                        <th scope="row">@Html.LabelFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.Notes,"Notes:")</th>
+                        <td colspan="2">@Html.TextAreaFor(m => m.OutcomeDetails.SpontaneousAbortionDetails.Notes, new { @class = "form-control", @rows = 4 })</td>
+                    </tr>
+
+                    @* *** Stillbirth *** *@
+                    <tr class="info stillbirth">
+                        <td colspan="3" class="centered-txt">Details</td>
+                    </tr>
+
+                    <tr class="warning stillbirth">
+                        <td colspan="3" class="centered-txt">Should include pregnancy outcomes at or beyond 20 weeks gestation</td>
+                    </tr>
+                    <tr class="stillbirth">
+                        <th scope="row" style="vertical-align: middle">Gestational Age:</th>                        
+                        <td class="centered-txt">
+                            @Html.LabelFor(m => m.OutcomeDetails.StillbirthDetails.GestationalAgeWeeks, "Gestational Age Weeks", new { @class = "sr-only" })
+                            @Html.TextBoxFor(m => m.OutcomeDetails.StillbirthDetails.GestationalAgeWeeks, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Weeks</td>
+                        <td class="centered-txt">
+                            @Html.LabelFor(m => m.OutcomeDetails.StillbirthDetails.GestationalAgeDays, "Gestational Age Days", new { @class = "sr-only" })
+                            @Html.TextBoxFor(m => m.OutcomeDetails.StillbirthDetails.GestationalAgeDays, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Days</td>
+                    </tr>
+
+                    <tr class="stillbirth">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.StillbirthDetails.FetalAbnormalities, "Known Fetal Abnormalities:") </th>
+                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.StillbirthDetails.FetalAbnormalities)</td>
+                    </tr>
+
+                    <tr class="stillbirth">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.StillbirthDetails.Notes,"Notes:")</th>
+                        <td colspan="2">@Html.TextAreaFor(m => m.OutcomeDetails.StillbirthDetails.Notes, new { @class = "form-control", @rows = 4 })</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("PregnancyView", "Pregnancy", new { @dfn = Model.Patient.Dfn, @pregIen = Model.PregnancyIen })'">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+    <br />
+}
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".has-placeholder").placeholder();
+
+            if (($("#OutcomeDetails_OutcomeType").val() != "@PregnancyOutcomeType.FullTermDelivery") && ($("#OutcomeDetails_OutcomeType").val() != "@PregnancyOutcomeType.PretermDelivery"))
+                $(".delivery-outcome").hide();
+
+            if ($("#OutcomeDetails_OutcomeType").val() != "@PregnancyOutcomeType.Ectopic")
+                $(".ectopic").hide();
+
+            if ($("#OutcomeDetails_OutcomeType").val() != "@PregnancyOutcomeType.PregnancyTermination")
+                $(".termination").hide();
+
+            if ($("#OutcomeDetails_OutcomeType").val() != "@PregnancyOutcomeType.SpontaneousAbortion")
+                $(".spont").hide();
+
+            if ($("#OutcomeDetails_OutcomeType").val() != "@PregnancyOutcomeType.StillBirth")
+                $(".stillbirth").hide();
+
+@*            $("#OutcomeDetails_OutcomeDate").change(function () {
+                updateGA();
+            });
+
+            function updateGA()
+            {
+                if ($("Edd").val() != "@DateTime.MinValue")
+                {
+                    if (($("#OutcomeDetails_OutcomeType").val() == "@PregnancyOutcomeType.FullTermDelivery") || ($(this).val() == "@PregnancyOutcomeType.PretermDelivery"))) {
+
+                    }
+            }
+            };*@
+
+            $("#OutcomeDetails_OutcomeType").change(function () {
+
+                if (($(this).val() == "@PregnancyOutcomeType.FullTermDelivery") || ($(this).val() == "@PregnancyOutcomeType.PretermDelivery"))
+                    $(".delivery-outcome").show();
+                else
+                    $(".delivery-outcome").hide();
+
+                if ($(this).val() == "@PregnancyOutcomeType.Ectopic")
+                    $(".ectopic").show();
+                else
+                    $(".ectopic").hide();
+
+                if ($(this).val() == "@PregnancyOutcomeType.PregnancyTermination")
+                    $(".termination").show();
+                else
+                    $(".termination").hide();
+
+                if ($(this).val() == "@PregnancyOutcomeType.SpontaneousAbortion")
+                    $(".spont").show();
+                else
+                    $(".spont").hide();
+
+                if ($(this).val() == "@PregnancyOutcomeType.StillBirth")
+                    $(".stillbirth").show();
+                else
+                    $(".stillbirth").hide();
+
+                updateDateLabel();
+
+            });
+
+            function updateDateLabel() {
+                var outcomeVal = $("#OutcomeDetails_OutcomeType").val();
+                if (outcomeVal == "@PregnancyOutcomeType.Ectopic")
+                    $('#out-dt-lbl').html('Date of Treatment Initiation:');
+                else if ((outcomeVal == "@PregnancyOutcomeType.FullTermDelivery") || (outcomeVal == "@PregnancyOutcomeType.PretermDelivery"))
+                    $('#out-dt-lbl').html('Date of Delivery:');
+                else if ((outcomeVal == "@PregnancyOutcomeType.Unknown"))
+                    $('#out-dt-lbl').html('Outcome/Delivery Date:');
+                else
+                    $('#out-dt-lbl').html('Outcome Date:');
+            };
+
+        });
+    </script>
+}

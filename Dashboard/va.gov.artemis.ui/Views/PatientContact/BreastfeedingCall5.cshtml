@@ -1,0 +1,18 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.PatientContact.BreastfeedingCallTab
+
+<tbody class="note-body">
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.PatientIntendsToBreastfeed)&nbsp;&nbsp;@Html.LabelFor(m=>m.PatientIntendsToBreastfeed, "Patient intends to breastfeed")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.OfferToOrderSupplies)&nbsp;&nbsp;@Html.LabelFor(m=>m.OfferToOrderSupplies, "Offer to order nursing supplies (nipple cream, pads, nursing bra)")</td></tr>
+    <tr class="active"><td colspan="2" >Breast Pump Previously Ordered?</tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.BreastPumpOrdered, true, new {@id="pump-ordered-yes" })&nbsp;&nbsp;@Html.LabelFor(m => m.BreastPumpOrdered,"Yes", new {@for = "pump-ordered-yes"})</tr>
+    <tr><td colspan="2" style="padding-left: 80px">Has it been received?</tr>
+    <tr><td colspan="2" style="padding-left: 120px">@Html.RadioButtonFor(m => m.BreastPumpReceived, true, new {@class="ordered-yes", @id="received-yes" })&nbsp;&nbsp;@Html.LabelFor(m => m.BreastPumpReceived, "Yes", new {@for="received-yes"})</tr>
+    <tr><td colspan="2" style="padding-left: 120px">@Html.RadioButtonFor(m=>m.BreastPumpReceived,false, new {@class="ordered-yes", @id="received-mp" })&nbsp;&nbsp;@Html.LabelFor(m => m.BreastPumpReceived, "No", new {@for="received-no"})</tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.BreastPumpOrdered, false, new { @id = "pump-ordered-no" })&nbsp;&nbsp;@Html.LabelFor(m => m.BreastPumpOrdered,"No", new {@for = "pump-ordered-no"})</tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.CheckBoxFor(m=>m.ReOfferBreastPump, new {@class="ordered-no" })&nbsp;&nbsp;@Html.LabelFor(m=>m.ReOfferBreastPump, "Re-offer to order breast pump")</tr>
+    <tr><td colspan="2" >@Html.CheckBoxFor(m=>m.AdviseToCall)&nbsp;&nbsp;@Html.LabelFor(m=>m.AdviseToCall, "Advise patient to call if ordered items not received in expected time period")</td></tr>
+    <tr class="active"><td colspan="2" >Notes</tr>
+    <tr><td colspan="2">
+        @Html.LabelFor(m => m.BreastfeedingComment, "Notes", new {@class="sr-only"})
+        @Html.TextAreaFor(m => m.BreastfeedingComment, new {@placeholder="Breastfeeding & Supplies Notes", @class="form-control", @rows="7" })</td>
+</tbody>

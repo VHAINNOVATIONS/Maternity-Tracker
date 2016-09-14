@@ -1,0 +1,50 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.Notes
+@model DeleteNoteModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - Delete Note";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Delete Dashboard Note</h1>
+
+@*@{Html.RenderPartial("~/Views/Shared/_PatientBlock.cshtml", Model.Patient);}*@
+
+
+@using (Html.BeginForm("Delete", "Notes", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div>
+
+        @Html.HiddenFor(m => m.Patient.Dfn)
+        @Html.HiddenFor(m => m.NoteIen)
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Reason:</label>
+                    @Html.TextBoxFor(m => m.DeleteReason, new {@class="form-control"})
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default" onclick="window.history.back();">Cancel</button>
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

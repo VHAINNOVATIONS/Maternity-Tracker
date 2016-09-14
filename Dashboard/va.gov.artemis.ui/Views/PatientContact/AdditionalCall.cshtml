@@ -1,0 +1,79 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.Notes
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.AdditionalCallNote
+
+@{
+    ViewBag.Title = "MCC Dashboard - Additional Call Note";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@* *** Call Template *** *@
+
+<h1 class="h3 page-header">Additional Call Note</h1>
+
+@* *** Patient *** *@
+
+@Html.Partial("~\\Views\\PatientContact\\_ContactHeader.cshtml", Model.Patient)
+
+
+@using (Html.BeginForm("AdditionalCall", "PatientContact", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div>
+
+        @Html.HiddenFor(m => m.Patient.Dfn)
+
+        @Html.HiddenFor(m => m.Note.Ien)
+
+        @Html.HiddenFor(m => m.Note.PregnancyIen)
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PregnancyIen, "Pregnancy")
+                    @Html.DropDownListFor(m => m.PregnancyIen, new SelectList(Model.Pregnancies, "key", "value"), new { @class = "form-control", @style="max-width: 328px;"  })
+                </div>
+            </div>
+        </div>
+
+        @if (string.IsNullOrWhiteSpace(Model.Note.Ien))        
+        {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Note.Subject)
+                    @Html.TextBoxFor(m => m.Note.Subject, new {@class="form-control"})
+                </div>
+
+            </div>
+        </div>
+        }
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Note.NoteText, "Dashboard Note Text")
+                    @Html.TextAreaFor(m => m.Note.NoteText, new {@class="form-control", @rows = "10", @style="whitespace: pre; font-family: Courier"})
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Preview/Finish</button>
+                    <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index", new {@dfn = Model.Patient.Dfn, @pregIen = Model.PregnancyIen})'">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

@@ -1,0 +1,22 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Common.BasePatient
+
+<div class="patient-block">
+    <ul class="list-unstyled">
+        @if (Model == null)
+        {
+            <li><strong>(NO PATIENT FOUND)</strong></li>
+        }
+        else if (Model.NotFound) 
+        {
+            <li><strong>(NO PATIENT FOUND)</strong></li>
+        }
+        else
+        {
+            <li><strong>@Model.Name</strong></li>
+            <li>XXX-XX-@Model.Last4</li>            
+            <li>@Model.FormattedDob (Age: @Model.Age)</li>
+            <li>@Model.StatusMessage</li>
+            <li><a href="@Url.Action("EditPregnancyHistory","Pregnancy",new {@dfn=Model.Dfn})">@Model.GravidaPara</a></li>
+        }
+    </ul>
+</div>

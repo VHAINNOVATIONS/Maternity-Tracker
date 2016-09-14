@@ -1,0 +1,74 @@
+﻿@using System.Web.Optimization;
+@using Microsoft.Web.Mvc;
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" media="screen" />
+    <link href="@Url.Content("~/Content/bs-dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/offcanvas.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @RenderSection("head", required: false)
+    @Html.Partial("_html5shiv")
+    @* favicons and touch icons go here *@
+
+    @RenderSection("style", false)
+</head>
+<body style="padding-top: 0px">
+    <div class="container-fluid">
+        @*<div class="row top-row">*@
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="col-sm-3 col-md-2 sidebar sidebar-offcanvas" style="padding-top: 0px" id="sidebar">
+                <a href="@Url.Action("Index", "Home")" id="mcc-dashboard-link">
+                    <p class="text-center h3" style="color: white; margin-top: 10px">MCC Dashboard</p>
+                    <p class="text-center" style="font-size: 48px"><span class="glyphicon glyphicon-dashboard" style="color: white"></span></p>
+                </a>
+
+                <a class="sr-only sr-only-focusable" id="skipTo" href="#content" style="display: block; padding: 10px 15px;margin: 10px;background-color: #fff;border: 1px solid #ddd">Skip To Content</a>
+
+                @RenderSection("Navigation", false)
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 top-row">
+                <p class="pull-left visible-xs">
+                    <button type="button" class="btn btn-default btn-xs" data-toggle="offcanvas" style="background-color: #808080; color: white; margin-left: -16px; margin-right: 10px">Menu</button>
+                </p>
+                <div class="row wrap" id="content">
+                    <div class="content-row" style="padding: 20px">
+                        @Html.Partial("_alerts")
+                        @RenderBody()
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <hr style="margin-top: 6px; margin-bottom: 3px" />
+                    <div class="pull-right" style="padding-right: 10px">
+                        <a href="@Url.Action("Index", "ReleaseNotes")">@ViewBag.AppVersion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/MyBundle")
+
+    @RenderSection("Scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#skipTo').click(function () {
+                $('#content').attr('tabIndex', -1).focus();
+            });
+        });
+    </script>
+
+    @if (!ViewBag.NoTimeout)
+    {
+        Html.RenderPartial("~\\Views\\Shared\\_Timeout.cshtml"); 
+    }
+
+</body>
+</html>

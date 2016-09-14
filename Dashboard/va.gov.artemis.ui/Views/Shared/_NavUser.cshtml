@@ -1,0 +1,12 @@
+﻿@if (!string.IsNullOrWhiteSpace(User.Identity.Name))
+{
+<ul class="nav nav-sidebar">
+    <li class="text-center list-group-item disabled thin-header">
+        <span class="glyphicon glyphicon-user"></span>
+        &nbsp;&nbsp;&nbsp;@User.Identity.Name
+    </li>
+    @* TODO: Add alert count badge  <span class="badge badge-danger">23</span> *@
+    <li><a id="nav-alerts" class="list-group-item" href="@Url.Action("Index", "Alerts", new {@page="1"})">Alerts</a></li>
+    <li><a  class="list-group-item" href="@Url.Action("Logout", "Account")">Sign Out</a></li>
+</ul>
+}

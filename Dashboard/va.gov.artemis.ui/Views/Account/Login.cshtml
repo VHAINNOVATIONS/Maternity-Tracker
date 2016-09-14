@@ -1,0 +1,66 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Account.Login
+
+@{
+    ViewBag.Title = "MCC Dashboard - Login";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Login</h1>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @role = "form" }))
+{
+    @Html.AntiForgeryToken() 
+
+    @Html.HiddenFor(m => m.RequestedUrl)
+
+    <div class="row">
+        <div class="col-md-8" style="width: 620px">
+            <pre id="intro-message">@Model.IntroMessage</pre>
+            @Html.HiddenFor(m => m.IntroMessage)
+        </div>
+        <div id="login-div" class="col-md-4" style="width: 400px">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <fieldset>
+                        <legend>Sign In</legend>
+                        @*<h2 class="h4">Sign In</h2>*@
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.AccessCode, new { @class = "sr-only", @for = "AccessCode" })
+                            @Html.PasswordFor(m => m.AccessCode, new { @class = "form-control", @placeholder = "Access Code" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.VerifyCode, new { @class = "sr-only", @for = "VerifyCode" })
+                            @Html.PasswordFor(m => m.VerifyCode, new { @class = "form-control", @placeholder = "Verify Code" })
+                        </div>
+                        <button type="submit" class="btn btn-default btn-primary btn-block">Sign in</button>
+                    </fieldset>
+
+                </div>
+            </div>
+            <div id="message-div" class="row">
+                <p class="text-danger centered-txt">@Model.LoginMessage</p>
+            </div>
+
+        </div>
+    </div>            
+}
+
+<br />
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#AccessCode, #VerifyCode").placeholder();
+
+            $("#mcc-dashboard-link").focus();
+        });
+    </script>
+}
+
+@section Navigation
+{
+    <ul class="nav nav-sidebar">
+        <li><a class="list-group-item" href="@Url.Action("Edit", "ServerSettings")">Server Settings</a></li>
+    </ul>
+}

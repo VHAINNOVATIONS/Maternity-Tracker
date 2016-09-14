@@ -1,0 +1,15 @@
+﻿<script>
+    $(document).ready(function () {
+
+        if ($('#PatientInterestedInSupplies').prop('checked') == false)
+            $('.supplies-yes').attr('disabled', 'disabled');
+
+        $('input[name="PatientInterestedInSupplies"]:radio').change(function () {
+            if ($(this).val() == "Yes") {
+                $('.supplies-yes').removeAttr('disabled');
+            } else {
+                $('.supplies-yes').attr('disabled', 'disabled');
+            }
+        });
+    });
+</script>

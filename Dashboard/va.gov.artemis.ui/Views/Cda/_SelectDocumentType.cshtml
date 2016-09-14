@@ -1,0 +1,42 @@
+﻿@using VA.Gov.Artemis.CDA;
+@model VA.Gov.Artemis.UI.Data.Models.Cda.CdaIndex
+
+<div class="modal fade doc-type-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="h4 modal-title" id="myModalLabel">Please select the type of document to send</h2>
+                
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+
+                @foreach (IheDocumentType docType in Enum.GetValues(typeof(IheDocumentType)))
+                {
+                    if (docType != IheDocumentType.MDS && docType != IheDocumentType.NDS)
+                    {
+                        string desc = string.Format("{0} ({1})", CdaUtility.DocumentTypeName[(int)docType], CdaUtility.DocumentTypeAbbreviation[(int)docType]);
+                        if (CdaUtility.DocumentTypeIsSupported[(int)docType])
+                        {
+                            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href = '@Url.Action("Options", new {@dfn = Model.Patient.Dfn, @documentType = docType})'">@desc</button>
+                        }
+                        else 
+                        {
+                            <button type="button" class="btn btn-primary btn-lg btn-block" disabled="disabled" onclick="location.href = '@Url.Action("Options", new {@dfn = Model.Patient.Dfn, @documentType = docType})'">@desc</button>
+                        }
+                    }                
+                }
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-default" data-dismiss="modal" onclick="$('.doc-type-modal').modal('hide');" value="Cancel" />
+            </div>
+
+        </div>
+    </div>
+</div>

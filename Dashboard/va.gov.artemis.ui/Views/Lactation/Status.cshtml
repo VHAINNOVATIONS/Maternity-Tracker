@@ -1,0 +1,56 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Lactation.LactationStatus
+
+@{
+    ViewBag.Title = "MCC Dashboard - Lactation Status";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Lactation Status</h1>
+@using (Html.BeginForm("Status", "Lactation", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn);
+    @Html.HiddenFor(m => m.CurrentStatus); 
+   
+    <div class="col-md-8">
+        <table class="table table-bordered table-expanded table-horizontal" >
+            <tbody>
+                @{string curLact = (Model.Patient.Lactating) ? "Lactating" : "Not Lactating";}
+                <tr class="centered-txt">
+                    <th scope="row" style="vertical-align: middle">Current Lactation Status:</th>
+                    <td style="vertical-align: middle"><strong>@curLact</strong></td>
+                </tr>
+                <tr class="centered-txt">
+                    <th scope="row" style="vertical-align: middle">Today's Lactation Status:</th>
+                    <td style="vertical-align: middle">@Html.DropDownListFor(m => m.NewStatus , new SelectList(Model.NewStatusSelection, "Value", "Key",""), new {@class="form-control"})</td>
+                </tr>     
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { @dfn = Model.Patient.Dfn })'">Cancel</button>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>    
+}
+<br />
+
+@section Scripts 
+{
+<script> 
+    $(document).ready(function () {
+
+    });
+</script>
+}
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

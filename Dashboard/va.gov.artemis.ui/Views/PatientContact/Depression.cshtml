@@ -1,0 +1,70 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Extensions
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.DepressionCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+    <tr class="active"><td colspan="2">In the past 2 weeks, how often have you been bothered by little interest or pleasure in doing things?</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.LittleInterest, 0, new {@id="rdo-li-0" })&nbsp;&nbsp;@Html.LabelFor(m => m.LittleInterest, "Not at all (0)", new { @for = "rdo-li-0" })</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m=>m.LittleInterest, 1, new {@id="rdo-li-1" })&nbsp;&nbsp;@Html.LabelFor(m => m.LittleInterest, "Several Days (1)", new { @for = "rdo-li-1" })</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m=>m.LittleInterest, 2, new {@id="rdo-li-2" })&nbsp;&nbsp;@Html.LabelFor(m => m.LittleInterest, "More than half the days (2)", new { @for = "rdo-li-2" })</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m=>m.LittleInterest, 3, new {@id="rdo-li-3" })&nbsp;&nbsp;@Html.LabelFor(m => m.LittleInterest, "Nearly every day (3)", new { @for = "rdo-li-3" })</td></tr>
+    <tr><td colspan="2" class="active">In the past 2 weeks, how often have you been bothered by feeling down, depressed or hopeless?</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.FeelingDown, 0, new { @id = "rdo-fd-0" })&nbsp;&nbsp;@Html.LabelFor(m => m.FeelingDown, "Not at all (0)", new { @for = "rdo-fd-0"})</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m=>m.FeelingDown, 1, new { @id = "rdo-fd-1" })&nbsp;&nbsp;@Html.LabelFor(m => m.FeelingDown, "Several Days (1)", new { @for = "rdo-fd-1"})</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m=>m.FeelingDown, 2, new { @id = "rdo-fd-2" })&nbsp;&nbsp;@Html.LabelFor(m => m.FeelingDown, "More than half the days (2)", new { @for = "rdo-fd-2"})</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m=>m.FeelingDown, 3, new { @id = "rdo-fd-3" })&nbsp;&nbsp;@Html.LabelFor(m => m.FeelingDown, "Nearly every day (3)", new { @for = "rdo-fd-3"})</td></tr>
+    <tr class="warning centered-txt"><td colspan="2"><strong id="patient-score">Patient Score: -</strong></td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.SuicideScreen)&nbsp;&nbsp;@Html.LabelFor(m=>m.SuicideScreen, "Suicide screen and referral to resources if total score = 3 or more")</td></tr>
+</tbody>
+
+@section Scripts
+{
+    <script>
+
+        var totalScore = 0;
+        var totalInterest = 0;
+        var totalFeelingDown = 0;
+        
+        $('input[name="LittleInterest"]:radio').change(function () {
+
+            totalInterest = 0;
+
+            if ($(this).val() == "1") 
+                totalInterest += parseFloat($(this).val());
+            if ($(this).val() == "2") 
+                totalInterest += parseFloat($(this).val());
+            if ($(this).val() == "3")
+                totalInterest += parseFloat($(this).val());
+
+            totalScore = totalFeelingDown + totalInterest;
+            $('#patient-score').text('Total Score: ' + totalScore);
+        });
+
+        $('input[name="FeelingDown"]:radio').change(function () {
+
+            totalFeelingDown = 0;
+
+            if ($(this).val() == "1")
+                totalFeelingDown += parseFloat($(this).val());
+            if ($(this).val() == "2")
+                totalFeelingDown += parseFloat($(this).val());
+            if ($(this).val() == "3")
+                totalFeelingDown += parseFloat($(this).val());
+
+            totalScore = totalFeelingDown + totalInterest;
+            $('#patient-score').text('Total Score: ' + totalScore);
+        });
+
+        totalInterest = parseFloat(@Model.LittleInterest); 
+        if (totalInterest < 0) totalInterest = 0; 
+        totalFeelingDown = parseFloat(@Model.FeelingDown); 
+        if (totalFeelingDown < 0) totalFeelingDown = 0; 
+        totalScore = totalFeelingDown + totalInterest;
+        $('#patient-score').text('Total Score: ' + totalScore);
+
+    </script>
+}

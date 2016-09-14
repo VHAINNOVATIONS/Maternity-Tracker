@@ -1,0 +1,141 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Pregnancy.EditPregnancyHistory
+
+@{
+    ViewBag.Title = "MCC Dashboard - Pregnancy History";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@if (!Model.Patient.NotFound)
+{
+    //Html.RenderPartial("~/Views/Shared/_PatientBlock.cshtml", Model.Patient);
+}
+
+<br />
+<h1 class="h3 page-header">Pregnancy History</h1>
+
+@using (Html.BeginForm("EditPregnancyHistory", "Pregnancy", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+@*    <div class="row">
+        <div class="col-md-6 text-center"><label class="label-success">@Model.History.Gravidity</label></div>
+        <div class="col-md-6 text-center"><label class="label-success">@Model.History.Parity</label></div>
+    </div>*@
+    <br />
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 col-offset-2">
+
+            @Html.HiddenFor(model => model.Patient.Dfn)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.History.TotalPregnancies)
+                @Html.TextBoxFor(model => model.History.TotalPregnancies, new { @class = "form-control gp" })
+                @Html.ValidationMessageFor(model => model.History.TotalPregnancies)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.History.TermBirths)
+                @Html.TextBoxFor(model => model.History.TermBirths, new { @class = "form-control gp" })
+                @Html.ValidationMessageFor(model => model.History.TermBirths)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.History.PretermBirths)
+                @Html.TextBoxFor(model => model.History.PretermBirths, new { @class = "form-control gp" })
+                @Html.ValidationMessageFor(model => model.History.PretermBirths)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.History.StillBirths)
+                @Html.TextBoxFor(model => model.History.StillBirths, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.History.StillBirths)
+            </div>
+
+        </div>
+
+        <div class="col-md-5 col-offset-6">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.History.SpontaneousAbortions)
+                @Html.TextBoxFor(model => model.History.SpontaneousAbortions, new { @class = "form-control gp" })
+                @Html.ValidationMessageFor(model => model.History.SpontaneousAbortions)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.History.PregnancyTerminations)
+                @Html.TextBoxFor(model => model.History.PregnancyTerminations, new { @class = "form-control gp" })
+                @Html.ValidationMessageFor(model => model.History.PregnancyTerminations)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.History.EctopicPregnancies)
+                @Html.TextBoxFor(model => model.History.EctopicPregnancies, new { @class = "form-control gp" })
+                @Html.ValidationMessageFor(model => model.History.EctopicPregnancies)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.History.LivingChildren)
+                @Html.TextBoxFor(model => model.History.LivingChildren, new { @class = "form-control gp" })
+                @Html.ValidationMessageFor(model => model.History.LivingChildren)
+            </div>
+
+        </div>
+
+        <div class="col-md-4 col-md-offset-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.History.GravidaPara)
+                <p class="gp_summ" id="History_GravidaPara">@Html.DisplayFor(model => model.History.GravidaPara)</p>
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 col-offset-2">
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" onclick="location.href='@Model.ReturnUrl'">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+}
+
+<br />
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+        });
+
+        $('.gp').change(function () {
+            var result = 'G' + $('#History_TotalPregnancies').val();
+            result += ' P' + $('#History_TermBirths').val();
+            result += $('#History_PretermBirths').val();
+            
+            var a = +$('#History_SpontaneousAbortions').val();
+            var b = +$('#History_PregnancyTerminations').val();
+            var c = +$('#History_EctopicPregnancies').val();
+
+            var sum = a + b + c;
+
+            result += sum.toString();
+
+            result += $('#History_LivingChildren').val();
+
+            $('#History_GravidaPara').text(result);
+        });
+
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+

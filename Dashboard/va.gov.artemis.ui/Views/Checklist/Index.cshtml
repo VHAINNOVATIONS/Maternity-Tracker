@@ -1,0 +1,115 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Checklist.ChecklistIndex
+@using VA.Gov.Artemis.UI.Data.Models.Checklist
+
+@{
+    ViewBag.Title = "MCC Dashboard - Checklist";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Checklist Items</h1>
+
+<p class="bg-success" style="padding: 16px; margin-bottom: 20px">The following checklist items are the default tasks that are added for each patient upon establishment of an EDD</p>
+
+<p><i>Click a row to select the checklist item</i></p>
+
+<table class="table table-bordered table-hover table-db" style="font-size: 12px">
+    <thead class="centered-header">
+        <tr>
+            <th scope="col" >Type</th>
+            <th scope="col" >Category</th>
+            <th scope="col" >Description</th>
+            <th scope="col" >Due</th>
+        </tr>
+    </thead>
+        @if (Model.Items.Count > 0)
+        {
+            @:<tbody>
+
+            foreach (ChecklistItem item in Model.Items)
+            {
+            <tr data-id="@item.Ien">
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.ItemTypeDescription)</td>
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Category)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Description)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Due)</td>
+            </tr>
+            }
+            @:</tbody>
+        }
+        else
+        {
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="centered-txt">(No Checklist Items)</td>
+                </tr>  
+            </tfoot> 
+        }
+</table>
+
+@{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);}
+
+<br />
+@using (Html.BeginForm("PostIndex", "Checklist", FormMethod.Post, new { @id = "index-form", @class = "row" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.SelectedItemIen)
+    @Html.HiddenFor(m => m.PostOperation)
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                @if (Model.Items.Count == 0)
+                {
+                    <button id="add-default" type="button" class="btn btn-default btn-post" data-op="@ChecklistIndexOperation.LoadDefaults">Load Defaults</button>
+                }
+                <button id="add-new" type="button" class="btn btn-default">Add New</button>
+                <button id="edit-selected" type="button" class="btn btn-default" disabled="disabled">Edit Selected</button>
+                <button id="delete-selected" type="button" class="btn btn-default btn-post" disabled="disabled"  data-op="@ChecklistIndexOperation.Delete">Delete Selected</button>
+            </div>
+        </div>
+    </div>
+    
+}
+<br />
+<br />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#nav-config-chk').addClass('active').siblings().removeClass('active');
+
+            $("tbody > tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#edit-selected").removeAttr("disabled");
+                $("#delete-selected").removeAttr("disabled");
+                $("#SelectedItemIen").val($("tr.info").attr("data-id"));
+            });
+
+            $("#edit-selected").click(function () {
+                var id = $("tr.info").attr("data-id");
+                if (id != "")
+                    location.href = '@Url.Action("AddEdit", "Checklist")' + "/" + id;
+            });
+
+            $("#add-new").click(function () {
+                location.href = '@Url.Action("AddEdit", "Checklist")';
+            });
+
+            $('.btn-post').click(function () {
+                $("#PostOperation").val($(this).attr("data-op"));
+                if ($(this).attr("data-op") != '@ChecklistIndexOperation.Unknown')
+                    $("#index-form").submit();
+            });
+
+        });
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}
+

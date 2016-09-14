@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84FF5B28-FDA7-4F8F-A610-9D503AD95755}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VA.Gov.Artemis.UI</RootNamespace>
+    <AssemblyName>VA.Gov.Artemis.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <DeployEncryptKey>Encryption password is used only if any deployment setting is marked as secure</DeployEncryptKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.2.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyVersionInfo.cs">
+      <Link>AssemblyVersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="BootstrapSupport\ControlGroupExtensions.cs" />
+    <Compile Include="BootstrapSupport\HtmlHelpers\GlyphIcons.cs" />
+    <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
+    <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
+    <Compile Include="Controllers\AlertsController.cs" />
+    <Compile Include="Controllers\AccountControllerPrivate.cs" />
+    <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\CdaImporter.cs" />
+    <Compile Include="Controllers\ChecklistController.cs" />
+    <Compile Include="Controllers\ChecklistUtility.cs" />
+    <Compile Include="Controllers\Common\LowerCaseContractResolver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ConsultsController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
+    <Compile Include="Controllers\MockController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\OutcomeController.cs" />
+    <Compile Include="Controllers\PregnancyUtilities.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\NotesController.cs" />
+    <Compile Include="Controllers\DivisionController.cs" />
+    <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\FlaggedPatientsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CdaController.cs" />
+    <Compile Include="Controllers\IServerPaths.cs" />
+    <Compile Include="Controllers\LabsController.cs" />
+    <Compile Include="Controllers\LactationController.cs" />
+    <Compile Include="Controllers\NonVACareController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PatientContactController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\PatientListController.cs" />
+    <Compile Include="Controllers\PatientSearchController.cs" />
+    <Compile Include="Controllers\PregnancyController.cs" />
+    <Compile Include="Controllers\RadiologyController.cs" />
+    <Compile Include="Controllers\ReleaseNotesController.cs" />
+    <Compile Include="Controllers\RemindersController.cs" />
+    <Compile Include="Controllers\ServerPaths.cs" />
+    <Compile Include="Controllers\ServerSettingsController.cs" />
+    <Compile Include="Controllers\Text4BabyController.cs" />
+    <Compile Include="Controllers\TrackController.cs" />
+    <Compile Include="Controllers\TrackingHistoryController.cs" />
+    <Compile Include="Extensions\DashboardExtensions.cs" />
+    <Compile Include="Filters\DisableLocalCacheAttribute.cs" />
+    <Compile Include="Filters\VerifySessionAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
+    <Compile Include="NavigationRoutes\NamedRoute.cs" />
+    <Compile Include="NavigationRoutes\NavigationExtensions.cs" />
+    <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
+    <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\Text4BabyServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Microsoft.Web.Mvc.dll" />
+    <Content Include="bin\Microsoft.Web.Mvc.FixedDisplayModes.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\NLog.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bs-dashboard.css" />
+    <Content Include="Content\cda\CDA.xsl" />
+    <Content Include="Content\cda\WARNING READ THIS.txt" />
+    <Content Include="Content\ChangeVerifyCode.css" />
+    <Content Include="Content\default_checklist.xml" />
+    <Content Include="Content\Home.css" />
+    <Content Include="Content\images\dss logo.jpg" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\graph1.PNG" />
+    <Content Include="Content\images\graph2.PNG" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\t4b-logo.png" />
+    <Content Include="Content\images\VA Innovation Logo.png" />
+    <Content Include="Content\images\VA_PrimaryLogo_1color_navy.jpg" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\offcanvas.css" />
+    <Content Include="Content\progress.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\dashboard.css" />
+    <Content Include="pager\first.png" />
+    <Content Include="pager\last.png" />
+    <Content Include="pager\next.png" />
+    <Content Include="pager\pager.css" />
+    <Content Include="pager\prev.png" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\Dashboard.js" />
+    <Content Include="Scripts\jquery.placeholder.js" />
+    <Content Include="Scripts\jquery.placeholder.min.js" />
+    <Content Include="Scripts\jquery.tablesorter.js" />
+    <Content Include="Scripts\jquery.tablesorter.min.js" />
+    <Content Include="Scripts\jquery.tablesorter.pager.js" />
+    <Content Include="Scripts\offcanvas.js" />
+    <Content Include="Service References\Text4BabyServiceReference\VA.Gov.Artemis.UI.Text4BabyServiceReference.InvokeAPIResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Text4BabyServiceReference\Voxiva.disco" />
+    <Content Include="Service References\Text4BabyServiceReference\configuration91.svcinfo" />
+    <Content Include="Service References\Text4BabyServiceReference\configuration.svcinfo" />
+    <Content Include="Service References\Text4BabyServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="sorter\asc.gif" />
+    <Content Include="sorter\bg.gif" />
+    <Content Include="sorter\desc.gif" />
+    <Content Include="sorter\style.css" />
+    <Content Include="tablesorter.txt" />
+    <Content Include="Views\TrackingHistory\All.cshtml" />
+    <Content Include="Views\PatientSearch\Search.cshtml" />
+    <Content Include="Views\PatientList\Overview.cshtml" />
+    <Content Include="Views\Patient\Summary.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Views\FlaggedPatients\Index.cshtml" />
+    <Content Include="Views\FlaggedPatients\Details.cshtml" />
+    <Content Include="Views\Shared\_PatientBlock.cshtml" />
+    <Content Include="Views\TrackingHistory\ByPatient.cshtml" />
+    <Content Include="Views\TrackingHistory\_TrackingHistoryTable.cshtml" />
+    <Content Include="Views\Track\Create.cshtml" />
+    <Content Include="Views\FlaggedPatients\_FlaggedActionDropdown.cshtml" />
+    <Content Include="Views\Shared\_paging.cshtml" />
+    <Content Include="Views\ReleaseNotes\Index.cshtml" />
+    <Content Include="Views\FlaggedPatients\ProgressNote.cshtml" />
+    <Content Include="Views\NonVACare\Index.cshtml" />
+    <Content Include="Views\NonVACare\AddEdit.cshtml" />
+    <Content Include="Views\FlaggedPatients\_ProgressNotesList.cshtml" />
+    <Content Include="Views\Notes\Index.cshtml" />
+    <Content Include="Views\Notes\Details.cshtml" />
+    <Content Include="Views\Notes\CreateNote.cshtml" />
+    <Content Include="Views\Notes\Delete.cshtml" />
+    <Content Include="Views\Notes\Sign.cshtml" />
+    <Content Include="Views\Notes\CreateAddendum.cshtml" />
+    <Content Include="Views\Cda\Index.cshtml" />
+    <Content Include="Views\Cda\Options.cshtml" />
+    <Content Include="Views\Cda\PreviewDocument.cshtml" />
+    <Content Include="Views\Cda\DocumentView.cshtml" />
+    <Content Include="Views\Cda\PreviewUpload.cshtml" />
+    <Content Include="Views\Cda\PatientMatch.cshtml" />
+    <Content Include="Views\Cda\_PlainPatientBlock.cshtml" />
+    <Content Include="Views\Cda\DataImport.cshtml" />
+    <Content Include="Views\PatientContact\Index.cshtml" />
+    <Content Include="Views\PatientContact\ViewNote.cshtml" />
+    <Content Include="Views\PatientContact\Intro.cshtml" />
+    <Content Include="Views\PatientContact\Coverage.cshtml" />
+    <Content Include="Views\PatientContact\Health.cshtml" />
+    <Content Include="Views\PatientContact\Smoking.cshtml" />
+    <Content Include="Views\PatientContact\Alcohol.cshtml" />
+    <Content Include="Views\PatientContact\Depression.cshtml" />
+    <Content Include="Views\PatientContact\IPV.cshtml" />
+    <Content Include="Views\PatientContact\Classes.cshtml" />
+    <Content Include="Views\PatientContact\Breastfeeding.cshtml" />
+    <Content Include="Views\PatientContact\WIC.cshtml" />
+    <Content Include="Views\PatientContact\Contraception.cshtml" />
+    <Content Include="Views\PatientContact\PostpartumVisit.cshtml" />
+    <Content Include="Views\PatientContact\VAPCP.cshtml" />
+    <Content Include="Views\PatientContact\End.cshtml" />
+    <Content Include="Views\PatientContact\_CallTab.cshtml" />
+    <Content Include="Views\Pregnancy\SelectFather.cshtml" />
+    <Content Include="Views\Pregnancy\AddEditFather.cshtml" />
+    <Content Include="Views\PatientContact\BreastfeedingCall4.cshtml" />
+    <Content Include="Views\PatientContact\BreastfeedingCall5.cshtml" />
+    <Content Include="Views\PatientContact\BreastfeedingCall6a.cshtml" />
+    <Content Include="Views\PatientContact\BreastfeedingCall6b.cshtml" />
+    <Content Include="Views\PatientContact\BreastfeedingCall7.cshtml" />
+    <Content Include="Views\PatientContact\BreastfeedingCall5Script.cshtml" />
+    <Content Include="Views\PatientContact\BreastfeedingCall4Script.cshtml" />
+    <Content Include="Views\Pregnancy\SelectNonVACare.cshtml" />
+    <Content Include="Views\Pregnancy\EditPregnancyHistory.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Detail.cshtml" />
+    <Content Include="Views\Pregnancy\EddHistory.cshtml" />
+    <Content Include="Views\Reminders\Index.cshtml" />
+    <Content Include="Views\Reminders\Detail.cshtml" />
+    <Content Include="Views\Pregnancy\EddCalculator.cshtml" />
+    <Content Include="Views\Pregnancy\Status.cshtml" />
+    <Content Include="Views\Alerts\Index.cshtml" />
+    <Content Include="Views\Labs\Index.cshtml" />
+    <Content Include="Content\PrenatalLabs.csv" />
+    <Content Include="Views\Education\Index.cshtml" />
+    <Content Include="Views\Education\AddEdit.cshtml" />
+    <Content Include="Views\Checklist\Index.cshtml" />
+    <Content Include="Views\Checklist\AddEdit.cshtml" />
+    <Content Include="Views\Consults\Index.cshtml" />
+    <Content Include="Views\Consults\Detail.cshtml" />
+    <Content Include="Views\Radiology\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage2.cshtml" />
+    <Content Include="Views\Shared\_NavTracking.cshtml" />
+    <Content Include="Views\Shared\_NavPatientInfo.cshtml" />
+    <Content Include="Views\Shared\_NavUser.cshtml" />
+    <Content Include="Views\Shared\_NavPatient.cshtml" />
+    <Content Include="Views\Shared\_NavConfig.cshtml" />
+    <Content Include="Views\Shared\_NavGroupTracking.cshtml" />
+    <Content Include="Views\Shared\_NavGroupPatient.cshtml" />
+    <Content Include="Views\Lactation\Status.cshtml" />
+    <Content Include="Views\Checklist\PregnancyIndex.cshtml" />
+    <Content Include="Views\Checklist\PregnancyAddEdit.cshtml" />
+    <Content Include="Views\Education\PatientIndex.cshtml" />
+    <Content Include="Views\Education\PatientAddEdit.cshtml" />
+    <Content Include="Views\Pregnancy\Index.cshtml" />
+    <Content Include="Views\Pregnancy\AddEdit.cshtml" />
+    <Content Include="Views\Track\Stop.cshtml" />
+    <Content Include="Views\Education\PatientDetail.cshtml" />
+    <Content Include="Views\Education\PatientSelect.cshtml" />
+    <Content Include="Views\PatientContact\_ContactHeader.cshtml" />
+    <Content Include="Install.bat" />
+    <Content Include="InstallExisting.bat" />
+    <Content Include="InstallExistingTest.bat" />
+    <Content Include="InstallTest.bat" />
+    <None Include="Properties\PublishProfiles\Primary.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\less.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_html5shiv.cshtml" />
+    <Content Include="Views\Shared\_alerts.cshtml" />
+    <Content Include="Views\Shared\_validationSummary.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\ServerSettings\Edit.cshtml" />
+    <Content Include="Views\ServerSettings\_EditServerSettingsView.cshtml" />
+    <Content Include="Views\Account\ChangeVerifyCode.cshtml" />
+    <Content Include="Views\Division\Select.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\PatientContact\AdditionalCall.cshtml" />
+    <Content Include="Views\Pregnancy\PregnancyView.cshtml" />
+    <Content Include="Views\Shared\_Trimester.cshtml" />
+    <Content Include="Views\Outcome\AddEdit.cshtml" />
+    <Content Include="Views\Shared\_BoolCheck.cshtml" />
+    <Content Include="Views\Pregnancy\BabyAddEdit.cshtml" />
+    <Content Include="Views\Shared\_multiLine.cshtml" />
+    <Content Include="Views\Notes\Addenda.cshtml" />
+    <Content Include="Views\Patient\Summary2.cshtml" />
+    <Content Include="Views\Mock\Index.cshtml" />
+    <Content Include="Views\Shared\_Timeout.cshtml" />
+    <Content Include="Views\Cda\_SelectDocumentType.cshtml" />
+    <Content Include="Views\Account\NoContext.cshtml" />
+    <Content Include="Views\PatientList\Dashboard.cshtml" />
+    <Content Include="Views\History\Index.cshtml" />
+    <Content Include="Views\Text4Baby\Index.cshtml" />
+    <Content Include="Views\Text4Baby\Enroll.cshtml" />
+    <Content Include="Service References\Text4BabyServiceReference\Voxiva.wsdl" />
+    <Content Include="Views\PatientList\DatesModal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\va.gov.artemis.cda\va.gov.artemis.cda.csproj">
+      <Project>{69eb293d-32c1-46c8-98ef-24124d2bab65}</Project>
+      <Name>va.gov.artemis.cda</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.commands\va.gov.artemis.commands.csproj">
+      <Project>{66ba87b2-690f-4440-8132-bd85bd6c02cd}</Project>
+      <Name>va.gov.artemis.commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.core\va.gov.artemis.core.csproj">
+      <Project>{e1f510b1-c409-4212-886d-761d93530ffd}</Project>
+      <Name>va.gov.artemis.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.ui.data\va.gov.artemis.ui.data.csproj">
+      <Project>{fa8fb21e-b44e-4ab9-9aa1-7f8339431507}</Project>
+      <Name>va.gov.artemis.ui.data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.vista\va.gov.artemis.vista.csproj">
+      <Project>{3c03ecd0-7039-4848-bb93-3d9fe0420bfe}</Project>
+      <Name>va.gov.artemis.vista</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Text4BabyServiceReference\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51016</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44300/MCCDashboardTest</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

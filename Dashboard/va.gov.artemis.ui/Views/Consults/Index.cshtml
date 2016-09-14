@@ -1,0 +1,86 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Consults.ConsultIndex
+@using VA.Gov.Artemis.UI.Data.Models.Consults
+
+@{
+    ViewBag.Title = "MCC Dashboard - Consults";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Consults</h1>
+
+<p><i>Click a row to select the consult</i></p>
+
+<table class="table table-bordered table-hover" style="font-size: 12px">
+    <thead class="centered-header">
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Category</th>
+            <th scope="col">Service</th>
+        </tr>
+    </thead>
+        @if (Model.Items.Count > 0)
+        {
+            @:<tbody>
+
+            foreach (Consult item in Model.Items)
+            {
+            <tr data-id="@item.Ien">
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.ConsultDateDisplay)</td>
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.StatusDisplay)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Category)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Service)</td>
+            </tr>
+            }
+            
+            @:</tbody>
+        }
+        else
+        {
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="centered-txt">(No Consults)</td>
+                </tr>  
+            </tfoot> 
+        }
+</table>
+
+@{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);}
+
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button id="view-selected" type="button" class="btn btn-default" disabled="disabled">View Selected</button>
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { dfn = Model.Patient.Dfn })'">Patient Summary</button>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#nav-pat-consult').addClass('active').siblings().removeClass('active');
+            $("tbody > tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#view-selected").removeAttr("disabled");
+            });
+
+            $("#view-selected").click(function () {
+                var id = $("tr.info").attr("data-id");
+                if (id != "")
+                    location.href = '@Url.Action("Detail", "Consults")' + "/" + "@Model.Patient.Dfn" + "/" + id;
+            });
+
+        });
+    </script>
+}
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+

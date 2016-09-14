@@ -1,0 +1,267 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Education.PatientEducationIndex
+@using VA.Gov.Artemis.UI.Data.Models.Education
+@using VA.Gov.Artemis.UI.Data.Models.Checklist
+@using VA.Gov.Artemis.Commands.Dsio.Checklist
+
+@{
+    ViewBag.Title = "MCC Dashboard - Patient Education Items";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Patient Education Items</h1>
+
+<p>
+    <span class="db-table-filter"><small>Completion Status:</small></span>
+    <button id="due-filter" type="button" class="btn btn-xs btn-default db-table-filter">Due</button>
+    <button id="inc-filter" type="button" class="btn btn-xs btn-default db-table-filter">Incomplete</button>
+    <button id="com-filter" type="button" class="btn btn-xs btn-default db-table-filter">Complete</button>
+    <button id="all-filter" type="button" class="btn btn-xs btn-success db-table-filter">All</button>
+</p>
+
+<table id="pat-table" class="table table-bordered table-hover table-db" style="font-size: 12px">
+    <thead class="centered-header">
+        <tr>
+            <th scope="col"></th>
+            @*            <th scope="col">Type</th>
+            <th scope="col">Category</th>*@
+            <th scope="col">Description</th>
+            <th scope="col">Due</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Completed</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ItemList.Count > 0)
+        {
+            string[] icons = new string[] { "", "glyphicon-comment", "glyphicon-link", "glyphicon-book", "glyphicon-calendar", "" };
+
+            foreach (PatientEducationChecklistItem item in Model.ItemList)
+            {
+                //Unknown, Overdue, Due, Pending, Complete, Canceled
+                string[] dataFilter = new string[] { "all", "due,inc,all", "due,inc,all", "inc,all", "com,all", "all" };
+
+                string iconClass = icons[(int)item.ItemType]; 
+                
+            <tr data-id="@item.Ien" data-filter="@dataFilter[(int)item.DueStatus]">
+
+                <td class="centered-txt"><span class="glyphicon @iconClass"></span></td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Description)</td>
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Due)</td>
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.DueDate)</td>
+
+                @* *** Complete Date *** *@
+                @if ((string.IsNullOrWhiteSpace(item.Completed)) && (item.InProgress))
+                {
+                    <td class="centered-txt" style="vertical-align: middle">
+                        <label class="label label-primary">In Progress</label></td>
+                }
+                else
+                {
+                    <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Completed)</td>
+                }
+
+                @if (item.DueStatus == DueStatus.Complete)
+                {                
+                    <td class="centered-txt h5" style="vertical-align: middle;">
+                        <label class="label label-success">Complete</label></td>
+                }
+                else if (item.DueStatus == DueStatus.Overdue)
+                {
+                    <td class="centered-txt h5" style="vertical-align: middle">
+                        <label class="label label-danger">Overdue</label></td>
+                }
+                else if (item.DueStatus == DueStatus.Due)
+                {
+                    <td class="centered-txt h5" style="vertical-align: middle">
+                        <label class="label label-warning">Due</label></td>
+                }
+                else if (item.DueStatus == DueStatus.Pending)
+                {
+                    <td class="centered-txt" style="vertical-align: middle">Pending</td>
+                }
+                else if (item.DueStatus == DueStatus.Canceled)
+                {
+                    <td class="centered-txt h5" style="vertical-align: middle">
+                        <label class="label label-default">Canceled</label></td>
+                }
+                else
+                {
+                    <td></td>
+                }
+
+                <td class="centered-txt" style="vertical-align: middle">
+                    @if (item.PregnancyChecklistItem == null)
+                    {
+                        <button type="button" class="btn btn-primary btn-xs"
+                                onclick="location.href='@Url.Action("PatientDetail", new { @dfn = Model.Patient.Dfn, @ien = item.Link })'">
+                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Details</button>
+                    }
+                    else if (item.PregnancyChecklistItem.CompletionStatus == DsioChecklistCompletionStatus.Complete)
+                    {
+                        <button type="button" class="btn btn-primary btn-xs"
+                                onclick="location.href='@Url.Action("PatientDetail", new { @dfn = Model.Patient.Dfn, @ien = item.Link })'">
+                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Details</button>
+                    }
+                    else if (!string.IsNullOrWhiteSpace(item.PregnancyChecklistItem.EducationItemIen))
+                    {
+                        <button type="button" class="btn btn-success btn-xs complete-btn" data-ien="@item.Ien" data-link="@item.PregnancyChecklistItem.EducationItemIen">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            &nbsp;&nbsp;Complete Now
+                        </button>
+                    }
+
+                </td>
+            </tr>
+
+            }
+        }
+    </tbody>
+    
+    <tfoot>
+        <tr id="no-rows" data-filter="">
+            <td colspan="10" class="centered-txt">(No Education Items)</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+@{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);}
+
+@using (Html.BeginForm("Complete", "Education", FormMethod.Post, new { @id = "complete-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.SelectedChecklistIen)
+    @Html.HiddenFor(m => m.SelectedEducationIen)
+    @Html.HiddenFor(m => m.Patient.Dfn)
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button id="select-ed" type="button" class="btn btn-primary">Select Education Items</button>
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { dfn = Model.Patient.Dfn })'">Patient Summary</button>
+        </div>
+    </div>
+</div>
+
+<br />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('#nav-pat-edu').addClass('active').siblings().removeClass('active');
+
+            @if (Model.ItemList.Count > 0)
+            {
+                <text>
+            $('#no-rows').hide();
+                </text>
+            }
+
+            $("tbody > tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#SelectedChecklistIen").val($("tr.info").attr("data-id"));
+            });
+
+            $("#select-ed").click(function () {
+                location.href = '@Url.Action("PatientSelect", "Education", new { @dfn = Model.Patient.Dfn, @ien = "" })';
+            });
+
+            $(".complete-btn").click(function () {
+                $("#SelectedChecklistIen").val($(this).attr("data-ien"));
+                $("#SelectedEducationIen").val($(this).attr("data-link"));
+                $("#complete-form").submit();
+            });
+
+            if ($("tbody tr").length > 0)
+                $('#no-rows').hide();
+
+            $('#due-filter').click(function () {
+                $(this).addClass('btn-success').siblings().removeClass('btn-success');
+                $(this).removeClass('btn-default').siblings().addClass('btn-default');
+                var any = 0;
+                $('#pat-table tr:has(td)').each(function () {
+                    var filter = $(this).attr("data-filter");
+                    if (filter.indexOf("due") >= 0) {
+                        $(this).show();
+                        any = ++any;
+                    }
+                    else
+                        $(this).hide();
+                });
+                if (any == 0)
+                    $("#no-rows").show();
+                else
+                    $("#no-rows").hide();
+
+            });
+
+            $('#inc-filter').click(function () {
+                $(this).addClass('btn-success').siblings().removeClass('btn-success');
+                $(this).removeClass('btn-default').siblings().addClass('btn-default');
+                var any = 0;
+                $('#pat-table tr:has(td)').each(function () {
+                    var filter = $(this).attr("data-filter");
+                    if (filter.indexOf("inc") >= 0) {
+                        $(this).show();
+                        any = ++any;
+                    }
+                    else
+                        $(this).hide();
+                });
+                if (any == 0)
+                    $("#no-rows").show();
+                else
+                    $("#no-rows").hide();
+            });
+
+            $('#com-filter').click(function () {
+                $(this).addClass('btn-success').siblings().removeClass('btn-success');
+                $(this).removeClass('btn-default').siblings().addClass('btn-default');
+                var any = 0;
+                $('#pat-table tr:has(td)').each(function () {
+                    var filter = $(this).attr("data-filter");
+                    if (filter.indexOf("com") >= 0) {
+                        $(this).show();
+                        any = ++any;
+                    }
+                    else
+                        $(this).hide();
+                });
+                if (any == 0)
+                    $("#no-rows").show();
+                else
+                    $("#no-rows").hide();
+
+            });
+
+            $('#all-filter').click(function () {
+                $(this).addClass('btn-success').siblings().removeClass('btn-success');
+                $(this).removeClass('btn-default').siblings().addClass('btn-default');
+                var any = 0
+                $('#pat-table tr:has(td)').each(function () {
+                    any = ++any;
+                    $(this).show();
+                });
+                if (any == 0)
+                    $("#no-rows").show();
+                else
+                    $("#no-rows").hide();
+            });
+        });
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+

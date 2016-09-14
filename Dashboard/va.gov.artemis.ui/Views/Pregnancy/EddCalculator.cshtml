@@ -1,0 +1,357 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Edd.EddCalculatorModel
+@using VA.Gov.Artemis.UI.Data.Models.Edd
+
+@{
+    ViewBag.Title = "MCC Dashboard - EDD Calculator";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">EDD Calculator</h1>
+
+@using (Html.BeginForm("EddCalculator", "Pregnancy", FormMethod.Post, new { @role = "form", @class = "form", @id = "eddForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn); 
+    @Html.HiddenFor(m => m.PregnancyIen); 
+    @Html.HiddenFor(m => m.FinalBasedOn, new { @id = "hidden-final" }); 
+    @Html.HiddenFor(m => m.LMP.GestationalAgeDays); 
+    @Html.HiddenFor(m => m.LMP.GestationalAgeWeeks); 
+    @Html.HiddenFor(m => m.Conception.GestationalAgeDays); 
+    @Html.HiddenFor(m => m.Conception.GestationalAgeWeeks); 
+    @Html.HiddenFor(m => m.Embryo.GestationalAgeDays); 
+    @Html.HiddenFor(m => m.Embryo.GestationalAgeWeeks); 
+    
+    <div class="row">
+        <div class="col-md-6"><strong>Estimated Date of Delivery (EDD)</strong></div>
+        <div class="col-md-6 text-right">
+            <label for="final-ga" style = "vertical-align: middle">Final GA</label>
+            <input id="final-ga" type="text" class="form-control centered-txt" style = "display: inline; width: 100px; margin-left: 30px; margin-right: 50px" readonly="readonly" />
+            @Html.LabelFor(m => m.FinalEdd, new { style = "vertical-align: middle" })
+            @Html.TextBoxFor(m => m.FinalEdd, new { @class = "form-control centered-txt", @style = "display: inline; width: 100px; margin-left: 30px", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <br />
+    
+    <table class="table table-bordered table-db">
+        <thead class="centered-header">
+            <tr>
+                <th scope="col" >EDD Criteria</th>
+                <th scope="col" >Event Date</th>
+                <th scope="col" colspan="2">Gestational Age</th>
+                <th scope="col" >EDD</th>
+                <th scope="col" >Final EDD</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>@Html.LabelFor(m => m.LMP.EventDate, Model.LMP.Criteria)</td>
+            <td>@Html.TextBoxFor(m => m.LMP.EventDate, new { @class = "form-control date-entry", @placeholder = "mm/dd/yyyy" })</td>
+            <td></td>
+            <td></td>
+            <td>@Html.TextBoxFor(m => m.LMP.EDD, new { @class = "form-control centered-txt edd", @readonly = "readonly" })</td>
+            <td class="centered-txt">
+                @Html.LabelFor(m => m.FinalBasedOn, "Final Based on LMP", new { @class = "sr-only", @for = "rdo-final-lmp" })
+                @Html.RadioButtonFor(m => m.FinalBasedOn, EddItemType.LMP, new { @id = "rdo-final-lmp" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Conception.EventDate, Model.Conception.Criteria)</td>
+            <td>@Html.TextBoxFor(m => m.Conception.EventDate, new { @class = "form-control date-entry", @placeholder = "mm/dd/yyyy" })</td>
+            <td></td>
+            <td></td>
+            <td>@Html.TextBoxFor(m => m.Conception.EDD, new { @class = "form-control centered-txt edd", @readonly = "readonly" })</td>
+            <td class="centered-txt">
+                @Html.LabelFor(m => m.FinalBasedOn, "Final Based on Conception Date", new { @class = "sr-only", @for = "rdo-final-conc" })
+                @Html.RadioButtonFor(m => m.FinalBasedOn, EddItemType.Conception, new { @id = "rdo-final-conc" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Ultrasound.EventDate, Model.Ultrasound.Criteria)</td>
+            <td>@Html.TextBoxFor(m => m.Ultrasound.EventDate, new { @class = "form-control date-entry", @placeholder = "mm/dd/yyyy" })</td>
+            <td>@Html.TextBoxFor(m => m.Ultrasound.GestationalAgeWeeks, new { @class = "form-control", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Weeks</td>
+            <td>@Html.TextBoxFor(m => m.Ultrasound.GestationalAgeDays, new { @class = "form-control", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Days</td>
+            <td>@Html.TextBoxFor(m => m.Ultrasound.EDD, new { @class = "form-control centered-txt edd", @readonly = "readonly" })</td>
+            <td class="centered-txt">
+                @Html.LabelFor(m => m.FinalBasedOn, "Final Based on Ultradound", new { @class = "sr-only", @for = "rdo-final-ult" })
+                @Html.RadioButtonFor(m => m.FinalBasedOn, EddItemType.Ultrasound, new { @id = "rdo-final-ult" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Embryo.EventDate, Model.Embryo.Criteria)</td>
+            <td>@Html.TextBoxFor(m => m.Embryo.EventDate, new { @class = "form-control date-entry", @placeholder = "mm/dd/yyyy" })</td>
+            <td></td>
+            <td></td>
+            <td>@Html.TextBoxFor(m => m.Embryo.EDD, new { @class = "form-control centered-txt edd", @readonly = "readonly" })</td>
+            <td class="centered-txt">
+                @Html.LabelFor(m => m.FinalBasedOn, "Final Based on Embryo Transfer", new { @class = "sr-only", @for = "rdo-final-emb" })
+                @Html.RadioButtonFor(m => m.FinalBasedOn, EddItemType.Embryo, new { @id = "rdo-final-emb" })</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Other.Criteria, "Other Criteria", new { @class = "sr-only" })
+                @Html.TextBoxFor(m => m.Other.Criteria, new { @class = "form-control date-entry", @placeholder = "Enter Other Criteria" })</td>
+            <td>@Html.TextBoxFor(m => m.Other.EventDate, new { @class = "form-control", @placeholder = "mm/dd/yyyy" })</td>
+            <td>@Html.TextBoxFor(m => m.Other.GestationalAgeWeeks, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Weeks</td>
+            <td>@Html.TextBoxFor(m => m.Other.GestationalAgeDays, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px" })&nbsp;&nbsp;Days</td>
+            <td>@Html.TextBoxFor(m => m.Other.EDD, new { @class = "form-control centered-txt edd", @readonly = "readonly" })</td>
+            <td class="centered-txt">
+                @Html.LabelFor(m => m.FinalBasedOn, "Final Based on Other", new { @class = "sr-only", @for = "rdo-final-oth" })
+                @Html.RadioButtonFor(m => m.FinalBasedOn, EddItemType.Other, new { @id = "rdo-final-oth" })</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => m.EddOnly.Criteria)</td>
+            <td>@Html.TextBoxFor(m => m.EddOnly.EventDate, new { @class = "form-control", @disabled = "disabled" })</td>
+            <td>@Html.TextBoxFor(m => m.EddOnly.GestationalAgeWeeks, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px", @disabled = "disabled" })&nbsp;&nbsp;Weeks</td>
+            <td>@Html.TextBoxFor(m => m.EddOnly.GestationalAgeDays, new { @class = "form-control centered-txt", @style = "display: inline; width: 50px", @disabled = "disabled" })&nbsp;&nbsp;Days</td>
+            <td>
+                @Html.LabelFor(m => m.EddOnly.EDD, "Estimated Delivery Date", new { @class = "sr-only" })
+                @Html.TextBoxFor(m => m.EddOnly.EDD, new { @class = "form-control centered-txt edd  date-entry", @placeholder = "mm/dd/yyyy" })</td>
+            <td class="centered-txt">
+                @Html.LabelFor(m => m.FinalBasedOn, "Final Based on EDD", new { @class = "sr-only", @for = "rdo-final-edd" })
+                @Html.RadioButtonFor(m => m.FinalBasedOn, EddItemType.EddOnly, new { @id = "rdo-final-edd" })</td>
+        </tr>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" onclick="location.href='@Model.ReturnUrl'">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+}
+<br />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $("#LMP_EventDate").placeholder();
+            $("#Conception_EventDate").placeholder();
+            $("#Ultrasound_EventDate").placeholder();
+            $("#Embryo_EventDate").placeholder();
+            $("#Other_EventDate").placeholder();
+            $("#Other_Criteria").placeholder();
+            $("#EddOnly_EDD").placeholder();
+
+            $("#LMP_EventDate").change(function () {
+                processEventDate(this, "LMP", 280);
+            });
+
+            $("#Conception_EventDate").change(function () {
+                processEventDate(this, "Conception", 266);
+            });
+
+            $("#Embryo_EventDate").change(function () {
+                var ok = processEventDate(this, "Embryo", 262);
+                if (ok == true) {
+                    $("input[type=radio][value='Embryo']").prop("checked", true).change();
+                }
+                else
+                    $("input[type=radio][value='Embryo']").prop("checked", false).change();
+
+                enableDisableRadios();
+            });
+
+            function processEventDate(element, name, daysToAdd) {
+                var returnVal;
+                var jsDate = getJSDate($(element).val());
+                if (jsDate != undefined) {
+                    //var d = new Date($(element).val());
+                    var newEdd = addDays(jsDate, daysToAdd);
+                    $("#" + name + "_EDD").val(getFormattedDate(newEdd));
+                    updateGaFromEdd(name, newEdd);
+                    $(element).val(getFormattedDate(jsDate));
+                    returnVal = true;
+                }
+                else {
+                    if ($(element).val() != "")
+                        alert("Please enter a valid date in the format MM/DD/YYYY or M/D/YY");
+                    $(element).val("");
+                    clearIt(name);
+                    returnVal = false;
+                }
+                updateFinalEdd();
+                return returnVal;
+            };
+
+            //function checkDate(element) {
+            //    var returnVal;
+            //    var val = $(element).val();
+            //    if (val == "") {
+            //        returnVal = false;
+            //    }
+            //    else {
+            //        var d = new Date(val);
+            //        if (isNaN(d.getTime()))
+            //            returnVal = false;
+            //        else
+            //            if (d.getYear() > 50)
+            //                returnVal = true;
+            //            else
+            //                returnVal = false;
+            //    }
+            //    return returnVal;
+            //};
+
+            function updateGaFromEdd(name, edd) {
+                var totDys = getDateDiff(new Date(), edd);
+                totDys = 279 - totDys
+                var wks = Math.floor(totDys / 7);
+                var dys = totDys % 7;
+                $("#" + name + "_GestationalAgeWeeks").val(wks);
+                $("#" + name + "_GestationalAgeDays").val(dys);
+            };
+
+            function clearIt(name) {
+                $("#" + name + "_EDD").val("");
+                $("#" + name + "_GestationalAgeWeeks").val("");
+                $("#" + name + "_GestationalAgeDays").val("");
+                $("input[type='radio'][value='" + name + "']").prop("checked", false);
+            }
+
+            $("#Other_EventDate").change(function () {
+                processGaEventDate(this, "Other");
+                //updateOtherEdd();
+            });
+
+            $("#Ultrasound_EventDate").change(function () {
+                processGaEventDate(this, "Ultrasound");
+                //updateGaEdd();
+            });
+
+            function processGaEventDate(element, name) {
+                var returnVal;
+                var jsDate = getJSDate($(element).val());
+                if (jsDate != undefined) {
+                    $(element).val(getFormattedDate(jsDate));
+                    updateGaEdd(name);
+                    returnVal = true;
+                }
+                else {
+                    if ($(element).val() != "")
+                        alert("Please enter a valid date in the format MM/DD/YYYY");
+                    $(element).val("");
+                    clearIt(name);
+                    returnVal = false;
+                }
+                updateFinalEdd();
+                return returnVal;
+            };
+
+            function updateGaEdd(name) {
+                var newEdd = "";
+                var jsDate = getJSDate($("#" + name + "_EventDate").val());
+                if (jsDate != undefined) {
+                    //var evtDate = new Date($("#" + name + "_EventDate").val());
+                    //$("#" + name + "_EventDate").val(jsDate);
+                    var wks = parseInt($("#" + name + "_GestationalAgeWeeks").val() || 0);
+                    var dys = parseInt($("#" + name + "_GestationalAgeDays").val() || 0);
+                    var totDys = wks * 7 + dys;
+                    var remain = 280 - totDys;
+
+                    if (remain < 280) {
+                        var newDt = addDays(jsDate, remain);
+                        newEdd = getFormattedDate(newDt);
+                    }
+                }
+                $("#" + name + "_EDD").val(newEdd);
+                updateFinalEdd();
+            };
+
+            $("#Ultrasound_GestationalAgeWeeks").change(function () {
+                updateGaEdd("Ultrasound");
+            });
+
+            $("#Ultrasound_GestationalAgeDays").change(function () {
+                updateGaEdd("Ultrasound");
+            });
+
+            $("#Other_GestationalAgeWeeks").change(function () {
+                updateGaEdd("Other");
+            });
+
+            $("#Other_GestationalAgeDays").change(function () {
+                updateGaEdd("Other");
+            });
+
+            function getDateDiff(d1, d2) {
+                var diff = Math.abs(d2 - d1);
+                var hrs2 = diff / (1000 * 60 * 60);
+                return Math.floor(hrs2 / 24);
+            };
+
+            function addDays(d, days) {
+                return new Date(d.getFullYear(), d.getMonth(), d.getDate() + days);
+            };
+
+            function updateFinalEdd() {
+                var final = $("#eddForm input[name=FinalBasedOn]:checked").val();
+                if (final != undefined) {
+                    var elId = "#" + final + "_EDD";
+                    var edd = $(elId).val();
+                    $("#FinalEdd").val(edd);
+                    $("#hidden-final").val(final);
+
+                    var totDys = getDateDiff(new Date(), new Date(edd));
+                    totDys = 279 - totDys
+                    var wks = Math.floor(totDys / 7);
+                    var dys = totDys % 7;
+                    var finalGa = wks + "w " + dys + "d"; 
+                    $("#final-ga").val(finalGa);
+
+                } else {
+                    $("#FinalEdd").val("");
+                    $("#hidden-final").val("");
+                    $("#final-ga").val(""); 
+                }
+            };
+
+            $("input[type='radio']").change(function () {
+                updateFinalEdd();
+            });
+
+            function enableDisableRadios() {
+                var em = new Date($("#Embryo_EventDate").val());
+                if (isNaN(em) == false) {
+                    $("input[type='radio']").attr("disabled", "disabled");
+                } else {
+                    $("input[type='radio']").removeAttr("disabled");
+                }
+            };
+
+
+
+            $("#EddOnly_EDD").change(function () {
+                var jsDate = getJSDate($(this).val());
+                if (jsDate == undefined) {
+                    if ($(this).val() != "") {
+                        alert("Please enter a valid date in the format MM/DD/YYYY");
+                    }
+                    $(this).val('');
+                    $("#EddOnly_GestationalAgeWeeks").val('');
+                    $("#EddOnly_GestationalAgeDays").val('');
+                }
+                else {
+                    //var edd = new Date($(this).val());
+                    $(this).val(getFormattedDate(jsDate)); 
+                    updateGaFromEdd("EddOnly", jsDate);
+                }
+                updateFinalEdd();
+            });
+
+        });
+
+    </script>
+
+}
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+

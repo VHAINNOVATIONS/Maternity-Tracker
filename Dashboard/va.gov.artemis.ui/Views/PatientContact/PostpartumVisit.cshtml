@@ -1,0 +1,17 @@
+﻿@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.PostpartumVisitCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.ScheduledPostpartumVisit)&nbsp;&nbsp;@Html.LabelFor(m => m.ScheduledPostpartumVisit, "Assess if patient has scheduled post-partum visit. If not, encourage patient to do so.")</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.CheckBoxFor(m => m.OfferedVAPcpVisit)&nbsp;&nbsp;@Html.LabelFor(m => m.OfferedVAPcpVisit, "Offer VA PCP visit if patient not planning to return to OB for this visit.")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.ImportanceOfPPVisit)&nbsp;&nbsp;@Html.LabelFor(m => m.ImportanceOfPPVisit, "Review importance and purpose of post-partum visit")</td></tr>
+    <tr class="active"><td colspan="2">Notes</td></tr>
+    <tr><td colspan="2">
+        @Html.LabelFor(m => m.Notes, "Notes", new {@class="sr-only"})
+        @Html.TextAreaFor(m => m.Notes, new {@class="form-control", @placeholder="Enter Details", @rows="7" })</td></tr>
+</tbody>

@@ -1,0 +1,70 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.History.HistoryModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - History";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Patient History</h1>
+
+<div id="top-nav" class="btn-group btn-group-justified">
+    <a class="btn btn-primary">Medical&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-default btn-submit" data-nav="??">Family</a>
+    <a class="btn btn-default btn-submit" data-nav="??">Surgical</a>
+    <a class="btn btn-default btn-submit" data-nav="??">Medications</a>
+    <a class="btn btn-default btn-submit" data-nav="??">Allergies</a>
+    <a class="btn btn-default btn-submit" data-nav="??">Obstetrical</a>
+    <a class="btn btn-default btn-submit" data-nav="??">Gynecological</a>
+    <a class="btn btn-default btn-submit" data-nav="??">Genetic</a>
+</div>
+<br />
+<table class="table table-db">
+    <colgroup>
+        <col style="width: 260px" />
+        <col style="width: 80px" />
+        <col style="width: 80px" />
+        <col style="width: auto" />
+    </colgroup>
+    <tbody>
+        @{string[] items = new string[] {
+            "Alcohol", 
+            "Anxiety", 
+            "Anesthesia Complications",
+            "Autoimmune Disorder", 
+            "Breast Self-Exam",
+            "Blood Disorder", 
+            "Bladder Infections (1 or greater than 1)",
+            "Breast disease/surgery",
+            "Cancer/history of abnormal pap smear",
+            "Cancer History",
+            "Cardiac disease" 
+             };
+             foreach (var item in items) 
+             {
+                <tr>
+                    <td><strong>@item:</strong></td>
+                    <td><input type="radio" />&nbsp;&nbsp;Yes</td>
+                    <td><input type="radio" />&nbsp;&nbsp;No</td>
+                    <td><input type="text" class="form-control" placeholder="Enter Comment"/></td>
+                </tr>                 
+             }
+        }
+    </tbody>
+    </table>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-12">
+        <div class="pull-right">
+                <button type="button" class="btn btn-primary btn-submit" data-nav="??"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;Previous</button>   
+                <button type="button" id="next-btn" class="btn btn-primary btn-submit" data-nav="??">Next&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+                <button type="button" class="btn btn-success btn-submit" data-nav="??" ><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Save</button>
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index", new { @dfn = Model.Patient.Dfn })'">Cancel</button>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{69EB293D-32C1-46C8-98EF-24124D2BAB65}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VA.Gov.Artemis.CDA</RootNamespace>
+    <AssemblyName>va.gov.artemis.cda</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CdaAllergies.cs" />
+    <Compile Include="CdaAllergy.cs" />
+    <Compile Include="CdaCustodian.cs" />
+    <Compile Include="CdaMedication.cs" />
+    <Compile Include="CdaProcedure.cs" />
+    <Compile Include="Common\CdaGender.cs" />
+    <Compile Include="Common\CdaOrganizer.cs" />
+    <Compile Include="Common\CdaReferenceRange.cs" />
+    <Compile Include="Common\CdaSubject.cs" />
+    <Compile Include="IHE\Documents\PpvsDocument.cs" />
+    <Compile Include="IHE\Documents\XdriDocument.cs" />
+    <Compile Include="IHE\Sections\AdvanceDirectiveSection.cs" />
+    <Compile Include="IHE\Sections\AntepartumVisitSummarySection.cs" />
+    <Compile Include="IHE\Documents\ApeDocument.cs" />
+    <Compile Include="IHE\Documents\AplDocument.cs" />
+    <Compile Include="IHE\Documents\ApsDocument.cs" />
+    <Compile Include="IHE\BirthEventOrganizer.cs" />
+    <Compile Include="IHE\Sections\CarePlanSection.cs" />
+    <Compile Include="IHE\Sections\CodedPhysicalExamSection.cs" />
+    <Compile Include="IHE\Sections\CodedVitalSignsSection.cs" />
+    <Compile Include="IHE\Sections\DischargeDietSection.cs" />
+    <Compile Include="IHE\Sections\EstimatedDeliveryDatesSection.cs" />
+    <Compile Include="IHE\Sections\ImageReportSection.cs" />
+    <Compile Include="IHE\Sections\LaborDeliveryEventsSection.cs" />
+    <Compile Include="IHE\Sections\LabResultsSection.cs" />
+    <Compile Include="IHE\Sections\MedicationsSection.cs" />
+    <Compile Include="IHE\Sections\NewbornCarePlanSection.cs" />
+    <Compile Include="IHE\Sections\NewbornDeliveryInfoSection.cs" />
+    <Compile Include="IHE\Sections\NewbornStatusSection.cs" />
+    <Compile Include="IHE\Sections\PatientEducationSection.cs" />
+    <Compile Include="IHE\Sections\PhysicalExamSubsection.cs" />
+    <Compile Include="IHE\Sections\PhysicalExamSubsectionFactory.cs" />
+    <Compile Include="IHE\PregnancyHistoryOrganizer.cs" />
+    <Compile Include="IHE\Sections\PostpartumHospitalizationTreatmentSection.cs" />
+    <Compile Include="IHE\Sections\ProblemsSection.cs" />
+    <Compile Include="IHE\Sections\ProceduresInterventionsSection.cs" />
+    <Compile Include="IHE\VisitSummaryOrganizer.cs" />
+    <Compile Include="Observations\CdaBoolObservation.cs" />
+    <Compile Include="Observations\CdaCeObservation.cs" />
+    <Compile Include="Observations\CdaCodeObservation.cs" />
+    <Compile Include="Observations\CdaDateObservation.cs" />
+    <Compile Include="CdaDocument.cs" />
+    <Compile Include="Observations\CdaIntObservation.cs" />
+    <Compile Include="Observations\CdaPqObservation.cs" />
+    <Compile Include="Observations\CdaSimpleObservation.cs" />
+    <Compile Include="Common\CdaCode.cs" />
+    <Compile Include="Common\CdaConcernStatus.cs" />
+    <Compile Include="Common\CdaEffectiveTime.cs" />
+    <Compile Include="Common\CdaRoleCode.cs" />
+    <Compile Include="Common\CdaSection.cs" />
+    <Compile Include="Common\CdaTemplateIdList.cs" />
+    <Compile Include="Common\CodingSystem.cs" />
+    <Compile Include="Common\CodingSystemUtility.cs" />
+    <Compile Include="Common\Hl7ActStatus.cs" />
+    <Compile Include="Common\Hl7FamilyMember.cs" />
+    <Compile Include="Common\Hl7ObservationIntoleranceType.cs" />
+    <Compile Include="Common\Hl7ProbelemActStatus.cs" />
+    <Compile Include="DocumentationOf\CdaDocumentationOf.cs" />
+    <Compile Include="Common\CdaAddressList.cs" />
+    <Compile Include="Common\CdaNpi.cs" />
+    <Compile Include="DocumentationOf\CdaPerformer.cs" />
+    <Compile Include="Common\CdaPerson.cs" />
+    <Compile Include="Common\CdaTelephoneList.cs" />
+    <Compile Include="Common\Hl7AddressUse.cs" />
+    <Compile Include="Common\Hl7MaritalStatus.cs" />
+    <Compile Include="Common\CdaPatient.cs" />
+    <Compile Include="Common\Hl7EthnicGroup.cs" />
+    <Compile Include="Common\Hl7Gender.cs" />
+    <Compile Include="Common\Hl7LanguageAbility.cs" />
+    <Compile Include="Common\Hl7LanguageCode.cs" />
+    <Compile Include="Common\Hl7LanguageProficiency.cs" />
+    <Compile Include="Common\Hl7NameUse.cs" />
+    <Compile Include="Common\Hl7ParticipationFunction.cs" />
+    <Compile Include="Common\Hl7Race.cs" />
+    <Compile Include="Common\Hl7Relationship.cs" />
+    <Compile Include="Common\Hl7TelephoneUsage.cs" />
+    <Compile Include="DocumentationOf\CdaPerformerList.cs" />
+    <Compile Include="IHE\Documents\AphpDocument.cs" />
+    <Compile Include="IHE\Sections\ChiefComplaintSection.cs" />
+    <Compile Include="IHE\Sections\CodedFamilyMedicalHistorySection.cs" />
+    <Compile Include="IHE\Sections\CodedHistoryOfInfectionSection.cs" />
+    <Compile Include="IHE\Sections\CodedSocialHistorySection.cs" />
+    <Compile Include="IHE\Sections\HistoryOfPastIllnessSection.cs" />
+    <Compile Include="IHE\Sections\HistoryOfPresentIllnessSection.cs" />
+    <Compile Include="IHE\Sections\PregnancyHistorySection.cs" />
+    <Compile Include="IHE\Sections\ProblemConcernEntriesSection.cs" />
+    <Compile Include="IHE\Sections\ReviewOfSystemsSection.cs" />
+    <Compile Include="Map\AllergyStatusMap.cs" />
+    <Compile Include="Map\ObservationIntoleranceMap.cs" />
+    <Compile Include="Map\EthnicGroupMap.cs" />
+    <Compile Include="Map\GenderMap.cs" />
+    <Compile Include="Map\ParticipantRoleMap.cs" />
+    <Compile Include="Map\RaceMap.cs" />
+    <Compile Include="Map\ReligionMap.cs" />
+    <Compile Include="Map\TelephoneUsageMap.cs" />
+    <Compile Include="Observations\CdaTextObservation.cs" />
+    <Compile Include="Participant\CdaParticipant.cs" />
+    <Compile Include="Participant\CdaParticipantList.cs" />
+    <Compile Include="Participant\IheParticipantType.cs" />
+    <Compile Include="Participant\IheParticpant.cs" />
+    <Compile Include="Raw\RawApeDocument.cs" />
+    <Compile Include="Raw\RawAplDocument.cs" />
+    <Compile Include="Raw\RawMdsDocument.cs" />
+    <Compile Include="Raw\RawNdsDocument.cs" />
+    <Compile Include="Raw\RawPpvsDocument.cs" />
+    <Compile Include="Raw\RawXdriDocument.cs" />
+    <Compile Include="RecordTarget\CdaGuardian.cs" />
+    <Compile Include="RecordTarget\CdaLanguage.cs" />
+    <Compile Include="RecordTarget\CdaProviderOrganization.cs" />
+    <Compile Include="RecordTarget\CdaRecordTarget.cs" />
+    <Compile Include="Common\Hl7ReligiousAffiliation.cs" />
+    <Compile Include="Map\MaritalStatusMap.cs" />
+    <Compile Include="CdaRecipient.cs" />
+    <Compile Include="Raw\RawAphpDocument.cs" />
+    <Compile Include="Raw\RawApsDocument.cs" />
+    <Compile Include="Raw\RawCcdDocument.cs" />
+    <Compile Include="Raw\cda.cs" />
+    <Compile Include="Common\CdaAddress.cs" />
+    <Compile Include="Header\CdaAssignedAuthor.cs" />
+    <Compile Include="Header\CdaAssignedAuthoringDevice.cs" />
+    <Compile Include="Header\CdaAssignedPerson.cs" />
+    <Compile Include="Header\CdaAuthor.cs" />
+    <Compile Include="Header\CdaDeviceAuthor.cs" />
+    <Compile Include="Raw\RawCdaDocument.cs" />
+    <Compile Include="CdaExtractedHeader.cs" />
+    <Compile Include="CdaPatient.cs" />
+    <Compile Include="Header\CdaProviderAuthor.cs" />
+    <Compile Include="Common\CdaTelephone.cs" />
+    <Compile Include="CdaUtility.cs" />
+    <Compile Include="CCDA\ConsolidatedCdaDocument.cs" />
+    <Compile Include="Raw\RawIheDocument.cs" />
+    <Compile Include="IHE\IheDocumentType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\CdaName.cs" />
+    <Compile Include="ValueSets\AntepartumEducationValueSet.cs" />
+    <Compile Include="ValueSets\AntepartumFamilyHistoryValueSet.cs" />
+    <Compile Include="ValueSets\HistoryOfInfectionValueSet.cs" />
+    <Compile Include="ValueSets\HistoryOfPastIllnessValueSet.cs" />
+    <Compile Include="ValueSets\MenstrualHistoryValueSet.cs" />
+    <Compile Include="ValueSets\ValueSet.cs" />
+    <Compile Include="ValueSets\ValueSetItem.cs" />
+    <Compile Include="ValueSets\ValueSetType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\va.gov.artemis.commands\va.gov.artemis.commands.csproj">
+      <Project>{66ba87b2-690f-4440-8132-bd85bd6c02cd}</Project>
+      <Name>va.gov.artemis.commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.core\va.gov.artemis.core.csproj">
+      <Project>{e1f510b1-c409-4212-886d-761d93530ffd}</Project>
+      <Name>va.gov.artemis.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.vista\va.gov.artemis.vista.csproj">
+      <Project>{3c03ecd0-7039-4848-bb93-3d9fe0420bfe}</Project>
+      <Name>va.gov.artemis.vista</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

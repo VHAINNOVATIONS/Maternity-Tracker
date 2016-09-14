@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66BA87B2-690F-4440-8132-BD85BD6C02CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VA.Gov.Artemis.Commands</RootNamespace>
+    <AssemblyName>VA.Gov.Artemis.Commands</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyVersionInfo.cs">
+      <Link>AssemblyVersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Dsio\Alerts\DsioAlert.cs" />
+    <Compile Include="Dsio\Alerts\DsioGetAlertsCommand.cs" />
+    <Compile Include="Dsio\Base\DsioPerson.cs" />
+    <Compile Include="Dsio\Cda\DsioCdaDocument.cs" />
+    <Compile Include="Dsio\Cda\DsioGetIheContentCommand.cs" />
+    <Compile Include="Dsio\Cda\DsioGetIheDocsCommand.cs" />
+    <Compile Include="Dsio\Cda\DsioGetProviderCommand.cs" />
+    <Compile Include="Dsio\Cda\DsioProvider.cs" />
+    <Compile Include="Dsio\Checklist\DsioChecklistCalculationType.cs" />
+    <Compile Include="Dsio\Checklist\DsioChecklistCompletionStatus.cs" />
+    <Compile Include="Dsio\Checklist\DsioChecklistItem.cs" />
+    <Compile Include="Dsio\Checklist\DsioChecklistItemType.cs" />
+    <Compile Include="Dsio\Checklist\DsioDeleteMccChecklistCommand.cs" />
+    <Compile Include="Dsio\Checklist\DsioDeleteMccPatChklstCommand.cs" />
+    <Compile Include="Dsio\Checklist\DsioGetMccChecklistCommand.cs" />
+    <Compile Include="Dsio\Checklist\DsioGetMccPatientChecklistCommand.cs" />
+    <Compile Include="Dsio\Checklist\DsioPatientChecklistItem.cs" />
+    <Compile Include="Dsio\Checklist\DsioSaveMccChecklistCommand.cs" />
+    <Compile Include="Dsio\Checklist\DsioSaveMccPatChecklistCommand.cs" />
+    <Compile Include="Dsio\DsioCommand.cs" />
+    <Compile Include="Dsio\Base\DsioAddress.cs" />
+    <Compile Include="Dsio\DsioPagableCommand.cs" />
+    <Compile Include="Dsio\Education\DsioDeleteEducationItemCommand.cs" />
+    <Compile Include="Dsio\Education\DsioEducationItem.cs" />
+    <Compile Include="Dsio\Education\DsioGetEducationItemsCommand.cs" />
+    <Compile Include="Dsio\Education\DsioGetPatientEducationCommand.cs" />
+    <Compile Include="Dsio\Education\DsioPatientEducationItem.cs" />
+    <Compile Include="Dsio\Education\DsioSaveEducationItemCommand.cs" />
+    <Compile Include="Dsio\Education\DsioSavePatientEducationCommand.cs" />
+    <Compile Include="Dsio\IPagedDataProcessor.cs" />
+    <Compile Include="Dsio\Notes\DsioDdcsGetControlValue.cs" />
+    <Compile Include="Dsio\Notes\DsioNoteData.cs" />
+    <Compile Include="Dsio\Observation\DsioCode.cs" />
+    <Compile Include="Dsio\Observation\DsioGetObservationsCommand.cs" />
+    <Compile Include="Dsio\Observation\DsioObservation.cs" />
+    <Compile Include="Dsio\Observation\DsioSaveObservationCommand.cs" />
+    <Compile Include="Dsio\Orders\DsioGetOrderDetailCommand.cs" />
+    <Compile Include="Dsio\Orders\DsioGetOrderListCommand.cs" />
+    <Compile Include="Dsio\Orders\DsioOrder.cs" />
+    <Compile Include="Dsio\PatientSearch\DsioPatientListCommand.cs" />
+    <Compile Include="Dsio\Patient\DsioPatientInformation.cs" />
+    <Compile Include="Dsio\Patient\DsioGetPatientInformationCommand.cs" />
+    <Compile Include="Dsio\Patient\DsioPatientInformationFields.cs" />
+    <Compile Include="Dsio\Patient\DsioSetPatientInformationCommand.cs" />
+    <Compile Include="Dsio\Pregnancy\DsioBaby.cs" />
+    <Compile Include="Dsio\Pregnancy\DsioDeletePregnancyCommand.cs" />
+    <Compile Include="Dsio\Pregnancy\DsioGetPersonCommand.cs" />
+    <Compile Include="Dsio\Pregnancy\DsioGetPregDetailsCommand.cs" />
+    <Compile Include="Dsio\Pregnancy\DsioGetPregHistoryRangeCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dsio\Pregnancy\DsioLinkedPerson.cs" />
+    <Compile Include="Dsio\Pregnancy\DsioPregnancy.cs" />
+    <Compile Include="Dsio\Pregnancy\DsioPregnancyOutcome.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dsio\Pregnancy\DsioSavePersonCommand.cs" />
+    <Compile Include="Dsio\Notes\DsioCreateANoteCommand.cs" />
+    <Compile Include="Dsio\Notes\DsioDeleteANoteCommand.cs" />
+    <Compile Include="Dsio\Base\DsioTelephone.cs" />
+    <Compile Include="Dsio\Pregnancy\DsioSavePregDetailsCommand.cs" />
+    <Compile Include="Dsio\Reminders\DsioGetReminderDetailCommand.cs" />
+    <Compile Include="Dsio\Reminders\DsioGetReminderListCommand.cs" />
+    <Compile Include="Dsio\Reminders\DsioReminder.cs" />
+    <Compile Include="Dsio\Tracking\DsioFlaggedPatient.cs" />
+    <Compile Include="Dsio\Tracking\DsioFlaggedPatientResult.cs" />
+    <Compile Include="Dsio\Notes\DsioGetRecordTextCommand.cs" />
+    <Compile Include="Dsio\Notes\DsioGetRecordTextMode.cs" />
+    <Compile Include="Dsio\Tracking\DsioGetTrackingOperation.cs" />
+    <Compile Include="Dsio\Cda\DsioSaveIheDocCommand.cs" />
+    <Compile Include="Dsio\Notes\DsioMakeAddendumCommand.cs" />
+    <Compile Include="Dsio\NonVA\DsioNonVAItem.cs" />
+    <Compile Include="Dsio\Notes\DsioGetTiuNotesCommand.cs" />
+    <Compile Include="Dsio\Tracking\DsioPatient.cs" />
+    <Compile Include="Dsio\NonVA\DsioGetExternalEntityCommand.cs" />
+    <Compile Include="Dsio\NonVA\DsioSaveExternalEntityCommand.cs" />
+    <Compile Include="Dsio\Tracking\DsioSelectListCommand.cs" />
+    <Compile Include="Dsio\Notes\DsioSignANoteCommand.cs" />
+    <Compile Include="Dsio\Tracking\DsioTrackedPatient.cs" />
+    <Compile Include="Dsio\Tracking\DsioTrackingItem.cs" />
+    <Compile Include="Dsio\Tracking\DsioCreateTrackingLogCommand.cs" />
+    <Compile Include="Dsio\Notes\DsioUpdateANoteCommand.cs" />
+    <Compile Include="Dsio\Vpr\DsioVprGetPatientDataCommand.cs" />
+    <Compile Include="Orqqcn\OrqqcnConsult.cs" />
+    <Compile Include="Orqqcn\OrqqcnDetailCommand.cs" />
+    <Compile Include="Orqqcn\OrqqcnListCommand.cs" />
+    <Compile Include="Orwrp\OrwrpReport.cs" />
+    <Compile Include="Orwrp\OrwrpReportTextCommand.cs" />
+    <Compile Include="Orwu\OrwuHasKeyCommand.cs" />
+    <Compile Include="Orwu\OrwuUserInfo.cs" />
+    <Compile Include="Orwu\OrwuUserInfoCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dsio\PatientSearch\DsioSearchPatient.cs" />
+    <Compile Include="Dsio\Tracking\DsioGetTrackingCommand.cs" />
+    <Compile Include="Tiu\TiuDocument.cs" />
+    <Compile Include="Tiu\TiuDocumentsByContextCommand.cs" />
+    <Compile Include="Vpr\Data\Accession.cs" />
+    <Compile Include="Vpr\Data\AccessionList.cs" />
+    <Compile Include="Vpr\Data\AccessionValue.cs" />
+    <Compile Include="Vpr\Data\Address.cs" />
+    <Compile Include="Vpr\Data\Allergy.cs" />
+    <Compile Include="Vpr\Data\Appointment.cs" />
+    <Compile Include="Vpr\Data\AppointmentList.cs" />
+    <Compile Include="Vpr\Data\Author.cs" />
+    <Compile Include="Vpr\Data\ClinicalItem.cs" />
+    <Compile Include="Vpr\Data\ClinicalProcedure.cs" />
+    <Compile Include="Vpr\Data\Clinician.cs" />
+    <Compile Include="Vpr\Data\CodeElement.cs" />
+    <Compile Include="Vpr\Data\Company.cs" />
+    <Compile Include="Vpr\Data\Consult.cs" />
+    <Compile Include="Vpr\Data\ConsultList.cs" />
+    <Compile Include="Vpr\Data\CurrentUser.cs" />
+    <Compile Include="Vpr\Data\Document.cs" />
+    <Compile Include="Vpr\Data\DocumentHeader.cs" />
+    <Compile Include="Vpr\Data\DocumentList.cs" />
+    <Compile Include="Vpr\Data\Dose.cs" />
+    <Compile Include="Vpr\Data\EducationTopic.cs" />
+    <Compile Include="Vpr\Data\EducationTopicList.cs" />
+    <Compile Include="Vpr\Data\EncounterItem.cs" />
+    <Compile Include="Vpr\Data\Exam.cs" />
+    <Compile Include="Vpr\Data\ExamList.cs" />
+    <Compile Include="Vpr\Data\Facility.cs" />
+    <Compile Include="Vpr\Data\Family.cs" />
+    <Compile Include="Vpr\Data\FamilyMember.cs" />
+    <Compile Include="Vpr\Data\FatherOfFetus.cs" />
+    <Compile Include="Vpr\Data\Fill.cs" />
+    <Compile Include="Vpr\Data\Flag.cs" />
+    <Compile Include="Vpr\Data\FlagList.cs" />
+    <Compile Include="Vpr\Data\HealthFactor.cs" />
+    <Compile Include="Vpr\Data\HealthFactorList.cs" />
+    <Compile Include="Vpr\Data\Immunization.cs" />
+    <Compile Include="Vpr\Data\ImmunizationList.cs" />
+    <Compile Include="Vpr\Data\InsurancePolicy.cs" />
+    <Compile Include="Vpr\Data\InsurancePolicyList.cs" />
+    <Compile Include="Vpr\Data\Lab.cs" />
+    <Compile Include="Vpr\Data\LabBase.cs" />
+    <Compile Include="Vpr\Data\LabList.cs" />
+    <Compile Include="Vpr\Data\ListWithTotal.cs" />
+    <Compile Include="Vpr\Data\Location.cs" />
+    <Compile Include="Vpr\Data\Measurement.cs" />
+    <Compile Include="Vpr\Data\Medication.cs" />
+    <Compile Include="Vpr\Data\MedicationList.cs" />
+    <Compile Include="Vpr\Data\NameElement.cs" />
+    <Compile Include="Vpr\Data\Observation.cs" />
+    <Compile Include="Vpr\Data\ObservationList.cs" />
+    <Compile Include="Vpr\Data\Order.cs" />
+    <Compile Include="Vpr\Data\OrderList.cs" />
+    <Compile Include="Vpr\Data\Panel.cs" />
+    <Compile Include="Vpr\Data\PanelList.cs" />
+    <Compile Include="Vpr\Data\Participant.cs" />
+    <Compile Include="Vpr\Data\Patient.cs" />
+    <Compile Include="Vpr\Data\PatientDemographics.cs" />
+    <Compile Include="Vpr\Data\PatientFamily.cs" />
+    <Compile Include="Vpr\Data\PatientResult.cs" />
+    <Compile Include="Vpr\Data\PhoneNumber.cs" />
+    <Compile Include="Vpr\Data\PreserveSpaceElement.cs" />
+    <Compile Include="Vpr\Data\Problem.cs" />
+    <Compile Include="Vpr\Data\ProblemList.cs" />
+    <Compile Include="Vpr\Data\Procedure.cs" />
+    <Compile Include="Vpr\Data\ProcedureList.cs" />
+    <Compile Include="Vpr\Data\Product.cs" />
+    <Compile Include="Vpr\Data\ProductElement.cs" />
+    <Compile Include="Vpr\Data\Provider.cs" />
+    <Compile Include="Vpr\Data\Qualifier.cs" />
+    <Compile Include="Vpr\Data\RadiologyExam.cs" />
+    <Compile Include="Vpr\Data\RadiologyExamList.cs" />
+    <Compile Include="Vpr\Data\ReactionList.cs" />
+    <Compile Include="Vpr\Data\Reason.cs" />
+    <Compile Include="Vpr\Data\SkinTest.cs" />
+    <Compile Include="Vpr\Data\SkinTestList.cs" />
+    <Compile Include="Vpr\Data\Support.cs" />
+    <Compile Include="Vpr\Data\SurgeryList.cs" />
+    <Compile Include="Vpr\Data\SurgicalProcedure.cs" />
+    <Compile Include="Vpr\Data\ValueElement.cs" />
+    <Compile Include="Vpr\Data\Visit.cs" />
+    <Compile Include="Vpr\Data\VisitList.cs" />
+    <Compile Include="Vpr\Data\Vital.cs" />
+    <Compile Include="Vpr\Data\VitalList.cs" />
+    <Compile Include="Vpr\Data\VprDateTime.cs" />
+    <Compile Include="Vpr\Data\VprPatientResult.cs" />
+    <Compile Include="Vpr\VprDataType.cs" />
+    <Compile Include="Vpr\VprDataVersionCommand.cs" />
+    <Compile Include="Vpr\VprGetPatientDataCommand.cs" />
+    <Compile Include="Xus\XusAvCodeCommand.cs" />
+    <Compile Include="Xus\XusAvCodeResult.cs" />
+    <Compile Include="Xus\XusCvcCommand.cs" />
+    <Compile Include="Xus\XusDivision.cs" />
+    <Compile Include="Xus\XusDivisionGetCommand.cs" />
+    <Compile Include="Xus\XusDivisionSetCommand.cs" />
+    <Compile Include="Xus\XusGetUserInfoCommand.cs" />
+    <Compile Include="Xus\XusIntroMsgCommand.cs" />
+    <Compile Include="Xus\XusSignonSetup.cs" />
+    <Compile Include="Xus\XusSignonSetupCommand.cs" />
+    <Compile Include="Xus\XusUserInfo.cs" />
+    <Compile Include="Xwb\XwbImHereCommand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\va.gov.artemis.core\va.gov.artemis.core.csproj">
+      <Project>{e1f510b1-c409-4212-886d-761d93530ffd}</Project>
+      <Name>va.gov.artemis.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.vista\va.gov.artemis.vista.csproj">
+      <Project>{3c03ecd0-7039-4848-bb93-3d9fe0420bfe}</Project>
+      <Name>va.gov.artemis.vista</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

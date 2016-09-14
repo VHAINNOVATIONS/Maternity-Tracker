@@ -1,0 +1,136 @@
+﻿@using VA.Gov.Artemis.UI.Extensions
+@model VA.Gov.Artemis.UI.Data.Models.NonVACare.NonVACareItemAddEdit
+
+@{
+    ViewBag.Title = "MCC Dashboard - Non-VA Care Item";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@if (string.IsNullOrWhiteSpace(Model.Item.Ien))
+{
+    <h1 class="h3 page-header">Create New Non-VA Care Item</h1>
+}
+else 
+{
+    <h1 class="h3 page-header">Edit Non-VA Care Item</h1>    
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("AddEdit", "NonVACare", FormMethod.Post, new { @role = "form", @class = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(model => model.Item.Ien)
+            @Html.HiddenFor(model => model.Item.OriginalName)
+            @Html.HiddenFor(model => model.CurrentPatientDfn)
+            @Html.HiddenFor(model => model.CurrentPregnancyIen)
+            @Html.HiddenFor(model => model.CurrentItemType) 
+    
+            <div class="row">
+                <div class="col-md-6 col-lg-5">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Item.Name)
+                        @Html.TextBoxFor(model => model.Item.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Item.Name, "Name is required", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Item.ItemType)
+                        @Html.DropDownListFor(m => m.Item.ItemType, Model.Item.ItemType.ToSelectList(), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Item.ItemType)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Item.AddressLine1)
+                        @Html.TextBoxFor(model => model.Item.AddressLine1, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Item.AddressLine1)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Item.AddressLine2)
+                        @Html.TextBoxFor(model => model.Item.AddressLine2, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Item.AddressLine2)
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Item.City)
+                                @Html.TextBoxFor(model => model.Item.City, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Item.City)
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Item.State)
+                                @Html.TextBoxFor(model => model.Item.State, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Item.State)
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Item.ZipCode)
+                                @Html.TextBoxFor(model => model.Item.ZipCode, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Item.ZipCode)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-5">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Item.PrimaryContact)
+                        @Html.TextBoxFor(model => model.Item.PrimaryContact, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Item.PrimaryContact)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Item.PhoneNumber)
+                        @Html.TextBoxFor(model => model.Item.PhoneNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Item.PhoneNumber)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Item.FaxNumber)
+                        @Html.TextBoxFor(model => model.Item.FaxNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Item.FaxNumber)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Item.Inactive)
+                        @Html.CheckBoxFor(model => model.Item.Inactive, new { @class = "checkbox" })
+                        @Html.ValidationMessageFor(model => model.Item.Inactive)
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 col-lg-10">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-default" onclick="location.href='@Model.ReturnUrl'">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+
+}
+    </div>
+</div>
+<br />
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#configure-btn').addClass('btn-primary');
+        });
+    </script>
+    }
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}

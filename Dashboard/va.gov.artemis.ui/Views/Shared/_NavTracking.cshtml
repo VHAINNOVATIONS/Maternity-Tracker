@@ -1,0 +1,10 @@
+﻿    <ul class="nav nav-sidebar">
+        <li class="text-center list-group-item disabled thin-header">Tracking</li>
+        <li><a id="nav-dashboard" class="list-group-item" href="@Url.Action("Dashboard", "PatientList")">Dashboard</a></li>
+        <li><a id="nav-tracked" class="list-group-item" href="@Url.Action("Overview", "PatientList", new { @page = "1" })">Tracked Patients</a></li>
+        @* TODO: Add count badges *@
+        <li><a id="nav-flagged" class="list-group-item" href="@Url.Action("Index", "FlaggedPatients", new { @page = "1" })">Flagged Patients</a></li>
+        <li><a id="nav-search" class="list-group-item" href="@Url.Action("Search", "PatientSearch")">Track A Patient</a></li>
+        <li><a id="nav-track-hx" class="list-group-item" href="@Url.Action("All", "TrackingHistory", new { page = "1" })">Tracking History</a></li>
+    </ul>
+

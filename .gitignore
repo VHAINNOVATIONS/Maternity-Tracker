@@ -57,6 +57,10 @@ ProjectGroupAOE.groupproj
 __recovery
 _obsolete
 
+*.mes
+*.tvsconfig
+
+# Skip file types for dashboard 
 *.pdb
 *.vspscc
 *.suo
@@ -92,5 +96,4 @@ _obsolete
 /Dashboard/va.gov.artemis.commands/bin/Debug
 /Dashboard/va.gov.artemis.ui/va.gov.artemis.ui/bin
 /Dashboard/va.gov.artemis.vista/bin/Debug
-*.mes
-*.tvsconfig
+

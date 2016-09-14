@@ -1,0 +1,18 @@
+﻿@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.VaPcpCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.EncourageAppt)&nbsp;&nbsp;@Html.LabelFor(m => m.EncourageAppt, "Encourage and assist patient to make appointment with PCP:")</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.WithinTwoMonths, true, new { @id = "rdo-2m-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.WithinTwoMonths, "If patient has medical/mental health conditions, within 2 months", new {@for="rdo-2m-y"})</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.WithinTwoMonths, false, new { @id = "rdo-2m-n" })&nbsp;&nbsp;@Html.LabelFor(m => m.WithinTwoMonths, "If patient does not have medical/mental health condition(s), within 3 months", new {@for="rdo-2m-y"})</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.ReasonsForNoPcpAppt)&nbsp;&nbsp;@Html.LabelFor(m => m.ReasonsForNoPcpAppt, "If patient declines to make appointment with PCP, determine reasons")</td></tr>
+    <tr class="active"><td colspan="2">Notes</td></tr>
+    <tr><td colspan="2">
+        @Html.LabelFor(m => m.Notes, "Notes", new {@class="sr-only"})
+        @Html.TextAreaFor(m => m.Notes, new {@class="form-control", @placeholder="Enter Details", @rows="7" })</td></tr>
+</tbody>

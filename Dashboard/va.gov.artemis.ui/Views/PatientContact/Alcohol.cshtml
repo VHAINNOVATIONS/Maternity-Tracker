@@ -1,0 +1,45 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Extensions
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.AlcoholCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.AlcoholUse)&nbsp;&nbsp;@Html.LabelFor(m => m.AlcoholUse, "Verify alcohol use status (complete clinical reminder if not done)")</td></tr>
+    <tr><td colspan="2"  style="padding-left: 40px">@Html.RadioButtonFor(m => m.DrinksAlcohol, true)&nbsp;&nbsp;@Html.LabelFor(m => m.DrinksAlcohol,"Patient Drinks Alcohol")</td></tr>
+    <tr><td colspan="2" style="padding-left: 80px" id="detail-td">@Html.TextBoxFor(m=>m.DrinksPer, new {@style="width: 60px; display: inline", @class="form-control alcohol"})&nbsp;&nbsp;@Html.LabelFor(m=>m.DrinksPer,"Per")&nbsp;&nbsp;
+        @Html.DropDownListFor(m => m.DrinksInterval, Model.DrinksInterval.ToSelectList(), new { @class = "form-control alcohol", @style="width: 120px; display: inline" })</td></tr>
+    <tr><td colspan="2"  style="padding-left: 40px">@Html.RadioButtonFor(m => m.DrinksAlcohol, false)&nbsp;&nbsp;@Html.LabelFor(m => m.DrinksAlcohol,"Patient Does Not Drink Alcohol")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.Educate)&nbsp;&nbsp;@Html.LabelFor(m => m.Educate,"Educate: Danger of alcohol to fetal development.  No amount of alcohol is safe")</td></tr>
+</tbody>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            @if (!Model.DrinksAlcohol.HasValue)
+            {                
+                <text>
+            $('.alcohol').attr('disabled', 'disabled');
+                </text>
+            }
+            else if (!Model.DrinksAlcohol.Value)
+            {                
+                <text>
+            $('.alcohol').attr('disabled', 'disabled');
+                </text>
+            }
+
+            $('input[name="DrinksAlcohol"]:radio').change(function () {
+                if ($(this).val() == "True") {
+                    $('.alcohol').removeAttr('disabled');
+                } else {
+                    $('.alcohol').attr('disabled', true);
+                }
+            });
+
+        });
+    </script>
+}

@@ -1,0 +1,110 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.Notes
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.PatientContactView
+
+@{
+    ViewBag.Title = "MCC Dashboard - View Note";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Contact Note</h1>
+
+@Html.Partial("~\\Views\\PatientContact\\_ContactHeader.cshtml", Model.Patient)
+
+<h2 class="h5 bg-success" style="padding: 16px; margin-bottom: 20px">Pregnancy: @Model.PregnancyDescription</h2>
+@if (!string.IsNullOrWhiteSpace(Model.GestationalAgeMessage))
+{<h2 class="h5 bg-info" style="padding: 16px; margin-bottom: 20px">Call completed at <strong>@Model.GestationalAgeMessage</strong> gestation</h2>}
+
+<pre id="intro-message">@Model.Note.NoteText</pre>
+
+<br />
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary note-action" id="sign-note" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Sign Now</button>
+            <button type="button" class="btn btn-success note-action" id="edit-note" onclick="location.href='@Url.Action("Edit", new { @dfn = Model.Patient.Dfn, @noteIen = Model.Note.Ien, @checkIen = Model.ChecklistIen })'" ><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit</button>
+            <button type="button" class="btn btn-danger note-action" id="delete-note"><span class="glyphicon glyphicon-minus"></span>&nbsp;&nbsp;Delete</button>
+            <button type="button" class="btn btn-default"onclick="location.href='@Url.Action("Index", new { @dfn = Model.Patient.Dfn, @pregIen = "" })'">Contact History</button>
+        </div>
+    </div>
+</div>
+<br />
+
+@* TODO: Combine forms and use parameters *@
+
+@using (Html.BeginForm("Sign", "PatientContact", FormMethod.Post, new { @id = "default-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn)
+    @Html.HiddenFor(m => m.Note.Ien)
+    @Html.HiddenFor(m => m.ChecklistIen)
+    @Html.HiddenFor(m => m.Note.DocumentDateTime)
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2 class="h4 modal-title" id="myModalLabel">Sign Note</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>@Html.LabelFor(m => m.Esig, "Signature Code:")</label>
+                        @Html.PasswordFor(m => m.Esig, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input id="sign-btn" type="button" class="btn btn-primary" value="Sign" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@using (Html.BeginForm("Delete", "PatientContact", FormMethod.Post, new { @id = "delete-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn)
+    @Html.HiddenFor(m => m.Note.Ien)
+    @Html.HiddenFor(m => m.ChecklistIen)
+    
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#delete-note").click(function () {
+                $("#delete-form").submit();
+            });
+
+            @if (Model.Note.SignatureStatus == TiuNoteSignatureStatus.Completed)
+            {
+             <text>
+            $(".note-action").attr("disabled", "disabled");
+            </text>
+            }
+
+            $("#myModal").on('shown.bs.modal', function () {
+                $('#Esig').focus();
+            });
+
+            $('#sign-btn').click(function () {
+                $(this).attr("disabled", "disabled");
+                $('#default-form').submit();
+            });
+        });
+    </script>
+}

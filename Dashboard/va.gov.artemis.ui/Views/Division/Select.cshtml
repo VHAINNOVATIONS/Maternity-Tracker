@@ -1,0 +1,101 @@
+﻿@using VA.Gov.Artemis.Commands.Xus
+@model List<XusDivision>
+
+@{
+    ViewBag.Title = "MCC Dashboard - Select Division";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Select", "Division", FormMethod.Post, new { @role = "form", @id = "div-select-form" }))
+        {
+            @Html.AntiForgeryToken() 
+        
+            <div id="selectDivisionDiv" class="col-md-6 col-md-offset-3">
+                <fieldset>
+                    <legend>Select Division</legend>
+
+                    <table class="table table-bordered table-hover">
+                        <thead class="centered-header">
+                            <tr>
+                                @{ XusDivision dv = new XusDivision();}
+                                <th scope="col">Current</th>
+                                <th scope="col">@Html.DisplayNameFor(d => dv.ID)</th>
+                                <th scope="col">Station Number</th>
+                                <th scope="col">@Html.DisplayNameFor(d => dv.Name)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ 
+                                   int count = 0;
+                                   if (Model != null)
+                                   {
+                                       count = Model.Count;
+                                   }
+
+                                   if (count > 0)
+                                   {
+                                       foreach (XusDivision division in Model)
+                                       {
+                                <tr>
+                                    <td class="centered-txt">
+                                        @if (division.IsDefault)
+                                        {
+                                            @Html.RadioButtonFor(div => division.IsDefault, division.ID, new { @checked = "checked" })
+                                        }
+                                        else
+                                        {
+                                            @Html.RadioButtonFor(div => division.IsDefault, division.ID)
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.ValueFor(div => division.ID)
+                                    </td>
+                                    <td>
+                                        @Html.ValueFor(div => division.StationNumber)
+                                    </td>
+                                    <td>
+                                        @Html.ValueFor(div => division.Name)
+                                    </td>
+                                </tr>
+                                       }
+
+                                   }
+                                   else
+                                   {
+                                <tr>
+                                    <td colspan="4" class="centered-txt">(No Divisions)</td>
+                                </tr>   
+                                   }
+                            }
+                        </tbody>
+                    </table>
+                </fieldset>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button class="btn btn-primary" type="button" id="select-btn">Select</button>
+                            <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Logout", "Account")'">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<br />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('#select-btn').click(function () {
+                $(this).attr("disabled", "disabled");
+                $('#div-select-form').submit();
+            });
+
+        });
+    </script>
+}

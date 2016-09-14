@@ -1,0 +1,498 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Checklist.PregnancyChecklistIndex
+@using VA.Gov.Artemis.UI.Data.Models.Checklist
+@using VA.Gov.Artemis.Commands.Dsio.Checklist
+@using VA.Gov.Artemis.Vista.Utility
+@using VA.Gov.Artemis.UI.Data.Models.Checklist
+
+@{
+    ViewBag.Title = "MCC Dashboard - Patient Checklist";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Pregnancy Checklist</h1>
+
+
+@if (Model.NoPregnancies)
+{
+    <h2 class="h5 bg-danger" style="padding: 16px; margin-bottom: 20px">This patient does not have any current or past pregnancies.  Please enter current or past pregnancy information before creating a checklist.</h2>
+}
+else if (Model.NoPregnancyDate)
+{
+    <h2 class="h5 bg-danger" style="padding: 16px; margin-bottom: 20px">The current or most recent pregnancy does not have either an EDD or End Date.  Please add an EDD or End Date before creating a checklist.</h2>    
+}
+else if (Model.Pregnancy != null)
+{
+    if (Model.Pregnancy.EndDate != DateTime.MinValue)
+    {
+    <h2 class="h5 bg-success" style="padding: 16px; margin-bottom: 20px">The patient delivered on <strong>@Model.Pregnancy.EndDate.ToString(VistaDates.UserDateFormat)</strong></h2>
+    }
+    else
+    {
+    <h2 class="h5 bg-success" style="padding: 16px; margin-bottom: 20px">The patient is due on <strong>@Model.Pregnancy.DisplayEdd</strong></h2>
+    }
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <span class="db-table-filter"><small>Show Status:</small></span>
+    </div>
+    <div class="col-md-10">
+        <button id="all-filter" type="button" class="btn btn-xs btn-success db-table-filter">All</button>
+        <button id="od-filter" type="button" class="btn btn-xs btn-success db-table-filter">Overdue</button>
+        <button id="due-filter" type="button" class="btn btn-xs btn-success db-table-filter">Due</button>
+        <button id="pnd-filter" type="button" class="btn btn-xs btn-success db-table-filter">Pending</button>
+        <button id="com-filter" type="button" class="btn btn-xs btn-success db-table-filter">Complete</button>
+        <button id="cnc-filter" type="button" class="btn btn-xs btn-success db-table-filter">Canceled</button>
+    </div>
+</div>
+
+<table id="pat-table" class="table table-bordered table-hover table-db" style="font-size: 12px; margin-top: 16px">
+    <thead class="centered-header">
+        <tr>
+            <th scope="col" ></th>
+            <th scope="col" >Type</th>
+            <th scope="col" >Category</th>
+            <th scope="col" >Description</th>
+            <th scope="col" >Due</th>
+            <th scope="col" >Due Date</th>
+            <th scope="col">Completed</th>
+            <th scope="col">Status</th>
+            <th scope="col">Note</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Items.Count > 0)
+        {
+            //Unknown, Overdue, Due, Pending, Complete, Canceled                
+            string[] dataFilter = new string[] { "unk", "od", "due", "pnd", "com", "cnc" };
+
+            foreach (PregnancyChecklistItem item in Model.Items)
+            {
+                
+            <tr data-id="@item.Ien" data-filter="@dataFilter[(int)item.DueStatus]">
+
+                @if (item.DueStatus == DueStatus.Complete)
+                {
+                    <td class="centered-txt h5" style="vertical-align: middle"><span class="glyphicon glyphicon-ok text-success"></span></td>
+                }
+                else if (item.DueStatus == DueStatus.Canceled)
+                {
+                    <td class="centered-txt h5" style="vertical-align: middle"><span class="glyphicon glyphicon-remove text-muted"></span></td>                    
+                }
+                else if (item.DueStatus == DueStatus.Overdue)
+                {
+                    <td class="centered-txt h5 text-danger" style="vertical-align: middle"><span class="glyphicon glyphicon-flag"></span></td>                    
+                }
+                else if (item.DueStatus == DueStatus.Due)
+                {
+                    <td class="centered-txt h5 text-warning" style="vertical-align: middle"><span class="glyphicon glyphicon-flag"></span></td>                    
+                }
+                else
+                {
+                    <td></td>
+                }
+
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.ItemTypeDescription)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Category)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Description)</td>
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Due)</td>
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.DueDateDisplay)</td>
+
+                @* *** Complete Date *** *@
+                @if ((string.IsNullOrWhiteSpace(item.CompletedDateDisplay)) && (item.InProgress))
+                {
+                    <td class="centered-txt" style="vertical-align: middle">
+                        <label class="label label-primary">In Progress</label></td>
+                }
+                else
+                {
+                    <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.CompletedDateDisplay)</td>
+                }
+
+                @if (item.DueStatus == DueStatus.Complete)
+                {                
+                    <td class="centered-txt h5" style="vertical-align: middle;">
+                        <label class="label label-success">Complete</label></td>
+                }
+                else if (item.DueStatus == DueStatus.Overdue)
+                {
+                    <td class="centered-txt h5" style="vertical-align: middle">
+                        <label class="label label-danger">Overdue</label></td>
+                }
+                else if (item.DueStatus == DueStatus.Due)
+                {
+                    <td class="centered-txt h5" style="vertical-align: middle">
+                        <label class="label label-warning">Due</label></td>
+                }
+                else if (item.DueStatus == DueStatus.Pending)
+                {
+                    <td class="centered-txt" style="vertical-align: middle">Pending</td>
+                }
+                else if (item.DueStatus == DueStatus.Canceled)
+                {
+                    <td class="centered-txt h5" style="vertical-align: middle">
+                        <label class="label label-default">Canceled</label></td>
+                }
+                else
+                {
+                    <td></td>
+                }
+
+                @if (string.IsNullOrWhiteSpace(item.Note))
+                {
+                    <td></td>
+                }
+                else
+                {
+                    <td class="centered-txt h5" style="vertical-align: middle"><span class="glyphicon glyphicon-comment text-muted" data-toggle="tooltip" title="@item.Note"></span></td>   
+                }
+                <td class="centered-txt" style="vertical-align: middle">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="right: 0; left: auto; font-size: 12px; min-width: 0px; width: 120px">
+                            <li class="item-action" role="presentation" data-ien="@item.Ien" data-op="@PregnancyChecklistOperation.Complete"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;&nbsp;Complete</a></li>
+                            <li class="item-action" role="presentation" data-ien="@item.Ien" data-op="@PregnancyChecklistOperation.InProgress" ><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-road text-primary"></span>&nbsp;&nbsp;In Progress</a></li>
+                            <li class="item-action" role="presentation" data-ien="@item.Ien"  data-op="@PregnancyChecklistOperation.Cancel"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-remove text-muted"></span>&nbsp;&nbsp;Cancel</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("PregnancyAddEdit", "Checklist", new { @dfn = Model.Patient.Dfn, @pregIen = Model.Pregnancy.Ien, @itemIen = item.Ien })">
+                                <span class="glyphicon glyphicon-pencil text-warning"></span>&nbsp;&nbsp;
+                                    Edit</a></li>
+                            <li class="item-action" role="presentation" data-ien="@item.Ien" data-op="@PregnancyChecklistOperation.Delete"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-minus text-danger"></span>&nbsp;&nbsp;Delete</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+
+            }
+        }
+    </tbody>
+    <tfoot id="no-rows">
+        <tr data-filter="">
+            <td colspan="10" class="centered-txt">(No Checklist Items)</td>
+        </tr>
+    </tfoot>
+</table>
+
+@{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);}
+
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button id="add-new" type="button" class="btn btn-primary">Add Item</button>
+            <button id="add-default" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add Default Items</button>
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { dfn = Model.Patient.Dfn })'">Patient Summary</button>
+        </div>
+    </div>
+</div>
+<br />
+
+@using (Html.BeginForm("PregnancyIndexPost", "Checklist", FormMethod.Post, new { @id = "preg-idx-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.SelectedItemIen)
+    @Html.HiddenFor(m => m.Patient.Dfn)
+    @Html.HiddenFor(m => m.Paging.CurrentPage)
+    @Html.HiddenFor(m => m.Pregnancy.Ien)
+    @Html.HiddenFor(m => m.PostOperation)
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2 class="h4 modal-title" id="myModalLabel">Confirmation</h2>
+                </div>
+                <div class="modal-body">
+                    Are you sure that you want to add all of the default items to this patient's checklist?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" id="add-default-btn">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#nav-pat-chk').addClass('active').siblings().removeClass('active');
+
+            @{
+                bool disableAdds = false;
+                if (Model.NoPregnancies)
+                {
+                    disableAdds = true;
+                }
+                else if (Model.Pregnancy == null)
+                {
+                    disableAdds = true;
+                }
+                else if (string.IsNullOrWhiteSpace(Model.Pregnancy.Ien))
+                {
+                    disableAdds = true;
+                }
+                else if (Model.NoPregnancyDate)
+                {
+                    disableAdds = true;
+                }
+
+                if (disableAdds)
+                {
+                    <text>
+            $("#add-new").attr("disabled", "disabled");
+            $("#add-default").attr("disabled", "disabled");
+                    </text>
+                }
+            }
+
+            $("tbody > tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#edit-selected").removeAttr("disabled");
+                $("#delete-selected").removeAttr("disabled");
+                $("#SelectedItemIen").val($("tr.info").attr("data-id"));
+            });
+
+            @{string pregIen = (Model.Pregnancy == null) ? "" : Model.Pregnancy.Ien; }
+
+            $("#edit-selected").click(function () {
+                var id = $("tr.info").attr("data-id");
+                if (id != "")
+                    location.href = '@Url.Action("PregnancyAddEdit", "Checklist", new { @dfn = Model.Patient.Dfn, @pregIen = pregIen })' + "/" + id;
+            });
+
+            $("#add-new").click(function () {
+                location.href = '@Url.Action("PregnancyAddEdit", "Checklist", new { @dfn = Model.Patient.Dfn, @pregIen = pregIen })';
+            });
+
+            $(".item-action").click(function () {
+                $("#SelectedItemIen").val($(this).attr("data-ien"));
+                $("#PostOperation").val($(this).attr("data-op"));
+                if ($(this).attr("data-op") != '@PregnancyChecklistOperation.None')
+                    $("#preg-idx-form").submit();
+            });
+
+            $("#add-default-btn").click(function () {
+                $("#PostOperation").val('@PregnancyChecklistOperation.AddDefault');
+                $("#preg-idx-form").submit();
+            });
+
+            //$(".in-prog-update").click(function () {
+            //    $("#SelectedItemIen").val($(this).attr("data-ien"));
+            //    $("#SelectedItemInProgress").val(true);
+            //    $("#stat-form").submit();
+            //});
+
+            //$(".del-item").click(function () {
+            //    alert("clicked");
+            //    $("#SelectedItemIen").val($(this).attr("data-ien"));
+            //    $("#del-form").submit();
+            //});
+
+            if ($("tbody tr").length > 0)
+                $('#no-rows').hide();
+
+            var filters = {
+                all: true,
+                overdue: true,
+                due: true,
+                pending: true,
+                complete: true,
+                canceled: true,
+            };
+
+            filters.showFilterItem = function (dataFilter) {
+                var returnVal = false; 
+                switch (dataFilter) {
+                    case "unk":
+                        returnVal = filters.all;
+                        break;
+                    case "od":
+                        returnVal = filters.overdue;
+                        break;
+                    case "due":
+                        returnVal = filters.due;
+                        break;
+                    case "pnd":
+                        returnVal = filters.pending;
+                        break;
+                    case "com":
+                        returnVal = filters.complete;
+                        break;
+                    case "cnc":
+                        returnVal = filters.canceled;
+                        break;
+                }
+                return returnVal;
+            };
+
+            filters.AllAreSelected = function () {
+                returnVal = true;
+                if (this.overdue && this.due && this.pending && this.complete && this.canceled)
+                    returnVal = true;
+                else
+                    returnVal = false;
+                return returnVal;
+            };
+
+            filters.SetAll = function (newVal) {
+                this.all = newVal;
+                this.overdue = newVal;
+                this.due = newVal;
+                this.pending = newVal;
+                this.complete = newVal;
+                this.canceled = newVal; 
+            }
+
+            function ShowHideRows() {
+                var any = 0;
+                $('#pat-table tr:has(td)').each(function () {
+                    var filter = $(this).attr("data-filter");
+                    if (filters.showFilterItem(filter)) {
+                        $(this).show();
+                        any = ++any;
+                    }
+                    else
+                        $(this).hide();
+                });
+                if (any == 0)
+                    $("#no-rows").show();
+                else
+                    $("#no-rows").hide();
+            }
+
+            $('#all-filter').click(function () {
+                if (filters.all) {
+                    UnselectAllBtn();
+                    filters.SetAll(false);
+                    $(this).siblings().addClass('btn-default').removeClass('btn-success');
+                }
+                else {
+                    SelectAllBtn();
+                    filters.SetAll(true);
+                    $(this).siblings().addClass('btn-success').removeClass('btn-default'); 
+                }
+                ShowHideRows();
+            });
+
+            function UnselectAllBtn() {
+                $('#all-filter').addClass('btn-default');
+                $('#all-filter').removeClass('btn-success');
+                filters.all = false;
+            };
+
+            function SelectAllBtn() {
+                $('#all-filter').addClass('btn-success');
+                $('#all-filter').removeClass('btn-default');
+                filters.all = true;
+            }
+
+            function CheckSelectAllBtn() {
+                if (filters.AllAreSelected() && filters.all == false)
+                    SelectAllBtn();
+            }
+
+            $('#od-filter').click(function () {
+                if (filters.overdue) {
+                    $(this).addClass('btn-default');
+                    $(this).removeClass('btn-success');
+                    filters.overdue = false;
+                    UnselectAllBtn();
+                }
+                else {
+                    $(this).addClass('btn-success');
+                    $(this).removeClass('btn-default');
+                    filters.overdue = true;
+                    CheckSelectAllBtn();
+                }
+                ShowHideRows();
+                this.blur();
+            });
+
+            $('#due-filter').click(function () {
+                if (filters.due) {
+                    $(this).addClass('btn-default');
+                    $(this).removeClass('btn-success');
+                    filters.due = false;
+                    UnselectAllBtn();
+                }
+                else {
+                    $(this).addClass('btn-success');
+                    $(this).removeClass('btn-default');
+                    filters.due = true;
+                    CheckSelectAllBtn();
+                }
+                ShowHideRows();
+                this.blur();
+            });
+
+            $('#pnd-filter').click(function () {
+                if (filters.pending) {
+                    $(this).addClass('btn-default');
+                    $(this).removeClass('btn-success');
+                    filters.pending = false;
+                    UnselectAllBtn();
+                }
+                else {
+                    $(this).addClass('btn-success');
+                    $(this).removeClass('btn-default');
+                    filters.pending = true;
+                    CheckSelectAllBtn();
+                }
+                ShowHideRows();
+                this.blur();
+            });
+
+            $('#com-filter').click(function () {
+                if (filters.complete) {
+                    $(this).addClass('btn-default');
+                    $(this).removeClass('btn-success');
+                    filters.complete = false;
+                    UnselectAllBtn();
+                }
+                else {
+                    $(this).addClass('btn-success');
+                    $(this).removeClass('btn-default');
+                    filters.complete = true;
+                    CheckSelectAllBtn();
+                }
+                ShowHideRows();
+                this.blur();
+            });
+
+            $('#cnc-filter').click(function () {
+                if (filters.canceled) {
+                    $(this).addClass('btn-default');
+                    $(this).removeClass('btn-success');
+                    filters.canceled = false;
+                    UnselectAllBtn();
+                }
+                else {
+                    $(this).addClass('btn-success');
+                    $(this).removeClass('btn-default');
+                    filters.canceled = true;
+                    CheckSelectAllBtn();
+                }
+                ShowHideRows();
+                this.blur();
+            });
+        });
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+

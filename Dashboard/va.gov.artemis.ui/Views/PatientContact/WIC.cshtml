@@ -1,0 +1,14 @@
+﻿@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.WicCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.InformAboutWic)&nbsp;&nbsp;@Html.LabelFor(m => m.InformAboutWic, "Inform patient that WIC provides low-income families with healthy food, breast feeding support, and connections to community resources.")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.DiscussWithOb)&nbsp;&nbsp;@Html.LabelFor(m => m.DiscussWithOb, "Encourage patient to discuss with OB if would like more information")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.LactationSupport)&nbsp;&nbsp;@Html.LabelFor(m => m.LactationSupport, "Inform patient regarding lactation support services provided by hospitals")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.WicContactInfo)&nbsp;&nbsp;@Html.LabelFor(m => m.WicContactInfo, "Provide WIC contact information: 1-888-WIC-WORKS (1-888-942-9675) or website") <a href="http://www.fns.usda.gov/wic" target="_blank">http://www.fns.usda.gov/wic</a></td></tr>
+</tbody>

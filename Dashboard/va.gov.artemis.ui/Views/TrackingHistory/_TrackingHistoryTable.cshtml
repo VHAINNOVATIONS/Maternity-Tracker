@@ -1,0 +1,89 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.Track
+@using VA.Gov.Artemis.Vista.Utility
+@model VA.Gov.Artemis.UI.Data.Models.Track.TrackingEntryList
+
+<table class="table table-bordered table-db table-hover">
+    <thead class="centered-header">
+        <tr>
+            @{TrackingEntry tempEntry = new TrackingEntry();}
+            <th class="col-md-1">@Html.DisplayNameFor(model => tempEntry.EntryType)</th>
+            <th class="col-md-2">@Html.DisplayNameFor(model => tempEntry.EntryDateTime)</th>
+            <th class="col-md-2">@Html.DisplayNameFor(model => tempEntry.PatientName)</th>
+            <th class="col-md-2">@Html.DisplayNameFor(model => tempEntry.UserName)</th>
+            <th class="col-md-1">@Html.DisplayNameFor(model => tempEntry.Source)</th>
+            <th class="col-md-2">@Html.DisplayNameFor(model => tempEntry.Reason)</th>
+            <th class="col-md-1">@Html.DisplayNameFor(model => tempEntry.Comment)</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model.Entries != null)
+        {
+            if (Model.Entries.Count > 0)
+            {
+                foreach (var item in Model.Entries)
+                {
+            <tr>
+                <td class="centered-txt">
+                    @if (item.EntryType == TrackingEntryType.Start)
+                    {
+                        <span class="label label-success">@Html.DisplayFor(modelItem => item.DisplayEntryType)</span>
+                    }
+                    else if (item.EntryType == TrackingEntryType.Stop)
+                    {
+                        <span class="label label-danger">@Html.DisplayFor(modelItem => item.DisplayEntryType)</span>
+                    }
+                    else if (item.EntryType == TrackingEntryType.Reject)
+                    {
+                        <span class="label label-danger">@Html.DisplayFor(modelItem => item.DisplayEntryType)</span>
+                    }
+                    else if (item.EntryType == TrackingEntryType.Flag)
+                    {
+                        <span class="label label-info">@Html.DisplayFor(modelItem => item.DisplayEntryType)</span>
+                    }
+                    else if (item.EntryType == TrackingEntryType.Accept)
+                    {
+                        <span class="label label-success">@Html.DisplayFor(modelItem => item.DisplayEntryType)</span>
+                    }
+                </td>
+                @{string displayDate;
+                  if (item.EntryDateTime != DateTime.MinValue)
+                  { displayDate = item.EntryDateTime.ToString(VistaDates.UserDateTimeFormat); }
+                  else
+                  { displayDate = ""; }
+                }
+                <td>@displayDate</td>
+                @if (Model.ShowPatientLinks)
+                {
+                    <td><a href="@Url.Action("ByPatient", new { dfn = item.PatientDfn, page = "1" })">@Html.DisplayFor(modelItem => item.PatientName)</a></td>
+                }
+                else
+                {
+                    <td>@Html.DisplayFor(modelItem => item.PatientName)</td>
+                }
+                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Source)</td>
+                <td>@Html.DisplayFor(modelItem => item.Reason)</td>
+                @if (string.IsNullOrWhiteSpace(item.Comment))
+                {
+                    <td></td>
+                }
+                else
+                {
+                    <td class="centered-txt">
+                        <label class="badge badge-info" data-toggle="tooltip" title="@item.Comment">*</label></td>    
+                }
+            </tr>
+                }
+            }
+            else
+            {
+            <td class="centered-txt" colspan="7">No history found</td>
+            }
+        }
+        else
+        {
+            <td class="centered-txt" colspan="7">No history found</td>
+        }
+    </tbody>
+</table>

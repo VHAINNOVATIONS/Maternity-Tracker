@@ -1,0 +1,15 @@
+﻿<script>
+    $(document).ready(function () {
+        $('.ordered-yes').attr('disabled', 'disabled');
+        $('.ordered-no').attr('disabled', 'disabled');
+        $('input[name="BreastPumpOrdered"]:radio').change(function () {
+            if ($(this).val() == "True") {
+                $('.ordered-yes').removeAttr('disabled');
+                $('.ordered-no').attr('disabled', 'disabled');
+            } else {
+                $('.ordered-yes').attr('disabled', 'disabled');
+                $('.ordered-no').removeAttr('disabled');
+            }
+        });
+    });
+</script>

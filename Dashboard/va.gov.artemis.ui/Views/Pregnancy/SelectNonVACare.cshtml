@@ -1,0 +1,111 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.NonVACare
+@model VA.Gov.Artemis.UI.Data.Models.Pregnancy.SelectNonVACareModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - Select Non-VA Care";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@{string selectionDescription = (Model.ItemType == NonVACareItemType.Facility) ? "Select Planned Delivery Facility" : "Select Non-VA Care Provider (OB/GYN)"; }
+<h1 class="h3 page-header">@selectionDescription</h1>
+
+@using (Html.BeginForm("SelectNonVACare", "Pregnancy", FormMethod.Post, new { @role = "form", @class = "form", @id = "select-ob-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.PregnancyIen);
+    @Html.HiddenFor(m => m.Patient.Dfn); 
+    @Html.HiddenFor(m => m.CurrentSelectionIen); 
+    @Html.HiddenFor(m => m.UIItemType);
+    
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <table class="table table-bordered table-hover">
+                <thead class="centered-header">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Paging.CurrentPage == 1)
+                    {
+                        if (string.IsNullOrWhiteSpace(Model.CurrentSelectionIen))
+                        {
+                        <tr data-ien="" class="info">
+                            <td colspan="2">Unspecified</td>
+                        </tr>
+                        }
+                        else
+                        {
+                        <tr data-ien="">
+                            <td colspan="2">Unspecified</td>
+                        </tr>
+   
+                        }
+                    }
+
+                    @if (Model.Items != null)
+                    {
+                        foreach (NonVACareItem item in Model.Items)
+                        {
+                            if (item.Ien == Model.CurrentSelectionIen)
+                            {
+                        <tr data-ien="@item.Ien" class="info">
+                            <td>@item.Name</td>
+                            <td>@item.Csz</td>
+                        </tr>
+                            }
+                            else
+                            {
+                        <tr data-ien="@item.Ien">
+                            <td>@item.Name</td>
+                            <td>@item.Csz</td>
+                        </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+                    Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="pull-right">
+                <button id="select-ob" type="submit" class="btn btn-primary">Select</button>
+                <button id="manage-btn" type="button" class="btn btn-default">Manage List</button>
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { @dfn = Model.Patient.Dfn })'">Cancel</button>
+            </div>
+        </div>
+    </div>
+}
+<br />
+
+@section Scripts
+{
+    <script>
+
+        $('#select-ob-form').submit(function (e) {
+            var curVal = $("tr.info").attr("data-ien");
+            $('#CurrentSelectionIen').attr("value", curVal);
+            return true;
+        });
+
+        $("tbody > tr").click(function () {
+            $(this).addClass("info").siblings().removeClass("info");
+        });
+
+        $('#manage-btn').click(function () {
+            location.href = '@Url.Action("Index", "NonVACare", new { @page = "1", @dfn = Model.Patient.Dfn, @pien = Model.PregnancyIen, @itemType = Model.UIItemType })';
+        });
+
+    </script>
+}
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

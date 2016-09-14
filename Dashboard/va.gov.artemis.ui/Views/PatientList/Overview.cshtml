@@ -1,0 +1,339 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.PatientList
+@using VA.Gov.Artemis.UI.Data.Models.Common
+@model TrackedPatients
+
+@{
+    ViewBag.Title = "MCC Dashboard - Tracked Patients";
+    Layout = "~/Views/Shared//_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Tracked Patients</h1>
+
+<p>
+    <span class="db-table-filter"><small>Trimester:</small></span>
+    <button id="tri-1" type="button" class="btn btn-xs btn-default db-table-filter" >1<sup>st</sup></button>
+    <button id="tri-2" type="button" class="btn btn-xs btn-default db-table-filter" >2<sup>nd</sup></button>
+    <button id="tri-3" type="button" class="btn btn-xs btn-default db-table-filter" >3<sup>rd</sup></button>
+    <button id="tri-all" type="button" class="btn btn-xs btn-success db-table-filter" >All</button>
+</p>
+
+<table id="pat-table" class="table table-bordered tablesorter table-db table-hover" style="margin: 20px 0px 20px 0px">
+    <thead class="centered-header clickable-header">
+        <tr>
+            @{ TrackedPatient pat = new TrackedPatient();}
+            <th scope="col">@Html.DisplayNameFor(p => pat.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.Last4)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.Age)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.HomePhone)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.NonVaObstetrician)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.PlannedDeliveryFacility)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.PregnantDisplay)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.CurrentPregnancyHighRisk)</th>
+            <th scope="col">Lactating</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.Trimester)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.GestationalAge)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.EDDDisplay)</th>            
+            <th scope="col">@Html.DisplayNameFor(p => pat.LastContactDisplay)</th>
+            <th scope="col">@Html.DisplayNameFor(p => pat.NextContactDisplay)</th>
+            <th scope="col">Next Item Due</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.List.Count == 0)
+        {
+            <tr data-tri="">
+                <td class="centered-txt" colspan="15">(No Tracked Patients)</td>
+            </tr>
+        }
+        else 
+        {
+        foreach (TrackedPatient patient in Model.List)
+        {
+            <tr data-tri="@patient.Trimester">
+                <td><a href="@Url.Action("Summary", "Patient", new {dfn=patient.Dfn })">@Html.DisplayFor(p => patient.Name)</a></td>
+                <td class="centered-txt">@Html.DisplayFor(p => patient.Last4)</td>
+                <td class="centered-txt">@Html.DisplayFor(p => patient.Age)</td>
+                <td class="centered-txt">@Html.DisplayFor(p => patient.HomePhone)</td>
+                <td class="centered-txt">@Html.DisplayFor(p => patient.NonVaObstetrician)</td>
+                <td class="centered-txt">@Html.DisplayFor(p => patient.PlannedDeliveryFacility)</td>
+                @if (patient.PregnantDisplay == "Yes")
+                {
+                    <td class="centered-txt"><label class="badge badge-primary">@Html.DisplayFor(p => patient.PregnantDisplay)</label></td>
+                }
+                else 
+                {
+                    <td class="centered-txt">@Html.DisplayFor(p => patient.PregnantDisplay)</td>
+                }
+                @if (patient.CurrentPregnancyHighRisk) 
+                {
+                    <td class="centered-txt"><span class="label label-danger" style="cursor: default" title="@patient.HighRiskDetails">High Risk</span></td>
+                }
+                else 
+                {
+                    <td class="centered-txt"></td>
+                }
+                <td class="centered-txt">@Html.DisplayFor(p => patient.LactatingDescription)</td>
+                <td class="centered-txt"><strong>@Html.DisplayFor(p => patient.TrimesterDisplay)<sup>@patient.TrimesterSuffix</sup></strong></td>
+                
+                <td class="centered-txt" data-ga ="@patient.GestationalAgeDays">@Html.DisplayFor(p => patient.GestationalAge)</td>
+                <td class="centered-txt">@Html.DisplayFor(p => patient.EDDDisplay)</td>  
+                <td  class="centered-txt">@Html.DisplayFor(p => patient.LastContactDisplay)</td>
+                <td  class="centered-txt">@Html.DisplayFor(p => patient.NextContactDisplay)</td>
+                <td  class="centered-txt">@Html.DisplayFor(p => patient.NextChecklistDisplay)</td>
+            </tr>
+        }
+        }
+        <tr id="no-rows">
+            <td class="centered-txt" colspan="15" >(Nothing Found)</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="centered-txt">
+    <ul class="pagination">
+        <li id="page-prev"><a href="#">&laquo;</a></li>
+        <li class="page-li active" data-page="1"><a class="page-num" data-page="1" href="#" aria-label="Current Page">1</a></li>
+        <li class="page-li" data-page="2"><a class="page-num" data-page="2" href="#">2</a></li>
+        <li class="page-li" data-page="3"><a class="page-num" data-page="3" href="#">3</a></li>
+        <li class="page-li" data-page="4"><a class="page-num" data-page="4" href="#">4</a></li>
+        <li class="page-li" data-page="5"><a class="page-num" data-page="5" href="#">5</a></li>
+        <li id="page-next"><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var currentPage = 1;
+            //console.log("--currentPage: " + currentPage);
+
+            var itemsPerPage = 10;
+            var filteredItems = Number('@Model.List.Count'); 
+            var lastPage = -1;
+
+            var currentTriFilter = ''; 
+            
+            updateAll(); 
+
+            $('#page-prev').click(function () {
+                if (currentPage > 1) {
+                    currentPage -= 1;
+                    console.log("--currentPage: " + currentPage);
+                    updateAll();
+                    $('#page-prev a').blur();
+                }
+            });
+
+            $('#page-next').click(function () {
+                if (currentPage < lastPage) {
+                    currentPage += 1;
+                    console.log("--currentPage: " + currentPage);
+                    updateAll();
+                    $('#page-next a').blur();
+                }
+            });
+
+            $('.page-num').click(pageNumClick);
+
+            function pageNumClick() {
+                var newPage = $(this).attr("data-page");
+                if (newPage != currentPage) {
+                    currentPage = Number(newPage);
+                    console.log("--currentPage: " + currentPage);
+                    updateAll();
+                }
+            }
+            
+            function updateAll() {
+                updateItems();
+                updatePageUI();
+            }
+
+            function updateItems() {
+
+                // *** Show hide items based on filter and page ***
+                filteredItems = 0;
+                $('#pat-table tr:has(td)').each(function () {
+                    if (!$(this).is($('#no-rows'))) {
+                        var tri = $(this).attr("data-tri");
+                        if ((currentTriFilter == '') || (tri == currentTriFilter)) {
+                            itemPage = getItemPage(filteredItems);
+                            console.log("--itemPage: " + itemPage);
+                            if (itemPage == currentPage)
+                                $(this).show();
+                            else
+                                $(this).hide();
+                            filteredItems++;
+                            console.log("--filteredItems: " + filteredItems);
+                        }
+                        else
+                            $(this).hide();
+                    }
+                });
+
+                // Deal with no rows
+                if (filteredItems == 0)
+                    $("#no-rows").show();
+                else
+                    $("#no-rows").hide();
+
+                // *** Update last page ***
+                updateLastPage();
+            }
+
+            function updatePageUI() {
+
+                if (lastPage <= 1)
+                    $('.pagination').hide();
+                else {
+
+                    // *** Add/Remove Elements ***
+                    if ($('.page-li').length > lastPage) {
+                        $('.pagination .page-li').each(function () {
+                            var pg = Number($(this).attr('data-page'));
+                            if (pg > lastPage) {
+                                console.log("--removing page: " + pg);
+                                $(this).remove();
+
+                            }
+                        });
+                    }
+                    else if ($('.page-li').length < lastPage) {
+                        var strt = Number($('.page-li').length) + 1;
+                        for (var i = strt; i <= lastPage; i++) {
+                            var newHtml = '<li class="page-li" data-page="' + i + '"><a class="page-num" data-page="' + i + '" href="#">' + i + '</a></li>';
+                            var newEl = $(newHtml);
+                            $(newEl).on("click", pageNumClick);
+                            $(newEl).insertBefore('#page-next');
+                            console.log("--appending page: " + i);
+                        }
+                    }
+
+                    if (currentPage == 1)
+                        $('#page-prev').addClass('disabled');
+                    else
+                        $('#page-prev').removeClass('disabled');
+
+                    if (currentPage == lastPage)
+                        $('#page-next').addClass('disabled');
+                    else
+                        $('#page-next').removeClass('disabled');
+
+                    $('.pagination .page-li').each(function () {
+                        var elPage = Number($(this).attr('data-page'));
+                        if (elPage == currentPage)
+                            $(this).addClass('active');
+                        else
+                            $(this).removeClass('active');
+                    });
+
+                    $('.page-num').blur();
+
+                    $('.pagination').show();
+                }
+            }
+
+            function updateLastPage() {
+                var whole = Math.floor(filteredItems / itemsPerPage);
+                var rem = filteredItems % itemsPerPage;
+                if (rem > 0)
+                    whole += 1;
+                lastPage = whole;
+            }
+
+            function getItemPage(itemNum) {
+                return Math.floor(itemNum / itemsPerPage) + 1; 
+            }
+
+            $.tablesorter.addParser({
+                id: 'ga',
+                is: function (s) {
+                    return false;
+                },
+                format: function (s) {
+                    return s.replace('w', '').replace('d', '').replace(' ', '');
+                },
+                type: 'numeric'
+            });
+
+            $("#pat-table").tablesorter({sortList: [[0,0]]}, { headers: { 9: { sorter: 'ga' } }});
+
+            $('#nav-tracked').addClass('active').siblings().removeClass('active');
+            
+            $('#no-rows').hide();
+
+            $("#pat-table>tbody>tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+            });
+
+            $('#tri-1').click(function () {
+                $(this).addClass('btn-success').siblings().removeClass('btn-success');
+                $(this).removeClass('btn-default').siblings().addClass('btn-default');
+
+                currentTriFilter = "1";
+                currentPage = 1;
+                //console.log("--currentPage: " + currentPage);
+
+                updateAll(); 
+
+            });
+
+            $('#tri-2').click(function () {
+                $(this).addClass('btn-success').siblings().removeClass('btn-success');
+                $(this).removeClass('btn-default').siblings().addClass('btn-default');
+
+                currentTriFilter = "2";
+                currentPage = 1;
+                //console.log("--currentPage: " + currentPage);
+
+                updateAll();
+            });
+
+            $('#tri-3').click(function () {
+                $(this).addClass('btn-success').siblings().removeClass('btn-success');
+                $(this).removeClass('btn-default').siblings().addClass('btn-default');
+
+                currentTriFilter = "3";
+                currentPage = 1;
+                //console.log("--currentPage: " + currentPage);
+
+                updateAll();
+
+            });
+
+            $('#tri-all').click(function () {
+                $(this).addClass('btn-success').siblings().removeClass('btn-success');
+                $(this).removeClass('btn-default').siblings().addClass('btn-default');
+
+                currentTriFilter = "";
+                currentPage = 1;
+                //console.log("--currentPage: " + currentPage);
+
+                updateAll();
+            });
+
+            $("#pat-table").bind("sortEnd", function () {
+
+                if (currentPage != "1")
+                    currentPage = 1;
+                //console.log("--currentPage: " + currentPage);
+
+                updateAll();                
+            });
+
+            //var gaExtraction = function (node) {
+            //    alert(note.attr("data-ga")); 
+            //    return note.attr("data-ga");
+            //}
+
+        });
+    </script>
+}

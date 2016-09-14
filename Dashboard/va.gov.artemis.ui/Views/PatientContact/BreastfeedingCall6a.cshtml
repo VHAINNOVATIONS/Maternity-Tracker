@@ -1,0 +1,8 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.PatientContact.BreastfeedingCallTab
+
+<tbody>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.ConfirmReceipt)&nbsp;&nbsp;@Html.LabelFor(m=>m.ConfirmReceipt, "Confirm breastfeeding supplies and/or pump delivered. (If not, follow-up )")</td></tr>
+    <tr><td colspan="2">
+        @Html.LabelFor(m => m.BreastfeedingComment, "Comments", new {@class="sr-only"})
+        @Html.TextAreaFor(m => m.BreastfeedingComment, new {@placeholder="Breastfeeding & Supplies Notes", @class="form-control", @rows="7" })</td>
+</tbody>

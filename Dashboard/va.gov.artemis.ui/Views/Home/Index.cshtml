@@ -1,0 +1,52 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Home.HomeData
+@{
+    ViewBag.Title = "MCC Dashboard - Home";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml"; 
+}
+
+@*<div class="db-container">*@
+<div>
+                        <div class="row">
+                        <div class="col-md-4 col-sm-12"><a href="http://www.innovation.va.gov"><img src="~/Content/images/VA Innovation Logo.png" alt="US Department of Veterans Affairs Center For Innovation" width="282" height="84" style="border:1px solid lightgray; padding: 6px" /></a></div>
+                        <div class="col-md-4 col-sm-12 centered-txt"><a href="http://www.va.gov"><img src="~/Content/images/VA_PrimaryLogo_1color_navy.jpg" alt="US Department of Veterans Affairs" width="282" height="84" style="border:1px solid lightgray; padding: 6px"/></a></div>
+                        <div class="col-md-4 col-sm-12"><a href="http://www.dssinc.com"><img class="pull-right" src="~/Content/images/dss logo.jpg" alt="Document Storage Systems, Inc.  EHR + Innovation" width="273" height="84" style="border:1px solid lightgray"/></a></div>
+                    </div> 
+    <br />
+    <br />
+    <div class="row">
+        <div id="welcomeMessageDiv" class="col-md-6">
+            <h1 class="h3 text-primary">@Model.WelcomeMessage</h1>
+            <br />
+            <p>@Model.ProductDescription</p>
+        </div>
+        <div id="loginMessageDiv" class="col-md-6">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <p>@Model.LoginMessage</p>
+                </div>
+            </div>
+
+            <div id="loginButtonDiv" class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <button class="btn btn-lg btn-primary btn-block" onclick="location.href='@Url.Action("Dashboard", "PatientList")'">@Model.LoginButtonText</button>
+                </div>
+            </div>
+            <div id="accessHelpDiv" class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <p>If you would like to request access to this system, please click <a href="@Model.AccessHelpLink">here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavUser.cshtml");}
+    <ul class="nav nav-sidebar">
+        <li><a class="list-group-item" href="@Url.Action("Edit", "ServerSettings")">Server Settings</a></li>
+    </ul>
+}

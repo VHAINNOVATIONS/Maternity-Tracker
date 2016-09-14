@@ -1,0 +1,28 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.ContraceptionCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+@{string additionalNote = (Model.CallType == MccPatientCallType.PhoneCall_4) ? " (If previously requested authorization for TL or IUD, ask if patient has discussed TL/IUD.)" : "";}
+
+<tbody class="note-body">
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.DiscussedWithOb)&nbsp;&nbsp;@Html.LabelFor(m => m.DiscussedWithOb, "Assess if patient has discussed family planning with OB. If not, encourage patient to discuss with OB.")</td></tr>
+
+    @if (Model.CallType == MccPatientCallType.PhoneCall_5)
+    {
+        <tr><td colspan="2">@Html.CheckBoxFor(m => m.ClarifyMisconceptions)&nbsp;&nbsp;@Html.LabelFor(m => m.ClarifyMisconceptions, "Clarify misconceptions: When resuming sexual relations after having a baby, you can get pregnant - No safe period - breastfeeding does not prevent pregnancy")</td></tr>
+    }
+    else if (Model.CallType == MccPatientCallType.PhoneCall_6b)
+    {
+        <tr><td colspan="2">@Html.CheckBoxFor(m => m.VerifyContraception)&nbsp;&nbsp;@Html.LabelFor(m => m.VerifyContraception, "If patient previously verbalized contraceptive plan, verify patient obtained contraception. Troubleshoot as needed.")</td></tr>
+    }
+    <tr class="active"><td colspan="2">Notes</td></tr>
+    <tr><td colspan="2">
+        @Html.LabelFor(m => m.Notes, "Notes", new {@class="sr-only"})
+        @Html.TextAreaFor(m => m.Notes, new {@class="form-control", @placeholder="Enter Details", @rows="7" })
+    </td></tr>
+</tbody>

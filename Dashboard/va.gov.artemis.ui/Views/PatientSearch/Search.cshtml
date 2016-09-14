@@ -1,0 +1,113 @@
+﻿@using VA.Gov.Artemis.UI.Data
+@using VA.Gov.Artemis.UI.Data.Models.PatientSearch
+@using VA.Gov.Artemis.UI.Data.Models.Patient
+@model VA.Gov.Artemis.UI.Data.Models.PatientSearch.PatientSearch
+
+@{
+    ViewBag.Title = "MCC Dashboard - Track A Patient";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";    
+}
+
+<h1 class="h3 page-header">Track A Patient</h1>
+
+<div class="form-inline">
+    <div class="form-group">
+        <label class="sr-only">Last Name:</label>
+        @Html.TextBoxFor(m => m.SearchCriteria, new { @class = "form-control", @placeholder = "Enter Search Criteria" })
+    </div>
+    <button id="search-btn" class="btn btn-primary" onclick="doSearch()">Search</button>
+</div>
+<br />
+
+<div>
+    <table class="table table-bordered">
+        <thead class="centered-header">
+            <tr>
+                @{SearchPatient sp = new SearchPatient();}
+                <th scope="col">@Html.DisplayNameFor(s => sp.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(s => sp.FullSSN)</th>
+                <th scope="col">@Html.DisplayNameFor(s => sp.FormattedDob)</th>
+                <th scope="col">@Html.DisplayNameFor(s => sp.Location)</th>
+                <th scope="col">@Html.DisplayNameFor(s => sp.CurrentlyTracking)</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (SearchPatient patient in Model.Patients)
+            {
+                <tr>
+                    <td>@Html.DisplayTextFor(s => patient.Name)</td>
+                    @if (patient.Sensitive)
+                    {
+                        <td>Sensitive</td>
+                        <td>Sensitive</td>
+                    }
+                    else
+                    {
+                        <td>@Html.DisplayTextFor(s => patient.FullSSN)</td>
+                        <td>@Html.DisplayTextFor(s => patient.FormattedDob)</td>                        
+                    }
+                    <td>@Html.DisplayTextFor(s => patient.Location)</td>
+
+                    @switch (patient.CurrentlyTracking)
+                    {
+                        case CurrentTrackingStatus.Yes:
+                        <td style="text-align: center" data-toggle="tooltip" title="this is a test"><span class="badge badge-success">Yes</span></td>
+                        <td></td>
+                            break;
+                        case CurrentTrackingStatus.No:
+                        <td style="text-align: center"><span class="badge">No</span></td>
+                        <td style="text-align: center">
+                            <button type="button" class="btn btn-primary btn-xs" onclick="location.href='@Url.Action("Start", "Track", new { dfn = @patient.Dfn })'">Start Tracking</button>
+                        </td>
+                            break;
+                        case CurrentTrackingStatus.Flagged:
+                        <td style="text-align: center"><span class="badge badge-important">Flagged</span></td>
+                            Html.RenderPartial("~/Views/FlaggedPatients/_FlaggedActionDropdown.cshtml", patient.Dfn);
+                            break;
+                    }
+                </tr>
+            }
+            @if (Model.Patients.Count == 0)
+            {
+                <tr>
+                    <td class="centered-txt" colspan="7">@Model.Message</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);}
+
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#nav-search').addClass('active').siblings().removeClass('active');
+            $('#SearchCriteria').placeholder();
+        });
+
+        function doSearch() {
+            var criteria = $("#SearchCriteria").val();
+            var firstPart = '@Url.Action("Search", new { criteria = "", page="" })';
+            location.href = firstPart + "/" + criteria;
+        }
+
+        //$(document).ready(function () {
+        //    $("SearchCriteria").keypress(function (e) {
+        //        if (e.which == 13) {
+        //            $("#search-btn").click();
+        //            return false;
+        //        }
+        //    });
+        //});
+       
+        
+    </script>
+}
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}

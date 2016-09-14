@@ -1,0 +1,8 @@
+﻿@model string
+
+<td style="text-align: center">
+    <div class="btn-group">
+        <button type="button" class="btn btn-success btn-xs" onclick="location.href='@Url.Action("Accept", "Track", new {dfn=@Model})'">Accept</button>
+        <button type="button" class="btn btn-danger btn-xs" onclick="location.href='@Url.Action("Reject", "Track", new {dfn=@Model})'">Reject</button>
+    </div>
+</td>

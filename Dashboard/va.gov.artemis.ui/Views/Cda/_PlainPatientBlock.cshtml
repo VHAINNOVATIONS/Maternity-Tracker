@@ -1,0 +1,20 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Common.BasePatient
+<div class="patient-block" style="background-color: white">
+    <ul class="list-unstyled">
+        @if (Model == null)
+        {
+            <li><strong>(NO PATIENT FOUND)</strong></li>
+        }
+        else if (Model.NotFound) 
+        {
+            <li><strong>(NO PATIENT FOUND)</strong></li>
+        }
+        else
+        {
+            <li><strong>@Model.Name</strong></li>
+            <li>@Model.FormattedSSN</li>
+            <li>@Model.FormattedDob (Age: @Model.Age)</li>
+        }
+    </ul>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.BreastfeedingCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+@switch (Model.CallType)
+{
+    case MccPatientCallType.PhoneCall_4:
+    @Html.Partial("BreastfeedingCall4", Model)
+        break;
+
+    case MccPatientCallType.PhoneCall_5:
+    @Html.Partial("BreastfeedingCall5", Model)
+        break;
+
+    case MccPatientCallType.PhoneCall_6a:
+    @Html.Partial("BreastfeedingCall6a", Model)
+        break;
+
+    case MccPatientCallType.PhoneCall_6b:
+    @Html.Partial("BreastfeedingCall6b", Model)
+        break;
+
+    case MccPatientCallType.PhoneCall_7:
+    @Html.Partial("BreastfeedingCall7", Model)
+        break;
+}
+
+@section Scripts
+{
+    @switch (Model.CallType)
+    {
+        case MccPatientCallType.PhoneCall_4:
+        @Html.Partial("BreastfeedingCall4Script")
+            break;
+
+        case MccPatientCallType.PhoneCall_5:
+        @Html.Partial("BreastfeedingCall5Script")
+            break;
+
+    }
+
+}

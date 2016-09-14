@@ -1,0 +1,275 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Patient.PatientSummary
+
+@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.Labs
+@using VA.Gov.Artemis.UI.Data.Models.Checklist
+
+@{
+    ViewBag.Title = "MCC Dashboard - Patient Summary";
+    Layout = "~/Views/Shared//_LayoutPage2.cshtml";
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+<h1 class="h3 page-header">Patient Summary</h1>
+
+@{string preg = (@Model.Patient.Pregnant) ? "Pregnant" : "Not Pregnant";}
+
+<div class="row">
+    <div class="col-md-6">
+        <h2 class="h5 pull-left"><strong>Patient Details</strong></h2>
+        <table class="table table-bordered table-horizontal">
+            <tr>
+                <th scope="row">Name:</th>
+                <td>@Model.Patient.Name</td>
+            </tr>
+            <tr>
+                <th scope="row">Age:</th>
+                <td>@Model.Patient.Age</td>
+            </tr>
+            <tr>
+                <th scope="row">Pregnancy Status:</th>
+                <td><a href="@Url.Action("Status", "Pregnancy", new { dfn = Model.Patient.Dfn })">@preg</a></td>
+            </tr>
+            <tr>
+                <th scope="row">Postpartum:</th>
+                <td>@Model.Patient.PostpartumDescription</td>
+            </tr>
+            <tr>
+                <th scope="row">Lactating:</th>
+                <td><a href="@Url.Action("Status", "Lactation", new { dfn = Model.Patient.Dfn })")>@Model.Patient.LactatingDescription</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h2 class="h5 pull-left"><strong>Contact</strong></h2>
+        <table class="table table-bordered table-horizontal">
+            <tr>
+                <th scope="row">Home Phone:</th>
+                <td>@Model.Patient.HomePhone</td>
+            </tr>
+            <tr>
+                <th scope="row">Work Phone:</th>
+                <td>@Model.Patient.WorkPhone</td>
+            </tr>
+            <tr>
+                <th scope="row">Mobile Phone:</th>
+                <td>@Model.Patient.MobilePhone</td>
+            </tr>
+            <tr>
+                <th scope="row">Last Contact</th>
+                <td>@Model.Patient.LastContactDisplay</td>
+            </tr>
+            <tr>
+                <th scope="row">Next Contact:</th>
+                <td>@Model.Patient.NextContactDisplay</td>
+            </tr>
+            <tr>
+                <th scope="row">Next Item Due:</th>
+                <td>@Model.Patient.NextChecklistDisplay</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h2 class="h5 pull-left"><strong>Current Pregnancy</strong></h2>
+        <table class="table table-bordered table-horizontal">
+            @if (@Model.Patient.Pregnant)
+            {
+
+                <tr>
+                    <th scope="row">Estimated Delivery Date:</th>
+                    <td><a href="@Url.Action("EddHistory", "Pregnancy", new { dfn = Model.Patient.Dfn, @pregIen = Model.CurrentPregnancy.Ien, @page = "1" })">@Model.CurrentPregnancy.DisplayEdd</a></td>
+                    @*<td>Unknown</td>*@
+                </tr>
+                <tr>
+                    <th scope="row">EDD Basis:</th>
+                    <td>@Model.CurrentPregnancy.EddBasis</td>
+                </tr>
+                <tr>
+                    <th scope="row">EDD Is Final:</th>
+                    <td>@Model.CurrentPregnancy.EddIsFinalDisplay</td>
+                </tr>
+                <tr>
+                    <th scope="row">Gestational Age:</th>
+                    <td>@Model.CurrentPregnancy.GestationalAge</td>
+                </tr> 
+                <tr>
+                    <th scope="row">Trimester:</th>
+                    @switch (Model.CurrentPregnancy.Trimester)
+                    {
+                        case "1st":
+                        <td><span class="label label-warning">1<sup>st</sup></span></td>
+                            break;
+                        case "2nd":
+                        <td><span class="label label-warning">2<sup>nd</sup></span></td>
+                            break;
+                        case "3rd":
+                        <td><span class="label label-warning">3<sup>rd</sup></span></td>
+                            break;
+                        default:
+                        <td>@Model.CurrentPregnancy.Trimester</td>
+                            break;
+                    }
+
+                </tr>
+                <tr>
+                    <th scope="row">Prenatal Care Provider:</th>
+                    <td><a href="@Url.Action("SelectNonVACare", "Pregnancy", new { dfn = Model.Patient.Dfn, pien = Model.CurrentPregnancy.Ien, itemType = "0" })">@Model.CurrentPregnancy.Obstetrician</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Planned Delivery Location:</th>
+                    <td><a href="@Url.Action("SelectNonVACare", "Pregnancy", new { dfn = Model.Patient.Dfn, pien = Model.CurrentPregnancy.Ien, itemType = "1" })">@Model.CurrentPregnancy.PlannedLaborDeliveryFacility</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Father of Baby:</th>
+                    <td><a href="@Url.Action("SelectFather", "Pregnancy", new { dfn = Model.Patient.Dfn, pien = Model.CurrentPregnancy.Ien })">@Model.CurrentPregnancy.FatherOfFetus</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Last Menstrual Period:</th>
+                    <td>@Model.CurrentPregnancy.LmpDisplay</td>
+                </tr>
+                <tr>
+                    <th scope="row">Multiple Pregnancy:</th>
+                    <td>@Model.CurrentPregnancy.MultiplePregnancyDescription</td>
+                </tr>
+
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2" class="centered-txt">Not Pregnant</td>
+                </tr>   
+            }
+
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <h2 class="h5 pull-left"><strong>Pregnancy Checklist</strong></h2>
+        <table id="pat-table" class="table table-bordered table-horizontal">
+            <thead class="centered-header">
+                <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.PregnancyChecklistItems.Count > 0)
+                {
+                    foreach (PregnancyChecklistItem item in Model.PregnancyChecklistItems)
+                    {
+                
+                    <tr data-id="@item.Ien">
+
+                        <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.DueDateDisplay)</td>
+
+                        @if (item.DueStatus == DueStatus.Complete)
+                        {                
+                            <td class="centered-txt h5" style="vertical-align: middle;">
+                                <label class="label label-success">Complete</label></td>
+                        }
+                        else if (item.DueStatus == DueStatus.Overdue)
+                        {
+                            <td class="centered-txt h5" style="vertical-align: middle">
+                                <label class="label label-danger">Overdue</label></td>
+                        }
+                        else if (item.DueStatus == DueStatus.Due)
+                        {
+                            <td class="centered-txt h5" style="vertical-align: middle">
+                                <label class="label label-warning">Due</label></td>
+                        }
+                        else if (item.DueStatus == DueStatus.Pending)
+                        {
+                            <td class="centered-txt" style="vertical-align: middle">Pending</td>
+                        }
+                        else if (item.DueStatus == DueStatus.Canceled)
+                        {
+                            <td class="centered-txt h5" style="vertical-align: middle">
+                                <label class="label label-default">Canceled</label></td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+
+                    </tr>
+                    }
+                }
+                else
+                {
+                    <tr id="no-rows">
+                        <td colspan="10" class="centered-txt">(No Checklist Items)</td>
+                    </tr>   
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.MoreChecklistItems))
+                {
+                    <tr>
+                        <td colspan="10" class="centered-txt"><a href="@Model.ChecklistLink">@Model.MoreChecklistItems</a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2 class="h5 pull-left"><strong>Pregnancy History</strong></h2>
+        <a href="@Url.Action("EditPregnancyHistory", "Pregnancy", new { dfn = Model.Patient.Dfn })" class="pull-right" style="margin-top: 10px">Edit</a>
+        <table class="table table-bordered table-horizontal">
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.PregnancyHistory.TotalPregnancies)</th>
+                <td>@Html.DisplayTextFor(m => m.PregnancyHistory.TotalPregnancies)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.PregnancyHistory.TermBirths)</th>
+                <td>@Html.DisplayTextFor(m => m.PregnancyHistory.TermBirths)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.PregnancyHistory.PretermBirths)</th>
+                <td>@Html.DisplayTextFor(m => m.PregnancyHistory.PretermBirths)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.PregnancyHistory.StillBirths)</th>
+                <td>@Html.DisplayTextFor(m => m.PregnancyHistory.StillBirths)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.PregnancyHistory.SpontaneousAbortions)</th>
+                <td>@Html.DisplayTextFor(m => m.PregnancyHistory.SpontaneousAbortions)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.PregnancyHistory.PregnancyTerminations)</th>
+                <td>@Html.DisplayTextFor(m => m.PregnancyHistory.PregnancyTerminations)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.PregnancyHistory.EctopicPregnancies)</th>
+                <td>@Html.DisplayTextFor(m => m.PregnancyHistory.EctopicPregnancies)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.PregnancyHistory.LivingChildren)</th>
+                <td>@Html.DisplayTextFor(m => m.PregnancyHistory.LivingChildren)</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<br />
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav-pat-summ').addClass('active').siblings().removeClass('active');
+        });
+    </script>
+}

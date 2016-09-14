@@ -1,0 +1,12 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Common.BasePatient
+    
+    @{Html.RenderPartial("~/Views/Shared/_NavPatientInfo.cshtml", Model);}
+
+    <ul class="nav nav-sidebar">
+        <li><a id="nav-tracked" class="list-group-item" href="@Url.Action("Overview", "PatientList", new { @page = "1" })">Tracked Patients</a></li>
+    </ul>   
+
+    @{Html.RenderPartial("~/Views/Shared/_NavPatient.cshtml", Model);}
+
+    @*@{Html.RenderPartial("~/Views/Shared/_NavUser.cshtml");}*@
+

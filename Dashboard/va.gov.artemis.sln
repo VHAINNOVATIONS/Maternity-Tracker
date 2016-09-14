@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.core", "va.gov.artemis.core\va.gov.artemis.core.csproj", "{E1F510B1-C409-4212-886D-761D93530FFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.vista", "va.gov.artemis.vista\va.gov.artemis.vista.csproj", "{3C03ECD0-7039-4848-BB93-3D9FE0420BFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.commands", "va.gov.artemis.commands\va.gov.artemis.commands.csproj", "{66BA87B2-690F-4440-8132-BD85BD6C02CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.ui", "va.gov.artemis.ui\va.gov.artemis.ui.csproj", "{84FF5B28-FDA7-4F8F-A610-9D503AD95755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.ui.data", "va.gov.artemis.ui.data\va.gov.artemis.ui.data.csproj", "{FA8FB21E-B44E-4AB9-9AA1-7F8339431507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.commands.tests", "va.gov.artemis.commands.tests\va.gov.artemis.commands.tests.csproj", "{0951A783-4122-4079-8EBB-60DB357D08DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.vista.tests", "va.gov.artemis.vista.tests\va.gov.artemis.vista.tests.csproj", "{47100E31-767D-46DC-BE49-75FF7BD8C696}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.ui.tests", "va.gov.artemis.ui.tests\va.gov.artemis.ui.tests.csproj", "{E7432228-6C66-4316-8A44-C4B2C15729E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.mock", "va.gov.artemis.mock\va.gov.artemis.mock.csproj", "{29864C18-EC91-4A8F-8CCD-2FC780EF3B64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5E190408-37FC-451A-A883-C38E8A9DEF13}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		AssemblyVersionInfo.cs = AssemblyVersionInfo.cs
+		BuildProcessTemplates\DefaultTemplate.11.1.xaml = BuildProcessTemplates\DefaultTemplate.11.1.xaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.cda", "va.gov.artemis.cda\va.gov.artemis.cda.csproj", "{69EB293D-32C1-46C8-98EF-24124D2BAB65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1F510B1-C409-4212-886D-761D93530FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F510B1-C409-4212-886D-761D93530FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F510B1-C409-4212-886D-761D93530FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F510B1-C409-4212-886D-761D93530FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C03ECD0-7039-4848-BB93-3D9FE0420BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C03ECD0-7039-4848-BB93-3D9FE0420BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C03ECD0-7039-4848-BB93-3D9FE0420BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C03ECD0-7039-4848-BB93-3D9FE0420BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66BA87B2-690F-4440-8132-BD85BD6C02CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BA87B2-690F-4440-8132-BD85BD6C02CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BA87B2-690F-4440-8132-BD85BD6C02CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66BA87B2-690F-4440-8132-BD85BD6C02CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FF5B28-FDA7-4F8F-A610-9D503AD95755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FF5B28-FDA7-4F8F-A610-9D503AD95755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FF5B28-FDA7-4F8F-A610-9D503AD95755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FF5B28-FDA7-4F8F-A610-9D503AD95755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA8FB21E-B44E-4AB9-9AA1-7F8339431507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA8FB21E-B44E-4AB9-9AA1-7F8339431507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA8FB21E-B44E-4AB9-9AA1-7F8339431507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA8FB21E-B44E-4AB9-9AA1-7F8339431507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0951A783-4122-4079-8EBB-60DB357D08DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0951A783-4122-4079-8EBB-60DB357D08DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0951A783-4122-4079-8EBB-60DB357D08DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0951A783-4122-4079-8EBB-60DB357D08DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47100E31-767D-46DC-BE49-75FF7BD8C696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47100E31-767D-46DC-BE49-75FF7BD8C696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47100E31-767D-46DC-BE49-75FF7BD8C696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47100E31-767D-46DC-BE49-75FF7BD8C696}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7432228-6C66-4316-8A44-C4B2C15729E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7432228-6C66-4316-8A44-C4B2C15729E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7432228-6C66-4316-8A44-C4B2C15729E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7432228-6C66-4316-8A44-C4B2C15729E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29864C18-EC91-4A8F-8CCD-2FC780EF3B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29864C18-EC91-4A8F-8CCD-2FC780EF3B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29864C18-EC91-4A8F-8CCD-2FC780EF3B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29864C18-EC91-4A8F-8CCD-2FC780EF3B64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69EB293D-32C1-46C8-98EF-24124D2BAB65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69EB293D-32C1-46C8-98EF-24124D2BAB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69EB293D-32C1-46C8-98EF-24124D2BAB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69EB293D-32C1-46C8-98EF-24124D2BAB65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

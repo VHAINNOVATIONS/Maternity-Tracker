@@ -1,0 +1,89 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Alerts.AlertListModel
+@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.Commands.Dsio.Alerts
+
+@{
+    ViewBag.Title = "MCC Dashboard - Index";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div class="container">
+<h1 class="h3 page-header">Alerts</h1>
+
+<div>
+    <table class="table table-bordered table-hover table-db" summary="This table contains a list of alerts for the current user">
+        <thead class="centered-header">
+            <tr>
+                <th scope="col">Info</th>
+                <th scope="col">Patient</th>
+                <th scope="col">Location</th>
+                <th scope="col">Urgency</th>
+                <th scope="col">Alert Date/Time</th>
+                <th scope="col">Message</th>
+            </tr>
+        </thead>
+        @if (Model.Alerts.Count > 0)
+        {
+            @:<tbody>
+            foreach (DsioAlert item in Model.Alerts)
+            {    
+                    <tr data-id="@item.Identifier" >
+                        <td>@Html.DisplayFor(modelItem => item.Info)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Patient)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Urgency)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AlertDateTime)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Message)</td>
+                    </tr>
+            }
+                    @:</tbody>
+                            }
+        else
+        {
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="centered-txt">(No Alerts)</td>
+                </tr>
+            </tfoot> 
+        }
+    </table>
+</div>
+</div>
+
+@{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Overview", "PatientList")'">Tracked Patients</button>
+        </div>
+    </div>
+</div>
+
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#nav-alerts').addClass('active').siblings().removeClass('active');
+
+            $("tbody > tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#view-selected").removeAttr("disabled");
+            });
+
+            $("#view-selected").click(function () {
+                var id = $("tr.info").attr("data-id");
+                if (id != "")
+                    location.href = '@Url.Action("Detail", "Alerts")' + "/" + id;
+            });
+        });
+
+    </script>
+}

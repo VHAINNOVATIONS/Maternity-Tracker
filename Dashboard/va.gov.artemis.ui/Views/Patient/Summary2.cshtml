@@ -1,0 +1,362 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Patient.PatientSummary
+
+@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.Labs
+@using VA.Gov.Artemis.UI.Data.Models.Checklist
+@using VA.Gov.Artemis.UI.Controllers
+
+@{
+    ViewBag.Title = "MCC Dashboard - Patient Summary";
+    Layout = "~/Views/Shared//_LayoutPage2.cshtml";
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+<h1 class="h3 page-header">Patient Summary</h1>
+
+@{string preg = (@Model.Patient.Pregnant) ? "Pregnant" : "Not Pregnant";}
+
+<div class="row">
+    <div class="col-md-6">
+
+        @* *** Patient Details Row *** *@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Patient Details
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-xs btn-panel dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action&nbsp;&nbsp;<span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li class="pat-summary-li"><a href="@Url.Action("Status", "Pregnancy", new { dfn = Model.Patient.Dfn })">Update Pregnancy Status</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li class="pat-summary-li"><a href="@Url.Action("Status", "Lactation", new { dfn = Model.Patient.Dfn })">Update Lactation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <table class="table table-db">
+                        <tr>
+                            <td>Name:</td>
+                            <td>@Model.Patient.Name</td>
+                        </tr>
+                        <tr>
+                            <td>Age:</td>
+                            <td>@Model.Patient.Age</td>
+                        </tr>
+                        <tr>
+                            <td>Pregnancy Status:</td>
+                            <td><a href="@Url.Action("Status", "Pregnancy", new { dfn = Model.Patient.Dfn })">@preg</a></td>
+                        </tr>
+                        <tr>
+                            <td>Postpartum:</td>
+                            <td>@Model.Patient.PostpartumDescription</td>
+                        </tr>
+                        <tr>
+                            <td>Lactating:</td>
+                            <td><a href="@Url.Action("Status", "Lactation", new { dfn = Model.Patient.Dfn })")>@Model.Patient.LactatingDescription</a></td>
+                        </tr>
+                        <tr>
+                            <td>Text4Baby Enrollment:</td>
+                            <td><a href="@Url.Action("Index", "Text4Baby", new { dfn = Model.Patient.Dfn })")>@Model.Patient.Text4BabyEnrollmentDescription</a></td>
+                        </tr>                        @*<tr><td>LMP:</td><td>@Model.Patient.LmpDisplay</td></tr>*@
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @* *** Current Pregnancy Row *** *@
+        @if (@Model.Patient.Pregnant)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Current Pregnancy
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btn-xs btn-panel dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action&nbsp;&nbsp;<span class="caret"></span></button>
+                                <ul class="dropdown-menu" style="font-size: smaller">
+                                    <li class="pat-summary-li"><a href="@Url.Action("Status", "Pregnancy", new { dfn = Model.Patient.Dfn })">Update Pregnancy Status</a></li>
+                                    <li class="pat-summary-li"><a href="@Url.Action("AddEdit", "Pregnancy", new { dfn = Model.Patient.Dfn, @pregIen=Model.CurrentPregnancy.Ien })">Edit Details</a></li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li class="pat-summary-li"><a href="@Url.Action("EddHistory", "Pregnancy", new { dfn = Model.Patient.Dfn, @pregIen = Model.CurrentPregnancy.Ien, @page = "1" })">Update EDD</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <table class="table table-db">
+                            <tr>
+                                <td>High Risk:</td>
+                                @if (@Model.CurrentPregnancy.HighRisk)
+                                {
+                                    <td><span class="label label-danger" data-toggle="tooltip" title="@Model.CurrentPregnancy.HighRiskDetails">Yes</span></td>
+                                }
+                                else
+                                {
+                                    <td><span class="label label-success">No</span></td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Estimated Delivery Date:</td>
+                                <td><a href="@Url.Action("EddHistory", "Pregnancy", new { dfn = Model.Patient.Dfn, @pregIen = Model.CurrentPregnancy.Ien, @page = "1" })">@Model.CurrentPregnancy.DisplayEdd</a></td>
+                                @*<td>Unknown</td>*@
+                            </tr>
+                            <tr>
+                                <td>EDD Basis:</td>
+                                <td>@Model.CurrentPregnancy.EddBasis</td>
+                            </tr>
+                            <tr>
+                                <td>EDD Is Final:</td>
+                                <td>@Model.CurrentPregnancy.EddIsFinalDisplay</td>
+                            </tr>
+                            <tr>
+                                <td>Gestational Age:</td>
+                                <td>@Model.CurrentPregnancy.GestationalAge</td>
+                            </tr>
+                            <tr>
+                                <td>Trimester:</td>
+                                @switch (Model.CurrentPregnancy.Trimester)
+                                {
+                                    case "1st":
+                                    <td><span class="label label-warning">1<sup>st</sup></span></td>
+                                        break;
+                                    case "2nd":
+                                    <td><span class="label label-warning">2<sup>nd</sup></span></td>
+                                        break;
+                                    case "3rd":
+                                    <td><span class="label label-warning">3<sup>rd</sup></span></td>
+                                        break;
+                                    default:
+                                    <td>@Model.CurrentPregnancy.Trimester</td>
+                                        break;
+                                }
+
+                            </tr>
+                            <tr>
+                                <td>Prenatal Care Provider:</td>
+                                <td><a href="@Url.Action("SelectNonVACare", "Pregnancy", new { dfn = Model.Patient.Dfn, pien = Model.CurrentPregnancy.Ien, itemType = "0" })">@Model.CurrentPregnancy.Obstetrician</a></td>
+                            </tr>
+                            <tr>
+                                <td>Planned Delivery Location:</td>
+                                <td><a href="@Url.Action("SelectNonVACare", "Pregnancy", new { dfn = Model.Patient.Dfn, pien = Model.CurrentPregnancy.Ien, itemType = "1" })">@Model.CurrentPregnancy.PlannedLaborDeliveryFacility</a></td>
+                            </tr>
+                            <tr>
+                                <td>Father of Baby:</td>
+                                <td><a href="@Url.Action("SelectFather", "Pregnancy", new { dfn = Model.Patient.Dfn, pien = Model.CurrentPregnancy.Ien })">@Model.CurrentPregnancy.FatherOfFetus</a></td>
+                            </tr>
+                            <tr>
+                                <td>Last Menstrual Period:</td>
+                                <td>@Model.CurrentPregnancy.LmpDisplay</td>
+                            </tr>
+                            <tr>
+                                <td>Multiple Pregnancy:</td>
+                                <td>@Model.CurrentPregnancy.MultiplePregnancyDescription</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+
+@* *** Gravida/Para Row *** *@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Gravida/Para Details
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-xs btn-panel dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action&nbsp;&nbsp;<span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li class="pat-summary-li"><a href="@Url.Action("EditPregnancyHistory", "Pregnancy", new { dfn = Model.Patient.Dfn })">Update</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <table class="table table-db">
+                        <tr>
+                            <td>@Html.DisplayNameFor(m => m.PregnancyHistory.TotalPregnancies)</td>
+                            <td>@Html.DisplayTextFor(m => m.PregnancyHistory.TotalPregnancies)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(m => m.PregnancyHistory.TermBirths)</td>
+                            <td>@Html.DisplayTextFor(m => m.PregnancyHistory.TermBirths)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(m => m.PregnancyHistory.PretermBirths)</td>
+                            <td>@Html.DisplayTextFor(m => m.PregnancyHistory.PretermBirths)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(m => m.PregnancyHistory.StillBirths)</td>
+                            <td>@Html.DisplayTextFor(m => m.PregnancyHistory.StillBirths)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(m => m.PregnancyHistory.SpontaneousAbortions)</td>
+                            <td>@Html.DisplayTextFor(m => m.PregnancyHistory.SpontaneousAbortions)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(m => m.PregnancyHistory.PregnancyTerminations)</td>
+                            <td>@Html.DisplayTextFor(m => m.PregnancyHistory.PregnancyTerminations)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(m => m.PregnancyHistory.EctopicPregnancies)</td>
+                            <td>@Html.DisplayTextFor(m => m.PregnancyHistory.EctopicPregnancies)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(m => m.PregnancyHistory.LivingChildren)</td>
+                            <td>@Html.DisplayTextFor(m => m.PregnancyHistory.LivingChildren)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+
+        @* *** Patient Contact Row *** *@
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Contact
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-xs btn-panel dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action&nbsp;&nbsp;<span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li class="pat-summary-li"><a href="@Url.Action("Index", "PatientContact", new { dfn = @Model.Patient.Dfn, filter = PregnancyUtilities.PregnancyFilterCurrent })">View Contact History</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <table class="table table-db">
+                        <tr>
+                            <td>Home Phone:</td>
+                            <td>@Model.Patient.HomePhone</td>
+                        </tr>
+                        <tr>
+                            <td>Work Phone:</td>
+                            <td>@Model.Patient.WorkPhone</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile Phone:</td>
+                            <td>@Model.Patient.MobilePhone</td>
+                        </tr>
+                        <tr>
+                            <td>Last Contact</td>
+                            <td>@Model.Patient.LastContactDisplay</td>
+                        </tr>
+                        <tr>
+                            <td>Next Contact:</td>
+                            <td>@Model.Patient.NextContactDisplay</td>
+                        </tr>
+                        <tr>
+                            <td>Next Item Due:</td>
+                            <td>@Model.Patient.NextChecklistDisplay</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @* *** Checklist Row *** *@
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Pregnancy Checklist
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-xs btn-panel dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action&nbsp;&nbsp;<span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li class="pat-summary-li"><a href="@Model.ChecklistLink">View Checklist</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <table id="pat-table" class="table table-db">
+                        <thead class="centered-header">
+                            <tr>
+                                <th scope="col">Description</th>
+                                <th scope="col">Due Date</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.PregnancyChecklistItems.Count > 0)
+                            {
+                                foreach (PregnancyChecklistItem item in Model.PregnancyChecklistItems)
+                                {
+                
+                                <tr data-id="@item.Ien">
+
+                                    <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.DueDateDisplay)</td>
+
+                                    @if (item.DueStatus == DueStatus.Complete)
+                                    {                
+                                        <td class="centered-txt h5" style="vertical-align: middle;">
+                                            <label class="label label-success">Complete</label></td>
+                                    }
+                                    else if (item.DueStatus == DueStatus.Overdue)
+                                    {
+                                        <td class="centered-txt h5" style="vertical-align: middle">
+                                            <label class="label label-danger">Overdue</label></td>
+                                    }
+                                    else if (item.DueStatus == DueStatus.Due)
+                                    {
+                                        <td class="centered-txt h5" style="vertical-align: middle">
+                                            <label class="label label-warning">Due</label></td>
+                                    }
+                                    else if (item.DueStatus == DueStatus.Pending)
+                                    {
+                                        <td class="centered-txt" style="vertical-align: middle">Pending</td>
+                                    }
+                                    else if (item.DueStatus == DueStatus.Canceled)
+                                    {
+                                        <td class="centered-txt h5" style="vertical-align: middle">
+                                            <label class="label label-default">Canceled</label></td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+
+                                </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr id="no-rows">
+                                    <td colspan="10" class="centered-txt">(No Checklist Items)</td>
+                                </tr>   
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(Model.MoreChecklistItems))
+                            {
+                                <tr>
+                                    <td colspan="10" class="centered-txt"><a href="@Model.ChecklistLink">@Model.MoreChecklistItems</a></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav-pat-summ').addClass('active').siblings().removeClass('active');
+        });
+    </script>
+}

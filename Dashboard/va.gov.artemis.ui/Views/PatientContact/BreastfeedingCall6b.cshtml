@@ -1,0 +1,12 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.PatientContact.BreastfeedingCallTab
+
+<tbody>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.BreastfeedingAssessment)&nbsp;&nbsp;@Html.LabelFor(m=>m.BreastfeedingAssessment, "Assess for difficulties with breastfeeding, answer questions, refer to pediatrician as needed") </td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.ConfirmReceipt)&nbsp;&nbsp;@Html.LabelFor(m=>m.ConfirmReceipt, "As needed, confirm breast pump and supplies delivered. (If not, follow-up)")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.SuppliesUse)&nbsp;&nbsp;@Html.LabelFor(m=>m.SuppliesUse, "If received breast pump/supplies, assess for difficulties with use, answer questions, and provide support")</td></tr>
+    <tr><td colspan="2">
+        @Html.LabelFor(m => m.BreastfeedingComment, "Notes", new {@class="sr-only"})
+        @Html.TextAreaFor(m => m.BreastfeedingComment, new {@placeholder="Breastfeeding & Supplies Notes", @class="form-control", @rows="7" })
+    </td>
+</tbody>
+

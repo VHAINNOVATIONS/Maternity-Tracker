@@ -1,0 +1,32 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Cda.CdaDocumentModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - Preview Upload";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <embed class="db-embed" src="@Model.FileName" />
+    </div>
+</div>
+
+<br />
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index", new { dfn = Model.Patient.Dfn })'">Cancel</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("PatientMatch", new { dfn = Model.Patient.Dfn, page = "1" })'">Continue</button>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+

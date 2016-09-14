@@ -1,0 +1,90 @@
+﻿@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.IpvCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+@{string timeFrame = (Model.CallType == MccPatientCallType.PhoneCall_1) ? "Within the last year" : "Since we last spoke";}
+
+<tbody class="note-body">
+    <tr class="active"><td colspan="2">@timeFrame, have you been hit, slapped, kicked, or otherwise physically hurt by someone?</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.BeenHit, true, new {@id = "rdo-hit-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.BeenHit, "Yes", new {@for="rdo-hit-y"})</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">
+        @Html.LabelFor(m => m.BeenHitDetails, "Details", new {@class="sr-only"})
+        @Html.TextBoxFor(m => m.BeenHitDetails, new {@class="form-control been-hit-yes", @placeholder="Enter Details" })</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">
+        @Html.LabelFor(m => m.BeenHitFollowUpActions, "Follow Up Actions", new {@class="sr-only"})
+        @Html.TextBoxFor(m => m.BeenHitFollowUpActions, new {@class="form-control been-hit-yes", @placeholder="Enter Follow Up Actions Needed" })</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.BeenHit, false, new { @id = "rdo-hit-n" })&nbsp;&nbsp;@Html.LabelFor(m => m.BeenHit, "No", new {@for="rdo-hit-n"})</td></tr>
+    <tr class="active"><td colspan="2">@timeFrame, has anyone forced you to engage in sexual activities?</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.ForcedSex, true, new { @id = "rdo-forced-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.ForcedSex, "Yes", new {@for="rdo-forced-y"})</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">
+        @Html.LabelFor(m => m.ForcedSexDetails, "Forced Sex Details", new {@class="sr-only"})
+        @Html.TextBoxFor(m => m.ForcedSexDetails, new {@class="form-control forced-sex-yes", @placeholder="Enter Details" })</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">
+        @Html.LabelFor(m => m.ForcedSexFollowUpActions, "Follow Up Actions", new {@class="sr-only"})
+        @Html.TextBoxFor(m => m.ForcedSexFollowUpActions, new {@class="form-control forced-sex-yes", @placeholder="Enter Follow Up Actions Needed" })</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.ForcedSex, false, new { @id = "rdo-forced-n" })&nbsp;&nbsp;@Html.LabelFor(m => m.ForcedSex, "No", new {@for="rdo-forced-n"})</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.ReferToResources)&nbsp;&nbsp;@Html.LabelFor(m => m.ReferToResources, "Refer to resources as appropriate")</td></tr>
+</tbody>
+
+@section Scripts
+{
+
+<script>
+    $(document).ready(function () {
+
+        @if (!Model.BeenHit.HasValue)
+        {
+            <text>
+        disableHit();
+            </text>
+        }else if (!Model.BeenHit.Value)
+        {
+            <text>
+        disableHit();
+            </text>
+        }
+
+        
+        @if (!Model.ForcedSex.HasValue)
+        {
+            <text>
+        disableSex();
+            </text>
+        }else if (!Model.ForcedSex.Value)
+        {
+            <text>
+        disableSex();
+            </text>
+        }
+        function disableHit() {
+            $('.been-hit-yes').attr('disabled', 'disabled');
+        };
+
+        function disableSex() {
+            $('.forced-sex-yes').attr('disabled', 'disabled');
+        };
+
+        $('input[name="BeenHit"]:radio').change(function () {
+            if ($(this).val() == "True") {
+                $('.been-hit-yes').removeAttr('disabled');
+            } else {
+                $('.been-hit-yes').attr('disabled', 'disabled');
+            };            
+        });
+
+        $('input[name="ForcedSex"]:radio').change(function () {
+            if ($(this).val() == "True") {
+                $('.forced-sex-yes').removeAttr('disabled');
+            } else {
+                $('.forced-sex-yes').attr('disabled', 'disabled');
+            }
+        });
+    });
+</script>
+
+}

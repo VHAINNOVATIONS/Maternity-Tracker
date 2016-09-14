@@ -1,0 +1,144 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Cda.CdaDataImportModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - Import Exchange Data";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Select Data To Import</h1>
+
+<p><em>The items selected will be imported into the dashboard</em></p>
+<br />
+
+@*<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.PregnancyIen, "Pregnancy")
+            @Html.DropDownListFor(m => m.PregnancyIen, new SelectList(Model.Pregnancies, "key", "value"), new { @class = "form-control", @style="max-width: 328px;"  })
+        </div>
+    </div>
+</div>
+
+<br />*@
+
+@using (Html.BeginForm("FinishImport", "Cda", FormMethod.Post, new { @role = "form", @class = "form", @id = "finish-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn)
+    @Html.HiddenFor(m => m.DocumentType)
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table table-bordered table-hover" style="font-size: 12px">
+                <thead class="centered-header">
+                    <tr>
+                        <th scope="col" id="col-tm">Effective Time</th>
+                        <th scope="col" id="col-sys">Code System</th>
+                        <th scope="col" id="col-cd">Code</th>
+                        <th scope="col" id="col-desc">Description</th>
+                        <th scope="col" id="col-val">Value</th>
+                        <th scope="col" id="col-imp">Import</th>
+                    </tr>
+                </thead>
+                @if (Model.Observations.Count > 0)
+                {
+                    @:<tbody>
+                    for (int i = 0; i < Model.Observations.Count; i++)
+                    {    
+            <tr>
+                <td style="display: none">@Html.HiddenFor(modelItem => Model.Observations[i].Code)</td>
+                <td style="display: none">@Html.HiddenFor(modelItem => Model.Observations[i].CodeSystem)</td>
+                <td style="display: none">@Html.HiddenFor(modelItem => Model.Observations[i].DisplayName)</td>
+                <td style="display: none">@Html.HiddenFor(modelItem => Model.Observations[i].EffectiveTime)</td>
+                <td style="display: none">@Html.HiddenFor(modelItem => Model.Observations[i].NegationInd)</td>
+                <td style="display: none">@Html.HiddenFor(modelItem => Model.Observations[i].Status)</td>
+                <td style="display: none">@Html.HiddenFor(modelItem => Model.Observations[i].Value)</td>
+
+                <td headers="col-tm" class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => Model.Observations[i].EffectiveTime)</td>
+                <td headers="col-sys" class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => Model.Observations[i].CodeSystem)</td>
+                <td headers="col-cd" class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => Model.Observations[i].Code)</td>
+                <td headers="col-desc" style="vertical-align: middle">@Html.DisplayFor(modelItem => Model.Observations[i].DisplayName)</td>
+                <td headers="col-val" class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => Model.Observations[i].Value)</td>
+                <td headers="col-imp" class="centered-txt" style="vertical-align: middle">@Html.CheckBoxFor(modelItem => Model.Observations[i].SelectedForImport, new {@class="chk-import" })</td>
+            </tr>
+                    }
+            @:</tbody>
+                            }
+                else
+                {
+                    <tfoot>
+                        <tr>
+                            <td colspan="9" class="centered-txt">(No Data Found To Import)</td>
+                        </tr>
+                    </tfoot> 
+                }
+            </table>
+        </div>
+    </div>
+    <br />
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">                
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index", new { dfn = Model.Patient.Dfn })'">Cancel</button>
+                <button type="button" class="btn btn-success" id="btn-select-all">Select All</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Finish</button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2 class="h4 modal-title" id="myModalLabel">Sign Document</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>@Html.LabelFor(m => m.ESig, "Signature Code:")</label>
+                        @Html.PasswordFor(m => m.ESig, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btn-sign-later" class="btn btn-default">Sign Later</button>
+                    <input type="submit" class="btn btn-primary" value="Sign" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#myModal").on('shown.bs.modal', function () {
+                $('#ESig').focus();
+            });
+
+            $('#btn-sign-later').click(function () {
+                $('#ESig').value = '';
+                $('#finish-form').submit();
+            });
+
+            $('#btn-select-all').click(function () {
+                $('.chk-import').prop("checked", true);
+            });
+
+        });
+    </script>
+}

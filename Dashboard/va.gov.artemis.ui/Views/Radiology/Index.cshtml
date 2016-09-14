@@ -1,0 +1,94 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Radiology.RadiologyIndex
+@using VA.Gov.Artemis.UI.Data.Models.Radiology
+
+@{
+    ViewBag.Title = "MCC Dashboard - Index";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Radiology Reports</h1>
+
+<p><i>Click a row to select the report</i></p>
+
+<table class="table table-bordered table-hover" style="font-size: 12px">
+    <thead class="centered-header">
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Procedure</th>
+            <th scope="col">Report Status</th>
+            <th scope="col">CPT Code</th>
+        </tr>
+    </thead>
+    @if (Model.ReportList.Count > 0)
+    {
+        @:<tbody>
+        foreach (RadiologyReport item in Model.ReportList)
+        {
+            <tr data-id="??" data-detail="@item.Detail">
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.ExamDateTimeDisplay)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Procedure)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.ReportStatus)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.CptCode)</td>
+            </tr>
+        }
+            @:</tbody>
+                }
+    else
+    {
+        <tfoot>
+            <tr>
+                <td colspan="5" class="centered-txt">(No Radiology Reports)</td>
+            </tr>
+        </tfoot> 
+    }
+</table>
+
+@{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);}
+
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button id="view-selected" type="button" class="btn btn-default" disabled="disabled" data-toggle="modal" data-target="#myModal">View Selected</button>
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { dfn = Model.Patient.Dfn })'">Patient Summary</button>
+        </div>
+    </div>
+</div>
+<br />
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2 class="h4 modal-title" id="myModalLabel">Radiology Report Detail</h2>
+            </div>
+            <div class="modal-body">
+                <pre id="report-detail"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#nav-pat-rad').addClass('active').siblings().removeClass('active');
+
+            $("tbody > tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#view-selected").removeAttr("disabled");
+                $("#report-detail").text($(this).attr("data-detail"));
+            });
+        });
+    </script>
+}
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

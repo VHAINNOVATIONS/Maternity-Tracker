@@ -1,0 +1,25 @@
+﻿@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.IntroductionCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+
+    @if (Model.CallType == MccPatientCallType.PhoneCall_1)
+    {
+        <tr><td>@Html.CheckBoxFor(m => m.IntroducedSelf)&nbsp;&nbsp;@Html.LabelFor(m => m.IntroducedSelf, "Introduce self and role")</td></tr>
+    }
+    else if (Model.CallType == MccPatientCallType.PhoneCall_2)
+    {
+        <tr><td>@Html.CheckBoxFor(m => m.IntroducedSelf)&nbsp;&nbsp;@Html.LabelFor(m => m.IntroducedSelf, "Re-introduce self and role")</td></tr>
+    }
+
+    <tr><td>
+        @Html.CheckBoxFor(m => m.PatientAvailableToDiscuss)
+        &nbsp;&nbsp;@Html.LabelFor(m => m.PatientAvailableToDiscuss, "Ask if patient free to discuss private topics, and available to speak for 10-15 minutes")
+    </td></tr>
+</tbody>

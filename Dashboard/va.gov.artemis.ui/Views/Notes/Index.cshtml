@@ -1,0 +1,203 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.Notes
+@model NoteListModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - Notes";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Dashboard Notes</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            @Html.LabelFor(m => m.CurrentPregnancyFilter, "Filter:", new {@style="font-weight: normal; margin-right: 30px" })
+            @Html.DropDownListFor(m => m.CurrentPregnancyFilter, new SelectList(Model.PregnancyFilters, "key", "value"), new { @class = "form-control", @style="max-width: 328px; display: inline" })
+        </div>
+    </div>
+</div>
+
+<p><i>Click on a note to select it</i></p>
+
+<table class="table table-bordered table-hover table-db">
+    <thead class="centered-header">
+        <tr>
+            <th scope="col">Date/Time</th>
+            <th scope="col">Title</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Author</th>
+            <th scope="col">Signature Status</th>
+            <th scope="col">Addenda</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TiuNote note in Model.ProgressNotes)
+        {
+            string signed = (note.SignatureStatus == TiuNoteSignatureStatus.Completed) ? "true" : "false";
+                
+            <tr data-ien="@note.Ien" data-signed="@signed" data-addendum="@note.IsAddendum" data-db-note="@note.IsDashboardNote" data-cda-note="@note.IsCdaNote">
+                <td class="centered-txt">@Html.DisplayTextFor(s => note.DocumentDateTimeDisplay)</td>
+                <td class="centered-txt">@Html.DisplayTextFor(s => note.Title)</td>
+                <td>@Html.DisplayTextFor(s => note.Subject)</td>
+                <td>@Html.DisplayTextFor(s => note.Author)</td>
+                @if (note.SignatureStatus == TiuNoteSignatureStatus.Completed)
+                {
+                    <td class="centered-txt">
+                        <label class="label label-success"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;@Html.DisplayTextFor(s => note.SignatureStatusDisplay)</label></td>
+                }
+                else if (note.SignatureStatus == TiuNoteSignatureStatus.Unsigned)
+                {
+                    <td class="centered-txt">
+                        <label class="label label-warning">@Html.DisplayTextFor(s => note.SignatureStatusDisplay)</label></td>
+                }
+                else
+                {
+                    <td class="centered-txt">
+                        <label class="label label-default">@Html.DisplayTextFor(s => note.SignatureStatusDisplay)</label></td>
+                }
+                @*<td class="centered-txt"><button class="btn btn-xs btn-primary" type="button" disabled="disabled"><span class="glyphicon glyphicon-list-alt"></span></button></td>*@
+                @*<td class="centered-txt"><a href="#"><span class="glyphicon glyphicon-list-alt"></span></a></td>*@
+                @if (note.AddendaIens.Count == 0)
+                {
+                    <td></td>
+                }
+                else
+                {
+                    <td class="centered-txt">
+                        <button class="btn btn-primary btn-sm btn-addenda" type="button"><span class="glyphicon glyphicon-list-alt"></span></button>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+    @if (Model.ProgressNotes.Count == 0)
+    {
+        @:<tfoot>
+            <tr>
+                <td colspan="6" class="centered-txt">(No Progress Notes)</td>
+            </tr>
+        @:</tfoot>
+    }
+
+</table>
+
+@{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.ProgressNotePaging);}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button type="button" id="addend-selected" class="btn btn-default" disabled="disabled">Addendum</button>
+            <button type="button" id="edit-selected" class="btn btn-default" disabled="disabled">Edit</button>
+            <button type="button" id="sign-selected" class="btn btn-default" disabled="disabled">Sign</button>
+            <button type="button" id="delete-selected" class="btn btn-default" disabled="disabled">Delete</button>
+            <button type="button" id="view-selected" class="btn btn-primary" disabled="disabled">View</button>
+            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("CreateNote", "Notes", new { @dfn = @Model.Patient.Dfn })'">
+                <span class="glyphicon glyphicon-plus"></span>
+                New Note
+            </button>
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { dfn = Model.Patient.Dfn })'">Patient Summary</button>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('#nav-pat-notes').addClass('active').siblings().removeClass('active');
+
+            $('.btn-addenda').click(function () {
+                var ien = $(this).parent().parent().attr("data-ien");
+                if (ien > 0)
+                    location.href = '@Url.Action("Addenda", "Notes", new { @dfn = Model.Patient.Dfn })' + "/" + ien;
+            });
+
+            $("tbody > tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#view-selected").removeAttr("disabled");
+
+                if ($("tr.info").attr("data-db-note") == "True") {
+                    if ($("tr.info").attr("data-signed") == "false") {
+                        $("#edit-selected").removeAttr("disabled");
+                        $("#delete-selected").removeAttr("disabled");
+                        $("#sign-selected").removeAttr("disabled");
+                    }
+                    else {
+                        $("#edit-selected").attr("disabled", "disabled");
+                        $("#delete-selected").attr("disabled", "disabled");
+                        $("#sign-selected").attr("disabled", "disabled");
+                    }
+
+                    if ($("tr.info").attr("data-addendum") == "True")
+                        $("#addend-selected").attr("disabled", "disabled");
+                    else if ($("tr.info").attr("data-signed") == "false")
+                        $("#addend-selected").attr("disabled", "disabled");
+                    else
+                        $("#addend-selected").removeAttr("disabled");
+                }
+                else if ($('tr.info').attr('data-cda-note') == 'True') {
+                    if ($("tr.info").attr("data-signed") == "false")
+                        $("#sign-selected").removeAttr("disabled");
+                    else
+                        $("#sign-selected").attr("disabled", "disabled");
+
+                    $("#edit-selected").attr("disabled", "disabled");
+                    $("#delete-selected").attr("disabled", "disabled");
+
+                }
+                else {
+                    $("#edit-selected").attr("disabled", "disabled");
+                    $("#delete-selected").attr("disabled", "disabled");
+                    $("#sign-selected").attr("disabled", "disabled");
+                    $("#addend-selected").attr("disabled", "disabled");
+                }
+            });
+
+            $("#view-selected").click(function () {
+                var ien = $("tr.info").attr("data-ien");
+                if (ien > 0)
+                    location.href = '@Url.Action("Details", "Notes", new { @dfn = Model.Patient.Dfn })' + "/" + ien;
+            });
+
+            $("#edit-selected").click(function () {
+                var ien = $("tr.info").attr("data-ien");
+                if (ien > 0)
+                    location.href = '@Url.Action("Edit", "Notes", new { @dfn = Model.Patient.Dfn })' + "/" + ien;
+            });
+
+            $("#delete-selected").click(function () {
+                var ien = $("tr.info").attr("data-ien");
+                if (ien > 0)
+                    location.href = '@Url.Action("Delete", "Notes", new { @dfn = Model.Patient.Dfn })' + "/" + ien;
+            });
+
+            $("#sign-selected").click(function () {
+                var ien = $("tr.info").attr("data-ien");
+                if (ien > 0)
+                    location.href = '@Url.Action("Sign", "Notes", new { @dfn = Model.Patient.Dfn })' + "/" + ien;
+            });
+            $("#addend-selected").click(function () {
+                var ien = $("tr.info").attr("data-ien");
+                if (ien > 0)
+                    location.href = '@Url.Action("CreateAddendum", "Notes", new { @dfn = Model.Patient.Dfn })' + "/" + ien;
+            });
+
+            $("#CurrentPregnancyFilter").change(function () {
+                var placeholder = '-0-';
+                var temp = '@Url.Action("Index", "Notes", new { @dfn = Model.Patient.Dfn, @filter="-0-", @page="1" })';
+                var finalUrl = temp.replace(placeholder, $(this).val());
+                location.href = finalUrl
+            });
+
+        });
+
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+

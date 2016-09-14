@@ -1,0 +1,123 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Education.EducationItemAddEditModel
+@using VA.Gov.Artemis.UI.Data.Models.Education
+@using VA.Gov.Artemis.CDA.Common
+
+@{
+    ViewBag.Title = "MCC Dashboard - Education Item";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<br />
+
+@{ 
+    string header = (string.IsNullOrWhiteSpace(Model.Item.Ien)) ? "Add Education Item" : "Edit Education Item";
+}
+<h1 class="h3 page-header">@header</h1>
+<br />
+
+@using (Html.BeginForm("AddEdit", "Education", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Item.Ien)
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Item.ItemType)
+                @Html.DropDownListFor(m => m.Item.ItemType, new SelectList(Model.ItemTypeSelection, "key", "value"),"(Select)", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SelectedCategory)
+                @Html.DropDownListFor(m => m.SelectedCategory, new SelectList(Model.CategorySelection, Model.Item.Category),  new { @class = "form-control" })
+            </div>
+            <div class="form-group" id="new-category-div">
+                @Html.LabelFor(m => m.Item.Category)
+                @Html.TextBoxFor(m => m.Item.Category, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Item.Description)
+                @Html.TextBoxFor(m => m.Item.Description, new { @class = "form-control" })
+            </div>
+            <div id="url-div" class="form-group">
+                @Html.LabelFor(m => m.Item.Url)
+                @Html.TextBoxFor(m => m.Item.Url, new { @class = "form-control" })
+            </div>
+@*            <div class="form-group">
+                @Html.LabelFor(m => m.Item.CodePlusSystem)
+                @Html.DropDownListFor(m => m.Item.CodePlusSystem, new SelectList(Model.CodeSelection, "value", "key"), new { @class = "form-control" })
+            </div>*@
+            <div class="form-group">
+                @Html.LabelFor(m => m.Item.CodingSystem)
+                @Html.DropDownListFor(m => m.Item.CodingSystem, new SelectList(CodingSystemUtility.GetCodingSystemSelection(), "value", "key"), new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Item.Code)
+                @Html.TextBoxFor(m => m.Item.Code, new { @class = "form-control" })
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index")'">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+    
+}
+
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            @if (Model.Item.ItemType != EducationItemType.LinkToMaterial)
+            {
+                <text>
+            $("#url-div").hide();
+            </text>
+            }
+
+            $("#Item_ItemType").change(function () {
+                if ($(this).val() == "@EducationItemType.LinkToMaterial")
+                    $("#url-div").show();
+                else
+                    $("#url-div").hide();
+            });
+
+            if ($('#SelectedCategory').val() == "(Enter New)")
+                $("#new-category-div").show();
+            else if ($('#SelectedCategory').val() == "(Select)")
+                $("#new-category-div").hide();
+            else 
+                $("#new-category-div").hide();
+
+            $("#SelectedCategory").change(function () {
+                if ($(this).val() == "(Enter New)") {
+                    $("#Item_Category").val("");
+                    $("#new-category-div").show();
+                }
+                else {
+                    if ($(this).val() == "(Select)")
+                        $("#Item_Category").val('');
+                    else
+                        $("#Item_Category").val($(this).val());
+                    $("#new-category-div").hide();
+                }
+            });
+
+        });
+      </script>
+}

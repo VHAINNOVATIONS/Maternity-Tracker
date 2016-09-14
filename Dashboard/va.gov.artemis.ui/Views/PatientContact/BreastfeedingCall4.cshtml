@@ -1,0 +1,27 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.BreastfeedingCallTab
+
+<tbody class="note-body">
+    <tr class="active"><td colspan="2">@Html.CheckBoxFor(m => m.PatientInterest)&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterest, "Assess patient interest in breastfeeding, clarify misinformation")</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">Is patient planning to breastfeed?</td></tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.PatientInterestedInBreastfeeding, YesNoMaybe.Yes, new {@id="bf-int-yes" })&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterestedInBreastfeeding, "Yes", new {@for="bf-int-yes" })</tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m=>m.PatientInterestedInBreastfeeding, YesNoMaybe.No, new {@id="bf-int-no" })&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterestedInBreastfeeding,"No", new {@for="bf-int-no" })</tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m=>m.PatientInterestedInBreastfeeding, YesNoMaybe.Maybe, new {@id="bf-int-maybe" })&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterestedInBreastfeeding,"Maybe", new {@for="bf-int-maybe" })</tr>
+    <tr class="active"><td colspan="2">@Html.CheckBoxFor(m => m.OverviewBenefits)&nbsp;&nbsp;Provide overview of breastfeeding and benefits</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">Would patient like more information?</td></tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.PatientInterestedInMoreInformation, YesNoMaybe.Yes, new {@id = "bf-info-yes" })&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterestedInMoreInformation, "Yes", new { @for = "bf-info-yes" })</tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m=>m.PatientInterestedInMoreInformation, YesNoMaybe.No, new {@id = "bf-info-no" })&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterestedInMoreInformation,"No", new { @for = "bf-info-no" })</tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m=>m.PatientInterestedInMoreInformation, YesNoMaybe.Maybe, new {@id = "bf-info-maybe" })&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterestedInMoreInformation,"Maybe", new { @for = "bf-info-maybe" })</tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.SupportServices)&nbsp;&nbsp;@Html.LabelFor(m => m.SupportServices, "Inform patient regarding lactation support services provided by hospitals")</td></tr>
+    <tr class="active"><td colspan="2">@Html.CheckBoxFor(m => m.Supplies)&nbsp;&nbsp;@Html.LabelFor(m => m.Supplies, "Provide information on nursing supplies and breast pump, order breast pump as needed")</td></tr>
+        <tr><td colspan="2" style="padding-left: 40px">Would patient like to obtain breastfeeding supplies?</td></tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m=>m.PatientInterestedInSupplies, YesNoMaybe.Yes, new {@id="bf-spls-yes" })&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterestedInSupplies, "Yes", new { @for = "bf-spls-yes" })</tr>
+    <tr><td colspan="2" style="padding-left: 80px; padding-right: 80px">
+        @Html.LabelFor(m => m.SuppliesToOrder, new {@class="sr-only"})
+        @Html.TextAreaFor(m => m.SuppliesToOrder, new {@class="form-control supplies-yes", @rows="5",@placeholder="Enter Supplies Requested" })</td></tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m=>m.PatientInterestedInSupplies, YesNoMaybe.No, new {@id="bf-spls-no" })&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterestedInSupplies, "No", new { @for = "bf-spls-no" })</tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m=>m.PatientInterestedInSupplies, YesNoMaybe.Maybe, new {@id="bf-spls-maybe" })&nbsp;&nbsp;@Html.LabelFor(m => m.PatientInterestedInSupplies, "Maybe", new { @for = "bf-spls-maybe" })</tr>
+
+</tbody>
+

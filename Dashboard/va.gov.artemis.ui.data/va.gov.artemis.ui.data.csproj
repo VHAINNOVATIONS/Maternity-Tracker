@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA8FB21E-B44E-4AB9-9AA1-7F8339431507}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VA.Gov.Artemis.UI.Data</RootNamespace>
+    <AssemblyName>VA.Gov.Artemis.UI.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\va.gov.artemis.ui\va.gov.artemis.ui\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyVersionInfo.cs">
+      <Link>AssemblyVersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Brokers\Account\AccountRepository.cs" />
+    <Compile Include="Brokers\Alerts\AlertsRepository.cs" />
+    <Compile Include="Brokers\Checklist\ChecklistRepository.cs" />
+    <Compile Include="Brokers\Checklist\PregnancyChecklistItemResult.cs" />
+    <Compile Include="Brokers\Consults\ConsultsRepository.cs" />
+    <Compile Include="Brokers\Education\EducationRepository.cs" />
+    <Compile Include="Brokers\Alerts\IAlertsRepository.cs" />
+    <Compile Include="Brokers\Consults\IConsultsRepository.cs" />
+    <Compile Include="Brokers\Education\IEducationRepository.cs" />
+    <Compile Include="Brokers\Labs\ILabsRepository.cs" />
+    <Compile Include="Brokers\Observations\IObservationsRepository.cs" />
+    <Compile Include="Brokers\Observations\ObservationsFactory.cs" />
+    <Compile Include="Brokers\Orders\IOrdersRepository.cs" />
+    <Compile Include="Brokers\Pregnancy\AddBabyResult.cs" />
+    <Compile Include="Brokers\Pregnancy\IPregnancyRepository.cs" />
+    <Compile Include="Brokers\Pregnancy\PregnancyOutcomeResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Brokers\Radiology\IRadiologyRepository.cs" />
+    <Compile Include="Brokers\Reminders\IRemindersRepository.cs" />
+    <Compile Include="Brokers\Labs\LabsRepository.cs" />
+    <Compile Include="Brokers\Observations\ObservationCollection.cs" />
+    <Compile Include="Brokers\Observations\ObservationsRepository.cs" />
+    <Compile Include="Brokers\Orders\OrdersRepository.cs" />
+    <Compile Include="Brokers\Pregnancy\PregnancyRepository.cs" />
+    <Compile Include="Brokers\Radiology\RadiologyRepository.cs" />
+    <Compile Include="Brokers\Reminders\RemindersRepository.cs" />
+    <Compile Include="Brokers\Alerts\AlertListResult.cs" />
+    <Compile Include="Brokers\Alerts\AlertResult.cs" />
+    <Compile Include="Brokers\Cda\CdaSourceResult.cs" />
+    <Compile Include="Brokers\Cda\CdaValueSetResult.cs" />
+    <Compile Include="Brokers\Checklist\ChecklistItemsResult.cs" />
+    <Compile Include="Brokers\Consults\ConsultDetailResult.cs" />
+    <Compile Include="Brokers\Consults\ConsultListResult.cs" />
+    <Compile Include="Brokers\Education\EducationItemsResult.cs" />
+    <Compile Include="Brokers\Checklist\IChecklistRepository.cs" />
+    <Compile Include="Brokers\Common\IenResult.cs" />
+    <Compile Include="Brokers\Labs\LabItemsResult.cs" />
+    <Compile Include="Brokers\Observations\ObservationListResult.cs" />
+    <Compile Include="Brokers\Orders\OrderDetailResult.cs" />
+    <Compile Include="Brokers\Orders\OrderListResult.cs" />
+    <Compile Include="Brokers\Education\PatientEducationItemsResult.cs" />
+    <Compile Include="Brokers\Checklist\PregnancyChecklistItemsResult.cs" />
+    <Compile Include="Brokers\Pregnancy\PersonListResult.cs" />
+    <Compile Include="Brokers\Pregnancy\PregnancyHistoryResult.cs" />
+    <Compile Include="Brokers\Pregnancy\PregnancyListResult.cs" />
+    <Compile Include="Brokers\Pregnancy\PregnancyResult.cs" />
+    <Compile Include="Brokers\Radiology\RadiologyReportsResult.cs" />
+    <Compile Include="Brokers\Reminders\ReminderDetailResult.cs" />
+    <Compile Include="Brokers\Reminders\ReminderListResult.cs" />
+    <Compile Include="Models\Cda\CdaCollector.cs" />
+    <Compile Include="Brokers\Cda\CdaRepository.cs" />
+    <Compile Include="Models\Cda\CdaDataImportModel.cs" />
+    <Compile Include="Models\Cda\CdaDocumentFactory.cs" />
+    <Compile Include="Models\Cda\CdaObservationFactory.cs" />
+    <Compile Include="Models\Cda\CdaObservationModel.cs" />
+    <Compile Include="Models\Cda\CdaSectionFactory.cs" />
+    <Compile Include="Models\Cda\CdaSource.cs" />
+    <Compile Include="Brokers\Cda\ICdaRepository.cs" />
+    <Compile Include="Brokers\NonVACare\INonVACareRepository.cs" />
+    <Compile Include="Brokers\Notes\INoteRepository.cs" />
+    <Compile Include="Brokers\SelectList\ISelectListRepository.cs" />
+    <Compile Include="Brokers\TrackingHistory\ITrackingHistoryRepository.cs" />
+    <Compile Include="Brokers\Vpr\IVprRepository.cs" />
+    <Compile Include="Brokers\NonVACare\NonVACareRepository.cs" />
+    <Compile Include="Brokers\Notes\NoteRepository.cs" />
+    <Compile Include="Brokers\Common\RepositoryBase.cs" />
+    <Compile Include="Brokers\Common\BrokerStore.cs" />
+    <Compile Include="Brokers\DashboardRepository.cs" />
+    <Compile Include="Brokers\Division\DivisionRepository.cs" />
+    <Compile Include="Brokers\Account\IAccountRepository.cs" />
+    <Compile Include="Brokers\IDashboardRepository.cs" />
+    <Compile Include="Brokers\Division\IDivisionRepository.cs" />
+    <Compile Include="Brokers\Patient\IPatientRepository.cs" />
+    <Compile Include="Brokers\Settings\ISettingsRepository.cs" />
+    <Compile Include="Brokers\Patient\PatientRepository.cs" />
+    <Compile Include="Brokers\Account\AdminResult.cs" />
+    <Compile Include="Brokers\Common\BrokerOperationResult.cs" />
+    <Compile Include="Brokers\Cda\CdaSettingsResult.cs" />
+    <Compile Include="Brokers\Cda\CdaDocumentListResult.cs" />
+    <Compile Include="Brokers\Cda\CdaDocumentResult.cs" />
+    <Compile Include="Brokers\Division\DivisionResult.cs" />
+    <Compile Include="Brokers\Patient\FlaggedPatientsResult.cs" />
+    <Compile Include="Brokers\Account\LoginResult.cs" />
+    <Compile Include="Brokers\NonVACare\NonVACareItemsResult.cs" />
+    <Compile Include="Brokers\Notes\NoteListResult.cs" />
+    <Compile Include="Brokers\Patient\PatientDemographicsResult.cs" />
+    <Compile Include="Brokers\Patient\PatientSearchResult.cs" />
+    <Compile Include="Brokers\SelectList\SelectListResult.cs" />
+    <Compile Include="Brokers\Settings\ServerConfigResult.cs" />
+    <Compile Include="Brokers\Notes\TiuNoteResult.cs" />
+    <Compile Include="Brokers\Patient\TrackedPatientsResult.cs" />
+    <Compile Include="Brokers\TrackingHistory\TrackingHistoryResult.cs" />
+    <Compile Include="Brokers\Account\UserResult.cs" />
+    <Compile Include="Brokers\Account\VerifyCodeResult.cs" />
+    <Compile Include="Brokers\Vpr\VprOperationResult.cs" />
+    <Compile Include="Brokers\Common\RpcBrokerUtility.cs" />
+    <Compile Include="Brokers\SelectList\SelectListRepository.cs" />
+    <Compile Include="Brokers\Settings\SettingsRepository.cs" />
+    <Compile Include="Brokers\TrackingHistory\TrackingHistoryRepository.cs" />
+    <Compile Include="Brokers\Vpr\VprRepository.cs" />
+    <Compile Include="Models\Cda\ValueCodes\AlbuminDictionary.cs" />
+    <Compile Include="Models\Cda\ValueCodes\EdemaDictionary.cs" />
+    <Compile Include="Models\Cda\ValueCodes\FetalMovementDictionary.cs" />
+    <Compile Include="Models\Cda\ValueCodes\FetalPresentationDictionary.cs" />
+    <Compile Include="Models\Cda\ValueCodes\GlucoseDictionary.cs" />
+    <Compile Include="Models\Cda\ValueCodes\PainDictionary.cs" />
+    <Compile Include="Models\Checklist\ChecklistIndexOperation.cs" />
+    <Compile Include="Models\Checklist\PregnancyChecklistOperation.cs" />
+    <Compile Include="Models\Common\NotesIndexModel.cs" />
+    <Compile Include="Models\Education\EducationItemSort.cs" />
+    <Compile Include="Models\Education\PatientEducationChecklistItem.cs" />
+    <Compile Include="Models\Education\PatientEducationItemDetail.cs" />
+    <Compile Include="Models\Education\PatientEducationList.cs" />
+    <Compile Include="Models\Education\PatientEducationSelect.cs" />
+    <Compile Include="Models\Education\PatientEducationSelectItemRow.cs" />
+    <Compile Include="Models\History\HistoryItem.cs" />
+    <Compile Include="Models\History\HistoryModel.cs" />
+    <Compile Include="Models\NonVACare\NonVACareItemAddEdit.cs" />
+    <Compile Include="Models\Notes\AddendaModel.cs" />
+    <Compile Include="Models\Observations\Observation.cs" />
+    <Compile Include="Models\Observations\ObservationUtility.cs" />
+    <Compile Include="Models\Outcomes\BabyDetails.cs" />
+    <Compile Include="Models\Outcomes\BabyUtilities.cs" />
+    <Compile Include="Models\Outcomes\CdaCodingInfo.cs" />
+    <Compile Include="Models\Outcomes\DeliveryDetails.cs" />
+    <Compile Include="Models\Outcomes\EctopicOutcome.cs" />
+    <Compile Include="Models\Outcomes\IsNarrative.cs" />
+    <Compile Include="Models\Outcomes\ObservationConstructable.cs" />
+    <Compile Include="Models\Outcomes\OutcomeDetails.cs" />
+    <Compile Include="Models\Outcomes\PatientOutcomeAddEdit.cs" />
+    <Compile Include="Models\Outcomes\PatientEctopicOutcome.cs" />
+    <Compile Include="Models\Outcomes\PatientPregnancyTerminationOutcome.cs" />
+    <Compile Include="Models\Outcomes\PatientSpontaneousAbortionOutcome.cs" />
+    <Compile Include="Models\Outcomes\PatientStillbirthOutcome.cs" />
+    <Compile Include="Models\PatientList\BarData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\PatientList\BarDataSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Outcomes\PregnancyTerminationOutcome.cs" />
+    <Compile Include="Models\Outcomes\SkipObservationAttribute.cs" />
+    <Compile Include="Models\Outcomes\StillbirthOutcome.cs" />
+    <Compile Include="Models\PatientContact\AdditionalCallNote.cs" />
+    <Compile Include="Models\PatientContact\MccPatientCallTypeUtility.cs" />
+    <Compile Include="Models\PatientContact\PatientContactView.cs" />
+    <Compile Include="Models\PatientList\DashboardModel.cs" />
+    <Compile Include="Models\PatientList\Outcomes.cs" />
+    <Compile Include="Models\Patient\CurrentTrackingStatus.cs" />
+    <Compile Include="Models\Account\ChangeVerifyCode.cs" />
+    <Compile Include="Models\Account\Login.cs" />
+    <Compile Include="Models\Account\User.cs" />
+    <Compile Include="Models\NonVACare\NonVACareItem.cs" />
+    <Compile Include="Models\NonVACare\NonVACareItemList.cs" />
+    <Compile Include="Models\NonVACare\NonVACareItemType.cs" />
+    <Compile Include="Models\PatientContact\PatientContactCreateModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Pregnancy\Baby.cs" />
+    <Compile Include="Models\Pregnancy\BabyAddEdit.cs" />
+    <Compile Include="Models\Pregnancy\ClinicalDateType.cs" />
+    <Compile Include="Models\Pregnancy\PastPregnancy.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyAddEdit.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyOutcome.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Pregnancy\PregnancyOutcomeDetails.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyOutcomeUtility.cs" />
+    <Compile Include="Models\Outcomes\SpontaneousAbortionOutcome.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyView.cs" />
+    <Compile Include="Models\Text4Baby\Text4BabyEnrollment.cs" />
+    <Compile Include="Models\Text4Baby\Text4BabyError.cs" />
+    <Compile Include="Models\Text4Baby\Text4BabyModel.cs" />
+    <Compile Include="Models\Text4Baby\Text4BabyResponse.cs" />
+    <Compile Include="Models\Text4Baby\Text4BabyResult.cs" />
+    <Compile Include="Models\Text4Baby\Text4BabyStatus.cs" />
+    <Compile Include="Models\Track\CreateTrackingEntry.cs" />
+    <Compile Include="Models\PatientContact\AlcoholCallTab.cs" />
+    <Compile Include="Models\PatientContact\BreastfeedingCallTab.cs" />
+    <Compile Include="Models\PatientContact\CallNoteGenerator.cs" />
+    <Compile Include="Models\PatientContact\CallTab.cs" />
+    <Compile Include="Models\PatientContact\CallTabBase.cs" />
+    <Compile Include="Models\PatientContact\CallTabModelFactory.cs" />
+    <Compile Include="Models\PatientContact\ClassesCallTab.cs" />
+    <Compile Include="Models\PatientContact\ContraceptionCallTab.cs" />
+    <Compile Include="Models\PatientContact\CoverageCallTab.cs" />
+    <Compile Include="Models\PatientContact\DepressionCallTab.cs" />
+    <Compile Include="Models\PatientContact\EndCallTab.cs" />
+    <Compile Include="Models\PatientContact\HealthCallTab.cs" />
+    <Compile Include="Models\PatientContact\IntroductionCallTab.cs" />
+    <Compile Include="Models\PatientContact\IPVCallTab.cs" />
+    <Compile Include="Models\PatientContact\MccPatientCallTemplate.cs" />
+    <Compile Include="Models\PatientContact\MccPatientCallTab.cs" />
+    <Compile Include="Models\PatientContact\MccPatientCallType.cs" />
+    <Compile Include="Models\PatientContact\MccPatientCallConfiguration.cs" />
+    <Compile Include="Models\PatientContact\PostpartumVisitCallTab.cs" />
+    <Compile Include="Models\PatientContact\SmokingCallTab.cs" />
+    <Compile Include="Models\PatientContact\SmokingStatus.cs" />
+    <Compile Include="Models\PatientContact\VaPcpCallTab.cs" />
+    <Compile Include="Models\PatientContact\WicCallTab.cs" />
+    <Compile Include="Models\PatientContact\YesNoMaybe.cs" />
+    <Compile Include="Models\Cda\CdaDocumentModel.cs" />
+    <Compile Include="Models\Cda\CdaDocumentData.cs" />
+    <Compile Include="Models\Cda\CdaIndex.cs" />
+    <Compile Include="Models\Cda\CdaMatchingUtility.cs" />
+    <Compile Include="Models\Cda\CdaOptions.cs" />
+    <Compile Include="Models\Cda\CdaPatientMatch.cs" />
+    <Compile Include="Models\Cda\ExchangeDirection.cs" />
+    <Compile Include="Models\Cda\MatchResult.cs" />
+    <Compile Include="Models\Checklist\ChecklistIndex.cs" />
+    <Compile Include="Models\Checklist\ChecklistItem.cs" />
+    <Compile Include="Models\Checklist\ChecklistItemAddEdit.cs" />
+    <Compile Include="Models\Checklist\ChecklistItemTypeUtility.cs" />
+    <Compile Include="Models\Checklist\ChecklistSelections.cs" />
+    <Compile Include="Models\Checklist\CompletionStatusUtility.cs" />
+    <Compile Include="Models\Checklist\DueStatus.cs" />
+    <Compile Include="Models\Checklist\PregnancyChecklistAddEdit.cs" />
+    <Compile Include="Models\Checklist\PregnancyChecklistIndex.cs" />
+    <Compile Include="Models\Checklist\PregnancyChecklistItem.cs" />
+    <Compile Include="Models\Checklist\PregnancyChecklistItemList.cs" />
+    <Compile Include="Models\Common\Address.cs" />
+    <Compile Include="Models\Common\Person.cs" />
+    <Compile Include="Models\Consults\Consult.cs" />
+    <Compile Include="Models\Consults\ConsultDetail.cs" />
+    <Compile Include="Models\Consults\ConsultIndex.cs" />
+    <Compile Include="Models\Edd\EddItemType.cs" />
+    <Compile Include="Models\Edd\EddCalculatorModel.cs" />
+    <Compile Include="Models\Edd\EddHistoryItem.cs" />
+    <Compile Include="Models\Edd\EddHistoryModel.cs" />
+    <Compile Include="Models\Edd\EddItem.cs" />
+    <Compile Include="Models\Edd\EddUtility.cs" />
+    <Compile Include="Models\Education\EducationItem.cs" />
+    <Compile Include="Models\Education\EducationItemAddEditModel.cs" />
+    <Compile Include="Models\Education\EducationItemList.cs" />
+    <Compile Include="Models\Education\EducationItemType.cs" />
+    <Compile Include="Models\Education\PatientEducationAddEdit.cs" />
+    <Compile Include="Models\Education\PatientEducationIndex.cs" />
+    <Compile Include="Models\Education\PatientEducationItem.cs" />
+    <Compile Include="Models\Labs\LabItem.cs" />
+    <Compile Include="Models\Labs\LabModel.cs" />
+    <Compile Include="Models\Labs\LabResultType.cs" />
+    <Compile Include="Models\Lactation\LactationStatus.cs" />
+    <Compile Include="Models\Notes\TiuNoteTitle.cs" />
+    <Compile Include="Models\Notes\TiuNote.cs" />
+    <Compile Include="Models\Track\TrackingEntryList.cs" />
+    <Compile Include="Models\Notes\DeleteNoteModel.cs" />
+    <Compile Include="Models\Notes\SignNoteModel.cs" />
+    <Compile Include="Models\Notes\TiuNoteSignatureStatus.cs" />
+    <Compile Include="Models\Notes\TiuNoteTitleInfo.cs" />
+    <Compile Include="Models\Orders\Order.cs" />
+    <Compile Include="Models\Orders\OrderDetailModel.cs" />
+    <Compile Include="Models\Pregnancy\AddEditNonVACareItem.cs" />
+    <Compile Include="Models\Pregnancy\EditPregnancyHistory.cs" />
+    <Compile Include="Models\FlaggedPatients\FlaggedPatient.cs" />
+    <Compile Include="Models\PatientList\TrackedPatient.cs" />
+    <Compile Include="Models\PatientList\TrackedPatients.cs" />
+    <Compile Include="Models\Track\TrackingEntry.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyOutcomeType.cs" />
+    <Compile Include="Models\Common\BasePatient.cs" />
+    <Compile Include="Models\FlaggedPatients\FlaggedPatientDetail.cs" />
+    <Compile Include="Models\FlaggedPatients\FlaggedPatientList.cs" />
+    <Compile Include="Models\Home\HomeData.cs" />
+    <Compile Include="Models\Patient\PatientSummary.cs" />
+    <Compile Include="Models\Pregnancy\FatherOfFetus.cs" />
+    <Compile Include="Models\Notes\NoteListModel.cs" />
+    <Compile Include="Models\Orders\OrderListModel.cs" />
+    <Compile Include="Models\Patient\PatientRelatedModel.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyDetails.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyHistory.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyRecordType.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyStatusModel.cs" />
+    <Compile Include="Models\Notes\TiuNoteModel.cs" />
+    <Compile Include="Models\Common\Paging.cs" />
+    <Compile Include="Models\PatientContact\PatientContactIndex.cs" />
+    <Compile Include="Models\PatientSearch\PatientSearch.cs" />
+    <Compile Include="Models\Reminders\ReminderDetailModel.cs" />
+    <Compile Include="Models\Reminders\ReminderListModel.cs" />
+    <Compile Include="Models\Pregnancy\SelectFatherModel.cs" />
+    <Compile Include="Models\Pregnancy\SelectNonVACareModel.cs" />
+    <Compile Include="Models\Pregnancy\PregnancyIndex.cs" />
+    <Compile Include="Models\Radiology\RadiologyIndex.cs" />
+    <Compile Include="Models\Radiology\RadiologyReport.cs" />
+    <Compile Include="Models\Reminders\Reminder.cs" />
+    <Compile Include="Models\PatientSearch\SearchPatient.cs" />
+    <Compile Include="Models\ServerSettings\ServerConfig.cs" />
+    <Compile Include="Models\Alerts\AlertDetailModel.cs" />
+    <Compile Include="Models\Alerts\AlertListModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\va.gov.artemis.cda\va.gov.artemis.cda.csproj">
+      <Project>{69eb293d-32c1-46c8-98ef-24124d2bab65}</Project>
+      <Name>va.gov.artemis.cda</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.commands\va.gov.artemis.commands.csproj">
+      <Project>{66ba87b2-690f-4440-8132-bd85bd6c02cd}</Project>
+      <Name>va.gov.artemis.commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.core\va.gov.artemis.core.csproj">
+      <Project>{e1f510b1-c409-4212-886d-761d93530ffd}</Project>
+      <Name>va.gov.artemis.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\va.gov.artemis.vista\va.gov.artemis.vista.csproj">
+      <Project>{3c03ecd0-7039-4848-bb93-3d9fe0420bfe}</Project>
+      <Name>va.gov.artemis.vista</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

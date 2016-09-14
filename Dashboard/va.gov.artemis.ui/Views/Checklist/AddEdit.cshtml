@@ -1,0 +1,152 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Checklist.ChecklistItemAddEdit
+@using VA.Gov.Artemis.UI.Data.Models.Checklist
+@using VA.Gov.Artemis.Commands.Dsio.Checklist
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact 
+
+@{
+    ViewBag.Title = "MCC Dashboard - Checklist";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@{ 
+    string header = (string.IsNullOrWhiteSpace(Model.Item.Ien)) ? "Add New Checklist Item" : "Edit Checklist Item";
+}
+<h1 class="h3 page-header">@header</h1>
+
+@if (string.IsNullOrWhiteSpace(Model.Item.Ien))
+{
+    <p class="bg-success" style="padding: 16px">The following item will be added to the list of default tasks that are added to each patient</p>
+}
+
+@using (Html.BeginForm("AddEdit", "Checklist", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Item.Ien)
+
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Item.ItemType)
+                @Html.DropDownListFor(m => m.Item.ItemType, new SelectList(ChecklistItemTypeUtility.GetItemTypeSelection(), "key", "value"), "(Select)", new { @class = "form-control" })
+            </div>
+            <div class="form-group" id="link-div">
+                <label for="Item_Link">Note</label>
+                @Html.DropDownListFor(m => m.Item.Link, new SelectList(ChecklistSelections.CallNoteSelection, "key", "value"), "(Select)", new { @class = "form-control" })
+            </div>
+            <div class="form-group" id="link-ed-div">
+                <label>Education Item</label>
+                @Html.DropDownListFor(m => m.Item.EducationItemIen, new SelectList(Model.EducationItemSelection, "key", "value"),"(Select)", new { @class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Item.Category)
+                @Html.TextBoxFor(m => m.Item.Category, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Item.Description)
+                @Html.TextBoxFor(m => m.Item.Description, new { @class = "form-control" })
+            </div>
+            <div style="margin-left: 20px">
+                <div class="form-group">
+                    @Html.RadioButtonFor(m => m.Item.DueCalculationType, DsioChecklistCalculationType.Initial, new { @id = "initial-radio" })
+                    &nbsp;&nbsp;Due Immediately
+                </div>
+                <div class="form-group">
+                    @Html.RadioButtonFor(m => m.Item.DueCalculationType, DsioChecklistCalculationType.WeeksGa, new { @id = "weeks-ga-radio" })
+                    &nbsp;&nbsp;Due at 
+                @Html.TextBoxFor(m => m.WeeksGestation, new { @style = "width: 44px; display: inline; margin-right: 10px; margin-left: 10px", @class = "form-control centered-txt", @id = "weeks-ga-txt" })
+                    weeks gestation
+                </div>
+                <div class="form-group">
+                    @Html.RadioButtonFor(m => m.Item.DueCalculationType, DsioChecklistCalculationType.TrimesterGa, new { @id = "tri-radio" })
+                    &nbsp;&nbsp;Due by end of 
+                @Html.DropDownListFor(m => m.Trimester, new SelectList(ChecklistSelections.TrimesterSelection, "key", "value"), "(Select)", new { @class = "form-control", @style = "width: 172px; display: inline; margin-right: 10px; margin-left: 10px", @id = "tri-select" })
+                </div>
+                <div class="form-group">
+                    @Html.RadioButtonFor(m => m.Item.DueCalculationType, DsioChecklistCalculationType.WeeksPostpartum, new { @id = "weeks-pp-radio" })
+                    &nbsp;&nbsp;Due at 
+                @Html.TextBoxFor(m => m.WeeksPostPartum, new { @style = "width: 44px; display: inline; margin-right: 10px; margin-left: 10px", @class = "form-control centered-txt", @id = "weeks-pp-txt" })
+                    weeks postpartum
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index")'">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+    
+}
+
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav-config-chk').addClass('active').siblings().removeClass('active');
+
+            @if (Model.Item.ItemType != DsioChecklistItemType.MccCall)
+            {
+                <text>
+                    $("#link-div").hide();
+                </text>
+            }
+
+            @if (Model.Item.ItemType != DsioChecklistItemType.EducationItem)
+            {
+                <text>
+                    $("#link-ed-div").hide();
+                </text>
+            }
+
+            $("#Item_ItemType").change(function () {
+                if ($(this).val() == "@DsioChecklistItemType.MccCall")
+                    $("#link-div").show();
+                else 
+                    $("#link-div").hide();
+                if ($(this).val() == "@DsioChecklistItemType.EducationItem")
+                    $("#link-ed-div").show();
+                else
+                    $("#link-ed-div").hide();
+            });
+
+            enableDisable();
+
+            $('input[name="Item.DueCalculationType"]:radio').change(function () {
+                enableDisable()
+            });
+
+            function enableDisable() {
+
+                if ($('#weeks-ga-radio').prop("checked") == true)
+                    $('#weeks-ga-txt').removeAttr("disabled");
+                else
+                    $('#weeks-ga-txt').attr("disabled", "disabled");
+
+                if ($('#tri-radio').prop("checked") == true)
+                    $('#tri-select').removeAttr("disabled");
+                else
+                    $('#tri-select').attr("disabled", "disabled");
+
+                if ($('#weeks-pp-radio').prop("checked") == true)
+                    $('#weeks-pp-txt').removeAttr("disabled");
+                else
+                    $('#weeks-pp-txt').attr("disabled", "disabled");
+            }
+
+        });
+    </script>
+}

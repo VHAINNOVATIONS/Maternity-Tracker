@@ -1,0 +1,146 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Education.EducationItemList
+@using VA.Gov.Artemis.UI.Data.Models.Education
+
+@{
+    ViewBag.Title = "MCC Dashboard - Education Items";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Education Items</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <p><i>Click a row to select the education item</i></p>
+    </div>
+    <div class="col-md-6">
+        <p class="pull-right">
+            <span class="db-table-filter"><small>Sort:</small></span>
+            <button id="type-sort" type="button" class="btn btn-xs btn-default db-table-filter">Type</button>
+            <button id="cat-sort" type="button" class="btn btn-xs btn-default db-table-filter">Category</button>
+            <button id="desc-sort" type="button" class="btn btn-xs btn-default db-table-filter">Description</button>
+        </p>
+    </div>
+</div>
+<table class="table table-bordered table-hover table-db">
+    <thead class="centered-header">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Type</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Url</th>
+            <th scope="col">Code</th>
+        </tr>
+    </thead>
+        @if (Model.EducationItems.Count > 0)
+        {
+            @:<tbody>
+
+            foreach (EducationItem item in Model.EducationItems)
+            {
+                string[] icons = new string[] { "", "glyphicon-comment", "glyphicon-link", "glyphicon-book", "glyphicon-calendar", "" };
+                string iconClass = icons[(int)item.ItemType]; 
+                
+            <tr data-id="@item.Ien">
+                <td class="centered-txt"><span class="glyphicon @iconClass"></span></td>
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.ItemTypeDescription)</td>
+                <td class="centered-txt" style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Category)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Description)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.Url)</td>
+                <td style="vertical-align: middle">@Html.DisplayFor(modelItem => item.CodeDetail)</td>
+            </tr>
+            }
+            @:</tbody>
+        }
+        else
+        {
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="centered-txt">(No Education Items)</td>
+                </tr>  
+            </tfoot> 
+        }
+</table>
+
+@{Html.RenderPartial("~/Views/Shared/_paging.cshtml", Model.Paging);}
+
+@using (Html.BeginForm("Delete", "Education", FormMethod.Post, new { @class = "row" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.SelectedItemIen)
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button id="add-new" type="button" class="btn btn-default">Add New</button>
+                <button id="edit-selected" type="button" class="btn btn-default" disabled="disabled">Edit Selected</button>
+                <button id="delete-selected" type="submit" class="btn btn-default" disabled="disabled">Delete Selected</button>
+            </div>
+        </div>
+    </div>
+}
+<br />
+
+@Html.HiddenFor(m => m.Sort)
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('#nav-config-edu').addClass('active').siblings().removeClass('active');
+
+            if ($('#Sort').val() == '0')
+                $("#type-sort").addClass("btn-success");
+            else if ($('#Sort').val() == '1')
+                $("#desc-sort").addClass("btn-success");
+            else if ($('#Sort').val() == '2')
+                $("#cat-sort").addClass("btn-success");
+
+            $("tbody > tr").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#edit-selected").removeAttr("disabled");
+                $("#delete-selected").removeAttr("disabled");
+                $("#SelectedItemIen").val($("tr.info").attr("data-id"));
+            });
+
+            // TODO: Add this to all tables... 
+
+            $("tbody > tr").dblclick(function () {
+                var id = $(this).attr("data-id");
+                if (id != "")
+                    location.href = '@Url.Action("AddEdit", "Education")' + "/" + id;
+            });
+
+            $("#edit-selected").click(function () {
+                var id = $("tr.info").attr("data-id");
+                if (id != "")
+                    location.href = '@Url.Action("AddEdit", "Education")' + "/" + id;
+            });
+
+            $("#add-new").click(function () {
+                location.href = '@Url.Action("AddEdit", "Education")';
+            });
+
+            $('#desc-sort').click(function () {
+                location.href = '@Url.Action("Index", "Education", new { @page = "1", sort = 1 })';
+            });
+
+            $('#cat-sort').click(function () {
+                location.href = '@Url.Action("Index", "Education", new { @page = "1", sort = 2 })';
+            });
+
+            $('#type-sort').click(function () {
+                location.href = '@Url.Action("Index", "Education", new { @page = "1", sort = 0 })';
+            });
+        });
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}
+

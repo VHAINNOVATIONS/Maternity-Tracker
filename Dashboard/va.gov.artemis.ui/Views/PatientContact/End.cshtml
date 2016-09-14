@@ -1,0 +1,29 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Extensions
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.EndCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+    <tr class="active"><td colspan="2">@Html.CheckBoxFor(m=>m.CheckedForQuestions)&nbsp;&nbsp;@Html.LabelFor(m=>m.CheckedForQuestions, "What questions can I answer for you?")</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px; padding-right: 40px">
+        @Html.LabelFor(m => m.PatientQuestions, "Patient Questions", new { @class = "sr-only" })
+        @Html.TextAreaFor(m => m.PatientQuestions, new {@placeholder="Questions/Answers", @class="form-control", @rows="7" })</td>
+    <tr class="active"><td colspan="2" >@Html.CheckBoxFor(m=>m.SummarizedCall)&nbsp;&nbsp;@Html.LabelFor(m=>m.SummarizedCall, "Summarize call, next steps and timing of next call")</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px; padding-right: 40px">
+        @Html.LabelFor(m => m.CallSummary, "Call Summary", new {@class="sr-only"})
+        @Html.TextAreaFor(m => m.CallSummary, new {@placeholder="Next Steps", @class="form-control", @rows="3" })</td>
+    <tr><td colspan="2" style="padding-left: 40px">
+        @Html.LabelFor(m => m.NextCall, "The Next Call Is Due On"):&nbsp;&nbsp;
+        @Html.TextBoxFor(m => m.NextCall, new {@class="form-control", @style="display: inline; width: 140px"})
+    </td>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.ContactInfo)&nbsp;&nbsp;@Html.LabelFor(m=>m.ContactInfo, "Provide MCC & VA PCP contact information, encourage calls for VA-related questions")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.CallOb)&nbsp;&nbsp;@Html.LabelFor(m=>m.CallOb,"Re-iterate to call OB with pregnancy-related questions, go to ER for emergencies")</td></tr>
+    <tr class="active"><td colspan="2">@Html.LabelFor(m => m.FinalComments, "Additional Comments")</td></tr>
+    <tr><td colspan="2">@Html.TextAreaFor(m => m.FinalComments, new {@placeholder="Enter Additional Comments Here", @class="form-control", @rows="7" })</td>
+    </tr>
+
+</tbody>
+

@@ -1,0 +1,62 @@
+﻿@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.HealthCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+    <tr class="active">
+        <td colspan="2">@Html.CheckBoxFor(m => m.UpdateHealthProblems)&nbsp;&nbsp;@Html.LabelFor(m => m.UpdateHealthProblems, "Update health problems, advise patient to tell OB about all problems")</td>
+    </tr>
+    @if (Model.CallType == MccPatientCallType.PhoneCall_6b)
+    {
+        <tr>
+            <td colspan="2" style="padding-left: 40px;">Does the patient have pregnancy-related hypertension?</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 80px;">@Html.RadioButtonFor(m => m.Hypertension, true, new {@id="rdo-hyp-y"})&nbsp;&nbsp;@Html.LabelFor(m => m.Hypertension,"Yes", new {@for="rdo-hyp-y"})</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 80px;">@Html.RadioButtonFor(m => m.Hypertension, false, new { @id = "rdo-hyp-n" })&nbsp;&nbsp;@Html.LabelFor(m => m.Hypertension,"No", new {@for="rdo-hyp-n"})</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 40px;">Does the patient have pregnancy-related diabetes?</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 80px;">@Html.RadioButtonFor(m => m.Diabetes, true, new { @id = "rdo-db-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.Diabetes, "Yes", new {@for = "rdo-db-y"})</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 80px;">@Html.RadioButtonFor(m => m.Diabetes, false, new { @id = "rdo-db-n" })&nbsp;&nbsp;@Html.LabelFor(m => m.Diabetes, "No", new {@for = "rdo-db-n"})</td>
+        </tr>
+        <tr class="active">
+            <td colspan="2">Other Health Problems</td>
+        </tr>
+    }
+    <tr>
+        <td colspan="2" style="padding-left: 40px">@Html.CheckBoxFor(m => m.NoNewHealthProblems)&nbsp;&nbsp;@Html.LabelFor(m => m.NoNewHealthProblems,"No New Health Problems")</td>
+    </tr>
+
+    @for (int i = 0; i < Model.HealthProblems.Count; i++)
+    {
+        <tr>
+            <td colspan="2" style="padding-left: 40px; padding-right: 40px">@Html.TextBoxFor(m => m.HealthProblems[i], new { @class = "form-control", @placeholder = "Health Problem Update" })</td>
+        </tr>
+    }
+    <tr class="active">
+        <td colspan="2">@Html.CheckBoxFor(m => m.NewMedications)&nbsp;&nbsp;@Html.LabelFor(m => m.NewMedications, "Ask about new medications")</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-left: 40px">@Html.CheckBoxFor(m => m.NoNewMedications)&nbsp;&nbsp;@Html.LabelFor(m => m.NoNewMedications, "No New Medications")</td>
+    </tr>
+    @for (int i = 0; i < Model.Medications.Count; i++)
+    {
+        <tr>
+            <td colspan="2" style="padding-left: 40px; padding-right: 40px">
+                @Html.LabelFor( m => m.Medications[i], string.Format("Medication #{0}", i), new {@class="sr-only"})
+                @Html.TextBoxFor(m => m.Medications[i], new { @class = "form-control", @placeholder = "Medication Update" })</td>
+        </tr>
+    }
+</tbody>

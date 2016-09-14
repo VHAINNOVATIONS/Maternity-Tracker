@@ -1,0 +1,84 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.Notes
+@model TiuNoteModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - Create Note";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@{string postMethod="";}
+@if (string.IsNullOrWhiteSpace(Model.Note.Ien))
+{
+    postMethod="CreateNote";
+    <h1 class="h3 page-header">New Dashboard Note</h1>    
+}
+else 
+{
+    postMethod="Edit";
+    <h1 class="h3 page-header">Edit Dashboard Note</h1>
+}
+
+@*@{Html.RenderPartial("~/Views/Shared/_PatientBlock.cshtml", (BasePatient)Model.Patient);}*@
+
+@using (Html.BeginForm(postMethod, "Notes", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div>
+
+        @Html.HiddenFor(m => m.Patient.Dfn)
+
+        @Html.HiddenFor(m => m.Note.Ien)
+
+        @*@Html.HiddenFor(m => m.Note.PregnancyIen)*@
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Note.PregnancyIen, "Pregnancy")
+                    @Html.DropDownListFor(m => m.Note.PregnancyIen, new SelectList(Model.Pregnancies, "key", "value"), new { @class = "form-control", @style="max-width: 328px;"  })
+                </div>
+            </div>
+        </div>
+
+        @if (string.IsNullOrWhiteSpace(Model.Note.Ien))        
+        {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="Note_Subject">Subject</label>
+                    @Html.TextBoxFor(m => m.Note.Subject, new {@class="form-control"})
+                </div>
+
+            </div>
+        </div>
+        }
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="Note_NoteText">Dashboard Note Text</label>
+                    @Html.TextAreaFor(m => m.Note.NoteText, new {@class="form-control", @rows = "10", @style="whitespace: pre; font-family: Courier"})
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default" onclick="window.history.back();">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Save" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

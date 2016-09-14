@@ -1,0 +1,17 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Extensions
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.ClassesCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";}
+
+<tbody class="note-body">
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.RefreshBenefits)&nbsp;&nbsp;@Html.LabelFor(m=>m.RefreshBenefits, "Refresh patient’s memory about childbirth preparation class benefits and assess interest")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.Refresher)&nbsp;&nbsp;@Html.LabelFor(m=>m.Refresher, "If delivered previously and took course previously, mention refresher course")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.AssessNotInterested)&nbsp;&nbsp;@Html.LabelFor(m=>m.AssessNotInterested, "If not interested, assess reasons and answer questions as appropriate")</td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.DescribePayment)&nbsp;&nbsp;@Html.LabelFor(m=>m.DescribePayment, "Describe mechanism for VA payment for these classes")</td></tr>
+    <tr class="active"><td colspan="2">Notes on Patient Interest</td></tr>
+    <tr><td colspan="2" style="padding-left: 40px; padding-right: 40px">
+        @Html.LabelFor(m => m.Notes, "Notes", new {@class="sr-only"})
+        @Html.TextAreaFor(m => m.Notes, new {@class="form-control", @rows="5",@placeholder="Enter Details" })</td></tr>
+</tbody>

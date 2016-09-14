@@ -1,0 +1,217 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Pregnancy.PregnancyIndex
+@using VA.Gov.Artemis.UI.Data.Models.Pregnancy
+
+@{
+    ViewBag.Title = "MCC Dashboard - Pregnancies";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Pregnancies</h1>
+
+@if (Model.CurrentPregnancy != null)
+{
+    <div class="panel panel-success">
+        <div class="panel-heading">Current Pregnancy</div>
+        <table class="table table-bordered table-db">
+            <thead>
+                <tr>
+                    <th scope="col">EDD</th>
+                    <th scope="col">Gestational Age</th>
+                    <th scope="col">Trimester</th>
+                    <th scope="col">High Risk</th>
+                    <th scope="col">Prenatal Provider</th>
+                    <th scope="col">Delivery Facility</th>
+                    <th scope="col">Father</th>
+                    <th scope="col">LMP</th>
+                    <th scope="col">Multiple</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.CurrentPregnancy.DisplayEdd</td>
+                    <td>@Model.CurrentPregnancy.GestationalAge</td>
+                    <td>@{Html.RenderPartial("~/Views/Shared/_Trimester.cshtml", @Model.CurrentPregnancy.Trimester);}</td>
+                    @if (Model.CurrentPregnancy.HighRisk) 
+                    {
+                        <td class="centered-txt"><span class="label label-danger" style="cursor: default" title="@Model.CurrentPregnancy.HighRiskDetails">High Risk</span></td>
+                    }
+                    else 
+                    {
+                        <td class="centered-txt"></td>
+                    }
+                    <td>@Model.CurrentPregnancy.Obstetrician</td>
+                    <td>@Model.CurrentPregnancy.PlannedLaborDeliveryFacility</td>
+                    <td>@Model.CurrentPregnancy.FatherOfFetus</td>
+                    <td>@Model.CurrentPregnancy.LmpDisplay</td>
+                    <td>@Model.CurrentPregnancy.MultiplePregnancyDescription</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+
+
+<div class="panel panel-info">
+    <div class="panel-heading">Past Pregnancies</div>
+    <table class="table table-hover table-bordered table-db">
+        <thead class="centered-header">
+            @{PastPregnancy pp = new PastPregnancy(); }
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(m => pp.PregnancyDateDisplay)</th>
+                <th scope="col">@Html.DisplayNameFor(m => pp.HighRisk)</th>
+                <th scope="col">@Html.DisplayNameFor(m => pp.Outcome)</th>
+                <th scope="col">@Html.DisplayNameFor(m => pp.GestationalAge)</th>
+                <th scope="col">@Html.DisplayNameFor(m => pp.BirthWeight)</th>
+                <th scope="col">@Html.DisplayNameFor(m => pp.Sex)</th>
+                <th scope="col">@Html.DisplayNameFor(m => pp.DeliveryType)</th>
+                <th scope="col">@Html.DisplayNameFor(m => pp.PlaceOfDelivery)</th>
+                @*<th scope="col">@Html.DisplayNameFor(m => pp.PretermLabor)</th>*@
+                @*<th scope="col">@Html.DisplayNameFor(m => pp.Comments)</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.PastPregnancies.Count > 0)
+            {
+                foreach (PastPregnancy preg in Model.PastPregnancies)
+                {
+                <tr data-id="@preg.Ien" class="clickable-row" data-deletable="@preg.Deletable">
+                    <td>@Html.DisplayFor(modelItem => preg.PregnancyDateDisplay)</td>
+                    @if (preg.HighRisk) 
+                    {
+                        <td class="centered-txt"><span class="label label-danger" style="cursor: default" title="@preg.HighRiskDetails">High Risk</span></td>
+                    }
+                    else 
+                    {
+                        <td class="centered-txt"></td>
+                    }
+
+                    <td>@Html.DisplayFor(modelItem => preg.Outcome)</td>
+                    <td>@Html.DisplayFor(modelItem => preg.GestationalAge)</td>
+                    <td>
+                        @if (preg.BirthWeight.Count > 0)
+                        {
+                            foreach (string bw in preg.BirthWeight)
+                            {
+                            @:<p class="p-in-td">@bw</p>
+                        }
+                        }
+                    </td>
+                    <td>
+                        @if (preg.Sex.Count > 0)
+                        {
+                            foreach (string sx in preg.Sex)
+                            {
+                            @:<p class="p-in-td">@sx</p>
+                        }
+                        }
+
+                    </td>
+                    <td>
+                        @if (preg.DeliveryType.Count > 0)
+                        {
+                            foreach (string dt in preg.DeliveryType)
+                            {
+                            @:<p class="p-in-td">@dt</p>
+                    }
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => preg.PlaceOfDelivery)</td>
+                </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" class="centered-txt">(No Pregnancies)</td>
+                </tr>   
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+
+            <button type="button" class="btn btn-danger" id="delete-selected" disabled="disabled"><span class="glyphicon glyphicon-minus"></span>&nbsp;&nbsp;Delete Selected</button>
+
+            @if (Model.CurrentPregnancy != null)
+            {
+                <button id="edit-cur" type="button" class="btn btn-success"
+                onclick="location.href='@Url.Action("PregnancyView", new { @dfn = Model.Patient.Dfn, @pregIen = Model.CurrentPregnancy.Ien })'">
+                    View Current Pregnancy</button>
+            }
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("AddEdit", "Outcome", new { @dfn = Model.Patient.Dfn, @pregIen = "" })'">Add Past Pregnancy</button>         
+            <button id="edit-selected" type="button" class="btn btn-default" disabled="disabled">View Selected</button>
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { dfn = Model.Patient.Dfn })'">Patient Summary</button>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2 class="h4 modal-title" id="myModalLabel"><span class="glyphicon glyphicon-flag text-danger" style="font-size: 36px"></span>&nbsp;&nbsp;Confirmation</h2>
+            </div>
+            <div class="modal-body">
+                Warning: The pregnancy and all corresponding data will be permanently deleted. Are you sure you wish to proceed?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" id="proceed-btn" data-dfn="">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('#nav-pat-preg').addClass('active').siblings().removeClass('active');
+
+            $(".clickable-row").click(function () {
+                $(this).addClass("info").siblings().removeClass("info");
+                $("#edit-selected").removeAttr("disabled");
+                if ($("tr.info").attr("data-deletable") == 'True')
+                    $("#delete-selected").removeAttr("disabled");
+                else
+                    $("#delete-selected").attr("disabled", "disabled");
+                $("#SelectedItemIen").val($("tr.info").attr("data-id"));
+            });
+
+            $("#edit-selected").click(function () {
+                var id = $("tr.info").attr("data-id");
+                if (id != "")
+                    location.href = '@Url.Action("PregnancyView", "Pregnancy", new { @dfn = Model.Patient.Dfn })' + "/" + id;
+            });
+
+            $("#delete-selected").click(function () {
+                var id = $("tr.info").attr("data-id");
+                if (id != "")
+                    $("#myModal").modal(); 
+            });
+
+            $("#proceed-btn").click(function () {
+                var ien = $("tr.info").attr("data-id");
+                if (ien > 0)
+                    location.href = '@Url.Action("Delete", "Pregnancy", new { @dfn = Model.Patient.Dfn })' + "/" + ien;
+            });
+
+        });
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+

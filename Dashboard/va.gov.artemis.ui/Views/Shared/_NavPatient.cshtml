@@ -1,0 +1,25 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Common.BasePatient
+@using VA.Gov.Artemis.UI.Data.Models.Labs 
+@using VA.Gov.Artemis.UI.Controllers 
+
+<ul class="nav nav-sidebar">
+    <li class="list-group-item disabled text-center thin-header">Patient</li>
+    <li><a id="nav-pat-summ" class="list-group-item" href="@Url.Action("Summary", "Patient", new { dfn = @Model.Dfn })">Summary</a></li>
+    <li><a id="nav-pat-chk" class="list-group-item" href="@Url.Action("PregnancyIndex", "Checklist", new { dfn = @Model.Dfn })">Pregnancy Checklist</a></li>
+    <li><a id="nav-pat-preg" class="list-group-item" href="@Url.Action("Index", "Pregnancy", new { dfn = @Model.Dfn })">Pregnancies</a></li>
+    @*<li><a id="nav-pat-preg" class="list-group-item" href="#">Pregnancies</a></li>*@
+    <li><a id="nav-pat-contact" class="list-group-item" href="@Url.Action("Index", "PatientContact", new { dfn = @Model.Dfn, filter=PregnancyUtilities.PregnancyFilterCurrent })">Contact History</a></li>
+    @*<li><a id="nav-pat-contact" class="list-group-item" href="#">Contact History</a></li>*@
+    <li><a id="nav-pat-edu" class="list-group-item" href="@Url.Action("PatientIndex", "Education", new { dfn = @Model.Dfn })">Education</a></li>
+    <li><a id="nav-pat-notes" class="list-group-item" href="@Url.Action("Index", "Notes", new { dfn = @Model.Dfn, filter= PregnancyUtilities.PregnancyFilterCurrent })">Notes</a></li>
+    <li><a id="nav-pat-t4b" class="list-group-item text4baby" href="@Url.Action("Index", "Text4Baby", new { dfn = @Model.Dfn })">text4baby</a></li>
+    <li><a id="nav-pat-labs" class="list-group-item" href="@Url.Action("Index", "Labs", new { dfn = @Model.Dfn, labType = LabResultType.Any, pregFilter="True", page = "1"})">Labs</a></li>
+    <li><a id="nav-pat-cda" class="list-group-item" href="@Url.Action("Index", "Cda", new { dfn = @Model.Dfn, page = "1" })">Clinical Exchange Documents</a></li>
+    <li><a id="nav-pat-orders" class="list-group-item" href="@Url.Action("Index", "Orders", new { dfn = @Model.Dfn, page = "1" })">Orders</a></li>
+    <li><a id="nav-pat-remind" class="list-group-item" href="@Url.Action("Index", "Reminders", new { dfn = @Model.Dfn, page = "1" })">Reminders</a></li>
+    <li><a id="nav-pat-consult" class="list-group-item" href="@Url.Action("Index", "Consults", new { dfn = @Model.Dfn, page = "1" })">Consults</a></li>
+    <li><a id="nav-pat-rad" class="list-group-item" href="@Url.Action("Index", "Radiology", new { dfn = @Model.Dfn, page = "1" })">Radiology</a></li>
+    @*<li><a id="nav-pat-hist" class="list-group-item" href="@Url.Action("Index", "History", new { dfn = @Model.Dfn })">History</a></li>*@
+    <li><a id="nav-pat-stop" class="list-group-item" href="@Url.Action("Stop", "Track", new { dfn = @Model.Dfn })">Stop Tracking</a></li>
+</ul>
+

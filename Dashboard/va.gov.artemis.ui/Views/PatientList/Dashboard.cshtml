@@ -1,0 +1,346 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.PatientList
+@using VA.Gov.Artemis.UI.Data.Models.Common
+@model DashboardModel
+
+@{
+    ViewBag.Title = "MCC Dashboard";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@*<h1 class="h3 page-header">Dashboard</h1>*@
+
+<style>
+        .stat-block {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .stat-block > h1 {
+            color: white;
+            font-size: 36px;
+        }
+
+        .stat-block > p {
+            color: white;
+        }
+
+        .stat-block-blue {
+            background-color: #428bca;
+        }
+
+        .stat-block-blue:hover {
+            background-color: #8aaecc;
+        }
+
+        .stat-block-orange {
+            background-color: #ff9f5a
+        }
+
+        .stat-block-orange:hover {
+            background-color: #fbbd91
+        }
+
+        .stat-block-green {
+            background-color: #22c338;
+        }
+
+        .stat-block-green:hover {
+            background-color: #74ef85;
+        }
+
+        .stat-block-red {
+            background-color: #ff6363
+        }
+
+        .stat-block-red:hover {
+            background-color: #ff9494
+        }
+</style>
+<div class="row">
+    <div class="col-md-3">
+        <div id="tr-pat-blk" class="stat-block stat-block-blue">
+            <h1>@Model.TrackedPatients</h1>
+            <p>T R A C K E D&nbsp;&nbsp;P A T I E N T S</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div id="fl-pat-blk" class="stat-block stat-block-orange" >
+            <h1>@Model.FlaggedPatients</h1>
+            <p>F L A G G E D&nbsp;&nbsp;P A T I E N T S</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-block stat-block-green">
+            <h1>@Model.DueThisWeek</h1>
+            <p>D U E &nbsp; T H I S &nbsp; W E E K</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-block stat-block-red">
+            <h1>@Model.HighRisk</h1>
+            <p>H I G H &nbsp; R I S K</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="pull-left" style="padding: 20px">
+        <h4>Patients By Trimester</h4>
+        <canvas id="chart-tri" width="280" height="280"></canvas>
+    </div>
+    <div class="pull-left" style="padding: 20px">
+        <h4>Text4Baby Enrollment</h4>
+        <canvas id="chart-t4b" width="280" height="280"></canvas>
+    </div>
+    <div class="" style="min-width: 480px; padding: 20px">
+        <h4>Items Due</h4>
+        <div style="height: 280px; overflow-y: scroll">
+            <table id="pat-table" class="table table-bordered table-striped table-hover table-db" style="font-size: 12px; margin-top: 16px;">
+                <thead class="centered-header">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Patient</th>
+                        <th scope="col">Next Item Due</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.NextDueList.Count == 0) 
+                    {
+                        <tr>
+                            <td colspan="3">(No checklist items due)</td>
+                        </tr>
+                    }
+
+                    @foreach (var item in Model.NextDueList)
+                    {
+                        <tr>
+                            <td class="centered-txt h5 text-warning" style="vertical-align: middle"><span class="glyphicon glyphicon-flag"></span></td>
+                            <td style="vertical-align: middle"><a href="@Url.Action("PregnancyIndex", "Checklist", new { dfn = @item.Dfn })">@item.Name</a></td>
+                            <td class="centered-txt" style="vertical-align: middle">@item.NextChecklistDisplay</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4" style="padding: 20px">
+        <h4>Deliveries/Outcomes</h4>
+        <canvas id="chart-deliveries" style="width: 100%; height: 300px"></canvas>
+    </div>
+    <div class="col-md-4" style="padding: 20px">
+        <h4>Expected Deliveries</h4>
+        <canvas id="chart-expected" style="width: 100%; height: 300px"></canvas>
+    </div>
+    <div class="col-md-4" style="padding: 20px">
+        <h4 style="display: inline">Historical Outcomes</h4><button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#datesModal">@Model.Outcomes.DatesLabel</button>
+        <canvas id="chart-hist" width="280" height="280"></canvas>
+        @*<div id="chart-hist-legend"></div>*@
+    </div>
+</div>
+
+@Html.Partial("~/Views/PatientList/DatesModal.cshtml", Model.Outcomes) 
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#nav-dashboard').addClass('active').siblings().removeClass('active');
+
+            var triData = [
+                    {
+                        value: @Model.Tri1,
+                        color: "#F7464A",
+                        highlight: "#FF5A5E",
+                        label: "1st Trimester"
+                    },
+                    {
+                        value: @Model.Tri2,
+                        color: "#46BFBD",
+                        highlight: "#5AD3D1",
+                        label: "2nd Trimester"
+                    },
+                    {
+                        value: @Model.Tri3,
+                        color: "#FDB45C",
+                        highlight: "#FFC870",
+                        label: "3rd Trimester"
+                    },
+                    {
+                        value: @Model.TriUnknown,
+                        color: "#949FB1",
+                        highlight: "#A8B3C5",
+                        label: "Unknown/Other"
+                    }
+
+            ];
+
+            var t4bData = [
+        {
+            value: @Model.T4BEnrolled,
+                        color: "#F7464A",
+                        highlight: "#FF5A5E",
+                        label: "Enrolled"
+                    },
+                    {
+                        value: @Model.T4BNotInterested,
+                        color: "#46BFBD",
+                        highlight: "#5AD3D1",
+                        label: "Not Interested"
+                    },
+                    {
+                        value: @Model.T4BUnknown,
+                        color: "#FDB45C",
+                        highlight: "#FFC870",
+                        label: "Unknown"
+                    }
+            ];
+
+            var histData = [
+        {
+            //Unknown, FullTermDelivery, PretermDelivery, SpontaneousAbortion, StillBirth, PregnancyTermination, Ectopic
+                        value: @Model.Outcomes.Unknown,
+                        color: "rgb(200,200,200)",
+                        highlight: "rgb(160,160,160)",
+                        label: "Unknown"
+                    },
+                    {
+                        value: @Model.Outcomes.FullTermDelivery,
+                        color: "rgb(120,255,120)",
+                        highlight: "rgb(80,255,80)",
+                        label: "Full Term"
+                    },
+                    {
+                        value: @Model.Outcomes.PretermDelivery,
+                        color: "rgb(120,120,255)",
+                        highlight: "rgb(80,80,255)",
+                        label: "Preterm"
+                    },
+                    {
+                        value: @Model.Outcomes.SpontaneousAbortion,
+                        color: "rgb(255, 255, 120)",
+                        highlight: "rgb(255, 255, 80)",
+                        label: "Spontaneous Abortion"
+                    },
+                    {
+                        value: @Model.Outcomes.PregnancyTermination,
+                        color: "rgb(255, 120, 255)",
+                        highlight: "rgb(255, 80, 255)",
+                        label: "Pregnancy Termination"
+                    },
+                    {
+                        value: @Model.Outcomes.StillBirth,
+                        color: "rgb(120,255,255)",
+                        highlight: "rgb(80,255,255)",
+                        label: "Stillbirth"
+                    },
+                    {
+                        value: @Model.Outcomes.Ectopic,
+                        color: "rgb(255,120, 120)",
+                        highlight: "rgb(255, 80, 80)",
+                        label: "Ectopic Pregnancy"
+                    }
+
+            ];
+
+            var barData =@Html.Raw(Model.OutcomesJson);
+
+            barData.datasets[0].fillColor="#428bca";
+            barData.datasets[0].strokeColor="#428bca";
+            barData.datasets[0].highlightFill="#3071a9";
+            barData.datasets[0].highlightStroke="#3071a9";
+
+            barData.datasets[1].fillColor="#ff9f5a";
+            barData.datasets[1].strokeColor="#ff9f5a";
+            barData.datasets[1].highlightFill="#f7ecb5";
+            barData.datasets[1].highlightStroke="#f7ecb5";
+ 
+            var barData2 = @Html.Raw(Model.UpcomingPregnanciesJson); 
+
+            barData2.datasets[0].fillColor="#22c338";
+            barData2.datasets[0].strokeColor="#22c338";
+            barData2.datasets[0].highlightFill="#22c338";
+            barData2.datasets[0].highlightStroke="#22c338";
+
+            window.onload = function () {
+                var ctx = document.getElementById("chart-tri").getContext("2d");
+                window.myPie = new Chart(ctx).Pie(triData,
+                    {
+                        segmentShowStroke: false,
+                        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+                    });
+
+                ctx = document.getElementById("chart-t4b").getContext("2d");
+                window.myPie = new Chart(ctx).Pie(t4bData,
+                    {
+                        segmentShowStroke: false,
+                        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+                    });
+                
+                ctx = document.getElementById("chart-hist").getContext("2d");
+                var tempChart = new Chart(ctx).Pie(histData,
+                    {
+                        segmentShowStroke: false,
+                        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+                    });
+
+                window.myPie = tempChart; 
+
+                //var legend = tempChart.generateLegend();
+                
+                //$('#chart-hist-legend').append(legend);
+
+                ctx = document.getElementById("chart-deliveries").getContext("2d");
+                var myBarChart = new Chart(ctx).Bar(barData, {});
+
+                ctx = document.getElementById("chart-expected").getContext("2d");
+                var myBarChart = new Chart(ctx).Bar(barData2, {});
+            };
+
+            $('#tr-pat-blk').click(function() {
+                location.href = '@Url.Action("Overview", "PatientList")';
+            });
+
+            $('#fl-pat-blk').click(function() {
+                location.href = '@Url.Action("Index", "FlaggedPatients")';
+            });
+
+            @if (!Model.Outcomes.AllDates)
+            {
+                <text>
+                    $("#fromDate").removeAttr("disabled");
+                    $("#toDate").removeAttr("disabled");
+                </text>
+            }
+            else
+            {
+                <text>
+                    $("#fromDate").attr("disabled", "disabled");
+                    $("#toDate").attr("disabled", "disabled");
+                </text>                
+            }
+
+            $('input[name="AllDates"]:radio').change(function () {
+                if ($(this).val() == "False") {
+                    $("#fromDate").removeAttr("disabled");
+                    $("#toDate").removeAttr("disabled");
+                }
+                else {
+                    $("#fromDate").attr("disabled", "disabled");
+                    $("#toDate").attr("disabled", "disabled");
+                    $('#fromDate').val("");
+                    $('#toDate').val("");
+                }
+            });
+        });
+    </script>
+}
+

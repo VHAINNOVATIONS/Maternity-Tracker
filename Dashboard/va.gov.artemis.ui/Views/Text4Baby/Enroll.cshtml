@@ -1,0 +1,134 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Text4Baby.Text4BabyModel
+@using VA.Gov.Artemis.UI.Data.Models.Text4Baby;
+
+@{
+    ViewBag.Title = "MCC Dashboard - text4baby Enrollment";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">text4baby</h1>
+
+@using (Html.BeginForm("Enroll", "Text4Baby", FormMethod.Post, new { @role = "form", @class = "form", @id="enroll-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn)
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <table class="table table-bordered table-db table-horizontal">
+                <tbody>
+                    <tr class="info">
+                        <td colspan="3" class="centered-txt"><strong>Enroll Patient</strong></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.ParticipantType, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">@Html.DropDownListFor(m => m.Enrollment.ParticipantType, new SelectList(Model.ParticipantTypes, "Key", "Value"), "(Select)", new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.FirstName, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">@Html.TextBoxFor(m => m.Enrollment.FirstName, new { @class = "form-control"})</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.EmailAddress, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">@Html.TextBoxFor(m => m.Enrollment.EmailAddress, new { @class = "form-control", @placeholder = "Enter email address" })</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.DueDateKnown, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">
+                            @Html.CheckBoxFor(m => m.Enrollment.DueDateKnown, new {@class="preg-only" })
+                            <span class="mom-only">N/A</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.DueDateText, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">
+                            @Html.TextBoxFor(m => m.Enrollment.DueDateText, new { @class = "form-control preg-only", @placeholder = "Enter EDD" })
+                            <span class="mom-only">N/A</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.MenstrualPeriodDateText, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">
+                            @Html.TextBoxFor(m => m.Enrollment.MenstrualPeriodDateText, new { @class = "form-control preg-only", @placeholder = "LMP" })
+                            <span class="mom-only">N/A</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.BabyDobText, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">
+                            @Html.TextBoxFor(m => m.Enrollment.BabyDobText, new { @class = "form-control mom-only", @placeholder = "Enter baby's DOB" })
+                            <span class="preg-only">N/A</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.MobileNumber, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">@Html.TextBoxFor(m => m.Enrollment.MobileNumber, new { @class = "form-control", @placeholder = "Enter patient's mobile phone number" })</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.ZipCode, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">@Html.TextBoxFor(m => m.Enrollment.ZipCode, new { @class = "form-control", @placeholder = "Enter patient's zip code" })</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.Enrollment.ParticipantCode, new { @style="margin-bottom: 0px" })</th>
+                        <td colspan="2">@Html.TextBoxFor(m => m.Enrollment.ParticipantCode, new { @class = "form-control", @disabled = "disabled" })</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="pull-right">
+@*                <img id="progress-img" class="progress-img" src="~/content/images/loading.gif" alt="Enrolling"  style="display: none"/>*@
+                <button type="button" class="btn btn-default" id="cancel-btn" onclick="window.history.back();">Cancel</button>
+                <button type="button" class="btn btn-success" id="enroll-btn"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Enroll</button>
+            </div>
+        </div>
+    </div>
+}
+<br />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#nav-pat-t4b').addClass('active').siblings().removeClass('active');
+
+            setNotApplicable();
+
+            $('#Enrollment_ParticipantType').change(function () {
+                setNotApplicable(); 
+            });
+
+            function setNotApplicable() {
+                var val = $('#Enrollment_ParticipantType').val();
+                if (val == '@Text4BabyParticipantType.Pregnant') {
+                    $('.preg-only').show();
+                    $('.mom-only').hide();
+                }
+                else if (val == '@Text4BabyParticipantType.NewMom') {
+                    $('.preg-only').hide();
+                    $('.mom-only').show();
+                }
+            }
+
+            $('#enroll-btn').click(function () {
+                $('#enroll-btn').attr("disabled", "disabled");
+                $('#cancel-btn').attr("disabled", "disabled");
+                $('#enroll-btn').html("Enrolling...");
+                //$('#progress-img').css('display', 'inline');
+                $('#enroll-form').submit(); 
+            });
+
+        });
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

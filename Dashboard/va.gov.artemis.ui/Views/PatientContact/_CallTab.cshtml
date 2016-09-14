@@ -1,0 +1,135 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+@using VA.Gov.Artemis.UI.Extensions
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.CallTabBase
+
+@{
+    ViewBag.Title = "MCC Dashboard - Call";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@* *** Call Template *** *@
+
+<h1 class="h3 page-header">@Model.CallTemplateName</h1>
+
+@* *** Patient *** *@
+
+@Html.Partial("~\\Views\\PatientContact\\_ContactHeader.cshtml", Model.Patient)
+
+@* *** Form *** *@
+
+@using (Html.BeginForm(Model.CurrentTab.ViewName, "PatientContact", FormMethod.Post, new { @role = "form", @id = "tab-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn) 
+    @Html.HiddenFor(m => m.CallType)
+    @Html.HiddenFor(m => m.TabIndex)
+    @Html.HiddenFor(m => m.NavigateToTab)
+    @Html.HiddenFor(m => m.NoteIen)
+    @Html.HiddenFor(m => m.ChecklistIen)
+    @Html.HiddenFor(m => m.DeleteNote)
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.PregnancyIen, "Pregnancy")
+                @Html.DropDownListFor(m => m.PregnancyIen, new SelectList(Model.Pregnancies, "key", "value"), new { @class = "form-control", @style="max-width: 328px;"  })
+            </div>
+        </div>
+    </div>
+    
+    <div id="top-nav" class="btn-group btn-group-justified">
+        @for (int idx = 0; idx < Model.TabList.Count; idx++)
+        {
+            CallTab tab = Model.TabList[idx];
+
+            if (tab.TabType == Model.CurrentTab.TabType)
+            {
+            <a class="btn btn-primary">@tab.ShortName&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
+            }
+            else
+            {
+            <a class="btn btn-default btn-submit" data-nav="@idx">@tab.ShortName</a>
+            }
+        }
+    </div>
+    
+    <br />
+    
+    <table class="table table-bordered table-db">
+        <thead class="centered-header">
+            <tr>
+                <th scope="col" class="success" colspan="5">@Model.CurrentTab.FullName</th>
+            </tr>
+        </thead>
+        @RenderBody()
+    </table>
+   
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="pull-right">
+                @if (Model.IsFirst)
+                {
+                    <button type="button" class="btn btn-primary" disabled="disabled"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;Previous</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-primary btn-submit" data-nav="@Model.PrevTabIndex"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;Previous</button>   
+                }
+                @if (!Model.IsLast)
+                {
+                    <button type="button" id="next-btn" class="btn btn-primary btn-submit" data-nav="@Model.NextTabIndex">Next&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+                    <button type="button" class="btn btn-success btn-submit" data-nav="@Model.TabCount" ><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Preview/Finish</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-primary btn-submit" disabled="disabled">Next&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+                    <button type="button" class="btn btn-success btn-submit" data-nav="@Model.TabCount"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Preview/Finish</button>
+                }
+
+                @if (string.IsNullOrWhiteSpace(Model.NoteIen))
+                {
+                    <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index", new { @dfn = Model.Patient.Dfn })'">Cancel</button>
+                }
+                else 
+                {    
+                    <button type="button" class="btn btn-danger btn-submit" id="delete-note" data-delete="True"><span class="glyphicon glyphicon-minus"></span>&nbsp;&nbsp;Delete</button>
+                }
+
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index", new { @dfn = Model.Patient.Dfn })'">Contact History</button>
+            </div>
+        </div>
+    </div>
+    
+}
+
+<br />
+
+@section style
+{
+    @RenderSection("style", false)
+}
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $(".btn-submit").click(function () {
+                $("#NavigateToTab").val($(this).attr("data-nav"));
+                $("#DeleteNote").val($(this).attr("data-delete"));
+                $("#tab-form").submit();
+            });
+
+        });
+    </script>
+    @RenderSection("Scripts", false)
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

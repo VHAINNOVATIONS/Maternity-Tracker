@@ -1,0 +1,52 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@model VA.Gov.Artemis.UI.Data.Models.Cda.CdaDocumentModel
+@{
+    ViewBag.Title = "MCC Dashboard - Preview Document";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<embed class="db-embed" src="@Model.FileName" />
+
+<br />
+<br />
+<p><strong>You will need two files to exchange this document.  The style sheet is the same for all documents.  If you already have downloaded the style sheet you do not need to download it again.  However, please make sure both are included when sending to a third party.</strong></p>
+<br />
+<br />
+
+@using (Html.BeginForm("Download", "Cda", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn)
+    @Html.HiddenFor(m => m.Data.CreationDateTime)
+    @Html.HiddenFor(m => m.Data.DocumentType)
+    @Html.HiddenFor(m => m.Data.ExchangeDirection)
+    @Html.HiddenFor(m => m.Data.Id)
+    @Html.HiddenFor(m => m.Data.IntendedRecipient)
+    @Html.HiddenFor(m => m.Data.PatientDfn)
+    @Html.HiddenFor(m => m.Data.Sender)
+    @Html.HiddenFor(m => m.Data.Title)
+    @Html.HiddenFor(m => m.FileName)
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Summary", "Patient", new { dfn = Model.Patient.Dfn })'">Patient Summary</button>
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index", new { dfn = Model.Patient.Dfn })'">Clinical Exchange Documents</button>
+                <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Options", new { dfn = Model.Patient.Dfn, documentType = Model.Data.DocumentType })'">Return to Options</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("DownloadStyleSheet")'">Style Sheet</button>
+                <button type="submit" class="btn btn-primary">Save & Download</button>
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InvokeAPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="batchXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InvokeAPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InvokeAPIResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WorkflowAuthHeader" type="tns:WorkflowAuthHeader" />
+      <s:complexType name="WorkflowAuthHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoleId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LanguageId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChannelId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TenantId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TenantName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicationId" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InvokeAPISoapIn">
+    <wsdl:part name="parameters" element="tns:InvokeAPI" />
+  </wsdl:message>
+  <wsdl:message name="InvokeAPISoapOut">
+    <wsdl:part name="parameters" element="tns:InvokeAPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="InvokeAPIWorkflowAuthHeader">
+    <wsdl:part name="WorkflowAuthHeader" element="tns:WorkflowAuthHeader" />
+  </wsdl:message>
+  <wsdl:portType name="VoxivaSoap">
+    <wsdl:operation name="InvokeAPI">
+      <wsdl:input message="tns:InvokeAPISoapIn" />
+      <wsdl:output message="tns:InvokeAPISoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VoxivaSoap" type="tns:VoxivaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InvokeAPI">
+      <soap:operation soapAction="http://tempuri.org/InvokeAPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:InvokeAPIWorkflowAuthHeader" part="WorkflowAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VoxivaSoap12" type="tns:VoxivaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InvokeAPI">
+      <soap12:operation soapAction="http://tempuri.org/InvokeAPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:InvokeAPIWorkflowAuthHeader" part="WorkflowAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Voxiva">
+    <wsdl:port name="VoxivaSoap" binding="tns:VoxivaSoap">
+      <soap:address location="http://qalb001.in.voxiva.net/voxiva.apiv2/Voxiva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VoxivaSoap12" binding="tns:VoxivaSoap12">
+      <soap12:address location="http://qalb001.in.voxiva.net/voxiva.apiv2/Voxiva.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

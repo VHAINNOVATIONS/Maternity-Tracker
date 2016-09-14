@@ -1,0 +1,85 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Pregnancy.PregnancyStatusModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - Pregnancy Status";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Pregnancy Status</h1>
+
+@using (Html.BeginForm("Status", "Pregnancy", FormMethod.Post, new { @role = "form", @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Patient.Dfn);
+    @Html.HiddenFor(m => m.Patient.Pregnant);
+
+    string newStatus = (Model.Patient.Pregnant) ? "Not Pregnant" : "Pregnant"; 
+    
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered table-expanded table-horizontal">
+                <tbody>
+                    <tr class="centered-txt">
+                        <th  scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OriginalPregnancyStatusDescription, "Current Pregnancy Status:")</th>
+                        <td style="vertical-align: middle">@Model.OriginalPregnancyStatusDescription</td>
+                    </tr>
+                    <tr class="centered-txt">
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.NewPregnancyStatus, "Today's Pregnancy Status:")</th>
+                        <td style="vertical-align: middle">@Html.DropDownListFor(m => m.NewPregnancyStatus, new SelectList(Model.StatusList, "Key", "Value", ""), new { @class = "form-control" })</td>
+                    </tr>
+
+                    @if (Model.Patient.Pregnant)
+                    {
+                        <tr class="centered-txt" id="outcome-date-row" style="display: none">
+                            <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDate, "Outcome/Delivery Date:")</th>
+                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.OutcomeDate, new { @class = "form-control" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        @{string returnUrl = (string.IsNullOrWhiteSpace(Model.ReturnUrl)) ? Url.Action("Summary", "Patient", new { @dfn = Model.Patient.Dfn }) : Model.ReturnUrl;}
+                        <button type="button" class="btn btn-default" onclick="location.href='@returnUrl'">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>    
+}
+
+@section Scripts 
+{
+    <script>
+        $(document).ready(function () {
+
+            updateVisibility();
+
+            $("#NewPregnancyStatus").change(function () {
+                updateVisibility();
+            });
+
+            function updateVisibility() {
+                var sel = $("#NewPregnancyStatus").val();
+                if ((sel == "False") && ($("#Patient_Pregnant").val() == "True")) {
+                    $("#outcome-row").show();
+                    $("#outcome-date-row").show();
+                }
+                else {
+                    $("#outcome-row").hide();
+                    $("#outcome-date-row").hide();
+                }
+            };
+
+        });
+    </script>
+}
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

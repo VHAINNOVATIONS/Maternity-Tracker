@@ -1,0 +1,32 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Common.BasePatient
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="contact-block bg-info">
+            <ul class="list-unstyled" style="padding-top: 12px; padding-bottom: 12px; padding-left: 30px">
+                <li><strong>Last Contact</strong></li>
+                <li>@Model.LastContactDisplay</li>
+                <li><em><strong>@Model.LastContactDescription</strong></em></li>
+            </ul>
+        </div>
+    </div>
+    <div class=" col-md-2 col-md-offset-1 ">
+        <div class="contact-block bg-warning">
+            <ul class="list-unstyled" style="padding-top: 12px; padding-bottom: 12px; padding-left: 30px">
+                <li><strong>Next Contact Due</strong></li>
+                <li>@Model.NextContactDisplay</li>
+                <li><em><strong>@Model.NextContactDescription</strong></em></li>
+            </ul>
+        </div>
+    </div>
+    <div class=" col-md-2 col-md-offset-1 ">
+        <div class="contact-block bg-danger">
+            <ul class="list-unstyled" style="padding-top: 12px; padding-bottom: 12px; padding-left: 30px">
+                <li>Home:&nbsp;&nbsp;<strong>@Model.HomePhone</strong></li>
+                <li>Work:&nbsp;&nbsp;<strong>@Model.WorkPhone</strong></li>
+                <li>Mobile:&nbsp;&nbsp;<strong>@Model.MobilePhone</strong></li>
+            </ul>
+        </div>
+    </div>
+
+</div>

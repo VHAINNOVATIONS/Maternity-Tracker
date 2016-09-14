@@ -1,0 +1,528 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Pregnancy.PregnancyView
+@using VA.Gov.Artemis.UI.Data.Models.Pregnancy
+@using VA.Gov.Artemis.UI.Extensions
+
+@{
+    ViewBag.Title = "MCC Dashboard - Pregnancy Details";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Pregnancy Details</h1>
+
+@Html.HiddenFor(m => m.Outcome.OutcomeType)
+@Html.HiddenFor(m => m.Pregnancy.RecordType)
+
+<div class="row">
+    <div class="col-md-6">
+        @if ((Model.Pregnancy.RecordType == PregnancyRecordType.Historical) && (Model.Outcome.OutcomeType != PregnancyOutcomeType.Unknown))
+        {
+            <table class="table table-bordered table-db table-horizontal">
+                <tbody>
+                    <tr class="info">
+                        <td colspan="3" class="centered-txt"><strong>Pregnancy Details</strong><a href="@Url.Action("AddEdit", "Outcome", new { @dfn = Model.Patient.Dfn, @pregIen = Model.Pregnancy.Ien })" class="pull-right">Edit</a></td>
+                    </tr>
+                    <tr class="centered-txt" id="outcome-row">
+                        <th scope="row">Outcome:</th>
+                        <td colspan="2">@PregnancyOutcomeUtility.GetDescription(Model.Outcome.OutcomeType)</td>
+                    </tr>
+                    <tr class="centered-txt" id="outcome-date-row">
+                        <th scope="row">Outcome/Delivery Date:</th>
+                        <td colspan="2">@Model.Outcome.OutcomeDate</td>
+                    </tr>
+
+                    <tr class="delivery-outcome">
+                        <th scope="row">Gestational Age At Delivery:</th>
+                        <td class="centered-txt" colspan="2">@Model.Outcome.DeliveryDetails.GestationalAgeDescription</td>
+                    </tr>                    
+
+                    @* *** Delivery Details *** *@
+
+                    <tr class="info delivery-outcome">
+                        <td colspan="3" class="centered-txt">Delivery Method</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Normal Spontaneous Vaginal Delivery (NSVD):</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", Model.Outcome.DeliveryDetails.NormalSpontaneousVaginalDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Forcep or Vacuum Delivery:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.DeliveryDetails.ForcepVacuumDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Failed Forcep or Vacuum Delivery:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.DeliveryDetails.FailedForcepVacuumDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Cesarean Delivery:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.DeliveryDetails.CesareanDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Cesarean Incision Type:</th>
+                        <td colspan="2">@Model.Outcome.DeliveryDetails.CesareanIncisionType</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Other Delivery:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.DeliveryDetails.OtherDelivery)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Other Delivery Details:</th>
+                        <td colspan="2" class="centered-txt">@Model.Outcome.DeliveryDetails.OtherDeliveryDetails</td>
+                    </tr>
+                    <tr class="info delivery-outcome">
+                        <td colspan="3" class="centered-txt">Infant Feeding</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Breast Feeding:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.DeliveryDetails.BreastFeeding)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Bottle Feeding:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.DeliveryDetails.BottleFeeding)</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Formula Feeding:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.DeliveryDetails.FormulaFeeding)</td>
+                    </tr>
+
+                    <tr class="info delivery-outcome">
+                        <td colspan="3" class="centered-txt">Other</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Delivery Hospital:</th>
+                        <td colspan="2">@Model.Outcome.DeliveryDetails.DeliveryHospital</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Delivery Provider:</th>
+                        <td colspan="2">@Model.Outcome.DeliveryDetails.DeliveryProvider</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Mother Discharge Date:</th>
+                        <td colspan="2">@Model.Outcome.DeliveryDetails.DisplayMotherDischargeDate</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Days in Hospital Following Delivery:</th>
+                        <td colspan="2" class="centered-txt">@Model.Outcome.DeliveryDetails.DaysInHospital</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Postpartum Complications:</th>
+                        <td colspan="2" class="centered-txt">@Model.Outcome.DeliveryDetails.PostPartumComplications</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Postpartum Depression Screening:</th>
+                        <td colspan="2">
+                            @{
+            string ppd = string.IsNullOrWhiteSpace(Model.Outcome.DeliveryDetails.PostPartumComplications) ? "" : Model.Outcome.DeliveryDetails.PostPartumComplications;
+            Html.RenderPartial("~/Views/Shared/_multiline.cshtml", ppd);
+                            }
+                        </td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">Risk of IPV:</th>
+                        <td colspan="2">
+                            @{
+            string ipv = string.IsNullOrWhiteSpace(Model.Outcome.DeliveryDetails.PpIpv) ? "" : Model.Outcome.DeliveryDetails.PpIpv;
+            Html.RenderPartial("~/Views/Shared/_multiline.cshtml", ipv);
+                            }
+                        </td>
+                    </tr>                    
+                    <tr class="delivery-outcome">
+                        <th scope="row">Notes:</th>
+                        <td colspan="2">
+                            @{
+            string deliveryNote = string.IsNullOrWhiteSpace(Model.Outcome.DeliveryDetails.Notes) ? "" : Model.Outcome.DeliveryDetails.Notes;
+            Html.RenderPartial("~/Views/Shared/_multiline.cshtml", deliveryNote);
+                            }
+                        </td>
+                    </tr>
+                    <tr class="info delivery-outcome">
+                        <td colspan="3" class="centered-txt">Postpartum Hospital Treatment</td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">@Html.LabelFor(m => m.Outcome.DeliveryDetails.PpHospitalTreatment):</th>
+                        <td colspan="2">
+                           @{
+                            string temp = string.IsNullOrWhiteSpace(Model.Outcome.DeliveryDetails.PpHospitalTreatment) ? "" : Model.Outcome.DeliveryDetails.PpHospitalTreatment;
+                            Html.RenderPartial("~/Views/Shared/_multiline.cshtml", temp);
+                            }
+                        </td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">@Html.LabelFor(m => m.Outcome.DeliveryDetails.PpHospitalProcedures):</th>
+                        <td colspan="2">
+                           @{
+                            temp = string.IsNullOrWhiteSpace(Model.Outcome.DeliveryDetails.PpHospitalProcedures) ? "" : Model.Outcome.DeliveryDetails.PpHospitalProcedures;
+                            Html.RenderPartial("~/Views/Shared/_multiline.cshtml", temp);
+                            }
+                        </td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">@Html.LabelFor(m => m.Outcome.DeliveryDetails.PpHospitalDischargeDiet):</th>
+                        <td colspan="2">
+                           @{
+                            temp = string.IsNullOrWhiteSpace(Model.Outcome.DeliveryDetails.PpHospitalDischargeDiet) ? "" : Model.Outcome.DeliveryDetails.PpHospitalDischargeDiet;
+                            Html.RenderPartial("~/Views/Shared/_multiline.cshtml", temp);
+                            }
+                        </td>
+                    </tr>
+                    <tr class="delivery-outcome">
+                        <th scope="row">@Html.LabelFor(m => m.Outcome.DeliveryDetails.CarePlan):</th>
+                        <td colspan="2">
+                           @{
+                            temp = string.IsNullOrWhiteSpace(Model.Outcome.DeliveryDetails.CarePlan) ? "" : Model.Outcome.DeliveryDetails.CarePlan;
+                            Html.RenderPartial("~/Views/Shared/_multiline.cshtml", temp);
+                            }
+                        </td>
+                    </tr>
+                    @* *** Ectopic Details *** *@
+                    <tr class="info ectopic">
+                        <td colspan="3" class="centered-txt">Details</td>
+                    </tr>
+
+                    <tr class="warning ectopic">
+                        <td colspan="3" class="centered-txt">Retain patient in tracking until negative pregnancy test documented</td>
+                    </tr>
+                    <tr class="ectopic">
+                        <th scope="row">Methotrexate: </th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.EctopicDetails.Methotrexate)</td>
+                    </tr>
+                    <tr class="ectopic">
+                        <th scope="row">Salpingostomy (Surgery with Removal of Pregnancy but not Fallopian Tube):</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.EctopicDetails.Salpingostomy)</td>
+                    </tr>
+                    <tr class="ectopic">
+                        <th scope="row">Salpingectomy (Surgery with Removal of Pregnancy AND Fallopian Tube):</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.EctopicDetails.Salpingectomy)</td>
+                    </tr>
+                    <tr class="ectopic">
+                        <th scope="row">Spontaneous Resolution (Followed with Pregnancy Tests, No Surgery or Medicine):</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.EctopicDetails.SpontaneousResolution)</td>
+                    </tr>
+
+                    <tr class="ectopic">
+                        <th scope="row">Notes:</th>
+                        <td colspan="2">
+                            @{
+            string ectopicNote = string.IsNullOrWhiteSpace(Model.Outcome.EctopicDetails.Notes) ? "" : Model.Outcome.EctopicDetails.Notes;
+            Html.RenderPartial("~/Views/Shared/_multiline.cshtml", ectopicNote);
+                            }
+                        </td>
+                    </tr>
+
+                    @* *** Pregnancy Termination *** *@
+                    <tr class="info termination">
+                        <td colspan="3" class="centered-txt">Details</td>
+                    </tr>
+
+                    @*                    <tr class="termination">
+                        <td>Gestational Age:</td>
+                        <td class="centered-txt">@Model.Outcome.TerminationDetails.GestationalAgeWeeks&nbsp;&nbsp;Weeks</td>
+                        <td class="centered-txt">@Model.Outcome.TerminationDetails.GestationalAgeDays&nbsp;&nbsp;Days</td>
+                    </tr>*@
+
+                    <tr class="termination">
+                        <th scope="row">Trimester:</th>
+                        <td colspan="2" class="centered-txt">@{Html.RenderPartial("~/Views/Shared/_Trimester.cshtml", @Model.Outcome.TerminationDetails.Trimester.ToString());}</td>
+                    </tr>
+                    <tr class="termination">
+                        <th scope="row">Indication:</th>
+                        <td colspan="2" class="centered-txt">@Model.Outcome.TerminationDetails.Indication</td>
+                    </tr>
+                    <tr class="termination">
+                        <th scope="row">Known Fetal Abnormalities: </th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.TerminationDetails.FetalAbnormalities)</td>
+                    </tr>
+                    <tr class="termination">
+                        <th scope="row">Notes:</th>
+                        <td colspan="2">@{
+                                                               string termNote = string.IsNullOrWhiteSpace(Model.Outcome.TerminationDetails.Notes) ? "" : Model.Outcome.TerminationDetails.Notes;
+                                                               Html.RenderPartial("~/Views/Shared/_multiline.cshtml", termNote);
+                        }
+                        </td>
+                    </tr>
+
+                    @* *** Spontaneous Abortion *** *@
+
+                    <tr class="info spont">
+                        <td colspan="3" class="centered-txt">Details</td>
+                    </tr>
+
+                    <tr class="warning spont">
+                        <td colspan="3" class="centered-txt">A pregnancy loss that occurs at or after 20 weeks gestation should be classified as a stillbirth or preterm birth</td>
+                    </tr>
+
+                    <tr class="spont">
+                        <th scope="row">Gestational Age:</th>
+                        <td class="centered-txt">@Model.Outcome.SpontaneousAbortionDetails.GestationalAgeWeeks&nbsp;&nbsp;Weeks</td>
+                        <td class="centered-txt">@Model.Outcome.SpontaneousAbortionDetails.GestationalAgeDays&nbsp;&nbsp;Days</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row">Trimester:</th>
+                        <td colspan="2" class="centered-txt">@{Html.RenderPartial("~/Views/Shared/_Trimester.cshtml", Model.Outcome.SpontaneousAbortionDetails.Trimester.ToString());}</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row">Completed Without Surgery or Medication: </th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.SpontaneousAbortionDetails.WithoutSurgery)</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row">Dilation and Curettage (D&C):</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.SpontaneousAbortionDetails.DilationCurettage)</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row">Vacuum Aspiration in Office or Emergency Room:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", Model.Outcome.SpontaneousAbortionDetails.VacuumAspiration)</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row">Medications Needed (Cytotec, Methergen):</th>
+                        <td colspan="2" class="centered-txt">@Model.Outcome.SpontaneousAbortionDetails.MedicationsNeeded</td>
+                    </tr>
+                    <tr class="spont">
+                        <th scope="row">Cervical Incompetence (Painless Dilation of Cervix With Delivery):</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", Model.Outcome.SpontaneousAbortionDetails.IncompetentCervix)</td>
+                    </tr>
+
+                    <tr class="spont">
+                        <th scope="row">Notes:</th>
+                        <td colspan="2">
+                            @{
+                                                               string spontNote = string.IsNullOrWhiteSpace(Model.Outcome.SpontaneousAbortionDetails.Notes) ? "" : Model.Outcome.SpontaneousAbortionDetails.Notes;
+                                                               Html.RenderPartial("~/Views/Shared/_multiline.cshtml", spontNote);}</td>
+                    </tr>
+
+                    @* *** Stillbirth *** *@
+                    <tr class="info stillbirth">
+                        <td colspan="3" class="centered-txt">Details</td>
+                    </tr>
+
+                    <tr class="warning stillbirth">
+                        <td colspan="3" class="centered-txt">Should Include Pregnancy Outcomes at or Beyond 20 Weeks Gestation</td>
+                    </tr>
+                    <tr class="stillbirth">
+                        <th scope="row">Gestational Age:</th>
+                        <td class="centered-txt">@Model.Outcome.StillbirthDetails.GestationalAgeWeeks&nbsp;&nbsp;Weeks</td>
+                        <td class="centered-txt">@Model.Outcome.StillbirthDetails.GestationalAgeDays&nbsp;&nbsp;Days</td>
+                    </tr>
+                    <tr class="stillbirth">
+                        <th scope="row">Known Fetal Abnormalities: </th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", Model.Outcome.StillbirthDetails.FetalAbnormalities)</td>
+                    </tr>
+
+                    <tr class="stillbirth">
+                        <th scope="row">Notes:</th>
+                        <td colspan="2">@{
+                                string stillNote = string.IsNullOrWhiteSpace(Model.Outcome.StillbirthDetails.Notes) ? "" : Model.Outcome.StillbirthDetails.Notes;
+                                Html.RenderPartial("~/Views/Shared/_multiline.cshtml", stillNote);
+                        }</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        }
+
+        <table class="table table-bordered table-db table-horizontal">
+            <tbody>
+                @{ string description = (Model.Pregnancy.RecordType == PregnancyRecordType.Current) ? "Current Pregnancy" : "Other Details"; }
+                <tr class="info">
+                    <td colspan="2" class="centered-txt"><strong>@description</strong><a href="@Url.Action("AddEdit", new { @dfn = Model.Patient.Dfn, @pregIen = Model.Pregnancy.Ien })" class="pull-right">Edit</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Estimated Delivery Date:</th>
+                    <td>@Model.Pregnancy.DisplayEdd</td>
+                </tr>
+                @if (Model.Pregnancy.RecordType == PregnancyRecordType.Current)
+                {
+                    <tr>
+                        <th scope="row">EDD Basis:</th>
+                        <td>@Model.Pregnancy.EddBasis</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">EDD Is Final:</th>
+                        <td>@Model.Pregnancy.EddIsFinalDisplay</td>
+                    </tr>
+                }
+
+                     <tr>
+                        <th scope="row">High Risk:</th>
+                        @if (@Model.Pregnancy.HighRisk)
+                        {
+                            <td><span class="label label-danger">Yes</span></td>
+                        }
+                        else
+                        {
+                            <td><span class="label label-success">No</span></td>
+                        }
+                    </tr>
+
+                    <tr>
+                        <th scope="row" style="min-width: 180px">High Risk Details:</th>
+                        <td>
+                            <div style="word-break: break-all">@Model.Pregnancy.HighRiskDetails</div>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <th scope="row">Gestational Age:</th>
+                    <td>@Model.Pregnancy.GestationalAge</td>
+                </tr>
+                <tr>
+                    <th scope="row">Trimester:</th>
+                    <td>@{Html.RenderPartial("~/Views/Shared/_Trimester.cshtml", Model.Pregnancy.Trimester);}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Multiple Gestation:</th>
+                    <td>@Model.Pregnancy.MultiplePregnancyDescription</td>
+                </tr>
+                @*                <tr>
+                    <td>Start Date:</td>
+                    <td>@Model.Pregnancy.DisplayStartDate</td>
+                </tr>*@
+                <tr>
+                    <th scope="row">Prenatal Care Provider:</th>
+                    <td>@Model.Pregnancy.Obstetrician</td>
+                </tr>
+                <tr>
+                    <th scope="row">Planned Delivery Location:</th>
+                    <td>@Model.Pregnancy.PlannedLaborDeliveryFacility</td>
+                </tr>
+                <tr>
+                    <th scope="row">Father of Baby:</th>
+                    <td>@Model.Pregnancy.FatherOfFetus</td>
+                </tr>
+                <tr>
+                    <th scope="row">Last Menstrual Period:</th>
+                    <td>@Model.Pregnancy.LmpDisplay</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        @if (Model.Babies.Count > 0)
+        {
+            foreach (VA.Gov.Artemis.UI.Data.Models.Outcomes.BabyDetails baby in Model.Babies)
+            {
+                        
+            <table class="table table-bordered table-db table-horizontal">
+                <tbody>
+                    <tr class="info">
+                        @*<td colspan="2" class="centered-txt"><strong>Baby #1 Details</strong><button class="btn btn-xs btn-primary pull-right" type="button">Edit</button></td>*@
+                        <td colspan="2" class="centered-txt"><strong>@baby.BabyDescription Details</strong><a href="@Url.Action("BabyAddEdit", "Pregnancy", new { @dfn = Model.Patient.Dfn, @pregIen = Model.Pregnancy.Ien, @babyIen = baby.Ien })" class="pull-right">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Name:</th>
+                        <td>@baby.FirstName</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Birth Weight:</th>
+                        <td>@baby.DisplayWeight</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sex:</th>
+                        <td>@baby.Gender</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1 Minute APGAR:</th>
+                        <td>@baby.OneMinuteApgar</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5 Minute APGAR:</th>
+                        <td>@baby.FiveMinuteApgar</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Admitted to ICU:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", baby.AdmittedToIcu)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Newborn Delivery Info:</th>
+                        <td colspan="2">
+                            @{
+                string babyNote = string.IsNullOrWhiteSpace(baby.Notes) ? "" : baby.Notes;
+                Html.RenderPartial("~/Views/Shared/_multiline.cshtml", babyNote);
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Physical Exam:</th>
+                        <td>@baby.PhysicalExam</td>
+                    </tr>                
+                    <tr>
+                        <th scope="row">Procedures:</th>
+                        <td>@baby.Procedures</td>
+                    </tr>                
+                    <tr>
+                        <th scope="row">Circumcised:</th>
+                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", baby.Circumcision)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status at Maternal Discharge:</th>
+                        <td>@baby.StatusAtMaternalDischarge</td>
+                    </tr>                                
+                    <tr>
+                        <th scope="row">Care Plan:</th>
+                        <td>@baby.CarePlan</td>
+                    </tr>                                
+                    <tr>
+                        <th scope="row">Pediatrician:</th>
+                        <td>@baby.Pediatrician</td>
+                    </tr> 
+                </tbody>
+            </table>
+            }
+        }
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div id="buttons" class="pull-right">
+            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index", new { @dfn = Model.Patient.Dfn })'">Return to Pregnancies</button>
+
+            @if (Model.Pregnancy.RecordType == PregnancyRecordType.Historical)
+            {
+                if (Model.Outcome.LiveDelivery)
+                {
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("BabyAddEdit", "Pregnancy", new { @dfn = Model.Patient.Dfn, @pregIen = Model.Pregnancy.Ien })'">Add Baby</button>
+                }
+            }
+            else
+            {
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("AddEdit", new { @dfn = Model.Patient.Dfn, @pregIen = Model.Pregnancy.Ien })'">Edit Pregnancy Details</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Status", new { @dfn = Model.Patient.Dfn })'">Update Pregnancy Status</button>    
+            }
+        </div>
+    </div>
+</div>
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+@*            if (($("#Pregnancy_RecordType").val() == "@PregnancyRecordType.Current") || ($("#Outcome_OutcomeType").val() == "@PregnancyOutcomeType.Unknown")) 
+                $("#buttons").addClass("col-md-6");
+            else 
+                $("#buttons").addClass("col-md-12");*@
+
+            if (($("#Outcome_OutcomeType").val() != "@PregnancyOutcomeType.FullTermDelivery") && ($("#Outcome_OutcomeType").val() != "@PregnancyOutcomeType.PretermDelivery"))
+                $(".delivery-outcome").hide();
+
+            if ($("#Outcome_OutcomeType").val() != "@PregnancyOutcomeType.Ectopic")
+                $(".ectopic").hide();
+
+            if ($("#Outcome_OutcomeType").val() != "@PregnancyOutcomeType.PregnancyTermination")
+                $(".termination").hide();
+
+            if ($("#Outcome_OutcomeType").val() != "@PregnancyOutcomeType.SpontaneousAbortion")
+                $(".spont").hide();
+
+            if ($("#Outcome_OutcomeType").val() != "@PregnancyOutcomeType.StillBirth")
+                $(".stillbirth").hide();
+
+        });
+    </script>
+}

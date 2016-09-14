@@ -1,0 +1,13 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.ServerSettings.ServerConfig
+
+@{
+    ViewBag.Title = "MCC Dashboard - Server Settings";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@{Html.RenderPartial("_EditServerSettingsView");}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

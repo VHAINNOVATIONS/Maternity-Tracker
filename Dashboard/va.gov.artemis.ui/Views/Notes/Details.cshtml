@@ -1,0 +1,32 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.Notes
+@model TiuNoteModel
+
+@{
+    ViewBag.Title = "MCC Dashboard - Note";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Note</h1>
+
+<h2 class="h5 bg-success" style="padding: 16px; margin-bottom: 20px">Pregnancy: @Model.PregnancyDescription</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <pre id="intro-message">@Model.Note.NoteText</pre>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button type="button" class="btn btn-default" onclick="window.history.back();">Return to List</button>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupPatient.cshtml", Model.Patient);}
+}

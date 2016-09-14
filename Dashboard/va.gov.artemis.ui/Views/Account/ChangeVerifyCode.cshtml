@@ -1,0 +1,67 @@
+﻿@model VA.Gov.Artemis.UI.Data.Models.Account.ChangeVerifyCode
+
+@{
+    ViewBag.Title = "MCC Dashboard - Change Verify Code";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="h3 page-header">Change Verify Code</h1>
+
+<div class="row">
+    @using (Html.BeginForm("ChangeVerifyCode", "Account", FormMethod.Post, new { @role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="cvcDiv" class="col-md-4 col-md-offset-4">
+            <fieldset>
+                <legend>Change Verify Code</legend>
+
+                @Html.HiddenFor(model => model.RequestedUrl)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OriginalVerifyCode, new { @class = "sr-only", @for = "OriginalVerifyCode" })
+                    @Html.PasswordFor(model => model.OriginalVerifyCode, new { @class = "form-control", @placeholder = "Current Verify Code" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NewVerifyCode, new { @class = "sr-only", @for = "NewVerifyCode" })
+                    @Html.PasswordFor(model => model.NewVerifyCode, new { @class = "form-control", @placeholder = "New Verify Code" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConfirmVerifyCode, new { @class = "sr-only", @for = "ConfirmVerifyCode" })
+                    @Html.PasswordFor(model => model.ConfirmVerifyCode, new { @class = "form-control", @placeholder = "Confirm Verify Code" })
+                </div>
+                <div>
+                    @{string pStyle;
+                      if (!string.IsNullOrWhiteSpace(Model.Message))
+                      {
+                          pStyle = "visibility: visible";
+                      }
+                      else
+                      {
+                          pStyle = "visibility: hidden";
+                      }
+                        <p id="validation-message" class="text-danger" style="@pStyle" >@Model.Message</p>   
+                    }
+                </div>
+            </fieldset>
+            <button class="btn btn-primary two-btn-left" type="submit">Save</button>
+            <button class="btn btn-default two-btn-right" type="button" onclick="location.href='@Model.RequestedUrl'">Cancel</button>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+   <script type="text/javascript">
+        $(document).ready(function () {
+            $("#OriginalVerifyCode").placeholder();
+            $("#NewVerifyCode").placeholder();
+            $("#ConfirmVerifyCode").placeholder();
+        });
+    </script>
+}
+
+@section Navigation
+{
+    @{Html.RenderPartial("~/Views/Shared/_NavGroupTracking.cshtml");}
+}

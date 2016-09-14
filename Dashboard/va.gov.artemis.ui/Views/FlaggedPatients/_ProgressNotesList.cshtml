@@ -1,0 +1,38 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.Notes
+@model  VA.Gov.Artemis.UI.Data.Models.Notes.NoteListModel 
+
+<table class="table table-bordered">
+        <thead class="centered-header">
+            <tr>
+                <th scope="col" class="col-md-3">Date/Time</th>
+                <th scope="col" class="col-md-2">Author</th>
+                <th scope="col" class="col-md-2">Location</th>
+                <th scope="col">Title</th>
+                <th scope="col" class="col-md-1">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TiuNote note in Model.ProgressNotes)
+            {
+                <tr>
+                    <td class="centered-txt">@Html.DisplayTextFor(s => note.DocumentDateTimeDisplay)</td>
+                    <td>@Html.DisplayTextFor(s => note.Author)</td>
+                    <td>@Html.DisplayTextFor(s => note.Location)</td>
+                    <td>@Html.DisplayTextFor(s => note.Title)</td>
+                    <td class="centered-txt">
+                        <button type="button" 
+                            class="btn btn-primary btn-xs" 
+                            onclick="location.href='@Url.Action(Model.DetailAction,new {@dfn=Model.Patient.Dfn, @Ien=note.Ien})'">View</button>
+                    </td>
+                </tr>
+            }
+
+            @if (Model.ProgressNotes.Count == 0) 
+            {
+                <tr>
+                    <td colspan="5" class="centered-txt">(No Progress Notes)</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>

@@ -1,0 +1,50 @@
+﻿@using VA.Gov.Artemis.UI.Data.Models.PatientList
+@model Outcomes
+
+<div class="modal fade" id="datesModal" data-keyboard="false" role="dialog" aria-label="Select Dates" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="margin-top: 0px; margin-bottom: 0px"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;Select Date Range</h3>
+            </div>
+            @using (Html.BeginForm("Dashboard", "PatientList", FormMethod.Get, new { @role = "form", @class = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false)
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col col-md-8 col-md-offset-2">
+                            <div class="form-group">
+                                <div>
+                                    <div class="radio">
+                                        <label>
+                                            @Html.RadioButtonFor(m => m.AllDates, true, new {@id="allDatesTrue" })
+                                            All Dates
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            @Html.RadioButtonFor(m => m.AllDates, false, new { @id = "allDatesFalse" })
+                                            Specific Dates
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span>From: </span>
+                                @Html.TextBoxFor(m => m.FromDate, new { @class="form-control", @id="fromDate", @style="display: inline; width: 120px; margin-right: 10px"} )                                
+                                <span>To: </span>
+                                @Html.TextBoxFor(m => m.ToDate, new { @class="form-control" , @id="toDate" , @style="display: inline; width: 120px; margin-right: 10px; margin-left: 10px"})                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Ok</button>
+                    <button class="btn btn-default" id="close" data-dismiss="modal">Cancel</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

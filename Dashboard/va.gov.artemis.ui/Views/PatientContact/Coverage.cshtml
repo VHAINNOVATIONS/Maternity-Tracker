@@ -1,0 +1,459 @@
+﻿@using VA.Gov.Artemis.UI.Extensions
+@using VA.Gov.Artemis.UI.Data.Models
+@using VA.Gov.Artemis.UI.Data.Models.NonVACare
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+@model VA.Gov.Artemis.UI.Data.Models.PatientContact.CoverageCallTab
+
+@{
+    Layout = "~/Views/PatientContact/_CallTab.cshtml";
+}
+
+<tbody class="note-body">
+
+    @switch (Model.CallType)
+    {
+        case MccPatientCallType.PhoneCall_1:
+        case MccPatientCallType.PhoneCall_2: 
+    <tr class="active">
+        <td colspan="2">Verify receipt of VA Maternity/Newborn Care Materials</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-left: 40px">@Html.CheckBoxFor(m => m.AuthorizationReceived)&nbsp;&nbsp;@Html.LabelFor(m => m.AuthorizationReceived, "VA Authorization for Maternity Benefits")</td>
+    </tr>
+
+            if (Model.CallType == MccPatientCallType.PhoneCall_2)
+            {
+        <tr>
+            <td colspan="2" style="padding-left: 80px">@Html.CheckBoxFor(m => m.RemindToCarry)&nbsp;&nbsp;@Html.LabelFor(m => m.RemindToCarry, "Remind patient to carry with them like an insurance card")</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 80px">@Html.CheckBoxFor(m => m.ExplainBillProcess)&nbsp;&nbsp;@Html.LabelFor(m => m.ExplainBillProcess, "Describe local processes for correcting situation when patient receives bill")</td>
+        </tr>
+            }
+
+    <tr>
+        <td colspan="2" style="padding-left: 40px">@Html.CheckBoxFor(m => m.LetterReceived)&nbsp;&nbsp;@Html.LabelFor(m => m.LetterReceived, "Letter Describing Benefits")</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-left: 40px">@Html.CheckBoxFor(m => m.PurpleBookReceived)&nbsp;&nbsp;@Html.LabelFor(m => m.PurpleBookReceived, "Purple Book")</td>
+    </tr>
+
+    <tr class="active">
+        <td colspan="2">Identified Prenatal Care Provider?</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 40px" colspan="2">@Html.RadioButtonFor(m => m.LocatedOB, true, new {@id="rdo-loc-ob-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.LocatedOB, "Yes", new {@for="rdo-loc-ob-y"})</td>
+    </tr>
+
+    <tr>
+        <td style="padding-left: 80px" class="col-md-3" colspan="2">
+            @Html.RadioButtonFor(m => m.CreateNewOb, false, new { @id = "ob-existing" })&nbsp;&nbsp;@Html.LabelFor(m => m.CreateNewOb, "Select Existing Prenatal Care Provider", new {@for="ob-existing"})
+        </td>
+    </tr>
+
+    <tr id="select-ob-row" class="collapse select-ob">
+        <td class="centered-txt" colspan="2">
+            @Html.LabelFor(m => m.ExistingObIen, "Select OB", new {@class="sr-only"})
+            @Html.DropDownListFor(m => m.ExistingObIen, (SelectList)ViewData["obList"], "(Select)", new { @class = "form-control", @style = "width: 320px; margin-left: 120px" })</td>
+    </tr>
+
+    <tr>
+        <td style="padding-left: 80px" colspan="2">
+            @Html.RadioButtonFor(m => m.CreateNewOb, true, new { @id = "ob-new" })&nbsp;&nbsp;@Html.LabelFor(m => m.CreateNewOb, "Enter New Obstetrician", new {@for="ob-new"})
+        </td>
+    </tr>
+        <tr id="ob-name-row" class="collapse new-ob">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    @Html.LabelFor(m => m.NewOb.Name, "Prenatal Care Provider Name", new {@class="sr-only"})
+                    @Html.TextBoxFor(m => m.NewOb.Name, new { @class = "form-control", @placeholder = "OB Name" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr id="addr-1-row" class="collapse new-ob">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    @Html.LabelFor(m => m.NewOb.AddressLine1, "Prenatal Care Provider Addresss Line 1", new {@class="sr-only"})
+                    @Html.TextBoxFor(m => m.NewOb.AddressLine1, new { @class = "form-control", @placeholder = "Address Line 1" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr id="addr-2-row" class="collapse new-ob">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    @Html.LabelFor(m => m.NewOb.AddressLine2, "Prenatal Care Provider Addresss Line 2", new {@class="sr-only"})
+                    @Html.TextBoxFor(m => m.NewOb.AddressLine2, new { @class = "form-control", @placeholder = "Address Line 2" })
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr id="city-row" class="collapse new-ob">
+        <td colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    @Html.LabelFor(m => m.NewOb.City, "Prenatal Care Provider Addresss City", new {@class="sr-only"})
+                    <div class="col-md-5" style="padding: 0px">@Html.TextBoxFor(m => m.NewOb.City, new { @class = "form-control", @placeholder = "City" })</div>
+
+                    @Html.LabelFor(m => m.NewOb.State, "Prenatal Care Provider Addresss State", new {@class="sr-only"})
+                    <div class="col-md-2 col-md-offset-1" style="padding: 0px">@Html.TextBoxFor(m => m.NewOb.State, new { @class = "form-control", @placeholder = "State" })</div>
+
+                    @Html.LabelFor(m => m.NewOb.ZipCode, "Prenatal Care Provider Addresss Zip Code", new {@class="sr-only"})
+                    <div class="col-md-3 col-md-offset-1" style="padding: 0px">@Html.TextBoxFor(m => m.NewOb.ZipCode, new { @class = "form-control", @placeholder = "Zip Code" })</div>
+                </div>
+
+            </div>
+        </td>
+    </tr>
+
+    <tr id="phone-number-row" class="collapse new-ob">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="col-md-5" style="padding: 0px">
+                        @Html.LabelFor(m => m.NewOb.PhoneNumber, "Prenatal Care Provider Phone Number", new {@class="sr-only"})
+                        @Html.TextBoxFor(m => m.NewOb.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number" })</div>
+                    <div class="col-md-5 col-md-offset-2" style="padding: 0px">
+                        @Html.LabelFor(m => m.NewOb.FaxNumber, "Prenatal Care Provider Fax Number", new {@class="sr-only"})
+                        @Html.TextBoxFor(m => m.NewOb.FaxNumber, new { @class = "form-control", @placeholder = "Fax Number" })</div>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr id="contact-row" class="collapse new-ob">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    @Html.LabelFor(m => m.NewOb.PrimaryContact, "Prenatal Care Provider Primary Contact", new {@class="sr-only"})
+                    @Html.TextBoxFor(m => m.NewOb.PrimaryContact, new { @class = "form-control", @placeholder = "Primary Contact" })
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.LocatedOB, false, new {@id="rdo-loc-ob-n" })&nbsp;&nbsp;@Html.LabelFor(m => m.LocatedOB, "No", new {@for="rdo-loc-ob-n"})&nbsp;&nbsp;
+            <label class="badge badge-danger" style="margin-left: 100px; display: none" id="no-ob-warning">Troubleshoot and follow-up in less than 1 week.  Patient must be seen ASAP</label></td>
+    </tr>
+    <tr class="active">
+        <td colspan="2">Identified Planned Delivery Facility?</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 40px">@Html.RadioButtonFor(m => m.LocatedHospital, true, new {@id="rdo-loc-hosp-y"})&nbsp;&nbsp;@Html.LabelFor(m => m.LocatedHospital, "Yes", new {@for="rdo-loc-hosp-y"})</td>
+    </tr>
+        
+        <tr>
+            <td style="padding-left: 80px" class="col-md-3" colspan="2">
+                @Html.RadioButtonFor(m => m.CreateNewHospital, false, new { @id = "hospital-existing" })&nbsp;&nbsp;@Html.LabelFor(m => m.CreateNewHospital, "Select Existing Hospital", new { @for = "hospital-existing" })</td>
+        </tr>
+    <tr id="select-hospital-row" class="collapse select-hospital">
+        <td class="centered-txt" colspan="2">
+            @Html.LabelFor(m => m.ExistingHospitalIen, "Select Existing Hospital", new {@class="sr-only"})
+            @Html.DropDownListFor(m => m.ExistingHospitalIen, (SelectList)ViewData["facList"], "(Select)", new { @class = "form-control", @style = "width: 320px; margin-left: 120px" })</td>
+    </tr>
+
+    <tr>
+        <td style="padding-left: 80px" colspan="2">
+            @Html.RadioButtonFor(m => m.CreateNewHospital, true, new { @id = "hospital-new" })&nbsp;&nbsp;@Html.LabelFor(m => m.CreateNewHospital,"Enter New Hospital", new {@for="hospital-new"})</td>
+
+    </tr>
+            <tr id="hosp-name-row" class="collapse new-hospital">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    @Html.LabelFor(m => m.NewHospital.Name, "Planned Delivery Location Name", new {@class="sr-only"})
+                    @Html.TextBoxFor(m => m.NewHospital.Name, new { @class = "form-control", @placeholder = "Hospital Name" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr id="hosp-addr-1-row" class="collapse new-hospital">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    @Html.LabelFor(m => m.NewHospital.AddressLine1, "Planned Delivery Location Address Line 1", new {@class="sr-only"})
+                    @Html.TextBoxFor(m => m.NewHospital.AddressLine1, new { @class = "form-control", @placeholder = "Address Line 1" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr id="hosp-addr-2-row" class="collapse new-hospital">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    @Html.LabelFor(m => m.NewHospital.AddressLine2, "Planned Delivery Location Address Line 2", new {@class="sr-only"})
+                    @Html.TextBoxFor(m => m.NewHospital.AddressLine2, new { @class = "form-control", @placeholder = "Address Line 2" })
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr id="hosp-city-row" class="collapse new-hospital">
+        <td colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="col-md-5" style="padding: 0px">
+                        @Html.LabelFor(m => m.NewHospital.City, "Planned Delivery Location Address City", new {@class="sr-only"})
+                        @Html.TextBoxFor(m => m.NewHospital.City, new { @class = "form-control", @placeholder = "City" })</div>
+                    <div class="col-md-2 col-md-offset-1" style="padding: 0px">
+                        @Html.LabelFor(m => m.NewHospital.State, "Planned Delivery Location Address State", new {@class="sr-only"})
+                        @Html.TextBoxFor(m => m.NewHospital.State, new { @class = "form-control", @placeholder = "State" })</div>
+                    <div class="col-md-3 col-md-offset-1" style="padding: 0px">
+                        @Html.LabelFor(m => m.NewHospital.ZipCode, "Planned Delivery Location Address Zip Code", new {@class="sr-only"})
+                        @Html.TextBoxFor(m => m.NewHospital.ZipCode, new { @class = "form-control", @placeholder = "Zip Code" })</div>
+                </div>
+
+            </div>
+        </td>
+    </tr>
+
+    <tr id="hosp-phone-number-row" class="collapse new-hospital">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="col-md-5" style="padding: 0px">
+                        @Html.LabelFor(m => m.NewHospital.PhoneNumber, "Planned Delivery Location Phone Number", new {@class="sr-only"})
+                        @Html.TextBoxFor(m => m.NewHospital.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number" })</div>
+                    <div class="col-md-5 col-md-offset-2" style="padding: 0px">
+                        @Html.LabelFor(m => m.NewHospital.FaxNumber, "Planned Delivery Location Fax Number", new {@class="sr-only"})
+                        @Html.TextBoxFor(m => m.NewHospital.FaxNumber, new { @class = "form-control", @placeholder = "Fax Number" })</div>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr id="hosp-contact-row" class="collapse new-hospital">
+        <td class="centered-txt" colspan="2">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    @Html.LabelFor(m => m.NewHospital.PrimaryContact, "Planned Delivery Location Primary Contact", new {@class="sr-only"})
+                    @Html.TextBoxFor(m => m.NewHospital.PrimaryContact, new { @class = "form-control", @placeholder = "Primary Contact" })
+                </div>
+            </div>
+        </td>
+    </tr>
+
+
+    <tr>
+        <td colspan="2" style="padding-left: 40px">@Html.RadioButtonFor(m => m.LocatedHospital, false, new {@id="rdo-loc-hosp-n"})&nbsp;&nbsp;@Html.LabelFor(m => m.LocatedHospital, "No", new {@for="rdo-loc-hosp-n"})</td>
+    </tr>
+
+            if (Model.CallType == MccPatientCallType.PhoneCall_1)
+            {
+        <tr class="active">
+            <td colspan="2">Review Benefits</td>
+        </tr>
+        <tr>
+            <td colspan="2">@Html.CheckBoxFor(m => m.WrittenVaAuthorization)&nbsp;&nbsp;@Html.LabelFor(m => m.WrittenVaAuthorization, "Written VA authorization for maternity benefits = insurance card")</td>
+        </tr>
+        <tr>
+            <td colspan="2">@Html.CheckBoxFor(m => m.RoutinePrenatalCare)&nbsp;&nbsp;@Html.LabelFor(m => m.RoutinePrenatalCare, "Routine Prenatal Care")</td>
+        </tr>
+        <tr>
+            <td colspan="2">@Html.CheckBoxFor(m => m.VerifyCoverage)&nbsp;&nbsp;@Html.LabelFor(m => m.VerifyCoverage, "If OB refers for additional care, verify coverage with MCC or VA first")</td>
+        </tr>
+        <tr>
+            <td colspan="2">@Html.CheckBoxFor(m => m.Emergency)&nbsp;&nbsp;@Html.LabelFor(m => m.Emergency, "If Emergency, go to nearest ED")</td>
+        </tr>
+
+        <tr class="active">
+            <td colspan="2">Other</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">@Html.CheckBoxFor(m => m.ObtainingMeds)&nbsp;&nbsp;@Html.LabelFor(m => m.ObtainingMeds, "Obtaining medications and medical supplies from VA")</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                @Html.CheckBoxFor(m => m.VANewbornCoverage)&nbsp;&nbsp;@Html.LabelFor(m => m.VANewbornCoverage, "VA newborn care coverage and obtaining non-VA newborn health insurance coverage")</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Html.CheckBoxFor(m => m.VADietician)&nbsp;&nbsp;@Html.LabelFor(m => m.VADietician, "VA-provided dietician & weight management and Non-VA pregnancy-related classes")</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="active">Assess interest in VA Authorization for Tubal Ligation and Intrauterine Device</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 40px">Interested in Tubal Ligation?</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.InterestedInTubalLigation, true, new {@id="rdo-tl-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.InterestedInTubalLigation, "Yes", new {@for="rdo-tl-y"})</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.InterestedInTubalLigation, false, new {@id="rdo-tl-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.InterestedInTubalLigation, "No", new { @for = "rdo-tl-n" })</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 40px">Interested in IUD?</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.InterestedInIud, true, new { @id = "rdo-iud-y" })&nbsp;&nbsp;@Html.LabelFor(m => m.InterestedInIud, "Yes", new {@for="rdo-iud-y"})</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.InterestedInIud, false, new { @id = "rdo-iud-n" })&nbsp;&nbsp;@Html.LabelFor(m => m.InterestedInIud, "No", new {@for="rdo-iud-n"})</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                @Html.CheckBoxFor(m => m.NonVAMaternityBill)
+                @Html.LabelFor(m => m.NonVAMaternityBill, "Patient response to receiving a bill from Non-VA Maternity Care provider")</td>
+        </tr>
+
+            }
+            else if (Model.CallType == MccPatientCallType.PhoneCall_2)
+            {
+        <tr>
+            <td colspan="2">
+                @Html.CheckBoxFor(m => m.ObtainingMeds)
+                @Html.LabelFor(m => m.ObtainingMeds, "Ask for questions regarding getting prescriptions or medical supplies filled at the VA")</td>
+        </tr>       
+            }
+            break;
+
+        case MccPatientCallType.PhoneCall_3:
+            <tr><td colspan="2">@Html.CheckBoxFor(m => m.BenefitsProblems)&nbsp;&nbsp;@Html.LabelFor(m => m.BenefitsProblems, "Ask about questions or problems with VA maternity care benefits, help problem-solve")</td></tr>
+            <tr><td colspan="2">@Html.CheckBoxFor(m => m.TlIudFollowUp)&nbsp;&nbsp;@Html.LabelFor(m => m.TlIudFollowUp, "If previously interested in TL/IUD, ask if patient had opportunity to discuss with OB")</td></tr>
+            break;
+
+        case MccPatientCallType.PhoneCall_4:
+        case MccPatientCallType.PhoneCall_5:
+        case MccPatientCallType.PhoneCall_6a:
+        case MccPatientCallType.PhoneCall_6b:
+        case MccPatientCallType.PhoneCall_7:
+
+            <tr><td colspan="2">@Html.CheckBoxFor(m => m.BenefitsProblems)&nbsp;&nbsp;@Html.LabelFor(m => m.BenefitsProblems, "Ask about questions or problems with VA maternity care benefits, help problem-solve")</td></tr>
+       
+            break;
+    }
+
+    </tbody>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            @if (Model.LocatedOB.HasValue == false) 
+            {
+                <text>
+                    $("#ob-existing").attr("disabled", "disabled");
+                    $("#ob-new").attr("disabled", "disabled");
+                </text>
+            }else if (Model.LocatedOB.Value == false) 
+            {
+                <text>
+                    $("#ob-existing").attr("disabled", "disabled");
+                    $("#ob-new").attr("disabled", "disabled");
+                </text>                
+            }
+
+            @if (Model.LocatedHospital.HasValue == false) 
+            {
+                <text>
+                    $("#hospital-existing").attr("disabled", "disabled");
+                    $("#hospital-new").attr("disabled", "disabled");
+                </text>
+            }else if (Model.LocatedHospital.Value == false) 
+            {
+                <text>
+                    $("#hospital-existing").attr("disabled", "disabled");
+                    $("#hospital-new").attr("disabled", "disabled");
+                </text>                
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.ExistingObIen))
+            {
+                <text>
+                    $("#ob-existing").prop("checked", true);
+                    $(".select-ob").collapse('show');
+                </text>                
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.ExistingHospitalIen))
+            {
+                <text>
+                    $("#hospital-existing").prop("checked", true);
+                    $(".select-hospital").collapse('show');
+                </text>
+            }
+            
+            $(".new-ob").collapse({ toggle: false });
+            $(".select-ob").collapse({ toggle: false });
+            $("#ob-existing").change(function () {
+                if ($("#ob-existing").prop("checked", true)) {
+                    $(".select-ob").collapse('show');
+                    $(".new-ob").collapse('hide');
+                }
+            });
+
+            $("#ob-new").change(function () {
+                if ($("#ob-new").prop("checked", true)) {
+                    $(".new-ob").collapse('show');
+                    $(".select-ob").collapse('hide');
+                }
+            });
+
+            $(".new-hospital").collapse({ toggle: false });
+            $(".select-hospital").collapse({ toggle: false });
+            $("#hospital-existing").change(function () {
+                if ($("#hospital-existing").prop("checked", true)) {
+                    $(".select-hospital").collapse('show');
+                    $(".new-hospital").collapse('hide');
+                }
+            });
+
+            $("#hospital-new").change(function () {
+                if ($("#hospital-new").prop("checked", true)) {
+                    $(".new-hospital").collapse('show');
+                    $(".select-hospital").collapse('hide');
+                }
+            });
+
+            $('input[name="LocatedOB"]:radio').change(function () {
+
+            @if (Model.CallType == MccPatientCallType.PhoneCall_2)
+            {
+                <text>
+
+                if ($(this).val() == "True") {
+                    $("#no-ob-warning").hide();
+                } else {
+                    $("#no-ob-warning").show();
+                }
+
+                </text>
+            }
+
+                if ($(this).val() == "True") {
+                    $("#ob-existing").removeAttr("disabled");
+                    $("#ob-new").removeAttr("disabled");
+                }
+                else {
+                    $("#ob-new").attr("disabled", "disabled")
+                    $("#ob-existing").attr("disabled", "disabled")
+                }
+
+            });
+
+            $('input[name="LocatedHospital"]:radio').change(function () {
+
+                if ($(this).val() == "True") {
+                    $("#hospital-existing").removeAttr("disabled");
+                    $("#hospital-new").removeAttr("disabled");
+                }
+                else {
+                    $("#hospital-new").attr("disabled", "disabled")
+                    $("#hospital-existing").attr("disabled", "disabled")
+                }
+
+            });
+        });
+    </script>
+}

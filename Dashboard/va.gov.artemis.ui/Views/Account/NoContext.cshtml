@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "MCC Dashboard - No Context";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+@*<div class="row">
+    <p class="bg-danger" style="padding: 10px; margin: 10px">The user does not have the required secondary menu contect, DSIO GUI CONTEXT</p>    
+</div>*@
+
+
+<div class="row" style="margin: 40px">
+    <div class="col-md-12" >
+        <button class="btn btn-lg btn-primary" onclick="location.href='@Url.Action("Index", "Home")'" style="width: 300px" >Return To Home Page</button>
+    </div>
+</div>
+<br />
+
+
+@section Navigation
+{
+    <ul class="nav nav-sidebar">
+        <li><a class="list-group-item" href="@Url.Action("Edit", "ServerSettings")">Server Settings</a></li>
+    </ul>
+}
