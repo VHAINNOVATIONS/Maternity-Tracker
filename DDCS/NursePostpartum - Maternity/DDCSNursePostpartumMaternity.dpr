@@ -17,6 +17,8 @@ library DDCSNursePostpartumMaternity;
    VA Contract: TAC-13-06464
 }
 
+{$R *.dres}
+
 uses
   Winapi.Windows,
   Vcl.Forms,

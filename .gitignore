@@ -92,3 +92,5 @@ _obsolete
 /Dashboard/va.gov.artemis.commands/bin/Debug
 /Dashboard/va.gov.artemis.ui/va.gov.artemis.ui/bin
 /Dashboard/va.gov.artemis.vista/bin/Debug
+*.mes
+*.tvsconfig
