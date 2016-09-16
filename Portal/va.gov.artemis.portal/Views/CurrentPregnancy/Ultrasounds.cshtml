@@ -1,0 +1,38 @@
+﻿<div class="jumbotron mt-info-section mt-info-section-success" id="mt-cur-preg-ultra">
+    <div class="container">
+        <h1>Ultrasounds</h1>
+        <div class="mt-ul-section">
+            <ul class="list-unstyled">
+                <li><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;&nbsp;You had an ultrasound exam on <strong>2/28/2016</strong>
+                    <ul>
+                        <li>The estimated gestational age was <strong>4 weeks, 2 days</strong></li>
+                        <li>Your baby is in the <strong>55th</strong> percentile</li>
+                        <li>Clinician comments:
+                            <ul>
+                                <li>This is a comment by dr</li>
+                                <li>This is another comment by dr</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;&nbsp;You had an ultrasound exam on <strong>3/31/2016</strong>
+                    <ul>
+                        <li>The Estimate EGA was <strong>25 days</strong></li>
+                        <li>Your baby is in the <strong>55th</strong> percentile</li>
+                        <li>No Clinician comments</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <p>Is this information correct?</p>
+        <div class="row">
+            <div class="col col-sm-12">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#ultra-modal">Add Ultrasound</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#ultra-table">Table</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("UltrasoundsModal")
+@Html.Partial("UltrasoundsTable")
+      

@@ -1,0 +1,25 @@
+﻿<div class="jumbotron mt-info-section mt-info-section-primary" id="mt-cur-preg-gp">
+    <div class="container">
+        <h1>Gravida / Para</h1>
+        <h3>Your GP score is <strong>G6P3124</strong></h3>
+        <div class="mt-ul-section">
+            <ul class="list-unstyled">
+                <li><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;&nbsp;You have had <strong>6</strong> total pregnancies</li>                
+                <li><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;&nbsp;You have had <strong>3</strong> term births</li>                
+                <li><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;&nbsp;You have had <strong>1</strong> preterm births</li>                
+                <li><span class="glyphicon glyphicon-flag text-danger"></span>&nbsp;&nbsp;You have had <strong>0</strong> stillbirths</li>                
+                <li><span class="glyphicon glyphicon-flag text-danger"></span>&nbsp;&nbsp;You have had <strong>2</strong> spontaneous abortions</li>                                
+                <li><span class="glyphicon glyphicon-flag text-danger"></span>&nbsp;&nbsp;You have had <strong>2</strong> pregnancy terminations</li>                                
+                <li><span class="glyphicon glyphicon-flag text-danger"></span>&nbsp;&nbsp;You have had <strong>2</strong> ectopic pregnancies</li>                                
+                <li><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;&nbsp;You have <strong>4</strong> living children</li>                                
+            </ul>
+        </div>
+        <p>Is this information correct?</p>
+        <div class="row">
+            <div class="col col-sm-12">
+                <button class="btn btn-warning"  data-toggle="modal" data-target="#gp-modal">Update This Data</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("GravidaParaModal")

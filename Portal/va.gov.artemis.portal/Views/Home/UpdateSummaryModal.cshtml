@@ -1,0 +1,67 @@
+﻿<div class="modal fade" id="summaryModal" data-keyboard="false" role="dialog" aria-label="Summary" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="margin-top: 0px; margin-bottom: 0px"><span class="glyphicon glyphicon-flag"></span>&nbsp;&nbsp;Update Summary Data</h3>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="alert alert-warning" role="alert" style="margin-left: 20px; margin-right: 20px">
+                            If you would like to modify your demographics data (i.e. Name, Address, Phone Number) please contact the MCC to assist you
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-8 col-md-offset-2">
+                            <div class="form-group">
+                                <label for="pregStat">Pregnancy Status</label>
+                                <div style="padding-left: 30px">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="pregStat" id="pregStat1" value="false">
+                                            I am <strong>not</strong> pregnant
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="pregStat" id="pregStat2" value="true">
+                                            I <strong>am</strong> pregnant
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="pregStat" id="pregStat3" value="">
+                                            I don't know if I'm pregnant or not
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edd">Estimated Delivery Date</label>
+                                <input type="date" class="form-control" id="edd">
+                            </div>
+                            <div class="form-group">
+                                <label for="gaWeeks">Current Gestational Age</label>
+                                <br />
+                                <input type="text" class="form-control" id="gaWeeks" style="display: inline; width: 80px; margin-right: 10px"><span>Weeks</span>
+                                <input type="text" class="form-control" id="gaDays" style="display: inline; width: 80px; margin-right: 10px; margin-left: 10px"><span>Days</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="prov">Prenatal Care Provider</label>
+                                <input type="text" class="form-control" id="prov">
+                            </div>
+                            <div class="form-group">
+                                <label for="loc">Planned Delivery Location</label>
+                                <input type="text" class="form-control" id="loc">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button class="btn btn-default" id="close" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

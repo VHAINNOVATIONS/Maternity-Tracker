@@ -1,0 +1,23 @@
+﻿<div class="jumbotron mt-info-section mt-info-section-success" id="mt-cur-preg-edd">
+    <div class="container">
+        <h1 style="font-size: 36px">Estimated Delivery Date</h1>
+        <div class="mt-ul-section">
+            <ul class="list-unstyled">
+                <li><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Your estimated due date is <strong>12/12/2016</strong></li>
+                <li><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;That's about <strong><em>5</em></strong> months away!</li>
+                <li><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;You are in the <strong>second</strong> trimester</li>
+                <li><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Your baby's <strong>current</strong> gestational age is <strong>21 weeks 3 days</strong></li>                
+                <li><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Your EDD is based on an ultrasound performed on <strong>4/5/2016</strong></li>
+            </ul>
+        </div>
+        <p>Is this information correct? Have something to add?</p>
+        <div class="row">
+            <div class="col col-sm-12">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#edd-modal">Add or Update EDD Data</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#edd-table">Table</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("EddModal")
+@Html.Partial("EddTable")
