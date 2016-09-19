@@ -1,13 +1,13 @@
-Routine DSIO12 saved using VFDXTRS routine on Sep 07, 2016 11:39
-DSIO12^INT^64156,59942^Aug 26, 2016@16:39
+Routine DSIO12 saved using VFDXTRS routine on Sep 19, 2016 11:55
+DSIO12^INT^64180,40623^Sep 19, 2016@11:17
 DSIO12 ;DSS/CMW - DSIO CLINICAL RPCS;08/26/2016 16:00
  ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
+ ; URGENCY^ORQORB
  ; REMIND^ORQQPX
  ; REMDET^PXRMRPCA
- ; URGENCY^ORQORB
  ;
  Q
  ;
@@ -66,7 +66,7 @@ REM(RET,DFN,SORT) ; RPC: DSIO GET REMINDER LIST
  Q
  ;
 DETAIL(RET,DFN,RIEN) ; RPC: DSIO GET REMINDER DETAIL
- ; DBIA 3078                PXRM REMINDER DETAIL
+ ;                          PXRM REMINDER DETAIL
  ;
  ;   RIEN - clinical reminder (811.9 IEN)
  ;
