@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2016/05/09 09:24:17.000.312,C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_group\ProjectGroupDDCSv2.groupproj=C:\Users\DSSDeveloper\Documents\Embarcadero\Studio\Projects\ProjectGroup1.groupproj</Transaction>
-    <Transaction>2016/05/09 09:24:26.000.011,C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_group\ProjectGroupDDCS.groupproj=C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_group\ProjectGroupDDCSv2.groupproj</Transaction>
+    <Transaction>2016/05/09 09:24:17.000.312,C:\Users\DSSDeveloper\Documents\Embarcadero\Studio\Projects\ProjectGroup1.groupproj=C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_group\ProjectGroupDDCSv2.groupproj</Transaction>
+    <Transaction>2016/05/09 09:24:26.000.011,C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_group\ProjectGroupDDCSv2.groupproj=C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_group\ProjectGroupDDCS.groupproj</Transaction>
   </Transactions>
 	<Default.Personality>
-		<Projects ActiveProject="C:\Users\DSSDeveloper\Documents\Embarcadero\Studio\Projects\Project1.dproj"/>
+		<Projects ActiveProject="C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj"/>
 	</Default.Personality>
 </BorlandProject>
