@@ -137,6 +137,7 @@ type
     // Helpers to Display Dialogs ----------------------------------------------
     function ShowDialogandReturn(sBuild: string; var sl: TStringList): Boolean;
   protected
+    procedure Change; override;
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
     procedure SetUpControl(iPage: Integer; wControl: TWinControl);
     procedure DrawCheckTab(Control: TCustomTabControl; TabIndex: Integer; const Rect: TRect; Active: Boolean);
@@ -157,7 +158,6 @@ type
     GetDialogComponents: TGetDialogComponents;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    procedure Change; override;
     // Support and 508 ---------------------------------------------------------
     // TComboBox
     procedure cbAutoWidth(Sender: TObject);

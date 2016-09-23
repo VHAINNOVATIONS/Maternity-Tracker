@@ -528,10 +528,6 @@ object Form1: TForm1
     end
     object oPage2: TTabSheet
       Caption = 'Vitals'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DDCSVitals: TDDCSVitals
         Left = 0
         Top = 0
@@ -545,10 +541,6 @@ object Form1: TForm1
     end
     object oPage3: TTabSheet
       Caption = 'History of Present Illness'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lbAdditionalComplaints: TLabel
         Left = 19
         Top = 30
@@ -878,10 +870,6 @@ object Form1: TForm1
     end
     object oPage5: TTabSheet
       Caption = 'History'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lbHistorySection: TLabel
         Left = 272
         Top = 66
@@ -989,10 +977,6 @@ object Form1: TForm1
     end
     object oPage6: TTabSheet
       Caption = 'Review of Systems'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -1069,10 +1053,6 @@ object Form1: TForm1
     end
     object oPage7: TTabSheet
       Caption = 'Physical Exam'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -1134,10 +1114,6 @@ object Form1: TForm1
     end
     object oPage8: TTabSheet
       Caption = 'Pelvic Exam'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         458)
@@ -1213,10 +1189,6 @@ object Form1: TForm1
     end
     object oPage9: TTabSheet
       Caption = 'Plan'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         734
         458)
