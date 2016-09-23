@@ -37,7 +37,7 @@ Creating a DDCS Form (as a CPRS Note Extension) DLL
 	begin
 	end.
 	```
-	
+
 3. In your VCL Form unit go to your tool pallet and look for TDDCSForm (it's in the DDCSForm category) and add it to your form. Make sure you add at least one page (right click the body of the component and select "New Page") before you add anything else. All components must be placed on a page in order to be picked up by DDCS.
 
 4. Now lets go back to the source and make it look like the following...
@@ -88,15 +88,13 @@ Creating a DDCS Form (as a CPRS Note Extension) DLL
 	end.
 	```
 
-5. The rest is up to you. Check out [Documentation](/Documentation) for an advanced guide to developing DDCS forms for CPRS TIU notes. *Will be updated at a later date.*
-
 Adding Themes
 ------------------
 Add the Windows10 theme to your project. This step is optional and at the time of this writing the component's option to change the theme was disabled but if you wish to use it your project will also have to have the appropriate themes added as a resource.
 
-Select the "Project" option and under it select "Resources and Images...". Then select "Add..." and navigate to the theme .vsf file resource you wish to add (mine were located at C:\Users\Public\Documents\Embarcadero\Studio\17.0\Styles\). Once added, set the type to VCLSTYLE and set the identifier to Resource_1 for the first one and just incrememt the number for each addtional entry.
+Select the "Project" option and under it select "Resources and Images...". Then select "Add..." and navigate to the theme .vsf file resource you wish to add (mine were located at C:\Users\Public\Documents\Embarcadero\Studio\17.0\Styles\). Once added, set the type to VCLSTYLE and set the identifier to Resource_1 for the first one and just incrememt the number for each additional entry.
 
-![Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/Resource_Theme.png)
+![Resource Theme](DDCS Development/_images/readme_images/Resource_Theme.png)
 
 Adding Components to the Form
 --------------------------------------
@@ -122,12 +120,14 @@ Now that we have the base form built we'll want to add some components to it - m
  - TStringGrid
 
 **Form with Components**
-[Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/FormWithComponents.png)
+
+![Image]()
 
 When you add a component to the TabSheet it will be added to your DDCSForm ReportCollection (the ReportCollection is used to build the note).
 
 **ReportCollection**
-[Image](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/readme_images/ReportCollection.png)
+
+![ReportCollection](DDCS Development/_images/readme_images/ReportCollection.png)
 
 For the ReportItem for your newly added component you can set the following fields and this is what they do/are for.
 
@@ -175,16 +175,19 @@ Form Properties
 The TDDCSForm inherits from TPageControl so anything you can do with a PageControl you can also do with a DDCS form with the addition to the following...
 
 However, do **NOT** change the following properties...
- - **Align** = alClient
- - **TabStop** = False
- - **TabOrder** = 0
- - **MultiLine** = False
- - **Style** = tsButtons
- - **TabPosition** = tpTop
- - **OwnerDraw** = True
- 
+
+Property   |  Value
+--         |--
+Align      |  alClient
+TabStop    |  False
+TabOrder   |  0
+MultiLine  |  tsButtons
+Style      |  tpTop
+OwnerDraw  |  True
+
 And do **NOT** set the following methods...
- - **OnDrawTab** = DrawCheckTab
+
+> **OnDrawTab** = DrawCheckTab
 
 **Published Properties**
 
@@ -193,27 +196,42 @@ And do **NOT** set the following methods...
 > **DisableSplash** When the form is displayed a splash screen is shown, if this is TRUE then it will not be shown.
 
 > **ReportCollection** This is the form's collection of components that will be reported on. Only this components will be checked for validity (if marked as TRUE for the required filed) and will be added to the generated note. Furthermore, only these components are saved to VistA as discreet data.
-> 
->  procedure **DeleteNoteItem**(Value: TWinControl);
->   Pass in the component to delete the ReportItem.
->
->   function **GetNoteItemAddifNil**(Value: TWinControl): TDDCSNoteItem;
->   Pass in the component to return the ReportItem and if it doesn't exist then it will create it and return it.
->
->   function **GetNoteItem**(Value: TWinControl): TDDCSNoteItem;
->   Pass in the component to return the ReportItem or nil if it doesn't exist.
->
->   function **GetAControl**(Value: string): TWinControl;
->   Pass in the name of the component to return that component.
->
->   function **Add**: TDDCSNoteItem; overload;
->   Don't use this.
->
->   function **Insert**(Index: Integer): TDDCSNoteItem;
->   Don't use this.
->
->   property **Items**[Index: Integer]: TDDCSNoteItem read GetItem write SetItem;
->   Don't use this.
+
+```Pascal
+procedure DeleteNoteItem(Value: TWinControl);
+```
+Pass in the component to delete the ReportItem.
+
+```Pascal
+function GetNoteItemAddifNil(Value: TWinControl): TDDCSNoteItem;
+```
+Pass in the component to return the ReportItem and if it doesn't exist
+then it will create it and return it.
+
+```Pascal
+function GetNoteItem(Value: TWinControl): TDDCSNoteItem;
+```
+Pass in the component to return the ReportItem or nil if it doesn't exist.
+
+```Pascal
+function GetAControl(Value: string): TWinControl;
+```
+Pass in the name of the component to return that component.
+
+```Pascal
+function Add: TDDCSNoteItem; overload;
+```
+Don't use this.
+
+```Pascal
+function Insert**(Index: Integer): TDDCSNoteItem;
+```
+Don't use this.
+
+```Pascal
+property Items[Index: Integer]: TDDCSNoteItem read GetItem write SetItem;
+```
+Don't use this.
 
 > **VitalsPage** Assigning a TTabSheet as the VitalsPage means to embed that tab with the TDDCSVitals frame. The embedded TabSheet must not have any other component on it and only one VitalsPage can exists for any one DDCS Form. If the value is changed the previous page has this Vitals component removed.
 
@@ -245,87 +263,111 @@ And do **NOT** set the following methods...
 
 > **Configuration**
 
-**Public Functions**
-
-> **HasSecurityKey**(const KeyName: string): Boolean;
-> Pass in the security key name and VistA will return True/False whether or not the user running the program has said key.
-
 **Public Procedures**
 
-> **cbAutoWidth**(Sender: TObject);
-> This is a helper method that can be assigned to TComboBox.OnDropDown. It will widen the drop down pane to the longest entry in the list.
+```Pascal
+procedure cbAutoWidth(Sender: TObject);
+```
+This is a helper method that can be assigned to TComboBox.OnDropDown. It will widen the drop down pane to the longest entry in the list.
 
-> **RadioGroupEnter**(Sender: TObject);
-> This is a helper method that can be assigned to TRadioGroup.OnEnter. It will focus the first TRadiobutton on tab entry.
+```Pascal
+procedure RadioGroupEnter(Sender: TObject);
+```
+This is a helper method that can be assigned to TRadioGroup.OnEnter. It will focus the first TRadiobutton on tab entry.
 
-> **GetPatientAllergies**(var oText: TStringList);
-> This method will call VistA to return a text table to report the patient's allergies.
+```Pascal
+procedure GetPatientAllergies(var oText: TStringList);
+```
+This method will call VistA to return a text table to report the patient's allergies.
 
-> **GetPatientActiveProblems**(var oText: TStringList);
-> This method will call VistA to return a text table to report the patient's active problems.
+```Pascal
+procedure GetPatientActiveProblems(var oText: TStringList);
+```
+This method will call VistA to return a text table to report the patient's active problems.
 
-> **GetPatientActiveMedications**(var oText: TStringList);
-> This method will call VistA to return a text table to report the patient's active medications.
+```Pascal
+procedure GetPatientActiveMedications(var oText: TStringList);
+```
+This method will call VistA to return a text table to report the patient's active medications.
 
-> **LoadDialogs**;
-> This method will reload the DDCSDialogs.dll which is also accomplished by the user via the command menu.
+```Pascal
+procedure LoadDialogs;
+```
+This method will reload the DDCSDialogs.dll which is also accomplished by the user via the command menu.
+
+**Public Functions**
+
+```Pascal
+function HasSecurityKey(const KeyName: string): Boolean;
+```
+Pass in the security key name and VistA will return True/False whether or not the user running the program has said key.
 
 **Method Pointers**
 
-> **DisplayDialog**: TDisplayDialog;
+```Pascal
+DisplayDialog: TDisplayDialog;
+```
 
-> **GetDialogComponents**: TGetDialogComponents;
+```Pascal
+GetDialogComponents: TGetDialogComponents;
+```
 
 VitalsPage
 -------------
-The TDDCSVitals frame is embedded in a TTabSheet of a TDDCSForm component. It will show one to three pages and is itself a PageControl. 
+The TDDCSVitals frame is embedded in a TTabSheet of a TDDCSForm component. It will show one to three pages and is itself a PageControl.
 
 The following are its pages...
 
 > 1. **Vitals**
 > [Image]()
 
-> 2. **Estimated Delivery Date**  
+> 2. **Estimated Delivery Date**
 > This page is only visible for female patients.
 > [Image]()
 
-> 3. **Menstrual History**  
+> 3. **Menstrual History**
 > This page is only visible for female patients.
 > [Image]()
 
 **Public Procedures**
 
-> **Save**;
-> 
+```Pascal
+procedure Save;
+```
 
-> **GetPatientVitals**(var oText: TStringList);
-> 
+```Pascal
+procedure GetPatientVitals(var oText: TStringList);
+```
 
-> **GetEDDNote**(var oText: TStringList);
-> 
+```Pascal
+procedure GetEDDNote(var oText: TStringList);
+```
 
-> **GetLMPNote**(var oText: TStringList);
-> 
+```Pascal
+procedure GetLMPNote(var oText: TStringList);
+```
 
 **Public Functions**
 
-> **GetTextforFocus**(Value: TWinControl): string;
->
+```Pascal
+function GetTextforFocus(Value: TWinControl): string;
+```
 
 **Public Properties**
 
-> **Vitals**
->
+```Pascal
+property Vitals: TDDCSVitals ...
+```
 
 DDCSDialogs.DLL
 ==============
-The DDCSDialogs.dll is a collection of forms that inherit from TDDCSDialog and they can range from the very simple to the very complex. 
+The DDCSDialogs.dll is a collection of forms that inherit from TDDCSDialog and they can range from the very simple to the very complex.
 
 Adding a new dialog to this extension is as simple as...
 
  1. Add a new VCL Form to the project
  2. Name your unit with a prefix of "udlg" and your form with a prefix of "dlg".
- 3. Right Click the project "DDCSDialogs.dll" and select "View Source". In here add your new form to the RegisterDialogs procedure as follows. 
+ 3. Right Click the project "DDCSDialogs.dll" and select "View Source". In here add your new form to the RegisterDialogs procedure as follows.
 	```Pascal
 	RegisterClass(TdlgMyNewDialog);  sl.Add('TdlgMyNewDialog^udlgMyNewDialog');
 	```
@@ -337,13 +379,13 @@ Adding a new dialog to this extension is as simple as...
 > This procedure allows you to associate a sting to a control so that when the control gains focus JAWS will say that string. Use this procedure in the FormCreate event.
 
 *Example Use*
-	```Pascal
-	procedure TdlgMyNewDialog.FormCreate(Sender: TObject);
-	begin
-	  SayOnFocus(cbSOBY, 'Shortness of breath?');
-	  SayOnFocus(cbSOBN, 'Shortness of breath?');
-	end;
-	```
+```Pascal
+procedure TdlgMyNewDialog.FormCreate(Sender: TObject);
+begin
+  SayOnFocus(cbSOBY, 'Shortness of breath?');
+  SayOnFocus(cbSOBN, 'Shortness of breath?');
+end;
+```
 
 > **BuildSaveList**(var oText: TStringList);
 >
@@ -352,343 +394,343 @@ Adding a new dialog to this extension is as simple as...
 
 > **TmpStrList** This property is really the whole point to the dialog. The point of the dialog is to share a common form among DDCS Forms which produce a block of text to be added to the DDCS Form note.
 
-*Example Use* 
-	```Pascal
-	procedure TdlgMyNewDialog.bbtnOKClick(Sender: TObject);
-	begin
-	  if leOnset.Text  <> '' then
-		TmpStrList.Add('  Onset: ' + leOnset.Text);
-	  if cbSOBY.Checked then
-		TmpStrList.Add('  Shortness of breath?: Yes');
-	  if cbSOBN.Checked then
-		TmpStrList.Add('  Shortness of breath?: No');
-	  if leDur.Text  <> '' then
-		TmpStrList.Add('  Duration: ' + leDur.Text);
-	  if leAssocSym.Text  <> '' then
-	  begin
-		TmpStrList.Add('  Associated Symptoms:');
-		TmpStrList.Add('    ' + leAssocSym.Text);
-	  end;
+*Example Use*
+```Pascal
+procedure TdlgMyNewDialog.bbtnOKClick(Sender: TObject);
+begin
+  if leOnset.Text  <> '' then
+	TmpStrList.Add('  Onset: ' + leOnset.Text);
+  if cbSOBY.Checked then
+	TmpStrList.Add('  Shortness of breath?: Yes');
+  if cbSOBN.Checked then
+	TmpStrList.Add('  Shortness of breath?: No');
+  if leDur.Text  <> '' then
+	TmpStrList.Add('  Duration: ' + leDur.Text);
+  if leAssocSym.Text  <> '' then
+  begin
+	TmpStrList.Add('  Associated Symptoms:');
+	TmpStrList.Add('    ' + leAssocSym.Text);
+  end;
 
-	  if TmpStrList.Count > 0 then
-		TmpStrList.Insert(0, 'MyNewDialog:');
-	end;
-	```
+  if TmpStrList.Count > 0 then
+	TmpStrList.Insert(0, 'MyNewDialog:');
+end;
+```
 
 > **Configuration** This property is another TOwnedCollection like ReportCollection except it is designed to hold large records imported from VistA that can be populated into many controls on the form and then later updated upon completion of the form and passed back to VistA.
 
 *Example*
 The TdlgPregHist utilizes this collection so that it can build many pages of historical pregnancy data. The user is also able to change and add to this data which means that this collection needs to be updated as well.
 
-	```Pascal
-	procedure TdlgPregHist.FormShow(Sender: TObject);
-	var
-	  I,G,J,L: Integer;
-	  vPreg: TfPreg;
-	  vPregInfo: TfPregInfo;
-	  vPregChild: TfChild;
-	  cItem: TConfigItem;
-	  tmp,btmp,sLkup: string;
+```Pascal
+procedure TdlgPregHist.FormShow(Sender: TObject);
+var
+  I,G,J,L: Integer;
+  vPreg: TfPreg;
+  vPregInfo: TfPregInfo;
+  vPregChild: TfChild;
+  cItem: TConfigItem;
+  tmp,btmp,sLkup: string;
+begin
+
+  //   1) L
+  //   2) IEN
+  //   3) DATE RECORDED
+  //   4) EDC
+  //   5) DFN|PATIENT
+  //   6) STATUS
+  //   7) FOF|(IEN OR IDENTIFIER)
+  //   8) EDD
+  //   9) PREGNANCY END
+  //  10) OB IEN|OB
+  //  11) FACILITY IEN|FACILITY
+  //  12) UPDATED BY IEN|UPDATED BY
+  //  13) GESTATIONAL AGE
+  //  14) LENGTH OF LABOR
+  //  15) TYPE OF DELIVERY
+  //  16) ANESTHESIA
+  //  17) PRETERM DELIVERY
+  //  18) BIRTH TYPE
+  //  19) IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU|
+  //  20) OUTCOME
+  //  21) HIGH RISK FLAG
+  //  22) DAYS IN HOSPITAL
+  //
+  //  C^IEN^COMMENT
+  //  B^IEN|BABY|#^COMMENT
+
+  if Configuration.Count > 0 then
+  begin
+	for I := 0 to Configuration.Count - 1 do
 	begin
+	  cItem := Configuration.Items[I];
 
-	  //   1) L
-	  //   2) IEN
-	  //   3) DATE RECORDED
-	  //   4) EDC
-	  //   5) DFN|PATIENT
-	  //   6) STATUS
-	  //   7) FOF|(IEN OR IDENTIFIER)
-	  //   8) EDD
-	  //   9) PREGNANCY END
-	  //  10) OB IEN|OB
-	  //  11) FACILITY IEN|FACILITY
-	  //  12) UPDATED BY IEN|UPDATED BY
-	  //  13) GESTATIONAL AGE
-	  //  14) LENGTH OF LABOR
-	  //  15) TYPE OF DELIVERY
-	  //  16) ANESTHESIA
-	  //  17) PRETERM DELIVERY
-	  //  18) BIRTH TYPE
-	  //  19) IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU|
-	  //  20) OUTCOME
-	  //  21) HIGH RISK FLAG
-	  //  22) DAYS IN HOSPITAL
-	  //
-	  //  C^IEN^COMMENT
-	  //  B^IEN|BABY|#^COMMENT
-
-	  if Configuration.Count > 0 then
+	  if cItem.ID[1] = 'L' then
 	  begin
-		for I := 0 to Configuration.Count - 1 do
-		begin
-		  cItem := Configuration.Items[I];
+		// ---- Add the Pregnancy Tab ------------------------------------------
+		tmp := Uppercase(cItem.Piece[20]);    // Outcome
+		if tmp = 'ECTOPIC' then
+		  edtEctopic.Value := edtEctopic.Value + 1
+		else if tmp = 'TERMINATION' then
+		  edtAbInduced.Value := edtAbInduced.Value + 1
+		else if tmp = 'SPONTANEOUS ABORTION' then
+		  edtAbSpont.Value := edtAbSpont.Value + 1
+		else
+		  edtTotPreg.Value := edtTotPreg.Value + 1;
+		// ---------------------------------------------------------------------
 
-		  if cItem.ID[1] = 'L' then
+		// ---- Get the Pregnancy Info Form ------------------------------------
+		if pgPregnancy.Pages[pgPregnancy.PageCount - 1].ControlCount > 0 then
+		  if pgPregnancy.Pages[pgPregnancy.PageCount - 1].Controls[0] is TfPreg then
 		  begin
-			// ---- Add the Pregnancy Tab ------------------------------------------
-			tmp := Uppercase(cItem.Piece[20]);    // Outcome
-			if tmp = 'ECTOPIC' then
-			  edtEctopic.Value := edtEctopic.Value + 1
-			else if tmp = 'TERMINATION' then
-			  edtAbInduced.Value := edtAbInduced.Value + 1
-			else if tmp = 'SPONTANEOUS ABORTION' then
-			  edtAbSpont.Value := edtAbSpont.Value + 1
-			else
-			  edtTotPreg.Value := edtTotPreg.Value + 1;
-			// ---------------------------------------------------------------------
+			vPreg := TfPreg(pgPregnancy.Pages[pgPregnancy.PageCount - 1].Controls[0]);
 
-			// ---- Get the Pregnancy Info Form ------------------------------------
-			if pgPregnancy.Pages[pgPregnancy.PageCount - 1].ControlCount > 0 then
-			  if pgPregnancy.Pages[pgPregnancy.PageCount - 1].Controls[0] is TfPreg then
+			if AnsiContainsText(cItem.Piece[2], '+') then
+			  vPreg.Added := True;
+			vPreg.PregnancyIEN := StrToIntDef(cItem.Piece[2], 0);
+
+			vPregInfo := vPreg.GetPregInfo;
+			if vPregInfo <> nil then
+			begin
+			  if cItem.Piece[6] = 'CURRENT' then
 			  begin
-				vPreg := TfPreg(pgPregnancy.Pages[pgPregnancy.PageCount - 1].Controls[0]);
+				vPregInfo.lbStatus.Visible := True;
+				if vPregInfo.lbStatus.Caption <> '' then
+				  vPregInfo.lbStatus.Caption := vPregInfo.lbStatus.Caption + ' (C)'
+				else
+				  vPregInfo.lbStatus.Caption := 'CURRENT';
 
-				if AnsiContainsText(cItem.Piece[2], '+') then
-				  vPreg.Added := True;
-				vPreg.PregnancyIEN := StrToIntDef(cItem.Piece[2], 0);
+				vPregInfo.Disable := True;
+				vPreg.btnDelete.Enabled := False;
+			  end;
 
-				vPregInfo := vPreg.GetPregInfo;
-				if vPregInfo <> nil then
+			  vPregInfo.dtDelivery.Text := cItem.Piece[9];
+
+			  tmp := cItem.Piece[11];
+			  if tmp <> '' then
+			  begin
+				if vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2)) <> -1 then
+				  vPregInfo.cbDeliveryPlace.ItemIndex := vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2))
+				else
+				  vPregInfo.cbDeliveryPlace.Text := Piece(tmp,'|',2);
+			  end;
+
+			  tmp := cItem.Piece[13];
+			  vPregInfo.spnGAWeeks.Value := StrToIntDef(Piece(tmp,'W',1), 0);
+			  vPregInfo.spnGADays.Value  := StrToIntDef(Piece(Piece(tmp,'D',1),'W',2), 0);
+
+			  vPregInfo.spnLaborLength.Value := StrToIntDef(cItem.Piece[14], 0);
+
+			  tmp := cItem.Piece[15];
+			  if tmp = 'V' then
+				vPregInfo.rgTypeDelivery.ItemIndex := 0
+			  else if tmp = 'C' then
+				vPregInfo.rgTypeDelivery.ItemIndex := 1;
+
+			  tmp := cItem.Piece[16];
+			  if tmp <> '' then
+			  begin
+				if vPregInfo.cbAnesthesia.Items.IndexOf(tmp) = -1 then
+				  vPregInfo.cbAnesthesia.Items.Add(tmp);
+				vPregInfo.cbAnesthesia.ItemIndex := vPregInfo.cbAnesthesia.Items.IndexOf(tmp);
+			  end;
+
+			  vPregInfo.rgPretermDelivery.ItemIndex := StrToIntDef(cItem.Piece[17], 0);
+
+			  if vPregInfo.cbOutcome.Enabled then
+			  begin
+				tmp := cItem.Piece[20];
+				if tmp <> '' then
 				begin
-				  if cItem.Piece[6] = 'CURRENT' then
-				  begin
-					vPregInfo.lbStatus.Visible := True;
-					if vPregInfo.lbStatus.Caption <> '' then
-					  vPregInfo.lbStatus.Caption := vPregInfo.lbStatus.Caption + ' (C)'
-					else
-					  vPregInfo.lbStatus.Caption := 'CURRENT';
-
-					vPregInfo.Disable := True;
-					vPreg.btnDelete.Enabled := False;
-				  end;
-
-				  vPregInfo.dtDelivery.Text := cItem.Piece[9];
-
-				  tmp := cItem.Piece[11];
-				  if tmp <> '' then
-				  begin
-					if vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2)) <> -1 then
-					  vPregInfo.cbDeliveryPlace.ItemIndex := vPregInfo.cbDeliveryPlace.Items.IndexOf(Piece(tmp,'|',2))
-					else
-					  vPregInfo.cbDeliveryPlace.Text := Piece(tmp,'|',2);
-				  end;
-
-				  tmp := cItem.Piece[13];
-				  vPregInfo.spnGAWeeks.Value := StrToIntDef(Piece(tmp,'W',1), 0);
-				  vPregInfo.spnGADays.Value  := StrToIntDef(Piece(Piece(tmp,'D',1),'W',2), 0);
-
-				  vPregInfo.spnLaborLength.Value := StrToIntDef(cItem.Piece[14], 0);
-
-				  tmp := cItem.Piece[15];
-				  if tmp = 'V' then
-					vPregInfo.rgTypeDelivery.ItemIndex := 0
-				  else if tmp = 'C' then
-					vPregInfo.rgTypeDelivery.ItemIndex := 1;
-
-				  tmp := cItem.Piece[16];
-				  if tmp <> '' then
-				  begin
-					if vPregInfo.cbAnesthesia.Items.IndexOf(tmp) = -1 then
-					  vPregInfo.cbAnesthesia.Items.Add(tmp);
-					vPregInfo.cbAnesthesia.ItemIndex := vPregInfo.cbAnesthesia.Items.IndexOf(tmp);
-				  end;
-
-				  vPregInfo.rgPretermDelivery.ItemIndex := StrToIntDef(cItem.Piece[17], 0);
-
-				  if vPregInfo.cbOutcome.Enabled then
-				  begin
-					tmp := cItem.Piece[20];
-					if tmp <> '' then
-					begin
-					  if vPregInfo.cbOutcome.Items.IndexOf(tmp) = -1 then
-						vPregInfo.cbOutcome.Items.Add(tmp);
-					  vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf(tmp);
-					end;
-				  end;
-
-				  vPregInfo.edtDeliveryAt.Value := StrToIntDef(cItem.Piece[22], 0);
-
-				  // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
-				  tmp := cItem.Piece[19];
-				  if tmp <> '' then
-				  begin
-					G := SubCount(tmp,'|') + 1;
-					for J := 1 to G do
-					begin
-					  btmp := Piece(tmp,'|',J);
-					  // ---- Add the Baby Tab ---------------------------------------
-					  vPregInfo.spnBirthCount.Value := vPregInfo.spnBirthCount.Value + 1;
-					  // -------------------------------------------------------------
-
-					  // ---- Get the Baby Info Form ---------------------------------
-					  if vPreg.pgPreg.PageCount > 1 then
-						if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].ControlCount > 0 then
-						  if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0] is TfChild then
-						  begin
-							vPregChild := TfChild(vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0]);
-
-							// IEN
-							vPregChild.BabyIEN := Piece(btmp,';',1);
-
-							// Baby #
-							vPregChild.BabyNumber := Piece(btmp,';',2);
-
-							// Sex
-							if Piece(btmp,';',4) = 'M' then
-							  vPregChild.rgSex.ItemIndex := 0
-							else if Piece(btmp,';',4) = 'F' then
-							  vPregChild.rgSex.ItemIndex := 1
-							else if Piece(btmp,';',4) = 'U' then
-							  vPregChild.rgSex.ItemIndex := 2;
-
-							// Weight
-							vPregChild.spnG.Value := StrToIntDef(Piece(btmp,';',5), 0);
-
-							// APGAR1
-							vPregChild.edAPGARone.Text := Piece(btmp,';',7);
-
-							// APGAR2
-							vPregChild.edAPGARfive.Text := Piece(btmp,';',8);
-
-							// NICU
-							vPregChild.ckNICU.Checked := (Piece(btmp,';',10) = '1');
-
-							// Baby Notes
-							if vPreg.Added then
-							  sLkup := '+' + IntToStr(vPreg.PregnancyIEN)
-							else
-							  sLkup := IntToStr(vPreg.PregnancyIEN);
-							sLkup := sLkup + '|' + vPregChild.BabyIEN + '|' + vPregChild.BabyNumber;
-
-							cItem := Configuration.LookUp('B', sLkup, '');
-							if cItem <> nil then
-							  for L := 0 to cItem.Data.Count - 1 do
-								vPregChild.meComplications.Lines.Add(Pieces(cItem.Data[L],U,3,999));
-						  end;
-					end;
-				  end;
-
-				  // Delivery Notes
-				  if vPreg.Added then
-					sLkup := '+' + IntToStr(vPreg.PregnancyIEN)
-				  else
-					sLkup := IntToStr(vPreg.PregnancyIEN);
-
-				  cItem := Configuration.LookUp('C', sLkup, '');
-				  if cItem <> nil then
-					for J := 0 to cItem.Data.Count - 1 do
-					  vPregInfo.meDeliveryNotes.Lines.Add(Pieces(cItem.Data[J],U,3,999));
+				  if vPregInfo.cbOutcome.Items.IndexOf(tmp) = -1 then
+					vPregInfo.cbOutcome.Items.Add(tmp);
+				  vPregInfo.cbOutcome.ItemIndex := vPregInfo.cbOutcome.Items.IndexOf(tmp);
 				end;
 			  end;
+
+			  vPregInfo.edtDeliveryAt.Value := StrToIntDef(cItem.Piece[22], 0);
+
+			  // IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
+			  tmp := cItem.Piece[19];
+			  if tmp <> '' then
+			  begin
+				G := SubCount(tmp,'|') + 1;
+				for J := 1 to G do
+				begin
+				  btmp := Piece(tmp,'|',J);
+				  // ---- Add the Baby Tab ---------------------------------------
+				  vPregInfo.spnBirthCount.Value := vPregInfo.spnBirthCount.Value + 1;
+				  // -------------------------------------------------------------
+
+				  // ---- Get the Baby Info Form ---------------------------------
+				  if vPreg.pgPreg.PageCount > 1 then
+					if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].ControlCount > 0 then
+					  if vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0] is TfChild then
+					  begin
+						vPregChild := TfChild(vPreg.pgPreg.Pages[vPreg.pgPreg.PageCount - 1].Controls[0]);
+
+						// IEN
+						vPregChild.BabyIEN := Piece(btmp,';',1);
+
+						// Baby #
+						vPregChild.BabyNumber := Piece(btmp,';',2);
+
+						// Sex
+						if Piece(btmp,';',4) = 'M' then
+						  vPregChild.rgSex.ItemIndex := 0
+						else if Piece(btmp,';',4) = 'F' then
+						  vPregChild.rgSex.ItemIndex := 1
+						else if Piece(btmp,';',4) = 'U' then
+						  vPregChild.rgSex.ItemIndex := 2;
+
+						// Weight
+						vPregChild.spnG.Value := StrToIntDef(Piece(btmp,';',5), 0);
+
+						// APGAR1
+						vPregChild.edAPGARone.Text := Piece(btmp,';',7);
+
+						// APGAR2
+						vPregChild.edAPGARfive.Text := Piece(btmp,';',8);
+
+						// NICU
+						vPregChild.ckNICU.Checked := (Piece(btmp,';',10) = '1');
+
+						// Baby Notes
+						if vPreg.Added then
+						  sLkup := '+' + IntToStr(vPreg.PregnancyIEN)
+						else
+						  sLkup := IntToStr(vPreg.PregnancyIEN);
+						sLkup := sLkup + '|' + vPregChild.BabyIEN + '|' + vPregChild.BabyNumber;
+
+						cItem := Configuration.LookUp('B', sLkup, '');
+						if cItem <> nil then
+						  for L := 0 to cItem.Data.Count - 1 do
+							vPregChild.meComplications.Lines.Add(Pieces(cItem.Data[L],U,3,999));
+					  end;
+				end;
+			  end;
+
+			  // Delivery Notes
+			  if vPreg.Added then
+				sLkup := '+' + IntToStr(vPreg.PregnancyIEN)
+			  else
+				sLkup := IntToStr(vPreg.PregnancyIEN);
+
+			  cItem := Configuration.LookUp('C', sLkup, '');
+			  if cItem <> nil then
+				for J := 0 to cItem.Data.Count - 1 do
+				  vPregInfo.meDeliveryNotes.Lines.Add(Pieces(cItem.Data[J],U,3,999));
+			end;
 		  end;
+	  end;
+	end;
+  end;
+
+  if pgPregnancy.PageCount > 0 then
+  begin
+	for I := pgPregnancy.PageCount - 1 downto 0 do
+	  if pgPregnancy.Pages[I].ControlCount > 0 then
+		if pgPregnancy.Pages[I].Controls[0] is TfPreg then
+		begin
+		  vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
+		  if vPreg.pgPreg.PageCount > 0 then
+			vPreg.pgPreg.ActivePageIndex := 0;
 		end;
-	  end;
 
-	  if pgPregnancy.PageCount > 0 then
-	  begin
-		for I := pgPregnancy.PageCount - 1 downto 0 do
-		  if pgPregnancy.Pages[I].ControlCount > 0 then
-			if pgPregnancy.Pages[I].Controls[0] is TfPreg then
-			begin
-			  vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
-			  if vPreg.pgPreg.PageCount > 0 then
-				vPreg.pgPreg.ActivePageIndex := 0;
-			end;
+	pgPregnancy.ActivePageIndex := 0;
+  end;
+end;
 
-		pgPregnancy.ActivePageIndex := 0;
-	  end;
-	end;
+procedure TdlgPregHist.btnOKClick(Sender: TObject);
+var
+  sl: TStringList;
+  I,nPreg: Integer;
+  vPreg: TfPreg;
+  PregID: string;
+  cItem: TConfigItem;
+begin
+  sl := TStringList.Create;
+  try
+	TmpStrList.Add('Pregnancy History: ');
+	TmpStrList.Add('  Total Pregnancies: ' + edtTotPreg.Text);
+	TmpStrList.Add('  Induced Abortion: ' + edtAbInduced.Text);
+	TmpStrList.Add('  Spontaneous Abortion: ' + edtAbSpont.Text);
+	TmpStrList.Add('  Ectopic: ' + edtEctopic.Text);
 
-	procedure TdlgPregHist.btnOKClick(Sender: TObject);
-	var
-	  sl: TStringList;
-	  I,nPreg: Integer;
-	  vPreg: TfPreg;
-	  PregID: string;
-	  cItem: TConfigItem;
-	begin
-	  sl := TStringList.Create;
-	  try
-		TmpStrList.Add('Pregnancy History: ');
-		TmpStrList.Add('  Total Pregnancies: ' + edtTotPreg.Text);
-		TmpStrList.Add('  Induced Abortion: ' + edtAbInduced.Text);
-		TmpStrList.Add('  Spontaneous Abortion: ' + edtAbSpont.Text);
-		TmpStrList.Add('  Ectopic: ' + edtEctopic.Text);
+	nPreg := 0;
+	for I := 0 to pgPregnancy.PageCount - 1 do
+	  if pgPregnancy.Pages[I].ControlCount > 0 then
+		if pgPregnancy.Pages[I].Controls[0] is TfPreg then
+		begin
+		  vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
 
-		nPreg := 0;
-		for I := 0 to pgPregnancy.PageCount - 1 do
-		  if pgPregnancy.Pages[I].ControlCount > 0 then
-			if pgPregnancy.Pages[I].Controls[0] is TfPreg then
-			begin
-			  vPreg := TfPreg(pgPregnancy.Pages[I].Controls[0]);
+		  vPreg.GetText(sl);
+		  if sl.Count > 0 then
+			TmpStrList.AddStrings(sl);
+		  sl.Clear;
 
-			  vPreg.GetText(sl);
-			  if sl.Count > 0 then
-				TmpStrList.AddStrings(sl);
-			  sl.Clear;
+		  inc(nPreg);
+		  if vPreg.PregnancyIEN < 1 then
+			PregID := '+' + IntToStr(nPreg)
+		  else begin
+			if vPreg.Added then
+			  PregID := '+' + IntToStr(vPreg.PregnancyIEN)
+			else
+			  PregID := IntToStr(vPreg.PregnancyIEN);
+		  end;
 
-			  inc(nPreg);
-			  if vPreg.PregnancyIEN < 1 then
-				PregID := '+' + IntToStr(nPreg)
-			  else begin
-				if vPreg.Added then
-				  PregID := '+' + IntToStr(vPreg.PregnancyIEN)
-				else
-				  PregID := IntToStr(vPreg.PregnancyIEN);
-			  end;
+		  // Pregnancy Info
+		  cItem := Configuration.LookUp('L', PregID, '');
+		  if cItem = nil then
+		  begin
+			cItem := TConfigItem.Create(Configuration);
+			cItem.ID[1] := 'L';
+			cItem.ID[2] := PregID;
+			cItem.Data.Add('');
+		  end;
+		  cItem.Data[0] := vPreg.GetSavePregInfo(PregID);
 
-			  // Pregnancy Info
-			  cItem := Configuration.LookUp('L', PregID, '');
-			  if cItem = nil then
-			  begin
-				cItem := TConfigItem.Create(Configuration);
-				cItem.ID[1] := 'L';
-				cItem.ID[2] := PregID;
-				cItem.Data.Add('');
-			  end;
-			  cItem.Data[0] := vPreg.GetSavePregInfo(PregID);
+		  // Pregnancy Comments
+		  cItem := Configuration.LookUp('C', PregID, '');
+		  if cItem = nil then
+		  begin
+			cItem := TConfigItem.Create(Configuration);
+			cItem.ID[1] := 'C';
+			cItem.ID[2] := PregID;
+		  end;
+		  cItem.Data.Clear;
+		  vPreg.GetSavePregComments(PregID, sl);
+		  if sl.Count > 0 then
+			cItem.Data.AddStrings(sl);
+		  sl.Clear;
 
-			  // Pregnancy Comments
-			  cItem := Configuration.LookUp('C', PregID, '');
-			  if cItem = nil then
-			  begin
-				cItem := TConfigItem.Create(Configuration);
-				cItem.ID[1] := 'C';
-				cItem.ID[2] := PregID;
-			  end;
-			  cItem.Data.Clear;
-			  vPreg.GetSavePregComments(PregID, sl);
-			  if sl.Count > 0 then
-				cItem.Data.AddStrings(sl);
-			  sl.Clear;
-
-			  // Baby Comments
-			  vPreg.GetSaveChildComments(PregID);
-			end;
-	  finally
-		sl.Free;
-	  end;
-	end;
-	```
+		  // Baby Comments
+		  vPreg.GetSaveChildComments(PregID);
+		end;
+  finally
+	sl.Free;
+  end;
+end;
+```
 
 > **ScreenReader** If you need direct access to the screen reader then you have access to it through TDDCSDialog.
 
 *ScreenReader: IJawsApi*
 
-	```Pascal
-	IJawsApi = interface(IDispatch)
-	['{123DEDB4-2CF6-429C-A2AB-CC809E5516CE}']
-		function RunScript(const ScriptName: WideString): WordBool; safecall;
-		function SayString(const StringToSpeak: WideString; bFlush: WordBool): WordBool; safecall;
-		procedure StopSpeech; safecall;
-		function Enable(vbNoDDIHooks: WordBool): WordBool; safecall;
-		function Disable: WordBool; safecall;
-		function RunFunction(const FunctionName: WideString): WordBool; safecall;
-	end;
-	```
+```Pascal
+IJawsApi = interface(IDispatch)
+['{123DEDB4-2CF6-429C-A2AB-CC809E5516CE}']
+	function RunScript(const ScriptName: WideString): WordBool; safecall;
+	function SayString(const StringToSpeak: WideString; bFlush: WordBool): WordBool; safecall;
+	procedure StopSpeech; safecall;
+	function Enable(vbNoDDIHooks: WordBool): WordBool; safecall;
+	function Disable: WordBool; safecall;
+	function RunFunction(const FunctionName: WideString): WordBool; safecall;
+end;
+```
 *Only SayString is recommend for use - all other methods should be avoided.*
-  
-> **ReportCollection** 
+
+> **ReportCollection**
 > This is just like the ReportCollection owned by TDDCSForm. When a dialog is created all components are added to the ReportCollection and they are saved to VistA in the same manner as well, so when the dialog is running you may manipulate these ReportItems as you see fit.
 
 Configuring your Form
@@ -723,7 +765,7 @@ Set Up
 		3         PRE PUSH (K), [3;E1,245]
 		4         POST PUSH (K), [4;E1,245]
 		99.1      PACKAGE (P9.4'), [99;1]
-		
+
 In order for the COMObject to display a DDCS Form it must have the CONTROL OBJECT in this file - we will be using TIU DOCUMENT DEFINITION (8925.1) for our example but it is not limited to TIU Note Titles.
 
 In FileMan use the "ENTER OR EDIT FILE ENTRIES" option to edit the "DSIO DDCS CONTROL" (#19641.4) file.
@@ -733,32 +775,55 @@ In FileMan use the "ENTER OR EDIT FILE ENTRIES" option to edit the "DSIO DDCS CO
 		Select OPTION: 1  ENTER OR EDIT FILE ENTRIES
 
 		INPUT TO WHAT FILE: 19641.4  DSIO DDCS CONTROL
-		EDIT WHICH FIELD: ALL// 
+		EDIT WHICH FIELD: ALL//
 
-		**CONTROL OBJECT**: 167;TIU(8925.1,// 
-		This is the "object" you wish to have extended by this package (DSIO DDCS). Basically, what it comes down to is that you are collecting information and associating it to a record in VistA.
-		**INACTIVE**: 
-		Set this field to "YES" if you wish to keep the entry but cease controlling it.
-		**DESTINATION FILE**: TIU DOCUMENT// 
-		When you control an "object" you need to identify where the data is being stored so in the case of TIU that's 8925 so the data collected for this control will be associated to a variable pointer that will be "IEN;TIU(8925," where the IEN is created and passed over to DDCS via the GUI.
-		**PATIENT ORIENTED**: YES// 
-		This will assist any back end code in retrieving the DFN if needed. In most cases it is and may not work if it cannot obtain a valid DFN. However, if the DESTINATION FILE is not patient oriented there is still an opportunity to provide M code that can obtain it.
-		**PATIENT FIELD**: .02// 
-		This is paired up with the DESTINATION FILE if it is PATIENT ORIENTED.
-		**SHARE**: 
-		If there is a need to accumulate data then SHARE would be set to "YES" to save all collected data to a patient centric file rather than the record generic one. Setting this field to "LIMITED" will allow some of the collected data to be stored directly under the patient which is handled by the configuration of the Form (#19641.42) or Dialog (#19641.49). An example of this action is having the field set to LIMITED and using the OB Flow Sheet dialog which shows all entries ever collected every time the dialog is opened no matter what note it was collected in.
-		**FORM**: NURSE POSTPARTUM - MATERNAL// 
-		This is the form configuration for this controlled object. This entry will also state what program that this control shall execute.
-		**PATIENT LOOKUP CODE**: 
-		If this controlled object's DESTINATION FILE is not PATIENT ORIENTED then you would have to supply the M code here that could be executed to retrieve the appropriate DFN.
-		**TRIGGER LOGIC**: I $$GET1^DIQ(DDCSFLE,SIEN_",",.05)="COMPLETED"
-		DSIO DDCS has an option that can be invoked (DSIO DDCS CHECK STATUS) that will check any entries that have not been "PUSHED" (which is a X-REF in #19641.41 that only exists if an entry has not been "PUSHED") and come back to it's CONTROL entry here and execute this M code to determine if it can "PUSH" the collected data (the collected data is not destroyed upon "PUSH").
-		**PRE PUSH**: N LNK S LNK=$$SPG^DSIO3($G(DFN),SIEN,$$PG^DSIO4($G(DFN)))
-		M code that is executed if the TRIGGER LOGIC passes but before any further action is taken to "PUSH" the collected data.
-		**POST PUSH**: 
-		M code that is executed after the collected data is "PUSHED".
-		**PACKAGE**: TEXT INTEGRATION UTILITIES// 
-		Used to identify the package this record is enhancing - also helpful when screening entries for transport.
+**CONTROL OBJECT**: 167;TIU(8925.1,//
+
+This is the "object" you wish to have extended by this package (DSIO DDCS). Basically, what it comes down to is that you are collecting information and associating it to a record in VistA.
+
+**INACTIVE**:
+
+Set this field to "YES" if you wish to keep the entry but cease controlling it.
+
+**DESTINATION FILE**: TIU DOCUMENT//
+
+When you control an "object" you need to identify where the data is being stored so in the case of TIU that's 8925 so the data collected for this control will be associated to a variable pointer that will be "IEN;TIU(8925," where the IEN is created and passed over to DDCS via the GUI.
+
+**PATIENT ORIENTED**: YES//
+
+This will assist any back end code in retrieving the DFN if needed. In most cases it is and may not work if it cannot obtain a valid DFN. However, if the DESTINATION FILE is not patient oriented there is still an opportunity to provide M code that can obtain it.
+
+**PATIENT FIELD**: .02//
+
+This is paired up with the DESTINATION FILE if it is PATIENT ORIENTED.
+
+**SHARE**:
+
+If there is a need to accumulate data then SHARE would be set to "YES" to save all collected data to a patient centric file rather than the record generic one. Setting this field to "LIMITED" will allow some of the collected data to be stored directly under the patient which is handled by the configuration of the Form (#19641.42) or Dialog (#19641.49). An example of this action is having the field set to LIMITED and using the OB Flow Sheet dialog which shows all entries ever collected every time the dialog is opened no matter what note it was collected in.
+
+**FORM**: NURSE POSTPARTUM - MATERNAL//
+
+This is the form configuration for this controlled object. This entry will also state what program that this control shall execute.
+
+**PATIENT LOOKUP CODE**:
+
+If this controlled object's DESTINATION FILE is not PATIENT ORIENTED then you would have to supply the M code here that could be executed to retrieve the appropriate DFN.
+
+**TRIGGER LOGIC**: ```I $$GET1^DIQ(DDCSFLE,SIEN_",",.05)="COMPLETED" ```
+
+DSIO DDCS has an option that can be invoked (DSIO DDCS CHECK STATUS) that will check any entries that have not been "PUSHED" (which is a X-REF in #19641.41 that only exists if an entry has not been "PUSHED") and come back to it's CONTROL entry here and execute this M code to determine if it can "PUSH" the collected data (the collected data is not destroyed upon "PUSH").
+
+**PRE PUSH**: ```N LNK S LNK=$$SPG^DSIO3($G(DFN),SIEN,$$PG^DSIO4($G(DFN))) ```
+
+M code that is executed if the TRIGGER LOGIC passes but before any further action is taken to "PUSH" the collected data.
+
+**POST PUSH**:
+
+M code that is executed after the collected data is "PUSHED".
+
+**PACKAGE**: TEXT INTEGRATION UTILITIES//
+
+Used to identify the package this record is enhancing - also helpful when screening entries for transport.
 
 *At the programmer prompt you can **D ^DSIO61** to be assisted in building a CONTROL entry.*
 
@@ -804,16 +869,16 @@ At the **FORM** you would have created an new entry in DSIO DDCS FORM CONFIGURAT
 		99.1      PACKAGE (P9.4'), [99;1]
 
 For now, we'll just start with the basics. Upon selecting our entries we need to identify the name of the program we need to run and that's in the FILENAME field. Set this field with the name of your program including the extension.
-		
+
 		VA FileMan 22.0
 
 		Select OPTION: 1  ENTER OR EDIT FILE ENTRIES
 
 		INPUT TO WHAT FILE: 19641.42  DSIO DDCS FORM CONFIGURATION
-		EDIT WHICH FIELD: ALL// FILENAME  
-		THEN EDIT FIELD: 
+		EDIT WHICH FIELD: ALL// FILENAME
+		THEN EDIT FIELD:
 
-		Select DSIO DDCS FORM CONFIGURATION INTERFACE: NURSE POSTPARTUM - MATERNAL   
+		Select DSIO DDCS FORM CONFIGURATION INTERFACE: NURSE POSTPARTUM - MATERNAL
 		  TEXT INTEGRATION UTILITIES
 		FILENAME: DDCSNursePostpartumMaternity.dll
 
@@ -822,7 +887,7 @@ Next, set the **DSIO DDCS LOCATION** parameter to the host file location of your
 		Select PARAMETER DEFINITION NAME: DSIO DDCS LOCATION     DSIO DDCS LOCATION
 
 		------ Setting DSIO DDCS LOCATION  for System: -------------------------
-		LOCATION: C:\Vista\DDCS\// 
+		LOCATION: C:\Vista\DDCS\//
 
 If you're setting up DDCS for a TIU Note you can either link it to a title or to be launch as a COMObject. If the latter then you would be launching the DDCSFormBuilder.dll COMObject and then selecting the TIU Note Title you identified in DSIO DDCS CONTROL (#19641.4).
 
@@ -842,23 +907,23 @@ Before running your program you need to first assign yourself the **DSIO DDCS CO
 
 		Select Key Management Option: ALLOCATION of Security Keys
 
-		Allocate key: DSIO DDCS CONFIG  
+		Allocate key: DSIO DDCS CONFIG
 
-		Another key: 
+		Another key:
 
 		Holder of key: TF
 
-		Another holder: 
+		Another holder:
 
-		You've selected the following keys: 
+		You've selected the following keys:
 
 		DSIO DDCS CONFIG
 
-		You've selected the following holders: 
+		You've selected the following holders:
 
 		TF
 
-		You are allocating keys.  Do you wish to proceed? YES// 
+		You are allocating keys.  Do you wish to proceed? YES//
 
 Now, you should be able to launch your program and when you do the first thing you need to do is navigate to the Command Menu select the "Edit Configuration" option and run "Update All". Follow the images below...
 
@@ -900,7 +965,7 @@ When the TDDCSForm saves data it saves it down to DSIO DDCS DATA (#19641.41) und
 		.02       CLASS (P19641.425), [0;2]
 		1         VALUE (Multiple-19641.451), [1;0]
 				  .01  VALUE (Wx), [0;1]
-				  
+
 *Example*
 
 		*DSIO DDCS DATA FILE (#19641.41)*
@@ -979,13 +1044,13 @@ When the TDDCSForm saves data it saves it down to DSIO DDCS DATA (#19641.41) und
 		^DSIO(19641.41,46,1,1,1,"C","MEMOROS",22)=""
 		^DSIO(19641.41,46,1,1,1,"C","RADIOGROUP3",23)=""
 		^DSIO(19641.41,46,1,"B","5;DSIO(19641.42,",1)=""
-		
+
 		*DSIO DDCS ELEMENT FILE (#19641.45)*
 		VAH>ZW ^DSIO(19641.45,34866)
 		^DSIO(19641.45,34866,0)="RADIOGROUP3^3"
 		^DSIO(19641.45,34866,1,0)="^^1^1^3160923"
 		^DSIO(19641.45,34866,1,1,0)="0^Established Patient"
-		
+
 You can also view the data via a menu option...
 
 		Select OPTION NAME: DSIO DDCS MAIN       DDCS MAIN MENU
@@ -999,10 +1064,10 @@ You can also view the data via a menu option...
 		Select DDCS MAIN MENU Option: VIEW Discreet Data
 		Select DESTINATION FILE: **8925**  TIU DOCUMENT
 		Select TIU DOCUMENT: **`8054**  OB FOLLOWUP NOTE     AYS,SHTS     07-18-95     TITLE
-		  
+
 		===============================================================================
 		 CONTROLLED BY: 92;TIU(8925.1,
-				PUSHED: 
+				PUSHED:
 
 		 INTERFACE: 5;DSIO(19641.42,
 			SHARED: YES
@@ -1023,7 +1088,7 @@ You can also view the data via a menu option...
 				  ^HEADACHES
 
 
-		Enter RETURN to continue or '^' to exit: 
+		Enter RETURN to continue or '^' to exit:
 
 Accessing the Component Data in VistA
 -------------------------------------
@@ -1033,50 +1098,71 @@ You can configure your DSIO DDCS FORM CONFIGRATION to do something with your dat
 
 **APIs**
 
-$$ **IEN^DSIO62**(NAM)
-   Input: NAM (Name of the component)
- Return: IEN (IEN of the component entry in #19641.45)
+```Mumps
+$$IEN^DSIO62(NAM)
+```
+Input: NAM (Name of the component)
+Return: IEN (IEN of the component entry in #19641.45)
 
-$$ **GET1^DSIO62**(IEN)
-   Input: IEN (IEN of the component entry in #19641.45)
- Return: A single line of data including INDEX
+```Mumps
+$$GET1^DSIO62(IEN)
+```
+Input: IEN (IEN of the component entry in #19641.45)
+Return: A single line of data including INDEX
 
-$$ **EGET1^DSIO62**(NAM)
-   Input: NAM (Name of the component)
- Return: A single line of data excluding INDEX
+```Mumps
+$$EGET1^DSIO62(NAM)
+```
+Input: NAM (Name of the component)
+Return: A single line of data excluding INDEX
 
-$$ **TGET1^DSIO62**(NAM)
-   Input: NAM (Name of the component)
- Return: 1 (True) or 0 (False)
+```Mumps
+$$TGET1^DSIO62(NAM)
+```
+Input: NAM (Name of the component)
+Return: 1 (True) or 0 (False)
 
-$$ **LS^DSIO62**
-   Input:
- Return:
+```Mumps
+$$LS^DSIO62
+```
+Input:
+Return:
 
-**GETS^DSIO62**(RET,IEN)
-   Input: IEN (IEN of the component entry in #19641.45)
- Return: Array of data including INDEX
+```Mumps
+GETS^DSIO62(RET,IEN)
+```
+Input: IEN (IEN of the component entry in #19641.45)
+Return: Array of data including INDEX
 
-**TXT^DSIO62**(RET,IEN)
-   Input: IEN (IEN of the component entry in #19641.45)
- Return: Array of data without INDEX
+```Mumps
+TXT^DSIO62(RET,IEN)
+```
+Input: IEN (IEN of the component entry in #19641.45)
+Return: Array of data without INDEX
 
-**WGETS^DSIO62**(RET,IEN)
-   Input: IEN (IEN of the component entry in #19641.45)
- Return: Array of data without INDEX
+```Mumps
+WGETS^DSIO62(RET,IEN)
+```
+Input: IEN (IEN of the component entry in #19641.45)
+Return: Array of data without INDEX
 
-$$ **CCLASS^DSIO62**(FORM,NAM)
-   Input: FORM (Variable Pointer Format of 19641.42 or 19641.49 record)
-   Input: NAM  (Name of the component)
- Return: IEN of DSIO DDCS CONTROLS (#19641.425) or 0
+```Mumps
+$$CCLASS^DSIO62(FORM,NAM)
+```
+Input: FORM (Variable Pointer Format of 19641.42 or 19641.49 record)
+Input: NAM  (Name of the component)
+Return: IEN of DSIO DDCS CONTROLS (#19641.425) or 0
 
-$$ **LIST^DSIO62**(FORM,NAM)
-   Input: FORM (Variable Pointer Format of 19641.42 or 19641.49 record)
-   Input: NAM  (Name of the component)
- Return: 1 (True) or 0 (False) to indicate if the class is marked as a list
+```Mumps
+$$LIST^DSIO62(FORM,NAM)
+```
+Input: FORM (Variable Pointer Format of 19641.42 or 19641.49 record)
+Input: NAM  (Name of the component)
+Return: 1 (True) or 0 (False) to indicate if the class is marked as a list
 
-$$ **CHECK^DSIO62**(RET,IEN)
-   Input: FORM (Variable Pointer Format of 19641.42 or 19641.49 record)
-   Input: NAM  (Name of the component)
- Return: 1 (True) or 0 (False) to indicate if the class is marked as a check
-
+```Mumps
+$$CHECK^DSIO62(RET,IEN)
+```
+Input: FORM (Variable Pointer Format of 19641.42 or 19641.49 record)
+Input: NAM  (Name of the component)
+Return: 1 (True) or 0 (False) to indicate if the class is marked as a check
