@@ -52,10 +52,6 @@
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
-    </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.3.2.1\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -191,7 +187,6 @@
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
     <Compile Include="NavigationRoutes\NamedRoute.cs" />
     <Compile Include="NavigationRoutes\NavigationExtensions.cs" />
-    <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\Text4BabyServiceReference\Reference.cs">
@@ -205,8 +200,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\Microsoft.Web.Mvc.dll" />
-    <Content Include="bin\Microsoft.Web.Mvc.FixedDisplayModes.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\NLog.dll" />
     <Content Include="bin\System.Web.Mvc.dll" />

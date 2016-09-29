@@ -23,7 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.mock", "va.g
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5E190408-37FC-451A-A883-C38E8A9DEF13}"
 	ProjectSection(SolutionItems) = preProject
-		..\.gitignore = ..\.gitignore
 		.gitignore = .gitignore
 		AssemblyVersionInfo.cs = AssemblyVersionInfo.cs
 		BuildProcessTemplates\DefaultTemplate.11.1.xaml = BuildProcessTemplates\DefaultTemplate.11.1.xaml

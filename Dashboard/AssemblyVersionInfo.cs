@@ -104,6 +104,7 @@
 // ***                       Only allow change if creating a note from "Add New Note" button 
 // ***                       Also, make sure the proper pregnancy is displayed once selected 
 // ***                   Update Text4Baby API passwords
+// ***                   Remove unneeded references to Microsoft.Web.MVC
 
 [assembly: AssemblyFileVersion("2.0.8.0")]
 
