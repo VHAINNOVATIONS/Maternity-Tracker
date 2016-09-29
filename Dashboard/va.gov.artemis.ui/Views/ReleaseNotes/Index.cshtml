@@ -342,7 +342,35 @@
             <td></td>
             <td>Correct import of EDD observations from APS document </td>
         </tr>
-    </tbody>
+        <tr>
+            <td class="centered-txt"><label class="label label-info">2.0.8</label></td>
+            <td class="centered-txt">9/29/2016</td>
+            <td><strong>This version of the dashboard is dependent upon KID build DSIO_2.KID</strong></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Show friendly message if an individual line within a note has more than 999 characters.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Correct the interim EDD by PE LOINC code so that the APS validates (xx-EDD-by-PE)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                Modify logic for pregnancy selection in a contact note:
+                <ul>
+                    <li>Don't allow change if completing a checklist item</li>
+                    <li>Don't allow change if note is already assocated with a pregnancy</li>
+                    <li>Only allow change if creating a note from "Add New Note" button</li>
+                    <li>Also, make sure the proper pregnancy is displayed once selected</li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
 </table>
 
 @section Navigation

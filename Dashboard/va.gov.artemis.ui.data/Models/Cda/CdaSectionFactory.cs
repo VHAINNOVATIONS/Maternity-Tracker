@@ -1300,7 +1300,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.Cda
                     case "OtherEdd":
                         
                         // *** Create EDD obs ***
-                        supportingObs.Code = new CdaCode() { Code = "xx-EDD-by-PE", CodeSystem = CodingSystem.Loinc, DisplayName = "EDD from Physician Exam" };
+                        supportingObs.Code = new CdaCode() { Code = EddUtility.IheOtherEDDCode, CodeSystem = CodingSystem.Loinc, DisplayName = "EDD from Physician Exam" };
                         string edd = EddUtility.GetEddFromGA(valPiece1, valPiece3);
                         supportingObs.Value = VistaDates.ParseDateString(edd, VistaDates.VistADateOnlyFormat);
 
@@ -1325,7 +1325,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.Cda
                     case EddUtility.EddCode: // "11778-8": // EDD 
 
                         // *** Create EDD obs ***
-                        supportingObs.Code = new CdaCode() { Code = "xx-EDD-by-PE", CodeSystem = CodingSystem.Loinc, DisplayName = "EDD from Physician Exam" };
+                        supportingObs.Code = new CdaCode() { Code = EddUtility.IheOtherEDDCode, CodeSystem = CodingSystem.Loinc, DisplayName = "EDD from Physician Exam" };
                         supportingObs.Value = VistaDates.ParseDateString(valPiece1, VistaDates.VistADateOnlyFormat);
 
                         break; 
@@ -1334,7 +1334,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.Cda
 
                         EddItemType itemType = EddUtility.GetItemType(tempObs.Code);
 
-                        supportingObs.Code = new CdaCode() { Code = "xx-EDD-by-PE", CodeSystem = CodingSystem.Loinc, DisplayName = "EDD from Physician Exam" };
+                        supportingObs.Code = new CdaCode() { Code = EddUtility.IheOtherEDDCode, CodeSystem = CodingSystem.Loinc, DisplayName = "EDD from Physician Exam" };
                         string edd2 = EddUtility.GetEddFromDate(itemType, valPiece1);
                         supportingObs.Value = VistaDates.ParseDateString(edd2, VistaDates.VistADateOnlyFormat);
 

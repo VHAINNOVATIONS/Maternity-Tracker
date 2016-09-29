@@ -234,6 +234,9 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Notes
                 returnResult.Success = (response.Status == RpcResponseStatus.Success);
                 returnResult.Message = response.InformationalMessage;
 
+                if (response.InformationalMessage.Equals("Unable to assemble XWB broker message: Attempted to L-Pack a string longer than 999 characters.", StringComparison.CurrentCultureIgnoreCase))
+                    returnResult.Message = "Individual lines within a note must be less than 1000 characters.";
+
                 if (returnResult.Success)
                     returnResult.Ien = command.Ien; 
             }
@@ -353,8 +356,10 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Notes
                 RpcResponse response = command.Execute();
 
                 result.Success = (response.Status == RpcResponseStatus.Success);
-                result.Message = response.InformationalMessage; 
+                result.Message = response.InformationalMessage;
 
+                if (response.InformationalMessage.Equals("Unable to assemble XWB broker message: Attempted to L-Pack a string longer than 999 characters.", StringComparison.CurrentCultureIgnoreCase))
+                    result.Message = "Individual lines within a note must be less than 1000 characters.";
             }
 
             return result; 
@@ -375,6 +380,8 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Notes
                 returnResult.Success = (response.Status == RpcResponseStatus.Success);
                 returnResult.Message = response.InformationalMessage;
 
+                if (response.InformationalMessage.Equals("Unable to assemble XWB broker message: Attempted to L-Pack a string longer than 999 characters.", StringComparison.CurrentCultureIgnoreCase))
+                    returnResult.Message = "Individual lines within a note must be less than 1000 characters.";
             }
 
             return returnResult;             

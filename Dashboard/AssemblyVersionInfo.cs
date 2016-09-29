@@ -93,7 +93,17 @@
 // ***                   Use ExamDate, which maps to Date in Vista, for flowsheet observations in APS
 // ***                   Make sure APS flowsheet observations are sorted by exam date
 // ***                   Correct import of EDD observations from APS document 
-// *** 09/14/2016 2.0.8  Mods for making public + adding to GitHub 
+// *** 09/14/2016 2.0.8  This release is dependent upon KID build DSIO 2
+// ***                   Mods for making public + adding to GitHub
+// ***                   Solution moved to VS 2015
+// ***                   Show friendly message if an individual line within a note has more than 999 characters. 
+// ***                   Correct the interim EDD by PE LOINC code so that the APS validates (xx-EDD-by-PE)
+// ***                   Modify logic for pregnancy selection in a contact note. 
+// ***                       Don't allow change if completing a checklist item 
+// ***                       Don't allow change if note is already assocated with a pregnancy 
+// ***                       Only allow change if creating a note from "Add New Note" button 
+// ***                       Also, make sure the proper pregnancy is displayed once selected 
+// ***                   Update Text4Baby API passwords
 
 [assembly: AssemblyFileVersion("2.0.8.0")]
 

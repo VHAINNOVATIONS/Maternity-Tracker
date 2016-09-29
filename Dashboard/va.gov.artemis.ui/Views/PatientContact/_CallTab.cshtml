@@ -118,9 +118,18 @@
     <script>
         $(document).ready(function () {
 
+            if (($("#NoteIen").val() != null &&
+                $("#NoteIen").val() != '') ||
+                (($("#ChecklistIen").val() != null &&
+                $("#ChecklistIen").val() != '')))
+                $("#PregnancyIen").attr("disabled", "disabled"); 
+            else
+                $("#PregnancyIen").removeAttr("disabled");
+
             $(".btn-submit").click(function () {
                 $("#NavigateToTab").val($(this).attr("data-nav"));
                 $("#DeleteNote").val($(this).attr("data-delete"));
+                $("#PregnancyIen").removeAttr("disabled");
                 $("#tab-form").submit();
             });
 

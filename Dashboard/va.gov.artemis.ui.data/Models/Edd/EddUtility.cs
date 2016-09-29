@@ -38,7 +38,9 @@ namespace VA.Gov.Artemis.UI.Data.Models.Edd
         public const string EddCodeDescription = "Estimated Delivery Date"; 
         public const string EddCode = "11778-8"; 
 
-        public const string EddFromLMPDescription = "Delivery Date Estimated From Last Menstrual Period"; 
+        public const string EddFromLMPDescription = "Delivery Date Estimated From Last Menstrual Period";
+
+        public const string IheOtherEDDCode = "(xx-EDD-by-PE)"; 
 
         public static string GetFormattedGestationalAge(string totalDays)
         {

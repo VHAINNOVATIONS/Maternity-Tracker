@@ -1165,34 +1165,55 @@ namespace VA.Gov.Artemis.UI.Controllers
                 // *** Get the appropriate model for this tab **
                 CallTabBase tempModel = this.GetNewTabModel(template, index);
 
+                List<PregnancyDetails> pregList = new List<PregnancyDetails>(); 
+
                 // *** Populate model if data exists ***
                 if (!string.IsNullOrWhiteSpace(noteIen))
                 {
                     tempModel.NoteIen = noteIen;
-
+                    
                     tempModel = this.AddNoteData(tempModel);
 
-                    tempModel.PregnancyIen = this.GetPregnancyIen(noteIen); 
+                    tempModel.PregnancyIen = this.GetPregnancyIen(noteIen);
+
+                    tempModel.ChecklistIen = checklistIen; 
 
                     // *** Load ob/l&d from current pregnancy ***
                     if (tab == MccPatientCallTab.VACoverage)
                         LoadNonVA(tempModel);
                 }
+                else if (!string.IsNullOrWhiteSpace(checklistIen))
+                {
+                    // *** Add checklist ien ***
+                    tempModel.ChecklistIen = checklistIen;
 
-                // *** Add checklist ien ***
-                tempModel.ChecklistIen = checklistIen;
+                    // *** Get preg belonging to checklist ***
+                    PregnancyChecklistItemResult checkResult = this.DashboardRepository.Checklist.GetPregnancyItem(this.CurrentPatientDfn, checklistIen);
 
-                // *** Get a list of pregnancies ***
-                List<PregnancyDetails> pregList = PregnancyUtilities.GetPregnancies(this.DashboardRepository, this.CurrentPatientDfn);
+                    if (checkResult.Success)
+                        tempModel.PregnancyIen = checkResult.Item.PregnancyIen;
+                }
+
+                if (!string.IsNullOrWhiteSpace(tempModel.PregnancyIen))
+                {
+                    // *** Get the pregnancy associated with the note ***
+                    PregnancyDetails pregDetail = PregnancyUtilities.GetPregnancy(this.DashboardRepository, this.CurrentPatientDfn, tempModel.PregnancyIen);
+
+                    if (pregDetail != null)
+                        pregList.Add(pregDetail);
+                }
+                else  // *** Get a list of pregnancies ***
+                    pregList = PregnancyUtilities.GetPregnancies(this.DashboardRepository, this.CurrentPatientDfn);
 
                 // *** Get pregnancy selection dictionary ***
                 tempModel.Pregnancies = PregnancyUtilities.GetPregnanciesSelection(pregList, false);
-
-                // *** Default to current pregnancy ***
-                if (string.IsNullOrWhiteSpace(noteIen))
-                    foreach (PregnancyDetails preg in pregList)
-                        if (preg.RecordType == PregnancyRecordType.Current)
-                            tempModel.PregnancyIen = preg.Ien;
+                
+                // *** Default to current pregnancy if we don't have one already ***
+                if (string.IsNullOrWhiteSpace(tempModel.PregnancyIen))
+                    if (string.IsNullOrWhiteSpace(noteIen))
+                        foreach (PregnancyDetails preg in pregList)
+                            if (preg.RecordType == PregnancyRecordType.Current)
+                                tempModel.PregnancyIen = preg.Ien;
 
                 // *** Temporarily place in TempData ***
                 this.TempData["tabModel"] = tempModel;

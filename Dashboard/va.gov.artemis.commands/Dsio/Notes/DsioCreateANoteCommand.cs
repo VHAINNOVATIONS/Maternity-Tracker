@@ -39,48 +39,51 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
 
         protected override void ProcessResponse()
         {
-            // TODO: Use base class processing...
+            //if (string.IsNullOrWhiteSpace(this.Response.Data))
+            //{
+            //    this.Response.Status = RpcResponseStatus.Fail;
+            //    this.Response.InformationalMessage = "No return value";
+            //}
+            //else
+            //{                
+            //    string piece1 = Util.Piece(this.Response.Lines[0], Caret, 1);
+            //    string piece2 = Util.Piece(this.Response.Lines[0], Caret, 2);
 
-            if (string.IsNullOrWhiteSpace(this.Response.Data))
+            //    char[] chars = piece1.ToCharArray();
+
+            //    if ((int)chars[0] == 24)
+            //    {
+            //        this.Response.Status = RpcResponseStatus.Fail;
+            //        this.Response.InformationalMessage = "An internal error has occurred";
+            //        ErrorLogger.Log(string.Format("M Error Calling RPC '{0}': {1}", this.RpcName, this.Response.Data)); 
+            //    }
+            //    else if (chars[0].ToString() == "0") 
+            //    {
+            //        this.Response.Status = RpcResponseStatus.Fail;
+            //        this.Response.InformationalMessage = piece2;
+            //    }
+            //    else 
+            //    {
+            //        switch (piece1)
+            //        {
+            //            case "-1":
+            //            case "0":
+            //                this.Response.Status = RpcResponseStatus.Fail;
+            //                this.Response.InformationalMessage = piece2;
+            //                break;
+            //            default:
+            //                this.Ien = piece1;
+            //                this.Response.Status = RpcResponseStatus.Success;
+            //                break;
+            //        }
+            //    }
+            //}
+
+            if (this.ProcessSaveResponse())
             {
-                this.Response.Status = RpcResponseStatus.Fail;
-                this.Response.InformationalMessage = "No return value";
+                this.Ien = Util.Piece(this.Response.Lines[0], Caret, 1);
+                this.Response.Status = RpcResponseStatus.Success;
             }
-            else
-            {                
-                string piece1 = Util.Piece(this.Response.Lines[0], Caret, 1);
-                string piece2 = Util.Piece(this.Response.Lines[0], Caret, 2);
-                                
-                char[] chars = piece1.ToCharArray();
-
-                if ((int)chars[0] == 24)
-                {
-                    this.Response.Status = RpcResponseStatus.Fail;
-                    this.Response.InformationalMessage = "An internal error has occurred";
-                    ErrorLogger.Log(string.Format("M Error Calling RPC '{0}': {1}", this.RpcName, this.Response.Data)); 
-                }
-                else if (chars[0].ToString() == "0") 
-                {
-                    this.Response.Status = RpcResponseStatus.Fail;
-                    this.Response.InformationalMessage = piece2;
-                }
-                else 
-                {
-                    switch (piece1)
-                    {
-                        case "-1":
-                        case "0":
-                            this.Response.Status = RpcResponseStatus.Fail;
-                            this.Response.InformationalMessage = piece2;
-                            break;
-                        default:
-                            this.Ien = piece1;
-                            this.Response.Status = RpcResponseStatus.Success;
-                            break;
-                    }
-                }
-            }
-          
         }
 
     }
