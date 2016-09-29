@@ -1,7 +1,25 @@
+# DDCS - Delphi Extensions
+# ========================
 *.dcu
 *.VA508
 *.stat
 *.identcache
+*.mes
+*.tvsconfig
+
+# DDCS - Files and Directories
+# ============================
+/DDCS/_group/ProjectGroupAOE.groupproj
+/DDCS/_group/ProjectGroupAOE.groupproj.local
+_lib
+_images
+_help
+__history
+__recovery
+
+# Other Directories
+# =================
+_obsolete
 
 # Windows image file caches
 Thumbs.db
@@ -47,18 +65,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 Win32
-__history
-_lib
-_images
-_help
-ProjectGroupAOE.groupproj.local
-__history
-ProjectGroupAOE.groupproj
-__recovery
-_obsolete
-
-*.mes
-*.tvsconfig
 
 # Skip file types for dashboard 
 *.pdb

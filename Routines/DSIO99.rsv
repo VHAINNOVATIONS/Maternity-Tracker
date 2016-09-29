@@ -1,13 +1,11 @@
-Routine DSIO99 saved using VFDXTRS routine on Sep 07, 2016 11:39
-DSIO99^INT^64168,40500^Sep 07, 2016@11:15
+Routine DSIO99 saved using VFDXTRS routine on Sep 19, 2016 11:55
+DSIO99^INT^64180,41249^Sep 19, 2016@11:27
 DSIO99 ;DSS/TFF - DSIO IMPORT/EXPORT TIU TITLES;08/26/2016 16:00
  ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
  ; $$MIXED^TIULS
- ;
- ;
  ;
  ; CLINICAL DOCUMENTS (CL)
  ;  +PROGRESS NOTES (CL)
@@ -31,7 +29,7 @@ UPDATE ; Start Auto Configuration
  S DIK="^DSIO(19641.4," D IXALL^DIK    ; REINDEX SET
  Q
  ;
-ADD44() ; Add MATERNITY TRACKER as a HOSIPITAL LOCATION
+ADD44() ; Select a HOSIPITAL LOCATION for MATERNITY TRACKER
  N DIR,X,Y,DIRUT
  W !,"Choose your Maternity Tracker hospital location. All TIU notes created via the"
  W !,"dashboard will use this hospital location.",!

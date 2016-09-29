@@ -31,7 +31,6 @@ Type
     FConfiguration: TConfigCollection;
     FReportCollection: TDDCSNoteCollection;
     FReturnList: TStringList;
-    FDebugMode: Boolean;
     FIEN: string;
     FScreenReader: IJawsApi;
     procedure SetConfigCollection(const Value: TConfigCollection);
@@ -49,11 +48,8 @@ Type
     procedure SayOnFocus(wControl: TWinControl; tSay: string);
     procedure BuildSaveList(var oText: TStringList);
     property TmpStrList: TStringList read FReturnList write FReturnList;
-    property DebugMode: Boolean read FDebugMode write FDebugMode;
-    property IEN: string read FIEN write FIEN;
     property Configuration: TConfigCollection read FConfiguration write SetConfigCollection;
     property ScreenReader: IJawsApi read FScreenReader;
-  published
     property ReportCollection: TDDCSNoteCollection read FReportCollection write SetNoteCollection;
   end;
 
@@ -165,7 +161,6 @@ begin
   inherited Create(nil);
 
   RPCBrokerV := nil;
-  FDebugMode := True;
   FIEN := '';
 
   FReturnList := TStringList.Create;
@@ -229,7 +224,6 @@ begin
   if Broker <> nil then
     RPCBrokerV := Broker^;
 
-  FDebugMode := DebugMode;
   FIEN := sIEN;
 
   FReturnList := TStringList.Create;
@@ -250,7 +244,7 @@ begin
     try
       if UpdateContext(MENU_CONTEXT) then
       begin
-        dl.Add(IEN + ';DSIO(19641.49,');
+        dl.Add(FIEN + ';DSIO(19641.49,');
         tCallV(sl, 'DSIO DDCS BUILD FORM', [dl, RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN]);
 
         for I := 0 to sl.Count - 1 do

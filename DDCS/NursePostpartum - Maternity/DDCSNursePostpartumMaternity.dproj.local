@@ -6,23 +6,25 @@
     <Transaction>2016/02/16 09:34:01.000.827,=C:\Users\DSSDeveloper\Desktop\Projects\_lib\CPRSChart_TLB.pas</Transaction>
     <Transaction>2016/02/16 09:34:01.000.860,=C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.pas</Transaction>
     <Transaction>2016/02/16 09:34:01.000.883,=C:\Users\DSSDeveloper\Desktop\Projects\_lib\uHelpManager.pas</Transaction>
-    <Transaction>2016/02/16 09:34:58.000.777,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\test\NursePospartumMaternity.dproj=C:\Users\DSSDeveloper\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2016/02/16 09:39:52.000.588,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\NursePospartumMaternity.dproj=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\new.dproj</Transaction>
-    <Transaction>2016/02/16 09:41:01.000.887,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\new.dproj=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\NursePostpartumMaternity.dproj</Transaction>
-    <Transaction>2016/02/17 12:44:00.000.550,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\NursePostpartumMaternity.dproj=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj</Transaction>
-    <Transaction>2016/02/17 14:11:10.000.480,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\OBHP Base\fBase508Form.pas=C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.pas</Transaction>
-    <Transaction>2016/02/17 14:11:10.000.480,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\OBHP Base\fBase508Form.dfm=C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.dfm</Transaction>
+    <Transaction>2016/02/16 09:34:58.000.777,C:\Users\DSSDeveloper\Documents\RAD Studio\Projects\Project1.dproj=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\test\NursePospartumMaternity.dproj</Transaction>
+    <Transaction>2016/02/16 09:39:52.000.588,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\new.dproj=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\NursePospartumMaternity.dproj</Transaction>
+    <Transaction>2016/02/16 09:41:01.000.887,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\NursePostpartumMaternity.dproj=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\new.dproj</Transaction>
+    <Transaction>2016/02/17 12:44:00.000.550,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\NursePostpartumMaternity.dproj</Transaction>
+    <Transaction>2016/02/17 14:11:10.000.480,C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.dfm=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\OBHP Base\fBase508Form.dfm</Transaction>
+    <Transaction>2016/02/17 14:11:10.000.480,C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.pas=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\OBHP Base\fBase508Form.pas</Transaction>
     <Transaction>2016/02/17 15:49:17.000.925,C:\Users\DSSDeveloper\Desktop\Projects\_lib\uHelpManager.pas=</Transaction>
     <Transaction>2016/02/17 15:49:41.000.854,=C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.pas</Transaction>
     <Transaction>2016/02/17 15:49:42.000.000,=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\Unit1.pas</Transaction>
     <Transaction>2016/02/17 15:55:07.000.766,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\NursePostartumMaternity.pas=</Transaction>
-    <Transaction>2016/02/17 15:55:29.000.456,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\frmMain.pas=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\Unit1.pas</Transaction>
-    <Transaction>2016/02/17 15:55:29.000.456,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\frmMain.dfm=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\Unit1.dfm</Transaction>
+    <Transaction>2016/02/17 15:55:29.000.456,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\Unit1.dfm=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\frmMain.dfm</Transaction>
+    <Transaction>2016/02/17 15:55:29.000.456,C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\Unit1.pas=C:\Users\DSSDeveloper\Desktop\Projects\DDCS\NursePostpartum - Maternity\frmMain.pas</Transaction>
     <Transaction>2016/03/30 17:13:18.000.438,=C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.pas</Transaction>
     <Transaction>2016/04/06 16:32:17.000.872,C:\Users\DSSDeveloper\Desktop\Projects\_lib\fBase508Form.pas=</Transaction>
-    <Transaction>2016/09/12 11:18:16.797,=C:\Users\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf</Transaction>
+    <Transaction>2016/09/12 11:18:16.000.797,=C:\Users\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="frmMain.pas"/>
+    <File Path="frmMain.dfm"/>
     <File Path="C:\Users"/>
     <File Path="..\..\..\..\..\..\Public"/>
     <File Path="..\..\..\..\..\..\Public\Documents"/>
@@ -31,7 +33,5 @@
     <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0"/>
     <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles"/>
     <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf"/>
-    <File Path="frmMain.pas"/>
-    <File Path="frmMain.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>
