@@ -267,7 +267,3 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 
-/va.gov.artemis.ui/Controllers/AccountControllerPrivate.cs
-/va.gov.artemis.commands.tests/App.Private.config
-/va.gov.artemis.ui/Web.Debug.config
-/va.gov.artemis.vista/Utility/VistaHashPrivate.cs
