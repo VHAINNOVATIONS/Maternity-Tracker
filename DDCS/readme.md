@@ -1483,15 +1483,15 @@ The example use of this functionality is while using TIU Notes. You can set up t
 
 ```
   #Note 1 = RESTORE AS = ""
-	#Note 2 = RESTORE AS = #Note 1
-	#Note 3 = RESTORE AS = #Note 2
+  #Note 2 = RESTORE AS = #Note 1
+  #Note 3 = RESTORE AS = #Note 2
 ```
 
 Since each note is using the same program and the same configuration this means that it can restore the data elements of its current configuration by pulling in the values saved to the same components using the configuration set as RESTORE AS.
 
 ```
   #Note 1 = COMPONENT1 = "Test Text" (Saved and Completed)
-	#Note 2 = COMPONENT1 = "Test Text" (Start Up/Creation - Get values to components matching components in #Note 1)
-	#Note 3 = COMPONENT1 = "Test Text" (Start Up/Creation - Get values to components matching components in #Note 2)
+  #Note 2 = COMPONENT1 = "Test Text" (Start Up/Creation - Get values to components matching components in #Note 1)
+  #Note 3 = COMPONENT1 = "Test Text" (Start Up/Creation - Get values to components matching components in #Note 2)
 ```
 *If you change the value of COMPONENT1 in #Note 2 save and complete then that value will be restored in #Note 3.*
