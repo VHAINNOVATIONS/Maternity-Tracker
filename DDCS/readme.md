@@ -1339,16 +1339,16 @@ The configuration file points to the DSIO DDCS REPORT ITEMS (#19641.401) file wh
 
 When writing a routine (or sub rotuine) for PUSH you can expect the following variables...
 
-| Variable    | What it is       |
-|--------------------------------|
-| **DDCSC**   | CONTROL          |
-| **DDCSR**   | RECORD           |
-| **SIEN**    | DESTINATION IEN  |
-| **DDCSFLE** | DESTINATION FILE |
-| **DFN**     | PATIENT          |
-| **DDCSFRM** | INTERFACE/FORM   |
-| **DDCSE**   | ELEMENT IEN      |
-| **DDCSEN**  | ELEMENT NAME     |
+Variable    | What it is       
+----------- | ----------------
+**DDCSC**   | CONTROL
+**DDCSR**   | RECORD
+**SIEN**    | DESTINATION IEN
+**DDCSFLE** | DESTINATION FILE
+**DFN**     | PATIENT
+**DDCSFRM** | INTERFACE/FORM
+**DDCSE**   | ELEMENT IEN
+**DDCSEN**  | ELEMENT NAME
 
 *Example PUSH (AS A WHOLE) for a TDDCSForm*
 
