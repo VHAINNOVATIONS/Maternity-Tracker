@@ -177,7 +177,7 @@ The TDDCSForm inherits from TPageControl so anything you can do with a PageContr
 However, do **NOT** change the following properties...
 
 Property   |  Value
---         |--
+---------- | -----------
 Align      |  alClient
 TabStop    |  False
 TabOrder   |  0
@@ -375,13 +375,13 @@ The TDDCSVitals frame is embedded in a TTabSheet of a TDDCSForm component. It wi
 The following are its pages...
 
 1. **Vitals**</br>
-> ![Vitals Page One](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/VitalsPg1.png)</br>
+![Vitals Page One](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/VitalsPg1.png)</br>
 2. **Estimated Delivery Date**</br>
-> ![Vitals Page Two](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/VitalsPg2.png)</br>
-> This page is only visible for female patients.</br>
+![Vitals Page Two](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/VitalsPg2.png)</br>
+This page is only visible for female patients.</br>
 3. **Menstrual History**</br>
-> ![Vitals Page Three](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/VitalsPg3.png)</br>
-> This page is only visible for female patients.
+![Vitals Page Three](https://github.com/VHAINNOVATIONS/Maternity-Tracker/tree/master/Documentation/VitalsPg3.png)</br>
+This page is only visible for female patients.
 
 ---
 
@@ -842,9 +842,6 @@ This is just like the ReportCollection owned by TDDCSForm. When a dialog is crea
 Configuring your Form
 =====================
 Before you are able to run your project you will first have to do some setup to link it to VistA.
-
-Set Up
-------
 
 **Parameter**
 ---
@@ -1331,8 +1328,9 @@ The configuration file points to the DSIO DDCS REPORT ITEMS (#19641.401) file wh
 |     +-- _PUSH (AS A WHOLE) (#.04) = P19641.401
 ```
 
-#19641.401
 ```
+ #19641.401
+ --------------------------
  .01       NAME
  .02       INACTIVE
  1         INPUT TRANSFORM
