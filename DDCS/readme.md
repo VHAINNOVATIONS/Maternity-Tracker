@@ -94,7 +94,7 @@ Add the Windows10 theme to your project. This step is optional and at the time o
 
 Select the "Project" option and under it select "Resources and Images...". Then select "Add..." and navigate to the theme .vsf file resource you wish to add (mine were located at C:\Users\Public\Documents\Embarcadero\Studio\17.0\Styles\). Once added, set the type to VCLSTYLE and set the identifier to Resource_1 for the first one and just incrememt the number for each additional entry.
 
-![Resource Theme](/_images/Resource_Theme.png)
+![Resource Theme](/Documentation/readme_images/Resource_Theme.png)
 
 Adding Components to the Form
 --------------------------------------
@@ -121,13 +121,13 @@ Now that we have the base form built we'll want to add some components to it - m
 
 **Form with Components**
 
-![Form with Components](/_images/FormWithComponents.pgn)
+![Form with Components](/Documentation/readme_images/FormWithComponents.pgn)
 
 When you add a component to the TabSheet it will be added to your DDCSForm ReportCollection (the ReportCollection is used to build the note).
 
 **ReportCollection**
 
-![ReportCollection](/_images/ReportCollection.png)
+![ReportCollection](/Documentation/readme_images/ReportCollection.png)
 
 For the ReportItem for your newly added component you can set the following fields and this is what they do/are for.
 
@@ -374,12 +374,12 @@ The TDDCSVitals frame is embedded in a TTabSheet of a TDDCSForm component. It wi
 The following are its pages...
 
 1. **Vitals**</br>
-![Vitals Page One](/_images/VitalsPg1.png)</br>
+![Vitals Page One](/Documentation/DDCSVitals/V1.png)</br>
 2. **Estimated Delivery Date**</br>
-![Vitals Page Two](/_images/VitalsPg2.png)</br>
+![Vitals Page Two](/Documentation/DDCSVitals/V2.png)</br>
 This page is only visible for female patients.</br>
 3. **Menstrual History**</br>
-![Vitals Page Three](/_images/VitalsPg3.png)</br>
+![Vitals Page Three](/Documentation/DDCSVitals/V3.png)</br>
 This page is only visible for female patients.
 
 ---
@@ -859,7 +859,7 @@ The DSIO DDCS LOCATION parameter is required as it and the configuration file ne
 
 In Windows, open the command prompt as an administrator and navigate to the COM Object that is located on the workstation that is accessing the DDCS Form Templates/oCNTs. Once your terminal is pointing to the same directory in which your COM resides run the command “regsvr32 DDCSFormBuilder.dll” without quotes.
 
-![Image](/_images/COM_regsvr32.png)
+![Image](/Documentation/readme_images/COM_regsvr32.png)
 
 If this is your first time using COM Object with CPRS then you may have to also register CPRS. To do this repeat the steps above but navigate to the location of the CPRS executable and run the command "CPRSChart /register" without quotes.
 
@@ -1032,11 +1032,11 @@ Before running your program you need to first assign yourself the **DSIO DDCS CO
 
 Now, you should be able to launch your program and when you do the first thing you need to do is navigate to the Command Menu select the "Edit Configuration" option and run "Update All". Follow the images below...
 
-![Command Menu Button Location](/_images/CommandMenu.png)
+![Command Menu Button Location](/Documentation/readme_images/CommandMenu.png)
 
-![Command Menu Options](/_images/CommandMenuOptions.png)
+![Command Menu Options](/Documentation/readme_images/CommandMenuOptions.png)
 
-![Configuration & Reporting](/_images/ConfigurationUpdateAll.png)
+![Configuration & Reporting](/Documentation/readme_images/ConfigurationUpdateAll.png)
 
 What you just did was to populate your DSIO DDCS FORM CONFIGURATION (#19641.42) entry will all the components controlled by TDDCSForm and the properties set for their associated ReportItem.
 
