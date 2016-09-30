@@ -121,7 +121,7 @@ Now that we have the base form built we'll want to add some components to it - m
 
 **Form with Components**
 
-![Form with Components](/Documentation/readme_images/FormWithComponents.pgn)
+![Form with Components](/Documentation/readme_images/FormWithComponents.png)
 
 When you add a component to the TabSheet it will be added to your DDCSForm ReportCollection (the ReportCollection is used to build the note).
 
@@ -377,10 +377,10 @@ The following are its pages...
 ![Vitals Page One](/Documentation/DDCSVitals/V1.png)</br>
 2. **Estimated Delivery Date**</br>
 ![Vitals Page Two](/Documentation/DDCSVitals/V2.png)</br>
-This page is only visible for female patients.</br>
+*This page is only visible for female patients.</br>*
 3. **Menstrual History**</br>
 ![Vitals Page Three](/Documentation/DDCSVitals/V3.png)</br>
-This page is only visible for female patients.
+*This page is only visible for female patients.*
 
 ---
 
