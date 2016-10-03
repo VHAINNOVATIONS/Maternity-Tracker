@@ -1040,6 +1040,20 @@ Now, you should be able to launch your program and when you do the first thing y
 
 What you just did was to populate your DSIO DDCS FORM CONFIGURATION (#19641.42) entry will all the components controlled by TDDCSForm and the properties set for their associated ReportItem.
 
+Configuration of Components
+===========================
+Form components can be configurated in VistA to populate when the form is created. For example, a TCheckListBox can have the DIALOGS multiple (#19641.42113) populated so that when the component is built it will include a list of all added dialog (#19641.49) display names so that when they are double clicked they will launch the dialog. Likewise, the CONFIGURATION VALUE(S) multiple (#19641.42112) can be populated to just show a list of items and if you needed to get information that wasn't static you can set the RUN ROUTINE field (#4) to run a routine to set an array to populate the component.
+
+Configuration Order...
+  1. RUN ROUTINE
+  2. Dialogs
+  3. Free Text
+
+*The routine (or sub-routine) being called needs to set @RET @DDCSCT where DDCSCT is incremented. In the example below LN is the item to populate in the component.*
+```Mumps
+S @RET@(DDCSCT)=LN,DDCSCT=DDCSCT+1
+```
+
 Saving Data
 ===========
 When the TDDCSForm saves data it saves it down to DSIO DDCS DATA (#19641.41) under the soft variable pointer that's built from the DSIO DDCS CONTROL (#19641.4) DESTINATION FILE field and the IEN of the entry passed in via the program. All components on your form that have a ReportItem and are not set to DoNotSave = TRUE will exist here as pointers to a record of the object in DSIO DDCS ELEMENT (#19641.45). When the note is saved again these entries are updated.
@@ -1338,7 +1352,7 @@ The configuration file points to the DSIO DDCS REPORT ITEMS (#19641.401) file wh
 
 When writing a routine (or sub rotuine) for PUSH you can expect the following variables...
 
-Variable    | What it is       
+Variable    | What it is
 ----------- | ----------------
 **DDCSC**   | CONTROL
 **DDCSR**   | RECORD
