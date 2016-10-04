@@ -1491,8 +1491,8 @@ GENETI ; Genetic Screening
  Q
 ```
 
-Transfering Data from one form to Retore to Another
----------------------------------------------------
+Transfering Data from one form to Restore to Another
+----------------------------------------------------
 The example use of this functionality is while using TIU Notes. You can set up the DSIO DDCS CONTROL (#19641.4) to control three different note titles that each have their own configuration (DSIO DDCS FORM CONFIGURATION #19641.42) which each call up the same FILENAME (#.05). In this case you can have all three records with the same starting values but two entries can restore (RESTORE AS #.06) from the configuration (pointer back to #19641.42) of another.
 
 ```
