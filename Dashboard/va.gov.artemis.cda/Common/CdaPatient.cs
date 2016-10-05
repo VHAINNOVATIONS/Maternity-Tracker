@@ -41,6 +41,8 @@ namespace VA.Gov.Artemis.CDA.Common
             returnPat.birthTime = new TS();
             if (this.DateOfBirth != DateTime.MinValue)
                 returnPat.birthTime.value = this.DateOfBirth.ToString("yyyyMMdd");
+            else
+                returnPat.birthTime.nullFlavor = "UNK"; 
 
             // *** Marital Status ***
             if (this.MaritalStatus != Hl7MaritalStatus.Unknown)

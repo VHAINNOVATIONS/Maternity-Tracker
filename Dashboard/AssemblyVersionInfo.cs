@@ -105,6 +105,7 @@
 // ***                       Also, make sure the proper pregnancy is displayed once selected 
 // ***                   Update Text4Baby API passwords
 // ***                   Remove unneeded references to Microsoft.Web.MVC
+// ***                   Ensure patient's date of birth uses a nullFlavor of "UNK" in the IHE documents
 
 [assembly: AssemblyFileVersion("2.0.8.0")]
 
