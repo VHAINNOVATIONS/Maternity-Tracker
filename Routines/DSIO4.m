@@ -1,7 +1,7 @@
-Routine DSIO4 saved using VFDXTRS routine on Sep 30, 2016 09:10
-DSIO4^INT^64180,40862^Sep 19, 2016@11:21
+Routine DSIO4 saved using VFDXTRS routine on Oct 13, 2016 17:20
+DSIO4^INT^64203,38327^Oct 12, 2016@10:38
 DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;08/26/2016 16:00
- ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
+ ;;2.0;DSIO 2.0;**1**;Aug 26, 2016;Build 1
  ;
  ;
  ;
@@ -86,14 +86,17 @@ TOTAL(DFN) ; Return TOTAL PREGNANCIES
  . . S FLG=FLG+1
  Q $S($G(FLG):FLG,1:"?")
  ;
-ABORT(DFN) ; Return Abortions, Terminations, and Ectopics
+ABORT(DFN,RET) ; Return Abortions, Terminations, and Ectopics
  N DATE,IEN,TYP,FLG Q:'$G(DFN) "?"
  S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
  . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
  . . S TYP=$$OT^DSIO03($P($G(^DSIO(19641.13,IEN,3)),U,6))
  . . Q:TYP'="SpontaneousAbortion"&(TYP'="PregnancyTermination")&(TYP'="Ectopic")
+ . . I $G(RET)="S" S:TYP="SpontaneousAbortion" FLG=FLG+1 Q
+ . . I $G(RET)="T" S:TYP="PregnancyTermination" FLG=FLG+1 Q
+ . . I $G(RET)="E" S:TYP="Ectopic" FLG=FLG+1 Q
  . . S FLG=FLG+1
- Q $S($G(FLG):FLG,1:"?")
+ Q $S($G(FLG):FLG,$D(RET):0,1:"?")
  ;
 STILL(DFN) ; Return STILLBIRTHS
  N DATE,IEN,BABY,OUT,FLG Q:'$G(DFN) "?"

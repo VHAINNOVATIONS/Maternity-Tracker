@@ -1,0 +1,676 @@
+KIDS Distribution saved on Mar 22, 2016@12:12:56
+DSIO*1.0*3
+**KIDS**:DSIO*1.0*3^
+
+**INSTALL NAME**
+DSIO*1.0*3
+"BLD",9897,0)
+DSIO*1.0*3^^0^3160322^n
+"BLD",9897,4,0)
+^9.64PA^^0
+"BLD",9897,6.3)
+2
+"BLD",9897,"KRN",0)
+^9.67PA^779.2^20
+"BLD",9897,"KRN",.4,0)
+.4
+"BLD",9897,"KRN",.401,0)
+.401
+"BLD",9897,"KRN",.402,0)
+.402
+"BLD",9897,"KRN",.403,0)
+.403
+"BLD",9897,"KRN",.5,0)
+.5
+"BLD",9897,"KRN",.84,0)
+.84
+"BLD",9897,"KRN",3.6,0)
+3.6
+"BLD",9897,"KRN",3.8,0)
+3.8
+"BLD",9897,"KRN",9.2,0)
+9.2
+"BLD",9897,"KRN",9.8,0)
+9.8
+"BLD",9897,"KRN",9.8,"NM",0)
+^9.68A^1^1
+"BLD",9897,"KRN",9.8,"NM",1,0)
+DSIO2^^0^B48819553
+"BLD",9897,"KRN",9.8,"NM","B","DSIO2",1)
+
+"BLD",9897,"KRN",19,0)
+19
+"BLD",9897,"KRN",19.1,0)
+19.1
+"BLD",9897,"KRN",101,0)
+101
+"BLD",9897,"KRN",409.61,0)
+409.61
+"BLD",9897,"KRN",771,0)
+771
+"BLD",9897,"KRN",779.2,0)
+779.2
+"BLD",9897,"KRN",870,0)
+870
+"BLD",9897,"KRN",8989.51,0)
+8989.51
+"BLD",9897,"KRN",8989.52,0)
+8989.52
+"BLD",9897,"KRN",8994,0)
+8994
+"BLD",9897,"KRN","B",.4,.4)
+
+"BLD",9897,"KRN","B",.401,.401)
+
+"BLD",9897,"KRN","B",.402,.402)
+
+"BLD",9897,"KRN","B",.403,.403)
+
+"BLD",9897,"KRN","B",.5,.5)
+
+"BLD",9897,"KRN","B",.84,.84)
+
+"BLD",9897,"KRN","B",3.6,3.6)
+
+"BLD",9897,"KRN","B",3.8,3.8)
+
+"BLD",9897,"KRN","B",9.2,9.2)
+
+"BLD",9897,"KRN","B",9.8,9.8)
+
+"BLD",9897,"KRN","B",19,19)
+
+"BLD",9897,"KRN","B",19.1,19.1)
+
+"BLD",9897,"KRN","B",101,101)
+
+"BLD",9897,"KRN","B",409.61,409.61)
+
+"BLD",9897,"KRN","B",771,771)
+
+"BLD",9897,"KRN","B",779.2,779.2)
+
+"BLD",9897,"KRN","B",870,870)
+
+"BLD",9897,"KRN","B",8989.51,8989.51)
+
+"BLD",9897,"KRN","B",8989.52,8989.52)
+
+"BLD",9897,"KRN","B",8994,8994)
+
+"BLD",9897,"QDEF")
+^^^^NO^^^^NO^^NO
+"BLD",9897,"QUES",0)
+^9.62^^
+"BLD",9897,"REQB",0)
+^9.611^^
+"MBREQ")
+0
+"QUES","XPF1",0)
+Y
+"QUES","XPF1","??")
+^D REP^XPDH
+"QUES","XPF1","A")
+Shall I write over your |FLAG| File
+"QUES","XPF1","B")
+YES
+"QUES","XPF1","M")
+D XPF1^XPDIQ
+"QUES","XPF2",0)
+Y
+"QUES","XPF2","??")
+^D DTA^XPDH
+"QUES","XPF2","A")
+Want my data |FLAG| yours
+"QUES","XPF2","B")
+YES
+"QUES","XPF2","M")
+D XPF2^XPDIQ
+"QUES","XPI1",0)
+YO
+"QUES","XPI1","??")
+^D INHIBIT^XPDH
+"QUES","XPI1","A")
+Want KIDS to INHIBIT LOGONs during the install
+"QUES","XPI1","B")
+NO
+"QUES","XPI1","M")
+D XPI1^XPDIQ
+"QUES","XPM1",0)
+PO^VA(200,:EM
+"QUES","XPM1","??")
+^D MG^XPDH
+"QUES","XPM1","A")
+Enter the Coordinator for Mail Group '|FLAG|'
+"QUES","XPM1","B")
+
+"QUES","XPM1","M")
+D XPM1^XPDIQ
+"QUES","XPO1",0)
+Y
+"QUES","XPO1","??")
+^D MENU^XPDH
+"QUES","XPO1","A")
+Want KIDS to Rebuild Menu Trees Upon Completion of Install
+"QUES","XPO1","B")
+NO
+"QUES","XPO1","M")
+D XPO1^XPDIQ
+"QUES","XPZ1",0)
+Y
+"QUES","XPZ1","??")
+^D OPT^XPDH
+"QUES","XPZ1","A")
+Want to DISABLE Scheduled Options, Menu Options, and Protocols
+"QUES","XPZ1","B")
+NO
+"QUES","XPZ1","M")
+D XPZ1^XPDIQ
+"QUES","XPZ2",0)
+Y
+"QUES","XPZ2","??")
+^D RTN^XPDH
+"QUES","XPZ2","A")
+Want to MOVE routines to other CPUs
+"QUES","XPZ2","B")
+NO
+"QUES","XPZ2","M")
+D XPZ2^XPDIQ
+"RTN")
+1
+"RTN","DSIO2")
+0^1^B48819553
+"RTN","DSIO2",1,0)
+DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;06/28/2013 15:19
+"RTN","DSIO2",2,0)
+ ;;1.0;DSIO 1.0;**1,2,3**;Feb 06, 2015;Build 2
+"RTN","DSIO2",3,0)
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+"RTN","DSIO2",4,0)
+ ;
+"RTN","DSIO2",5,0)
+ ; External References      DBIA#
+"RTN","DSIO2",6,0)
+ ; -------------------      -----
+"RTN","DSIO2",7,0)
+ ;
+"RTN","DSIO2",8,0)
+ ;
+"RTN","DSIO2",9,0)
+ ;
+"RTN","DSIO2",10,0)
+ Q
+"RTN","DSIO2",11,0)
+ ;
+"RTN","DSIO2",12,0)
+ ; --------------------------------- CODING -----------------------------------
+"RTN","DSIO2",13,0)
+ ;
+"RTN","DSIO2",14,0)
+ICODE(SYS,CD) ; Transform and lookup code (internal)
+"RTN","DSIO2",15,0)
+ Q:CD="@" CD
+"RTN","DSIO2",16,0)
+ N IEN,CODE,CK
+"RTN","DSIO2",17,0)
+ I SYS="LNC" D
+"RTN","DSIO2",18,0)
+ . S IEN=+CD,CK=$P(CD,"-",2)
+"RTN","DSIO2",19,0)
+ . I $$FIND1^DIC(95.3,,"A",IEN)&($$GET1^DIQ(95.3,IEN_",",15)=CK) D
+"RTN","DSIO2",20,0)
+ . . S CODE=IEN_";LAB(95.3,"
+"RTN","DSIO2",21,0)
+ I SYS="SCT" D
+"RTN","DSIO2",22,0)
+ . S IEN=$$FIND1^DIC(757.02,,"O",CD,"CODE") Q:'IEN
+"RTN","DSIO2",23,0)
+ . I $$GET1^DIQ(757.02,IEN_",",1)=CD D
+"RTN","DSIO2",24,0)
+ . . S CODE=IEN_";LEX(757.02,"
+"RTN","DSIO2",25,0)
+ Q $G(CODE)
+"RTN","DSIO2",26,0)
+ ;
+"RTN","DSIO2",27,0)
+DCODE(Y) ; Display Code
+"RTN","DSIO2",28,0)
+ N FLE S FLE=$TR($P(Y,"(",2),",","")
+"RTN","DSIO2",29,0)
+ I $P(Y,";",2)="LAB(95.3," S Y=$$GET1^DIQ(FLE,+Y_",",.01)
+"RTN","DSIO2",30,0)
+ E  I $P(Y,";",2)="LEX(757.02," S Y=$$GET1^DIQ(FLE,+Y_",",1)
+"RTN","DSIO2",31,0)
+ Q Y
+"RTN","DSIO2",32,0)
+ ;
+"RTN","DSIO2",33,0)
+SCODE(VP,IEN,FLE) ; Set the Code Type
+"RTN","DSIO2",34,0)
+ N TYP,IPT
+"RTN","DSIO2",35,0)
+ S TYP=$S($P(VP,";",2)="LAB(95.3,":"LNC",$P(VP,";",2)="LEX(757.02,":"SCT",1:"OTHER")
+"RTN","DSIO2",36,0)
+ S IPT(FLE,IEN_",",$S(FLE=19641.123:.03,FLE=19641.12:.07,1:""))=TYP
+"RTN","DSIO2",37,0)
+ D UPDATE^DIE(,"IPT")
+"RTN","DSIO2",38,0)
+ Q
+"RTN","DSIO2",39,0)
+ ;
+"RTN","DSIO2",40,0)
+LCODE(CODE,TYP,SOR) ; Log codes that are not found in DSIO CODES (19641.99)
+"RTN","DSIO2",41,0)
+ ; *** USED BY DSIO OBSERVATION
+"RTN","DSIO2",42,0)
+ N IPT,REASON,DLAYGO
+"RTN","DSIO2",43,0)
+ S DLAYGO=19641.99
+"RTN","DSIO2",44,0)
+ S IPT(19641.99,"+1,",.01)=$$NOW^XLFDT
+"RTN","DSIO2",45,0)
+ S IPT(19641.99,"+1,",.02)=CODE
+"RTN","DSIO2",46,0)
+ S IPT(19641.99,"+1,",.03)=TYP
+"RTN","DSIO2",47,0)
+ S IPT(19641.99,"+1,",.04)=DUZ
+"RTN","DSIO2",48,0)
+ S IPT(19641.99,"+1,",.05)=SOR
+"RTN","DSIO2",49,0)
+ S REASON=$S(TYP'="LNC"&(TYP'="SCT"):"Type is not LOINC or SNOMED CT.",1:"Unable to find code as "_TYP_".")
+"RTN","DSIO2",50,0)
+ S IPT(19641.99,"+1,",.06)=REASON
+"RTN","DSIO2",51,0)
+ D UPDATE^DIE(,"IPT")
+"RTN","DSIO2",52,0)
+ Q
+"RTN","DSIO2",53,0)
+ ;
+"RTN","DSIO2",54,0)
+ ; --------------------------------- UTILITIES --------------------------------
+"RTN","DSIO2",55,0)
+ ;
+"RTN","DSIO2",56,0)
+WITHIN(SUB,WOLE,DL) ; Is a string within another
+"RTN","DSIO2",57,0)
+ ; WOLE IS DELIMITED BY CARET
+"RTN","DSIO2",58,0)
+ N CT,FLG S:'$D(DL) DL=U
+"RTN","DSIO2",59,0)
+ F CT=1:1:$L(WOLE,DL) I $P(WOLE,DL,CT)=SUB S FLG=1
+"RTN","DSIO2",60,0)
+ Q +$G(FLG)
+"RTN","DSIO2",61,0)
+ ;
+"RTN","DSIO2",62,0)
+FORMAT(X) ; -- enforce (xxx)xxx-xxxx phone format
+"RTN","DSIO2",63,0)
+ S X=$G(X) I X?1"("3N1")"3N1"-"4N.E Q X
+"RTN","DSIO2",64,0)
+ N P,N,I,Y S P=""
+"RTN","DSIO2",65,0)
+ F I=1:1:$L(X) S N=$E(X,I) I N=+N S P=P_N
+"RTN","DSIO2",66,0)
+ S:$L(P)<10 P=$E("0000000000",1,10-$L(P))_P
+"RTN","DSIO2",67,0)
+ S Y=$S(P:"("_$E(P,1,3)_")"_$E(P,4,6)_"-"_$E(P,7,10),1:"")
+"RTN","DSIO2",68,0)
+ Q Y
+"RTN","DSIO2",69,0)
+ ;
+"RTN","DSIO2",70,0)
+AB(LIST) ; Change null to @ for null means delete
+"RTN","DSIO2",71,0)
+ ;
+"RTN","DSIO2",72,0)
+ ; This API turns non-existing or existing but equal to null variables
+"RTN","DSIO2",73,0)
+ ; into the @. Originally, most DSIO RPCS were set up to ignore null
+"RTN","DSIO2",74,0)
+ ; and use @ as the user's confirmation that they wish to delete data
+"RTN","DSIO2",75,0)
+ ; before using FileMan API's.
+"RTN","DSIO2",76,0)
+ ;
+"RTN","DSIO2",77,0)
+ ; The implementation of this API means that before calling any DSIO
+"RTN","DSIO2",78,0)
+ ; add or update action all values expressing the current state of the
+"RTN","DSIO2",79,0)
+ ; record must be passed - thus a get function may need to be called first
+"RTN","DSIO2",80,0)
+ ; Some methods will include the AB input variable and if set to 1 will
+"RTN","DSIO2",81,0)
+ ; bypass the use of this method.
+"RTN","DSIO2",82,0)
+ ;
+"RTN","DSIO2",83,0)
+ ; THE MCCDASHBOARD expects that by sending a null the user wishes to
+"RTN","DSIO2",84,0)
+ ; delete that associated data element.
+"RTN","DSIO2",85,0)
+ ;
+"RTN","DSIO2",86,0)
+ ; Array inputs are expected to be IDENTIFIER^VALUE PAIRS
+"RTN","DSIO2",87,0)
+ ; EXAMPLE: ARRAY(<SUBSCRIPT>)="ZIP<^ - THE LAST PIECE IS THE VALUE>66666"
+"RTN","DSIO2",88,0)
+ ;
+"RTN","DSIO2",89,0)
+ N I,VAR,CT
+"RTN","DSIO2",90,0)
+ F I=1:1:$L(LIST,",") S VAR=$P(LIST,",",I) D
+"RTN","DSIO2",91,0)
+ . I '$D(@VAR) S @VAR="@"
+"RTN","DSIO2",92,0)
+ . E  I $D(@VAR)=10 S CT=$NA(@VAR) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO2",93,0)
+ . . I $P(@CT,U,$L(@CT,U))="" S $P(@CT,U,$L(@CT,U))="@"
+"RTN","DSIO2",94,0)
+ . E  I $D(@VAR)=1&(@VAR="") S @VAR="@"
+"RTN","DSIO2",95,0)
+ Q
+"RTN","DSIO2",96,0)
+ ;
+"RTN","DSIO2",97,0)
+STORE ; Save FileMan variables for restoration
+"RTN","DSIO2",98,0)
+ M:$D(DO) VFDDO=DO
+"RTN","DSIO2",99,0)
+ M:$D(DI) VFDDI=DI
+"RTN","DSIO2",100,0)
+ M:$D(DQ) VFDDQ=DQ
+"RTN","DSIO2",101,0)
+ M:$D(DC) VFDDC=DC
+"RTN","DSIO2",102,0)
+ M:$D(DM) VFDDM=DM
+"RTN","DSIO2",103,0)
+ M:$D(DK) VFDDK=DK
+"RTN","DSIO2",104,0)
+ M:$D(DP) VFDDP=DP
+"RTN","DSIO2",105,0)
+ M:$D(DL) VFDDL=DL
+"RTN","DSIO2",106,0)
+ M:$D(DV) VFDDV=DV
+"RTN","DSIO2",107,0)
+ M:$D(DIU) VFDDIU=DIU
+"RTN","DSIO2",108,0)
+ Q
+"RTN","DSIO2",109,0)
+ ;
+"RTN","DSIO2",110,0)
+GETVAR ; Restore FileMan variables
+"RTN","DSIO2",111,0)
+ M:$D(VFDDO) DO=VFDDO
+"RTN","DSIO2",112,0)
+ M:$D(VFDDI) DI=VFDDI
+"RTN","DSIO2",113,0)
+ M:$D(VFDDQ) DQ=VFDDQ
+"RTN","DSIO2",114,0)
+ M:$D(VFDDC) DC=VFDDC
+"RTN","DSIO2",115,0)
+ M:$D(VFDDM) DM=VFDDM
+"RTN","DSIO2",116,0)
+ M:$D(VFDDK) DK=VFDDK
+"RTN","DSIO2",117,0)
+ M:$D(VFDDP) DP=VFDDP
+"RTN","DSIO2",118,0)
+ M:$D(VFDDL) DL=VFDDL
+"RTN","DSIO2",119,0)
+ M:$D(VFDDV) DV=VFDDV
+"RTN","DSIO2",120,0)
+ M:$D(VFDDIU) DIU=VFDDIU
+"RTN","DSIO2",121,0)
+ Q
+"RTN","DSIO2",122,0)
+ ;
+"RTN","DSIO2",123,0)
+CHECK(DFN) ; Check for patient in DSIO PATIENT
+"RTN","DSIO2",124,0)
+ N VFDDO,VFDDI,VFDDQ,VFDDC,VFDDM,VFDDK,VFDDP,VFDDL,VFDDV,VFDDIU
+"RTN","DSIO2",125,0)
+ D STORE
+"RTN","DSIO2",126,0)
+ N DIC,DA,X,Y,DLAYGO S DLAYGO=19641
+"RTN","DSIO2",127,0)
+ S DIC="^DSIO(19641,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
+"RTN","DSIO2",128,0)
+ ; *** ADD PATIENT TO WV PATIENT (790)
+"RTN","DSIO2",129,0)
+ N DIC,DA,X,Y,DLAYGO S DLAYGO=790
+"RTN","DSIO2",130,0)
+ S DIC="^WV(790,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
+"RTN","DSIO2",131,0)
+ D GETVAR
+"RTN","DSIO2",132,0)
+ Q 1
+"RTN","DSIO2",133,0)
+ ;
+"RTN","DSIO2",134,0)
+NAME(NAM) ; Transform NAME,NAME to title case thats Name,Name
+"RTN","DSIO2",135,0)
+ I NAM["," S NAM=$$TITLE^XLFSTR($P(NAM,","))_","_$$TITLE^XLFSTR($P(NAM,",",2))
+"RTN","DSIO2",136,0)
+ E  S NAM=$$TITLE^XLFSTR(NAM)
+"RTN","DSIO2",137,0)
+ Q NAM
+"RTN","DSIO2",138,0)
+ ;
+"RTN","DSIO2",139,0)
+VALID(FLE,FLD,IENS,VAL) ; Check if a value is valid
+"RTN","DSIO2",140,0)
+ N VALID,ERR
+"RTN","DSIO2",141,0)
+ D VAL^DIE($G(FLE),$G(IENS),$G(FLD),,$G(VAL),.VALID,,"ERR")
+"RTN","DSIO2",142,0)
+ I VALID["^"!($D(ERR)) Q 0
+"RTN","DSIO2",143,0)
+ Q 1
+"RTN","DSIO2",144,0)
+ ;
+"RTN","DSIO2",145,0)
+DT(X) ; Validate and attempt to return a valid date
+"RTN","DSIO2",146,0)
+ N %DT S %DT="ST" D ^%DT
+"RTN","DSIO2",147,0)
+ I +Y<1 S X=$$DT1(X) I +X<1 S X=$P(X,U,2) S %DT="STX" D ^%DT
+"RTN","DSIO2",148,0)
+ Q $S(Y'<1:Y,1:"")
+"RTN","DSIO2",149,0)
+ ;
+"RTN","DSIO2",150,0)
+DT1(VAL) ; Translate external date time to FM date time
+"RTN","DSIO2",151,0)
+ ;
+"RTN","DSIO2",152,0)
+ ; Converts these 9/23/2004 10:53:25 AM
+"RTN","DSIO2",153,0)
+ ;                09/03/2014 21:00:00
+"RTN","DSIO2",154,0)
+ ;                2009-10-22 05:00:00.0
+"RTN","DSIO2",155,0)
+ ;                10-22-2009 05:00:00.0
+"RTN","DSIO2",156,0)
+ ;                OCT 12,(, )2012 12:10 AM
+"RTN","DSIO2",157,0)
+ ;                OCT 12,(, )2012 13:00
+"RTN","DSIO2",158,0)
+ ;                July 26, 2014 @ 10
+"RTN","DSIO2",159,0)
+ ;                02-OCT-2014 13.29.28
+"RTN","DSIO2",160,0)
+ ;
+"RTN","DSIO2",161,0)
+ ; The FM call below does not work with the time portions
+"RTN","DSIO2",162,0)
+ ; of the above format
+"RTN","DSIO2",163,0)
+ ; ------------------------------------------------------
+"RTN","DSIO2",164,0)
+ ; D DT^DILF("E","DEC 12,2014",.RESULT)
+"RTN","DSIO2",165,0)
+ ; RESULT=3141212
+"RTN","DSIO2",166,0)
+ ; RESULT(0)="DEC 12, 2014"
+"RTN","DSIO2",167,0)
+ ;
+"RTN","DSIO2",168,0)
+ Q:VAL="" ""
+"RTN","DSIO2",169,0)
+ I $$FMTH^XLFDT(VAL)'=-1 Q VAL
+"RTN","DSIO2",170,0)
+ N DATE,FLG,TIME S DATE=-1,FLG=0
+"RTN","DSIO2",171,0)
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N S FLG=1
+"RTN","DSIO2",172,0)
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1" ".2A S FLG=1
+"RTN","DSIO2",173,0)
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1".".2N S FLG=1
+"RTN","DSIO2",174,0)
+ I VAL?3A1" "1.2N1","4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=2
+"RTN","DSIO2",175,0)
+ I VAL?3A1" "1.2N1","1" "4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=3
+"RTN","DSIO2",176,0)
+ I VAL?1.A1" "1.2N1","1" "4N.1" ".1"@".1" ".2N.1":".2N S FLG=4
+"RTN","DSIO2",177,0)
+ I VAL?2N1"-"3A1"-"4N.1" ".2N.1".".2N.1".".2N S FLG=5
+"RTN","DSIO2",178,0)
+ I FLG=0 D DT^DILF("E",VAL,.DATE)
+"RTN","DSIO2",179,0)
+ I FLG=1 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($P(VAL," ",2,99))
+"RTN","DSIO2",180,0)
+ I FLG=2 D DT^DILF("E",$P(VAL," ",1,2),.DATE) S TIME=$$DT2($P(VAL," ",3,99))
+"RTN","DSIO2",181,0)
+ I FLG=3 D DT^DILF("E",$P(VAL," ",1,3),.DATE) S TIME=$$DT2($P(VAL," ",4,99))
+"RTN","DSIO2",182,0)
+ I FLG=4 D DT^DILF("E",$$TRIM^XLFSTR($P(VAL,"@")),.DATE) D
+"RTN","DSIO2",183,0)
+ . S TIME=$$DT2($$TRIM^XLFSTR($P(VAL,"@",2)))
+"RTN","DSIO2",184,0)
+ I FLG=5 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($TR($P(VAL," ",2,99),".",":"))
+"RTN","DSIO2",185,0)
+ I DATE=-1 Q -1_U_VAL
+"RTN","DSIO2",186,0)
+ Q DATE_$S($G(TIME)'="":"."_TIME,1:"")
+"RTN","DSIO2",187,0)
+ ;
+"RTN","DSIO2",188,0)
+DT2(TM) ; Convert Time
+"RTN","DSIO2",189,0)
+ N SEC,MIN,HR S TM=$$TRIM^XLFSTR($$UP^XLFSTR(TM))
+"RTN","DSIO2",190,0)
+ I TM'[":",TM?.N D  Q $G(TM)
+"RTN","DSIO2",191,0)
+ . F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
+"RTN","DSIO2",192,0)
+ Q:TM'[":" ""
+"RTN","DSIO2",193,0)
+ S SEC=$S(TM[" ":$P($P(TM,":",3)," "),TM[".":$P($P(TM,":",3),"."),1:$P(TM,":",3))
+"RTN","DSIO2",194,0)
+ S SEC=$$DT3(SEC) S:$L(SEC)=1 SEC=0_SEC
+"RTN","DSIO2",195,0)
+ S MIN=$P($P(TM,":",2)," "),MIN=$$DT3(MIN) S:$L(MIN)=1 MIN=0_MIN
+"RTN","DSIO2",196,0)
+ S HR=$P($P(TM,":")," "),HR=$$DT3(HR) S:$L(HR)=1 HR=0_HR
+"RTN","DSIO2",197,0)
+ I HR=12&((TM["AM")!($E(TM,$L(TM)-1,$L(TM))="AM")) S HR="00"
+"RTN","DSIO2",198,0)
+ I HR<12&((TM["PM")!($E(TM,$L(TM)-1,$L(TM))="PM")) S HR=HR+12
+"RTN","DSIO2",199,0)
+ S TM=HR_MIN_SEC
+"RTN","DSIO2",200,0)
+ F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
+"RTN","DSIO2",201,0)
+ Q $S($G(TM)'="":TM,1:"")
+"RTN","DSIO2",202,0)
+ ;
+"RTN","DSIO2",203,0)
+DT3(SEG) ; Only Numbers
+"RTN","DSIO2",204,0)
+ Q $$TRIM^XLFSTR($TR($$UP^XLFSTR(SEG),"ABCDEFGHIJKLMNOPQRSTUVWXYZ",""))
+"RTN","DSIO2",205,0)
+ ;
+"RTN","DSIO2",206,0)
+M(VAL) ; Minus One
+"RTN","DSIO2",207,0)
+ I VAL?.N S VAL=VAL-1 Q VAL
+"RTN","DSIO2",208,0)
+ I VAL?.A Q $$ALPHA(VAL)
+"RTN","DSIO2",209,0)
+ Q VAL
+"RTN","DSIO2",210,0)
+ ;
+"RTN","DSIO2",211,0)
+ALPHA(AL) ; Return the Prior Alpha
+"RTN","DSIO2",212,0)
+ N VAL,I,X
+"RTN","DSIO2",213,0)
+ S VAL="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+"RTN","DSIO2",214,0)
+ F I=1:1:26 I $E(VAL,I)=AL S X=I-1 Q
+"RTN","DSIO2",215,0)
+ Q $E(VAL,$G(X))
+"RTN","DSIO2",216,0)
+ ;
+"RTN","DSIO2",217,0)
+KEY(VAL,KEY) ; Value to Key
+"RTN","DSIO2",218,0)
+ I KEY="" Q 0
+"RTN","DSIO2",219,0)
+ I $E(VAL,1,$L(KEY))'=KEY Q 1
+"RTN","DSIO2",220,0)
+ Q 0
+"RTN","DSIO2",221,0)
+ ;
+"RTN","DSIO2",222,0)
+PAR ; Check Parameters
+"RTN","DSIO2",223,0)
+ D:$$GET^XPAR("SYS","DSIO EVAL LABS NOW") TASK("LAB^DSIO5")
+"RTN","DSIO2",224,0)
+ D:$$GET^XPAR("SYS","DSIO EVAL PROBLEMS NOW") TASK("PROBLEM^DSIO5")
+"RTN","DSIO2",225,0)
+ D:$$GET^XPAR("SYS","DSIO EVAL CONSULTS NOW") TASK("CONSULT^DSIO5")
+"RTN","DSIO2",226,0)
+ Q
+"RTN","DSIO2",227,0)
+ ;
+"RTN","DSIO2",228,0)
+TASK(ZTRTN) ; TaskMan
+"RTN","DSIO2",229,0)
+ N ZTDESC,ZTDTH,ZTIO,ZTUCI,ZTCPU,ZTPRI,ZTSAVE,ZTKIL,ZTSYNC,ZTSK
+"RTN","DSIO2",230,0)
+ S ZTDESC="DSIO (MATERNITY TRACKER) Trigger on "_$P(ZTRTN,U)
+"RTN","DSIO2",231,0)
+ S ZTDTH=$$FMTH^XLFDT($$NOW^XLFDT),ZTIO="NULL",ZTPRI=10
+"RTN","DSIO2",232,0)
+ D ^%ZTLOAD
+"RTN","DSIO2",233,0)
+ Q
+"RTN","DSIO2",234,0)
+ ;
+"RTN","DSIO2",235,0)
+ ; --------------------------------- SORTING ----------------------------------
+"RTN","DSIO2",236,0)
+ ;
+"RTN","DSIO2",237,0)
+FN(P,C) ; Get the next record by dashboard page and count forward
+"RTN","DSIO2",238,0)
+ Q:P<2 0
+"RTN","DSIO2",239,0)
+ Q C*(P-1)
+"RTN","DSIO2",240,0)
+ ;
+"RTN","DSIO2",241,0)
+S(SORT) ; Set Start and End
+"RTN","DSIO2",242,0)
+ S:$G(SORT)="" STRT="",END=""
+"RTN","DSIO2",243,0)
+ I SORT?.N1",".N D
+"RTN","DSIO2",244,0)
+ . S STRT=$$FN($P(SORT,","),$P(SORT,",",2)),END=$P(SORT,",",2)
+"RTN","DSIO2",245,0)
+ Q
+"VER")
+8.0^22.0
+**END**
+**END**

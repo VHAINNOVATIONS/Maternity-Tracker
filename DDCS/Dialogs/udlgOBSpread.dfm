@@ -373,7 +373,6 @@ object dlgOBSpread: TdlgOBSpread
     OnColWidthsChanged = sgStandardColWidthsChanged
     OnVerticalScroll = sgStandardVerticalScroll
     OnHorizontalScroll = sgStandardHorizontalScroll
-    ExplicitHeight = 289
     ColWidths = (
       180
       180

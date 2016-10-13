@@ -1,0 +1,3540 @@
+KIDS Distribution saved on Oct 12, 2016@10:48:40
+DSIO*2.0*1
+**KIDS**:DSIO*2.0*1^
+
+**INSTALL NAME**
+DSIO*2.0*1
+"BLD",9904,0)
+DSIO*2.0*1^^0^3161012^n
+"BLD",9904,4,0)
+^9.64PA^19641.123^1
+"BLD",9904,4,19641.123,0)
+19641.123
+"BLD",9904,4,19641.123,222)
+y^y^f^^n^^y^r^n
+"BLD",9904,4,"B",19641.123,19641.123)
+
+"BLD",9904,6.3)
+1
+"BLD",9904,"KRN",0)
+^9.67PA^779.2^20
+"BLD",9904,"KRN",.4,0)
+.4
+"BLD",9904,"KRN",.401,0)
+.401
+"BLD",9904,"KRN",.402,0)
+.402
+"BLD",9904,"KRN",.403,0)
+.403
+"BLD",9904,"KRN",.5,0)
+.5
+"BLD",9904,"KRN",.84,0)
+.84
+"BLD",9904,"KRN",3.6,0)
+3.6
+"BLD",9904,"KRN",3.8,0)
+3.8
+"BLD",9904,"KRN",9.2,0)
+9.2
+"BLD",9904,"KRN",9.8,0)
+9.8
+"BLD",9904,"KRN",9.8,"NM",0)
+^9.68A^5^5
+"BLD",9904,"KRN",9.8,"NM",1,0)
+DSIO05^^0^B133371105
+"BLD",9904,"KRN",9.8,"NM",2,0)
+DSIO65^^0^B189100193
+"BLD",9904,"KRN",9.8,"NM",3,0)
+DSIO04^^0^B168397166
+"BLD",9904,"KRN",9.8,"NM",4,0)
+DSIO01^^0^B45219087
+"BLD",9904,"KRN",9.8,"NM",5,0)
+DSIO4^^0^B86195735
+"BLD",9904,"KRN",9.8,"NM","B","DSIO01",4)
+
+"BLD",9904,"KRN",9.8,"NM","B","DSIO04",3)
+
+"BLD",9904,"KRN",9.8,"NM","B","DSIO05",1)
+
+"BLD",9904,"KRN",9.8,"NM","B","DSIO4",5)
+
+"BLD",9904,"KRN",9.8,"NM","B","DSIO65",2)
+
+"BLD",9904,"KRN",19,0)
+19
+"BLD",9904,"KRN",19.1,0)
+19.1
+"BLD",9904,"KRN",101,0)
+101
+"BLD",9904,"KRN",409.61,0)
+409.61
+"BLD",9904,"KRN",771,0)
+771
+"BLD",9904,"KRN",779.2,0)
+779.2
+"BLD",9904,"KRN",870,0)
+870
+"BLD",9904,"KRN",8989.51,0)
+8989.51
+"BLD",9904,"KRN",8989.52,0)
+8989.52
+"BLD",9904,"KRN",8994,0)
+8994
+"BLD",9904,"KRN","B",.4,.4)
+
+"BLD",9904,"KRN","B",.401,.401)
+
+"BLD",9904,"KRN","B",.402,.402)
+
+"BLD",9904,"KRN","B",.403,.403)
+
+"BLD",9904,"KRN","B",.5,.5)
+
+"BLD",9904,"KRN","B",.84,.84)
+
+"BLD",9904,"KRN","B",3.6,3.6)
+
+"BLD",9904,"KRN","B",3.8,3.8)
+
+"BLD",9904,"KRN","B",9.2,9.2)
+
+"BLD",9904,"KRN","B",9.8,9.8)
+
+"BLD",9904,"KRN","B",19,19)
+
+"BLD",9904,"KRN","B",19.1,19.1)
+
+"BLD",9904,"KRN","B",101,101)
+
+"BLD",9904,"KRN","B",409.61,409.61)
+
+"BLD",9904,"KRN","B",771,771)
+
+"BLD",9904,"KRN","B",779.2,779.2)
+
+"BLD",9904,"KRN","B",870,870)
+
+"BLD",9904,"KRN","B",8989.51,8989.51)
+
+"BLD",9904,"KRN","B",8989.52,8989.52)
+
+"BLD",9904,"KRN","B",8994,8994)
+
+"BLD",9904,"QDEF")
+^^^^NO^^^^NO^^NO
+"BLD",9904,"QUES",0)
+^9.62^^
+"BLD",9904,"REQB",0)
+^9.611^^0
+"DATA",19641.123,1,0)
+Lactation Status^Lactating^OTHER^^1
+"DATA",19641.123,1,1)
+S X=$$UP^XLFSTR($G(X)),X=$S(X="TRUE":"YES",X="FALSE":"NO",1:X)
+"DATA",19641.123,1,2)
+D LAS^DSIO03
+"DATA",19641.123,2,0)
+Gravida Para Summary^GravidaParaSummary^OTHER^^1
+"DATA",19641.123,2,2)
+D PATIENT^DSIO03(.04)
+"DATA",19641.123,3,0)
+Next Contact Date^NextContactDate^OTHER^^1
+"DATA",19641.123,3,1)
+S X=$$DT^DSIO2(X)
+"DATA",19641.123,3,2)
+D PATIENT^DSIO03(.03)
+"DATA",19641.123,4,0)
+Last Contact Date^LastContactDate^OTHER^^1
+"DATA",19641.123,4,1)
+S X=$$DT^DSIO2(X)
+"DATA",19641.123,4,2)
+D PATIENT^DSIO03(.05)
+"DATA",19641.123,5,0)
+Next Checklist Date^NextChecklistDate^OTHER^^1
+"DATA",19641.123,5,1)
+S X=$$DT^DSIO2(X)
+"DATA",19641.123,5,2)
+D PATIENT^DSIO03(.06)
+"DATA",19641.123,6,0)
+Last Menstrual Period^8665-2^LOINC^^1
+"DATA",19641.123,6,2)
+D LMP^DSIO03
+"DATA",19641.123,7,0)
+EDD by ECD^33067-0^LOINC
+"DATA",19641.123,7,2)
+D EDD^DSIO03("ECD")
+"DATA",19641.123,8,0)
+EDD by Ultrasound^UltraSound^OTHER^
+"DATA",19641.123,8,2)
+D EDD^DSIO03("ULT")
+"DATA",19641.123,9,0)
+EDD by Embryo Transfer^EmbryoTransfer^OTHER
+"DATA",19641.123,9,2)
+D EDD^DSIO03("EMB")
+"DATA",19641.123,10,0)
+EDD by Other^OtherEdd^OTHER
+"DATA",19641.123,10,2)
+D EDD^DSIO03("OTH")
+"DATA",19641.123,11,0)
+Update EDD^11778-8^LOINC^^
+"DATA",19641.123,11,2)
+D EDD^DSIO03("EDD")
+"DATA",19641.123,12,0)
+EDD by LMP^11779-6^LOINC^
+"DATA",19641.123,12,2)
+D EDD^DSIO03("LMP"),LMP^DSIO03
+"DATA",19641.123,13,0)
+Update Baby Name^45392-8^LOINC^^1
+"DATA",19641.123,13,2)
+D BABY^DSIO03(.04)
+"DATA",19641.123,14,0)
+Update Baby Gender^46098-0^LOINC^^1
+"DATA",19641.123,14,2)
+D BABY^DSIO03(.05)
+"DATA",19641.123,15,0)
+Update Baby APGAR (1)^9272-6^LOINC^^1
+"DATA",19641.123,15,2)
+D BABY^DSIO03(.08)
+"DATA",19641.123,16,0)
+Update Baby APGAR (5)^9274-2^LOINC^^1
+"DATA",19641.123,16,2)
+D BABY^DSIO03(.09)
+"DATA",19641.123,17,0)
+Baby to ICU^AdmittedToIcu^OTHER^^1
+"DATA",19641.123,17,1)
+S X=$$UP^XLFSTR($G(X)),X=$S(X="YES":"TRUE",X="NO":"FALSE",1:X)
+"DATA",19641.123,17,2)
+D BABY^DSIO03(.012)
+"DATA",19641.123,18,0)
+Pregnancy Notes^Notes^OTHER^^1
+"DATA",19641.123,18,2)
+D PTXT^DSIO03
+"DATA",19641.123,19,0)
+Gestational Days^GestationalAgeDays^OTHER^^1
+"DATA",19641.123,19,2)
+D GA^DSIO03("D")
+"DATA",19641.123,20,0)
+Gestational Weeks^GestationalAgeWeeks^OTHER^^1
+"DATA",19641.123,20,2)
+D GA^DSIO03("W")
+"DATA",19641.123,21,0)
+Baby Comments^57075-4^LOINC^^1
+"DATA",19641.123,21,2)
+D BTXT^DSIO03
+"DATA",19641.123,22,0)
+Delivery Cesarean^CesareanDelivery^OTHER^^1
+"DATA",19641.123,22,1)
+
+"DATA",19641.123,22,2)
+I $$UP^XLFSTR($G(X))="TRUE" S X="C" D PREG^DSIO03(3.3)
+"DATA",19641.123,23,0)
+Delivery Other^OtherDelivery^OTHER^^1
+"DATA",19641.123,23,1)
+
+"DATA",19641.123,23,2)
+I $$UP^XLFSTR($G(X))="TRUE" S X="O" D PREG^DSIO03(3.3)
+"DATA",19641.123,25,0)
+Obstetric Delivery Method^57071-3^LOINC^^1
+"DATA",19641.123,25,1)
+S X=$$ODM^DSIO03(X)
+"DATA",19641.123,25,2)
+D PREG^DSIO03(3.3)
+"DATA",19641.123,26,0)
+Birth Weight (G)^8339-4^LOINC^^1
+"DATA",19641.123,26,2)
+D BABY^DSIO03(.06)
+"DATA",19641.123,29,0)
+Gestational Age at Birth^412726003^SNOMED-CT^^1
+"DATA",19641.123,29,2)
+D PREG^DSIO03(3.1)
+"DATA",19641.123,30,0)
+Gestational Age Estimated (wks)^11884-4^LOINC^^0
+"DATA",19641.123,30,1)
+
+"DATA",19641.123,30,2)
+D PREG^DSIO03(3.1)
+"DATA",19641.123,31,0)
+Pregnancy Outcome^OutcomeType^OTHER^^1
+"DATA",19641.123,31,2)
+D PREG^DSIO03(3.6)
+"DATA",19641.123,32,0)
+Birth Date of Fetus^75092-7^LOINC^^1
+"DATA",19641.123,33,0)
+Complications^Complications^OTHER^^1
+"DATA",19641.123,34,0)
+FetusBabyCount^FetusBabyCount^OTHER^^1
+"DATA",19641.123,36,0)
+ForcepVacuumDelivery^ForcepVacuumDelivery^OTHER^^1
+"DATA",19641.123,37,0)
+FailedForcepVacuumDelivery^FailedForcepVacuumDelivery^OTHER^^1
+"DATA",19641.123,39,0)
+BottleFeeding^BottleFeeding^OTHER^^1
+"DATA",19641.123,40,0)
+BreastFeeding^BreastFeeding^OTHER^^1
+"DATA",19641.123,41,0)
+FormulaFeeding^FormulaFeeding^OTHER^^1
+"DATA",19641.123,42,0)
+DaysInHospital^DaysInHospital^OTHER^^1
+"DATA",19641.123,42,2)
+D PREG^DSIO03(3.8)
+"DATA",19641.123,43,0)
+PostPartumComplications^PostPartumComplications^OTHER^^1
+"DATA",19641.123,44,0)
+PretermLabor^PretermLabor^OTHER^^1
+"DATA",19641.123,45,0)
+Methotrexate^Methotrexate^OTHER^^1
+"DATA",19641.123,46,0)
+Salpingostomy^Salpingostomy^OTHER^^1
+"DATA",19641.123,47,0)
+Salpingectomy^Salpingectomy^OTHER^^1
+"DATA",19641.123,48,0)
+SpontaneousResolution^SpontaneousResolution^OTHER^^1
+"DATA",19641.123,49,0)
+Trimester^Trimester^OTHER^^1
+"DATA",19641.123,50,0)
+FetalAbnormalities^FetalAbnormalities^OTHER^^1
+"DATA",19641.123,51,0)
+Indication^Indication^OTHER^^1
+"DATA",19641.123,52,0)
+WithoutSurgery^WithoutSurgery^OTHER^^1
+"DATA",19641.123,53,0)
+DilationCurettage^DilationCurettage^OTHER^^1
+"DATA",19641.123,54,0)
+VacuumAspiration^VacuumAspiration^OTHER^^1
+"DATA",19641.123,55,0)
+MedicationsNeeded^MedicationsNeeded^OTHER^^1
+"DATA",19641.123,56,0)
+IncompetentCervix^IncompetentCervix^OTHER^^1
+"DATA",19641.123,57,0)
+Chief Complaint^10154-3^LOINC^
+"DATA",19641.123,58,0)
+Menarche^398700009^SNOMED-CT^^1
+"DATA",19641.123,58,2)
+D PATIENT^DSIO03(1.1)
+"DATA",19641.123,59,0)
+Duration of Menstrual Flow Frequency^364306002^SNOMED-CT^^1
+"DATA",19641.123,59,2)
+D MHIST^DSIO03(1.2)
+"DATA",19641.123,60,0)
+hCG+^67900009^SNOMED-CT^^1
+"DATA",19641.123,60,1)
+S X=$$DT^DSIO2(X)
+"DATA",19641.123,60,2)
+D MHIST^DSIO03(1.6)
+"DATA",19641.123,61,0)
+Date of Last Menstrual Period^21840007^SNOMED-CT^^1
+"DATA",19641.123,61,1)
+
+"DATA",19641.123,61,2)
+D LMP^DSIO03
+"DATA",19641.123,62,0)
+Menses Monthly^364307006^SNOMED-CT^^1
+"DATA",19641.123,62,2)
+D MHIST^DSIO03(1.8)
+"DATA",19641.123,63,0)
+On Birth Control Pills at conception^xx-onbcp^SNOMED-CT^^1
+"DATA",19641.123,63,2)
+D MHIST^DSIO03(1.9)
+"DATA",19641.123,64,0)
+Allergy Latex^300916003^SNOMED-CT^
+"DATA",19641.123,65,0)
+Blood Transfusion^xx-bld-transf-ok^LOINC^
+"DATA",19641.123,66,0)
+Planned Anesthesia Consult^xx-anest-cons-pland^LOINC^
+"DATA",19641.123,67,0)
+Type of Anesthesia Planned^xx-type-of-anesth-pland^LOINC^
+"DATA",19641.123,68,0)
+Delivery Vaginal^NormalSpontaneousVaginalDelivery^OTHER^^1
+"DATA",19641.123,68,1)
+
+"DATA",19641.123,68,2)
+I $$UP^XLFSTR($G(X))="TRUE" S X="V" D PREG^DSIO03(3.3)
+"DATA",19641.123,69,0)
+Assessment and Plan^48767-8^LOINC^
+"DATA",19641.123,70,0)
+History of Present Illness^10164-2^LOINC^^1
+"DATA",19641.123,71,0)
+Problems Narrative^11450-4^LOINC^^1
+"DATA",19641.123,72,0)
+Fundal Height (cm)^11881-0^LOINC^^0
+"DATA",19641.123,73,0)
+Weight (lbs)^3141-9^LOINC^^0
+"DATA",19641.123,74,0)
+Albumin^1753-3^LOINC^^0
+"DATA",19641.123,75,0)
+Glucose^2349-9^LOINC^^0
+"DATA",19641.123,76,0)
+Edema^44966-0^LOINC^^0
+"DATA",19641.123,77,0)
+Fetal Presentation^11876-0^LOINC^^0
+"DATA",19641.123,78,0)
+Fetal Movement^57088-7^LOINC^^0
+"DATA",19641.123,79,0)
+Preterm Labor Symptoms^57069-7^LOINC^^0
+"DATA",19641.123,80,0)
+Dilation (cm)^11785-3^LOINC^^0
+"DATA",19641.123,81,0)
+Effacement (%)^11867-9^LOINC^^0
+"DATA",19641.123,82,0)
+Long Axis (cm)^11961-0^LOINC^^0
+"DATA",19641.123,83,0)
+Intravascular Systolic (mmHg)^8480-6^LOINC^^0
+"DATA",19641.123,84,0)
+Intravascular Diastolic (mmHg)^8462-4^LOINC^^0
+"DATA",19641.123,85,0)
+Pain Severity^38208-5^LOINC^^0
+"DATA",19641.123,86,0)
+Total Pregnancies (Including Current)^11996-6^LOINC^^1
+"DATA",19641.123,87,0)
+Stillbirths^57062-2^LOINC^^1
+"DATA",19641.123,88,0)
+Preterm Births (Live & Stillborn)^11637-6^LOINC^^1
+"DATA",19641.123,89,0)
+Living Children^11638-4^LOINC^^1
+"DATA",19641.123,90,0)
+Term Births (Live & Stillborn)^11639-2^LOINC^^1
+"DATA",19641.123,91,0)
+Fetal Weight^57067-1^LOINC^^0
+"DATA",19641.123,92,0)
+Spontaneous Abortions (Miscarriages)^11614-5^LOINC^^1
+"DATA",19641.123,93,0)
+Pregnancy Terminations^11613-7^LOINC^^1
+"DATA",19641.123,94,0)
+Ectopic Pregnancies^33065-4^LOINC^^1
+"FIA",19641.123)
+DSIO OBSERVATION PUSH
+"FIA",19641.123,0)
+^DSIO(19641.123,
+"FIA",19641.123,0,0)
+19641.123OI
+"FIA",19641.123,0,1)
+y^y^f^^n^^y^r^n
+"FIA",19641.123,0,10)
+
+"FIA",19641.123,0,11)
+
+"FIA",19641.123,0,"RLRO")
+
+"FIA",19641.123,19641.123)
+0
+"MBREQ")
+0
+"QUES","XPF1",0)
+Y
+"QUES","XPF1","??")
+^D REP^XPDH
+"QUES","XPF1","A")
+Shall I write over your |FLAG| File
+"QUES","XPF1","B")
+YES
+"QUES","XPF1","M")
+D XPF1^XPDIQ
+"QUES","XPF2",0)
+Y
+"QUES","XPF2","??")
+^D DTA^XPDH
+"QUES","XPF2","A")
+Want my data |FLAG| yours
+"QUES","XPF2","B")
+YES
+"QUES","XPF2","M")
+D XPF2^XPDIQ
+"QUES","XPI1",0)
+YO
+"QUES","XPI1","??")
+^D INHIBIT^XPDH
+"QUES","XPI1","A")
+Want KIDS to INHIBIT LOGONs during the install
+"QUES","XPI1","B")
+NO
+"QUES","XPI1","M")
+D XPI1^XPDIQ
+"QUES","XPM1",0)
+PO^VA(200,:EM
+"QUES","XPM1","??")
+^D MG^XPDH
+"QUES","XPM1","A")
+Enter the Coordinator for Mail Group '|FLAG|'
+"QUES","XPM1","B")
+
+"QUES","XPM1","M")
+D XPM1^XPDIQ
+"QUES","XPO1",0)
+Y
+"QUES","XPO1","??")
+^D MENU^XPDH
+"QUES","XPO1","A")
+Want KIDS to Rebuild Menu Trees Upon Completion of Install
+"QUES","XPO1","B")
+NO
+"QUES","XPO1","M")
+D XPO1^XPDIQ
+"QUES","XPZ1",0)
+Y
+"QUES","XPZ1","??")
+^D OPT^XPDH
+"QUES","XPZ1","A")
+Want to DISABLE Scheduled Options, Menu Options, and Protocols
+"QUES","XPZ1","B")
+NO
+"QUES","XPZ1","M")
+D XPZ1^XPDIQ
+"QUES","XPZ2",0)
+Y
+"QUES","XPZ2","??")
+^D RTN^XPDH
+"QUES","XPZ2","A")
+Want to MOVE routines to other CPUs
+"QUES","XPZ2","B")
+NO
+"QUES","XPZ2","M")
+D XPZ2^XPDIQ
+"RTN")
+5
+"RTN","DSIO01")
+0^4^B45219087
+"RTN","DSIO01",1,0)
+DSIO01 ;DSS/TFF - DSIO OCNT PUSH SUPPORT;08/26/2016 16:00
+"RTN","DSIO01",2,0)
+ ;;2.0;DSIO 2.0;**1**;Aug 26, 2016;Build 1
+"RTN","DSIO01",3,0)
+ ;
+"RTN","DSIO01",4,0)
+ ;
+"RTN","DSIO01",5,0)
+ ;
+"RTN","DSIO01",6,0)
+ Q
+"RTN","DSIO01",7,0)
+ ;
+"RTN","DSIO01",8,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO01",9,0)
+ ; * CONTROL(DDCSC), RECORD(DDCSR), 
+"RTN","DSIO01",10,0)
+ ;   SIEN(DESTINATION IEN), DESTINATION FILE(DDCSFLE),
+"RTN","DSIO01",11,0)
+ ;   DFN, INTERFACE/FORM(DDCSFRM), ELEMENT IEN(DDCSE), ELEMENT NAME(DDCSEN)
+"RTN","DSIO01",12,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO01",13,0)
+ ;
+"RTN","DSIO01",14,0)
+DELV ; NURSE POSTPARTUM - DELIVERY
+"RTN","DSIO01",15,0)
+ ;
+"RTN","DSIO01",16,0)
+ ;   1) L
+"RTN","DSIO01",17,0)
+ ;   2) IEN
+"RTN","DSIO01",18,0)
+ ;   3) DATE RECORDED
+"RTN","DSIO01",19,0)
+ ;   4) EDC
+"RTN","DSIO01",20,0)
+ ;   5) DFN|PATIENT
+"RTN","DSIO01",21,0)
+ ;   6) STATUS
+"RTN","DSIO01",22,0)
+ ;   7) FOF|(IEN OR IDENTIFIER)
+"RTN","DSIO01",23,0)
+ ;   8) EDD
+"RTN","DSIO01",24,0)
+ ;   9) PREGNANCY END
+"RTN","DSIO01",25,0)
+ ;  10) OB IEN|OB
+"RTN","DSIO01",26,0)
+ ;  11) FACILITY IEN|FACILITY
+"RTN","DSIO01",27,0)
+ ;  12) UPDATED BY IEN|UPDATED BY
+"RTN","DSIO01",28,0)
+ ;  13) GESTATIONAL AGE
+"RTN","DSIO01",29,0)
+ ;  14) LENGTH OF LABOR
+"RTN","DSIO01",30,0)
+ ;  15) TYPE OF DELIVERY  (C or V)
+"RTN","DSIO01",31,0)
+ ;  16) ANESTHESIA
+"RTN","DSIO01",32,0)
+ ;  17) PRETERM DELIVERY
+"RTN","DSIO01",33,0)
+ ;  18) BIRTH TYPE
+"RTN","DSIO01",34,0)
+ ;  19) IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU|
+"RTN","DSIO01",35,0)
+ ;  20) OUTCOME
+"RTN","DSIO01",36,0)
+ ;  21) HIGH RISK FLAG
+"RTN","DSIO01",37,0)
+ ;  22) DAYS IN HOSPITAL
+"RTN","DSIO01",38,0)
+ ;
+"RTN","DSIO01",39,0)
+ ;  C^IEN^COMMENT
+"RTN","DSIO01",40,0)
+ ;  B^IEN|BABY|#^COMMENT
+"RTN","DSIO01",41,0)
+ ;
+"RTN","DSIO01",42,0)
+ N ROWS,CT,LN,PREG,DATES,FAC,FA,STR,OBJ,I,BCT,DNOTES,OUT,IFC,IFCF
+"RTN","DSIO01",43,0)
+ D GETS^DSIO62(.ROWS,$$IEN^DSIO62("##TCONFIGCOLLECTION##")) Q:'$D(ROWS)
+"RTN","DSIO01",44,0)
+ ; *** PREGNANCY
+"RTN","DSIO01",45,0)
+ ; Update Pregnancies and Babies
+"RTN","DSIO01",46,0)
+ S CT=0 F  S CT=$O(ROWS(CT)) Q:'CT  S LN=ROWS(CT) D
+"RTN","DSIO01",47,0)
+ . K OLD,PREG,DATES,FAC,FA,STR
+"RTN","DSIO01",48,0)
+ . I $P(LN,U)="L" D
+"RTN","DSIO01",49,0)
+ . . S OBJ(0)="PG."_$P(LN,U,2)
+"RTN","DSIO01",50,0)
+ . . ; DATES = EDC^END^EDD
+"RTN","DSIO01",51,0)
+ . . F I=4,9,8 S DATES=$S($D(DATES):DATES_U,1:"")_$$DT^DSIO2($P(LN,U,I))
+"RTN","DSIO01",52,0)
+ . . I $P($P(LN,U,11),"|",2)'="" D  K:$G(FAC)'?1"NVA.".N FAC
+"RTN","DSIO01",53,0)
+ . . . S FAC=$$UP^XLFSTR($P($P(LN,U,11),"|",2))
+"RTN","DSIO01",54,0)
+ . . . I $D(^DSIO(19641.1,"F",FAC)) D  Q
+"RTN","DSIO01",55,0)
+ . . . . S FAC="NVA."_$O(^DSIO(19641.1,"F",FAC,""))
+"RTN","DSIO01",56,0)
+ . . . D SENT^DSIO1(.FA,,FAC,"F",,,,,1) I FA S FAC="NVA."_+FA
+"RTN","DSIO01",57,0)
+ . . ; *** OBSERVATIONS -------------------------------------------------------
+"RTN","DSIO01",58,0)
+ . . ;     BABY LEVEL
+"RTN","DSIO01",59,0)
+ . . ; Add/Update Babies
+"RTN","DSIO01",60,0)
+ . . S BCT=0 F I=1:1:$L($P(LN,U,19),"|") S STR=$P($P(LN,U,19),"|",I) D
+"RTN","DSIO01",61,0)
+ . . . D:STR'="" PR2^DSIO04($P(LN,U,2),STR) K OBJ(1)
+"RTN","DSIO01",62,0)
+ . . ; *** OBSERVATIONS -------------------------------------------------------
+"RTN","DSIO01",63,0)
+ . . ;     PREGNANCY LEVEL
+"RTN","DSIO01",64,0)
+ . . I BCT D
+"RTN","DSIO01",65,0)
+ . . . ;     OBS BABY COUNT
+"RTN","DSIO01",66,0)
+ . . . D O^DSIO03(DFN,.OBJ,,"Pregnancy","FetusBabyCount","OTHER","Fetus/Baby Count",BCT)
+"RTN","DSIO01",67,0)
+ . . . ;     OBS BIRTH DATE OF FETUS
+"RTN","DSIO01",68,0)
+ . . . D O^DSIO03(DFN,.OBJ,,"Outcome","75092-7","LOINC","Birth Date of Fetus",$P(LN,U,9))
+"RTN","DSIO01",69,0)
+ . . ;     OBS GESTATIONAL AGE
+"RTN","DSIO01",70,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","412726003","SNOMED-CT","Gestational Age at Birth",$$G1^DSIO4($P(LN,U,13)))
+"RTN","DSIO01",71,0)
+ . . S STR=$$UP^XLFSTR($E($P(LN,U,15),1))
+"RTN","DSIO01",72,0)
+ . . ;     OBS DELIVERY TYPE
+"RTN","DSIO01",73,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","CesareanDelivery","OTHER",,$S(STR="C":"True",1:"False"))
+"RTN","DSIO01",74,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","NormalSpontaneousVaginalDelivery","OTHER",,$S(STR="V":"True",1:"False"))
+"RTN","DSIO01",75,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","OtherDelivery","OTHER",,$S(STR="":"True",1:"False"))
+"RTN","DSIO01",76,0)
+ . . ;     OBS DAYS IN HOSPITAL
+"RTN","DSIO01",77,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","DaysInHospital","OTHER",,$P(LN,U,22))
+"RTN","DSIO01",78,0)
+ . . ;     OBS PREGNANCY OUTCOME
+"RTN","DSIO01",79,0)
+ . . I $$UP^XLFSTR($P(LN,U,20))="TERMINATION" D
+"RTN","DSIO01",80,0)
+ . . . D O^DSIO03(DFN,.OBJ,,"PregnancyTerminationOutcome","Indication","OTHER",,"Unknown")
+"RTN","DSIO01",81,0)
+ . . D O^DSIO03(DFN,.OBJ,,"Outcome","OutcomeType","OTHER","Pregnancy Outcome",$$OT^DSIO03($P(LN,U,20)))
+"RTN","DSIO01",82,0)
+ . . ; *** PREGNANCY - Close it out
+"RTN","DSIO01",83,0)
+ . . K PREG D PREG^DSIO15(.PREG,$P(LN,U,2),DFN,DATES,,,,$G(FAC),,U_$P(LN,U,14)_"^^"_$P(LN,U,16),,,1)
+"RTN","DSIO01",84,0)
+ . ; *** DELIVERY COMMENTS
+"RTN","DSIO01",85,0)
+ . I $P(LN,U)="C" D
+"RTN","DSIO01",86,0)
+ . . S DNOTES(+$P(LN,U,2),+$O(DNOTES(+$P(LN,U,2),""),-1)+1)=$P(LN,U,3,9999)
+"RTN","DSIO01",87,0)
+ ;     *** OBS PREGANCY NOTES
+"RTN","DSIO01",88,0)
+ I $D(DNOTES) D
+"RTN","DSIO01",89,0)
+ . S CT=0 F  S CT=$O(DNOTES(CT)) Q:'CT  D
+"RTN","DSIO01",90,0)
+ . . S OBJ(0)="PG."_CT K OUT M OUT=DNOTES(CT)
+"RTN","DSIO01",91,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","Notes","OTHER",,,,.OUT)
+"RTN","DSIO01",92,0)
+ ; *** OBS OBSTETRIC DELIVERY METHOD
+"RTN","DSIO01",93,0)
+ D D1($S($$TGET1^DSIO62("CKDELIVERYMETHODC"):"Cesarean Delivery",$$TGET1^DSIO62("CKDELIVERYMETHODV"):"Normal Spontaneous Vaginal Delivery (NSVD)",1:"Other"))
+"RTN","DSIO01",94,0)
+ ;     OBS FailedForcepVacuumDelivery
+"RTN","DSIO01",95,0)
+ F IFC="EDCPRIMARYFOR","CBREASONSCPRIMARY","EDREASONSCOTHPRIMARY","CBREASONSCSECONDARY","EDREASONSCOTHSECONDARY" D  Q:$D(IFCF)
+"RTN","DSIO01",96,0)
+ . I $TR($$UP^XLFSTR($$EGET1^DSIO62(IFC))," ")["FAILEDFORCEP" S IFCF=1
+"RTN","DSIO01",97,0)
+ I $D(IFCF),$$TGET1^DSIO62("CKVAGVACUUM") D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","FailedForcepVacuumDelivery","OTHER",,"True")
+"RTN","DSIO01",98,0)
+ ; *** OBS CESAREAN INCISION
+"RTN","DSIO01",99,0)
+ S STR=$$EGET1^DSIO62("RGINCISION") I STR'="" D
+"RTN","DSIO01",100,0)
+ . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","11466000","SNOMED-CT","Cesarean Delivery",STR)
+"RTN","DSIO01",101,0)
+ ; *** OBS TOTAL PREGNANCIES, STILLBIRTHS, PRETERM, LIVING, TERM BIRTHS
+"RTN","DSIO01",102,0)
+ D CALC
+"RTN","DSIO01",103,0)
+ Q
+"RTN","DSIO01",104,0)
+ ;
+"RTN","DSIO01",105,0)
+D1(DF) ; Obstetric Delivery Method
+"RTN","DSIO01",106,0)
+ N IT,V,LS
+"RTN","DSIO01",107,0)
+ F IT="CKVAGSVD","CKVAGVACUUM","CKVAGFORCEPS","CKVAGEPISIOTOMY","CKVAGLACERATIONS","CKVAGVBAC" D
+"RTN","DSIO01",108,0)
+ . Q:'$$TGET1^DSIO62(IT)
+"RTN","DSIO01",109,0)
+ . S V=$$EGET1^DSIO62(IT) Q:$$UP^XLFSTR(V)["VAGINAL DELIVERY"&(DF["Vaginal Delivery")
+"RTN","DSIO01",110,0)
+ . S LS=$S($D(LS):LS_","_V,1:V)
+"RTN","DSIO01",111,0)
+ D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","57071-3","LOINC","Obstetric Delivery Method",$S($D(LS):LS_","_DF,1:DF))
+"RTN","DSIO01",112,0)
+ I $$TGET1^DSIO62("CKVAGVACUUM"),$$TGET1^DSIO62("CKVAGFORCEPS") D
+"RTN","DSIO01",113,0)
+ . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","ForcepVacuumDelivery","OTHER",,"True")
+"RTN","DSIO01",114,0)
+ Q
+"RTN","DSIO01",115,0)
+ ;
+"RTN","DSIO01",116,0)
+D2() ; Get POST = ADDITIONAL DETAILS (CARET DELIMITED STRING)
+"RTN","DSIO01",117,0)
+ Q U_$$EGET1^DSIO62("SPNLABORLENGTH")_"^^"_$$EGET1^DSIO62("CBANESTHESIA")
+"RTN","DSIO01",118,0)
+ ;
+"RTN","DSIO01",119,0)
+ ; COMMON ---------------------------------------------------------------------
+"RTN","DSIO01",120,0)
+ ;
+"RTN","DSIO01",121,0)
+SEX(IN) ; Translate Sex Code
+"RTN","DSIO01",122,0)
+ S IN=$E($$UP^XLFSTR(IN),1)
+"RTN","DSIO01",123,0)
+ S IN=$S(IN="M":"Male",IN="F":"Female",IN="U":"Unknown",1:"")
+"RTN","DSIO01",124,0)
+ Q IN
+"RTN","DSIO01",125,0)
+ ;
+"RTN","DSIO01",126,0)
+CALC ; Calculated information
+"RTN","DSIO01",127,0)
+ ;     OBS TOTAL PREGNANCIES (CALCULATE)
+"RTN","DSIO01",128,0)
+ D O^DSIO03(DFN,,,"Pregnancy History","11996-6","LOINC","Total Pregnancies (Including Current)",$$TOTAL^DSIO4(DFN),,,,-1)
+"RTN","DSIO01",129,0)
+ ;     OBS TERM BIRTHS       (CALCULATE)
+"RTN","DSIO01",130,0)
+ D O^DSIO03(DFN,,,"Pregnancy History","11639-2","LOINC","Term Births (Live & Stillborn)",$$FULLT^DSIO4(DFN),,,,-1)
+"RTN","DSIO01",131,0)
+ ;     OBS LIVING            (CALCULATE)
+"RTN","DSIO01",132,0)
+ D O^DSIO03(DFN,,,"Pregnancy History","11638-4","LOINC","Living Children",$$LIVIG^DSIO4(DFN),,,,-1)
+"RTN","DSIO01",133,0)
+ ;     OBS PRETERM           (CALCULATE)
+"RTN","DSIO01",134,0)
+ D O^DSIO03(DFN,,,"Pregnancy History","11637-6","LOINC","Preterm Births (Live & Stillborn)",$$PRETM^DSIO4(DFN),,,,-1)
+"RTN","DSIO01",135,0)
+ ;     OBS STILLBIRTHS       (CALCULATE)
+"RTN","DSIO01",136,0)
+ D O^DSIO03(DFN,,,"Pregnancy History","57062-2","LOINC","Stillbirths",$$STILL^DSIO4(DFN),,,,-1)
+"RTN","DSIO01",137,0)
+ ;     OBS SPONTANEOUS ABORTIONS
+"RTN","DSIO01",138,0)
+ D O^DSIO03(DFN,,,"Pregnancy History","11614-5","LOINC","Spontaneous Abortions (Miscarriages)",$$ABORT^DSIO4(DFN,"S"),,,,-1)
+"RTN","DSIO01",139,0)
+ ;     OBS PREGNANCY TERMINATIONS
+"RTN","DSIO01",140,0)
+ D O^DSIO03(DFN,,,"Pregnancy History","11613-7","LOINC","Pregnancy Terminations",$$ABORT^DSIO4(DFN,"T"),,,,-1)
+"RTN","DSIO01",141,0)
+ ;     OBS ECTOPIC PREGNANCIES
+"RTN","DSIO01",142,0)
+ D O^DSIO03(DFN,,,"Pregnancy History","33065-4","LOINC","Ectopic Pregnancies",$$ABORT^DSIO4(DFN,"E"),,,,-1)
+"RTN","DSIO01",143,0)
+ ;     OBS GRAVIDA & PARA SUMMARY
+"RTN","DSIO01",144,0)
+ D O^DSIO03(DFN,,,"Pregnancy History","GravidaParaSummary","OTHER","Gravida & Para Summary",$$GP^DSIO4(DFN),,,,-1)
+"RTN","DSIO01",145,0)
+ Q
+"RTN","DSIO04")
+0^3^B168397166
+"RTN","DSIO04",1,0)
+DSIO04 ;DSS/TFF - DSIO OCNT PUSH SUPPORT DIALOGS;08/26/2016 16:00
+"RTN","DSIO04",2,0)
+ ;;2.0;DSIO 2.0;**1**;Aug 26, 2016;Build 1
+"RTN","DSIO04",3,0)
+ ;
+"RTN","DSIO04",4,0)
+ ;
+"RTN","DSIO04",5,0)
+ ; 
+"RTN","DSIO04",6,0)
+ Q
+"RTN","DSIO04",7,0)
+ ;
+"RTN","DSIO04",8,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",9,0)
+ ; * CONTROL(DDCSC), RECORD(DDCSR), 
+"RTN","DSIO04",10,0)
+ ;   SIEN(DESTINATION IEN), DESTINATION FILE(DDCSFLE),
+"RTN","DSIO04",11,0)
+ ;   DFN, INTERFACE/FORM(DDCSFRM), ELEMENT IEN(DDCSE), ELEMENT NAME(DDCSEN)
+"RTN","DSIO04",12,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",13,0)
+ ;
+"RTN","DSIO04",14,0)
+EDUCAT ; Education
+"RTN","DSIO04",15,0)
+ ;
+"RTN","DSIO04",16,0)
+ ; INDEX ^ ITEM ^ CODE ^ CATEGORY
+"RTN","DSIO04",17,0)
+ ;
+"RTN","DSIO04",18,0)
+ N OUT,LN
+"RTN","DSIO04",19,0)
+ D GETS^DSIO62(.OUT,$$IEN^DSIO62("EDUCATIONLISTVIEW")) Q:'$D(OUT)
+"RTN","DSIO04",20,0)
+ S LN=$NA(OUT) F  S LN=$Q(@LN) Q:LN=""  D
+"RTN","DSIO04",21,0)
+ . Q:$P(@LN,U,3)=""!($P(@LN,U)'["TRUE")
+"RTN","DSIO04",22,0)
+ . D O^DSIO03(DFN,,,$P(@LN,U,4),$P(@LN,U,3),"SCT",$P(@LN,U,2),"True")
+"RTN","DSIO04",23,0)
+ Q
+"RTN","DSIO04",24,0)
+ ;
+"RTN","DSIO04",25,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",26,0)
+ ;
+"RTN","DSIO04",27,0)
+FAMILY ; Family History
+"RTN","DSIO04",28,0)
+ ;
+"RTN","DSIO04",29,0)
+ ;  2 : IEN
+"RTN","DSIO04",30,0)
+ ;  3 : NAME
+"RTN","DSIO04",31,0)
+ ;  4 : SEX
+"RTN","DSIO04",32,0)
+ ;  5 : DATE OF BIRTH
+"RTN","DSIO04",33,0)
+ ;  6 : YEARS OF EDUCATION
+"RTN","DSIO04",34,0)
+ ;  7 : STREET ADDRESS 1
+"RTN","DSIO04",35,0)
+ ;  8 : STREET ADDRESS 2
+"RTN","DSIO04",36,0)
+ ;  9 : STREET ADDRESS 3
+"RTN","DSIO04",37,0)
+ ; 10 : CITY
+"RTN","DSIO04",38,0)
+ ; 11 : STATE
+"RTN","DSIO04",39,0)
+ ; 12 : ZIP
+"RTN","DSIO04",40,0)
+ ; 13 : PHONE HOME
+"RTN","DSIO04",41,0)
+ ; 14 : PHONE WORK
+"RTN","DSIO04",42,0)
+ ; 15 : PHONE CELL
+"RTN","DSIO04",43,0)
+ ; 16 : PHONE FAX
+"RTN","DSIO04",44,0)
+ ; 17 : PATIENT NAME
+"RTN","DSIO04",45,0)
+ ; 18 : DFN
+"RTN","DSIO04",46,0)
+ ; 19 : RELATIONSHIP
+"RTN","DSIO04",47,0)
+ ; 20 : STATUS
+"RTN","DSIO04",48,0)
+ ; 21 : DIAGNOSIS|
+"RTN","DSIO04",49,0)
+ ; 22 : COMMENTS
+"RTN","DSIO04",50,0)
+ ;
+"RTN","DSIO04",51,0)
+ N OUT,CT,LN,PR,DATES,I,ID,ADDR,PHONE,PROB,FDA
+"RTN","DSIO04",52,0)
+ D GETS^DSIO62(.OUT,$$IEN^DSIO62("LVPERSONLIST")) Q:'$D(OUT)
+"RTN","DSIO04",53,0)
+ S CT=1 F  S CT=$O(OUT(CT)) Q:'CT  S LN=OUT(CT) D
+"RTN","DSIO04",54,0)
+ . K PR,DATES,ADDR,PHONE,PROB
+"RTN","DSIO04",55,0)
+ . ;I $P(LN,U,2)["-"&($P(LN,U,2)'["+") D SAVE^DSIO9(.PR,+$P(LN,U,2),,"@") Q
+"RTN","DSIO04",56,0)
+ . I $P(LN,U,2)["+" D SAVE^DSIO9(.PR,,DFN,$P(LN,U,3),,,,,,,,,1) Q:'PR  S $P(LN,U,2)=+PR
+"RTN","DSIO04",57,0)
+ . S DATES=$$DT^DSIO2($P(LN,U,5))
+"RTN","DSIO04",58,0)
+ . ; *** ADDRESS
+"RTN","DSIO04",59,0)
+ . S I=7 F ID=1,2,3,"CITY","STATE","ZIP" S ADDR(I)=ID_U_$P(LN,U,I),I=I+1
+"RTN","DSIO04",60,0)
+ . ; *** PHONE NUMBERS
+"RTN","DSIO04",61,0)
+ . S I=13 F ID="H","WP","MC" S PHONE(I)=ID_U_$P(LN,U,I),I=I+1
+"RTN","DSIO04",62,0)
+ . ; *** DIAGNOSIS
+"RTN","DSIO04",63,0)
+ . F I=1:1:$L($P(LN,U,21),"|") S PROB(I)=$P($P(LN,U,21),"|",I)
+"RTN","DSIO04",64,0)
+ . K PR D SAVE^DSIO9(.PR,+$P(LN,U,2),DFN,$P(LN,U,3),DATES,.ADDR,.PHONE,$P(LN,U,6),$P(LN,U,4),$P(LN,U,19),$P(LN,U,20),.PROB,1)
+"RTN","DSIO04",65,0)
+ . S FDA(19641.11,+$P(LN,U,2)_",",4)=$P(LN,U,22)
+"RTN","DSIO04",66,0)
+ . D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO04",67,0)
+ Q
+"RTN","DSIO04",68,0)
+ ;
+"RTN","DSIO04",69,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",70,0)
+ ;
+"RTN","DSIO04",71,0)
+GENETI ; Genetic Screening
+"RTN","DSIO04",72,0)
+ N I,LN,VAL,OUT,NAR
+"RTN","DSIO04",73,0)
+ ; CONTROL_BOOLEAN ; CONTROL_NARRATIVE ; CODE_SYSTEM ; CODE ; DISPLAY NAME
+"RTN","DSIO04",74,0)
+ F I=1:1 S LN=$P($T(GENETI+I^DSIO05),";;",2) Q:LN=""  D
+"RTN","DSIO04",75,0)
+ . K OUT,NAR S VAL=$$UP^XLFSTR($$GET1^DSIO62($$IEN^DSIO62($P(LN,";"))))
+"RTN","DSIO04",76,0)
+ . I $P(VAL,U)="TRUE" D
+"RTN","DSIO04",77,0)
+ . . S VAL=$$CKVAL($P(VAL,U,2)) Q:VAL="Unknown"!(VAL="")
+"RTN","DSIO04",78,0)
+ . . S OUT=$P($$GET1^DSIO62($$IEN^DSIO62($P(LN,";",2))),U,2) S:OUT'="" NAR(1)=OUT
+"RTN","DSIO04",79,0)
+ . . D O^DSIO03(DFN,,"FAMMEMB",,$P(LN,";",4),$P(LN,";",3)_"^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.4",$P(LN,";",5),VAL,,.NAR)
+"RTN","DSIO04",80,0)
+ Q
+"RTN","DSIO04",81,0)
+ ;
+"RTN","DSIO04",82,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",83,0)
+ ;
+"RTN","DSIO04",84,0)
+INFECT ; Infection History
+"RTN","DSIO04",85,0)
+ N I,LN,VAL,OUT,NAR
+"RTN","DSIO04",86,0)
+ ; CONTROL_BOOLEAN ; CONTROL_NARRATIVE ; CODE_SYSTEM ; CODE ; DISPLAY NAME
+"RTN","DSIO04",87,0)
+ F I=1:1 S LN=$P($T(INFECT+I^DSIO05),";;",2) Q:LN=""  D
+"RTN","DSIO04",88,0)
+ . K OUT,NAR S VAL=$$UP^XLFSTR($$GET1^DSIO62($$IEN^DSIO62($P(LN,";"))))
+"RTN","DSIO04",89,0)
+ . I $P(VAL,U)="TRUE" D
+"RTN","DSIO04",90,0)
+ . . S VAL=$$CKVAL($P(VAL,U,2)) Q:VAL="Unknown"!(VAL="")
+"RTN","DSIO04",91,0)
+ . . S OUT=$P($$GET1^DSIO62($$IEN^DSIO62($P(LN,";",2))),U,2) S:OUT'="" NAR(1)=OUT
+"RTN","DSIO04",92,0)
+ . . D O^DSIO03(DFN,,,,$P(LN,";",4),$P(LN,";",3)_"^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.6",$P(LN,";",5),VAL,,.NAR)
+"RTN","DSIO04",93,0)
+ Q
+"RTN","DSIO04",94,0)
+ ;
+"RTN","DSIO04",95,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",96,0)
+ ;
+"RTN","DSIO04",97,0)
+MEDICA ; Medical History
+"RTN","DSIO04",98,0)
+ N I,LN,VAL,OUT,NAR
+"RTN","DSIO04",99,0)
+ ; CONTROL_BOOLEAN ; CONTROL_NARRATIVE ; CODE_SYSTEM ; CODE ; DISPLAY NAME
+"RTN","DSIO04",100,0)
+ F I=1:1 S LN=$P($T(MEDICA+I^DSIO05),";;",2) Q:LN=""  D
+"RTN","DSIO04",101,0)
+ . K OUT,NAR S VAL=$$UP^XLFSTR($$GET1^DSIO62($$IEN^DSIO62($P(LN,";"))))
+"RTN","DSIO04",102,0)
+ . I $P(VAL,U)="TRUE" D
+"RTN","DSIO04",103,0)
+ . . S VAL=$$CKVAL($P(VAL,U,2)) Q:VAL="Unknown"!(VAL="")
+"RTN","DSIO04",104,0)
+ . . S OUT=$P($$GET1^DSIO62($$IEN^DSIO62($P(LN,";",2))),U,2) S:OUT'="" NAR(1)=OUT
+"RTN","DSIO04",105,0)
+ . . D O^DSIO03(DFN,,,,$P(LN,";",4),$P(LN,";",3)_"^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.1",$P(LN,";",5),VAL,,.NAR)
+"RTN","DSIO04",106,0)
+ Q
+"RTN","DSIO04",107,0)
+ ;
+"RTN","DSIO04",108,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",109,0)
+ ;
+"RTN","DSIO04",110,0)
+OBSPRE ; OB Flow Sheet
+"RTN","DSIO04",111,0)
+ N OUT,CT Q:'$G(DFN)
+"RTN","DSIO04",112,0)
+ D GETS^DSIO62(.OUT,$$IEN^DSIO62("SGSTANDARD")) Q:'$D(OUT)
+"RTN","DSIO04",113,0)
+ S CT=0 F  S CT=$O(OUT(CT)) Q:'CT  D
+"RTN","DSIO04",114,0)
+ . D OB1($P($P(OUT(CT),U),","),$P($P(OUT(CT),U),",",2),$P(OUT(CT),U,2,999))
+"RTN","DSIO04",115,0)
+ Q
+"RTN","DSIO04",116,0)
+ ;
+"RTN","DSIO04",117,0)
+OB1(COL,ROW,VAL) ; Data by Column
+"RTN","DSIO04",118,0)
+ Q:VAL=""
+"RTN","DSIO04",119,0)
+ N DIS,SYS,CODE,UNT,DATE,PREG,EDC,OBJ
+"RTN","DSIO04",120,0)
+ S DIS=$$OB2("D",COL),SYS=$$OB2("S",COL),CODE=$$OB2("C",COL)
+"RTN","DSIO04",121,0)
+ S UNT=$$OB2("U",COL),DATE=$$DT^DSIO2($$OB3(ROW))
+"RTN","DSIO04",122,0)
+ Q:CODE=""
+"RTN","DSIO04",123,0)
+ S PREG=$$OB4(DATE) I 'PREG D  Q:'PREG
+"RTN","DSIO04",124,0)
+ . S PREG=$$PG^DSIO4(DFN) Q:'PREG
+"RTN","DSIO04",125,0)
+ . S EDC=$$GET1^DIQ(19641.13,PREG_",",.02,"I") Q:EDC=""  S:DATE<EDC PREG=-1
+"RTN","DSIO04",126,0)
+ S OBJ(0)="PG."_PREG
+"RTN","DSIO04",127,0)
+ D O^DSIO03(DFN,.OBJ,,,CODE,SYS_"^1.3.6.1.4.1.19376.1.5.3.1.1.11.2.3.2",DIS,VAL_U_UNT,,,DATE,,$$OB5)
+"RTN","DSIO04",128,0)
+ Q
+"RTN","DSIO04",129,0)
+ ;
+"RTN","DSIO04",130,0)
+OB2(TYP,COL) ; Return Element by Column
+"RTN","DSIO04",131,0)
+ ;
+"RTN","DSIO04",132,0)
+ ; COL ; DIS ; SYS ; CODE ; UNIT
+"RTN","DSIO04",133,0)
+ ;
+"RTN","DSIO04",134,0)
+ N I,LN,OUT
+"RTN","DSIO04",135,0)
+ F I=1:1 S LN=$P($T(OBSPRE+I^DSIO05),";;",2) Q:LN=""  D  Q:$D(OUT)
+"RTN","DSIO04",136,0)
+ . I $P(LN,";")=COL D
+"RTN","DSIO04",137,0)
+ . . I TYP="D" S OUT=$P(LN,";",2) Q
+"RTN","DSIO04",138,0)
+ . . I TYP="S" S OUT=$P(LN,";",3) Q
+"RTN","DSIO04",139,0)
+ . . I TYP="C" S OUT=$P(LN,";",4) Q
+"RTN","DSIO04",140,0)
+ . . I TYP="U" S OUT=$P(LN,";",5)
+"RTN","DSIO04",141,0)
+ Q $G(OUT)
+"RTN","DSIO04",142,0)
+ ;
+"RTN","DSIO04",143,0)
+OB3(ROW) ; Return Date by Row
+"RTN","DSIO04",144,0)
+ N CT,RET
+"RTN","DSIO04",145,0)
+ S CT=0 F  S CT=$O(OUT(CT)) Q:'CT  D
+"RTN","DSIO04",146,0)
+ . I $P($P(OUT(CT),U),",")=0,$P($P(OUT(CT),U),",",2)=ROW D
+"RTN","DSIO04",147,0)
+ . . S RET=$TR($P(OUT(CT),U,2),"@"," ")
+"RTN","DSIO04",148,0)
+ Q $G(RET)
+"RTN","DSIO04",149,0)
+ ;
+"RTN","DSIO04",150,0)
+OB4(DATE) ; Return Pregnancy that occured during the data of...
+"RTN","DSIO04",151,0)
+ N OUT,CT,IEN
+"RTN","DSIO04",152,0)
+ D HPG^DSIO15(.OUT,$$FMADD^XLFDT(DATE,-365),$$FMADD^XLFDT(DATE,365)) I '$G(@OUT@(0)) K @OUT Q 0
+"RTN","DSIO04",153,0)
+ S CT=$NA(@OUT) F  S CT=$Q(@CT) Q:CT=""  Q:$QS(CT,1)'=$J!($QS(CT,2)'="DSIO HPG")  D  Q:$G(IEN)
+"RTN","DSIO04",154,0)
+ . Q:+$P(@CT,U,5)'=DFN
+"RTN","DSIO04",155,0)
+ . I DATE'<$$DT^DSIO2($P(@CT,U,4)),DATE'>$$DT^DSIO2($P(@CT,U,9)) S IEN=$P(@CT,U,2)
+"RTN","DSIO04",156,0)
+ K @OUT
+"RTN","DSIO04",157,0)
+ Q +$G(IEN)
+"RTN","DSIO04",158,0)
+ ;
+"RTN","DSIO04",159,0)
+OB5() ; Return observation IEN based on Date
+"RTN","DSIO04",160,0)
+ N CT,I,OBJECT,OUT,IEN
+"RTN","DSIO04",161,0)
+ S CT=$NA(OBJ) F I=0:1 S CT=$Q(@CT) Q:CT=""  S OBJECT(I)=$$OBJECT^DSIO10(@CT)
+"RTN","DSIO04",162,0)
+ D OBG^DSIO10(.OUT,,DFN,.OBJECT,,DATE,DATE,,,"LOINC",CODE,"1,1") Q:+$G(@OUT@(0))=0 ""
+"RTN","DSIO04",163,0)
+ S IEN=$P($G(@OUT@(1,0)),U,2) K @OUT Q:'IEN ""
+"RTN","DSIO04",164,0)
+ Q IEN
+"RTN","DSIO04",165,0)
+ ;
+"RTN","DSIO04",166,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",167,0)
+ ;
+"RTN","DSIO04",168,0)
+PREGHI ; Pregnancy History
+"RTN","DSIO04",169,0)
+ ;
+"RTN","DSIO04",170,0)
+ ;   1) L
+"RTN","DSIO04",171,0)
+ ;   2) IEN
+"RTN","DSIO04",172,0)
+ ;   3) DATE RECORDED
+"RTN","DSIO04",173,0)
+ ;   4) EDC
+"RTN","DSIO04",174,0)
+ ;   5) DFN|PATIENT
+"RTN","DSIO04",175,0)
+ ;   6) STATUS
+"RTN","DSIO04",176,0)
+ ;   7) FOF|(IEN OR IDENTIFIER)
+"RTN","DSIO04",177,0)
+ ;   8) EDD
+"RTN","DSIO04",178,0)
+ ;   9) PREGNANCY END
+"RTN","DSIO04",179,0)
+ ;  10) OB IEN|OB
+"RTN","DSIO04",180,0)
+ ;  11) FACILITY IEN|FACILITY
+"RTN","DSIO04",181,0)
+ ;  12) UPDATED BY IEN|UPDATED BY
+"RTN","DSIO04",182,0)
+ ;  13) GESTATIONAL AGE
+"RTN","DSIO04",183,0)
+ ;  14) LENGTH OF LABOR
+"RTN","DSIO04",184,0)
+ ;  15) TYPE OF DELIVERY  (C or V)
+"RTN","DSIO04",185,0)
+ ;  16) ANESTHESIA
+"RTN","DSIO04",186,0)
+ ;  17) PRETERM DELIVERY
+"RTN","DSIO04",187,0)
+ ;  18) BIRTH TYPE
+"RTN","DSIO04",188,0)
+ ;  19) IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU|
+"RTN","DSIO04",189,0)
+ ;  20) OUTCOME
+"RTN","DSIO04",190,0)
+ ;  21) HIGH RISK FLAG
+"RTN","DSIO04",191,0)
+ ;  22) DAYS IN HOSPITAL
+"RTN","DSIO04",192,0)
+ ;
+"RTN","DSIO04",193,0)
+ ;  C^IEN^COMMENT
+"RTN","DSIO04",194,0)
+ ;  B^IEN|BABY|#^COMMENT
+"RTN","DSIO04",195,0)
+ ;
+"RTN","DSIO04",196,0)
+ N ROWS,CT,LN,PREG,DATES,FAC,FA,STR,OBJ,I,BCT,DNOTES,OUT
+"RTN","DSIO04",197,0)
+ D GETS^DSIO62(.ROWS,$$IEN^DSIO62("##TCONFIGCOLLECTION##")) Q:'$D(ROWS)
+"RTN","DSIO04",198,0)
+ ; *** PREGNANCY
+"RTN","DSIO04",199,0)
+ ; Update Pregnancies and Babies
+"RTN","DSIO04",200,0)
+ S CT=0 F  S CT=$O(ROWS(CT)) Q:'CT  S LN=ROWS(CT) D
+"RTN","DSIO04",201,0)
+ . K OLD,PREG,DATES,FAC,FA,STR
+"RTN","DSIO04",202,0)
+ . I $P(LN,U)="L" D
+"RTN","DSIO04",203,0)
+ . . I $P(LN,U,2)["+" D PREG^DSIO15(.PREG,,DFN,,"H",,,,,,,,1) Q:'PREG  D PR1(+PREG)
+"RTN","DSIO04",204,0)
+ . . S OBJ(0)="PG."_$P(LN,U,2)
+"RTN","DSIO04",205,0)
+ . . Q:$$GET1^DIQ(19641.13,$P(LN,U,2)_",",.04,"I")="C"   ; *** Do NOT process the CURRENT!
+"RTN","DSIO04",206,0)
+ . . ; DATES = EDC^END^EDD
+"RTN","DSIO04",207,0)
+ . . F I=4,9,8 S DATES=$S($D(DATES):DATES_U,1:"")_$$DT^DSIO2($P(LN,U,I))
+"RTN","DSIO04",208,0)
+ . . I $P($P(LN,U,11),"|",2)'="" D  K:$G(FAC)'?1"NVA.".N FAC
+"RTN","DSIO04",209,0)
+ . . . S FAC=$$UP^XLFSTR($P($P(LN,U,11),"|",2))
+"RTN","DSIO04",210,0)
+ . . . I $D(^DSIO(19641.1,"F",FAC)) D  Q
+"RTN","DSIO04",211,0)
+ . . . . S FAC="NVA."_$O(^DSIO(19641.1,"F",FAC,""))
+"RTN","DSIO04",212,0)
+ . . . D SENT^DSIO1(.FA,,FAC,"F",,,,,1) I FA S FAC="NVA."_+FA
+"RTN","DSIO04",213,0)
+ . . ; *** OBSERVATIONS -------------------------------------------------------
+"RTN","DSIO04",214,0)
+ . . ;     BABY LEVEL
+"RTN","DSIO04",215,0)
+ . . ; Add/Update Babies
+"RTN","DSIO04",216,0)
+ . . S BCT=0 F I=1:1:$L($P(LN,U,19),"|") S STR=$P($P(LN,U,19),"|",I) D
+"RTN","DSIO04",217,0)
+ . . . D:STR'="" PR2($P(LN,U,2),STR) K OBJ(1)
+"RTN","DSIO04",218,0)
+ . . ; *** OBSERVATIONS -------------------------------------------------------
+"RTN","DSIO04",219,0)
+ . . ;     PREGNANCY LEVEL
+"RTN","DSIO04",220,0)
+ . . I BCT D
+"RTN","DSIO04",221,0)
+ . . . ;     OBS BABY COUNT
+"RTN","DSIO04",222,0)
+ . . . D O^DSIO03(DFN,.OBJ,,"Pregnancy","FetusBabyCount","OTHER","Fetus/Baby Count",BCT)
+"RTN","DSIO04",223,0)
+ . . . ;     OBS BIRTH DATE OF FETUS
+"RTN","DSIO04",224,0)
+ . . . D O^DSIO03(DFN,.OBJ,,"Outcome","75092-7","LOINC","Birth Date of Fetus",$P(LN,U,9))
+"RTN","DSIO04",225,0)
+ . . ;     OBS GESTATIONAL AGE
+"RTN","DSIO04",226,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","412726003","SNOMED-CT","Gestational Age at Birth",$$G1^DSIO4($P(LN,U,13)))
+"RTN","DSIO04",227,0)
+ . . S STR=$$UP^XLFSTR($E($P(LN,U,15),1))
+"RTN","DSIO04",228,0)
+ . . ;     OBS DELIVERY TYPE
+"RTN","DSIO04",229,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","CesareanDelivery","OTHER",,$S(STR="C":"True",1:"False"))
+"RTN","DSIO04",230,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","NormalSpontaneousVaginalDelivery","OTHER",,$S(STR="V":"True",1:"False"))
+"RTN","DSIO04",231,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","OtherDelivery","OTHER",,$S(STR="":"True",1:"False"))
+"RTN","DSIO04",232,0)
+ . . S STR=$S(STR="C":"Cesarean Delivery",STR="V":"Normal Spontaneous Vaginal Delivery (NSVD)",1:"Other")
+"RTN","DSIO04",233,0)
+ . . ;     OBS OBSTETRIC DELIVERY METHOD
+"RTN","DSIO04",234,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","57071-3","LOINC","Obstetric Delivery Method",STR)
+"RTN","DSIO04",235,0)
+ . . ;     OBS DAYS IN HOSPITAL
+"RTN","DSIO04",236,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","DaysInHospital","OTHER",,$P(LN,U,22))
+"RTN","DSIO04",237,0)
+ . . ;     OBS PREGNANCY OUTCOME
+"RTN","DSIO04",238,0)
+ . . I $$UP^XLFSTR($P(LN,U,20))="TERMINATION" D
+"RTN","DSIO04",239,0)
+ . . . D O^DSIO03(DFN,.OBJ,,"PregnancyTerminationOutcome","Indication","OTHER",,"Unknown")
+"RTN","DSIO04",240,0)
+ . . D O^DSIO03(DFN,.OBJ,,"Outcome","OutcomeType","OTHER","Pregnancy Outcome",$$OT^DSIO03($P(LN,U,20)))
+"RTN","DSIO04",241,0)
+ . . ; *** UPDATE PREGNANCY
+"RTN","DSIO04",242,0)
+ . . K PREG D PREG^DSIO15(.PREG,$P(LN,U,2),DFN,DATES,,,,$G(FAC),,U_$P(LN,U,14)_"^^"_$P(LN,U,16),,,1)
+"RTN","DSIO04",243,0)
+ . ; *** DELIVERY COMMENTS
+"RTN","DSIO04",244,0)
+ . I $P(LN,U)="C" D
+"RTN","DSIO04",245,0)
+ . . S DNOTES(+$P(LN,U,2),+$O(DNOTES(+$P(LN,U,2),""),-1)+1)=$P(LN,U,3,9999)
+"RTN","DSIO04",246,0)
+ ;     *** OBS PREGANCY NOTES
+"RTN","DSIO04",247,0)
+ I $D(DNOTES) D
+"RTN","DSIO04",248,0)
+ . S CT=0 F  S CT=$O(DNOTES(CT)) Q:'CT  D
+"RTN","DSIO04",249,0)
+ . . Q:$$GET1^DIQ(19641.13,CT_",",.04,"I")="C"   ; *** Do NOT process the CURRENT!
+"RTN","DSIO04",250,0)
+ . . S OBJ(0)="PG."_CT K OUT M OUT=DNOTES(CT)
+"RTN","DSIO04",251,0)
+ . . D O^DSIO03(DFN,.OBJ,,"DeliveryDetails","Notes","OTHER",,,,.OUT)
+"RTN","DSIO04",252,0)
+ ;     OBS TOTAL PREGNANCIES, STILLBIRTHS, PRETERM, LIVING, TERM BIRTHS
+"RTN","DSIO04",253,0)
+ D CALC^DSIO01
+"RTN","DSIO04",254,0)
+ Q
+"RTN","DSIO04",255,0)
+ ;
+"RTN","DSIO04",256,0)
+PR1(IEN) ; Update IEN
+"RTN","DSIO04",257,0)
+ ;
+"RTN","DSIO04",258,0)
+ ;  C^IEN^COMMENT
+"RTN","DSIO04",259,0)
+ ;  B^IEN|BABY|#^COMMENT
+"RTN","DSIO04",260,0)
+ ;
+"RTN","DSIO04",261,0)
+ N OLD,CT
+"RTN","DSIO04",262,0)
+ S OLD=$P(LN,U,2),$P(LN,U,2)=IEN
+"RTN","DSIO04",263,0)
+ S CT=0 F  S CT=$O(ROWS(CT)) Q:'CT  D
+"RTN","DSIO04",264,0)
+ . I $P(ROWS(CT),U)="C",$P(ROWS(CT),U,2)=OLD S $P(ROWS(CT),U,2)=IEN
+"RTN","DSIO04",265,0)
+ . I $P(ROWS(CT),U)="B",+$P(ROWS(CT),U,2)=OLD D
+"RTN","DSIO04",266,0)
+ . . S $P(ROWS(CT),U,2)=IEN_"|"_$P($P(ROWS(CT),U,2),"|",2,3)
+"RTN","DSIO04",267,0)
+ Q
+"RTN","DSIO04",268,0)
+ ;
+"RTN","DSIO04",269,0)
+PR2(PREG,LN) ; Update Baby
+"RTN","DSIO04",270,0)
+ ;
+"RTN","DSIO04",271,0)
+ ; LN = IEN;NUMBER;NAME;GENDER;BIRTH WEIGHT;STILLBORN;APGAR1;APGAR2;STATUS;NICU
+"RTN","DSIO04",272,0)
+ ;
+"RTN","DSIO04",273,0)
+ N PG,CT,RN
+"RTN","DSIO04",274,0)
+ I $P(LN,";")["+" D PREG^DSIO15(.PG,PREG,DFN,,,,,,"+",,,,1) Q:'$P(PG,U,2)  S $P(LN,";")=+$P(PG,U,2)
+"RTN","DSIO04",275,0)
+ Q:$P(LN,";")'?.N
+"RTN","DSIO04",276,0)
+ S OBJ(1)="FB."_+LN,BCT=BCT+1
+"RTN","DSIO04",277,0)
+ D O^DSIO03(DFN,.OBJ,,"BabyDetails","46098-0","LOINC","Sex",$$SEX^DSIO01($P(LN,";",4)))              ; OBS GENDER
+"RTN","DSIO04",278,0)
+ D O^DSIO03(DFN,.OBJ,,"BabyDetails","9272-6","LOINC","One Minute APGAR",$P(LN,";",7))                ; OBS APGAR1 (1 MINUTE)
+"RTN","DSIO04",279,0)
+ D O^DSIO03(DFN,.OBJ,,"BabyDetails","9274-2","LOINC","Five Minute APGAR",$P(LN,";",8))               ; OBS APGAR2 (5 MINUTE)
+"RTN","DSIO04",280,0)
+ D O^DSIO03(DFN,.OBJ,,"BabyDetails","AdmittedToIcu","OTHER","",$S(+$P(LN,";",10):"True",1:"False"))  ; OBS NICU
+"RTN","DSIO04",281,0)
+ D O^DSIO03(DFN,.OBJ,,"BabyDetails","8339-4","LOINC","Birth Weight",$P($P(LN,";",5),"."))            ; OBS BIRTH WEIGHT IN GRAMS
+"RTN","DSIO04",282,0)
+ K ^TMP($J,"DSIO04 PR2")
+"RTN","DSIO04",283,0)
+ S CT=0 F  S CT=$O(ROWS(CT)) Q:'CT  S RN=ROWS(CT) D
+"RTN","DSIO04",284,0)
+ . Q:$P(RN,U)'="B"!(+$P(RN,U,2)'=PREG)!($P($P(RN,U,2),"|",3)'=$P(LN,";",2))
+"RTN","DSIO04",285,0)
+ . S ^TMP($J,"DSIO04 PR2",$O(^TMP($J,"DSIO04 PR2",""),-1)+1)=$P(RN,U,3,999)
+"RTN","DSIO04",286,0)
+ I $D(^TMP($J,"DSIO04 PR2")) D
+"RTN","DSIO04",287,0)
+ . D WP^DIE(19641.112,+LN_",",1,"K","^TMP($J,""DSIO04 PR2"")")
+"RTN","DSIO04",288,0)
+ K ^TMP($J,"DSIO04 PR2")
+"RTN","DSIO04",289,0)
+ Q
+"RTN","DSIO04",290,0)
+ ;
+"RTN","DSIO04",291,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",292,0)
+ ;
+"RTN","DSIO04",293,0)
+RETURN ; Return to Clinic
+"RTN","DSIO04",294,0)
+ N PREG,OBJ,VAL
+"RTN","DSIO04",295,0)
+ S PREG=$$PG^DSIO4($G(DFN)) Q:'PREG  S OBJ(0)="PG."_PREG
+"RTN","DSIO04",296,0)
+ S VAL=$$RE1($$EGET1^DSIO62("EDTRTCWEEKS"),$$UP^XLFSTR($$EGET1^DSIO62("CBTIMEUNIT")))_"^day"
+"RTN","DSIO04",297,0)
+ D O^DSIO03(DFN,.OBJ,,,"57070-5","LOINC^1.3.6.1.4.1.19376.1.5.3.1.1.11.2.3.2","Date next clinic visit",VAL)
+"RTN","DSIO04",298,0)
+ Q
+"RTN","DSIO04",299,0)
+ ;
+"RTN","DSIO04",300,0)
+RE1(N,U) ; How many days until next visit
+"RTN","DSIO04",301,0)
+ S U=$S(U["DAY":1,U["WEEK":7,U["MONTH":30,U["YEAR":365,1:0)
+"RTN","DSIO04",302,0)
+ Q N*U
+"RTN","DSIO04",303,0)
+ ;
+"RTN","DSIO04",304,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO04",305,0)
+ ;
+"RTN","DSIO04",306,0)
+SOCIAL ; Social History
+"RTN","DSIO04",307,0)
+ N CAT,PREG,OBJ,VAL,VA,VB,VS,NAR
+"RTN","DSIO04",308,0)
+ S CAT="Social History",PREG=$$PG^DSIO4($G(DFN)) Q:'PREG  S OBJ(0)="PG."_PREG
+"RTN","DSIO04",309,0)
+ I $$TGET1^DSIO62("CKSMOKEYES") D
+"RTN","DSIO04",310,0)
+ . S VAL=$$EGET1^DSIO62("SPNCIGYRS")+$$EGET1^DSIO62("SPNCIGARYRS")+$$EGET1^DSIO62("SPNPIPEYRS")
+"RTN","DSIO04",311,0)
+ . D O^DSIO03(DFN,.OBJ,,CAT,"229819007","SCT^1.3.6.1.4.1.19376.1.5.3.1.4.13.4","Smoking",VAL_"^{pack}/a")
+"RTN","DSIO04",312,0)
+ I $$TGET1^DSIO62("CHECKBOX25") D
+"RTN","DSIO04",313,0)
+ . S VAL=$$EGET1^DSIO62("SPNEXERCISE")_"^{times}/wk"
+"RTN","DSIO04",314,0)
+ . K NAR D WGETS^DSIO62(.NAR,$$IEN^DSIO62("EDEXERCISE"))
+"RTN","DSIO04",315,0)
+ . D O^DSIO03(DFN,.OBJ,,CAT,"256235009","SCT^1.3.6.1.4.1.19376.1.5.3.1.4.13.4","Exercise",VAL,,.NAR)
+"RTN","DSIO04",316,0)
+ I $$TGET1^DSIO62("CKALCOHOLYES") D
+"RTN","DSIO04",317,0)
+ . S VA=$$SO1($$EGET1^DSIO62("SPNWINE"),$$UP^XLFSTR($$EGET1^DSIO62("CBWINE")))
+"RTN","DSIO04",318,0)
+ . S VB=$$SO1($$EGET1^DSIO62("SPNBEER"),$$UP^XLFSTR($$EGET1^DSIO62("CBBEER")))
+"RTN","DSIO04",319,0)
+ . S VS=$$SO1($$EGET1^DSIO62("SPNSPIRIT"),$$UP^XLFSTR($$EGET1^DSIO62("CBSPIRIT")))
+"RTN","DSIO04",320,0)
+ . D O^DSIO03(DFN,.OBJ,,CAT,"160573003","SCT^1.3.6.1.4.1.19376.1.5.3.1.4.13.4","ETOH (Alcohol) Use",(VA+VB+VS)_"^{drink}/a")
+"RTN","DSIO04",321,0)
+ S VAL=$S($$TGET1^DSIO62("CHECKBOX18"):"True",$$TGET1^DSIO62("CHECKBOX19"):"False",1:"") D
+"RTN","DSIO04",322,0)
+ . Q:VAL=""  K NAR D WGETS^DSIO62(.NAR,$$IEN^DSIO62("EDDIET"))
+"RTN","DSIO04",323,0)
+ . D O^DSIO03(DFN,.OBJ,,CAT,"364393001","SCT^1.3.6.1.4.1.19376.1.5.3.1.4.13.4","Diet",VAL,,.NAR)
+"RTN","DSIO04",324,0)
+ S VAL=$S($$TGET1^DSIO62("CHECKBOX28"):"True",$$TGET1^DSIO62("CHECKBOX29"):"False",1:"") D
+"RTN","DSIO04",325,0)
+ . Q:VAL=""  K NAR D WGETS^DSIO62(.NAR,$$IEN^DSIO62("EDEMPLOYED"))
+"RTN","DSIO04",326,0)
+ . D O^DSIO03(DFN,.OBJ,,CAT,"364703007","SCT^1.3.6.1.4.1.19376.1.5.3.1.4.13.4","Employment",VAL,,.NAR)
+"RTN","DSIO04",327,0)
+ S VAL=$S($$TGET1^DSIO62("CHECKBOX7"):"True",$$TGET1^DSIO62("CHECKBOX8"):"False",1:"") D
+"RTN","DSIO04",328,0)
+ . Q:VAL=""  K NAR D WGETS^DSIO62(.NAR,$$IEN^DSIO62("EDTOXIC"))
+"RTN","DSIO04",329,0)
+ . D O^DSIO03(DFN,.OBJ,,CAT,"425400000","SCT^1.3.6.1.4.1.19376.1.5.3.1.4.13.4","Toxic Exposure",VAL,,.NAR)
+"RTN","DSIO04",330,0)
+ S VAL=$S($$TGET1^DSIO62("CKDRUGSYES"):"True",$$TGET1^DSIO62("CKDRUGSNO"):"False",1:"") D
+"RTN","DSIO04",331,0)
+ . D:VAL'="" O^DSIO03(DFN,.OBJ,,CAT,"363908000","SCT^1.3.6.1.4.1.19376.1.5.3.1.4.13.4","Drug Use",VAL)
+"RTN","DSIO04",332,0)
+ K NAR D WGETS^DSIO62(.NAR,$$IEN^DSIO62("MELIFEOTHER")) Q:'$D(NAR)
+"RTN","DSIO04",333,0)
+ D O^DSIO03(DFN,.OBJ,,CAT,"29762-2","LNC^1.3.6.1.4.1.19376.1.5.3.1.4.13.4","Other Social History",,,.NAR)
+"RTN","DSIO04",334,0)
+ Q
+"RTN","DSIO04",335,0)
+ ;
+"RTN","DSIO04",336,0)
+SO1(N,U) ; How much Alcohol in a Year
+"RTN","DSIO04",337,0)
+ S U=$S(U["DAY":365,U["WEEK":52,U["MONTH":12,U["YEAR":1,1:0)
+"RTN","DSIO04",338,0)
+ Q N*U
+"RTN","DSIO04",339,0)
+ ;
+"RTN","DSIO04",340,0)
+ ; -- COMMON ------------------------------------------------------------------
+"RTN","DSIO04",341,0)
+ ;
+"RTN","DSIO04",342,0)
+CKVAL(VAL) ; Transform Value for Checkboxes of Yes, No, and Unknown
+"RTN","DSIO04",343,0)
+ S VAL=$$UP^XLFSTR($E(VAL,1))
+"RTN","DSIO04",344,0)
+ Q $S(VAL="Y"!(VAL="T"):"True",VAL="N"!(VAL="F"):"False",VAL="U":"Unknown",1:"")
+"RTN","DSIO05")
+0^1^B133371105
+"RTN","DSIO05",1,0)
+DSIO05 ;DSS/TFF - DSIO OCNT PUSH SUPPORT DIALOG TEXT;08/26/2016 16:00
+"RTN","DSIO05",2,0)
+ ;;2.0;DSIO 2.0;**1**;Aug 26, 2016;Build 1
+"RTN","DSIO05",3,0)
+ ;
+"RTN","DSIO05",4,0)
+ ;
+"RTN","DSIO05",5,0)
+ ;
+"RTN","DSIO05",6,0)
+ Q
+"RTN","DSIO05",7,0)
+ ;
+"RTN","DSIO05",8,0)
+GENETI ; Genetic Screen Text List of Control Names
+"RTN","DSIO05",9,0)
+ ;;CHECKBOX1;EDIT1;SCT;40108008;Thalassemia
+"RTN","DSIO05",10,0)
+ ;;CHECKBOX2;EDIT1;SCT;40108008;Thalassemia
+"RTN","DSIO05",11,0)
+ ;;CHECKBOX3;EDIT1;SCT;40108008;Thalassemia
+"RTN","DSIO05",12,0)
+ ;;CHECKBOX4;EDIT2;SCT;253098009;Neural Tube Defect
+"RTN","DSIO05",13,0)
+ ;;CHECKBOX5;EDIT2;SCT;253098009;Neural Tube Defect
+"RTN","DSIO05",14,0)
+ ;;CHECKBOX6;EDIT2;SCT;253098009;Neural Tube Defect
+"RTN","DSIO05",15,0)
+ ;;CHECKBOX7;EDIT3;SCT;13213009;Congenital Heart Defect
+"RTN","DSIO05",16,0)
+ ;;CHECKBOX8;EDIT3;SCT;13213009;Congenital Heart Defect
+"RTN","DSIO05",17,0)
+ ;;CHECKBOX9;EDIT3;SCT;13213009;Congenital Heart Defect
+"RTN","DSIO05",18,0)
+ ;;CHECKBOX10;EDIT4;SCT;41040004;Down Syndrome
+"RTN","DSIO05",19,0)
+ ;;CHECKBOX11;EDIT4;SCT;41040004;Down Syndrome
+"RTN","DSIO05",20,0)
+ ;;CHECKBOX12;EDIT4;SCT;41040004;Down Syndrome
+"RTN","DSIO05",21,0)
+ ;;CHECKBOX13;EDIT5;SCT;111385000;Tay-Sachs
+"RTN","DSIO05",22,0)
+ ;;CHECKBOX14;EDIT5;SCT;111385000;Tay-Sachs
+"RTN","DSIO05",23,0)
+ ;;CHECKBOX15;EDIT5;SCT;111385000;Tay-Sachs
+"RTN","DSIO05",24,0)
+ ;;CHECKBOX16;EDIT6;SCT;80544005;Canavan Disease
+"RTN","DSIO05",25,0)
+ ;;CHECKBOX17;EDIT6;SCT;80544005;Canavan Disease
+"RTN","DSIO05",26,0)
+ ;;CHECKBOX18;EDIT6;SCT;80544005;Canavan Disease
+"RTN","DSIO05",27,0)
+ ;;CHECKBOX19;EDIT7;SCT;29159009;Familial Dysautonomia
+"RTN","DSIO05",28,0)
+ ;;CHECKBOX20;EDIT7;SCT;29159009;Familial Dysautonomia
+"RTN","DSIO05",29,0)
+ ;;CHECKBOX21;EDIT7;SCT;29159009;Familial Dysautonomia
+"RTN","DSIO05",30,0)
+ ;;CHECKBOX22;EDIT8;SCT;417357006;Sickle Cell Disease
+"RTN","DSIO05",31,0)
+ ;;CHECKBOX23;EDIT8;SCT;417357006;Sickle Cell Disease
+"RTN","DSIO05",32,0)
+ ;;CHECKBOX24;EDIT8;SCT;417357006;Sickle Cell Disease
+"RTN","DSIO05",33,0)
+ ;;CHECKBOX25;EDIT9;SCT;16402000;Sickle Cell Trait
+"RTN","DSIO05",34,0)
+ ;;CHECKBOX26;EDIT9;SCT;16402000;Sickle Cell Trait
+"RTN","DSIO05",35,0)
+ ;;CHECKBOX27;EDIT9;SCT;16402000;Sickle Cell Trait
+"RTN","DSIO05",36,0)
+ ;;CHECKBOX28;EDIT10;SCT;90935002;Hemophilia
+"RTN","DSIO05",37,0)
+ ;;CHECKBOX29;EDIT10;SCT;90935002;Hemophilia
+"RTN","DSIO05",38,0)
+ ;;CHECKBOX30;EDIT10;SCT;90935002;Hemophilia
+"RTN","DSIO05",39,0)
+ ;;CHECKBOX31;EDIT11;SCT;414022008;Blood Disorders
+"RTN","DSIO05",40,0)
+ ;;CHECKBOX32;EDIT11;SCT;414022008;Blood Disorders
+"RTN","DSIO05",41,0)
+ ;;CHECKBOX33;EDIT11;SCT;414022008;Blood Disorders
+"RTN","DSIO05",42,0)
+ ;;CHECKBOX34;EDIT12;SCT;73297009;Muscular Dystrophy
+"RTN","DSIO05",43,0)
+ ;;CHECKBOX35;EDIT12;SCT;73297009;Muscular Dystrophy
+"RTN","DSIO05",44,0)
+ ;;CHECKBOX36;EDIT12;SCT;73297009;Muscular Dystrophy
+"RTN","DSIO05",45,0)
+ ;;CHECKBOX37;EDIT13;SCT;190905008;Cystic Fibrosis
+"RTN","DSIO05",46,0)
+ ;;CHECKBOX38;EDIT13;SCT;190905008;Cystic Fibrosis
+"RTN","DSIO05",47,0)
+ ;;CHECKBOX39;EDIT13;SCT;190905008;Cystic Fibrosis
+"RTN","DSIO05",48,0)
+ ;;CHECKBOX40;EDIT14;SCT;58756001;Huntington's Chorea
+"RTN","DSIO05",49,0)
+ ;;CHECKBOX41;EDIT14;SCT;58756001;Huntington's Chorea
+"RTN","DSIO05",50,0)
+ ;;CHECKBOX42;EDIT14;SCT;58756001;Huntington's Chorea
+"RTN","DSIO05",51,0)
+ ;;CHECKBOX43;EDIT15;SCT;91138005;Mental Retardation
+"RTN","DSIO05",52,0)
+ ;;CHECKBOX54;EDIT15;SCT;91138005;Mental Retardation
+"RTN","DSIO05",53,0)
+ ;;CHECKBOX65;EDIT15;SCT;91138005;Mental Retardation
+"RTN","DSIO05",54,0)
+ ;;CHECKBOX76;EDIT21;SCT;408856003;Autism
+"RTN","DSIO05",55,0)
+ ;;CHECKBOX80;EDIT21;SCT;408856003;Autism
+"RTN","DSIO05",56,0)
+ ;;CHECKBOX81;EDIT21;SCT;408856003;Autism
+"RTN","DSIO05",57,0)
+ ;;CHECKBOX82;EDIT22;SCT;409709004;Chrosomosal Disorder Includes any inherited genetic or chromosomal disorders
+"RTN","DSIO05",58,0)
+ ;;CHECKBOX83;EDIT22;SCT;409709004;Chrosomosal Disorder Includes any inherited genetic or chromosomal disorders
+"RTN","DSIO05",59,0)
+ ;;CHECKBOX84;EDIT22;SCT;409709004;Chrosomosal Disorder Includes any inherited genetic or chromosomal disorders
+"RTN","DSIO05",60,0)
+ ;;CHECKBOX53;EDIT23;SCT;75934005;Maternal Metabolic Disorder
+"RTN","DSIO05",61,0)
+ ;;CHECKBOX55;EDIT23;SCT;75934005;Maternal Metabolic Disorder
+"RTN","DSIO05",62,0)
+ ;;CHECKBOX56;EDIT23;SCT;75934005;Maternal Metabolic Disorder
+"RTN","DSIO05",63,0)
+ ;;CHECKBOX57;EDIT26;SCT;276720006;Dysmorphism (Birth Defect) Patient or baby's father has a child with birth defects
+"RTN","DSIO05",64,0)
+ ;;CHECKBOX58;EDIT26;SCT;276720006;Dysmorphism (Birth Defect) Patient or baby's father has a child with birth defects
+"RTN","DSIO05",65,0)
+ ;;CHECKBOX59;EDIT26;SCT;276720006;Dysmorphism (Birth Defect) Patient or baby's father has a child with birth defects
+"RTN","DSIO05",66,0)
+ ;;CHECKBOX60;EDIT28;SCT;102878001;Recurrent pregnancy loss/stillbirth
+"RTN","DSIO05",67,0)
+ ;;CHECKBOX61;EDIT28;SCT;102878001;Recurrent pregnancy loss/stillbirth
+"RTN","DSIO05",68,0)
+ ;;CHECKBOX62;EDIT28;SCT;102878001;Recurrent pregnancy loss/stillbirth
+"RTN","DSIO05",69,0)
+ ;;
+"RTN","DSIO05",70,0)
+ Q
+"RTN","DSIO05",71,0)
+ ;
+"RTN","DSIO05",72,0)
+INFECT ; Infection History Text List of Control Names
+"RTN","DSIO05",73,0)
+ ;;CHECKBOX2;EDIT1;SCT;170464005;Live with someone with Tuberculosis or exposed to Tuberculosis
+"RTN","DSIO05",74,0)
+ ;;CHECKBOX3;EDIT1;SCT;170464005;Live with someone with Tuberculosis or exposed to Tuberculosis
+"RTN","DSIO05",75,0)
+ ;;CHECKBOX13;EDIT1;SCT;170464005;Live with someone with Tuberculosis or exposed to Tuberculosis
+"RTN","DSIO05",76,0)
+ ;;CHECKBOX4;EDIT2;SCT;402888002;History of Genital Herpes
+"RTN","DSIO05",77,0)
+ ;;CHECKBOX5;EDIT2;SCT;402888002;History of Genital Herpes
+"RTN","DSIO05",78,0)
+ ;;CHECKBOX12;EDIT2;SCT;402888002;History of Genital Herpes
+"RTN","DSIO05",79,0)
+ ;;CHECKBOX8;EDIT3;SCT;240480009;Exposed to Genital Herpes
+"RTN","DSIO05",80,0)
+ ;;CHECKBOX9;EDIT3;SCT;240480009;Exposed to Genital Herpes
+"RTN","DSIO05",81,0)
+ ;;CHECKBOX7;EDIT3;SCT;240480009;Exposed to Genital Herpes
+"RTN","DSIO05",82,0)
+ ;;CHECKBOX10;EDIT4;SCT;49882001;Rash since Last Menstral Period
+"RTN","DSIO05",83,0)
+ ;;CHECKBOX11;EDIT4;SCT;49882001;Rash since Last Menstral Period
+"RTN","DSIO05",84,0)
+ ;;CHECKBOX6;EDIT4;SCT;49882001;Rash since Last Menstral Period
+"RTN","DSIO05",85,0)
+ ;;CHECKBOX14;EDIT5;SCT;34014006;Viral illness since Last Menstral Period
+"RTN","DSIO05",86,0)
+ ;;CHECKBOX15;EDIT5;SCT;34014006;Viral illness since Last Menstral Period
+"RTN","DSIO05",87,0)
+ ;;CHECKBOX16;EDIT5;SCT;34014006;Viral illness since Last Menstral Period
+"RTN","DSIO05",88,0)
+ ;;CHECKBOX17;EDIT6;SCT;235871004;Hepatitis B
+"RTN","DSIO05",89,0)
+ ;;CHECKBOX18;EDIT6;SCT;235871004;Hepatitis B
+"RTN","DSIO05",90,0)
+ ;;CHECKBOX19;EDIT6;SCT;235871004;Hepatitis B
+"RTN","DSIO05",91,0)
+ ;;CHECKBOX20;EDIT7;SCT;235872006;Hepatitis C
+"RTN","DSIO05",92,0)
+ ;;CHECKBOX22;EDIT7;SCT;235872006;Hepatitis C
+"RTN","DSIO05",93,0)
+ ;;CHECKBOX24;EDIT7;SCT;235872006;Hepatitis C
+"RTN","DSIO05",94,0)
+ ;;CHECKBOX21;EDIT8;SCT;8098009;History of Sexual Transmitted Disease
+"RTN","DSIO05",95,0)
+ ;;CHECKBOX23;EDIT8;SCT;8098009;History of Sexual Transmitted Disease
+"RTN","DSIO05",96,0)
+ ;;CHECKBOX25;EDIT8;SCT;8098009;History of Sexual Transmitted Disease
+"RTN","DSIO05",97,0)
+ ;;CHECKBOX1;EDIT9;SCT;15628003;History of Gonorrhea
+"RTN","DSIO05",98,0)
+ ;;CHECKBOX30;EDIT9;SCT;15628003;History of Gonorrhea
+"RTN","DSIO05",99,0)
+ ;;CHECKBOX35;EDIT9;SCT;15628003;History of Gonorrhea
+"RTN","DSIO05",100,0)
+ ;;CHECKBOX26;EDIT10;SCT;312099009;History of Chlamydia
+"RTN","DSIO05",101,0)
+ ;;CHECKBOX31;EDIT10;SCT;312099009;History of Chlamydia
+"RTN","DSIO05",102,0)
+ ;;CHECKBOX36;EDIT10;SCT;312099009;History of Chlamydia
+"RTN","DSIO05",103,0)
+ ;;CHECKBOX27;EDIT11;SCT;302812006;History of Human Papillomavirus
+"RTN","DSIO05",104,0)
+ ;;CHECKBOX32;EDIT11;SCT;302812006;History of Human Papillomavirus
+"RTN","DSIO05",105,0)
+ ;;CHECKBOX37;EDIT11;SCT;302812006;History of Human Papillomavirus
+"RTN","DSIO05",106,0)
+ ;;CHECKBOX28;EDIT12;SCT;165816005;History of Human Immunodeficiency Virus
+"RTN","DSIO05",107,0)
+ ;;CHECKBOX33;EDIT12;SCT;165816005;History of Human Immunodeficiency Virus
+"RTN","DSIO05",108,0)
+ ;;CHECKBOX38;EDIT12;SCT;165816005;History of Human Immunodeficiency Virus
+"RTN","DSIO05",109,0)
+ ;;CHECKBOX29;EDIT13;SCT;76272004;History of Syphilis
+"RTN","DSIO05",110,0)
+ ;;CHECKBOX34;EDIT13;SCT;76272004;History of Syphilis
+"RTN","DSIO05",111,0)
+ ;;CHECKBOX39;EDIT13;SCT;76272004;History of Syphilis
+"RTN","DSIO05",112,0)
+ ;;
+"RTN","DSIO05",113,0)
+ Q
+"RTN","DSIO05",114,0)
+ ;
+"RTN","DSIO05",115,0)
+MEDICA ; Medical History Text List of Control Names
+"RTN","DSIO05",116,0)
+ ;;CHECKBOX1;EDIT1;SCT;73211009;Diabetes
+"RTN","DSIO05",117,0)
+ ;;CHECKBOX2;EDIT1;SCT;73211009;Diabetes
+"RTN","DSIO05",118,0)
+ ;;CHECKBOX3;EDIT1;SCT;73211009;Diabetes
+"RTN","DSIO05",119,0)
+ ;;CHECKBOX4;EDIT2;SCT;38341003;Hypertension
+"RTN","DSIO05",120,0)
+ ;;CHECKBOX5;EDIT2;SCT;38341003;Hypertension
+"RTN","DSIO05",121,0)
+ ;;CHECKBOX6;EDIT2;SCT;38341003;Hypertension
+"RTN","DSIO05",122,0)
+ ;;CHECKBOX7;EDIT3;SCT;56265001;Heart Disease
+"RTN","DSIO05",123,0)
+ ;;CHECKBOX8;EDIT3;SCT;56265001;Heart Disease
+"RTN","DSIO05",124,0)
+ ;;CHECKBOX9;EDIT3;SCT;56265001;Heart Disease
+"RTN","DSIO05",125,0)
+ ;;CHECKBOX10;EDIT4;SCT;85828009;Autoimmune Disorder
+"RTN","DSIO05",126,0)
+ ;;CHECKBOX11;EDIT4;SCT;85828009;Autoimmune Disorder
+"RTN","DSIO05",127,0)
+ ;;CHECKBOX12;EDIT4;SCT;85828009;Autoimmune Disorder
+"RTN","DSIO05",128,0)
+ ;;CHECKBOX13;EDIT5;SCT;90708001;Kidney Disease
+"RTN","DSIO05",129,0)
+ ;;CHECKBOX14;EDIT5;SCT;90708001;Kidney Disease
+"RTN","DSIO05",130,0)
+ ;;CHECKBOX15;EDIT5;SCT;90708001;Kidney Disease
+"RTN","DSIO05",131,0)
+ ;;CHECKBOX16;EDIT6;SCT;68566005;Urinary Tract Infection
+"RTN","DSIO05",132,0)
+ ;;CHECKBOX17;EDIT6;SCT;68566005;Urinary Tract Infection
+"RTN","DSIO05",133,0)
+ ;;CHECKBOX18;EDIT6;SCT;68566005;Urinary Tract Infection
+"RTN","DSIO05",134,0)
+ ;;CHECKBOX19;EDIT7;SCT;118940003;Neurologic
+"RTN","DSIO05",135,0)
+ ;;CHECKBOX20;EDIT7;SCT;118940003;Neurologic
+"RTN","DSIO05",136,0)
+ ;;CHECKBOX21;EDIT7;SCT;118940003;Neurologic
+"RTN","DSIO05",137,0)
+ ;;CHECKBOX22;EDIT8;SCT;84757009;Epilepsy
+"RTN","DSIO05",138,0)
+ ;;CHECKBOX23;EDIT8;SCT;84757009;Epilepsy
+"RTN","DSIO05",139,0)
+ ;;CHECKBOX24;EDIT8;SCT;84757009;Epilepsy
+"RTN","DSIO05",140,0)
+ ;;CHECKBOX25;EDIT9;SCT;74732009;Psychiatric
+"RTN","DSIO05",141,0)
+ ;;CHECKBOX26;EDIT9;SCT;74732009;Psychiatric
+"RTN","DSIO05",142,0)
+ ;;CHECKBOX27;EDIT9;SCT;74732009;Psychiatric
+"RTN","DSIO05",143,0)
+ ;;CHECKBOX28;EDIT10;SCT;41006004;Depression
+"RTN","DSIO05",144,0)
+ ;;CHECKBOX29;EDIT10;SCT;41006004;Depression
+"RTN","DSIO05",145,0)
+ ;;CHECKBOX30;EDIT10;SCT;41006004;Depression
+"RTN","DSIO05",146,0)
+ ;;CHECKBOX31;EDIT11;SCT;58703003;Postpartum Depression
+"RTN","DSIO05",147,0)
+ ;;CHECKBOX32;EDIT11;SCT;58703003;Postpartum Depression
+"RTN","DSIO05",148,0)
+ ;;CHECKBOX33;EDIT11;SCT;58703003;Postpartum Depression
+"RTN","DSIO05",149,0)
+ ;;CHECKBOX34;EDIT12;SCT;128241005;Hepatitis
+"RTN","DSIO05",150,0)
+ ;;CHECKBOX35;EDIT12;SCT;128241005;Hepatitis
+"RTN","DSIO05",151,0)
+ ;;CHECKBOX36;EDIT12;SCT;128241005;Hepatitis
+"RTN","DSIO05",152,0)
+ ;;CHECKBOX37;EDIT13;SCT;235856003;Liver Disease
+"RTN","DSIO05",153,0)
+ ;;CHECKBOX38;EDIT13;SCT;235856003;Liver Disease
+"RTN","DSIO05",154,0)
+ ;;CHECKBOX39;EDIT13;SCT;235856003;Liver Disease
+"RTN","DSIO05",155,0)
+ ;;CHECKBOX40;EDIT14;SCT;276504003;Varicosities
+"RTN","DSIO05",156,0)
+ ;;CHECKBOX41;EDIT14;SCT;276504003;Varicosities
+"RTN","DSIO05",157,0)
+ ;;CHECKBOX42;EDIT14;SCT;276504003;Varicosities
+"RTN","DSIO05",158,0)
+ ;;CHECKBOX44;EDIT16;SCT;61599003;Phlebitis
+"RTN","DSIO05",159,0)
+ ;;CHECKBOX45;EDIT16;SCT;61599003;Phlebitis
+"RTN","DSIO05",160,0)
+ ;;CHECKBOX46;EDIT16;SCT;61599003;Phlebitis
+"RTN","DSIO05",161,0)
+ ;;CHECKBOX47;EDIT17;SCT;14304000;Thyroid Dysfunction
+"RTN","DSIO05",162,0)
+ ;;CHECKBOX48;EDIT17;SCT;14304000;Thyroid Dysfunction
+"RTN","DSIO05",163,0)
+ ;;CHECKBOX49;EDIT17;SCT;14304000;Thyroid Dysfunction
+"RTN","DSIO05",164,0)
+ ;;CHECKBOX50;EDIT18;SCT;417746004;Trauma
+"RTN","DSIO05",165,0)
+ ;;CHECKBOX51;EDIT18;SCT;417746004;Trauma
+"RTN","DSIO05",166,0)
+ ;;CHECKBOX52;EDIT18;SCT;417746004;Trauma
+"RTN","DSIO05",167,0)
+ ;;CHECKBOX63;EDIT19;SCT;225818009;Violence
+"RTN","DSIO05",168,0)
+ ;;CHECKBOX64;EDIT19;SCT;225818009;Violence
+"RTN","DSIO05",169,0)
+ ;;CHECKBOX66;EDIT19;SCT;225818009;Violence
+"RTN","DSIO05",170,0)
+ ;;CHECKBOX43;EDIT15;SCT;116859006;History of Blood Transfusion
+"RTN","DSIO05",171,0)
+ ;;CHECKBOX54;EDIT15;SCT;116859006;History of Blood Transfusion
+"RTN","DSIO05",172,0)
+ ;;CHECKBOX65;EDIT15;SCT;116859006;History of Blood Transfusion
+"RTN","DSIO05",173,0)
+ ;;CHECKBOX76;EDIT21;SCT;3885002;D(Rh) Sensitized
+"RTN","DSIO05",174,0)
+ ;;CHECKBOX80;EDIT21;SCT;3885002;D(Rh) Sensitized
+"RTN","DSIO05",175,0)
+ ;;CHECKBOX81;EDIT21;SCT;3885002;D(Rh) Sensitized
+"RTN","DSIO05",176,0)
+ ;;CHECKBOX82;EDIT22;SCT;19829001;Pulmonary
+"RTN","DSIO05",177,0)
+ ;;CHECKBOX83;EDIT22;SCT;19829001;Pulmonary
+"RTN","DSIO05",178,0)
+ ;;CHECKBOX84;EDIT22;SCT;19829001;Pulmonary
+"RTN","DSIO05",179,0)
+ ;;CHECKBOX53;EDIT23;SCT;367498001;Seasonal Allergies
+"RTN","DSIO05",180,0)
+ ;;CHECKBOX55;EDIT23;SCT;367498001;Seasonal Allergies
+"RTN","DSIO05",181,0)
+ ;;CHECKBOX56;EDIT23;SCT;367498001;Seasonal Allergies
+"RTN","DSIO05",182,0)
+ ;;CHECKBOX57;EDIT26;SCT;416098002;Drug Allergy
+"RTN","DSIO05",183,0)
+ ;;CHECKBOX58;EDIT26;SCT;416098002;Drug Allergy
+"RTN","DSIO05",184,0)
+ ;;CHECKBOX59;EDIT26;SCT;416098002;Drug Allergy
+"RTN","DSIO05",185,0)
+ ;;CHECKBOX60;EDIT28;SCT;300916003;Latex Allergy
+"RTN","DSIO05",186,0)
+ ;;CHECKBOX61;EDIT28;SCT;300916003;Latex Allergy
+"RTN","DSIO05",187,0)
+ ;;CHECKBOX62;EDIT28;SCT;300916003;Latex Allergy
+"RTN","DSIO05",188,0)
+ ;;CHECKBOX67;EDIT20;SCT;414285001;Food Allergy
+"RTN","DSIO05",189,0)
+ ;;CHECKBOX68;EDIT20;SCT;414285001;Food Allergy
+"RTN","DSIO05",190,0)
+ ;;CHECKBOX69;EDIT20;SCT;414285001;Food Allergy
+"RTN","DSIO05",191,0)
+ ;;CHECKBOX70;EDIT24;SCT;79604008;Breast
+"RTN","DSIO05",192,0)
+ ;;CHECKBOX78;EDIT24;SCT;79604008;Breast
+"RTN","DSIO05",193,0)
+ ;;CHECKBOX90;EDIT24;SCT;79604008;Breast
+"RTN","DSIO05",194,0)
+ ;;CHECKBOX71;EDIT25;SCT;12658000;Gynecology Surgery
+"RTN","DSIO05",195,0)
+ ;;CHECKBOX79;EDIT25;SCT;12658000;Gynecology Surgery
+"RTN","DSIO05",196,0)
+ ;;CHECKBOX90;EDIT25;SCT;12658000;Gynecology Surgery
+"RTN","DSIO05",197,0)
+ ;;CHECKBOX72;EDIT27;SCT;387713003;Operations
+"RTN","DSIO05",198,0)
+ ;;CHECKBOX85;EDIT27;SCT;387713003;Operations
+"RTN","DSIO05",199,0)
+ ;;CHECKBOX92;EDIT27;SCT;387713003;Operations
+"RTN","DSIO05",200,0)
+ ;;CHECKBOX73;EDIT29;SCT;32485007;Hospitalizations
+"RTN","DSIO05",201,0)
+ ;;CHECKBOX86;EDIT29;SCT;32485007;Hospitalizations
+"RTN","DSIO05",202,0)
+ ;;CHECKBOX93;EDIT29;SCT;32485007;Hospitalizations
+"RTN","DSIO05",203,0)
+ ;;CHECKBOX74;EDIT30;SCT;33211000;Anesthetic Complications
+"RTN","DSIO05",204,0)
+ ;;CHECKBOX87;EDIT30;SCT;33211000;Anesthetic Complications
+"RTN","DSIO05",205,0)
+ ;;CHECKBOX94;EDIT30;SCT;33211000;Anesthetic Complications
+"RTN","DSIO05",206,0)
+ ;;CHECKBOX75;EDIT31;SCT;274688009;History of Abnormal Pap
+"RTN","DSIO05",207,0)
+ ;;CHECKBOX88;EDIT31;SCT;274688009;History of Abnormal Pap
+"RTN","DSIO05",208,0)
+ ;;CHECKBOX95;EDIT31;SCT;274688009;History of Abnormal Pap
+"RTN","DSIO05",209,0)
+ ;;CHECKBOX77;EDIT32;SCT;37849005;Uterine Anomaly Diethylstilbestrol
+"RTN","DSIO05",210,0)
+ ;;CHECKBOX89;EDIT32;SCT;37849005;Uterine Anomaly Diethylstilbestrol
+"RTN","DSIO05",211,0)
+ ;;CHECKBOX96;EDIT32;SCT;37849005;Uterine Anomaly Diethylstilbestrol
+"RTN","DSIO05",212,0)
+ ;;CHECKBOX97;EDIT33;SCT;xx-desexposure;Diethylstilbestrol Exposure
+"RTN","DSIO05",213,0)
+ ;;CHECKBOX98;EDIT33;SCT;xx-desexposure;Diethylstilbestrol Exposure
+"RTN","DSIO05",214,0)
+ ;;CHECKBOX99;EDIT33;SCT;xx-desexposure;Diethylstilbestrol Exposure
+"RTN","DSIO05",215,0)
+ ;;CHECKBOX100;EDIT34;SCT;8619003;Infertility
+"RTN","DSIO05",216,0)
+ ;;CHECKBOX102;EDIT34;SCT;8619003;Infertility
+"RTN","DSIO05",217,0)
+ ;;CHECKBOX104;EDIT34;SCT;8619003;Infertility
+"RTN","DSIO05",218,0)
+ ;;CHECKBOX101;EDIT35;SCT;63487001;Art Treatment
+"RTN","DSIO05",219,0)
+ ;;CHECKBOX103;EDIT35;SCT;63487001;Art Treatment
+"RTN","DSIO05",220,0)
+ ;;CHECKBOX105;EDIT35;SCT;63487001;Art Treatment
+"RTN","DSIO05",221,0)
+ ;;
+"RTN","DSIO05",222,0)
+ Q
+"RTN","DSIO05",223,0)
+ ;
+"RTN","DSIO05",224,0)
+OBSPRE ; Flow Sheet Text List Values by Column
+"RTN","DSIO05",225,0)
+ ;;0;Exam Date
+"RTN","DSIO05",226,0)
+ ;;1;Gestational Age (wks);LNC;11884-4;wks
+"RTN","DSIO05",227,0)
+ ;;2;Fundal Height (cm);LNC;11881-0;cm
+"RTN","DSIO05",228,0)
+ ;;3;Weight (lbs);LNC;3141-9;lbs
+"RTN","DSIO05",229,0)
+ ;;4;Cumulative Weight (lbs)
+"RTN","DSIO05",230,0)
+ ;;5;Albumin;LNC;1753-3
+"RTN","DSIO05",231,0)
+ ;;6;Glucose;LNC;2349-9
+"RTN","DSIO05",232,0)
+ ;;7;Edema;LNC;44966-0
+"RTN","DSIO05",233,0)
+ ;;8;Fetal Weight (g);LNC;57067-1;g
+"RTN","DSIO05",234,0)
+ ;;9;Fetal Heart(s)
+"RTN","DSIO05",235,0)
+ ;;10;Fetal Presentation;LNC;11876-0
+"RTN","DSIO05",236,0)
+ ;;11;Fetal Movement;LNC;57088-7
+"RTN","DSIO05",237,0)
+ ;;12;Preterm Labor Symptoms;LNC;57069-7
+"RTN","DSIO05",238,0)
+ ;;13;Dilation (cm);LNC;11785-3;cm
+"RTN","DSIO05",239,0)
+ ;;14;Effacement (%);LNC;11867-9;percent
+"RTN","DSIO05",240,0)
+ ;;15;Long Axis (cm);LNC;11961-0;cm
+"RTN","DSIO05",241,0)
+ ;;16;Intravascular Systolic (mmHg);LNC;8480-6;mmHg
+"RTN","DSIO05",242,0)
+ ;;17;Intravascular Diastolic (mmHg);LNC;8462-4;mmHg
+"RTN","DSIO05",243,0)
+ ;;18;Pain Severity;LNC;38208-5
+"RTN","DSIO05",244,0)
+ ;;19;Cervical Exam
+"RTN","DSIO05",245,0)
+ ;;
+"RTN","DSIO05",246,0)
+ Q
+"RTN","DSIO4")
+0^5^B86195735
+"RTN","DSIO4",1,0)
+DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;08/26/2016 16:00
+"RTN","DSIO4",2,0)
+ ;;2.0;DSIO 2.0;**1**;Aug 26, 2016;Build 1
+"RTN","DSIO4",3,0)
+ ;
+"RTN","DSIO4",4,0)
+ ;
+"RTN","DSIO4",5,0)
+ ;
+"RTN","DSIO4",6,0)
+ Q
+"RTN","DSIO4",7,0)
+ ;
+"RTN","DSIO4",8,0)
+ ; ------------------------------- UTILITIES ----------------------------------
+"RTN","DSIO4",9,0)
+ ;
+"RTN","DSIO4",10,0)
+PG(DFN) ; Get Current Pregnancy
+"RTN","DSIO4",11,0)
+ N DATE,IEN,FLG Q:'$G(DFN) ""
+"RTN","DSIO4",12,0)
+ S DATE="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE),-1) Q:DATE=""  D  Q:$D(FLG)
+"RTN","DSIO4",13,0)
+ . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D  Q:$D(FLG)
+"RTN","DSIO4",14,0)
+ . . I $P($G(^DSIO(19641.13,IEN,0)),U,4)="C" S FLG=IEN
+"RTN","DSIO4",15,0)
+ Q $G(FLG)
+"RTN","DSIO4",16,0)
+ ;
+"RTN","DSIO4",17,0)
+PSTAT(DFN) ; CURRENTLY PREGNANT
+"RTN","DSIO4",18,0)
+ I $$PG(DFN) Q "YES"
+"RTN","DSIO4",19,0)
+ Q "NO"
+"RTN","DSIO4",20,0)
+ ;
+"RTN","DSIO4",21,0)
+PGL(DFN) ; Get last PREGNANCY HISTORY record
+"RTN","DSIO4",22,0)
+ N DATE
+"RTN","DSIO4",23,0)
+ S DATE=$O(^DSIO(19641.13,"P",DFN,""),-1) Q:DATE="" ""
+"RTN","DSIO4",24,0)
+ Q $O(^DSIO(19641.13,"P",DFN,DATE,""),-1)
+"RTN","DSIO4",25,0)
+ ;
+"RTN","DSIO4",26,0)
+PGE(DFN) ; Get last PREGNANCY HISTORY record with an end
+"RTN","DSIO4",27,0)
+ N DATE,IEN,FLG
+"RTN","DSIO4",28,0)
+ S DATE="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE),-1) Q:DATE=""  D  Q:$D(FLG)
+"RTN","DSIO4",29,0)
+ . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D  Q:$D(FLG)
+"RTN","DSIO4",30,0)
+ . . I $P($G(^DSIO(19641.13,IEN,0)),U,7)'="" S FLG=IEN
+"RTN","DSIO4",31,0)
+ Q $G(FLG)
+"RTN","DSIO4",32,0)
+ ;
+"RTN","DSIO4",33,0)
+PGEL(DFN) ; Get last PREGNANCY HISTORY record with a live birth
+"RTN","DSIO4",34,0)
+ ; ***PREGNANCY MUST HAVE AN OBSERVATION USING LOINC 75092-7
+"RTN","DSIO4",35,0)
+ ;
+"RTN","DSIO4",36,0)
+ N DATE,IEN,OBS,FLG
+"RTN","DSIO4",37,0)
+ S DATE="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE),-1) Q:DATE=""  D  Q:$D(FLG)
+"RTN","DSIO4",38,0)
+ . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D  Q:$D(FLG)
+"RTN","DSIO4",39,0)
+ . . Q:$P($G(^DSIO(19641.13,IEN,0)),U,7)=""
+"RTN","DSIO4",40,0)
+ . . S OBS="" F  S OBS=$O(^DSIO(19641.12,"OBJ",IEN_";DSIO(19641.13,",OBS),-1) Q:OBS=""  D  Q:$D(FLG)
+"RTN","DSIO4",41,0)
+ . . . Q:$$GETCODE^DSIO10(OBS,"C",1)'="75092-7"
+"RTN","DSIO4",42,0)
+ . . . Q:$$GETCODE^DSIO10(OBS,"C",3)'="LOINC"
+"RTN","DSIO4",43,0)
+ . . . S FLG=IEN
+"RTN","DSIO4",44,0)
+ Q $G(FLG)
+"RTN","DSIO4",45,0)
+ ;
+"RTN","DSIO4",46,0)
+GA(DFN,PREG,FLG) ; Return Gestational Age of Pregnancy
+"RTN","DSIO4",47,0)
+ ;
+"RTN","DSIO4",48,0)
+ ; If FLG then return in number of days
+"RTN","DSIO4",49,0)
+ ;
+"RTN","DSIO4",50,0)
+ I '$G(PREG) S PREG=$$PG($G(DFN)) Q:'PREG ""
+"RTN","DSIO4",51,0)
+ N AGE S AGE=$$G1($TR($$UP^XLFSTR($$GET1^DIQ(19641.13,PREG_",",3.1))," "))
+"RTN","DSIO4",52,0)
+ Q $S($G(FLG):AGE,1:$$G2(AGE))
+"RTN","DSIO4",53,0)
+ ; *** Need to record How it was calucated in the DSIO EDD HISTORY file
+"RTN","DSIO4",54,0)
+ ;N EDC,EDD,END,DAYS,DATE
+"RTN","DSIO4",55,0)
+ ;S EDC=$$GET1^DIQ(19641.13,PREG_",",.02,"I")
+"RTN","DSIO4",56,0)
+ ;S EDD=$$GET1^DIQ(19641.03,$$GET1^DIQ(19641.13,PREG_",",.06,"I")_",",.01,"I")
+"RTN","DSIO4",57,0)
+ ;S END=$$GET1^DIQ(19641.13,PREG_",",.07,"I"),DAYS=""
+"RTN","DSIO4",58,0)
+ ;; *** Pregnancy has ENDed
+"RTN","DSIO4",59,0)
+ ;I EDC,END S DAYS=$$FMDIFF^XLFDT(END,EDC) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
+"RTN","DSIO4",60,0)
+ ;Q:END!('EDD) $S($G(FLG):AGE,1:$$G2(AGE))
+"RTN","DSIO4",61,0)
+ ; *** Pregnancy is ongoing
+"RTN","DSIO4",62,0)
+ ;I EDC S DAYS=$$FMDIFF^XLFDT(DT,EDC) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
+"RTN","DSIO4",63,0)
+ ; *** no END, no EDD, no EDC
+"RTN","DSIO4",64,0)
+ ;Q $S($G(FLG):AGE,1:$$G2(AGE))
+"RTN","DSIO4",65,0)
+ ;
+"RTN","DSIO4",66,0)
+G1(AGE) ; Convert #W#D to Numeric
+"RTN","DSIO4",67,0)
+ Q:AGE?.N1"W".N1"D" +AGE*7+$P($P(AGE,"D"),"W",2)
+"RTN","DSIO4",68,0)
+ Q:AGE?.N1"W" +AGE*7
+"RTN","DSIO4",69,0)
+ Q:AGE?.N1"D" +AGE
+"RTN","DSIO4",70,0)
+ Q:AGE?.N +AGE
+"RTN","DSIO4",71,0)
+ Q 0
+"RTN","DSIO4",72,0)
+ ;
+"RTN","DSIO4",73,0)
+G2(DAYS) ; Convert # to #W#D
+"RTN","DSIO4",74,0)
+ Q ((DAYS/7)\1)_"W"_(DAYS-(((DAYS/7)\1)*7))_"D"
+"RTN","DSIO4",75,0)
+ ;
+"RTN","DSIO4",76,0)
+GP(DFN) ; Return GravidaParaSummary
+"RTN","DSIO4",77,0)
+ Q:'$G(DFN) "G? P????"
+"RTN","DSIO4",78,0)
+ Q "G"_$$TOTAL(DFN)_" P"_$$FULLT(DFN)_$$PRETM(DFN)_$$ABORT(DFN)_$$LIVIG(DFN)
+"RTN","DSIO4",79,0)
+ ;
+"RTN","DSIO4",80,0)
+TOTAL(DFN) ; Return TOTAL PREGNANCIES
+"RTN","DSIO4",81,0)
+ N DATE,IEN,FLG Q:'$G(DFN) "?"
+"RTN","DSIO4",82,0)
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+"RTN","DSIO4",83,0)
+ . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
+"RTN","DSIO4",84,0)
+ . . S FLG=FLG+1
+"RTN","DSIO4",85,0)
+ Q $S($G(FLG):FLG,1:"?")
+"RTN","DSIO4",86,0)
+ ;
+"RTN","DSIO4",87,0)
+ABORT(DFN,RET) ; Return Abortions, Terminations, and Ectopics
+"RTN","DSIO4",88,0)
+ N DATE,IEN,TYP,FLG Q:'$G(DFN) "?"
+"RTN","DSIO4",89,0)
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+"RTN","DSIO4",90,0)
+ . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
+"RTN","DSIO4",91,0)
+ . . S TYP=$$OT^DSIO03($P($G(^DSIO(19641.13,IEN,3)),U,6))
+"RTN","DSIO4",92,0)
+ . . Q:TYP'="SpontaneousAbortion"&(TYP'="PregnancyTermination")&(TYP'="Ectopic")
+"RTN","DSIO4",93,0)
+ . . I $G(RET)="S" S:TYP="SpontaneousAbortion" FLG=FLG+1 Q
+"RTN","DSIO4",94,0)
+ . . I $G(RET)="T" S:TYP="PregnancyTermination" FLG=FLG+1 Q
+"RTN","DSIO4",95,0)
+ . . I $G(RET)="E" S:TYP="Ectopic" FLG=FLG+1 Q
+"RTN","DSIO4",96,0)
+ . . S FLG=FLG+1
+"RTN","DSIO4",97,0)
+ Q $S($G(FLG):FLG,$D(RET):0,1:"?")
+"RTN","DSIO4",98,0)
+ ;
+"RTN","DSIO4",99,0)
+STILL(DFN) ; Return STILLBIRTHS
+"RTN","DSIO4",100,0)
+ N DATE,IEN,BABY,OUT,FLG Q:'$G(DFN) "?"
+"RTN","DSIO4",101,0)
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+"RTN","DSIO4",102,0)
+ . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:'IEN  D
+"RTN","DSIO4",103,0)
+ . . Q:$$GET1^DIQ(19641.13,IEN_",",999.1)="NONE"
+"RTN","DSIO4",104,0)
+ . . S OUT=$S($$OT^DSIO03($P($G(^DSIO(19641.13,IEN,3)),U,6))="StillBirth":1,1:0)
+"RTN","DSIO4",105,0)
+ . . S BABY=0 F  S BABY=$O(^DSIO(19641.13,IEN,2,"B",BABY)) Q:'BABY  D
+"RTN","DSIO4",106,0)
+ . . . I OUT S FLG=FLG+1 Q
+"RTN","DSIO4",107,0)
+ . . . I $P($G(^DSIO(19641.112,BABY,0)),U,7) S FLG=FLG+1 Q
+"RTN","DSIO4",108,0)
+ . . . I $P($G(^DSIO(19641.112,BABY,0)),U,11)="D",+$$GA(DFN,IEN,1)>140 S FLG=FLG+1
+"RTN","DSIO4",109,0)
+ Q $S($G(FLG):FLG,1:"?")
+"RTN","DSIO4",110,0)
+ ;
+"RTN","DSIO4",111,0)
+PRETM(DFN) ; Return PRETERM (including stillborn)
+"RTN","DSIO4",112,0)
+ N DATE,IEN,GA,IFLG,BABY,FLG Q:'$G(DFN) "?"
+"RTN","DSIO4",113,0)
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+"RTN","DSIO4",114,0)
+ . S (IFLG,IEN)="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
+"RTN","DSIO4",115,0)
+ . . Q:$$GET1^DIQ(19641.13,IEN_",",999.1)="NONE"
+"RTN","DSIO4",116,0)
+ . . Q:$P($G(^DSIO(19641.13,IEN,3)),U,5)=0
+"RTN","DSIO4",117,0)
+ . . S GA=+$$GA(DFN,IEN,1) I GA,GA<259 S IFLG=1
+"RTN","DSIO4",118,0)
+ . . I $$OT^DSIO03($P($G(^DSIO(19641.13,IEN,3)),U,6))="PretermDelivery" S IFLG=1
+"RTN","DSIO4",119,0)
+ . . Q:'IFLG
+"RTN","DSIO4",120,0)
+ . . S BABY=0 F  S BABY=$O(^DSIO(19641.13,IEN,2,"B",BABY)) Q:'BABY  D
+"RTN","DSIO4",121,0)
+ . . . Q:$P($G(^DSIO(19641.112,BABY,0)),U,11)="D"
+"RTN","DSIO4",122,0)
+ . . . S FLG=FLG+1
+"RTN","DSIO4",123,0)
+ Q $S($G(FLG):FLG,1:"?")
+"RTN","DSIO4",124,0)
+ ;
+"RTN","DSIO4",125,0)
+LIVIG(DFN) ; Return LIVING
+"RTN","DSIO4",126,0)
+ N DATE,IEN,BABY,FLG Q:'$G(DFN) "?"
+"RTN","DSIO4",127,0)
+ S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+"RTN","DSIO4",128,0)
+ . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:'IEN  D
+"RTN","DSIO4",129,0)
+ . . Q:$$GET1^DIQ(19641.13,IEN_",",999.1)="NONE"
+"RTN","DSIO4",130,0)
+ . . S BABY=0 F  S BABY=$O(^DSIO(19641.13,IEN,2,"B",BABY)) Q:'BABY  D
+"RTN","DSIO4",131,0)
+ . . . Q:$P($G(^DSIO(19641.112,BABY,0)),U,7)
+"RTN","DSIO4",132,0)
+ . . . Q:$P($G(^DSIO(19641.112,BABY,0)),U,11)="D"
+"RTN","DSIO4",133,0)
+ . . . S FLG=FLG+1
+"RTN","DSIO4",134,0)
+ Q $S($G(FLG):FLG,1:"?")
+"RTN","DSIO4",135,0)
+ ;
+"RTN","DSIO4",136,0)
+FULLT(DFN) ; Return TERM BIRTHS (including stillborn)
+"RTN","DSIO4",137,0)
+ N OUT
+"RTN","DSIO4",138,0)
+ S OUT=$$LIVIG(DFN)-$$PRETM(DFN)
+"RTN","DSIO4",139,0)
+ Q $S(OUT<0:"?",1:OUT)
+"RTN","DSIO4",140,0)
+ ;
+"RTN","DSIO4",141,0)
+EDDC(DFN) ; Get EDD for computed fields
+"RTN","DSIO4",142,0)
+ N PG,EDD
+"RTN","DSIO4",143,0)
+ S PG=$$PG^DSIO4(DFN) Q:'PG ""
+"RTN","DSIO4",144,0)
+ S EDD=$P(^DSIO(19641.13,PG,0),U,6) Q:'EDD ""
+"RTN","DSIO4",145,0)
+ Q $$FMTE^XLFDT($P(^DSIO(19641.03,EDD,0),U),"5Z")
+"RTN","DSIO4",146,0)
+ ;
+"RTN","DSIO4",147,0)
+LACT(DFN) ; CURRENTLY LACTATING
+"RTN","DSIO4",148,0)
+ N DATE,IEN
+"RTN","DSIO4",149,0)
+ S DATE=$O(^DSIO(19641,DFN,3,"B",""),-1) Q:DATE="" "NO"
+"RTN","DSIO4",150,0)
+ S IEN=$O(^DSIO(19641,DFN,3,"B",DATE,""),-1)
+"RTN","DSIO4",151,0)
+ Q $S($P(^DSIO(19641,DFN,3,IEN,0),U,2)="":"YES",1:"NO")
+"RTN","DSIO4",152,0)
+ ;
+"RTN","DSIO4",153,0)
+LACE(DFN) ; CURRENTLY LACTATING record
+"RTN","DSIO4",154,0)
+ N DATE
+"RTN","DSIO4",155,0)
+ S DATE=$O(^DSIO(19641,DFN,3,"B",""),-1) Q:DATE="" ""
+"RTN","DSIO4",156,0)
+ Q $O(^DSIO(19641,DFN,3,"B",DATE,""),-1)
+"RTN","DSIO4",157,0)
+ ;
+"RTN","DSIO4",158,0)
+TRACK(DFN,FL) ; Get TRACKING STATUS of a patient
+"RTN","DSIO4",159,0)
+ Q:'$G(DFN) 0
+"RTN","DSIO4",160,0)
+ N TR S TR=$O(^DSIO(19641.2,"S",DFN,""))
+"RTN","DSIO4",161,0)
+ Q:$D(FL) $S(TR="T":1,TR="F":2,1:0)
+"RTN","DSIO4",162,0)
+ Q $S(TR="T":"YES",TR="F":"FLAGGED",1:"NO")
+"RTN","DSIO4",163,0)
+ ;
+"RTN","DSIO4",164,0)
+HR(IEN) ; Return High Risk text
+"RTN","DSIO4",165,0)
+ Q:'$G(IEN) ""
+"RTN","DSIO4",166,0)
+ Q:'$P($G(^DSIO(19641.13,IEN,5,0)),U,4) ""
+"RTN","DSIO4",167,0)
+ N CT,STR
+"RTN","DSIO4",168,0)
+ S CT=0 F  S CT=$O(^DSIO(19641.13,IEN,5,CT)) Q:'CT  D
+"RTN","DSIO4",169,0)
+ . S STR=$S($D(STR):STR_" ",1:"")_^DSIO(19641.13,IEN,5,CT,0)
+"RTN","DSIO4",170,0)
+ Q $G(STR)
+"RTN","DSIO4",171,0)
+ ;
+"RTN","DSIO4",172,0)
+ ;=============================================================================
+"RTN","DSIO4",173,0)
+ ;                         X - R E F  S U P P O R T
+"RTN","DSIO4",174,0)
+ ;=============================================================================
+"RTN","DSIO4",175,0)
+ ; *** Syncs DSIO with WV and vice versa; however, DSIO cannot create X-REFs
+"RTN","DSIO4",176,0)
+ ;     for WV; therefore, at the time of this release WV will not update DSIO
+"RTN","DSIO4",177,0)
+ ;     and the updates for WV from TDrugs had not been released so there are
+"RTN","DSIO4",178,0)
+ ;     some updates here to files that do not yet exist.
+"RTN","DSIO4",179,0)
+ ;
+"RTN","DSIO4",180,0)
+ ; DSIO PREGNANCY HISTORY
+"RTN","DSIO4",181,0)
+ ;   - If "C" all other entries will be "HISTORICAL"; there can only be one "C"
+"RTN","DSIO4",182,0)
+ ;   - If there is a pregnancy with a future EDD and no pregnancy end then that
+"RTN","DSIO4",183,0)
+ ;     must be the current pregnancy and it will prevent a new "CURRENT"
+"RTN","DSIO4",184,0)
+ ;     pregnancy from being created
+"RTN","DSIO4",185,0)
+ ;   - If EDD is in the future and the entry is "CURRENT" then WV PATIENT .13 is
+"RTN","DSIO4",186,0)
+ ;     changed to "YES" and .14 is set with the EDD value
+"RTN","DSIO4",187,0)
+ ;   - If pregnancy end (future dates not allowed) and there isn't a pregnancy
+"RTN","DSIO4",188,0)
+ ;     history entry then the status is changed to "H" and WV PATIENT .13 is set
+"RTN","DSIO4",189,0)
+ ;     to "NO" and .14 is deleted
+"RTN","DSIO4",190,0)
+ ;
+"RTN","DSIO4",191,0)
+CURRENT(IEN) ; Should this record be CURRENT?
+"RTN","DSIO4",192,0)
+ ;
+"RTN","DSIO4",193,0)
+ ; Is there an entry with a future EDD and no pregnancy end?
+"RTN","DSIO4",194,0)
+ ; INPUT TRANSFORM for .04 STATUS
+"RTN","DSIO4",195,0)
+ ;
+"RTN","DSIO4",196,0)
+ N DFN,DATE,CT,FLG S FLG=1
+"RTN","DSIO4",197,0)
+ S DFN=$$GET1^DIQ(19641.13,IEN_",",.03,"I") Q:'DFN
+"RTN","DSIO4",198,0)
+ S DATE="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+"RTN","DSIO4",199,0)
+ . S CT=$O(^DSIO(19641.13,"P",DFN,DATE,""))
+"RTN","DSIO4",200,0)
+ . I $$GET1^DIQ(19641.03,CT_",",.06,"I")>=DT&($$GET1^DIQ(19641.03,CT_",",.07,"I")="") S FLG=0
+"RTN","DSIO4",201,0)
+ Q FLG
+"RTN","DSIO4",202,0)
+ ;
+"RTN","DSIO4",203,0)
+HIS(DFN,IEN) ; Kill HISTORICAL EDD X-REF
+"RTN","DSIO4",204,0)
+ ; *** NEW 'ASTATUS'
+"RTN","DSIO4",205,0)
+ ;
+"RTN","DSIO4",206,0)
+ I $D(^DSIO(19641.13,"EDD",DFN,+$O(^DSIO(19641.13,"EDD",DFN,"")),IEN)) D
+"RTN","DSIO4",207,0)
+ . K ^DSIO(19641.13,"EDD",DFN)
+"RTN","DSIO4",208,0)
+ Q
+"RTN","DSIO4",209,0)
+ ;
+"RTN","DSIO4",210,0)
+STATUS(DFN,IEN) ; Update PREGNANCY HISTORY statuses to "H" if current is "C"
+"RTN","DSIO4",211,0)
+ ; *** NEW 'ASTATUS'
+"RTN","DSIO4",212,0)
+ ;
+"RTN","DSIO4",213,0)
+ Q:$$GET1^DIQ(19641.13,$G(IEN)_",",.04,"I")'="C"
+"RTN","DSIO4",214,0)
+ N DATE,CT,DLAYGO,FDA,WVIEN
+"RTN","DSIO4",215,0)
+ S DATE="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
+"RTN","DSIO4",216,0)
+ . S CT=$O(^DSIO(19641.13,"P",DFN,DATE,"")) Q:CT=IEN
+"RTN","DSIO4",217,0)
+ . S DLAYGO=19641.13
+"RTN","DSIO4",218,0)
+ . S FDA(19641.13,CT_",",.04)="H" D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO4",219,0)
+ . D HIS(DFN,CT)
+"RTN","DSIO4",220,0)
+ . ;S WVIEN=$$GET1^DIQ(19641.13,CT_",",99.1,"I") Q:'WVIEN
+"RTN","DSIO4",221,0)
+ . ;S DLAYGO=790
+"RTN","DSIO4",222,0)
+ . ;S FDA(790.16,WVIEN_","_DFN_",",2)=0 D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO4",223,0)
+ Q
+"RTN","DSIO4",224,0)
+ ;
+"RTN","DSIO4",225,0)
+EDD(EDD,IEN) ; Update WV,DSIO PATIENT files when EDD is future
+"RTN","DSIO4",226,0)
+ ;
+"RTN","DSIO4",227,0)
+ ; New 'EDD' (Not on HISTORICAL entries)
+"RTN","DSIO4",228,0)
+ ; Create an "EDD" X-REF - Only one per patient
+"RTN","DSIO4",229,0)
+ ;
+"RTN","DSIO4",230,0)
+ I '$G(DFN) S DFN=$$GET1^DIQ(19641.13,IEN_",",.03,"I") Q:'DFN
+"RTN","DSIO4",231,0)
+ K ^DSIO(19641.13,"EDD",DFN)
+"RTN","DSIO4",232,0)
+ S:EDD'="@" ^DSIO(19641.13,"EDD",DFN,EDD,DA)="",EDD=$$GET1^DIQ(19641.03,EDD_",",.01,"I")
+"RTN","DSIO4",233,0)
+ Q:$D(DSIOSILENT)  N DSIOSILENT S DSIOSILENT=1
+"RTN","DSIO4",234,0)
+ Q:$$GET1^DIQ(19641.13,IEN_",",.04,"I")="H"
+"RTN","DSIO4",235,0)
+ ;N WVIEN,DLAYGO,FDA
+"RTN","DSIO4",236,0)
+ ;S WVIEN=$$GET1^DIQ(19641.13,IEN_",",99.1,"I")
+"RTN","DSIO4",237,0)
+ ;S DLAYGO=790
+"RTN","DSIO4",238,0)
+ ;S FDA(790.16,WVIEN_","_DFN_",",2)=1
+"RTN","DSIO4",239,0)
+ ;S FDA(790.16,WVIEN_","_DFN_",",3)=EDD
+"RTN","DSIO4",240,0)
+ ;D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO4",241,0)
+ D STATUS(DFN,IEN)
+"RTN","DSIO4",242,0)
+ Q
+"RTN","DSIO4",243,0)
+ ;
+"RTN","DSIO4",244,0)
+DELV(DATE,DFN,IEN) ; Update WV,DSIO PATIENT files when PREGNANCY END is set
+"RTN","DSIO4",245,0)
+ Q:$D(DSIOSILENT)  N DSIOSILENT S DSIOSILENT=1
+"RTN","DSIO4",246,0)
+ Q:+$G(DATE)=0!($$GET1^DIQ(19641.13,IEN_",",.04,"I")="H")
+"RTN","DSIO4",247,0)
+ I DATE'>$$NOW^XLFDT D
+"RTN","DSIO4",248,0)
+ . N DLAYGO,FDA,WVIEN
+"RTN","DSIO4",249,0)
+ . S DLAYGO=19641.13,FDA(19641.13,IEN_",",.04)="H" D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO4",250,0)
+ . K ^DSIO(19641.13,"EDD",DFN)
+"RTN","DSIO4",251,0)
+ . ;S DLAYGO=790,WVIEN=$$GET1^DIQ(19641.13,IEN_",",99.1,"I")
+"RTN","DSIO4",252,0)
+ . ;S FDA(790.16,WVIEN_","_DFN_",",2)=0
+"RTN","DSIO4",253,0)
+ . ;S FDA(790.16,WVIEN_","_DFN_",",3)=""
+"RTN","DSIO4",254,0)
+ . ;S FDA(790.16,WVIEN_","_DFN_",",4)=DATE
+"RTN","DSIO4",255,0)
+ . ;D UPDATE^DIE(,"FDA") K FDA D PTRK(DFN,0)
+"RTN","DSIO4",256,0)
+ Q
+"RTN","DSIO4",257,0)
+ ;
+"RTN","DSIO4",258,0)
+ ; -------------------------- WV PATIENT - (NEW) ------------------------------
+"RTN","DSIO4",259,0)
+ ;
+"RTN","DSIO4",260,0)
+WV(DFN,WVIEN) ; WOMEN'S HEALTH entry point
+"RTN","DSIO4",261,0)
+ ; *** REQUIRES WV X-REFS
+"RTN","DSIO4",262,0)
+ ;
+"RTN","DSIO4",263,0)
+ ; Update the current pregnancy with the new EDD from the WV PREGNANCY LOG
+"RTN","DSIO4",264,0)
+ ; or if there is no "CURRENT" pregnancy then create a new one
+"RTN","DSIO4",265,0)
+ ;
+"RTN","DSIO4",266,0)
+ ; Pregnancy log is triggered on field and this new style is set
+"RTN","DSIO4",267,0)
+ ; to trigger on record and the creation of the log
+"RTN","DSIO4",268,0)
+ ;
+"RTN","DSIO4",269,0)
+ Q:'$G(DFN)!('$G(WVIEN))
+"RTN","DSIO4",270,0)
+ N DLAYGO,CIEN,PREG,EDD,END,RET,FDA
+"RTN","DSIO4",271,0)
+ S DLAYGO=19641.13,CIEN=$$PG(DFN)
+"RTN","DSIO4",272,0)
+ S PREG=$$GET1^DIQ(790.16,WVIEN_","_DFN_",",2,"I")
+"RTN","DSIO4",273,0)
+ S EDD=$$GET1^DIQ(790.16,WVIEN_","_DFN_",",3,"I")
+"RTN","DSIO4",274,0)
+ S END=$$GET1^DIQ(790.16,WVIEN_","_DFN_",",4,"I") K:'END END
+"RTN","DSIO4",275,0)
+ I PREG=1,'CIEN D PREG^DSIO15(.RET,,DFN,"^^"_EDD,"C"),PTRK(DFN,PREG)
+"RTN","DSIO4",276,0)
+ E  I PREG=1,CIEN,EDD'="" D PREG^DSIO15(.RET,CIEN,DFN,"^^"_EDD,,,,,,,,,1)
+"RTN","DSIO4",277,0)
+ E  I 'PREG,CIEN D PREG^DSIO15(.RET,CIEN,DFN,U_$G(END,DT)_U,"H",,,,,,,,1),PTRK(DFN,PREG)
+"RTN","DSIO4",278,0)
+ I $G(RET) K FDA S FDA(19641.13,RET_",",99.1)=WVIEN D UPDATE^DIE(,"FDA")
+"RTN","DSIO4",279,0)
+ Q
+"RTN","DSIO4",280,0)
+ ;
+"RTN","DSIO4",281,0)
+PTRK(DFN,PREG) ; Track Pregnancy
+"RTN","DSIO4",282,0)
+ N RES,RET
+"RTN","DSIO4",283,0)
+ S RES="WV PATIENT FILE(790) PREGNANCY STATUS = "_$S(PREG:"YES",1:"NO")
+"RTN","DSIO4",284,0)
+ D REC^DSIO1(.RET,DFN,2,RES,,"TRIGGER")
+"RTN","DSIO4",285,0)
+ Q
+"RTN","DSIO4",286,0)
+ ;
+"RTN","DSIO4",287,0)
+ ; -------- WV PATIENT to DSIO MENSTRUAL HISTORY and DSIO PATIENT -------------
+"RTN","DSIO4",288,0)
+ ;
+"RTN","DSIO4",289,0)
+MH(DFN,WVIEN) ; Update DSIO with LMP
+"RTN","DSIO4",290,0)
+ ; *** REQUIRES WV X-REFS
+"RTN","DSIO4",291,0)
+ ;
+"RTN","DSIO4",292,0)
+ ; Starting Location = 790.15,2
+"RTN","DSIO4",293,0)
+ ; DSIO MENSTRUAL HISTORY (Link back at field 99.1)
+"RTN","DSIO4",294,0)
+ ; DSIO PATIENT : 1.2
+"RTN","DSIO4",295,0)
+ ;
+"RTN","DSIO4",296,0)
+ Q:$D(DSIOSILENT)!('$G(DFN))!('$G(WVIEN))
+"RTN","DSIO4",297,0)
+ N DSIOSILENT,DLAYGO,DATE,FDA,IEN
+"RTN","DSIO4",298,0)
+ S DSIOSILENT=1,DLAYGO=19641.01
+"RTN","DSIO4",299,0)
+ S DATE=$$GET1^DIQ(790.15,WVIEN_","_DFN_",",2,"I") Q:'DATE
+"RTN","DSIO4",300,0)
+ Q:$D(^DSIO(19641.01,"C",DFN,DATE))
+"RTN","DSIO4",301,0)
+ S FDA(19641.01,"+1,",.01)=DATE
+"RTN","DSIO4",302,0)
+ S FDA(19641.01,"+1,",.02)=DFN
+"RTN","DSIO4",303,0)
+ D UPDATE^DIE("U","FDA","IEN") K FDA S DLAYGO=19641
+"RTN","DSIO4",304,0)
+ I $D(IEN(1)) S FDA(19641,DFN_",",1.2)=IEN(1) D FILE^DIE(,"FDA")
+"RTN","DSIO4",305,0)
+ Q
+"RTN","DSIO4",306,0)
+ ;
+"RTN","DSIO4",307,0)
+MH1(DFN,DATE) ; From DSIO PATIENT to WV PATIENT
+"RTN","DSIO4",308,0)
+ Q:$D(DSIOSILENT)!('$G(DFN))!('$G(DATE))
+"RTN","DSIO4",309,0)
+ N DSIOSILENT,DLAYGO,FDA,WVIEN
+"RTN","DSIO4",310,0)
+ S DSIOSILENT=1,DLAYGO=790
+"RTN","DSIO4",311,0)
+ S FDA(790.15,"?+1,"_DFN_",",.01)=$$NOW^XLFDT
+"RTN","DSIO4",312,0)
+ S FDA(790.15,"?+1,"_DFN_",",2)=$$GET1^DIQ(19641.01,DATE_",",.01,"I")
+"RTN","DSIO4",313,0)
+ S FDA(790.15,"?+1,"_DFN_",",3)=DUZ
+"RTN","DSIO4",314,0)
+ D UPDATE^DIE(,"FDA","WVIEN") K FDA Q:'$G(WVIEN(1))
+"RTN","DSIO4",315,0)
+ S DLAYGO=19641.01
+"RTN","DSIO4",316,0)
+ S FDA(19641.01,DATE_",",99.1)=WVIEN(1) D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO4",317,0)
+ Q
+"RTN","DSIO65")
+0^2^B189100193
+"RTN","DSIO65",1,0)
+DSIO65 ;DSS/TFF - DSIO DDCS FORM SUPPORT;08/26/2016 16:00
+"RTN","DSIO65",2,0)
+ ;;2.0;DSIO 2.0;**1**;Aug 26, 2016;Build 1
+"RTN","DSIO65",3,0)
+ ;
+"RTN","DSIO65",4,0)
+ ; External References      DBIA#
+"RTN","DSIO65",5,0)
+ ; -------------------      -----
+"RTN","DSIO65",6,0)
+ ; LIST^ORQQAL
+"RTN","DSIO65",7,0)
+ ; LIST^ORQQPL
+"RTN","DSIO65",8,0)
+ ; LIST^ORQQPS
+"RTN","DSIO65",9,0)
+ ; FASTVIT^ORQQVI
+"RTN","DSIO65",10,0)
+ ;
+"RTN","DSIO65",11,0)
+ Q
+"RTN","DSIO65",12,0)
+ ;
+"RTN","DSIO65",13,0)
+ ; --- DSIO DDCS CONFIGURATION
+"RTN","DSIO65",14,0)
+ ;
+"RTN","DSIO65",15,0)
+ ; DSIO DDCS CONFIGURATION (PARAMETER) for system level configuration
+"RTN","DSIO65",16,0)
+ ;     INSTANCES: LOCATION
+"RTN","DSIO65",17,0)
+ ;
+"RTN","DSIO65",18,0)
+CONFIG(RET,INFACE,INST) ; RPC: DSIO DDCS CONFIGURATION
+"RTN","DSIO65",19,0)
+ ;
+"RTN","DSIO65",20,0)
+ ; INPUT PARAMETERS:
+"RTN","DSIO65",21,0)
+ ; -----------------
+"RTN","DSIO65",22,0)
+ ; INFACE = IEN;DSIO(19641.42, or IEN;DSIO(19641.49,
+"RTN","DSIO65",23,0)
+ ;
+"RTN","DSIO65",24,0)
+ ;   INST = The Name of the set to which the data is associated
+"RTN","DSIO65",25,0)
+ ;          Example: LOCATION
+"RTN","DSIO65",26,0)
+ ;
+"RTN","DSIO65",27,0)
+ S RET="" Q:$G(INST)=""
+"RTN","DSIO65",28,0)
+ S INFACE=$$INFACE^DSIO65($G(INFACE))
+"RTN","DSIO65",29,0)
+ I INST="LOCATION" D  Q
+"RTN","DSIO65",30,0)
+ . S RET=$$GET^XPAR("SYS","DSIO DDCS LOCATION") Q:RET=""
+"RTN","DSIO65",31,0)
+ . I $E(RET,$L(RET))'="\"&($E(RET,$L(RET))'="/") D
+"RTN","DSIO65",32,0)
+ . . S RET=RET_$S(RET["\":"\",RET["/":"/",1:"")
+"RTN","DSIO65",33,0)
+ . Q:INFACE'[";DSIO(19641.42,"
+"RTN","DSIO65",34,0)
+ . S RET=RET_$$GET1^DIQ(19641.42,+INFACE_",",.05)
+"RTN","DSIO65",35,0)
+ Q:INFACE'[";DSIO(19641.42,"
+"RTN","DSIO65",36,0)
+ S RET=$$GET1^DIQ(19641.492,+INFACE_",",$$FLDNUM^DILFD(19641.492,INST))
+"RTN","DSIO65",37,0)
+ Q
+"RTN","DSIO65",38,0)
+ ;
+"RTN","DSIO65",39,0)
+CANCEL(RET,TASKS) ; RPC: DSIO DDCS CANCEL AUTOSAVE
+"RTN","DSIO65",40,0)
+ ;
+"RTN","DSIO65",41,0)
+ ; The Form has been closed and saved so cancel pending tasks to save
+"RTN","DSIO65",42,0)
+ ; TASKS =  TASK NUMBERS (ARRAY)
+"RTN","DSIO65",43,0)
+ ;
+"RTN","DSIO65",44,0)
+ N CT,FLG
+"RTN","DSIO65",45,0)
+ S RET=-1 Q:'$D(TASKS)
+"RTN","DSIO65",46,0)
+ S CT=$NA(TASKS) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO65",47,0)
+ . I '$$ASKSTOP^%ZTLOAD(@CT) S FLG=1
+"RTN","DSIO65",48,0)
+ S:'$D(FLG) RET=1
+"RTN","DSIO65",49,0)
+ Q
+"RTN","DSIO65",50,0)
+ ;
+"RTN","DSIO65",51,0)
+TRACK(RET,OBJECT) ; RPC: DSIO DDCS CONTROLLED
+"RTN","DSIO65",52,0)
+ ;
+"RTN","DSIO65",53,0)
+ ; RETURN
+"RTN","DSIO65",54,0)
+ ;   IEN ^ 19641.4:.01 ^ *IEN;DSIO(19641.42, ^ FILENAME
+"RTN","DSIO65",55,0)
+ ;   IEN ^ 19641.4:.01 ^ (*PAGE|PAGE|PAGE)   ^ FILENAME
+"RTN","DSIO65",56,0)
+ ;   - *Is the interface/form 19641.42 while the sub elements are the pages
+"RTN","DSIO65",57,0)
+ ;   else 0
+"RTN","DSIO65",58,0)
+ ;   else -1 for error
+"RTN","DSIO65",59,0)
+ ;
+"RTN","DSIO65",60,0)
+ S RET=0 Q:$G(OBJECT)=""
+"RTN","DSIO65",61,0)
+ I $D(^DSIO(19641.41,"ERROR")) S RET=-1 Q
+"RTN","DSIO65",62,0)
+ N IEN S IEN=$$OBJECT(OBJECT) Q:'IEN
+"RTN","DSIO65",63,0)
+ Q:$$GET1^DIQ(19641.4,IEN_",",.02,"I")                                  ; INACTIVE
+"RTN","DSIO65",64,0)
+ S RET=IEN_U
+"RTN","DSIO65",65,0)
+ S RET=RET_$$GET1^DIQ(19641.4,IEN_",",.01)_U                            ; NAME of OBJECT  (Soft Pointer)
+"RTN","DSIO65",66,0)
+ S RET=RET_"*"_$$GET1^DIQ(19641.4,IEN_",",.07,"I")_";DSIO(19641.42,"_U  ; 19641.42        (FORM/INTERFACE)
+"RTN","DSIO65",67,0)
+ S RET=RET_$$GET1^DIQ(19641.4,IEN_",",".07:.05","I")                    ; FILENAME
+"RTN","DSIO65",68,0)
+ Q
+"RTN","DSIO65",69,0)
+ ;
+"RTN","DSIO65",70,0)
+OBJECT(OBJECT) ; Return Object IEN
+"RTN","DSIO65",71,0)
+ Q:$G(OBJECT)="" ""
+"RTN","DSIO65",72,0)
+ ; *** Coming in as an ORDER IEN, must build the control object
+"RTN","DSIO65",73,0)
+ I OBJECT["O=" S OBJECT=$$ORDER(OBJECT)
+"RTN","DSIO65",74,0)
+ ; *** Coming in as a note, must build the control object
+"RTN","DSIO65",75,0)
+ I OBJECT["N=" S OBJECT=$$NOTE(OBJECT)
+"RTN","DSIO65",76,0)
+ Q:OBJECT="" ""
+"RTN","DSIO65",77,0)
+ Q $O(^DSIO(19641.4,"B",OBJECT,""))
+"RTN","DSIO65",78,0)
+ ;
+"RTN","DSIO65",79,0)
+ORDER(OBJECT) ; Object from Order
+"RTN","DSIO65",80,0)
+ N ORD,OID
+"RTN","DSIO65",81,0)
+ S ORD=+$G(^OR(100,+$P(OBJECT,"=",2),.1,1,0)) Q:'ORD ""
+"RTN","DSIO65",82,0)
+ S OID=$$GET1^DIQ(101.43,ORD_",",2)
+"RTN","DSIO65",83,0)
+ Q +OID_";"_$S($P(OID,";99",2)="LRT":"LAB(60,",1:"")
+"RTN","DSIO65",84,0)
+ ;
+"RTN","DSIO65",85,0)
+NOTE(OBJECT) ; Object from Note
+"RTN","DSIO65",86,0)
+ Q $$GET1^DIQ(8925,$P(OBJECT,"=",2)_",",.01,"I")_";TIU(8925.1,"
+"RTN","DSIO65",87,0)
+ ;
+"RTN","DSIO65",88,0)
+INFACE(VAL,FLG) ; Determine Interface/Form
+"RTN","DSIO65",89,0)
+ N RET
+"RTN","DSIO65",90,0)
+ I $G(VAL)="" Q "OTHER"
+"RTN","DSIO65",91,0)
+ I $G(VAL)?.N!($G(VAL)[";DSIO(19641.42,") D  Q:$D(RET) RET
+"RTN","DSIO65",92,0)
+ . I $D(^DSIO(19641.42,+VAL)) S RET=+VAL_";DSIO(19641.42,"
+"RTN","DSIO65",93,0)
+ I $G(VAL)[";DSIO(19641.49,",$D(^DSIO(19641.49,+VAL)) D  Q:$D(RET) RET
+"RTN","DSIO65",94,0)
+ . S RET=+VAL_";DSIO(19641.49,"
+"RTN","DSIO65",95,0)
+ I $G(VAL)'="",$D(^DSIO(19641.42,"B",VAL)) D  Q:$D(RET) RET
+"RTN","DSIO65",96,0)
+ . S RET=$O(^DSIO(19641.42,"B",VAL,""))_";DSIO(19641.42,"
+"RTN","DSIO65",97,0)
+ I $G(VAL)'="",$D(^DSIO(19641.42,"P",VAL)) D  Q:$D(RET) RET
+"RTN","DSIO65",98,0)
+ . I $D(FLG) S RET=VAL Q
+"RTN","DSIO65",99,0)
+ . S RET=$O(^DSIO(19641.42,"P",VAL,""))_";DSIO(19641.42,"
+"RTN","DSIO65",100,0)
+ Q $G(RET,"OTHER")
+"RTN","DSIO65",101,0)
+ ;
+"RTN","DSIO65",102,0)
+REPORT(FORM,CON) ; Get the Report Item for a Control for an Interface/Form
+"RTN","DSIO65",103,0)
+ N PG,IEN
+"RTN","DSIO65",104,0)
+ S PG=$O(^DSIO(19641.42,FORM,1,"CONTROL",CON,"")) Q:'PG ""
+"RTN","DSIO65",105,0)
+ S IEN=$O(^DSIO(19641.42,FORM,1,"CONTROL",CON,PG,""))
+"RTN","DSIO65",106,0)
+ Q $P($G(^DSIO(19641.42,FORM,1,PG,1,IEN,0)),U,3)
+"RTN","DSIO65",107,0)
+ ;
+"RTN","DSIO65",108,0)
+ ; --------------------------------ALLERGIES-----------------------------------
+"RTN","DSIO65",109,0)
+ ;
+"RTN","DSIO65",110,0)
+ORQQAL(RET,DFN) ; RPC: DSIO DDCS ORQQAL LIST
+"RTN","DSIO65",111,0)
+ ; GET AND FORMAT ALLERGIES
+"RTN","DSIO65",112,0)
+ ; allergy ien^allergen/reactant^severity^reaction/symptom
+"RTN","DSIO65",113,0)
+ ;
+"RTN","DSIO65",114,0)
+ N OUT,I,ND,NAME,P,CT
+"RTN","DSIO65",115,0)
+ S RET(0)="An unknown error occured."
+"RTN","DSIO65",116,0)
+ D LIST^ORQQAL(.OUT,DFN) Q:'$D(OUT)
+"RTN","DSIO65",117,0)
+ S RET(0)="ALLERGIES: "
+"RTN","DSIO65",118,0)
+ I "^No Allergy Assessment^No Known Allergies^No allergies found.^"[(U_$P(OUT($O(OUT(""),-1)),U,2)_U) D  Q
+"RTN","DSIO65",119,0)
+ . S RET(0)=RET(0)_$P(OUT($O(OUT(""),-1)),U,2)
+"RTN","DSIO65",120,0)
+ S RET(1)="Allergen/Reactant"_$$REPEAT^XLFSTR(" ",25)_"| Severity   | Reactions/Symptoms"
+"RTN","DSIO65",121,0)
+ S RET(2)=$$REPEAT^XLFSTR("=",77)
+"RTN","DSIO65",122,0)
+ S I=3,ND=$NA(OUT) F  S ND=$Q(@ND) Q:ND=""  D
+"RTN","DSIO65",123,0)
+ . S NAME=$P(@ND,U,2)         ; *** NAME UP TO 41 CHAR LENGTH
+"RTN","DSIO65",124,0)
+ . S RET(I)=$E(NAME,1,41)_$$REPEAT^XLFSTR(" ",42-$L($E(NAME,1,41)))
+"RTN","DSIO65",125,0)
+ . S RET(I)=RET(I)_"| "_$P(@ND,U,3)
+"RTN","DSIO65",126,0)
+ . S RET(I)=RET(I)_$$REPEAT^XLFSTR(" ",55-$L(RET(I)))
+"RTN","DSIO65",127,0)
+ . S RET(I)=RET(I)_"| "_$P($P(@ND,U,4),";"),P=2,I=I+1
+"RTN","DSIO65",128,0)
+ . I $L(NAME)>41 F CT=42:41:$L(NAME) D  S I=I+1
+"RTN","DSIO65",129,0)
+ . . S RET(I)=$E(NAME,CT,CT+41)_$$REPEAT^XLFSTR(" ",42-$L($E(NAME,CT,CT+41)))
+"RTN","DSIO65",130,0)
+ . . S RET(I)=RET(I)_"| "_$$REPEAT^XLFSTR(" ",53-$L(RET(I)))_"| "
+"RTN","DSIO65",131,0)
+ . . I $P(@ND,U,4)[";" S RET(I)=RET(I)_$P($P(@ND,U,4),";",P),P=P+1
+"RTN","DSIO65",132,0)
+ . I $L($P(@ND,U,4),";")>=P F CT=P:1:$L($P(@ND,U,4),";") D  S I=I+1
+"RTN","DSIO65",133,0)
+ . . S RET(I)=$G(RET(I))_$$REPEAT^XLFSTR(" ",42-$L($G(RET(I))))_"| "
+"RTN","DSIO65",134,0)
+ . . S RET(I)=RET(I)_$$REPEAT^XLFSTR(" ",55-$L(RET(I)))_"| "
+"RTN","DSIO65",135,0)
+ . . S RET(I)=RET(I)_$P($P(@ND,U,4),";",P),P=P+1
+"RTN","DSIO65",136,0)
+ . S I=I+1
+"RTN","DSIO65",137,0)
+ . ; *** Uncomment for ROW LINES
+"RTN","DSIO65",138,0)
+ . ; S RET(I)=$$REPEAT^XLFSTR("-",77),I=I+1
+"RTN","DSIO65",139,0)
+ Q
+"RTN","DSIO65",140,0)
+ ;
+"RTN","DSIO65",141,0)
+ ; --------------------------------ACTIVE MEDS---------------------------------
+"RTN","DSIO65",142,0)
+ ;
+"RTN","DSIO65",143,0)
+ORQQPS(RET,DFN) ; RPC: DSIO DDCS ORQQPS LIST
+"RTN","DSIO65",144,0)
+ ; GET AND FORMAT ACTIVE MEDICATIONS
+"RTN","DSIO65",145,0)
+ ; id^nameform^stop date^route^schedule/infusion rate^refills remaining
+"RTN","DSIO65",146,0)
+ ;
+"RTN","DSIO65",147,0)
+ N OUT,I,ND,NAME,P,CT
+"RTN","DSIO65",148,0)
+ S RET(0)="An unknown error occured."
+"RTN","DSIO65",149,0)
+ D LIST^ORQQPS(.OUT,DFN,"","") Q:'$D(OUT)
+"RTN","DSIO65",150,0)
+ S RET(0)="ACTIVE MEDICATIONS: "
+"RTN","DSIO65",151,0)
+ I $P(OUT($O(OUT(""),-1)),U,2)["No medications found." D  Q
+"RTN","DSIO65",152,0)
+ . S RET(0)=RET(0)_$P(OUT($O(OUT(""),-1)),U,2)
+"RTN","DSIO65",153,0)
+ S RET(1)="Medication"_$$REPEAT^XLFSTR(" ",20)_"| Stop Date  | Route  "
+"RTN","DSIO65",154,0)
+ S RET(1)=RET(1)_"| Schedule   | Refills"
+"RTN","DSIO65",155,0)
+ S RET(2)=$$REPEAT^XLFSTR("=",77)
+"RTN","DSIO65",156,0)
+ S I=3,ND=$NA(OUT) F  S ND=$Q(@ND) Q:ND=""  D
+"RTN","DSIO65",157,0)
+ . S NAME=$P(@ND,U,2)         ; *** NAME UP TO 29 CHAR LENGTH
+"RTN","DSIO65",158,0)
+ . S RET(I)=$E(NAME,1,29)_$$REPEAT^XLFSTR(" ",30-$L($E(NAME,1,29)))
+"RTN","DSIO65",159,0)
+ . S RET(I)=RET(I)_"| "_$$FMTE^XLFDT($P(@ND,U,3),"5ZD")
+"RTN","DSIO65",160,0)
+ . S RET(I)=RET(I)_$$REPEAT^XLFSTR(" ",43-$L(RET(I)))
+"RTN","DSIO65",161,0)
+ . S RET(I)=RET(I)_"| "_$P(@ND,U,4)
+"RTN","DSIO65",162,0)
+ . S RET(I)=RET(I)_$$REPEAT^XLFSTR(" ",52-$L(RET(I)))
+"RTN","DSIO65",163,0)
+ . S RET(I)=RET(I)_"| "_$P(@ND,U,5)
+"RTN","DSIO65",164,0)
+ . S RET(I)=RET(I)_$$REPEAT^XLFSTR(" ",65-$L(RET(I)))
+"RTN","DSIO65",165,0)
+ . S RET(I)=RET(I)_"| "_$P(@ND,U,6),I=I+1
+"RTN","DSIO65",166,0)
+ . I $L(NAME)>29 F CT=30:29:$L(NAME) D  S I=I+1
+"RTN","DSIO65",167,0)
+ . . S RET(I)=$E(NAME,CT,CT+29)_$$REPEAT^XLFSTR(" ",30-$L($E(NAME,CT,CT+29)))
+"RTN","DSIO65",168,0)
+ . . S RET(I)=RET(I)_"| "_$$REPEAT^XLFSTR(" ",41-$L(RET(I)))
+"RTN","DSIO65",169,0)
+ . . S RET(I)=RET(I)_"| "_$$REPEAT^XLFSTR(" ",50-$L(RET(I)))
+"RTN","DSIO65",170,0)
+ . . S RET(I)=RET(I)_"| "_$$REPEAT^XLFSTR(" ",63-$L(RET(I)))_"|"
+"RTN","DSIO65",171,0)
+ . S I=I+1
+"RTN","DSIO65",172,0)
+ . ; *** Uncomment for ROW LINES
+"RTN","DSIO65",173,0)
+ . ; S RET(I)=$$REPEAT^XLFSTR("-",77),I=I+1
+"RTN","DSIO65",174,0)
+ Q
+"RTN","DSIO65",175,0)
+ ;
+"RTN","DSIO65",176,0)
+ ; -------------------------------ACTIVE PROBS---------------------------------
+"RTN","DSIO65",177,0)
+ ;
+"RTN","DSIO65",178,0)
+ORQQPL(RET,DFN) ; RPC: DSIO DDCS ORQQPL LIST
+"RTN","DSIO65",179,0)
+ ; GET AND FORMAT ACTIVE PROBLEMS
+"RTN","DSIO65",180,0)
+ ; ien^description^ICD^onset^last modified^SC^SpExp
+"RTN","DSIO65",181,0)
+ ;
+"RTN","DSIO65",182,0)
+ N OUT,I,ND,NAME,CT
+"RTN","DSIO65",183,0)
+ S RET(0)="An unknown error occured."
+"RTN","DSIO65",184,0)
+ D LIST^ORQQPL(.OUT,DFN,"A") Q:'$D(OUT)
+"RTN","DSIO65",185,0)
+ S RET(0)="ACTIVE PROBLEMS: "
+"RTN","DSIO65",186,0)
+ I $P(OUT($O(OUT(""),-1)),U,2)["No problems found." D  Q
+"RTN","DSIO65",187,0)
+ . S RET(0)=RET(0)_$P(OUT($O(OUT(""),-1)),U,2)
+"RTN","DSIO65",188,0)
+ S RET(1)="Problem"_$$REPEAT^XLFSTR(" ",45)_"| ICD        | SCT"
+"RTN","DSIO65",189,0)
+ S RET(2)=$$REPEAT^XLFSTR("=",77)
+"RTN","DSIO65",190,0)
+ S I=3,ND=$NA(OUT) F  S ND=$Q(@ND) Q:ND=""  D
+"RTN","DSIO65",191,0)
+ . S NAME=$P(@ND,U,2)         ; *** NAME UP TO 51 CHAR LENGTH
+"RTN","DSIO65",192,0)
+ . S RET(I)=$E(NAME,1,51)_$$REPEAT^XLFSTR(" ",52-$L($E(NAME,1,51)))
+"RTN","DSIO65",193,0)
+ . S RET(I)=RET(I)_"| "_$P(@ND,U,4)
+"RTN","DSIO65",194,0)
+ . S RET(I)=RET(I)_$$REPEAT^XLFSTR(" ",65-$L(RET(I)))
+"RTN","DSIO65",195,0)
+ . S RET(I)=RET(I)_"| "_$P(@ND,U,14),I=I+1
+"RTN","DSIO65",196,0)
+ . I $L(NAME)>51 F CT=52:51:$L(NAME) D  S I=I+1
+"RTN","DSIO65",197,0)
+ . . S RET(I)=$E(NAME,CT,CT+51)_$$REPEAT^XLFSTR(" ",52-$L($E(NAME,CT,CT+51)))
+"RTN","DSIO65",198,0)
+ . . S RET(I)=RET(I)_"| "_$$REPEAT^XLFSTR(" ",63-$L(RET(I)))_"| "
+"RTN","DSIO65",199,0)
+ . S I=I+1
+"RTN","DSIO65",200,0)
+ . ; *** Uncomment for ROW LINES
+"RTN","DSIO65",201,0)
+ . ; S RET(I)=$$REPEAT^XLFSTR("-",77),I=I+1
+"RTN","DSIO65",202,0)
+ Q
+"RTN","DSIO65",203,0)
+ ;
+"RTN","DSIO65",204,0)
+ ; -----------------------------------VITALS-----------------------------------
+"RTN","DSIO65",205,0)
+ ;
+"RTN","DSIO65",206,0)
+ORQQVI(RET,DFN) ; RPC: DSIO DDCS ORQQVI VITALS
+"RTN","DSIO65",207,0)
+ N EDD,SEX,CT
+"RTN","DSIO65",208,0)
+ I '$G(DFN) S RET(0)=-1 Q
+"RTN","DSIO65",209,0)
+ D FASTVIT^ORQQVI(.RET,DFN)
+"RTN","DSIO65",210,0)
+ S RET($O(RET(""),-1)+1)="^AGE^"_$$GET1^DIQ(2,DFN_",",.033)
+"RTN","DSIO65",211,0)
+ S EDD=$$FMTE^XLFDT($$GET1^DIQ(19641.03,$$GET1^DIQ(19641.13,$$PG^DSIO4(DFN)_",",.06,"I")_",",.01,"I"),"5Z")
+"RTN","DSIO65",212,0)
+ I EDD'="" S RET($O(RET(""),-1)+1)="^EDD^"_EDD
+"RTN","DSIO65",213,0)
+ S SEX=$$GET1^DIQ(2,DFN_",",.02) I SEX'="" S RET($O(RET(""),-1)+1)="^SEX^"_SEX
+"RTN","DSIO65",214,0)
+ S CT=$NA(RET) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO65",215,0)
+ . S $P(@CT,U,4)=$$FMTE^XLFDT($P(@CT,U,4),"5Z")
+"RTN","DSIO65",216,0)
+ Q
+"RTN","DSIO65",217,0)
+ ;
+"RTN","DSIO65",218,0)
+LMP(RET,DFN,INFACE) ; RPC: DSIO DDCS VITALS LMP
+"RTN","DSIO65",219,0)
+ ;
+"RTN","DSIO65",220,0)
+ ; INFACE = IEN;DSIO(19641.42, (or NAME)
+"RTN","DSIO65",221,0)
+ ;          or IEN;DSIO(19641.49,
+"RTN","DSIO65",222,0)
+ ;
+"RTN","DSIO65",223,0)
+ ; RETURN:
+"RTN","DSIO65",224,0)
+ ;  (0)LMP^MENSES^FREQUENCY^MENARCHE^HCG^AMOUNT^DURATION^ON_CONTRACEPTION^QUALIFIER^PRIOR_MENSES^
+"RTN","DSIO65",225,0)
+ ;     MENSES_MONTHLY^BIRTH_PILLS_CONCEPTION
+"RTN","DSIO65",226,0)
+ ;  (#)C1^^<LIST of COMMENTS>
+"RTN","DSIO65",227,0)
+ ;  (#)C2^^<LIST of CONTRACEPTION>
+"RTN","DSIO65",228,0)
+ ;
+"RTN","DSIO65",229,0)
+ N IEN,RC,I,CT,NM
+"RTN","DSIO65",230,0)
+ I '$G(DFN) S RET(0)=-1 Q
+"RTN","DSIO65",231,0)
+ S RET(0)="",IEN=$$GET1^DIQ(19641,DFN_",",1.2,"I")
+"RTN","DSIO65",232,0)
+ S RC=$$UP^XLFSTR($$GET1^DIQ(19641.01,IEN_",",1.7))                           ; RECENT CONTRACEPTIVE
+"RTN","DSIO65",233,0)
+ S I=1,CT="" F  S CT=$O(^DSIO(19641.493,"B",CT)) Q:CT=""  D
+"RTN","DSIO65",234,0)
+ . S NM=^DSIO(19641.493,+$O(^DSIO(19641.493,"B",CT,"")),0) Q:NM=""
+"RTN","DSIO65",235,0)
+ . I $$UP^XLFSTR(NM)=RC S RET(I)="C2^TRUE^"_NM
+"RTN","DSIO65",236,0)
+ . E  S RET(I)="C2^^"_NM
+"RTN","DSIO65",237,0)
+ . S I=I+1
+"RTN","DSIO65",238,0)
+ Q:'IEN
+"RTN","DSIO65",239,0)
+ S RET(0)=$$FMTE^XLFDT($$GET1^DIQ(19641.01,IEN_",",.01,"I"),"5ZD")_U          ; LMP
+"RTN","DSIO65",240,0)
+ S RET(0)=RET(0)_$$GET1^DIQ(19641.01,IEN_",",1.1,"I")_U                       ; MENSES
+"RTN","DSIO65",241,0)
+ S RET(0)=RET(0)_$$GET1^DIQ(19641.01,IEN_",",1.2)_U                           ; FREQUENCY
+"RTN","DSIO65",242,0)
+ S RET(0)=RET(0)_$$GET1^DIQ(19641,DFN_",",1.1)_U                              ; MENARCHE
+"RTN","DSIO65",243,0)
+ S RET(0)=RET(0)_$$FMTE^XLFDT($$GET1^DIQ(19641.01,IEN_",",1.6,"I"),"5ZD")_U   ; HCG
+"RTN","DSIO65",244,0)
+ S RET(0)=RET(0)_$$GET1^DIQ(19641.01,IEN_",",1.3,"I")_U                       ; AMOUNT
+"RTN","DSIO65",245,0)
+ S RET(0)=RET(0)_$$GET1^DIQ(19641.01,IEN_",",1.4,"I")_U                       ; DURATION
+"RTN","DSIO65",246,0)
+ S RET(0)=RET(0)_$$GET1^DIQ(19641.01,IEN_",",1.5,"I")_U                       ; ON CONTRACEPTION
+"RTN","DSIO65",247,0)
+ S RET(0)=RET(0)_$$GET1^DIQ(19641.01,IEN_",",.05,"I")_U                       ; QUALIFIER
+"RTN","DSIO65",248,0)
+ S RET(0)=RET(0)_$$GET1^DIQ(19641.01,IEN_",",1.8,"I")_U                       ; MENSES MONTHLY
+"RTN","DSIO65",249,0)
+ S RET(0)=RET(0)_$$GET1^DIQ(19641.01,IEN_",",1.9,"I")                         ; PILLS ON CONCEPTION
+"RTN","DSIO65",250,0)
+ I $P($G(^DSIO(19641.01,IEN,2,0)),U,4)>0 D                                    ; COMMENTS
+"RTN","DSIO65",251,0)
+ . S I=$O(RET(""),-1)+1,CT=0 F  S CT=$O(^DSIO(19641.01,IEN,2,CT)) Q:'CT  D
+"RTN","DSIO65",252,0)
+ . . D VC(^DSIO(19641.01,IEN,2,CT,0))
+"RTN","DSIO65",253,0)
+ Q
+"RTN","DSIO65",254,0)
+ ;
+"RTN","DSIO65",255,0)
+VC(LN) ; Restore saved comments
+"RTN","DSIO65",256,0)
+ N CT
+"RTN","DSIO65",257,0)
+ F CT=1:1:$L(LN,$C(13,10)) S RET(I)="C1^^"_$P(LN,$C(13,10),CT),I=I+1
+"RTN","DSIO65",258,0)
+ I $P(RET(I-1),U,3)="" K RET(I-1) S I=I-1
+"RTN","DSIO65",259,0)
+ Q
+"RTN","DSIO65",260,0)
+ ;
+"RTN","DSIO65",261,0)
+VS(RET,OBJECT,SIEN,DATA) ; RPC: DSIO DDCS ORQQVI VITALS SAVE
+"RTN","DSIO65",262,0)
+ ;
+"RTN","DSIO65",263,0)
+ ; INPUT PARAMETERS:
+"RTN","DSIO65",264,0)
+ ; -----------------
+"RTN","DSIO65",265,0)
+ ; OBJECT = OBJECT of CONTROL
+"RTN","DSIO65",266,0)
+ ;          Example: 500000042;PXRMD(801.41,
+"RTN","DSIO65",267,0)
+ ;                   Which is the Reminder Dialog of IEN 500000042
+"RTN","DSIO65",268,0)
+ ;         = O=### (ORDER IEN)
+"RTN","DSIO65",269,0)
+ ;         = N=### ( NOTE IEN)
+"RTN","DSIO65",270,0)
+ ;
+"RTN","DSIO65",271,0)
+ ;   SIEN = Destination IEN - Record of Control
+"RTN","DSIO65",272,0)
+ ;
+"RTN","DSIO65",273,0)
+ ;   DATA = "EDD"^CRITERIA                   ^EVENT_DATE^GESTATIONAL_AGE^EDD
+"RTN","DSIO65",274,0)
+ ;          "EDD"^CRITERIA|OTHER-DISPLAY-NAME^EVENT_DATE^GESTATIONAL_AGE^EDD
+"RTN","DSIO65",275,0)
+ ;          "LMP"^LMP^MENSES^FREQUENCY^AMOUNT^DURATION^ON_CONTRACEPTION^RECENT_CONTRACEPTIVE^
+"RTN","DSIO65",276,0)
+ ;                hCG+^MENARCHE^QUALIFIER^MENSES_MONTHLY^PILLS_ON_CONCEPTION
+"RTN","DSIO65",277,0)
+ ;          "COM"^TEXT
+"RTN","DSIO65",278,0)
+ ;
+"RTN","DSIO65",279,0)
+ S RET=0 Q:$G(OBJECT)=""!'$G(SIEN)
+"RTN","DSIO65",280,0)
+ N CONTROL,DFLE,DFN,DIC,DA,X,Y,FDA,IEN,CT
+"RTN","DSIO65",281,0)
+ S CONTROL=$$OBJECT^DSIO65(OBJECT) Q:'CONTROL
+"RTN","DSIO65",282,0)
+ Q:$$GET1^DIQ(19641.4,CONTROL_",",.02,"I")  ; INACTIVE
+"RTN","DSIO65",283,0)
+ ; *** DESTINATION FILE required to create RECORD
+"RTN","DSIO65",284,0)
+ S DFLE=$$GET1^DIQ(19641.4,CONTROL_",",.03,"I") Q:'DFLE
+"RTN","DSIO65",285,0)
+ ; *** DFN via CONTROL and DESTINATION IEN - SHARE only if DFN
+"RTN","DSIO65",286,0)
+ S DFN=$$DFN^DSIO6(CONTROL,SIEN) Q:'DFN
+"RTN","DSIO65",287,0)
+ S DIC="^DSIO(19641.4941,",DIC(0)="XL",X="`"_DFN D ^DIC Q:+Y<1
+"RTN","DSIO65",288,0)
+ ; *** RECORD of DATA is like a Variable Pointer
+"RTN","DSIO65",289,0)
+ S FDA(19641.49412,"?+1,"_DFN_",",.01)=SIEN_";"_$TR(^DIC(DFLE,0,"GL"),U)
+"RTN","DSIO65",290,0)
+ D UPDATE^DIE(,"FDA","IEN") K FDA Q:'$G(IEN(1))
+"RTN","DSIO65",291,0)
+ S CT=$NA(DATA) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO65",292,0)
+ . I $P(@CT,U)="EDD" D VSEDD($P(@CT,U,2,999))
+"RTN","DSIO65",293,0)
+ . I $P(@CT,U)="LMP" D VSLMP($P(@CT,U,2,999))
+"RTN","DSIO65",294,0)
+ . I $P(@CT,U)="COM" D VSCOM($P(@CT,U,2,999))
+"RTN","DSIO65",295,0)
+ S RET=1
+"RTN","DSIO65",296,0)
+ Q
+"RTN","DSIO65",297,0)
+ ;
+"RTN","DSIO65",298,0)
+VSEDD(LN) ; EDD
+"RTN","DSIO65",299,0)
+ ;
+"RTN","DSIO65",300,0)
+ ; CRITERIA                   ^EVENT_DATE^GESTATIONAL_AGE^EDD
+"RTN","DSIO65",301,0)
+ ; CRITERIA|OTHER-DISPLAY-NAME^EVENT_DATE^GESTATIONAL_AGE^EDD
+"RTN","DSIO65",302,0)
+ ;
+"RTN","DSIO65",303,0)
+ N I,FDA
+"RTN","DSIO65",304,0)
+ F I=2,4 S $P(LN,U,I)=$$DT^DSIO2($P(LN,U,I))
+"RTN","DSIO65",305,0)
+ S $P(LN,U,3)=$$G1^DSIO4($$UP^XLFSTR($TR($P(LN,U,3)," ")))
+"RTN","DSIO65",306,0)
+ F I=1:1:$L(LN,U) S FDA(19641.494121,"?+1,"_IEN(1)_","_DFN_",",".0"_I)=$P(LN,U,I)
+"RTN","DSIO65",307,0)
+ D UPDATE^DIE(,"FDA")
+"RTN","DSIO65",308,0)
+ Q
+"RTN","DSIO65",309,0)
+ ;
+"RTN","DSIO65",310,0)
+VSLMP(LN) ; LMP
+"RTN","DSIO65",311,0)
+ ;
+"RTN","DSIO65",312,0)
+ ; LMP^MENSES^FREQUENCY^AMOUNT^DURATION^ON_CONTRACEPTION^RECENT_CONTRACEPTIVE^hCG+^
+"RTN","DSIO65",313,0)
+ ; MENARCHE^QUALIFIER^MENSES_MONTHLY^PILLS_ON_CONCEPTION
+"RTN","DSIO65",314,0)
+ ;
+"RTN","DSIO65",315,0)
+ N I,FDA
+"RTN","DSIO65",316,0)
+ F I=1,8 S $P(LN,U,I)=$$DT^DSIO2($P(LN,U,I))
+"RTN","DSIO65",317,0)
+ F I=1:1:9 S FDA(19641.49412,IEN(1)_","_DFN_",","2.0"_I)=$P(LN,U,I)
+"RTN","DSIO65",318,0)
+ S FDA(19641.49412,IEN(1)_","_DFN_",",2.1)=$P(LN,U,10)
+"RTN","DSIO65",319,0)
+ F I=11,12 S FDA(19641.49412,IEN(1)_","_DFN_",","2."_I)=$P(LN,U,I)
+"RTN","DSIO65",320,0)
+ D UPDATE^DIE(,"FDA")
+"RTN","DSIO65",321,0)
+ Q
+"RTN","DSIO65",322,0)
+ ;
+"RTN","DSIO65",323,0)
+VSCOM(LN) ; COMMENTS
+"RTN","DSIO65",324,0)
+ K ^TMP($J,"DSIO VSCOM") S ^TMP($J,"DSIO VSCOM",1)=LN
+"RTN","DSIO65",325,0)
+ D WP^DIE(19641.49412,IEN(1)_","_DFN_",",3,"K","^TMP($J,""DSIO VSCOM"")")
+"RTN","DSIO65",326,0)
+ K ^TMP($J,"DSIO VSCOM")
+"RTN","DSIO65",327,0)
+ Q
+"RTN","DSIO65",328,0)
+ ;
+"RTN","DSIO65",329,0)
+VP(DFN,RECORD) ; VITALS PUSH
+"RTN","DSIO65",330,0)
+ ;
+"RTN","DSIO65",331,0)
+ ; RECORD = NAME of DSIO DDCS DATA (19641.41)
+"RTN","DSIO65",332,0)
+ ;
+"RTN","DSIO65",333,0)
+ Q:'$G(DFN)!($G(RECORD)="")
+"RTN","DSIO65",334,0)
+ N IEN,IEDD,VAL,LMP,NOD,FDA
+"RTN","DSIO65",335,0)
+ S IEN=$O(^DSIO(19641.4941,DFN,2,"B",RECORD,"")) Q:'IEN
+"RTN","DSIO65",336,0)
+ ; *** EDD OBSERVATIONS
+"RTN","DSIO65",337,0)
+ I $P($G(^DSIO(19641.4941,DFN,2,IEN,1,0)),U,4) D
+"RTN","DSIO65",338,0)
+ . S IEDD=0 F  S IEDD=$O(^DSIO(19641.4941,DFN,2,IEN,1,IEDD)) Q:'IEDD  D
+"RTN","DSIO65",339,0)
+ . . D VPEDD($$UP^XLFSTR($G(^DSIO(19641.4941,DFN,2,IEN,1,IEDD,0))))
+"RTN","DSIO65",340,0)
+ ; *** MENARCHE OBSERVATION
+"RTN","DSIO65",341,0)
+ S VAL=$P($G(^DSIO(19641.4941,DFN,2,IEN,2)),U,9)
+"RTN","DSIO65",342,0)
+ D:VAL O^DSIO03(DFN,,,,"398700009","SCT^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.5","Menarche",VAL_"^years")
+"RTN","DSIO65",343,0)
+ ; *** LMP OBSERVATION
+"RTN","DSIO65",344,0)
+ S LMP=$$FMTE^XLFDT($P($G(^DSIO(19641.4941,DFN,2,IEN,2)),U),"5Z")
+"RTN","DSIO65",345,0)
+ D:LMP'="" O^DSIO03(DFN,,,"Pregnancy","8665-2","LOINC","Last Menstrual Period",LMP_"|"_$P($G(^DSIO(19641.4941,DFN,2,IEN,2)),U,10))
+"RTN","DSIO65",346,0)
+ ; *** DSIO MENSTRUAL HISTORY
+"RTN","DSIO65",347,0)
+ S LMP=$$GET1^DIQ(19641,DFN_",",1.2,"I") Q:'LMP
+"RTN","DSIO65",348,0)
+ Q:$$GET1^DIQ(19641.01,LMP_",",.01,"I")'=$P($G(^DSIO(19641.4941,DFN,2,IEN,2)),U)
+"RTN","DSIO65",349,0)
+ S NOD=$G(^DSIO(19641.4941,DFN,2,IEN,2))
+"RTN","DSIO65",350,0)
+ S FDA(19641.01,LMP_",",.02)=DFN            ; PATIENT
+"RTN","DSIO65",351,0)
+ S FDA(19641.01,LMP_",",.03)=DUZ            ; ENTERED BY
+"RTN","DSIO65",352,0)
+ S FDA(19641.01,LMP_",",.04)=$$NOW^XLFDT    ; DATE ENTERED
+"RTN","DSIO65",353,0)
+ S FDA(19641.01,LMP_",",1.1)=$P(NOD,U,2)    ; MENSES
+"RTN","DSIO65",354,0)
+ S FDA(19641.01,LMP_",",1.3)=$P(NOD,U,4)    ; AMOUNT
+"RTN","DSIO65",355,0)
+ S FDA(19641.01,LMP_",",1.4)=$P(NOD,U,5)    ; DURATION
+"RTN","DSIO65",356,0)
+ S FDA(19641.01,LMP_",",1.5)=$P(NOD,U,6)    ; ON CONTRACEPTION
+"RTN","DSIO65",357,0)
+ S FDA(19641.01,LMP_",",1.7)=$P(NOD,U,7)    ; RECENT CONTRACEPTIVE
+"RTN","DSIO65",358,0)
+ D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO65",359,0)
+ D WP^DIE(19641.01,LMP_",",2,"K","^DSIO(19641.4941,"_DFN_",2,"_IEN_",3)")
+"RTN","DSIO65",360,0)
+ ; *** OBSERVATIONS
+"RTN","DSIO65",361,0)
+ ;     *** FREQUENCY
+"RTN","DSIO65",362,0)
+ D O^DSIO03(DFN,,,,"364306002","SCT^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.5","Duration of Menstrual Flow Frequency",$P(NOD,U,3)_"^day")
+"RTN","DSIO65",363,0)
+ ;     *** hCG+
+"RTN","DSIO65",364,0)
+ D O^DSIO03(DFN,,,,"67900009","SCT^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.5","hCG+",$$FMTE^XLFDT($P(NOD,U,8),"5Z"))
+"RTN","DSIO65",365,0)
+ ;     *** MENSES MONTHLY
+"RTN","DSIO65",366,0)
+ D O^DSIO03(DFN,,,,"364307006","SCT^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.5","Menses Monthly",$S($P(NOD,U,11)="Y":"True",1:"False"))
+"RTN","DSIO65",367,0)
+ ;     *** PILLS ON CONCEPTION
+"RTN","DSIO65",368,0)
+ D O^DSIO03(DFN,,,,"xx-onbcp","SCT^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.5","on Birth Control Pills at conception",$S($P(NOD,U,12)="Y":"True",1:"False"))
+"RTN","DSIO65",369,0)
+ Q
+"RTN","DSIO65",370,0)
+ ;
+"RTN","DSIO65",371,0)
+VPEDD(NODE) ; EDD
+"RTN","DSIO65",372,0)
+ ;
+"RTN","DSIO65",373,0)
+ ; NODE = CRITERIA                   ^EVENT_DATE^GESTATIONAL_AGE^EDD
+"RTN","DSIO65",374,0)
+ ;        CRITERIA|OTHER-DISPLAY-NAME^EVENT_DATE^GESTATIONAL_AGE^EDD
+"RTN","DSIO65",375,0)
+ ;
+"RTN","DSIO65",376,0)
+ ;  *** The second piece of the the x (value) for the observation will always
+"RTN","DSIO65",377,0)
+ ;      be true here because the vitals GUI is only going to send down the
+"RTN","DSIO65",378,0)
+ ;      information if it has been marked as final.
+"RTN","DSIO65",379,0)
+ ;
+"RTN","DSIO65",380,0)
+ ; EDD BY LMP              "LMP"  11779-6         LOINC  X: EDD  |TRUE
+"RTN","DSIO65",381,0)
+ ; EDD BY ECD              "ECD"  33067-0         LOINC  X: EVENT|TRUE
+"RTN","DSIO65",382,0)
+ ; EDD BY ULTRASOUND       "ULT"  11884-4         LOINC  X: EVENT|TRUE|GA
+"RTN","DSIO65",383,0)
+ ; EDD BY EMBRYO TRANSFER  "EMB"  EmbryoTransfer  OTHER  X: EVENT|TRUE
+"RTN","DSIO65",384,0)
+ ; EDD BY OTHER            "OTH"  OtherEdd        OTHER  X: EVENT|TRUE|GA
+"RTN","DSIO65",385,0)
+ ; EDD BY UNKNOWN          "EDD"  11778-8         LOINC  X: EDD  |TRUE
+"RTN","DSIO65",386,0)
+ ;
+"RTN","DSIO65",387,0)
+ ; *GESTATION AGE (GA) = 11884-4
+"RTN","DSIO65",388,0)
+ ;
+"RTN","DSIO65",389,0)
+ N TYP,PREG,OBJ
+"RTN","DSIO65",390,0)
+ S TYP=$P($P(NODE,U),"|") Q:TYP=""
+"RTN","DSIO65",391,0)
+ S $P(NODE,U,2)=$$FMTE^XLFDT($P(NODE,U,2),"5Z")
+"RTN","DSIO65",392,0)
+ S $P(NODE,U,4)=$$FMTE^XLFDT($P(NODE,U,4),"5Z")
+"RTN","DSIO65",393,0)
+ S PREG=$$PG^DSIO4(DFN) Q:'PREG  S OBJ(0)="PG."_PREG
+"RTN","DSIO65",394,0)
+ I TYP="LMP" D
+"RTN","DSIO65",395,0)
+ . D O^DSIO03(DFN,.OBJ,,"EDD","11779-6","LOINC","Delivery Date Estimated From Last Menstrual Period",$P(NODE,U,4)_"|True")
+"RTN","DSIO65",396,0)
+ . D O^DSIO03(DFN,.OBJ,,"Pregnancy","8665-2","LOINC","Last Menstrual Period",$P(NODE,U,2)_"|"_$P($G(^DSIO(19641.4941,DFN,2,IEN,2)),U,10))
+"RTN","DSIO65",397,0)
+ I TYP="ECD" D
+"RTN","DSIO65",398,0)
+ . D O^DSIO03(DFN,.OBJ,,"EDD","33067-0","LOINC","Estimated Conception Date",$P(NODE,U,2)_"|True")
+"RTN","DSIO65",399,0)
+ I TYP="ULT" D
+"RTN","DSIO65",400,0)
+ . D O^DSIO03(DFN,.OBJ,,"EDD","11884-4","LOINC","Gestational Age Estimated",$P(NODE,U,2)_"|True|"_$P(NODE,U,3))
+"RTN","DSIO65",401,0)
+ I TYP="EMB" D
+"RTN","DSIO65",402,0)
+ . D O^DSIO03(DFN,.OBJ,,"EDD","EmbryoTransfer","OTHER","Embryo Transfer",$P(NODE,U,2)_"|True")
+"RTN","DSIO65",403,0)
+ I TYP="OTH" D
+"RTN","DSIO65",404,0)
+ . D O^DSIO03(DFN,.OBJ,,"EDD","OtherEdd","OTHER",$P($P(NODE,U),"|",2,99),$P(NODE,U,2)_"|True|"_$P(NODE,U,3))
+"RTN","DSIO65",405,0)
+ I TYP="EDD" D
+"RTN","DSIO65",406,0)
+ . D O^DSIO03(DFN,.OBJ,,"EDD","11778-8","LOINC","Estimated Delivery Date",$P(NODE,U,4)_"|True")
+"RTN","DSIO65",407,0)
+ Q
+"RTN","DSIO65",408,0)
+ ;
+"RTN","DSIO65",409,0)
+RDATE() ; Get Record Date - Only works if the record is a TIU Note
+"RTN","DSIO65",410,0)
+ Q:$G(RECORD)'[";TIU(8925," ""
+"RTN","DSIO65",411,0)
+ Q $$FMTE^XLFDT($$GET1^DIQ(8925,+RECORD_",",1201,"I"),"5DZ")
+"SEC","^DIC",19641.123,19641.123,0,"AUDIT")
+@
+"SEC","^DIC",19641.123,19641.123,0,"DD")
+@
+"SEC","^DIC",19641.123,19641.123,0,"DEL")
+@
+"SEC","^DIC",19641.123,19641.123,0,"LAYGO")
+@
+"SEC","^DIC",19641.123,19641.123,0,"WR")
+@
+"VER")
+8.0^22.0
+"^DD",19641.123,19641.123,0)
+FIELD^^.05^7
+"^DD",19641.123,19641.123,0,"DDA")
+N
+"^DD",19641.123,19641.123,0,"DT")
+3160725
+"^DD",19641.123,19641.123,0,"ID",.02)
+S DIY=$S($D(@(DIC_(+Y)_",""0"")")):$P(^("0"),U,2),1:"") D NAME^DICM2 W "   ",DINAME,@("$E("_DIC_"Y,0),0)")
+"^DD",19641.123,19641.123,0,"IX","B",19641.123,.01)
+
+"^DD",19641.123,19641.123,0,"IX","C",19641.123,.02)
+
+"^DD",19641.123,19641.123,0,"NM","DSIO OBSERVATION PUSH")
+
+"^DD",19641.123,19641.123,.01,0)
+NAME^RFX^^0;1^K:$L(X)>60!($L(X)<1) X
+"^DD",19641.123,19641.123,.01,1,0)
+^.1
+"^DD",19641.123,19641.123,.01,1,1,0)
+19641.123^B
+"^DD",19641.123,19641.123,.01,1,1,1)
+S ^DSIO(19641.123,"B",$E(X,1,30),DA)=""
+"^DD",19641.123,19641.123,.01,1,1,2)
+K ^DSIO(19641.123,"B",$E(X,1,30),DA)
+"^DD",19641.123,19641.123,.01,1,1,"DT")
+3140925
+"^DD",19641.123,19641.123,.01,3)
+Answer must be 1-60 characters in length.
+"^DD",19641.123,19641.123,.01,"DT")
+3140925
+"^DD",19641.123,19641.123,.02,0)
+CODE^RF^^0;2^K:$L(X)>100!($L(X)<1) X
+"^DD",19641.123,19641.123,.02,1,0)
+^.1
+"^DD",19641.123,19641.123,.02,1,1,0)
+19641.123^C
+"^DD",19641.123,19641.123,.02,1,1,1)
+S ^DSIO(19641.123,"C",X,DA)=""
+"^DD",19641.123,19641.123,.02,1,1,2)
+K ^DSIO(19641.123,"C",X,DA)
+"^DD",19641.123,19641.123,.02,1,1,"DT")
+3160726
+"^DD",19641.123,19641.123,.02,3)
+Answer must be 1-100 characters in length.
+"^DD",19641.123,19641.123,.02,"DT")
+3160726
+"^DD",19641.123,19641.123,.02,"V",0)
+^.12P^2^2
+"^DD",19641.123,19641.123,.02,"V",1,0)
+95.3^LOINC^1^LNC^^n
+"^DD",19641.123,19641.123,.02,"V",2,0)
+757.02^SNOMED CT^2^SCT^y^n
+"^DD",19641.123,19641.123,.02,"V",2,1)
+S DIC("S")="I $P(^(0),U,3)=$$FIND1^DIC(757.03,,""O"",""SCT"")"
+"^DD",19641.123,19641.123,.02,"V",2,2)
+ONLY SNOMED-CT
+"^DD",19641.123,19641.123,.03,0)
+CODE SYSTEM^RF^^0;3^K:$L(X)>20!($L(X)<1) X
+"^DD",19641.123,19641.123,.03,3)
+Answer must be 1-20 characters in length.
+"^DD",19641.123,19641.123,.03,"DT")
+3160725
+"^DD",19641.123,19641.123,.04,0)
+DELETE^S^0:FALSE;1:TRUE;2:BOTH;^0;4^Q
+"^DD",19641.123,19641.123,.04,"DT")
+3150803
+"^DD",19641.123,19641.123,.05,0)
+UPDATE^S^0:FALSE;1:TRUE;^0;5^Q
+"^DD",19641.123,19641.123,.05,"DT")
+3160115
+"^DD",19641.123,19641.123,1,0)
+INPUT TRANSFORM^KX^^1;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+"^DD",19641.123,19641.123,1,3)
+This is Standard MUMPS code.
+"^DD",19641.123,19641.123,1,9)
+@
+"^DD",19641.123,19641.123,1,"DT")
+3140925
+"^DD",19641.123,19641.123,2,0)
+RUN ROUTINE^KX^^2;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+"^DD",19641.123,19641.123,2,3)
+This is Standard MUMPS code.
+"^DD",19641.123,19641.123,2,9)
+@
+"^DD",19641.123,19641.123,2,"DT")
+3140925
+"^DIC",19641.123,19641.123,0)
+DSIO OBSERVATION PUSH^19641.123
+"^DIC",19641.123,19641.123,0,"GL")
+^DSIO(19641.123,
+"^DIC",19641.123,19641.123,"%D",0)
+^^2^2^3150209^
+"^DIC",19641.123,19641.123,"%D",1,0)
+When a DSIO OBSERVATIONS is pushed (caused to move from the generic file 
+"^DIC",19641.123,19641.123,"%D",2,0)
+to somewhere else in VistA) the action is recorded here.
+"^DIC",19641.123,"B","DSIO OBSERVATION PUSH",19641.123)
+
+**END**
+**END**

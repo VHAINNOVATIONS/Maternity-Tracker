@@ -148,6 +148,10 @@ type
     ckFinalEDDOther: TCheckBox;
     ckFinalEDDUnknown: TCheckBox;
     ckFinalEDDECD: TCheckBox;
+    gbPreg: TGroupBox;
+    Label16: TLabel;
+    spnPrePregWt: TSpinEdit;
+    Label17: TLabel;
     procedure fVitalsControlChange(Sender: TObject);
     // EDD Calculator Page -----------------------------------------------------
     procedure dtLMPExit(Sender: TObject);
@@ -173,7 +177,6 @@ type
     procedure ToggleCheckBoxes(Sender: TObject);
   private
     FocusControlText: TObjectList<TSayOnFocus>;
-    FNote: TStringList;
     TabSeen: array of Boolean;
     procedure BuildSayOnFocus(wControl: TWinControl; txt: string);
     procedure LMPChangeEvents(Switch: Boolean);
@@ -185,11 +188,11 @@ type
     destructor Destroy; override;
     procedure Save;
     procedure GetPatientVitals(var oText: TStringList);
+    procedure GetVitalsNote(var oText: TStringList);
     procedure GetEDDNote(var oText: TStringList);
     procedure GetLMPNote(var oText: TStringList);
     procedure GetCompleteNote(var oText: TStringList);
     function GetTextforFocus(Value: TWinControl): string;
-    property Vitals: TStringList read FNote;
   end;
 
 implementation
@@ -725,20 +728,12 @@ var
       end;
   end;
 
-  function strLengthen(str: string): string;
-  begin
-    Result := str;
-    while Length(Result) < 50 do
-      Result := Result + ' ';
-  end;
-
 begin
   inherited;
 
   if csDesigning in ComponentState then
     Exit;
 
-  FNote := TStringList.Create;
   SetLength(TabSeen, fVitalsControl.PageCount);
 
   cbTransferDay.ItemIndex := 1;
@@ -774,7 +769,6 @@ begin
       if sl.Count > 0 then
         if sl[0] <> '-1' then
         begin
-          FNote.Add('VITAL SIGNS:');
           for I := 0 to sl.Count - 1 do
           begin
             if Piece(sl[I],U,2) = 'T' then                                                          // Temperature
@@ -782,19 +776,16 @@ begin
               FTemps.Text := Piece(sl[I],U,3);
               FTempe.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), tuFahrenheit, tuCelsius));
               FTempdt.Caption := Piece(sl[I],U,4);
-              FNote.Add(strlengthen('  Temperature:    ' + FTemps.Text + ' F (' + FTempe.Text + ' C)') + FTempdt.Caption);
             end
             else if Piece(sl[I],U,2) = 'P' then                                                     // Pulse
             begin
               FPulses.Text := Piece(sl[I],U,3);
               FPulsedt.Caption := Piece(sl[I],U,4);
-              FNote.Add(strlengthen('  Pulse:          ' + FPulses.Text) + FPulsedt.Caption);
             end                                                                                     // Respiration
             else if Piece(sl[I],U,2) = 'R' then
             begin
               FResps.Text := Piece(sl[I],U,3);
               FRespdt.Caption := Piece(sl[I],U,4);
-              FNote.Add(strlengthen('  Respiration:    ' + FResps.Text) + FRespdt.Caption);
             end
             else if Piece(sl[I],U,2) = 'BP' then                                                    // Blood Pressure
             begin
@@ -803,46 +794,35 @@ begin
               FDiastolics.Text := Piece(Piece(sl[I],U,3),'/',2);
               FSystolicdt.Caption := Piece(sl[I],U,4);
               FDiastolicdt.Caption := Piece(sl[I],U,4);
-              FNote.Add(strlengthen('  Blood Pressure: ' + Piece(sl[I],U,3)) + Piece(sl[I],U,4));
             end
             else if Piece(sl[I],U,2) = 'HT' then                                                    // Height
             begin
               FHeights.Text := Piece(sl[I],U,3);
               FHeighte.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), duInches, duCentimeters));
               FHeightdt.Caption := Piece(sl[I],U,4);
-              FNote.Add(strlengthen('  Height:         ' + FHeights.Text + ' in (' + FHeighte.Text + ' cm)') + FHeightdt.Caption);
             end
             else if Piece(sl[I],U,2) = 'WT' then                                                    // Weight
             begin
               FWeights.Text := Piece(sl[I],U,3);
               FWeighte.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), muPounds, muKilograms));
               FWeightdt.Caption := Piece(sl[I],U,4);
-              FNote.Add(strlengthen('  Weight:         ' + FWeights.Text + ' lb (' + FWeighte.Text + ' kg)') + FWeightdt.Caption);
             end
             else if Piece(sl[I],U,2) = 'PN' then                                                    // Pain
             begin
               FPains.Text := Piece(sl[I],U,3);
               FPaindt.Caption := Piece(sl[I],U,4);
-              FNote.Add(strlengthen('  Pain:           ' + FPains.Text) + FPaindt.Caption);
             end
             // if Piece(sl[I],U,2) = 'POX'                                                          // Pulse Oximetry
             // if Piece(sl[I],U,2) = 'CVP' then                                                     // Central Venous Pressure
             // if Piece(sl[I],U,2) = 'CG' then                                                      // Circumference/Girth
+            else if Piece(sl[I],U,2) = 'PREPREGWT' then                                             // Pre Pregnancy Weight
+              spnPrePregWt.Value := StrToIntDef(Piece(sl[I],U,3),0)
             else if Piece(sl[I],U,2) = 'BMI' then                                                   // Body Mass Index
-            begin
-              FBMIValue.Caption := Piece(sl[I],U,3);
-             FNote.Insert(1, '  BMI:            ' + Piece(sl[I],U,3));
-            end
+              FBMIValue.Caption := Piece(sl[I],U,3)
             else if Piece(sl[I],U,2) = 'AGE' then                                                   // Age
-            begin
-             FAgeValue.Caption := Piece(sl[I],U,3);
-              FNote.Insert(1, '  Age:            ' + Piece(sl[I],U,3));
-            end
+              FAgeValue.Caption := Piece(sl[I],U,3)
             else if Piece(sl[I],U,2) = 'SEX' then                                                   // Sex
-            begin
               FSexValue.Caption := Piece(sl[I],U,3);
-              FNote.Insert(1, '  Sex:            ' + Piece(sl[I],U,3));
-            end;
           end;
 		    end;
 
@@ -961,6 +941,7 @@ begin
     BuildSayOnFocus(            FPains, 'Level of Pain reported on '                 + FPaindt.Caption);
     BuildSayOnFocus(        FSystolics, 'Blood Pressure Systolic reported on '   + FSystolicdt.Caption);
     BuildSayOnFocus(       FDiastolics, 'Blood Pressure Diastolic reported on ' + FDiastolicdt.Caption);
+    BuildSayOnFocus(      spnPrePregWt, 'Pre Pregnancy Weight in pounds');
 
     BuildSayOnFocus(     edtCurrentEDD, 'Final Estimated Delivery Date');
     BuildSayOnFocus(          edtEDDGA, 'Gestational Age');
@@ -1000,6 +981,7 @@ begin
 
   if AnsiCompareText(FSexValue.Caption, 'MALE') = 0 then
   begin
+    gbPreg.Visible := False;
     fVitalsControl.Pages[1].TabVisible := False;
     fVitalsControl.Pages[2].TabVisible := False;
   end;
@@ -1011,8 +993,6 @@ destructor TDDCSVitals.Destroy;
 begin
   if Assigned(FocusControlText) then
     FocusControlText.Free;
-  if Assigned(FNote) then
-    FNote.Free;
   SetLength(TabSeen, 0);
 
   inherited;
@@ -1044,6 +1024,11 @@ var
 begin
   sl := TStringList.Create;
   try
+    // VITALS
+    // VIT^PRE_PREGNANCY_WEIGHT
+
+    sl.Add('VIT^' + spnPrePregWt.Text);
+
     // EDD^CRITERIA^EVENT_DATE^GESTATIONAL_AGE^EDD
     // EDD^CRITERIA|OTHER-DISPLAY-NAME^EVENT_DATE^GESTATIONAL_AGE^EDD
 
@@ -1103,6 +1088,48 @@ begin
         tCallV(oText, 'DSIO DDCS ORQQVI VITALS', [RPCBrokerV.Patient.DFN]);
     end;
   except
+  end;
+end;
+
+procedure TDDCSVitals.GetVitalsNote(var oText: TStringList);
+
+  function strLengthen(str: string): string;
+  begin
+    Result := str;
+    while Length(Result) < 50 do
+      Result := Result + ' ';
+  end;
+
+begin
+  oText.Clear;
+
+  oText.Add('  Sex:            ' + FSexValue.Caption);
+  oText.Add('  Age:            ' + FAgeValue.Caption);
+  oText.Add('  BMI:            ' + FBMIValue.Caption);
+  oText.Add('');
+
+  oText.Add('VITALS:');
+  if FTemps.Text <> '' then
+    oText.Add(strlengthen('  Temperature:          ' + FTemps.Text + ' F (' + FTempe.Text + ' C)') + FTempdt.Caption);
+  if FPulses.Text <> '' then
+    oText.Add(strlengthen('  Pulse:                ' + FPulses.Text) + FPulsedt.Caption);
+  if FResps.Text <> '' then
+    oText.Add(strlengthen('  Respiration:          ' + FResps.Text) + FRespdt.Caption);
+  if FSystolics.Text <> '' then
+    oText.Add(strlengthen('  Systolic:             ' + FSystolics.Text) + FSystolicdt.Caption);
+  if FDiastolics.Text <> '' then
+    oText.Add(strlengthen('  Diastolic:            ' + FDiastolics.Text) + FDiastolicdt.Caption);
+  if FHeights.Text <> '' then
+    oText.Add(strlengthen('  Height:               ' + FHeights.Text + ' in (' + FHeighte.Text + ' cm)') + FHeightdt.Caption);
+  if FWeights.Text <> '' then
+    oText.Add(strlengthen('  Weight:               ' + FWeights.Text + ' lb (' + FWeighte.Text + ' kg)') + FWeightdt.Caption);
+  if FPains.Text <> '' then
+    oText.Add(strlengthen('  Pain:                 ' + FPains.Text) + FPaindt.Caption);
+
+  if ((spnPrePregWt.Visible) and (spnPrePregWt.Value > 0)) then
+  begin
+    oText.Add('');
+    otext.Add('  Pre-pregnancy Weight: ' + spnPrePregWt.Text + ' lbs');
   end;
 end;
 
@@ -1187,7 +1214,7 @@ begin
 
   sl := TStringList.Create;
   try
-    oText.AddStrings(Vitals);
+    GetVitalsNote(oText);
     if fVitalsControl.Pages[1].TabVisible then
     begin
       GetEDDNote(sl);
