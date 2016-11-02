@@ -1,7 +1,7 @@
-Routine DSIO65 saved using VFDXTRS routine on Oct 13, 2016 17:20
-DSIO65^INT^64204,59332^Oct 13, 2016@16:28
+Routine DSIO65 saved using VFDXTRS routine on Nov 02, 2016 09:33
+DSIO65^INT^64223,61406^Nov 01, 2016@17:03
 DSIO65 ;DSS/TFF - DSIO DDCS FORM SUPPORT;08/26/2016 16:00
- ;;2.0;DSIO 2.0;**1,2**;Aug 26, 2016;Build 1
+ ;;2.0;DSIO 2.0;**1,2,3**;Aug 26, 2016;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -50,7 +50,7 @@ CANCEL(RET,TASKS) ; RPC: DSIO DDCS CANCEL AUTOSAVE
  S:'$D(FLG) RET=1
  Q
  ;
-TRACK(RET,OBJECT) ; RPC: DSIO DDCS CONTROLLED
+TRACK(RET,OBJECT,RESET) ; RPC: DSIO DDCS CONTROLLED
  ;
  ; RETURN
  ;   IEN ^ 19641.4:.01 ^ *IEN;DSIO(19641.42, ^ FILENAME
@@ -60,13 +60,25 @@ TRACK(RET,OBJECT) ; RPC: DSIO DDCS CONTROLLED
  ;   else -1 for error
  ;
  S RET=0 Q:$G(OBJECT)=""
- I $D(^DSIO(19641.41,"ERROR")) S RET=-1 Q
- N IEN S IEN=$$OBJECT(OBJECT) Q:'IEN
+ I $G(RESET) D
+ . N $ET S $ET="D ERROR^DSIO65"
+ . D ERROR^DSIO6,TRIG^DSIO6
+ Q:$P(RET,U)=-2
+ I $D(^DSIO(19641.41,"ERROR")) D  Q
+ . S RET="-1^An error has been logged with the post note triggering. You may try to clean up"
+ . S RET=RET_" the error by retrying but if it does not work please check the error trap."
+ S IEN=$$OBJECT(OBJECT) Q:'IEN
  Q:$$GET1^DIQ(19641.4,IEN_",",.02,"I")                                  ; INACTIVE
  S RET=IEN_U
  S RET=RET_$$GET1^DIQ(19641.4,IEN_",",.01)_U                            ; NAME of OBJECT  (Soft Pointer)
  S RET=RET_"*"_$$GET1^DIQ(19641.4,IEN_",",.07,"I")_";DSIO(19641.42,"_U  ; 19641.42        (FORM/INTERFACE)
  S RET=RET_$$GET1^DIQ(19641.4,IEN_",",".07:.05","I")                    ; FILENAME
+ Q
+ ;
+ERROR ; Hard Error captured from TRACK
+ D ^%ZTER
+ S RET="-2^An M error has occurred. Please check the error trap. You will not be able to load the"
+ S RET=RET_" oCNT until the issue has been resolved."
  Q
  ;
 OBJECT(OBJECT) ; Return Object IEN

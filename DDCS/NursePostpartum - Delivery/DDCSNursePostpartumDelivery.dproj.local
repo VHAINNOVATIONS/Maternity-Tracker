@@ -50,6 +50,10 @@
     <Transaction>2016/09/12 11:19:40.000.846,=C:\Users\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="frmMain.pas"/>
+    <File Path="frmMain.dfm"/>
+    <File Path="frmBaby.pas"/>
+    <File Path="frmBaby.dfm"/>
     <File Path="C:\Users"/>
     <File Path="..\..\..\..\..\..\Public"/>
     <File Path="..\..\..\..\..\..\Public\Documents"/>
@@ -58,9 +62,5 @@
     <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0"/>
     <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles"/>
     <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf"/>
-    <File Path="frmMain.pas"/>
-    <File Path="frmMain.dfm"/>
-    <File Path="frmBaby.pas"/>
-    <File Path="frmBaby.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

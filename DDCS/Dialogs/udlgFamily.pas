@@ -64,7 +64,6 @@ type
     procedure BuildForm;
     procedure AddDiagnosis(Value: string);
     procedure UpdateDiagnosis;
-    function SubCount(str: string; d: Char): Integer;
   public
   end;
 
@@ -318,16 +317,6 @@ begin
   for I := 0 to cklstDiagnosis.Items.Count - 1 do
     Value := Value + cklstDiagnosis.Items[I] + '|';
   FamilyItem.SubItems[18] := Value;
-end;
-
-function TdlgFamily.SubCount(str: string; d: Char): Integer;
-var
-  I: Integer;
-begin
-  Result := 0;
-  for I := 0 to Length(str) - 1 do
-    if str[I] = d then
-      inc(Result);
 end;
 
 end.

@@ -12,7 +12,7 @@ unit DDCSFormBuilder_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 7/21/2016 9:44:29 AM from Type Library described below.
+// File generated on 11/1/2016 2:20:08 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCSFormBuilder\DDCSFormBuilder (1)
@@ -22,7 +22,6 @@ unit DDCSFormBuilder_TLB;
 // HelpString:
 // DepndLst:
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
-//   (2) v1.0 CPRSChart, (C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe)
 // SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
@@ -33,8 +32,7 @@ unit DDCSFormBuilder_TLB;
 
 interface
 
-uses Winapi.Windows, CPRSChart_TLB, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
-
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
 
 
 // *********************************************************************//

@@ -34,7 +34,7 @@ type
                      var Data1, Data2: WideString): WordBool; safecall;
   end;
 
-  TLaunch = function(const CPRSBroker: PCPRSComBroker; out Return: WideString): WordBool; stdcall;
+  TLaunch = function(const CPRSBroker: PCPRSComBroker; var Return: WideString): WordBool; stdcall;
 
 var
   DllHandle: THandle;
@@ -50,17 +50,48 @@ function TDDCS.Execute(const CPRSBroker: ICPRSBroker; const CPRSState: ICPRSStat
                        var Data1, Data2: WideString): WordBool;
 var
   Broker: TCPRSComBroker;
-  Controlled,vPropertyList,Config: string;
-  I,J: Integer;
+  sControlled,sObject,sPropertyList,sConfig: string;
+  I,iSubCount: Integer;
 
-  function SubCount(str: string; d: Char): Integer;
+  function CheckControlStatus(sControlled: string; var sObject: string): Boolean;
   var
-    I: Integer;
+    iReturn: Integer;
+    sMsg: string;
+
+    function CallCheck(sControlled: string; var sObject: string; var sMsg: string): Integer;
+    begin
+      if Piece(sObject,U,1) = '-1' then
+        sObject := sCallV('DSIO DDCS CONTROLLED', [sControlled, '1'])
+      else
+        sObject := sCallV('DSIO DDCS CONTROLLED', [sControlled, '0']);
+      Result := StrToIntDef(Piece(sObject,U,1), 0);
+      if Result < 0 then
+        sMsg := Piece(sObject,U,2);
+    end;
+
   begin
-    Result := 0;
-    for I := 0 to Length(str) - 1 do
-      if str[I] = d then
-        inc(Result);
+    Result := False;
+
+    if UpdateContext(MENU_CONTEXT) then
+    begin
+      // Don't want to annoy the user with a popup for every order not found a control object
+      // -2 M Error (do not continue), -1 Error (retry), 0 No (Not Tracking), >0 Success
+      repeat
+        iReturn := CallCheck(sControlled, sObject, sMsg);
+        if iReturn = -1 then
+        begin
+          if ShowMsg(sMsg, smiError, smbRetryCancel) <> smrRetry then
+            iReturn := 0;
+        end else
+        if iReturn = -2 then
+        begin
+          ShowMsg(sMsg, smiError);
+          iReturn := 0;
+        end;
+      until iReturn <> -1;
+      if iReturn > 0 then
+        Result := True;
+    end;
   end;
 
 begin
@@ -73,55 +104,47 @@ begin
       if Data2 <> '' then
       begin
         // Used as XML block from TIU for Note information
-        Broker.TIUNote.Import := Data2;
-        Controlled := 'N=' + Broker.TIUNote.IEN;
+        Broker.TIUNote.ParseTIUXML(Data2);
+        sControlled := 'N=' + Broker.TIUNote.IEN;
       end else
       begin
         Broker.TIUNote.IEN := Piece(Piece(Param2,'=',2),';',1);
         // Used as O=### as Order IEN could also be used as N=### as Note IEN
-        Controlled := Param2;
+        sControlled := Param2;
       end;
 
-      if UpdateContext(MENU_CONTEXT) then
-        Controlled := sCallV('DSIO DDCS CONTROLLED', [Controlled]);
-      // Don't want to annoy the user with a popup for every order not found a control object
-      // -1 Error (Do not continue), 0 No (Not Tracking), >0 Success
-      I := StrToIntDef(Piece(Controlled,U,1), 0);
-      if I < 1 then
+      if not CheckControlStatus(sControlled, sObject) then
       begin
-        if I = -1 then
-          ShowMsg('There is an error occuring within DSIO DDCS, please report this error ' +
-                  ' and discontinue from using this application until further notice.');
         Result := True;
         Exit;
       end;
 
-      Broker.ControlObject := Piece(Controlled,U,2);
-      vPropertyList := Piece(Controlled,U,3);
+      Broker.ControlObject := Piece(sObject,U,2);
+      sPropertyList := Piece(sObject,U,3);
 
-      J := SubCount(vPropertyList,'|') + 1;
-      for I := 1 to J do
+      iSubCount := SubCount(sPropertyList,'|') + 1;
+      for I := 1 to iSubCount do
       begin
-        if AnsiContainsText(Piece(vPropertyList,'|',I),'*') then
-          Broker.DDCSInterface := StringReplace(Piece(vPropertyList,'|',I),'*','',[rfReplaceAll])
+        if AnsiContainsText(Piece(sPropertyList,'|',I),'*') then
+          Broker.DDCSInterface := StringReplace(Piece(sPropertyList,'|',I),'*','',[rfReplaceAll])
         else
-          Broker.DDCSInterfacePages.Add(Piece(vPropertyList,'|',I));
+          Broker.DDCSInterfacePages.Add(Piece(sPropertyList,'|',I));
       end;
 
       if UpdateContext(MENU_CONTEXT) then
-        Config := sCallV('DSIO DDCS CONFIGURATION', [Broker.DDCSInterface, 'WARNING MESSAGE']);
+        sConfig := sCallV('DSIO DDCS CONFIGURATION', [Broker.DDCSInterface, 'WARNING MESSAGE']);
 
-      if Config <> '' then
-        if ShowMsg(Config + ' Select YES to continue.', smiWarning, smbYesNo) <> smrYes then
+      if sConfig <> '' then
+        if ShowMsg(sConfig + ' Select YES to continue.', smiWarning, smbYesNo) <> smrYes then
           Exit;
 
-      Config := '';
+      sConfig := '';
       if UpdateContext(MENU_CONTEXT) then
-        Config := sCallV('DSIO DDCS CONFIGURATION', [Broker.DDCSInterface, 'LOCATION']);
+        sConfig := sCallV('DSIO DDCS CONFIGURATION', [Broker.DDCSInterface, 'LOCATION']);
 
-      if Config <> '' then
+      if sConfig <> '' then
       begin
-        DllHandle := SafeLoadLibrary(Config);
+        DllHandle := SafeLoadLibrary(sConfig);
         if DllHandle <> 0 then
         begin
           Launch := GetProcAddress(DllHandle, 'Launch');

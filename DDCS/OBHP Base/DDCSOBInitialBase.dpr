@@ -29,29 +29,39 @@ uses
 
 {$R *.res}
 
-function Launch(const CPRSBroker: PCPRSComBroker; out Return: WideString): WordBool; stdcall;
+function Launch(const CPRSBroker: PCPRSComBroker; var wReturn: WideString): WordBool; stdcall;
 var
-  oldHandle: HWND;
+  oldHandle: Cardinal;
 begin
   Result := False;
 
-  oldHandle := Application.Handle;
-  Application.Handle := GetActiveWindow;
-
   RPCBrokerV := CPRSBroker^;
-  Form1 := TForm1.Create(nil);
   try
-    RPCBrokerV.DisabledWindow := DisableTaskWindows(0);
-    Form1.ShowModal;
-    if Form1.DDCSForm1.Validated then
-    begin
-      Result := True;
-      Return := Form1.DDCSForm1.TmpStrList.Text;
+    oldHandle := Application.Handle;
+    RPCBrokerV.Host := DisableTaskWindows(oldHandle);
+    try
+      Application.Handle := GetActiveWindow;
+      try
+        Form1 := TForm1.Create(nil);
+        try
+          Form1.ShowModal;
+          if Form1.DDCSForm1.Validated then
+          begin
+            Result := True;
+            wReturn := Form1.DDCSForm1.TmpStrList.Text;
+          end;
+        finally
+          Form1.Free;
+        end;
+      finally
+        Application.Handle := oldHandle;
+      end;
+    finally
+      if not RPCBrokerV.HostEnabled then
+        EnableTaskWindows(RPCBrokerV.Host);
     end;
   finally
-    Form1.Free;
     RPCBrokerV := nil;
-    Application.Handle := oldHandle;
   end;
 end;
 

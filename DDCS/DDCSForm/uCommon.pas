@@ -30,10 +30,11 @@ const
   MENU_CONTEXT = 'DSIO DDCS CONTEXT';
 
 type
-  // Replacement of and Redirection to VAUtils ---------------------------------
-    TShow508MessageIcon = (smiNone, smiInfo, smiWarning, smiError, smiQuestion);
+  TShow508MessageIcon = (smiNone, smiInfo, smiWarning, smiError, smiQuestion);
   TShow508MessageButton = (smbOK, smbOKCancel, smbAbortRetryCancel, smbYesNoCancel, smbYesNo, smbRetryCancel);
   TShow508MessageResult = (smrOK, srmCancel, smrAbort, smrRetry, smrIgnore, smrYes, smrNo);
+
+  procedure Fill(wControl: TWinControl; iIndex,iValue: string);
 
   function ShowMsg(const Msg, Caption: string; Icon: TShow508MessageIcon = smiNone;
                    Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
@@ -42,9 +43,7 @@ type
   function Piece(const S: string; Delim: char; PieceNum: Integer): string;
   // Using VAUtils will return up to LastNum of delimiter even if the pieces didn't exist in the string
   function Pieces(const S: string; Delim: char; FirstNum, LastNum: Integer): string;
-  // ---------------------------------------------------------------------------
-
-  procedure Fill(wControl: TWinControl; iIndex,iValue: string);
+  function SubCount(S: string; C: Char): Integer;
 
 implementation
 
@@ -327,6 +326,17 @@ begin
   finally
     sl.Free;
   end;
+end;
+
+function SubCount(S: string; C: Char): Integer;
+var
+  I: Integer;
+begin
+  Result := 0;
+
+  for I := 0 to Length(S) - 1 do
+    if S[I] = C then
+      inc(Result);
 end;
 
 end.
