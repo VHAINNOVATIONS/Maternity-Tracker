@@ -4,6 +4,11 @@
 # Custom for Visual Studio
 *.cs     diff=csharp
 
+# Identify the Mumps Language
+*.m linguist-language=Mumps
+*.kid linguist-language=Mumps
+*.KID linguist-language=Mumps
+
 # Standard to msysgit
 *.doc	 diff=astextplain
 *.DOC	 diff=astextplain

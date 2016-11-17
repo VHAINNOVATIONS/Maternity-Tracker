@@ -70,16 +70,6 @@ implementation
 uses
   frmPregHistPregInfo, frmPregHistChild, uCommon, uReportItems, uExtndComBroker;
 
-function SubCount(str: string; d: Char): Integer;
-var
-  I: Integer;
-begin
-  Result := 0;
-  for I := 0 to Length(str) - 1 do
-    if str[I] = d then
-      inc(Result);
-end;
-
 procedure TdlgPregHist.FormCreate(Sender: TObject);
 var
   nAct: TAction;

@@ -1,7 +1,7 @@
-Routine DSIO01 saved using VFDXTRS routine on Sep 30, 2016 09:10
-DSIO01^INT^64180,40399^Sep 19, 2016@11:13
+Routine DSIO01 saved using VFDXTRS routine on Oct 13, 2016 17:20
+DSIO01^INT^64203,38329^Oct 12, 2016@10:38
 DSIO01 ;DSS/TFF - DSIO OCNT PUSH SUPPORT;08/26/2016 16:00
- ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
+ ;;2.0;DSIO 2.0;**1**;Aug 26, 2016;Build 1
  ;
  ;
  ;
@@ -128,14 +128,20 @@ SEX(IN) ; Translate Sex Code
 CALC ; Calculated information
  ;     OBS TOTAL PREGNANCIES (CALCULATE)
  D O^DSIO03(DFN,,,"Pregnancy History","11996-6","LOINC","Total Pregnancies (Including Current)",$$TOTAL^DSIO4(DFN),,,,-1)
- ;     OBS STILLBIRTHS       (CALCULATE)
- D O^DSIO03(DFN,,,"Pregnancy History","57062-2","LOINC","Stillbirths",$$STILL^DSIO4(DFN),,,,-1)
- ;     OBS PRETERM           (CALCULATE)
- D O^DSIO03(DFN,,,"Pregnancy History","11637-6","LOINC","Preterm Births (Live & Stillborn)",$$PRETM^DSIO4(DFN),,,,-1)
- ;     OBS LIVING            (CALCULATE)
- D O^DSIO03(DFN,,,"Pregnancy History","11638-4","LOINC","Living Children",$$LIVIG^DSIO4(DFN),,,,-1)
  ;     OBS TERM BIRTHS       (CALCULATE)
  D O^DSIO03(DFN,,,"Pregnancy History","11639-2","LOINC","Term Births (Live & Stillborn)",$$FULLT^DSIO4(DFN),,,,-1)
+ ;     OBS LIVING            (CALCULATE)
+ D O^DSIO03(DFN,,,"Pregnancy History","11638-4","LOINC","Living Children",$$LIVIG^DSIO4(DFN),,,,-1)
+ ;     OBS PRETERM           (CALCULATE)
+ D O^DSIO03(DFN,,,"Pregnancy History","11637-6","LOINC","Preterm Births (Live & Stillborn)",$$PRETM^DSIO4(DFN),,,,-1)
+ ;     OBS STILLBIRTHS       (CALCULATE)
+ D O^DSIO03(DFN,,,"Pregnancy History","57062-2","LOINC","Stillbirths",$$STILL^DSIO4(DFN),,,,-1)
+ ;     OBS SPONTANEOUS ABORTIONS
+ D O^DSIO03(DFN,,,"Pregnancy History","11614-5","LOINC","Spontaneous Abortions (Miscarriages)",$$ABORT^DSIO4(DFN,"S"),,,,-1)
+ ;     OBS PREGNANCY TERMINATIONS
+ D O^DSIO03(DFN,,,"Pregnancy History","11613-7","LOINC","Pregnancy Terminations",$$ABORT^DSIO4(DFN,"T"),,,,-1)
+ ;     OBS ECTOPIC PREGNANCIES
+ D O^DSIO03(DFN,,,"Pregnancy History","33065-4","LOINC","Ectopic Pregnancies",$$ABORT^DSIO4(DFN,"E"),,,,-1)
  ;     OBS GRAVIDA & PARA SUMMARY
  D O^DSIO03(DFN,,,"Pregnancy History","GravidaParaSummary","OTHER","Gravida & Para Summary",$$GP^DSIO4(DFN),,,,-1)
  Q

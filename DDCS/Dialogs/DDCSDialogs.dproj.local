@@ -109,14 +109,6 @@
     <Transaction>2016/08/04 17:12:58.000.563,=C:\Users\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="C:\Users"/>
-    <File Path="..\..\..\..\..\..\Public"/>
-    <File Path="..\..\..\..\..\..\Public\Documents"/>
-    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero"/>
-    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio"/>
-    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0"/>
-    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles"/>
-    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf"/>
     <File Path="udlgAbdomPain.pas"/>
     <File Path="udlgAbdomPain.dfm"/>
     <File Path="udlgBackPain.pas"/>
@@ -178,5 +170,13 @@
     <File Path="uDialog.pas"/>
     <File Path="udlgPhysicalExam.pas"/>
     <File Path="udlgPhysicalExam.dfm"/>
+    <File Path="C:\Users"/>
+    <File Path="..\..\..\..\..\..\Public"/>
+    <File Path="..\..\..\..\..\..\Public\Documents"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles"/>
+    <File Path="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf"/>
   </ProjectSortOrder>
 </BorlandProject>

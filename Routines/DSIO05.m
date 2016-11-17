@@ -1,7 +1,7 @@
-Routine DSIO05 saved using VFDXTRS routine on Sep 30, 2016 09:10
-DSIO05^INT^64180,40457^Sep 19, 2016@11:14
+Routine DSIO05 saved using VFDXTRS routine on Oct 13, 2016 17:20
+DSIO05^INT^64203,38329^Oct 12, 2016@10:38
 DSIO05 ;DSS/TFF - DSIO OCNT PUSH SUPPORT DIALOG TEXT;08/26/2016 16:00
- ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
+ ;;2.0;DSIO 2.0;**1**;Aug 26, 2016;Build 1
  ;
  ;
  ;
@@ -225,14 +225,14 @@ MEDICA ; Medical History Text List of Control Names
  ;
 OBSPRE ; Flow Sheet Text List Values by Column
  ;;0;Exam Date
- ;;1;Gestational Age (wks);LNC;11884-4;WKS
+ ;;1;Gestational Age (wks);LNC;11884-4;wks
  ;;2;Fundal Height (cm);LNC;11881-0;cm
- ;;3;Weight (lbs);LNC;3141-9;lb
+ ;;3;Weight (lbs);LNC;3141-9;lbs
  ;;4;Cumulative Weight (lbs)
  ;;5;Albumin;LNC;1753-3
  ;;6;Glucose;LNC;2349-9
  ;;7;Edema;LNC;44966-0
- ;;8;Fetal Weight;LNC;57067-1
+ ;;8;Fetal Weight (g);LNC;57067-1;g
  ;;9;Fetal Heart(s)
  ;;10;Fetal Presentation;LNC;11876-0
  ;;11;Fetal Movement;LNC;57088-7

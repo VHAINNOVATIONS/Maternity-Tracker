@@ -1397,17 +1397,6 @@ var
   nItem: TDDCSNoteItem;
   cD: Char;
   cItem: TConfigItem;
-
-  function SubCount(str: string; d: Char): Integer;
-  var
-    I: Integer;
-  begin
-    Result := 0;
-    for I := 0 to Length(str) - 1 do
-      if str[I] = d then
-        inc(Result);
-  end;
-
 begin
   if FStyleChange then
     Exit;
@@ -1632,7 +1621,10 @@ begin
     sl.Free;
 
     if sHold <> '1'  then
-      EnableTaskWindows(RPCBrokerV.DisabledWindow);
+    begin
+      RPCBrokerV.HostEnabled := True;
+      EnableTaskWindows(RPCBrokerV.Host);
+    end;
 
     TabHeight := 30;
     for I := 0 to PageCount - 1 do

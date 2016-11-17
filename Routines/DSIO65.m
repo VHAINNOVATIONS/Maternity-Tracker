@@ -1,7 +1,7 @@
-Routine DSIO65 saved using VFDXTRS routine on Sep 30, 2016 09:10
-DSIO65^INT^64180,41026^Sep 19, 2016@11:23
+Routine DSIO65 saved using VFDXTRS routine on Nov 02, 2016 09:33
+DSIO65^INT^64223,61406^Nov 01, 2016@17:03
 DSIO65 ;DSS/TFF - DSIO DDCS FORM SUPPORT;08/26/2016 16:00
- ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
+ ;;2.0;DSIO 2.0;**1,2,3**;Aug 26, 2016;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -50,7 +50,7 @@ CANCEL(RET,TASKS) ; RPC: DSIO DDCS CANCEL AUTOSAVE
  S:'$D(FLG) RET=1
  Q
  ;
-TRACK(RET,OBJECT) ; RPC: DSIO DDCS CONTROLLED
+TRACK(RET,OBJECT,RESET) ; RPC: DSIO DDCS CONTROLLED
  ;
  ; RETURN
  ;   IEN ^ 19641.4:.01 ^ *IEN;DSIO(19641.42, ^ FILENAME
@@ -60,13 +60,25 @@ TRACK(RET,OBJECT) ; RPC: DSIO DDCS CONTROLLED
  ;   else -1 for error
  ;
  S RET=0 Q:$G(OBJECT)=""
- I $D(^DSIO(19641.41,"ERROR")) S RET=-1 Q
- N IEN S IEN=$$OBJECT(OBJECT) Q:'IEN
+ I $G(RESET) D
+ . N $ET S $ET="D ERROR^DSIO65"
+ . D ERROR^DSIO6,TRIG^DSIO6
+ Q:$P(RET,U)=-2
+ I $D(^DSIO(19641.41,"ERROR")) D  Q
+ . S RET="-1^An error has been logged with the post note triggering. You may try to clean up"
+ . S RET=RET_" the error by retrying but if it does not work please check the error trap."
+ S IEN=$$OBJECT(OBJECT) Q:'IEN
  Q:$$GET1^DIQ(19641.4,IEN_",",.02,"I")                                  ; INACTIVE
  S RET=IEN_U
  S RET=RET_$$GET1^DIQ(19641.4,IEN_",",.01)_U                            ; NAME of OBJECT  (Soft Pointer)
  S RET=RET_"*"_$$GET1^DIQ(19641.4,IEN_",",.07,"I")_";DSIO(19641.42,"_U  ; 19641.42        (FORM/INTERFACE)
  S RET=RET_$$GET1^DIQ(19641.4,IEN_",",".07:.05","I")                    ; FILENAME
+ Q
+ ;
+ERROR ; Hard Error captured from TRACK
+ D ^%ZTER
+ S RET="-2^An M error has occurred. Please check the error trap. You will not be able to load the"
+ S RET=RET_" oCNT until the issue has been resolved."
  Q
  ;
 OBJECT(OBJECT) ; Return Object IEN
@@ -206,13 +218,16 @@ ORQQPL(RET,DFN) ; RPC: DSIO DDCS ORQQPL LIST
  ; -----------------------------------VITALS-----------------------------------
  ;
 ORQQVI(RET,DFN) ; RPC: DSIO DDCS ORQQVI VITALS
- N EDD,SEX,CT
+ N EDD,SEX,PREPREGWT,CT
  I '$G(DFN) S RET(0)=-1 Q
  D FASTVIT^ORQQVI(.RET,DFN)
  S RET($O(RET(""),-1)+1)="^AGE^"_$$GET1^DIQ(2,DFN_",",.033)
  S EDD=$$FMTE^XLFDT($$GET1^DIQ(19641.03,$$GET1^DIQ(19641.13,$$PG^DSIO4(DFN)_",",.06,"I")_",",.01,"I"),"5Z")
  I EDD'="" S RET($O(RET(""),-1)+1)="^EDD^"_EDD
- S SEX=$$GET1^DIQ(2,DFN_",",.02) I SEX'="" S RET($O(RET(""),-1)+1)="^SEX^"_SEX
+ S SEX=$$GET1^DIQ(2,DFN_",",.02)
+ I SEX'="" S RET($O(RET(""),-1)+1)="^SEX^"_SEX
+ S PREPREGWT=$$GET1^DIQ(19641.13,$$PG^DSIO4(DFN)_",",3.9)
+ I PREPREGWT'="" S RET($O(RET(""),-1)+1)="^PREPREGWT^"_PREPREGWT
  S CT=$NA(RET) F  S CT=$Q(@CT) Q:CT=""  D
  . S $P(@CT,U,4)=$$FMTE^XLFDT($P(@CT,U,4),"5Z")
  Q
@@ -272,7 +287,8 @@ VS(RET,OBJECT,SIEN,DATA) ; RPC: DSIO DDCS ORQQVI VITALS SAVE
  ;
  ;   SIEN = Destination IEN - Record of Control
  ;
- ;   DATA = "EDD"^CRITERIA                   ^EVENT_DATE^GESTATIONAL_AGE^EDD
+ ;   DATA = "VIT"^PRE_PREGNANCY_WEIGHT
+ ;          "EDD"^CRITERIA                   ^EVENT_DATE^GESTATIONAL_AGE^EDD
  ;          "EDD"^CRITERIA|OTHER-DISPLAY-NAME^EVENT_DATE^GESTATIONAL_AGE^EDD
  ;          "LMP"^LMP^MENSES^FREQUENCY^AMOUNT^DURATION^ON_CONTRACEPTION^RECENT_CONTRACEPTIVE^
  ;                hCG+^MENARCHE^QUALIFIER^MENSES_MONTHLY^PILLS_ON_CONCEPTION
@@ -291,13 +307,23 @@ VS(RET,OBJECT,SIEN,DATA) ; RPC: DSIO DDCS ORQQVI VITALS SAVE
  S FDA(19641.49412,"?+1,"_DFN_",",.01)=SIEN_";"_$TR(^DIC(DFLE,0,"GL"),U)
  D UPDATE^DIE(,"FDA","IEN") K FDA Q:'$G(IEN(1))
  S CT=$NA(DATA) F  S CT=$Q(@CT) Q:CT=""  D
- . I $P(@CT,U)="EDD" D VSEDD($P(@CT,U,2,999))
- . I $P(@CT,U)="LMP" D VSLMP($P(@CT,U,2,999))
- . I $P(@CT,U)="COM" D VSCOM($P(@CT,U,2,999))
+ . I $P(@CT,U)="VIT" D VSVIT(IEN(1),$P(@CT,U,2,999))
+ . I $P(@CT,U)="EDD" D VSEDD(IEN(1),$P(@CT,U,2,999))
+ . I $P(@CT,U)="LMP" D VSLMP(IEN(1),$P(@CT,U,2,999))
+ . I $P(@CT,U)="COM" D VSCOM(IEN(1),$P(@CT,U,2,999))
  S RET=1
  Q
  ;
-VSEDD(LN) ; EDD
+VSVIT(IEN,LN) ; VITALS
+ ;
+ ; PRE_PREGNANCY_WEIGHT
+ ;
+ N FDA
+ S:$P(LN,U) FDA(19641.49412,IEN_","_DFN_",",4.1)=$P(LN,U)
+ D UPDATE^DIE(,"FDA")
+ Q
+ ;
+VSEDD(IEN,LN) ; EDD
  ;
  ; CRITERIA                   ^EVENT_DATE^GESTATIONAL_AGE^EDD
  ; CRITERIA|OTHER-DISPLAY-NAME^EVENT_DATE^GESTATIONAL_AGE^EDD
@@ -305,26 +331,26 @@ VSEDD(LN) ; EDD
  N I,FDA
  F I=2,4 S $P(LN,U,I)=$$DT^DSIO2($P(LN,U,I))
  S $P(LN,U,3)=$$G1^DSIO4($$UP^XLFSTR($TR($P(LN,U,3)," ")))
- F I=1:1:$L(LN,U) S FDA(19641.494121,"?+1,"_IEN(1)_","_DFN_",",".0"_I)=$P(LN,U,I)
+ F I=1:1:$L(LN,U) S FDA(19641.494121,"?+1,"_IEN_","_DFN_",",".0"_I)=$P(LN,U,I)
  D UPDATE^DIE(,"FDA")
  Q
  ;
-VSLMP(LN) ; LMP
+VSLMP(IEN,LN) ; LMP
  ;
  ; LMP^MENSES^FREQUENCY^AMOUNT^DURATION^ON_CONTRACEPTION^RECENT_CONTRACEPTIVE^hCG+^
  ; MENARCHE^QUALIFIER^MENSES_MONTHLY^PILLS_ON_CONCEPTION
  ;
  N I,FDA
  F I=1,8 S $P(LN,U,I)=$$DT^DSIO2($P(LN,U,I))
- F I=1:1:9 S FDA(19641.49412,IEN(1)_","_DFN_",","2.0"_I)=$P(LN,U,I)
- S FDA(19641.49412,IEN(1)_","_DFN_",",2.1)=$P(LN,U,10)
- F I=11,12 S FDA(19641.49412,IEN(1)_","_DFN_",","2."_I)=$P(LN,U,I)
+ F I=1:1:9 S FDA(19641.49412,IEN_","_DFN_",","2.0"_I)=$P(LN,U,I)
+ S FDA(19641.49412,IEN_","_DFN_",",2.1)=$P(LN,U,10)
+ F I=11,12 S FDA(19641.49412,IEN_","_DFN_",","2."_I)=$P(LN,U,I)
  D UPDATE^DIE(,"FDA")
  Q
  ;
-VSCOM(LN) ; COMMENTS
+VSCOM(IEN,LN) ; COMMENTS
  K ^TMP($J,"DSIO VSCOM") S ^TMP($J,"DSIO VSCOM",1)=LN
- D WP^DIE(19641.49412,IEN(1)_","_DFN_",",3,"K","^TMP($J,""DSIO VSCOM"")")
+ D WP^DIE(19641.49412,IEN_","_DFN_",",3,"K","^TMP($J,""DSIO VSCOM"")")
  K ^TMP($J,"DSIO VSCOM")
  Q
  ;
@@ -333,15 +359,20 @@ VP(DFN,RECORD) ; VITALS PUSH
  ; RECORD = NAME of DSIO DDCS DATA (19641.41)
  ;
  Q:'$G(DFN)!($G(RECORD)="")
- N IEN,IEDD,VAL,LMP,NOD,FDA
+ N IEN,VAL,PG,OBJ,IEDD,LMP,NOD,FDA
  S IEN=$O(^DSIO(19641.4941,DFN,2,"B",RECORD,"")) Q:'IEN
+ ; *** VITALS OBSERVATIONS
+ S VAL=$P($G(^DSIO(19641.4941,DFN,2,IEN,4)),U) I VAL D  K VAL
+ . ; *** PRE PREGNANCY WEIGHT
+ . S PG=$$PG^DSIO4(DFN) Q:'PG  S OBJ(0)="PG."_PG
+ . D O^DSIO03(DFN,.OBJ,,,"8348-5","LNC","Body weight Measured --pre pregnancy",VAL_"^lbs")
  ; *** EDD OBSERVATIONS
  I $P($G(^DSIO(19641.4941,DFN,2,IEN,1,0)),U,4) D
  . S IEDD=0 F  S IEDD=$O(^DSIO(19641.4941,DFN,2,IEN,1,IEDD)) Q:'IEDD  D
  . . D VPEDD($$UP^XLFSTR($G(^DSIO(19641.4941,DFN,2,IEN,1,IEDD,0))))
  ; *** MENARCHE OBSERVATION
  S VAL=$P($G(^DSIO(19641.4941,DFN,2,IEN,2)),U,9)
- D:VAL O^DSIO03(DFN,,,,"398700009","SCT^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.5","Menarche",VAL)
+ D:VAL O^DSIO03(DFN,,,,"398700009","SCT^1.3.6.1.4.1.19376.1.5.3.1.1.16.5.5","Menarche",VAL_"^years")
  ; *** LMP OBSERVATION
  S LMP=$$FMTE^XLFDT($P($G(^DSIO(19641.4941,DFN,2,IEN,2)),U),"5Z")
  D:LMP'="" O^DSIO03(DFN,,,"Pregnancy","8665-2","LOINC","Last Menstrual Period",LMP_"|"_$P($G(^DSIO(19641.4941,DFN,2,IEN,2)),U,10))

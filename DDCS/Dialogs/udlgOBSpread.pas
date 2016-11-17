@@ -152,7 +152,7 @@ begin
   sgStandard.Cells[5,0]  := 'Albumin';
   sgStandard.Cells[6,0]  := 'Glucose';
   sgStandard.Cells[7,0]  := 'Edema';
-  sgStandard.Cells[8,0]  := 'Fetal Weight';
+  sgStandard.Cells[8,0]  := 'Fetal Weight (g)';
   sgStandard.Cells[9,0]  := 'Fetal Heart(s)';              // this will create additional columns of Fetal Heart Rate (min)
   sgStandard.Cells[10,0] := 'Fetal Presentation';
   sgStandard.Cells[11,0] := 'Fetal Movement';
@@ -275,7 +275,7 @@ begin
     if ACol = 4 then
       ScreenReader.SayString('Cumulative Weight in pounds Read Only', False)
     else if ACol = 8 then
-      ScreenReader.SayString('Fetal Weight', False)
+      ScreenReader.SayString('Fetal Weight in grams', False)
     else if ACol = 19 then
       ScreenReader.SayString('Cervical Exam Type in Text', False)
     else if ACol > 19 then

@@ -2,7 +2,7 @@ object DDCSVitals: TDDCSVitals
   Left = 0
   Top = 0
   Width = 698
-  Height = 378
+  Height = 334
   DoubleBuffered = False
   ParentDoubleBuffered = False
   TabOrder = 0
@@ -10,7 +10,7 @@ object DDCSVitals: TDDCSVitals
     Left = 0
     Top = 0
     Width = 698
-    Height = 378
+    Height = 334
     ActivePage = PageMain
     Align = alClient
     DoubleBuffered = False
@@ -21,37 +21,34 @@ object DDCSVitals: TDDCSVitals
     OnChange = fVitalsControlChange
     object PageMain: TTabSheet
       Caption = 'Vitals'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         670
-        370)
+        326)
       object FTempdt: TLabel
         Left = 92
-        Top = 143
+        Top = 125
         Width = 3
         Height = 13
         Anchors = []
+        ExplicitTop = 143
       end
       object FHeightdt: TLabel
         Left = 92
-        Top = 214
+        Top = 173
         Width = 3
         Height = 13
         Anchors = []
       end
       object FWeightdt: TLabel
         Left = 92
-        Top = 285
+        Top = 221
         Width = 3
         Height = 13
         Anchors = []
       end
       object FTempl: TLabel
         Left = 12
-        Top = 120
+        Top = 105
         Width = 75
         Height = 13
         Anchors = []
@@ -62,10 +59,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 120
       end
       object FHeightl: TLabel
         Left = 50
-        Top = 191
+        Top = 151
         Width = 37
         Height = 13
         Anchors = []
@@ -79,7 +77,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FWeightl: TLabel
         Left = 47
-        Top = 262
+        Top = 199
         Width = 40
         Height = 13
         Anchors = []
@@ -93,14 +91,15 @@ object DDCSVitals: TDDCSVitals
       end
       object FPulsedt: TLabel
         Left = 336
-        Top = 143
+        Top = 125
         Width = 3
         Height = 13
         Anchors = []
+        ExplicitTop = 143
       end
       object FPulsel: TLabel
         Left = 301
-        Top = 120
+        Top = 105
         Width = 30
         Height = 13
         Anchors = []
@@ -111,10 +110,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 120
       end
       object FRespl: TLabel
         Left = 266
-        Top = 191
+        Top = 151
         Width = 65
         Height = 13
         Anchors = []
@@ -128,14 +128,14 @@ object DDCSVitals: TDDCSVitals
       end
       object FRespdt: TLabel
         Left = 336
-        Top = 214
+        Top = 173
         Width = 3
         Height = 13
         Anchors = []
       end
       object FPainl: TLabel
         Left = 307
-        Top = 262
+        Top = 199
         Width = 24
         Height = 13
         Anchors = []
@@ -149,14 +149,14 @@ object DDCSVitals: TDDCSVitals
       end
       object FPaindt: TLabel
         Left = 336
-        Top = 285
+        Top = 221
         Width = 3
         Height = 13
         Anchors = []
       end
       object FSystolicl: TLabel
         Left = 457
-        Top = 120
+        Top = 105
         Width = 44
         Height = 13
         Anchors = []
@@ -167,17 +167,19 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 120
       end
       object FSystolicdt: TLabel
         Left = 506
-        Top = 143
+        Top = 125
         Width = 3
         Height = 13
         Anchors = []
+        ExplicitTop = 143
       end
       object FDiastolicl: TLabel
         Left = 453
-        Top = 191
+        Top = 151
         Width = 48
         Height = 13
         Anchors = []
@@ -191,14 +193,14 @@ object DDCSVitals: TDDCSVitals
       end
       object FDiastolicdt: TLabel
         Left = 506
-        Top = 214
+        Top = 173
         Width = 3
         Height = 13
         Anchors = []
       end
       object FTemps: TEdit
         Left = 92
-        Top = 116
+        Top = 101
         Width = 103
         Height = 21
         Anchors = []
@@ -207,7 +209,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FHeights: TEdit
         Left = 92
-        Top = 187
+        Top = 148
         Width = 103
         Height = 21
         Anchors = []
@@ -216,7 +218,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FWeights: TEdit
         Left = 92
-        Top = 258
+        Top = 196
         Width = 103
         Height = 21
         Anchors = []
@@ -225,7 +227,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FTempe: TEdit
         Left = 201
-        Top = 116
+        Top = 101
         Width = 49
         Height = 21
         Anchors = []
@@ -234,7 +236,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FHeighte: TEdit
         Left = 201
-        Top = 187
+        Top = 148
         Width = 49
         Height = 21
         Anchors = []
@@ -243,7 +245,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FWeighte: TEdit
         Left = 201
-        Top = 258
+        Top = 196
         Width = 49
         Height = 21
         Anchors = []
@@ -252,7 +254,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FPulses: TEdit
         Left = 336
-        Top = 116
+        Top = 101
         Width = 103
         Height = 21
         Anchors = []
@@ -261,7 +263,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FResps: TEdit
         Left = 336
-        Top = 187
+        Top = 148
         Width = 103
         Height = 21
         Anchors = []
@@ -270,7 +272,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FPains: TEdit
         Left = 336
-        Top = 258
+        Top = 196
         Width = 103
         Height = 21
         Anchors = []
@@ -279,7 +281,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FSystolics: TEdit
         Left = 506
-        Top = 116
+        Top = 101
         Width = 103
         Height = 21
         Anchors = []
@@ -288,7 +290,7 @@ object DDCSVitals: TDDCSVitals
       end
       object FDiastolics: TEdit
         Left = 506
-        Top = 187
+        Top = 148
         Width = 103
         Height = 21
         Anchors = []
@@ -297,7 +299,7 @@ object DDCSVitals: TDDCSVitals
       end
       object Panel2: TPanel
         Left = 9
-        Top = 8
+        Top = 1
         Width = 238
         Height = 96
         Anchors = []
@@ -376,6 +378,65 @@ object DDCSVitals: TDDCSVitals
           TabStop = True
         end
       end
+      object gbPreg: TGroupBox
+        Left = 30
+        Top = 240
+        Width = 579
+        Height = 65
+        Anchors = []
+        Caption = 'Pregnancy'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 12
+        TabStop = True
+        DesignSize = (
+          579
+          65)
+        object Label16: TLabel
+          Left = 36
+          Top = 31
+          Width = 127
+          Height = 13
+          Anchors = []
+          Caption = 'Pre-pregnancy Weight'
+        end
+        object Label17: TLabel
+          Left = 241
+          Top = 31
+          Width = 13
+          Height = 13
+          Anchors = []
+          Caption = 'lbs'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object spnPrePregWt: TSpinEdit
+          Left = 169
+          Top = 28
+          Width = 66
+          Height = 22
+          Anchors = []
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          MaxValue = 0
+          MinValue = 0
+          ParentFont = False
+          TabOrder = 0
+          Value = 0
+          OnChange = spincheck
+        end
+      end
     end
     object PageEDD: TTabSheet
       Caption = 'Estimated Delivery Date'
@@ -390,7 +451,7 @@ object DDCSVitals: TDDCSVitals
       ExplicitHeight = 0
       DesignSize = (
         670
-        370)
+        326)
       object Label14: TLabel
         Left = 18
         Top = 16
@@ -406,7 +467,7 @@ object DDCSVitals: TDDCSVitals
       end
       object lblLMP: TLabel
         Left = 18
-        Top = 109
+        Top = 95
         Width = 103
         Height = 13
         Anchors = []
@@ -418,10 +479,11 @@ object DDCSVitals: TDDCSVitals
         Font.Style = []
         ParentFont = False
         Layout = tlCenter
+        ExplicitTop = 109
       end
       object lblECD: TLabel
         Left = 18
-        Top = 150
+        Top = 131
         Width = 130
         Height = 13
         Anchors = []
@@ -433,28 +495,31 @@ object DDCSVitals: TDDCSVitals
         Font.Style = []
         ParentFont = False
         Layout = tlCenter
+        ExplicitTop = 150
       end
       object lblUltra: TLabel
         Left = 18
-        Top = 190
+        Top = 167
         Width = 52
         Height = 13
         Anchors = []
         Caption = 'Ultrasound'
         Layout = tlCenter
+        ExplicitTop = 190
       end
       object lblUnknown: TLabel
         Left = 18
-        Top = 315
+        Top = 277
         Width = 44
         Height = 13
         Anchors = []
         Caption = 'Unknown'
         Layout = tlCenter
+        ExplicitTop = 315
       end
       object Label9: TLabel
         Left = 18
-        Top = 69
+        Top = 60
         Width = 149
         Height = 13
         Alignment = taCenter
@@ -467,10 +532,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 69
       end
       object Label10: TLabel
         Left = 183
-        Top = 69
+        Top = 60
         Width = 100
         Height = 13
         Alignment = taCenter
@@ -483,10 +549,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 69
       end
       object Label11: TLabel
         Left = 300
-        Top = 56
+        Top = 48
         Width = 103
         Height = 26
         Alignment = taCenter
@@ -499,10 +566,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 56
       end
       object Label12: TLabel
         Left = 421
-        Top = 69
+        Top = 60
         Width = 103
         Height = 13
         Alignment = taCenter
@@ -515,10 +583,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 69
       end
       object Label13: TLabel
         Left = 558
-        Top = 69
+        Top = 60
         Width = 75
         Height = 13
         Alignment = taCenter
@@ -531,10 +600,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 69
       end
       object dtLMP: TORDateBox
         Left = 183
-        Top = 106
+        Top = 92
         Width = 100
         Height = 21
         Anchors = []
@@ -547,7 +617,7 @@ object DDCSVitals: TDDCSVitals
       end
       object edtEDDLMP: TORDateBox
         Left = 421
-        Top = 106
+        Top = 92
         Width = 103
         Height = 21
         Anchors = []
@@ -560,7 +630,7 @@ object DDCSVitals: TDDCSVitals
       end
       object dtECD: TORDateBox
         Left = 183
-        Top = 147
+        Top = 128
         Width = 100
         Height = 21
         Anchors = []
@@ -573,7 +643,7 @@ object DDCSVitals: TDDCSVitals
       end
       object edtEDDECD: TORDateBox
         Left = 421
-        Top = 147
+        Top = 128
         Width = 103
         Height = 21
         Anchors = []
@@ -586,7 +656,7 @@ object DDCSVitals: TDDCSVitals
       end
       object dtUltra: TORDateBox
         Left = 183
-        Top = 188
+        Top = 164
         Width = 100
         Height = 21
         Anchors = []
@@ -599,7 +669,7 @@ object DDCSVitals: TDDCSVitals
       end
       object spnWeekUltra: TSpinEdit
         Left = 300
-        Top = 187
+        Top = 163
         Width = 49
         Height = 22
         Anchors = []
@@ -611,7 +681,7 @@ object DDCSVitals: TDDCSVitals
       end
       object spnDayUltra: TSpinEdit
         Left = 355
-        Top = 187
+        Top = 163
         Width = 48
         Height = 22
         Anchors = []
@@ -623,7 +693,7 @@ object DDCSVitals: TDDCSVitals
       end
       object edtEDDUltra: TORDateBox
         Left = 421
-        Top = 188
+        Top = 164
         Width = 103
         Height = 21
         Anchors = []
@@ -636,7 +706,7 @@ object DDCSVitals: TDDCSVitals
       end
       object dtEmbryo: TORDateBox
         Left = 183
-        Top = 229
+        Top = 201
         Width = 100
         Height = 21
         Anchors = []
@@ -649,7 +719,7 @@ object DDCSVitals: TDDCSVitals
       end
       object edtEDDEmbryo: TORDateBox
         Left = 421
-        Top = 229
+        Top = 201
         Width = 103
         Height = 21
         Anchors = []
@@ -662,7 +732,7 @@ object DDCSVitals: TDDCSVitals
       end
       object dtOther: TORDateBox
         Left = 183
-        Top = 270
+        Top = 237
         Width = 100
         Height = 21
         Anchors = []
@@ -675,7 +745,7 @@ object DDCSVitals: TDDCSVitals
       end
       object spnWeekOther: TSpinEdit
         Left = 300
-        Top = 269
+        Top = 236
         Width = 49
         Height = 22
         Anchors = []
@@ -687,7 +757,7 @@ object DDCSVitals: TDDCSVitals
       end
       object spnDayOther: TSpinEdit
         Left = 355
-        Top = 269
+        Top = 236
         Width = 48
         Height = 22
         Anchors = []
@@ -699,7 +769,7 @@ object DDCSVitals: TDDCSVitals
       end
       object edtEDDOther: TORDateBox
         Left = 421
-        Top = 270
+        Top = 237
         Width = 103
         Height = 21
         Anchors = []
@@ -712,7 +782,7 @@ object DDCSVitals: TDDCSVitals
       end
       object lblOther: TEdit
         Left = 18
-        Top = 270
+        Top = 237
         Width = 149
         Height = 21
         Anchors = []
@@ -725,7 +795,7 @@ object DDCSVitals: TDDCSVitals
       end
       object dtEDDUnknown: TORDateBox
         Left = 421
-        Top = 312
+        Top = 274
         Width = 103
         Height = 21
         Anchors = []
@@ -737,7 +807,7 @@ object DDCSVitals: TDDCSVitals
       end
       object Panel1: TPanel
         Left = 18
-        Top = 219
+        Top = 191
         Width = 150
         Height = 41
         Anchors = []
@@ -840,7 +910,7 @@ object DDCSVitals: TDDCSVitals
       object ckFinalEDDLMP: TCheckBox
         Tag = 1
         Left = 578
-        Top = 108
+        Top = 94
         Width = 40
         Height = 17
         Anchors = []
@@ -851,7 +921,7 @@ object DDCSVitals: TDDCSVitals
       object ckFinalEDDUltra: TCheckBox
         Tag = 3
         Left = 578
-        Top = 189
+        Top = 166
         Width = 40
         Height = 17
         Anchors = []
@@ -862,7 +932,7 @@ object DDCSVitals: TDDCSVitals
       object ckFinalEDDEmbryo: TCheckBox
         Tag = 4
         Left = 578
-        Top = 231
+        Top = 203
         Width = 40
         Height = 17
         Anchors = []
@@ -873,7 +943,7 @@ object DDCSVitals: TDDCSVitals
       object ckFinalEDDOther: TCheckBox
         Tag = 5
         Left = 578
-        Top = 272
+        Top = 239
         Width = 40
         Height = 17
         Anchors = []
@@ -884,7 +954,7 @@ object DDCSVitals: TDDCSVitals
       object ckFinalEDDUnknown: TCheckBox
         Tag = 6
         Left = 578
-        Top = 314
+        Top = 276
         Width = 40
         Height = 17
         Anchors = []
@@ -895,7 +965,7 @@ object DDCSVitals: TDDCSVitals
       object ckFinalEDDECD: TCheckBox
         Tag = 2
         Left = 578
-        Top = 149
+        Top = 130
         Width = 40
         Height = 17
         Anchors = []
@@ -913,18 +983,19 @@ object DDCSVitals: TDDCSVitals
       ExplicitHeight = 0
       DesignSize = (
         670
-        370)
+        326)
       object Label7: TLabel
         Left = 309
-        Top = 127
+        Top = 111
         Width = 295
         Height = 13
         Anchors = []
         Caption = 'What type(s) of contraception were you using most recently?'
+        ExplicitTop = 127
       end
       object Label6: TLabel
         Left = 309
-        Top = 179
+        Top = 157
         Width = 61
         Height = 13
         Anchors = []
@@ -935,10 +1006,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 179
       end
       object Label5: TLabel
         Left = 406
-        Top = 71
+        Top = 62
         Width = 98
         Height = 13
         Anchors = []
@@ -949,10 +1021,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 71
       end
       object lbLMP: TLabel
         Left = 18
-        Top = 18
+        Top = 15
         Width = 123
         Height = 13
         Anchors = []
@@ -963,10 +1036,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 18
       end
       object Label1: TLabel
         Left = 309
-        Top = 98
+        Top = 86
         Width = 195
         Height = 13
         Anchors = []
@@ -977,10 +1051,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 98
       end
       object lbHCG: TLabel
         Left = 426
-        Top = 38
+        Top = 33
         Width = 31
         Height = 13
         Anchors = []
@@ -991,10 +1066,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 38
       end
       object lbMenarche: TLabel
         Left = 39
-        Top = 298
+        Top = 262
         Width = 56
         Height = 13
         Anchors = []
@@ -1005,10 +1081,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitTop = 298
       end
       object Label3: TLabel
         Left = 175
-        Top = 298
+        Top = 262
         Width = 64
         Height = 13
         Anchors = []
@@ -1019,10 +1096,11 @@ object DDCSVitals: TDDCSVitals
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitTop = 298
       end
       object edtContraceptionType: TCaptionComboBox
         Left = 309
-        Top = 144
+        Top = 126
         Width = 339
         Height = 21
         Style = csDropDownList
@@ -1034,9 +1112,9 @@ object DDCSVitals: TDDCSVitals
       end
       object memLMP: TCaptionMemo
         Left = 309
-        Top = 196
+        Top = 176
         Width = 339
-        Height = 121
+        Height = 111
         Anchors = []
         ScrollBars = ssVertical
         TabOrder = 10
@@ -1045,7 +1123,7 @@ object DDCSVitals: TDDCSVitals
       object ckContraceptionNo: TCheckBox
         Tag = 6
         Left = 586
-        Top = 70
+        Top = 61
         Width = 37
         Height = 17
         Anchors = []
@@ -1056,7 +1134,7 @@ object DDCSVitals: TDDCSVitals
       object ckContraceptionYes: TCheckBox
         Tag = 5
         Left = 521
-        Top = 70
+        Top = 61
         Width = 52
         Height = 17
         Anchors = []
@@ -1066,7 +1144,7 @@ object DDCSVitals: TDDCSVitals
       end
       object ckLMPQualifier: TCheckBox
         Left = 209
-        Top = 37
+        Top = 32
         Width = 80
         Height = 17
         Anchors = []
@@ -1075,7 +1153,7 @@ object DDCSVitals: TDDCSVitals
       end
       object edtLMP: TORDateBox
         Left = 18
-        Top = 35
+        Top = 30
         Width = 185
         Height = 21
         Anchors = []
@@ -1087,7 +1165,7 @@ object DDCSVitals: TDDCSVitals
       end
       object gbMenses: TGroupBox
         Left = 18
-        Top = 71
+        Top = 51
         Width = 271
         Height = 199
         Anchors = []
@@ -1348,7 +1426,7 @@ object DDCSVitals: TDDCSVitals
       object ckBirthPillsYes: TCheckBox
         Tag = 9
         Left = 521
-        Top = 97
+        Top = 85
         Width = 52
         Height = 17
         Anchors = []
@@ -1359,7 +1437,7 @@ object DDCSVitals: TDDCSVitals
       object ckBirthPillsNo: TCheckBox
         Tag = 10
         Left = 586
-        Top = 97
+        Top = 85
         Width = 37
         Height = 17
         Anchors = []
@@ -1369,7 +1447,7 @@ object DDCSVitals: TDDCSVitals
       end
       object edthcg: TORDateBox
         Left = 463
-        Top = 35
+        Top = 30
         Width = 185
         Height = 21
         Anchors = []
@@ -1386,7 +1464,7 @@ object DDCSVitals: TDDCSVitals
       end
       object spnMenarche: TSpinEdit
         Left = 101
-        Top = 295
+        Top = 259
         Width = 68
         Height = 22
         Anchors = []

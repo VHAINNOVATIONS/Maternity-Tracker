@@ -15,6 +15,8 @@ unit uExtndComBroker;
 
      Developer: Theodore Fontana
    VA Contract: TAC-13-06464
+
+   version: XE10
 }
 
 interface
@@ -52,15 +54,12 @@ type
 
   TVistANote = class(TObject)
   private
-    FImport: WideString;
     FIEN: string;
     FAuthor: string;
     FAIEN: string;
     FLines: TStringList;
-  protected
-    procedure ParseTIUXML(const Value: WideString);
   public
-    property Import: WideString read FImport write ParseTIUXML;
+    procedure ParseTIUXML(wValue: WideString);
     property IEN: string read FIEN write FIEN;
     property Author: string read FAuthor write FAuthor;
     property AIEN: string read FAIEN write FAIEN;
@@ -75,7 +74,8 @@ type
     FRemoteProcedure: string;
     FCPRSSTate: ICPRSState;
     FCPRSHandle: HWND;
-    FWindowList: TTaskWindowList;
+    FHost: Pointer;
+    FHostEnabled: Boolean;
     FControlObject: string;
     FDDCSInterface: string;
     FDDCSInterfacePages: TStringList;
@@ -103,7 +103,8 @@ type
     property Connected: Boolean read GetConnected;
     property CPRSState: ICPRSState write SetCPRSSTate;
     property CPRSHandle: HWND read FCPRSHandle write FCPRSHandle;
-    property DisabledWindow: TTaskWindowList read FWindowList write FWindowList;
+    property Host: Pointer read FHost write FHost;
+    property HostEnabled: Boolean read FHostEnabled write FHostEnabled;
     property ControlObject: string read FControlObject write FControlObject;
     property DDCSInterface: string read FDDCSInterface write FDDCSInterface;
     property DDCSInterfacePages: TStringList read FDDCSInterfacePages write FDDCSInterfacePages;
@@ -123,7 +124,7 @@ var
 implementation
 
 uses
-  ORFn, ORNet, uCommon;
+  ORFn, ORNet;
 
 {$REGION 'Exposed Methods'}
 
@@ -264,7 +265,7 @@ end;
 
 // Protected -------------------------------------------------------------------
 
-procedure TVistANote.ParseTIUXML(const Value: WideString);
+procedure TVistANote.ParseTIUXML(wValue: WideString);
 var
   XML: IXMLDOMDocument;
   Nlist: IXMLDOMNodeList;
@@ -272,7 +273,7 @@ var
   I: Integer;
 begin
   XML := CoDOMDocument.Create;
-  XML.loadXML(Value);
+  XML.loadXML(wValue);
 
   Nlist := XML.getElementsByTagName('DOC_IEN');
   if Nlist <> nil then

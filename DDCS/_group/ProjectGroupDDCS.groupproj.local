@@ -5,6 +5,6 @@
     <Transaction>2016/05/09 09:24:26.000.011,C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_group\ProjectGroupDDCSv2.groupproj=C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_group\ProjectGroupDDCS.groupproj</Transaction>
   </Transactions>
 	<Default.Personality>
-		<Projects ActiveProject="C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCSForm\DDCSFramework.dproj"/>
+		<Projects ActiveProject="C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\DDCSFormBuilder\DDCSFormBuilder.dproj"/>
 	</Default.Personality>
 </BorlandProject>
