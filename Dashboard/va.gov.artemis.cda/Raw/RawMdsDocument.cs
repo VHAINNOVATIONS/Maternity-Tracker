@@ -12,7 +12,7 @@ namespace VA.Gov.Artemis.CDA.Raw
     [System.Xml.Serialization.XmlRootAttribute("ClinicalDocument", Namespace = "urn:hl7-org:v3", IsNullable = false)]
     public class RawMdsDocument : IheDocument
     {
-        public const string MdsTemplateId = "1.3.6.1.4.1.19376.1.5.3.1.1.21.1.1";
+        public const string MdsTemplateId = "1.3.6.1.4.1.19376.1.5.3.1.1.21.1.3";
 
         // TODO: If generating...
         //public RawXdriDocument(): base()

@@ -294,12 +294,10 @@
 
                 window.myPie = tempChart; 
 
-                //var legend = tempChart.generateLegend();
-                
-                //$('#chart-hist-legend').append(legend);
-
                 ctx = document.getElementById("chart-deliveries").getContext("2d");
-                var myBarChart = new Chart(ctx).Bar(barData, {});
+                var myBarChart = new Chart(ctx).Bar(barData, {
+                    multiTooltipTemplate: " <%= datasetLabel %>: <%= value %>"
+                });
 
                 ctx = document.getElementById("chart-expected").getContext("2d");
                 var myBarChart = new Chart(ctx).Bar(barData2, {});

@@ -60,7 +60,7 @@ else
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="Note_NoteText">Dashboard Note Text</label>
-                    @Html.TextAreaFor(m => m.Note.NoteText, new {@class="form-control", @rows = "10", @style="whitespace: pre; font-family: Courier"})
+                    @Html.TextAreaFor(m => m.Note.NoteText, new {@class="form-control", @rows = "10", @cols="80", @wrap="hard", @style="whitespace: pre; font-family: Courier"})
                 </div>
 
             </div>

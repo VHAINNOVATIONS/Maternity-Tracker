@@ -205,6 +205,13 @@ namespace VA.Gov.Artemis.UI.Controllers
             {
                 this.CurrentPatientDfn = model.Patient.Dfn;
                 model.Patient = this.CurrentPatient;
+
+                // *** Pregnancies are needed also ***
+                // *** Get a list of pregnancies ***
+                List<PregnancyDetails> pregList = PregnancyUtilities.GetPregnancies(this.DashboardRepository, this.CurrentPatientDfn);
+
+                // *** Get pregnancy selection dictionary ***
+                model.Pregnancies = PregnancyUtilities.GetPregnanciesSelection(pregList, false);
             }
 
             // *** Set return url ***

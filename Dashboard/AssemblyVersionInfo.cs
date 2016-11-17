@@ -106,8 +106,14 @@
 // ***                   Update Text4Baby API passwords
 // ***                   Remove unneeded references to Microsoft.Web.MVC
 // ***                   Ensure patient's date of birth uses a nullFlavor of "UNK" in the IHE documents
+// *** 11/11/2016 2.0.9  This release is dependent upon KID build DSIO 2
+// ***                   Add "hard" word wrap to note entry box such that CRLFs are added automatically when wrapping text.  This prevents 999 chars from appearing on one line
+// ***                   Correct MDS document template ID 
+// ***                   Correct MDS data extraction to use section LOINC code instead of template id 
+// ***                   Load pregnancies if an error occurs in note save so that pregnancies selection still works 
+// ***                   Add label to outcomes bar chart tooltips
 
-[assembly: AssemblyFileVersion("2.0.8.0")]
+[assembly: AssemblyFileVersion("2.0.9.0")]
 
 // *** DEPLOYMENT NOTE:  Add skip rule to deploy.cmd command line parameters to prevent replacement of web.config file
 // ***                   va.gov.artemis.ui.deploy.cmd /T "-skip:objectName=filePath,absolutePath=web\.config" 

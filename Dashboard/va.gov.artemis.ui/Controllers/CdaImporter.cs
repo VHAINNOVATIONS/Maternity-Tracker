@@ -550,7 +550,7 @@ namespace VA.Gov.Artemis.UI.Controllers
         {
             List<POCD_MT000040Observation> returnList = new List<POCD_MT000040Observation>();
 
-            returnList = this.ExtractObservationsFromSection("1.3.6.1.4.1.19376.1.5.3.1.1.21.2.9"); 
+            returnList = this.ExtractObservationsFromSection("42545-4");
 
             return returnList; 
         }

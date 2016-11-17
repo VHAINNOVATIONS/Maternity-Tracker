@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:voc="urn:hl7-org:v3/voc" moodCode="EVN" xsi:schemaLocation="urn:hl7-org:v3 infrastructure/cda/CDA.xsd" xmlns="urn:hl7-org:v3">
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.1" />
+  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.21.1.4" />
+  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.2" />
+  <id root="ffd06a79-86aa-4fa8-9bf1-622b77eff3fa" />
+  <code code="XX-PostPartumVisitSummary" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Postpartum Visit Summary" />
+  <title mediaType="text/plain">Postpartum Visit Summary</title>
+  <effectiveTime value="20161025075707-07" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" />
+  <languageCode code="en-US" />
+  <recordTarget typeCode="RCT" contextControlCode="OP">
+    <patientRole classCode="PAT">
+      <id root="2.16.840.1.113883.4.1" extension="101-01-5454" />
+      <addr use="H">
+        <streetAddressLine mediaType="text/plain">THAT PLACE</streetAddressLine>
+        <city mediaType="text/plain">NEW KRANSTON</city>
+        <state mediaType="text/plain">ALASKA</state>
+        <postalCode mediaType="text/plain">12345</postalCode>
+        <country mediaType="text/plain">US</country>
+      </addr>
+      <telecom nullFlavor="UNK" />
+      <patient classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <given mediaType="text/plain">JXAALSHULA</given>
+          <family mediaType="text/plain">AZDHSHTS</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" />
+        <birthTime value="19580101" />
+        <maritalStatusCode code="L" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatus" displayName="Legally Separated" />
+      </patient>
+      <providerOrganization classCode="ORG" determinerCode="INSTANCE">
+        <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+        <name>VAMC ALBANY</name>
+        <telecom value="123-456-7890" use="WP" />
+        <addr use="WP">
+          <streetAddressLine mediaType="text/plain">VA MEDICAL CENTER</streetAddressLine>
+          <streetAddressLine mediaType="text/plain">1 3RD sT.</streetAddressLine>
+          <city mediaType="text/plain">ALBANY</city>
+          <state mediaType="text/plain">NEW YORK</state>
+          <postalCode mediaType="text/plain">12180-0097</postalCode>
+          <country mediaType="text/plain">US</country>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+  <author typeCode="AUT" contextControlCode="OP">
+    <time value="00010101000000-08" />
+    <assignedAuthor classCode="ASSIGNED">
+      <realmCode code="US" />
+      <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <given mediaType="text/plain">ONE</given>
+          <family mediaType="text/plain">CPRSNURSE</family>
+        </name>
+      </assignedPerson>
+    </assignedAuthor>
+  </author>
+  <custodian typeCode="CST">
+    <assignedCustodian classCode="ASSIGNED">
+      <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
+        <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+        <name>VAMC ALBANY</name>
+        <telecom value="123-456-7890" use="WP" />
+        <addr use="WP">
+          <streetAddressLine mediaType="text/plain">VA MEDICAL CENTER</streetAddressLine>
+          <streetAddressLine mediaType="text/plain">1 3RD sT.</streetAddressLine>
+          <city mediaType="text/plain">ALBANY</city>
+          <state mediaType="text/plain">NEW YORK</state>
+          <postalCode mediaType="text/plain">12180-0097</postalCode>
+          <country mediaType="text/plain">US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient>
+    <templateId root="1.3.6.1.4.1.19376.1.3.3.1.4" />
+    <intendedRecipient>
+      <informationRecipient classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <given mediaType="text/plain">fhgfh</given>
+          <family mediaType="text/plain">hgfggh</family>
+        </name>
+      </informationRecipient>
+      <receivedOrganization classCode="ORG" determinerCode="INSTANCE">
+        <name>fghfg</name>
+        <telecom nullFlavor="UNK" />
+        <addr nullFlavor="UNK" />
+      </receivedOrganization>
+    </intendedRecipient>
+  </informationRecipient>
+  <participant typeCode="IND" contextControlCode="OP">
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4" />
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4.1" />
+    <associatedEntity nullFlavor="UNK" classCode="PRS">
+      <code code="xx-spouse" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Patient's Spouse" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <associatedPerson nullFlavor="UNK" classCode="PSN" determinerCode="INSTANCE">
+        <name nullFlavor="UNK" />
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <participant typeCode="IND" contextControlCode="OP">
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4" />
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4.2" />
+    <associatedEntity classCode="PRS">
+      <code code="xx-fatherofbaby" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Father Of Baby" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <associatedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <family mediaType="text/plain">Unspecified</family>
+        </name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <documentationOf typeCode="DOC">
+    <serviceEvent moodCode="EVN">
+      <effectiveTime>
+        <low nullFlavor="UNK" />
+      </effectiveTime>
+    </serviceEvent>
+  </documentationOf>
+  <component>
+    <structuredBody classCode="DOCBODY" moodCode="EVN">
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.21.2.3" />
+          <id root="879fa0ed-fc79-4940-b920-311cac806ad3" />
+          <code code="57074-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Labor &amp; Delivery Process" />
+          <title mediaType="text/plain">Labor &amp; Delivery Process</title>
+          <text mediaType="text/x-hl7-text+xml" />
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.21.2.7" />
+          <id root="788e373a-6bc5-44b4-b2f3-0b1a5ebd6f62" />
+          <code code="57076-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Postpartum Hospitalization Treatment" />
+          <title mediaType="text/plain">Postpartum Hospitalization Treatment</title>
+          <text mediaType="text/x-hl7-text+xml" />
+          <component>
+            <section classCode="DOCSECT" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.13.2.11" />
+              <id root="e46bc7cb-2cfb-4481-96e7-63a89ad15816" />
+              <code code="29554-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Procedures &amp; Interventions" />
+              <title mediaType="text/plain">Procedures &amp; Interventions</title>
+              <text mediaType="text/x-hl7-text+xml" />
+            </section>
+          </component>
+          <component>
+            <section classCode="DOCSECT" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.33" />
+              <id root="c3a47ed0-2df8-4555-b1b6-6a913ad748a7" />
+              <code code="42344-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Discharge Diet" />
+              <title mediaType="text/plain">Discharge Diet</title>
+              <text mediaType="text/x-hl7-text+xml" />
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.10" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.31" />
+          <id root="2759baa9-3105-4d2f-a1d1-50ee47e7badd" />
+          <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Treatment Plan" />
+          <title mediaType="text/plain">Care Plan</title>
+          <text mediaType="text/x-hl7-text+xml" />
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.11" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.6" />
+          <id root="3a362d4b-6bd7-40bc-91b4-b06cb4ee503a" />
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Active Problems" />
+          <title mediaType="text/plain">Active Problems</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <table>
+              <thead>
+                <tr>
+                  <th>Problem</th>
+                  <th>Yes/No</th>
+                  <th>Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="obs-89386406-f717-4eb3-b272-fcf290538c8d">
+                  <td>Obesity (ICD-9-CM 278.00)</td>
+                  <td align="center">YES</td>
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1" />
+              <templateId root="2.16.840.1.113883.10.20.1.27" />
+              <id root="554e9f75-a85a-4985-bec7-380c097fbc93" />
+              <code nullFlavor="NA" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="19990101000000-08" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="false">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.28" />
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5" />
+                  <id root="89386406-f717-4eb3-b272-fcf290538c8d" />
+                  <code xsi:type="CE" code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Finding" />
+                  <text mediaType="text/plain">
+                    <reference value="#obs-89386406-f717-4eb3-b272-fcf290538c8d" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="19990101000000-08" />
+                  </effectiveTime>
+                  <value xsi:type="CD" code="278.00" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Obesity (ICD-9-CM 278.00)" />
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.4" />
+          <id root="f59cab26-8af2-4ae8-863d-90e2c4fffa42" />
+          <code code="10164-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Present Illness" />
+          <title mediaType="text/plain">History of Present Illness</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <paragraph>(No Data)</paragraph>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.15" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.16" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.16.1" />
+          <id root="2a827d8e-de2b-42be-80db-f32e405b24f5" />
+          <code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Social History" />
+          <title mediaType="text/plain">Coded Social History</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <paragraph>(No Data)</paragraph>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.24" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.9.15" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.9.15.1" />
+          <id root="c8403b4c-20fd-4346-a4ef-216c830969b3" />
+          <code code="29545-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Physical Examination" />
+          <title mediaType="text/plain">Coded Detailed Physical Examination</title>
+          <text mediaType="text/x-hl7-text+xml" />
+          <component>
+            <section classCode="DOCSECT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.16" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.25" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.5.3.2" />
+              <id root="ff6b5495-67de-433f-8503-c1f369e99efa" />
+              <code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital Signs" />
+              <title mediaType="text/plain">Vital Signs</title>
+              <text mediaType="text/x-hl7-text+xml">
+                <paragraph>(No Data)</paragraph>
+              </text>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.8" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.19" />
+          <id root="ad874f67-a307-40f6-a52a-7245489de935" />
+          <code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Medication Use" />
+          <title mediaType="text/plain">Medications</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <table>
+              <thead>
+                <tr>
+                  <th>Medication</th>
+                  <th>Start</th>
+                  <th>Stop</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="med-7d74a115-53b7-4e84-9c50-325bac77c47f">
+                  <td>ALSEROXYLON 2MG TAB</td>
+                  <td>4/18/2000 2:00:00 PM</td>
+                  <td align="center">5/2/2000 2:00:00 PM</td>
+                </tr>
+                <tr ID="med-d409a7f2-5af3-4fb5-8a73-e86524a11cf2">
+                  <td>ACETAMINPHEN 325MG CT</td>
+                  <td>7/21/2000 9:00:00 AM</td>
+                  <td align="center">7/21/2000 9:00:00 AM</td>
+                </tr>
+                <tr ID="med-23270c97-c0a6-46db-85af-0180f08c7220">
+                  <td>ACETAMINPHEN 325MG CT</td>
+                  <td>7/21/2000 12:00:00 AM</td>
+                  <td align="center">7/21/2000 7:08:00 PM</td>
+                </tr>
+                <tr ID="med-cd5bf7c4-d81b-41bd-8680-d75c90980357">
+                  <td>ACETAMINPHEN 325MG CT</td>
+                  <td>7/21/2000 7:00:00 PM</td>
+                  <td align="center">7/21/2000 7:00:00 PM</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="7d74a115-53b7-4e84-9c50-325bac77c47f" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000418140000-07" />
+                <high value="20000502140000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-7d74a115-53b7-4e84-9c50-325bac77c47f" />
+                      </originalText>
+                    </code>
+                    <name>ALSEROXYLON 2MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="d409a7f2-5af3-4fb5-8a73-e86524a11cf2" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000721090000-07" />
+                <high value="20000721090000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017513" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ACETAMINOPHEN">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-d409a7f2-5af3-4fb5-8a73-e86524a11cf2" />
+                      </originalText>
+                    </code>
+                    <name>ACETAMINPHEN 325MG CT</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="23270c97-c0a6-46db-85af-0180f08c7220" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000721000000-07" />
+                <high value="20000721190800-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017513" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ACETAMINOPHEN">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-23270c97-c0a6-46db-85af-0180f08c7220" />
+                      </originalText>
+                    </code>
+                    <name>ACETAMINPHEN 325MG CT</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="cd5bf7c4-d81b-41bd-8680-d75c90980357" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000721190000-07" />
+                <high value="20000721190000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017513" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ACETAMINOPHEN">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-cd5bf7c4-d81b-41bd-8680-d75c90980357" />
+                      </originalText>
+                    </code>
+                    <name>ACETAMINPHEN 325MG CT</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

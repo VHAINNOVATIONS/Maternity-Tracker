@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:voc="urn:hl7-org:v3/voc" moodCode="EVN" xsi:schemaLocation="urn:hl7-org:v3 infrastructure/cda/CDA.xsd" xmlns="urn:hl7-org:v3">
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.1" />
+  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.21.1.3" />
+  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.2" />
+  <id root="49c056a5-2cb0-40de-9f94-aa1f6d76907f" />
+  <code code="57058-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Maternal Discharge Summary" />
+  <title mediaType="text/plain">Maternal Discharge Summary</title>
+  <effectiveTime value="20161025080252-07" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" />
+  <languageCode code="en-US" />
+  <recordTarget typeCode="RCT" contextControlCode="OP">
+    <patientRole classCode="PAT">
+      <id root="2.16.840.1.113883.4.1" extension="666-66-7776" />
+      <addr use="H">
+        <streetAddressLine mediaType="text/plain">921 NE 13, WASHINGTON, DC 12211</streetAddressLine>
+        <city mediaType="text/plain">WASHINGTON</city>
+        <state mediaType="text/plain">DISTRICT OF COLUMBIA</state>
+        <postalCode mediaType="text/plain">12211</postalCode>
+        <country mediaType="text/plain">US</country>
+      </addr>
+      <telecom nullFlavor="UNK" />
+      <patient classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <given mediaType="text/plain">ONE</given>
+          <family mediaType="text/plain">TDOCPATIENT</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" />
+        <birthTime value="19220901" />
+        <maritalStatusCode code="M" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatus" displayName="Married" />
+      </patient>
+      <providerOrganization classCode="ORG" determinerCode="INSTANCE">
+        <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+        <name>VAMC ALBANY</name>
+        <telecom value="123-456-7890" use="WP" />
+        <addr use="WP">
+          <streetAddressLine mediaType="text/plain">VA MEDICAL CENTER</streetAddressLine>
+          <streetAddressLine mediaType="text/plain">1 3RD sT.</streetAddressLine>
+          <city mediaType="text/plain">ALBANY</city>
+          <state mediaType="text/plain">NEW YORK</state>
+          <postalCode mediaType="text/plain">12180-0097</postalCode>
+          <country mediaType="text/plain">US</country>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+  <author typeCode="AUT" contextControlCode="OP">
+    <time value="00010101000000-08" />
+    <assignedAuthor classCode="ASSIGNED">
+      <realmCode code="US" />
+      <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <given mediaType="text/plain">ONE</given>
+          <family mediaType="text/plain">CPRSNURSE</family>
+        </name>
+      </assignedPerson>
+    </assignedAuthor>
+  </author>
+  <custodian typeCode="CST">
+    <assignedCustodian classCode="ASSIGNED">
+      <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
+        <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+        <name>VAMC ALBANY</name>
+        <telecom value="123-456-7890" use="WP" />
+        <addr use="WP">
+          <streetAddressLine mediaType="text/plain">VA MEDICAL CENTER</streetAddressLine>
+          <streetAddressLine mediaType="text/plain">1 3RD sT.</streetAddressLine>
+          <city mediaType="text/plain">ALBANY</city>
+          <state mediaType="text/plain">NEW YORK</state>
+          <postalCode mediaType="text/plain">12180-0097</postalCode>
+          <country mediaType="text/plain">US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient>
+    <templateId root="1.3.6.1.4.1.19376.1.3.3.1.4" />
+    <intendedRecipient>
+      <informationRecipient classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <given mediaType="text/plain">ghjghj</given>
+          <family mediaType="text/plain">ghjghj</family>
+        </name>
+      </informationRecipient>
+      <receivedOrganization classCode="ORG" determinerCode="INSTANCE">
+        <name>gjghj</name>
+        <telecom nullFlavor="UNK" />
+        <addr nullFlavor="UNK" />
+      </receivedOrganization>
+    </intendedRecipient>
+  </informationRecipient>
+  <participant typeCode="IND" contextControlCode="OP">
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4" />
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4.1" />
+    <associatedEntity nullFlavor="UNK" classCode="PRS">
+      <code code="xx-spouse" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Patient's Spouse" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <associatedPerson nullFlavor="UNK" classCode="PSN" determinerCode="INSTANCE">
+        <name nullFlavor="UNK" />
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <participant typeCode="IND" contextControlCode="OP">
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4" />
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4.2" />
+    <associatedEntity classCode="PRS">
+      <code code="xx-fatherofbaby" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Father Of Baby" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <associatedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <family mediaType="text/plain">Unspecified</family>
+        </name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <documentationOf typeCode="DOC">
+    <serviceEvent moodCode="EVN">
+      <effectiveTime>
+        <low nullFlavor="UNK" />
+      </effectiveTime>
+    </serviceEvent>
+  </documentationOf>
+  <component>
+    <structuredBody classCode="DOCBODY" moodCode="EVN">
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.21.2.9" />
+          <id root="3dbab944-94c2-44cc-82be-9859de2c8ff6" />
+          <code code="42545-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Event Outcomes" />
+          <title mediaType="text/plain">Event Outcomes</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date/Time</th>
+                  <th>Description</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="obs-2c2fb79e-55f1-44ae-a656-686af7e3d1e7">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Attending Physician Name</td>
+                  <td align="center">Test Delivery Provider</td>
+                </tr>
+                <tr ID="obs-fb457a82-6c7b-4660-b553-17ab01e85bc4">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Mother Discharge Date</td>
+                  <td align="center">5/10/2015</td>
+                </tr>
+                <tr ID="obs-8f13a42e-6957-4fb0-a43a-b19732d68a9f">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Obstetric Delivery Method</td>
+                  <td align="center">Cesarean Delivery</td>
+                </tr>
+                <tr ID="obs-926bcb71-be27-4657-a92d-045dcf81ea07">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Complication of pregnancy, childbirth and/or the puerperium</td>
+                  <td align="center">test complication
+</td>
+                </tr>
+                <tr ID="obs-27dc0647-3f17-4853-b08a-b25c4ad65ce4">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Delivery Hospital</td>
+                  <td align="center">Test Hospital</td>
+                </tr>
+                <tr ID="obs-eba50c30-7566-4f47-805c-05f696a2654e">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Gestational Age at Birth</td>
+                  <td align="center">39 weeks</td>
+                </tr>
+                <tr ID="obs-76e934db-42f0-401f-be02-0a53a967f70c">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Birth Date of Fetus</td>
+                  <td align="center">5/5/2015</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="2c2fb79e-55f1-44ae-a656-686af7e3d1e7" />
+              <code xsi:type="CE" code="52526-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Attending Physician Name" />
+              <text mediaType="text/plain">
+                <reference value="#obs-2c2fb79e-55f1-44ae-a656-686af7e3d1e7" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="ST" mediaType="text/plain">Test Delivery Provider</value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="fb457a82-6c7b-4660-b553-17ab01e85bc4" />
+              <code xsi:type="CE" code="46503-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Mother Discharge Date" />
+              <text mediaType="text/plain">
+                <reference value="#obs-fb457a82-6c7b-4660-b553-17ab01e85bc4" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="TS" value="20150510000000-07" />
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="8f13a42e-6957-4fb0-a43a-b19732d68a9f" />
+              <code xsi:type="CE" code="57071-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Obstetric Delivery Method" />
+              <text mediaType="text/plain">
+                <reference value="#obs-8f13a42e-6957-4fb0-a43a-b19732d68a9f" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="ST" mediaType="text/plain">Cesarean Delivery</value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="926bcb71-be27-4657-a92d-045dcf81ea07" />
+              <code xsi:type="CE" code="198609003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Complication of pregnancy, childbirth and/or the puerperium" />
+              <text mediaType="text/plain">
+                <reference value="#obs-926bcb71-be27-4657-a92d-045dcf81ea07" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="ST" mediaType="text/plain">test complication
+</value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="27dc0647-3f17-4853-b08a-b25c4ad65ce4" />
+              <code xsi:type="CE" code="62330-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Delivery Hospital" />
+              <text mediaType="text/plain">
+                <reference value="#obs-27dc0647-3f17-4853-b08a-b25c4ad65ce4" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="ST" mediaType="text/plain">Test Hospital</value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="eba50c30-7566-4f47-805c-05f696a2654e" />
+              <code xsi:type="CE" code="412726003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Gestational Age at Birth" />
+              <text mediaType="text/plain">
+                <reference value="#obs-eba50c30-7566-4f47-805c-05f696a2654e" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="PQ" value="39" unit="weeks" />
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="76e934db-42f0-401f-be02-0a53a967f70c" />
+              <code xsi:type="CE" code="75092-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Birth Date of Fetus" />
+              <text mediaType="text/plain">
+                <reference value="#obs-76e934db-42f0-401f-be02-0a53a967f70c" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="TS" value="20150505000000-07" />
+            </observation>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

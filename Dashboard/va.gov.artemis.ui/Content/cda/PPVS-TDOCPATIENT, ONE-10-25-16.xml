@@ -1,0 +1,3000 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:voc="urn:hl7-org:v3/voc" moodCode="EVN" xsi:schemaLocation="urn:hl7-org:v3 infrastructure/cda/CDA.xsd" xmlns="urn:hl7-org:v3">
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.1" />
+  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.21.1.4" />
+  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.2" />
+  <id root="6c3102b0-6e5d-4126-986c-2c340c8fc181" />
+  <code code="XX-PostPartumVisitSummary" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Postpartum Visit Summary" />
+  <title mediaType="text/plain">Postpartum Visit Summary</title>
+  <effectiveTime value="20161025080016-07" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" />
+  <languageCode code="en-US" />
+  <recordTarget typeCode="RCT" contextControlCode="OP">
+    <patientRole classCode="PAT">
+      <id root="2.16.840.1.113883.4.1" extension="666-66-7776" />
+      <addr use="H">
+        <streetAddressLine mediaType="text/plain">921 NE 13, WASHINGTON, DC 12211</streetAddressLine>
+        <city mediaType="text/plain">WASHINGTON</city>
+        <state mediaType="text/plain">DISTRICT OF COLUMBIA</state>
+        <postalCode mediaType="text/plain">12211</postalCode>
+        <country mediaType="text/plain">US</country>
+      </addr>
+      <telecom nullFlavor="UNK" />
+      <patient classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <given mediaType="text/plain">ONE</given>
+          <family mediaType="text/plain">TDOCPATIENT</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" />
+        <birthTime value="19220901" />
+        <maritalStatusCode code="M" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatus" displayName="Married" />
+      </patient>
+      <providerOrganization classCode="ORG" determinerCode="INSTANCE">
+        <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+        <name>VAMC ALBANY</name>
+        <telecom value="123-456-7890" use="WP" />
+        <addr use="WP">
+          <streetAddressLine mediaType="text/plain">VA MEDICAL CENTER</streetAddressLine>
+          <streetAddressLine mediaType="text/plain">1 3RD sT.</streetAddressLine>
+          <city mediaType="text/plain">ALBANY</city>
+          <state mediaType="text/plain">NEW YORK</state>
+          <postalCode mediaType="text/plain">12180-0097</postalCode>
+          <country mediaType="text/plain">US</country>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+  <author typeCode="AUT" contextControlCode="OP">
+    <time value="00010101000000-08" />
+    <assignedAuthor classCode="ASSIGNED">
+      <realmCode code="US" />
+      <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <given mediaType="text/plain">ONE</given>
+          <family mediaType="text/plain">CPRSNURSE</family>
+        </name>
+      </assignedPerson>
+    </assignedAuthor>
+  </author>
+  <custodian typeCode="CST">
+    <assignedCustodian classCode="ASSIGNED">
+      <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
+        <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+        <name>VAMC ALBANY</name>
+        <telecom value="123-456-7890" use="WP" />
+        <addr use="WP">
+          <streetAddressLine mediaType="text/plain">VA MEDICAL CENTER</streetAddressLine>
+          <streetAddressLine mediaType="text/plain">1 3RD sT.</streetAddressLine>
+          <city mediaType="text/plain">ALBANY</city>
+          <state mediaType="text/plain">NEW YORK</state>
+          <postalCode mediaType="text/plain">12180-0097</postalCode>
+          <country mediaType="text/plain">US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient>
+    <templateId root="1.3.6.1.4.1.19376.1.3.3.1.4" />
+    <intendedRecipient>
+      <informationRecipient classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <given mediaType="text/plain">hgfhgf</given>
+          <family mediaType="text/plain">hgfhgf</family>
+        </name>
+      </informationRecipient>
+      <receivedOrganization classCode="ORG" determinerCode="INSTANCE">
+        <name>hgfhgf</name>
+        <telecom nullFlavor="UNK" />
+        <addr nullFlavor="UNK" />
+      </receivedOrganization>
+    </intendedRecipient>
+  </informationRecipient>
+  <participant typeCode="IND" contextControlCode="OP">
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4" />
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4.1" />
+    <associatedEntity nullFlavor="UNK" classCode="PRS">
+      <code code="xx-spouse" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Patient's Spouse" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <associatedPerson nullFlavor="UNK" classCode="PSN" determinerCode="INSTANCE">
+        <name nullFlavor="UNK" />
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <participant typeCode="IND" contextControlCode="OP">
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4" />
+    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.4.2" />
+    <associatedEntity classCode="PRS">
+      <code code="xx-fatherofbaby" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Father Of Baby" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <associatedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name use="L">
+          <family mediaType="text/plain">Unspecified</family>
+        </name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <documentationOf typeCode="DOC">
+    <serviceEvent moodCode="EVN">
+      <effectiveTime>
+        <low nullFlavor="UNK" />
+      </effectiveTime>
+    </serviceEvent>
+  </documentationOf>
+  <component>
+    <structuredBody classCode="DOCBODY" moodCode="EVN">
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.2" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.13" />
+          <id root="34238a64-4998-4014-9728-38b69670f27a" />
+          <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, adverse reactions, alerts" />
+          <title mediaType="text/plain">Allergies</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <table>
+              <caption>Allergies &amp; Intolerances</caption>
+              <thead>
+                <tr>
+                  <th>Date/Time</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="al-426f9610-80be-47b8-b0d1-a60b1bee9c17">
+                  <td>8/25/1999 3:14:00 PM</td>
+                  <td>ASPIRIN</td>
+                  <td>completed</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.27" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.3" />
+              <id root="3131b81c-0fdd-49b6-96a9-d83bc328c446" />
+              <code nullFlavor="NA" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="19990825151400-07" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="false">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5" />
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.6" />
+                  <templateId root="2.16.840.1.113883.10.20.1.28" />
+                  <id root="14026b12-0427-4792-92fa-5d8d6f739d69" />
+                  <code code="FALG" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ObservationIntoleranceType" />
+                  <text mediaType="text/plain">426f9610-80be-47b8-b0d1-a60b1bee9c17</text>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low nullFlavor="UNK" />
+                    <high value="19990825151400-07" />
+                  </effectiveTime>
+                  <value xsi:type="CD">
+                    <originalText mediaType="text/plain">ASPIRIN</originalText>
+                  </value>
+                  <participant typeCode="CSM" contextControlCode="OP">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT" determinerCode="INSTANCE">
+                        <code code="426f9610-80be-47b8-b0d1-a60b1bee9c17" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                          <originalText mediaType="text/plain">
+                            <reference value="ASPIRINSALICYLATES,ANTIRHEUMATIC" />
+                          </originalText>
+                        </code>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.21.2.3" />
+          <id root="ae7de765-012d-48f4-abef-51493ff17514" />
+          <code code="57074-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Labor &amp; Delivery Process" />
+          <title mediaType="text/plain">Labor &amp; Delivery Process</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date/Time</th>
+                  <th>Description</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="obs-a2e4f93b-0918-40ea-b456-395155a8b789">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Attending Physician Name</td>
+                  <td align="center">Test Delivery Provider</td>
+                </tr>
+                <tr ID="obs-9a425c62-c4d9-42b4-b6ea-9f204b5dbaa6">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Mother Discharge Date</td>
+                  <td align="center">5/10/2015</td>
+                </tr>
+                <tr ID="obs-fee65e5f-ecd5-4abc-912a-70f5a6e7fd78">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Obstetric Delivery Method</td>
+                  <td align="center">Cesarean Delivery</td>
+                </tr>
+                <tr ID="obs-eda58d66-9127-4e18-922b-81a251d6f1bd">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Complication of pregnancy, childbirth and/or the puerperium</td>
+                  <td align="center">test complication
+</td>
+                </tr>
+                <tr ID="obs-23aa8be4-6fb6-4833-a7cd-200317046fc8">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Delivery Hospital</td>
+                  <td align="center">Test Hospital</td>
+                </tr>
+                <tr ID="obs-e5d2383c-89cd-4494-aa63-72cff5825abd">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Gestational Age at Birth</td>
+                  <td align="center">39 weeks</td>
+                </tr>
+                <tr ID="obs-aee010b0-c2d0-405a-85bb-82676cda8cfc">
+                  <td>10/25/2016 7:59:46 AM</td>
+                  <td>Birth Date of Fetus</td>
+                  <td align="center">5/5/2015</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="a2e4f93b-0918-40ea-b456-395155a8b789" />
+              <code xsi:type="CE" code="52526-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Attending Physician Name" />
+              <text mediaType="text/plain">
+                <reference value="#obs-a2e4f93b-0918-40ea-b456-395155a8b789" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="ST" mediaType="text/plain">Test Delivery Provider</value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="9a425c62-c4d9-42b4-b6ea-9f204b5dbaa6" />
+              <code xsi:type="CE" code="46503-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Mother Discharge Date" />
+              <text mediaType="text/plain">
+                <reference value="#obs-9a425c62-c4d9-42b4-b6ea-9f204b5dbaa6" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="TS" value="20150510000000-07" />
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="fee65e5f-ecd5-4abc-912a-70f5a6e7fd78" />
+              <code xsi:type="CE" code="57071-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Obstetric Delivery Method" />
+              <text mediaType="text/plain">
+                <reference value="#obs-fee65e5f-ecd5-4abc-912a-70f5a6e7fd78" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="ST" mediaType="text/plain">Cesarean Delivery</value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="eda58d66-9127-4e18-922b-81a251d6f1bd" />
+              <code xsi:type="CE" code="198609003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Complication of pregnancy, childbirth and/or the puerperium" />
+              <text mediaType="text/plain">
+                <reference value="#obs-eda58d66-9127-4e18-922b-81a251d6f1bd" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="ST" mediaType="text/plain">test complication
+</value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="23aa8be4-6fb6-4833-a7cd-200317046fc8" />
+              <code xsi:type="CE" code="62330-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Delivery Hospital" />
+              <text mediaType="text/plain">
+                <reference value="#obs-23aa8be4-6fb6-4833-a7cd-200317046fc8" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="ST" mediaType="text/plain">Test Hospital</value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="e5d2383c-89cd-4494-aa63-72cff5825abd" />
+              <code xsi:type="CE" code="412726003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Gestational Age at Birth" />
+              <text mediaType="text/plain">
+                <reference value="#obs-e5d2383c-89cd-4494-aa63-72cff5825abd" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="PQ" value="39" unit="weeks" />
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <id root="aee010b0-c2d0-405a-85bb-82676cda8cfc" />
+              <code xsi:type="CE" code="75092-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Birth Date of Fetus" />
+              <text mediaType="text/plain">
+                <reference value="#obs-aee010b0-c2d0-405a-85bb-82676cda8cfc" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high value="20161025075946-07" />
+              </effectiveTime>
+              <value xsi:type="TS" value="20150505000000-07" />
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.21.2.7" />
+          <id root="9be9b61c-2026-4092-82c1-c9a96f82ccac" />
+          <code code="57076-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Postpartum Hospitalization Treatment" />
+          <title mediaType="text/plain">Postpartum Hospitalization Treatment</title>
+          <text mediaType="text/x-hl7-text+xml" />
+          <component>
+            <section classCode="DOCSECT" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.13.2.11" />
+              <id root="d1335bf4-3110-4e39-b049-7b13a89b3c31" />
+              <code code="29554-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Procedures &amp; Interventions" />
+              <title mediaType="text/plain">Procedures &amp; Interventions</title>
+              <text mediaType="text/x-hl7-text+xml" />
+            </section>
+          </component>
+          <component>
+            <section classCode="DOCSECT" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.33" />
+              <id root="c85bc695-480a-4d2b-a906-2b475353bf8d" />
+              <code code="42344-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Discharge Diet" />
+              <title mediaType="text/plain">Discharge Diet</title>
+              <text mediaType="text/x-hl7-text+xml" />
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.10" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.31" />
+          <id root="954a5188-c01b-428a-9c09-708640164f23" />
+          <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Treatment Plan" />
+          <title mediaType="text/plain">Care Plan</title>
+          <text mediaType="text/x-hl7-text+xml" />
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.11" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.6" />
+          <id root="88df8f7a-f0b5-43f3-a2d2-840b2b9f2e49" />
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Active Problems" />
+          <title mediaType="text/plain">Active Problems</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <table>
+              <thead>
+                <tr>
+                  <th>Problem</th>
+                  <th>Yes/No</th>
+                  <th>Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="obs-4e491376-1349-4095-8d30-b592cb83407b">
+                  <td>Diabetes Mellitus (ICD-9-CM 250.00)</td>
+                  <td align="center">YES</td>
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1" />
+              <templateId root="2.16.840.1.113883.10.20.1.27" />
+              <id root="6ea6bce9-1779-499c-b83b-a71a8541c971" />
+              <code nullFlavor="NA" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20000705000000-07" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="false">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.28" />
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5" />
+                  <id root="4e491376-1349-4095-8d30-b592cb83407b" />
+                  <code xsi:type="CE" code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Finding" />
+                  <text mediaType="text/plain">
+                    <reference value="#obs-4e491376-1349-4095-8d30-b592cb83407b" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20000705000000-07" />
+                  </effectiveTime>
+                  <value xsi:type="CD" code="250.00" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Diabetes Mellitus (ICD-9-CM 250.00)" />
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.4" />
+          <id root="06427c47-3718-4e0b-830b-58ff3b580490" />
+          <code code="10164-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Present Illness" />
+          <title mediaType="text/plain">History of Present Illness</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <paragraph>(No Data)</paragraph>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.15" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.16" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.16.1" />
+          <id root="8cb63acb-6d8c-48ec-b4d2-f333ab7f1b01" />
+          <code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Social History" />
+          <title mediaType="text/plain">Coded Social History</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <table>
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="obs-71ac9c84-9655-4d51-99ec-6c4c2a70d577">
+                  <td>Postpartum Depression Screening</td>
+                  <td>N/A</td>
+                  <td>10
+</td>
+                </tr>
+                <tr ID="obs-53014a58-14e0-4750-b420-e8d8116276e7">
+                  <td>Risk of Intimate Partner Violence</td>
+                  <td>N/A</td>
+                  <td>none
+</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.33" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13.4" />
+              <id root="71ac9c84-9655-4d51-99ec-6c4c2a70d577" />
+              <code xsi:type="CE" code="428221000124108" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Postpartum Depression Screening" />
+              <text mediaType="text/plain">
+                <reference value="#obs-71ac9c84-9655-4d51-99ec-6c4c2a70d577" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+              </effectiveTime>
+              <value xsi:type="CD" code="428221000124108" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Postpartum Depression Screening" />
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.33" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13.4" />
+              <id root="53014a58-14e0-4750-b420-e8d8116276e7" />
+              <code xsi:type="CE" code="706892001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Risk of Intimate Partner Violence" />
+              <text mediaType="text/plain">
+                <reference value="#obs-53014a58-14e0-4750-b420-e8d8116276e7" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+              </effectiveTime>
+              <value xsi:type="CD" code="706892001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Risk of Intimate Partner Violence" />
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.24" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.9.15" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.9.15.1" />
+          <id root="a27a63b7-21db-41f7-b528-aa3d785ac124" />
+          <code code="29545-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Physical Examination" />
+          <title mediaType="text/plain">Coded Detailed Physical Examination</title>
+          <text mediaType="text/x-hl7-text+xml" />
+          <component>
+            <section classCode="DOCSECT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.16" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.25" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.5.3.2" />
+              <id root="5c81fe3c-2d0f-4290-acab-5d29c93caa86" />
+              <code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital Signs" />
+              <title mediaType="text/plain">Vital Signs</title>
+              <text mediaType="text/x-hl7-text+xml">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Measurement</th>
+                      <th>Value</th>
+                      <th>Comment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ID="obs-46880bee-e9e3-43ec-9726-0e95d6cfbcda">
+                      <td>INTRAVASCULAR SYSTOLIC</td>
+                      <td>166 mm[Hg]</td>
+                      <td />
+                    </tr>
+                    <tr ID="obs-431e8b5f-0de7-4395-8701-1eb343f8ccc1">
+                      <td>INTRAVASCULAR DIASTOLIC</td>
+                      <td>66 mm[Hg]</td>
+                      <td />
+                    </tr>
+                  </tbody>
+                </table>
+              </text>
+              <entry>
+                <organizer classCode="CLUSTER" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.32" />
+                  <templateId root="2.16.840.1.113883.10.20.1.35" />
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13.1" />
+                  <id root="17a83e5a-1748-4b5f-b5db-94766634cb42" />
+                  <code code="46680005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="Snomed-CT" displayName="Vital Signs" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low nullFlavor="UNK" />
+                    <high value="20010419140000-07" />
+                  </effectiveTime>
+                  <component>
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+                      <templateId root="2.16.840.1.113883.10.20.1.31" />
+                      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13.2" />
+                      <id root="46880bee-e9e3-43ec-9726-0e95d6cfbcda" />
+                      <code xsi:type="CE" code="8480-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="INTRAVASCULAR SYSTOLIC" />
+                      <text mediaType="text/plain">
+                        <reference value="#obs-46880bee-e9e3-43ec-9726-0e95d6cfbcda" />
+                      </text>
+                      <statusCode code="completed" />
+                      <effectiveTime>
+                        <low nullFlavor="UNK" />
+                        <high value="20010419140000-07" />
+                      </effectiveTime>
+                      <value xsi:type="PQ" value="166" unit="mm[Hg]" />
+                    </observation>
+                  </component>
+                  <component>
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13" />
+                      <templateId root="2.16.840.1.113883.10.20.1.31" />
+                      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.13.2" />
+                      <id root="431e8b5f-0de7-4395-8701-1eb343f8ccc1" />
+                      <code xsi:type="CE" code="8462-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="INTRAVASCULAR DIASTOLIC" />
+                      <text mediaType="text/plain">
+                        <reference value="#obs-431e8b5f-0de7-4395-8701-1eb343f8ccc1" />
+                      </text>
+                      <statusCode code="completed" />
+                      <effectiveTime>
+                        <low nullFlavor="UNK" />
+                        <high value="20010419140000-07" />
+                      </effectiveTime>
+                      <value xsi:type="PQ" value="66" unit="mm[Hg]" />
+                    </observation>
+                  </component>
+                </organizer>
+              </entry>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.8" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.19" />
+          <id root="77d3756d-f248-473b-a8ce-dd1b4c97c63c" />
+          <code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Medication Use" />
+          <title mediaType="text/plain">Medications</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <table>
+              <thead>
+                <tr>
+                  <th>Medication</th>
+                  <th>Start</th>
+                  <th>Stop</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="med-1cf49039-a9dd-4954-a70a-0f4da706ec1e">
+                  <td>IBUPROFEN 600MG</td>
+                  <td>2/26/1997 12:00:00 AM</td>
+                  <td align="center">2/27/1998 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-30937691-ea3e-4c9e-a66d-762fcb9169c4">
+                  <td>ASCORBIC ACID 100MG TAB</td>
+                  <td>3/18/1999 12:00:00 AM</td>
+                  <td align="center">4/17/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-6f059df4-0dfd-4e24-88aa-ff855354b91c">
+                  <td>DIGOXIN 0.125MG C.T.,</td>
+                  <td>7/1/1999 12:00:00 AM</td>
+                  <td align="center">8/19/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-3b7e4922-b356-4e80-89d5-4bef4f99bee1">
+                  <td>ZZDIGOXIN 0.25MG</td>
+                  <td>3/12/1999 12:00:00 AM</td>
+                  <td align="center">7/7/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-6f34b9e7-7a2f-4ef8-8eec-fa11dda96d0a">
+                  <td>CODEINE SULFATE 30MG C.T.</td>
+                  <td>7/20/1999 12:00:00 AM</td>
+                  <td align="center">8/16/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-1c711fe6-f77d-4ddc-9f4a-4a290dad9afc">
+                  <td>CODEINE SULFATE 30MG C.T.</td>
+                  <td>8/16/1999 12:00:00 AM</td>
+                  <td align="center">8/16/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-d293326e-bc05-4a0e-bb2e-44df84a96bbc">
+                  <td>DIGOXIN 0.125MG C.T.,</td>
+                  <td>8/19/1999 12:00:00 AM</td>
+                  <td align="center">8/24/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-8d168ab8-291c-400d-9a90-24700c3358f6">
+                  <td>CODEINE PHOS. 30MG SYRINGE</td>
+                  <td>8/16/1999 12:00:00 AM</td>
+                  <td align="center">9/15/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-7915352b-615a-4675-be83-0e59627b835e">
+                  <td>ASPIRIN 650MG SUPPOSITORIES</td>
+                  <td>9/10/1999 12:00:00 AM</td>
+                  <td align="center">11/8/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-99676c92-66fa-4e01-9b1e-b7791b0a15a8">
+                  <td>SULFACETAMIDE 10% OPTH SOL 15ML</td>
+                  <td>9/11/1999 12:00:00 AM</td>
+                  <td align="center">11/10/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-01e8cdfb-73b2-4b0c-9f01-60357bcf897c">
+                  <td>SULFACETAMIDE 10% OPTH SOL 15ML</td>
+                  <td>9/21/1999 12:00:00 AM</td>
+                  <td align="center">10/21/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-e6615d9d-28f9-490c-a7ec-c96e8d76fdab">
+                  <td>ASPIRIN 650MG SUPPOSITORIES</td>
+                  <td>10/10/1999 12:00:00 AM</td>
+                  <td align="center">11/8/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-dfd58474-e653-4ed2-9439-4bcd01f810d3">
+                  <td>ASPIRIN 650MG SUPPOSITORIES</td>
+                  <td>11/10/1999 12:00:00 AM</td>
+                  <td align="center">11/17/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-341acccf-d934-4da5-964c-a5ba803b2e44">
+                  <td>ASPIRIN 650MG SUPPOSITORIES</td>
+                  <td>11/17/1999 12:00:00 AM</td>
+                  <td align="center">3/16/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-cca9342f-5814-46a9-ba4e-681b60f2b25b">
+                  <td>ASPIRIN 650MG SUPPOSITORIES</td>
+                  <td>11/8/1999 12:00:00 AM</td>
+                  <td align="center">12/8/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-7aa83119-e423-443b-a10b-be3a730f8815">
+                  <td>DIAZEPAM 2MG S.T.</td>
+                  <td>7/20/1999 12:00:00 AM</td>
+                  <td align="center">3/16/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-aaf68526-8f75-4338-8231-77fc51da4966">
+                  <td>PROPRANOLOL 10MG S.T.</td>
+                  <td>1/20/1999 12:00:00 AM</td>
+                  <td align="center">11/29/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-fe553767-9cfe-4be8-8f9c-93ae3ef8d730">
+                  <td>TEMAZEPAM 15MG CAP</td>
+                  <td>8/19/1999 12:00:00 AM</td>
+                  <td align="center">2/19/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-b1ee3abd-fc59-4241-bba0-fe561bd43def">
+                  <td>FUROSEMIDE 40MG TAB</td>
+                  <td>3/12/1999 12:00:00 AM</td>
+                  <td align="center">9/10/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-959b5843-5714-4ee8-bb08-defe2fac0ec7">
+                  <td>HOLLISTER NO. 3222 30'S 1"</td>
+                  <td>3/12/1999 12:00:00 AM</td>
+                  <td align="center">3/12/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-0637e52a-eb2e-4332-ab76-ffab21b86404">
+                  <td>ATENOLOL 100MG TAB</td>
+                  <td>2/11/2000 12:00:00 AM</td>
+                  <td align="center">3/14/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-9e491460-45da-4313-8831-97161dbec3f4">
+                  <td>ATENOLOL 100MG TAB</td>
+                  <td>3/14/2000 12:00:00 AM</td>
+                  <td align="center">3/16/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-e370a53e-5060-4f7a-be78-42a85cb86ab1">
+                  <td>AMITRIPTYLINE 100MG</td>
+                  <td>3/14/2000 12:00:00 AM</td>
+                  <td align="center">3/16/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-24a1a04f-6a09-49a5-a306-c892548c01dd">
+                  <td>ASPIRIN 650MG SUPPOSITORIES</td>
+                  <td>3/16/2000 12:00:00 AM</td>
+                  <td align="center">3/26/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-70ecf00e-2a8f-4b97-b729-5518536f7452">
+                  <td>METAPROTERENOL 5% SOLUTION 10ML</td>
+                  <td>3/30/1999 12:00:00 AM</td>
+                  <td align="center">3/30/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-ab54c971-282f-43ec-bd20-3cf5f8c0bd3c">
+                  <td>ATENOLOL 50 MG TAB</td>
+                  <td>4/5/1999 12:00:00 AM</td>
+                  <td align="center">11/29/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-3c28195f-6208-415e-b799-ccbecc2b7474">
+                  <td>AMITRIPTYLINE 100MG</td>
+                  <td>3/16/2000 12:00:00 AM</td>
+                  <td align="center">4/17/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-dc60bc03-9c7d-4b77-a684-d4df6b015bff">
+                  <td>AMITRIPTYLINE 100MG</td>
+                  <td>4/23/1999 12:00:00 AM</td>
+                  <td align="center">4/17/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-557c13a4-5f90-4208-9948-aac54d1ccb02">
+                  <td>PROPRANOLOL 10MG S.T.</td>
+                  <td>11/29/1999 12:00:00 AM</td>
+                  <td align="center">5/31/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-4608ab24-53ab-4845-99bc-a3f5853b407b">
+                  <td>ATENOLOL 100MG TAB</td>
+                  <td>3/16/2000 12:00:00 AM</td>
+                  <td align="center">5/31/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-0a793c8d-e608-41bd-88ca-3461c277b149">
+                  <td>FLUOCINONIDE E 0.05% CRM 30GM</td>
+                  <td>9/10/1999 12:00:00 AM</td>
+                  <td align="center">6/7/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-1588ce31-2080-4a62-924f-1b6476d0b6cf">
+                  <td>HYDROCORTISONE CREAM 1%, USP</td>
+                  <td>11/8/1999 12:00:00 AM</td>
+                  <td align="center">6/7/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-5dcc9d0f-433b-46ed-9a6f-ccbce5eeb0ee">
+                  <td>FLUOCINOLONE 0.01% 60ML</td>
+                  <td>11/29/1999 12:00:00 AM</td>
+                  <td align="center">6/7/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-113a586e-e951-43cd-9ef9-aa9b469c767c">
+                  <td>FLUOCINONIDE 0.05% OINT. 60GM</td>
+                  <td>5/25/2000 12:00:00 AM</td>
+                  <td align="center">6/7/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-c7dd9cb9-459c-4485-a6f7-860edb12c20f">
+                  <td>VITAMIN E 200 IU CAP</td>
+                  <td>7/12/2000 12:00:00 AM</td>
+                  <td align="center">7/12/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-9062601d-ca3c-45e6-af1d-cc7c5ddb1155">
+                  <td>NITROGLYCERIN 0.6MG S.L.T.</td>
+                  <td>7/21/1999 12:00:00 AM</td>
+                  <td align="center">7/21/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-ecb23a82-0dbd-47a9-8f89-da06172f8ea4">
+                  <td>ASPIRIN 650MG SUPPOSITORIES</td>
+                  <td>8/10/1999 12:00:00 AM</td>
+                  <td align="center">11/8/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-41de9dba-c0b9-4a06-90ee-bdcb725089bf">
+                  <td>SULFACETAMIDE 10% OPTH SOL 15ML</td>
+                  <td>8/12/1999 12:00:00 AM</td>
+                  <td align="center">11/10/1999 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-d9b22b86-987a-41a8-9c94-bbbd03b6f243">
+                  <td>FUROSEMIDE 40MG TAB</td>
+                  <td>9/10/1999 12:00:00 AM</td>
+                  <td align="center">3/16/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-d5d14f9b-82d0-4b03-8096-5f1b639c0953">
+                  <td>DIAZEPAM 2MG S.T.</td>
+                  <td>3/16/2000 12:00:00 AM</td>
+                  <td align="center">9/16/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-04a58ffa-96f0-4725-a18f-33254b91d4b5">
+                  <td>HYDROCORTISONE CREAM 1%, USP</td>
+                  <td>9/17/1999 12:00:00 AM</td>
+                  <td align="center">1/2/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-465638ef-92c1-4056-8866-975e7ff05b64">
+                  <td>PILOCARPINE 4% OPTH SOL 15ML</td>
+                  <td>10/6/1999 12:00:00 AM</td>
+                  <td align="center">10/6/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-745ad01a-c0da-4855-a7f1-67d743229682">
+                  <td>MULTIVITAMIN TABLETS </td>
+                  <td>10/10/2000 12:00:00 AM</td>
+                  <td align="center">10/25/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-5335387d-b676-4f38-9a07-06c8f1f9e969">
+                  <td>AMITRIPTYLINE 100MG</td>
+                  <td>4/17/2000 12:00:00 AM</td>
+                  <td align="center">11/7/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-50e92bf1-7ca7-40e2-bedb-92f6d970f3ca">
+                  <td>ASCORBIC ACID; 500MG TAB</td>
+                  <td>7/12/2000 12:00:00 AM</td>
+                  <td align="center">11/7/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-fc4c4961-d37e-4c00-bd8a-00823dedc8aa">
+                  <td>RANITIDINE 150MG TAB</td>
+                  <td>10/13/2000 12:00:00 AM</td>
+                  <td align="center">11/12/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-6a5c114c-33bd-4d86-a9da-03536dc89af1">
+                  <td>ALBUTEROL INHALER</td>
+                  <td>10/13/2000 12:00:00 AM</td>
+                  <td align="center">11/12/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-454773c1-91ec-40f7-8bb5-e0663f98bf8f">
+                  <td>LISINOPRIL TAB 40MG</td>
+                  <td>11/28/2000 12:00:00 AM</td>
+                  <td align="center">11/28/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-2b12de4c-371f-4fc5-82a2-ac5177e86ad3">
+                  <td>ERYTHROMYCIN 250MG TAB</td>
+                  <td>11/28/2000 12:00:00 AM</td>
+                  <td align="center">11/28/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-a45e565e-0be5-459c-91c3-f9033617dfb0">
+                  <td>CODEINE SULFATE 30MG C.T.</td>
+                  <td>11/28/2000 12:00:00 AM</td>
+                  <td align="center">11/28/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-60e39ca2-4f28-4754-b559-c0942fa7353b">
+                  <td>BISACODYL 5MG TAB</td>
+                  <td>11/29/1999 12:00:00 AM</td>
+                  <td align="center">3/16/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-d8772b15-9b7f-48d0-bb25-43fb416a6020">
+                  <td>DIGOXIN 0.125MG C.T.,</td>
+                  <td>3/16/2000 12:00:00 AM</td>
+                  <td align="center">1/17/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-c912936e-41ba-480e-b9e0-add4aa77f45d">
+                  <td>DIGOXIN 0.125MG C.T.,</td>
+                  <td>2/11/2000 12:00:00 AM</td>
+                  <td align="center">3/16/2000 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-04d4a19d-5a20-4b16-a9a7-cd4b50f85ce4">
+                  <td>MAALOX THERAPEUTIC CONC. 6 0Z.</td>
+                  <td>1/29/2001 12:00:00 AM</td>
+                  <td align="center">2/28/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-0124950d-3756-471c-af3f-02bad59ca18f">
+                  <td>BISACODYL 5MG TAB</td>
+                  <td>3/16/2000 12:00:00 AM</td>
+                  <td align="center">3/17/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-92b5463e-2cca-4594-ae80-3321025fa796">
+                  <td>FUROSEMIDE 40MG TAB</td>
+                  <td>3/16/2000 12:00:00 AM</td>
+                  <td align="center">3/17/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-08486d54-d261-40c0-83ce-16c3f29b79d8">
+                  <td>ACETAMINOPHEN 325MG TABLET</td>
+                  <td>3/21/2001 12:00:00 AM</td>
+                  <td align="center">3/21/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-1d72ecf1-a660-4cf4-9ed7-f519f1fff29f">
+                  <td>POTASSIUM CHLORIDE 20MEQ PKT</td>
+                  <td>3/20/2001 12:00:00 AM</td>
+                  <td align="center">3/23/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-57e75f01-8c12-4eac-a44d-dbaa98f8ebd3">
+                  <td>ACETAMINOPHEN 325MG TABLET</td>
+                  <td>3/21/2001 12:00:00 AM</td>
+                  <td align="center">4/20/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-5a2ff683-aa33-4a50-8213-6f6e98066a4a">
+                  <td>PROPRANOLOL 80MG S.T.</td>
+                  <td>5/31/2000 12:00:00 AM</td>
+                  <td align="center">6/1/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-904a0ce1-be87-48a4-8f5d-4baafb7d62b0">
+                  <td>FLUOCINOLONE 0.01% 60ML</td>
+                  <td>6/7/2000 12:00:00 AM</td>
+                  <td align="center">6/8/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-8fbe04a6-636d-4ca5-b287-89dc5e47110d">
+                  <td>VITAMIN E 200 IU CAP</td>
+                  <td>7/12/2000 12:00:00 AM</td>
+                  <td align="center">7/13/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-8b83ccbf-9004-461f-ba66-7f47236b0b66">
+                  <td>LISINOPRIL TAB 40MG</td>
+                  <td>7/24/2000 12:00:00 AM</td>
+                  <td align="center">7/25/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-299cef37-c793-4d58-95cb-e77b3be9ada0">
+                  <td>HYDROCORTISONE CREAM 1%, USP</td>
+                  <td>1/2/2001 12:00:00 AM</td>
+                  <td align="center">9/13/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-c8f67fc6-5569-4bc7-86d9-580f67d900de">
+                  <td>CAPTOPRIL 25MG TABS</td>
+                  <td>9/13/2001 12:00:00 AM</td>
+                  <td align="center">9/13/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-8f5931b6-4558-4e16-90bb-f14937798312">
+                  <td>CAPTOPRIL 25MG TABS</td>
+                  <td>10/25/2000 12:00:00 AM</td>
+                  <td align="center">10/26/2001 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-48d0fce9-b6dc-458d-833a-7ed5e7a39a07">
+                  <td>DIGOXIN 0.05MG/ML ELIX (60CC)</td>
+                  <td>1/17/2001 12:00:00 AM</td>
+                  <td align="center">1/18/2002 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-a7fed1b4-d1db-4c8a-9c36-12794950c640">
+                  <td>POTASSIUM CHLORIDE 20MEQ PKT</td>
+                  <td>3/23/2001 12:00:00 AM</td>
+                  <td align="center">3/24/2002 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-9d72b985-295a-4d18-abae-9864c92c36ef">
+                  <td>ASCORBIC ACID 250MG TAB</td>
+                  <td>8/1/2001 12:00:00 AM</td>
+                  <td align="center">8/2/2002 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-bf67d7cb-e593-4d9d-9161-2239ab3f4416">
+                  <td>FUROSEMIDE 40MG TAB</td>
+                  <td>8/29/2001 12:00:00 AM</td>
+                  <td align="center">8/30/2002 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-b54dd235-eb41-4a7f-95cb-a679fc813e27">
+                  <td>ALLOPURINOL 300MG S.T.</td>
+                  <td>9/13/2001 12:00:00 AM</td>
+                  <td align="center">9/14/2002 12:00:00 AM</td>
+                </tr>
+                <tr ID="med-46a1d456-b1d8-4af0-89c0-0b4bbd02fec1">
+                  <td>ZZALBANY IV DRUG</td>
+                  <td>11/22/1999 3:00:00 PM</td>
+                  <td align="center">11/25/1999 11:59:00 PM</td>
+                </tr>
+                <tr ID="med-4b62eb06-117e-4fd0-9cc1-138789097cef">
+                  <td>HEPARIN 10,000 UNITS 4ML</td>
+                  <td>12/8/1999 3:00:00 PM</td>
+                  <td align="center">12/11/1999 11:59:00 PM</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="1cf49039-a9dd-4954-a70a-0f4da706ec1e" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19970226000000-08" />
+                <high value="19980227000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017840" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="IBUPROFEN">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-1cf49039-a9dd-4954-a70a-0f4da706ec1e" />
+                      </originalText>
+                    </code>
+                    <name>IBUPROFEN 600MG</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="30937691-ea3e-4c9e-a66d-762fcb9169c4" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990318000000-08" />
+                <high value="19990417000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-30937691-ea3e-4c9e-a66d-762fcb9169c4" />
+                      </originalText>
+                    </code>
+                    <name>ASCORBIC ACID 100MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="6f059df4-0dfd-4e24-88aa-ff855354b91c" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990701000000-07" />
+                <high value="19990819000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-6f059df4-0dfd-4e24-88aa-ff855354b91c" />
+                      </originalText>
+                    </code>
+                    <name>DIGOXIN 0.125MG C.T.,</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="3b7e4922-b356-4e80-89d5-4bef4f99bee1" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990312000000-08" />
+                <high value="19990707000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-3b7e4922-b356-4e80-89d5-4bef4f99bee1" />
+                      </originalText>
+                    </code>
+                    <name>ZZDIGOXIN 0.25MG</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="6f34b9e7-7a2f-4ef8-8eec-fa11dda96d0a" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990720000000-07" />
+                <high value="19990816000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017509" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="CODEINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-6f34b9e7-7a2f-4ef8-8eec-fa11dda96d0a" />
+                      </originalText>
+                    </code>
+                    <name>CODEINE SULFATE 30MG C.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="1c711fe6-f77d-4ddc-9f4a-4a290dad9afc" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990816000000-07" />
+                <high value="19990816000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017509" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="CODEINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-1c711fe6-f77d-4ddc-9f4a-4a290dad9afc" />
+                      </originalText>
+                    </code>
+                    <name>CODEINE SULFATE 30MG C.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="d293326e-bc05-4a0e-bb2e-44df84a96bbc" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990819000000-07" />
+                <high value="19990824000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-d293326e-bc05-4a0e-bb2e-44df84a96bbc" />
+                      </originalText>
+                    </code>
+                    <name>DIGOXIN 0.125MG C.T.,</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="8d168ab8-291c-400d-9a90-24700c3358f6" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990816000000-07" />
+                <high value="19990915000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017509" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="CODEINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-8d168ab8-291c-400d-9a90-24700c3358f6" />
+                      </originalText>
+                    </code>
+                    <name>CODEINE PHOS. 30MG SYRINGE</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="7915352b-615a-4675-be83-0e59627b835e" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990910000000-07" />
+                <high value="19991108000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-7915352b-615a-4675-be83-0e59627b835e" />
+                      </originalText>
+                    </code>
+                    <name>ASPIRIN 650MG SUPPOSITORIES</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="99676c92-66fa-4e01-9b1e-b7791b0a15a8" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990911000000-07" />
+                <high value="19991110000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018557" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="SULFACETAMIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-99676c92-66fa-4e01-9b1e-b7791b0a15a8" />
+                      </originalText>
+                    </code>
+                    <name>SULFACETAMIDE 10% OPTH SOL 15ML</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="01e8cdfb-73b2-4b0c-9f01-60357bcf897c" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990921000000-07" />
+                <high value="19991021000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018557" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="SULFACETAMIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-01e8cdfb-73b2-4b0c-9f01-60357bcf897c" />
+                      </originalText>
+                    </code>
+                    <name>SULFACETAMIDE 10% OPTH SOL 15ML</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="e6615d9d-28f9-490c-a7ec-c96e8d76fdab" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991010000000-07" />
+                <high value="19991108000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-e6615d9d-28f9-490c-a7ec-c96e8d76fdab" />
+                      </originalText>
+                    </code>
+                    <name>ASPIRIN 650MG SUPPOSITORIES</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="dfd58474-e653-4ed2-9439-4bcd01f810d3" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991110000000-08" />
+                <high value="19991117000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-dfd58474-e653-4ed2-9439-4bcd01f810d3" />
+                      </originalText>
+                    </code>
+                    <name>ASPIRIN 650MG SUPPOSITORIES</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="341acccf-d934-4da5-964c-a5ba803b2e44" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991117000000-08" />
+                <high value="20000316000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-341acccf-d934-4da5-964c-a5ba803b2e44" />
+                      </originalText>
+                    </code>
+                    <name>ASPIRIN 650MG SUPPOSITORIES</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="cca9342f-5814-46a9-ba4e-681b60f2b25b" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991108000000-08" />
+                <high value="19991208000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-cca9342f-5814-46a9-ba4e-681b60f2b25b" />
+                      </originalText>
+                    </code>
+                    <name>ASPIRIN 650MG SUPPOSITORIES</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="7aa83119-e423-443b-a10b-be3a730f8815" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990720000000-07" />
+                <high value="20000316000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017796" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="DIAZEPAM">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-7aa83119-e423-443b-a10b-be3a730f8815" />
+                      </originalText>
+                    </code>
+                    <name>DIAZEPAM 2MG S.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="aaf68526-8f75-4338-8231-77fc51da4966" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990120000000-08" />
+                <high value="19991129000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019916" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="PROPRANOLOL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-aaf68526-8f75-4338-8231-77fc51da4966" />
+                      </originalText>
+                    </code>
+                    <name>PROPRANOLOL 10MG S.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="fe553767-9cfe-4be8-8f9c-93ae3ef8d730" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990819000000-07" />
+                <high value="20000219000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017894" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="TEMAZEPAM">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-fe553767-9cfe-4be8-8f9c-93ae3ef8d730" />
+                      </originalText>
+                    </code>
+                    <name>TEMAZEPAM 15MG CAP</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="b1ee3abd-fc59-4241-bba0-fe561bd43def" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990312000000-08" />
+                <high value="19990910000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017830" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="FUROSEMIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-b1ee3abd-fc59-4241-bba0-fe561bd43def" />
+                      </originalText>
+                    </code>
+                    <name>FUROSEMIDE 40MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="959b5843-5714-4ee8-bb08-defe2fac0ec7" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990312000000-08" />
+                <high value="20000312000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-959b5843-5714-4ee8-bb08-defe2fac0ec7" />
+                      </originalText>
+                    </code>
+                    <name>HOLLISTER NO. 3222 30'S 1"</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="0637e52a-eb2e-4332-ab76-ffab21b86404" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000211000000-08" />
+                <high value="20000314000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018460" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ATENOLOL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-0637e52a-eb2e-4332-ab76-ffab21b86404" />
+                      </originalText>
+                    </code>
+                    <name>ATENOLOL 100MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="9e491460-45da-4313-8831-97161dbec3f4" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000314000000-08" />
+                <high value="20000316000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018460" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ATENOLOL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-9e491460-45da-4313-8831-97161dbec3f4" />
+                      </originalText>
+                    </code>
+                    <name>ATENOLOL 100MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="e370a53e-5060-4f7a-be78-42a85cb86ab1" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000314000000-08" />
+                <high value="20000316000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019607" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="AMITRIPTYLINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-e370a53e-5060-4f7a-be78-42a85cb86ab1" />
+                      </originalText>
+                    </code>
+                    <name>AMITRIPTYLINE 100MG</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="24a1a04f-6a09-49a5-a306-c892548c01dd" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000316000000-08" />
+                <high value="20000326000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-24a1a04f-6a09-49a5-a306-c892548c01dd" />
+                      </originalText>
+                    </code>
+                    <name>ASPIRIN 650MG SUPPOSITORIES</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="70ecf00e-2a8f-4b97-b729-5518536f7452" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990330000000-08" />
+                <high value="20000330000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-70ecf00e-2a8f-4b97-b729-5518536f7452" />
+                      </originalText>
+                    </code>
+                    <name>METAPROTERENOL 5% SOLUTION 10ML</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="ab54c971-282f-43ec-bd20-3cf5f8c0bd3c" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990405000000-07" />
+                <high value="19991129000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018460" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ATENOLOL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-ab54c971-282f-43ec-bd20-3cf5f8c0bd3c" />
+                      </originalText>
+                    </code>
+                    <name>ATENOLOL 50 MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="3c28195f-6208-415e-b799-ccbecc2b7474" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000316000000-08" />
+                <high value="20000417000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019607" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="AMITRIPTYLINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-3c28195f-6208-415e-b799-ccbecc2b7474" />
+                      </originalText>
+                    </code>
+                    <name>AMITRIPTYLINE 100MG</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="dc60bc03-9c7d-4b77-a684-d4df6b015bff" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990423000000-07" />
+                <high value="20000417000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019607" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="AMITRIPTYLINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-dc60bc03-9c7d-4b77-a684-d4df6b015bff" />
+                      </originalText>
+                    </code>
+                    <name>AMITRIPTYLINE 100MG</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="557c13a4-5f90-4208-9948-aac54d1ccb02" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991129000000-08" />
+                <high value="20000531000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019916" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="PROPRANOLOL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-557c13a4-5f90-4208-9948-aac54d1ccb02" />
+                      </originalText>
+                    </code>
+                    <name>PROPRANOLOL 10MG S.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="4608ab24-53ab-4845-99bc-a3f5853b407b" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000316000000-08" />
+                <high value="20000531000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018460" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ATENOLOL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-4608ab24-53ab-4845-99bc-a3f5853b407b" />
+                      </originalText>
+                    </code>
+                    <name>ATENOLOL 100MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="0a793c8d-e608-41bd-88ca-3461c277b149" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990910000000-07" />
+                <high value="20000607000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018429" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="FLUOCINONIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-0a793c8d-e608-41bd-88ca-3461c277b149" />
+                      </originalText>
+                    </code>
+                    <name>FLUOCINONIDE E 0.05% CRM 30GM</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="1588ce31-2080-4a62-924f-1b6476d0b6cf" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991108000000-08" />
+                <high value="20000607000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017941" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="HYDROCORTISONE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-1588ce31-2080-4a62-924f-1b6476d0b6cf" />
+                      </originalText>
+                    </code>
+                    <name>HYDROCORTISONE CREAM 1%, USP</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="5dcc9d0f-433b-46ed-9a6f-ccbce5eeb0ee" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991129000000-08" />
+                <high value="20000607000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019759" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="FLUOCINOLONE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-5dcc9d0f-433b-46ed-9a6f-ccbce5eeb0ee" />
+                      </originalText>
+                    </code>
+                    <name>FLUOCINOLONE 0.01% 60ML</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="113a586e-e951-43cd-9ef9-aa9b469c767c" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000525000000-07" />
+                <high value="20000607000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018429" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="FLUOCINONIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-113a586e-e951-43cd-9ef9-aa9b469c767c" />
+                      </originalText>
+                    </code>
+                    <name>FLUOCINONIDE 0.05% OINT. 60GM</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="c7dd9cb9-459c-4485-a6f7-860edb12c20f" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000712000000-07" />
+                <high value="20000712000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-c7dd9cb9-459c-4485-a6f7-860edb12c20f" />
+                      </originalText>
+                    </code>
+                    <name>VITAMIN E 200 IU CAP</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="9062601d-ca3c-45e6-af1d-cc7c5ddb1155" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990721000000-07" />
+                <high value="20000721000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-9062601d-ca3c-45e6-af1d-cc7c5ddb1155" />
+                      </originalText>
+                    </code>
+                    <name>NITROGLYCERIN 0.6MG S.L.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="ecb23a82-0dbd-47a9-8f89-da06172f8ea4" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990810000000-07" />
+                <high value="19991108000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-ecb23a82-0dbd-47a9-8f89-da06172f8ea4" />
+                      </originalText>
+                    </code>
+                    <name>ASPIRIN 650MG SUPPOSITORIES</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="41de9dba-c0b9-4a06-90ee-bdcb725089bf" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990812000000-07" />
+                <high value="19991110000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018557" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="SULFACETAMIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-41de9dba-c0b9-4a06-90ee-bdcb725089bf" />
+                      </originalText>
+                    </code>
+                    <name>SULFACETAMIDE 10% OPTH SOL 15ML</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="d9b22b86-987a-41a8-9c94-bbbd03b6f243" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990910000000-07" />
+                <high value="20000316000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017830" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="FUROSEMIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-d9b22b86-987a-41a8-9c94-bbbd03b6f243" />
+                      </originalText>
+                    </code>
+                    <name>FUROSEMIDE 40MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="d5d14f9b-82d0-4b03-8096-5f1b639c0953" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000316000000-08" />
+                <high value="20000916000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017796" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="DIAZEPAM">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-d5d14f9b-82d0-4b03-8096-5f1b639c0953" />
+                      </originalText>
+                    </code>
+                    <name>DIAZEPAM 2MG S.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="04a58ffa-96f0-4725-a18f-33254b91d4b5" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19990917000000-07" />
+                <high value="20010102000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017941" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="HYDROCORTISONE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-04a58ffa-96f0-4725-a18f-33254b91d4b5" />
+                      </originalText>
+                    </code>
+                    <name>HYDROCORTISONE CREAM 1%, USP</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="465638ef-92c1-4056-8866-975e7ff05b64" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991006000000-07" />
+                <high value="20001006000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018209" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="PILOCARPINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-465638ef-92c1-4056-8866-975e7ff05b64" />
+                      </originalText>
+                    </code>
+                    <name>PILOCARPINE 4% OPTH SOL 15ML</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="745ad01a-c0da-4855-a7f1-67d743229682" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20001010000000-07" />
+                <high value="20001025000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-745ad01a-c0da-4855-a7f1-67d743229682" />
+                      </originalText>
+                    </code>
+                    <name>MULTIVITAMIN TABLETS </name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="5335387d-b676-4f38-9a07-06c8f1f9e969" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000417000000-07" />
+                <high value="20001107000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019607" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="AMITRIPTYLINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-5335387d-b676-4f38-9a07-06c8f1f9e969" />
+                      </originalText>
+                    </code>
+                    <name>AMITRIPTYLINE 100MG</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="50e92bf1-7ca7-40e2-bedb-92f6d970f3ca" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000712000000-07" />
+                <high value="20001107000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017471" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ASCORBIC ACID">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-50e92bf1-7ca7-40e2-bedb-92f6d970f3ca" />
+                      </originalText>
+                    </code>
+                    <name>ASCORBIC ACID; 500MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="fc4c4961-d37e-4c00-bd8a-00823dedc8aa" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20001013000000-07" />
+                <high value="20001112000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019927" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="RANITIDINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-fc4c4961-d37e-4c00-bd8a-00823dedc8aa" />
+                      </originalText>
+                    </code>
+                    <name>RANITIDINE 150MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="6a5c114c-33bd-4d86-a9da-03536dc89af1" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20001013000000-07" />
+                <high value="20001112000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-6a5c114c-33bd-4d86-a9da-03536dc89af1" />
+                      </originalText>
+                    </code>
+                    <name>ALBUTEROL INHALER</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="454773c1-91ec-40f7-8bb5-e0663f98bf8f" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20001128000000-08" />
+                <high value="20001128000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019380" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="LISINOPRIL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-454773c1-91ec-40f7-8bb5-e0663f98bf8f" />
+                      </originalText>
+                    </code>
+                    <name>LISINOPRIL TAB 40MG</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="2b12de4c-371f-4fc5-82a2-ac5177e86ad3" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20001128000000-08" />
+                <high value="20001128000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-2b12de4c-371f-4fc5-82a2-ac5177e86ad3" />
+                      </originalText>
+                    </code>
+                    <name>ERYTHROMYCIN 250MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="a45e565e-0be5-459c-91c3-f9033617dfb0" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20001128000000-08" />
+                <high value="20001128000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017509" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="CODEINE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-a45e565e-0be5-459c-91c3-f9033617dfb0" />
+                      </originalText>
+                    </code>
+                    <name>CODEINE SULFATE 30MG C.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="60e39ca2-4f28-4754-b559-c0942fa7353b" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991129000000-08" />
+                <high value="20000316000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018526" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="BISACODYL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-60e39ca2-4f28-4754-b559-c0942fa7353b" />
+                      </originalText>
+                    </code>
+                    <name>BISACODYL 5MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="d8772b15-9b7f-48d0-bb25-43fb416a6020" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000316000000-08" />
+                <high value="20010117000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-d8772b15-9b7f-48d0-bb25-43fb416a6020" />
+                      </originalText>
+                    </code>
+                    <name>DIGOXIN 0.125MG C.T.,</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="c912936e-41ba-480e-b9e0-add4aa77f45d" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000211000000-08" />
+                <high value="20000316000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-c912936e-41ba-480e-b9e0-add4aa77f45d" />
+                      </originalText>
+                    </code>
+                    <name>DIGOXIN 0.125MG C.T.,</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="04d4a19d-5a20-4b16-a9a7-cd4b50f85ce4" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010129000000-08" />
+                <high value="20010228000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-04d4a19d-5a20-4b16-a9a7-cd4b50f85ce4" />
+                      </originalText>
+                    </code>
+                    <name>MAALOX THERAPEUTIC CONC. 6 0Z.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="0124950d-3756-471c-af3f-02bad59ca18f" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000316000000-08" />
+                <high value="20010317000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018526" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="BISACODYL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-0124950d-3756-471c-af3f-02bad59ca18f" />
+                      </originalText>
+                    </code>
+                    <name>BISACODYL 5MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="92b5463e-2cca-4594-ae80-3321025fa796" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000316000000-08" />
+                <high value="20010317000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017830" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="FUROSEMIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-92b5463e-2cca-4594-ae80-3321025fa796" />
+                      </originalText>
+                    </code>
+                    <name>FUROSEMIDE 40MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="08486d54-d261-40c0-83ce-16c3f29b79d8" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010321000000-08" />
+                <high value="20010321000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017513" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ACETAMINOPHEN">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-08486d54-d261-40c0-83ce-16c3f29b79d8" />
+                      </originalText>
+                    </code>
+                    <name>ACETAMINOPHEN 325MG TABLET</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="1d72ecf1-a660-4cf4-9ed7-f519f1fff29f" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010320000000-08" />
+                <high value="20010323000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017447" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="POTASSIUM CHLORIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-1d72ecf1-a660-4cf4-9ed7-f519f1fff29f" />
+                      </originalText>
+                    </code>
+                    <name>POTASSIUM CHLORIDE 20MEQ PKT</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="57e75f01-8c12-4eac-a44d-dbaa98f8ebd3" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010321000000-08" />
+                <high value="20010420000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017513" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ACETAMINOPHEN">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-57e75f01-8c12-4eac-a44d-dbaa98f8ebd3" />
+                      </originalText>
+                    </code>
+                    <name>ACETAMINOPHEN 325MG TABLET</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="5a2ff683-aa33-4a50-8213-6f6e98066a4a" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000531000000-07" />
+                <high value="20010601000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019916" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="PROPRANOLOL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-5a2ff683-aa33-4a50-8213-6f6e98066a4a" />
+                      </originalText>
+                    </code>
+                    <name>PROPRANOLOL 80MG S.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="904a0ce1-be87-48a4-8f5d-4baafb7d62b0" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000607000000-07" />
+                <high value="20010608000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019759" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="FLUOCINOLONE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-904a0ce1-be87-48a4-8f5d-4baafb7d62b0" />
+                      </originalText>
+                    </code>
+                    <name>FLUOCINOLONE 0.01% 60ML</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="8fbe04a6-636d-4ca5-b287-89dc5e47110d" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000712000000-07" />
+                <high value="20010713000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-8fbe04a6-636d-4ca5-b287-89dc5e47110d" />
+                      </originalText>
+                    </code>
+                    <name>VITAMIN E 200 IU CAP</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="8b83ccbf-9004-461f-ba66-7f47236b0b66" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20000724000000-07" />
+                <high value="20010725000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019380" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="LISINOPRIL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-8b83ccbf-9004-461f-ba66-7f47236b0b66" />
+                      </originalText>
+                    </code>
+                    <name>LISINOPRIL TAB 40MG</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="299cef37-c793-4d58-95cb-e77b3be9ada0" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010102000000-08" />
+                <high value="20010913000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017941" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="HYDROCORTISONE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-299cef37-c793-4d58-95cb-e77b3be9ada0" />
+                      </originalText>
+                    </code>
+                    <name>HYDROCORTISONE CREAM 1%, USP</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="c8f67fc6-5569-4bc7-86d9-580f67d900de" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010913000000-07" />
+                <high value="20010913000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017614" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="CAPTOPRIL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-c8f67fc6-5569-4bc7-86d9-580f67d900de" />
+                      </originalText>
+                    </code>
+                    <name>CAPTOPRIL 25MG TABS</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="8f5931b6-4558-4e16-90bb-f14937798312" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20001025000000-07" />
+                <high value="20011026000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017614" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="CAPTOPRIL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-8f5931b6-4558-4e16-90bb-f14937798312" />
+                      </originalText>
+                    </code>
+                    <name>CAPTOPRIL 25MG TABS</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="48d0fce9-b6dc-458d-833a-7ed5e7a39a07" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010117000000-08" />
+                <high value="20020118000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-48d0fce9-b6dc-458d-833a-7ed5e7a39a07" />
+                      </originalText>
+                    </code>
+                    <name>DIGOXIN 0.05MG/ML ELIX (60CC)</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="a7fed1b4-d1db-4c8a-9c36-12794950c640" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010323000000-08" />
+                <high value="20020324000000-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017447" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="POTASSIUM CHLORIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-a7fed1b4-d1db-4c8a-9c36-12794950c640" />
+                      </originalText>
+                    </code>
+                    <name>POTASSIUM CHLORIDE 20MEQ PKT</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="9d72b985-295a-4d18-abae-9864c92c36ef" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010801000000-07" />
+                <high value="20020802000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017471" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ASCORBIC ACID">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-9d72b985-295a-4d18-abae-9864c92c36ef" />
+                      </originalText>
+                    </code>
+                    <name>ASCORBIC ACID 250MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="bf67d7cb-e593-4d9d-9161-2239ab3f4416" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010829000000-07" />
+                <high value="20020830000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017830" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="FUROSEMIDE">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-bf67d7cb-e593-4d9d-9161-2239ab3f4416" />
+                      </originalText>
+                    </code>
+                    <name>FUROSEMIDE 40MG TAB</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="b54dd235-eb41-4a7f-95cb-a679fc813e27" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20010913000000-07" />
+                <high value="20020914000000-07" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4017895" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ALLOPURINOL">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-b54dd235-eb41-4a7f-95cb-a679fc813e27" />
+                      </originalText>
+                    </code>
+                    <name>ALLOPURINOL 300MG S.T.</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="46a1d456-b1d8-4af0-89c0-0b4bbd02fec1" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991122150000-08" />
+                <high value="19991125235900-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4019994" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="ALDESLEUKIN">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-46a1d456-b1d8-4af0-89c0-0b4bbd02fec1" />
+                      </originalText>
+                    </code>
+                    <name>ZZALBANY IV DRUG</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1" />
+              <id root="4b62eb06-117e-4fd0-9cc1-138789097cef" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="19991208150000-08" />
+                <high value="19991211235900-08" />
+              </effectiveTime>
+              <consumable typeCode="CSM">
+                <manufacturedProduct>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2" />
+                  <templateId root="2.16.840.1.113883.10.20.1.53" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="4018538" codeSystem="2.16.840.1.113883.6.233" codeSystemName="VHA" displayName="HEPARIN">
+                      <originalText mediaType="text/plain">
+                        <reference value="med-4b62eb06-117e-4fd0-9cc1-138789097cef" />
+                      </originalText>
+                    </code>
+                    <name>HEPARIN 10,000 UNITS 4ML</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>
