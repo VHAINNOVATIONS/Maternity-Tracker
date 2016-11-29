@@ -74,7 +74,6 @@
     <Compile Include="Utility\Util.cs" />
     <Compile Include="Utility\VistaDates.cs" />
     <Compile Include="Utility\VistaHash.cs" />
-    <Compile Include="Utility\VistaHashPrivate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\va.gov.artemis.core\va.gov.artemis.core.csproj">

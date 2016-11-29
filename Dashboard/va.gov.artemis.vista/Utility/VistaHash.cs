@@ -4,13 +4,12 @@ using VA.Gov.Artemis.Vista.Common;
 
 namespace VA.Gov.Artemis.Vista.Utility
 {
-    // TODO: Secure this hashing routine? 
-    // TODO: Move to calling commands...
-
     public partial class VistAHash
     {
         private static Random rnd = new Random();
         private static int maxKeys = 20;
+
+        private static string[] cipherPad = new string[] {"Insert VistA cipher here" }; 
 
         public static EncryptedString Encrypt(string normaltext)
         {
