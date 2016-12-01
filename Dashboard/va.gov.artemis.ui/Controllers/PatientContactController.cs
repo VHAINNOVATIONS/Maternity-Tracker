@@ -356,6 +356,7 @@ namespace VA.Gov.Artemis.UI.Controllers
             {
                 if (headerResult.Note != null)
                 {
+                    model.PregnancyIen = headerResult.Note.PregnancyIen; 
                     model.Note = headerResult.Note;
 
                     TiuNoteResult result = this.DashboardRepository.Notes.GetNote(noteIen);
@@ -503,7 +504,7 @@ namespace VA.Gov.Artemis.UI.Controllers
             {
                 this.Information("The note has been signed");
 
-                CompleteChecklistItem(model.ChecklistIen, model.Note.Ien, model.Patient.Dfn);
+                CompleteChecklistItem(model.ChecklistIen, model.Note.Ien, model.Patient.Dfn, model.PregnancyIen);
                 
                 // *** Update Last Contact ***
                 result = this.DashboardRepository.Observations.UpdateLastContactDate(model.Patient.Dfn, model.Note.DocumentDateTime);
@@ -1053,88 +1054,94 @@ namespace VA.Gov.Artemis.UI.Controllers
                 this.Error(string.Format("Could not find checklist item to update: {0}", getResult.Message));            
         }
 
-        private void CompleteChecklistItem(string checklistIen, string noteIen, string patientDfn)
+        private void CompleteChecklistItem(string checklistIen, string noteIen, string patientDfn, string pregIen)
         {
             // *** Complete the checklist item for a note ***
 
-            // *** If we don't have a checklist item, find one ***
-            if (string.IsNullOrWhiteSpace(checklistIen)) 
-                checklistIen = FindMatchingChecklistItem(patientDfn, noteIen); 
-             
-            // *** Get the item ***
-            PregnancyChecklistItemsResult getResult = this.DashboardRepository.Checklist.GetPregnancyItems(patientDfn, "", checklistIen);
+            if (!string.IsNullOrWhiteSpace(pregIen))
+            {
+                // *** If we don't have a checklist item, find one ***
+                if (string.IsNullOrWhiteSpace(checklistIen))
+                    checklistIen = FindMatchingChecklistItem(patientDfn, noteIen, pregIen);
 
-            // *** Check result ***
-            if (getResult.Success)
-                if (getResult.Items != null)
-                    if (getResult.Items.Count == 1)
-                    {
-                        // *** Get the item ***
-                        PregnancyChecklistItem item = getResult.Items[0];
+                // *** Get the item ***
+                PregnancyChecklistItemsResult getResult = this.DashboardRepository.Checklist.GetPregnancyItems(patientDfn, "", checklistIen);
 
-                        // *** Modify it ***
-
-                        item.CompletionLink = noteIen;
-
-                        item.InProgress = false;
-
-                        item.CompletionStatus = DsioChecklistCompletionStatus.Complete;
-
-                        // *** Save it ***
-
-                        IenResult saveResult = this.DashboardRepository.Checklist.SavePregnancyItem(item);
-
-                        // *** Check it ***
-
-                        if (!saveResult.Success)
-                            this.Error(string.Format("Could not update checklist item: {0}", saveResult.Message));
-                        else
+                // *** Check result ***
+                if (getResult.Success)
+                    if (getResult.Items != null)
+                        if (getResult.Items.Count == 1)
                         {
-                            // *** Update the next checklist date ***
-                            BrokerOperationResult updResult = ChecklistUtility.UpdateNextDates(this.DashboardRepository, patientDfn, item.PregnancyIen);
+                            // *** Get the item ***
+                            PregnancyChecklistItem item = getResult.Items[0];
 
-                            if (!updResult.Success)
-                                this.Error("Error updating next dates: " + updResult.Message);
-                        }   
-                    }
+                            // *** Modify it ***
+
+                            item.CompletionLink = noteIen;
+
+                            item.InProgress = false;
+
+                            item.CompletionStatus = DsioChecklistCompletionStatus.Complete;
+
+                            // *** Save it ***
+
+                            IenResult saveResult = this.DashboardRepository.Checklist.SavePregnancyItem(item);
+
+                            // *** Check it ***
+
+                            if (!saveResult.Success)
+                                this.Error(string.Format("Could not update checklist item: {0}", saveResult.Message));
+                            else
+                            {
+                                // *** Update the next checklist date ***
+                                BrokerOperationResult updResult = ChecklistUtility.UpdateNextDates(this.DashboardRepository, patientDfn, item.PregnancyIen);
+
+                                if (!updResult.Success)
+                                    this.Error("Error updating next dates: " + updResult.Message);
+                            }
+                        }
+            }
 
         }
 
-        private string FindMatchingChecklistItem(string patientDfn, string noteIen)
+        private string FindMatchingChecklistItem(string patientDfn, string noteIen, string pregIen)
         {
             // *** Try to find a checklist item that matches note ***
 
             string returnVal = "";
 
-            // *** Get the note ***
-            TiuNoteResult noteResult = this.DashboardRepository.Notes.GetNoteHeader(patientDfn, noteIen); 
-
-            if (noteResult.Success)
+            if (!string.IsNullOrWhiteSpace(pregIen))
             {
-                // *** Get the call type ***
-                if (noteResult.Note != null)
+                // *** Get the note ***
+                TiuNoteResult noteResult = this.DashboardRepository.Notes.GetNoteHeader(patientDfn, noteIen);
+
+                if (noteResult.Success)
                 {
-                    TiuNoteTitle noteTitle = TiuNoteTitleInfo.GetTitle(noteResult.Note.Title);
-                    if (MccPatientCallTypeUtility.IsCall(noteTitle)) 
+                    // *** Get the call type ***
+                    if (noteResult.Note != null)
                     {
-                    MccPatientCallType callType = MccPatientCallTypeUtility.GetCallType(noteTitle); 
-
-                    // *** Get pregnancy ***
-                    PregnancyResult pregResult = this.DashboardRepository.Pregnancy.GetCurrentOrMostRecentPregnancy(patientDfn);
-
-                    if (pregResult.Success)
-                        if (pregResult.Pregnancy != null)
+                        TiuNoteTitle noteTitle = TiuNoteTitleInfo.GetTitle(noteResult.Note.Title);
+                        if (MccPatientCallTypeUtility.IsCall(noteTitle))
                         {
+                            MccPatientCallType callType = MccPatientCallTypeUtility.GetCallType(noteTitle);
+
+                            // *** Get pregnancy ***
+                            //PregnancyResult pregResult = this.DashboardRepository.Pregnancy.GetCurrentOrMostRecentPregnancy(patientDfn);                        
+
+                            //if (pregResult.Success)
+                            //    if (pregResult.Pregnancies.Count > 0)
+                            //    {
+
                             // *** Get current checklist items ***
-                            PregnancyChecklistItemsResult chkResult = this.DashboardRepository.Checklist.GetPregnancyItems(patientDfn, pregResult.Pregnancy.Ien, "");
+                            PregnancyChecklistItemsResult chkResult = this.DashboardRepository.Checklist.GetPregnancyItems(patientDfn, pregIen, "");
 
                             if (chkResult.Success)
                                 if (chkResult.Items != null)
                                 {
                                     // *** See if any match ***
                                     foreach (PregnancyChecklistItem item in chkResult.Items)
-                                        if (item.ItemType == DsioChecklistItemType.MccCall) 
-                                            if (item.CompletionStatus == DsioChecklistCompletionStatus.NotComplete )
+                                        if (item.ItemType == DsioChecklistItemType.MccCall)
+                                            if (item.CompletionStatus == DsioChecklistCompletionStatus.NotComplete)
                                                 if (string.IsNullOrWhiteSpace(item.CompletionLink))
                                                     if (!string.IsNullOrWhiteSpace(item.Link))
                                                     {
@@ -1145,6 +1152,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                                                                 returnVal = item.Ien;
                                                     }
                                 }
+                                //}
                         }
                     }
                 }

@@ -137,7 +137,6 @@
     <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\AlertsController.cs" />
-    <Compile Include="Controllers\AccountControllerPrivate.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\CdaImporter.cs" />
     <Compile Include="Controllers\ChecklistController.cs" />

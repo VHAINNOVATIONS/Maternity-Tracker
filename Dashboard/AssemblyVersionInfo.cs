@@ -112,8 +112,11 @@
 // ***                   Correct MDS data extraction to use section LOINC code instead of template id 
 // ***                   Load pregnancies if an error occurs in note save so that pregnancies selection still works 
 // ***                   Add label to outcomes bar chart tooltips
+// *** 12/??/2016 2.0.10 This release is dependent upon KID build ??
+// ***                   Only complete checklist item for contact notes for the specific pregnancy associated with the note. 
+//                       Exclude private files from project 
 
-[assembly: AssemblyFileVersion("2.0.9.0")]
+[assembly: AssemblyFileVersion("2.0.10.0")]
 
 // *** DEPLOYMENT NOTE:  Add skip rule to deploy.cmd command line parameters to prevent replacement of web.config file
 // ***                   va.gov.artemis.ui.deploy.cmd /T "-skip:objectName=filePath,absolutePath=web\.config" 
