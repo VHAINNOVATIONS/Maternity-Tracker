@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		AssemblyVersionInfo.cs = AssemblyVersionInfo.cs
 		BuildProcessTemplates\DefaultTemplate.11.1.xaml = BuildProcessTemplates\DefaultTemplate.11.1.xaml
+		GitHub Check In Notes.txt = GitHub Check In Notes.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va.gov.artemis.cda", "va.gov.artemis.cda\va.gov.artemis.cda.csproj", "{69EB293D-32C1-46C8-98EF-24124D2BAB65}"
