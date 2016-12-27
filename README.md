@@ -4,7 +4,7 @@ Maternity-Tracker
 Folder Structure
 ----------------
 
-	DDCS - 
+	DDCS - Source code and files for the Maternity Tracker oCNT (Open Clinical Note Template) documents
 
 	Dashboard - Web based maternity care coordinator dashboard 
 
