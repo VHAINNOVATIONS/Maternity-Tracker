@@ -44,3 +44,27 @@ This project contains the base functionality for connecting to VistA
 ### --va.gov.artemis.vista.tests
 
 This project contains tests for the VistA project 
+
+## Preparing a release of the dashboard 
+
+	(1) Build the solution (ctrl+shift+b)
+
+	(2) Unit tests 
+
+		(a) Add test configuration data to the app.config files found in the test projects 
+		(b) Run all tests and verify success 
+
+	(3) Publish 
+		(a) Right-click on the va.gov.artemis.ui project and select "Publish.."
+
+## Dependencies 
+
+The dashboard's primary dependency is on the DSIO routines found in the KID files. 
+
+## Configuration 
+
+The configuration of the website is done through the web.config file where values for the following can be set: 
+
+	(1) VistA server and port
+	(2) CDA Export folder 
+	(3) Text4Baby credentials 
