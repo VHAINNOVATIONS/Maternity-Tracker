@@ -20,12 +20,7 @@ namespace VA.Gov.Artemis.UI.Tests
 
             PatientSearchResult result = repository.Search("C", 1, 10);
 
-            //List<SearchPatient> patients = repository.Search("CPR");
-
             Assert.IsTrue(result.Success);
-            //Assert.IsNotNull(result.Patients);
-            //Assert.IsTrue(patients.Count > 0);
-
         }
     }
 }

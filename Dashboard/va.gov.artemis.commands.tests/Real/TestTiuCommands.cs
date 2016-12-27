@@ -17,7 +17,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 TiuDocumentsByContextCommand command = new TiuDocumentsByContextCommand(broker);
 
-                command.AddCommandArgument("740");
+                command.AddCommandArgument(TestConfiguration.DefaultPatientDfn);
 
                 RpcResponse response = command.Execute();
 

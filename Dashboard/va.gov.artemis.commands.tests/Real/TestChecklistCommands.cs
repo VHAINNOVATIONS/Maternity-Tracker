@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VA.Gov.Artemis.Commands.Dsio.Checklist;
+using VA.Gov.Artemis.Commands.Dsio.Pregnancy;
 using VA.Gov.Artemis.Vista.Broker;
 using VA.Gov.Artemis.Vista.Utility;
 
@@ -49,7 +50,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                     DueCalculationType = DsioChecklistCalculationType.WeeksGa, 
                     DueCalculationValue = "12",
                     Category = "Some New Category",
-                    EducationIen = "8"
+                    EducationIen = TestConfiguration.ValidEducationIen
                 };
 
                 //6:Send Link to Pregnancy Video^2:Education Item^2:WEEKS GA^12^0:0^3456
@@ -71,12 +72,16 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
+                DsioPregnancy preg = this.GetOrCreatePregnancy(broker, TestConfiguration.DefaultPatientDfn);
+
+                Assert.IsNotNull(preg);
+
                 DsioSaveMccPatChecklistCommand command = new DsioSaveMccPatChecklistCommand(broker);
 
                 DsioPatientChecklistItem item = new DsioPatientChecklistItem()
                 {
-                    PatientDfn = "28",
-                    PregnancyIen = "4",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
+                    PregnancyIen = preg.Ien,
                     Category = "First Trimester Requirements",
                     Description = "Friday Tests",
                     ItemType = DsioChecklistItemType.Lab,
@@ -88,7 +93,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                     CompletionLink = "54321", 
                     Note = "Checklist Item Note Text", 
                     InProgress="1", 
-                    EducationIen = "8"
+                    EducationIen = TestConfiguration.ValidEducationIen
                 };
 
                 command.AddCommandArguments(item); 
@@ -102,6 +107,8 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             
         }
 
+
+
         [TestMethod]
         public void TestGetPatientChecklistItem()
         {
@@ -111,7 +118,11 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetMccPatientChecklistCommand command = new DsioGetMccPatientChecklistCommand(broker);
 
-                command.AddCommandArguments("715","", "5", DsioChecklistCompletionStatus.Unknown);
+                DsioPregnancy preg = this.GetOrCreatePregnancy(broker, TestConfiguration.DefaultPatientDfn);
+
+                Assert.IsNotNull(preg);
+
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn ,"", preg.Ien, DsioChecklistCompletionStatus.Unknown);
 
                 RpcResponse response = command.Execute();
 
@@ -130,7 +141,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetMccPatientChecklistCommand command = new DsioGetMccPatientChecklistCommand(broker);
 
-                command.AddCommandArguments("715", "", "", DsioChecklistCompletionStatus.Complete);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "", "", DsioChecklistCompletionStatus.Complete);
 
                 RpcResponse response = command.Execute();
 
@@ -145,9 +156,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         {
             using (RpcBroker broker = this.GetConnectedBroker())
             {
-                // TODO: Make sure testing with non programmer user..
                 this.SignonToBroker(broker, 2);
-                //this.SignonToBroker(broker, 0);
 
                 DsioSaveMccChecklistCommand saveCommand = new DsioSaveMccChecklistCommand(broker);
 
@@ -185,16 +194,18 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         {
             using (RpcBroker broker = this.GetConnectedBroker())
             {
-                // TODO: Test with non-programmer user
                 this.SignonToBroker(broker, 2);
-                //this.SignonToBroker(broker, 0);
+
+                DsioPregnancy preg = this.GetOrCreatePregnancy(broker, TestConfiguration.DefaultPatientDfn);
+
+                Assert.IsNotNull(preg);
 
                 DsioSaveMccPatChecklistCommand saveCommand = new DsioSaveMccPatChecklistCommand(broker);
 
                 DsioPatientChecklistItem item = new DsioPatientChecklistItem()
                 {
-                    PatientDfn = "28",
-                    PregnancyIen = "4",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
+                    PregnancyIen = preg.Ien,
                     Category = "First Trimester Requirements",
                     Description = "Friday Tests",
                     ItemType = DsioChecklistItemType.Lab,
@@ -218,7 +229,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioDeleteMccPatChklstCommand delCommand = new DsioDeleteMccPatChklstCommand(broker);
 
-                delCommand.AddCommandArguments("28", saveCommand.Ien);
+                delCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn, saveCommand.Ien);
 
                 response = delCommand.Execute();
 

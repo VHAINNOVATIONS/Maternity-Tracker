@@ -262,33 +262,34 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
-                DsioSavePatientEducationCommand command = new DsioSavePatientEducationCommand(broker);
-
-                DsioPatientEducationItem edItem = new DsioPatientEducationItem()
-                {
-                    PatientDfn = "647", 
-                    CompletedOn = Util.GetFileManDateAndTime(DateTime.Now),
-                    Description = "Testing",
-                    Category = "Other",
-                    ItemType = "E",
-                    CodeSystem = "N",
-                    //Url = "http://testurl"
-                    //Description = "D234567891123456789212345678931234567894123456789512345678961234567897123456789812345678991234567890",
-                    //Category = "C234567891123456789212345678931234567894123456789512345678961234567897123456789812345678991234567890",
-                    //ItemType = "L",
-                    //CodeSystem = "None",
-                    //Url = "U234567891123456789212345678931234567894123456789512345678961234567897123456789812345678991234567890"
-                };
-
-                command.AddCommandArguments(edItem);
-
-                RpcResponse response = command.Execute();
-
-                Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-                Assert.IsNotNull(command.Ien);
+                SaveNewPatientItem(broker); 
 
                 broker.Disconnect();
             }
+        }
+
+        private string SaveNewPatientItem(IRpcBroker broker)
+        {
+            DsioSavePatientEducationCommand command = new DsioSavePatientEducationCommand(broker);
+
+            DsioPatientEducationItem edItem = new DsioPatientEducationItem()
+            {
+                PatientDfn = TestConfiguration.DefaultPatientDfn,
+                CompletedOn = Util.GetFileManDateAndTime(DateTime.Now),
+                Description = "Testing",
+                Category = "Other",
+                ItemType = "E",
+                CodeSystem = "N",
+            };
+
+            command.AddCommandArguments(edItem);
+
+            RpcResponse response = command.Execute();
+
+            Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+            Assert.IsNotNull(command.Ien);
+
+            return command.Ien; 
         }
 
         [TestMethod]
@@ -302,9 +303,9 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioPatientEducationItem edItem = new DsioPatientEducationItem()
                 {
-                    PatientDfn = "715",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     CompletedOn = Util.GetFileManDate(DateTime.Now),
-                    EducationItemIen = "8"
+                    EducationItemIen = TestConfiguration.ValidEducationIen
                 };
 
                 command.AddCommandArguments(edItem);
@@ -327,7 +328,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientEducationCommand command = new DsioGetPatientEducationCommand(broker);
 
-                command.AddCommandArguments("647", "", "", "", "", 1, 1000);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "", "", "", "", 1, 1000);
 
                 RpcResponse response = command.Execute();
 
@@ -343,14 +344,15 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
+                string existingIen = SaveNewPatientItem(broker); 
+
                 DsioGetPatientEducationCommand command = new DsioGetPatientEducationCommand(broker);
 
-                command.AddCommandArguments("715","4", "", "", "", 1, 1000);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, existingIen, "", "", "", 1, 1000);
 
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-
             }
         }
 
@@ -363,12 +365,11 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientEducationCommand command = new DsioGetPatientEducationCommand(broker);
 
-                command.AddCommandArguments("715", "","3140904", "", "", 1, 1000);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "","3140904", "", "", 1, 1000);
 
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-
             }
         }
 
@@ -381,7 +382,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientEducationCommand command = new DsioGetPatientEducationCommand(broker);
 
-                command.AddCommandArguments("715", "", "", "3140903", "", 1, 1000);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "", "", "3140903", "", 1, 1000);
 
                 RpcResponse response = command.Execute();
 
@@ -399,7 +400,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientEducationCommand command = new DsioGetPatientEducationCommand(broker);
 
-                command.AddCommandArguments("715", "", "", "", "L", 1, 1000);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "", "", "", "L", 1, 1000);
 
                 RpcResponse response = command.Execute();
 
@@ -417,7 +418,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientEducationCommand command = new DsioGetPatientEducationCommand(broker);
 
-                command.AddCommandArguments("715", "", "", "", "", 2, 2);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "", "", "", "", 2, 2);
 
                 RpcResponse response = command.Execute();
 

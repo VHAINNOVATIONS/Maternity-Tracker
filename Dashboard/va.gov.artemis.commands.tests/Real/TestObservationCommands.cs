@@ -24,72 +24,35 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
-                DsioSaveObservationCommand command = new DsioSaveObservationCommand(broker);
-
-                //DsioObservation obs = new DsioObservation();
-                //obs.PatientDfn = "715";
-                //obs.Ien = "";
-                //obs.Date = DateTime.Now.ToString("MM/dd/yyyy@hh:mm:ss");
-                //obs.PregnancyIen = "7";
-                //obs.BabyIen = "1";
-                ////obs.Category = ""; 
-                //obs.Category = "Baby Observation";
-                //////obs.CodeSystem = "LOINC";
-                //////obs.Code = "11996-6";
-                //////obs.Description = "Total Pregnancies";
-                ////obs.CodeSystem = "LOINC";
-                ////obs.Code = "11639-2";
-                ////obs.Description = "Full Term Births";
-                ////obs.Value = "3";
-                //obs.CodeSystem = "LOINC";
-                //obs.Code = "11778-8";
-                //obs.Description = "Fake Description - Baby Weight";
-                //obs.Value = "6 lbs, 4 oz";
-
-                // Missing LOINC code problem...
-                DsioObservation obs = new DsioObservation();
-                obs.PatientDfn = "126";
-                obs.Ien = "";
-                obs.ExamDate = DateTime.Now.ToString("MM/dd/yyyy@hh:mm:ss");
-                obs.PregnancyIen = "";
-                obs.BabyIen = "";
-                obs.Category = "Pregnancy History";
-                obs.Code.CodeSystem = DsioObservation.LoincCodeSystem;
-                obs.Code.Code = "57062-2";
-                obs.Code.DisplayName = "Still Births";
-                obs.Value = "3";               
-
-                //DsioObservation obs = new DsioObservation();
-                //obs.PatientDfn = "100037";
-                //obs.Ien = "";
-                //obs.Date = DateTime.Now.ToString("MM/dd/yyyy@hh:mm:ss");
-                //obs.PregnancyIen = "";
-                //obs.BabyIen = "";
-                //obs.Category = "Pregnancy History";
-                //obs.Code.CodeSystem = "LOINC";
-                //obs.Code.Code = "11778-8";
-                //obs.Code.DisplayName = "Still Births";
-                //obs.Value = "3";               
-
-                //DsioObservation obs = new DsioObservation();
-                //obs.PatientDfn = "100037";
-                //obs.Ien = "";
-                //obs.Date = DateTime.Now.ToString("MM/dd/yyyy@hh:mm:ss");
-                //obs.PregnancyIen = "";
-                //obs.BabyIen = "";
-                //obs.Category = "Some Category";
-                //obs.CodeSystem = "NONE";
-                //obs.Code = "TEST_CODE";
-                //obs.Description = "Test code that is not a LOINC or SNOMED";
-                //obs.Value = "test value";   
-
-                command.AddCommandArguments(obs);
-
-                RpcResponse response = command.Execute();
-
-                Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+                this.CreateObservation(broker);
 
             }
+        }
+
+        private string CreateObservation(IRpcBroker broker)
+        {
+            DsioSaveObservationCommand command = new DsioSaveObservationCommand(broker);
+
+            // Missing LOINC code problem...
+            DsioObservation obs = new DsioObservation();
+            obs.PatientDfn = TestConfiguration.DefaultPatientDfn;
+            obs.Ien = "";
+            obs.ExamDate = DateTime.Now.ToString("MM/dd/yyyy@hh:mm:ss");
+            obs.PregnancyIen = "";
+            obs.BabyIen = "";
+            obs.Category = "Pregnancy History";
+            obs.Code.CodeSystem = DsioObservation.LoincCodeSystem;
+            obs.Code.Code = "57062-2";
+            obs.Code.DisplayName = "Still Births";
+            obs.Value = "3";
+
+            command.AddCommandArguments(obs);
+
+            RpcResponse response = command.Execute();
+
+            Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+
+            return command.Ien; 
         }
 
         [TestMethod]
@@ -102,7 +65,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 DsioSaveObservationCommand command = new DsioSaveObservationCommand(broker);
 
                 DsioObservation obs = new DsioObservation();
-                obs.PatientDfn = "100037";
+                obs.PatientDfn = TestConfiguration.DefaultPatientDfn;
                 obs.Ien = "";
                 obs.ExamDate = DateTime.Now.ToString("MM/dd/yyyy@hh:mm:ss");
                 obs.PregnancyIen = "";
@@ -162,8 +125,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 DsioSaveObservationCommand command = new DsioSaveObservationCommand(broker);
 
                 DsioObservation obs = new DsioObservation();
-                obs.PatientDfn = "100037";
-                //obs.PatientDfn = "8";
+                obs.PatientDfn = TestConfiguration.DefaultPatientDfn;
                 obs.Ien = "";
                 obs.ExamDate = DateTime.Now.ToString("MM/dd/yyyy@hh:mm:ss");
                 obs.PregnancyIen = "";
@@ -203,13 +165,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 DsioGetObservationsCommand command = new DsioGetObservationsCommand(broker);
 
                 // Get all for patient...
-                command.AddCommandArguments("711", "", "", "", "", "", "", "", -1, -1);
-
-                // Get single by IEN...
-                //command.AddCommandArguments("715", "8", "", "", "", "", "", 1, 1000);
-
-                // Date Range...
-                //command.AddCommandArguments("715", "", "", "", "09/01/2014", "09/30/2014", "", 1, 1000);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "", "", "", "", "", "", "", -1, -1);
 
                 RpcResponse response = command.Execute();
 
@@ -227,14 +183,10 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetObservationsCommand command = new DsioGetObservationsCommand(broker);
 
+                string ien = this.CreateObservation(broker); 
+
                 // Get all for patient...
-                command.AddCommandArguments("711", "31", "", "", "", "", "", "", -1, -1);
-
-                // Get single by IEN...
-                //command.AddCommandArguments("715", "8", "", "", "", "", "", 1, 1000);
-
-                // Date Range...
-                //command.AddCommandArguments("715", "", "", "", "09/01/2014", "09/30/2014", "", 1, 1000);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, ien, "", "", "", "", "", "", -1, -1);
 
                 RpcResponse response = command.Execute();
 
@@ -253,7 +205,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 DsioGetObservationsCommand command = new DsioGetObservationsCommand(broker);
 
                 // Get category...
-                command.AddCommandArguments("126", "", "", "", "", "", "", "Contact", -1, -1);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "", "", "", "", "", "", "Contact", -1, -1);
 
                 RpcResponse response = command.Execute();
 
@@ -272,7 +224,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 DsioGetObservationsCommand command = new DsioGetObservationsCommand(broker);
 
                 // Get all for patient...
-                command.AddCommandArguments("740", "", "", "", "", "", "", "", 1, 1000);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "", "", "", "", "", "", "", 1, 1000);
 
                 RpcResponse response = command.Execute();
 
@@ -291,7 +243,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 DsioGetObservationsCommand command = new DsioGetObservationsCommand(broker);
 
                 // Get all for patient...
-                command.AddCommandArguments("100037", "", "", "", "", "", "", "NONEXISTENT", 1, 1000);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "", "", "", "", "", "", "NONEXISTENT", 1, 1000);
 
                 RpcResponse response = command.Execute();
 
@@ -309,14 +261,14 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 // *** Test values ***
                 //string patDfn = "100037";
-                string patDfn = "751";
+                //string patDfn = "751";
                 bool origObsValue = false;
                 bool newObsValue = true; 
 
                 DsioSaveObservationCommand command = new DsioSaveObservationCommand(broker);
                 
                 DsioObservation obs = new DsioObservation();
-                obs.PatientDfn = patDfn;
+                obs.PatientDfn = TestConfiguration.DefaultPatientDfn;
                 obs.Ien = "";
                 obs.ExamDate = DateTime.Now.ToString("MM/dd/yyyy@hh:mm:ss");
                 obs.PregnancyIen = "";
@@ -335,7 +287,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientInformationCommand patCommand = new DsioGetPatientInformationCommand(broker);
 
-                patCommand.AddCommandArguments(patDfn);
+                patCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn);
 
                 response = patCommand.Execute();
 
@@ -350,7 +302,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
 
-                patCommand.AddCommandArguments(patDfn);
+                patCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn);
 
                 response = patCommand.Execute();
 
@@ -371,7 +323,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 // *** Create the observation ***
                 DsioObservation obs = new DsioObservation();
-                obs.PatientDfn = "715";
+                obs.PatientDfn = TestConfiguration.DefaultPatientDfn;
                 obs.Ien = "";
                 obs.ExamDate = DateTime.Now.ToString(VistaDates.VistADateFormatFour);
                 obs.PregnancyIen = "";
@@ -392,7 +344,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientInformationCommand patCommand = new DsioGetPatientInformationCommand(broker);
 
-                patCommand.AddCommandArguments("715");
+                patCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn);
 
                 response = patCommand.Execute();
 
@@ -412,7 +364,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 // *** Create the observation ***
                 DsioObservation obs = new DsioObservation();
-                obs.PatientDfn = "126";
+                obs.PatientDfn = TestConfiguration.DefaultPatientDfn;
                 obs.Ien = "";
                 obs.ExamDate = DateTime.Now.ToString(VistaDates.VistADateFormatFour);
                 obs.PregnancyIen = "";
@@ -433,7 +385,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientInformationCommand patCommand = new DsioGetPatientInformationCommand(broker);
 
-                patCommand.AddCommandArguments("126");
+                patCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn);
 
                 response = patCommand.Execute();
 
@@ -454,7 +406,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 // *** Create the observation ***
                 DsioObservation obs = new DsioObservation();
-                obs.PatientDfn = "715";
+                obs.PatientDfn = TestConfiguration.DefaultPatientDfn;
                 obs.Ien = "";
                 obs.ExamDate = DateTime.Now.ToString(VistaDates.VistADateFormatFour);
                 obs.PregnancyIen = "";
@@ -475,7 +427,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientInformationCommand patCommand = new DsioGetPatientInformationCommand(broker);
 
-                patCommand.AddCommandArguments("715");
+                patCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn);
 
                 response = patCommand.Execute();
 
@@ -488,7 +440,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         [TestMethod]
         public void TestBabyObservations()
         {
-            string patDfn = "126";
+            //string patDfn = "126";
 
             using (RpcBroker broker = this.GetConnectedBroker())
             {
@@ -497,7 +449,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 // 1. Does this patient have any pregnancies to work with? 
 
                 DsioGetPregDetailsCommand getPregCommand = new DsioGetPregDetailsCommand(broker);
-                getPregCommand.AddCommandArguments(patDfn, "");
+                getPregCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "");
                 RpcResponse response = getPregCommand.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
@@ -515,7 +467,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 {
                     preg = new DsioPregnancy()
                     {
-                        PatientDfn = patDfn,
+                        PatientDfn = TestConfiguration.DefaultPatientDfn,
                         RecordType = "HISTORICAL",
                         EDD = "12/12/2015"
                     };
@@ -541,7 +493,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                     getPregCommand = new DsioGetPregDetailsCommand(broker);
 
-                    getPregCommand.AddCommandArguments(patDfn, savePregCommand.Ien);
+                    getPregCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn, savePregCommand.Ien);
 
                     response = getPregCommand.Execute();
 
@@ -562,7 +514,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioObservation testObservation = new DsioObservation()
                 {
-                    PatientDfn = patDfn,
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = preg.Ien,
                     BabyIen = preg.Babies[0].Ien,
                     Category = "BabyDetails",
@@ -618,7 +570,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioObservation testObservation = new DsioObservation()
                 {
-                    PatientDfn = "26",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "Chief Complaint",
@@ -638,7 +590,6 @@ that goes for more than one line"
 
                 DsioGetObservationsCommand getCommand = new DsioGetObservationsCommand(broker);
 
-                //getCommand.AddCommandArguments("", saveCommand.Ien, "", "", "", "", "", 0, 0);
                 getCommand.AddCommandArguments(testObservation.PatientDfn, "", "", "", "", "", "", "Chief Complaint", -1, -1);
 
                 response = getCommand.Execute();
@@ -662,7 +613,7 @@ that goes for more than one line"
 
                 DsioObservation testObservation = new DsioObservation()
                 {
-                    PatientDfn = "26",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "History of Present Illness",
@@ -708,7 +659,7 @@ that goes for more than one line"
 
                 DsioObservation testObservation = new DsioObservation()
                 {
-                    PatientDfn = "126",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "History of Past Illness",
@@ -750,7 +701,7 @@ Lipitor to manage this."
         {
             DsioObservation testObservation = new DsioObservation()
             {
-                PatientDfn = "126",
+                PatientDfn = TestConfiguration.DefaultPatientDfn,
                 PregnancyIen = "",
                 BabyIen = "",
                 Category = "History of Infection",
@@ -771,7 +722,7 @@ and is expected continue on with with close monitoring."
         {
             DsioObservation testObservation = new DsioObservation()
             {
-                PatientDfn = "26",
+                PatientDfn = TestConfiguration.DefaultPatientDfn,
                 PregnancyIen = "",
                 BabyIen = "",
                 Category = "History of Infection",
@@ -830,7 +781,7 @@ and is expected continue on with with close monitoring."
 
                 DsioObservation testObservation = new DsioObservation()
                 {
-                    PatientDfn = "26",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "History of Past Illness",
@@ -845,7 +796,7 @@ and is expected continue on with with close monitoring."
 
                 testObservation = new DsioObservation()
                 {
-                    PatientDfn = "26",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "History of Past Illness",
@@ -860,7 +811,7 @@ and is expected continue on with with close monitoring."
 
                 testObservation = new DsioObservation()
                 {
-                    PatientDfn = "26",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "History of Past Illness",
@@ -892,7 +843,7 @@ and is expected continue on with with close monitoring."
         {
             DsioObservation testObservation = new DsioObservation()
             {
-                PatientDfn = "26",
+                PatientDfn = TestConfiguration.DefaultPatientDfn,
                 PregnancyIen = "",
                 BabyNum = "",
                 Category = "Social History: Smoking",
@@ -954,7 +905,7 @@ and is expected continue on with with close monitoring."
         {
             DsioObservation testObservation = new DsioObservation()
             {
-                PatientDfn = "26",
+                PatientDfn = TestConfiguration.DefaultPatientDfn,
                 PregnancyIen = "",
                 BabyNum = "",
                 Category = "Family Medical History",
@@ -1019,7 +970,7 @@ and is expected continue on with with close monitoring."
         {
             DsioObservation testObservation = new DsioObservation()
             {
-                PatientDfn = "26",
+                PatientDfn = TestConfiguration.DefaultPatientDfn,
                 PregnancyIen = "",
                 BabyIen = "",
                 Category = "Review of Systems",
@@ -1083,7 +1034,7 @@ and is expected continue on with with close monitoring."
         {
             DsioObservation testObservation = new DsioObservation()
             {
-                PatientDfn = "26",
+                PatientDfn = TestConfiguration.DefaultPatientDfn,
                 PregnancyIen = "",
                 BabyIen = "",
                 Category = "Vital Signs",
@@ -1177,7 +1128,7 @@ and is expected continue on with with close monitoring."
         {
             DsioObservation testObservation = new DsioObservation()
             {
-                PatientDfn = "26",
+                PatientDfn = TestConfiguration.DefaultPatientDfn,
                 Category = "Physical Exam",
                 ExamDate = DateTime.Now.ToString(VistaDates.VistADateFormatFour),
                 Value = "Patient appeared groggy and slow-moving",
@@ -1280,7 +1231,7 @@ and is expected continue on with with close monitoring."
 
                 DsioObservation testObservation = new DsioObservation()
                 {
-                    PatientDfn = "655",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "Allergy",
@@ -1325,7 +1276,7 @@ and is expected continue on with with close monitoring."
 
                 DsioObservation testObservation = new DsioObservation()
                 {
-                    PatientDfn = "26",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "Advance Directive",
@@ -1377,7 +1328,7 @@ and is expected continue on with with close monitoring."
 
                 DsioObservation testObservation = new DsioObservation()
                 {
-                    PatientDfn = "26",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "Care Plan",
@@ -1401,7 +1352,7 @@ and is expected continue on with with close monitoring."
 
                 testObservation = new DsioObservation()
                 {
-                    PatientDfn = "26",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "Care Plan",
@@ -1446,7 +1397,7 @@ and is expected continue on with with close monitoring."
 
                 DsioObservation testObservation = new DsioObservation()
                 {
-                    PatientDfn = "26",
+                    PatientDfn = TestConfiguration.DefaultPatientDfn,
                     PregnancyIen = "",
                     BabyIen = "",
                     Category = "Visit Summary",

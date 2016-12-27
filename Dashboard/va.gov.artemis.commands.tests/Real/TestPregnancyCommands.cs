@@ -24,7 +24,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioLinkedPerson person = new DsioLinkedPerson()
                 {
-                    PatientDfn = "126", 
+                    PatientDfn = TestConfiguration.DefaultPatientDfn, 
                     Name = "Third, Today"
                 };
 
@@ -63,43 +63,48 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
-                DsioSavePersonCommand command = new DsioSavePersonCommand(broker);
-
-                DsioLinkedPerson fof = new DsioLinkedPerson();
-
-                fof.PatientDfn = "715"; 
-
-                DsioAddress addr = new DsioAddress();
-                addr.StreetLine1 = "1234 Five Street";
-                addr.StreetLine2 = "#3";
-                addr.City = "Seven";
-                addr.State = "SC";
-                addr.ZipCode = "90099";
-
-                fof.Address = addr;
-
-                List<DsioTelephone> telList = new List<DsioTelephone>();
-                telList.Add(new DsioTelephone() { Number = "800-800-8000", Usage = DsioTelephone.HomePhoneUsage });
-                telList.Add(new DsioTelephone() { Number = "900-900-9000", Usage = DsioTelephone.WorkPhoneUsage });
-                telList.Add(new DsioTelephone() { Number = "700-700-7000", Usage = DsioTelephone.MobilePhoneUsage });
-
-                fof.TelephoneList.AddRange(telList);
-
-                string temp = Guid.NewGuid().ToString();
-
-                // TODO: Need random name generator to test this successfully repeatedly...
-                fof.Name = "Test,NamedOB";// +Guid.NewGuid().ToString();
-                fof.DOB = DateTime.Now.Subtract(new TimeSpan(10000, 0, 0, 0)).ToShortDateString();
-                fof.YearsSchool = "18"; 
-
-                command.AddCommandArguments(fof);
-
-                RpcResponse response = command.Execute();
-
-                Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-
+                this.SavePerson(broker); 
             }
+        }
 
+        private string SavePerson(IRpcBroker broker)
+        {
+            DsioSavePersonCommand command = new DsioSavePersonCommand(broker);
+
+            DsioLinkedPerson fof = new DsioLinkedPerson();
+
+            fof.PatientDfn = TestConfiguration.DefaultPatientDfn;
+
+            DsioAddress addr = new DsioAddress();
+            addr.StreetLine1 = "1234 Five Street";
+            addr.StreetLine2 = "#3";
+            addr.City = "Seven";
+            addr.State = "SC";
+            addr.ZipCode = "90099";
+
+            fof.Address = addr;
+
+            List<DsioTelephone> telList = new List<DsioTelephone>();
+            telList.Add(new DsioTelephone() { Number = "800-800-8000", Usage = DsioTelephone.HomePhoneUsage });
+            telList.Add(new DsioTelephone() { Number = "900-900-9000", Usage = DsioTelephone.WorkPhoneUsage });
+            telList.Add(new DsioTelephone() { Number = "700-700-7000", Usage = DsioTelephone.MobilePhoneUsage });
+
+            fof.TelephoneList.AddRange(telList);
+
+            string temp = Guid.NewGuid().ToString();
+
+            // TODO: Need random name generator to test this successfully repeatedly...
+            fof.Name = "Test,NamedOB";// +Guid.NewGuid().ToString();
+            fof.DOB = DateTime.Now.Subtract(new TimeSpan(10000, 0, 0, 0)).ToShortDateString();
+            fof.YearsSchool = "18";
+
+            command.AddCommandArguments(fof);
+
+            RpcResponse response = command.Execute();
+
+            Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+
+            return command.Ien; 
         }
 
         [TestMethod]
@@ -167,16 +172,16 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
+                string personIen = this.SavePerson(broker); 
+
                 DsioGetPersonCommand command = new DsioGetPersonCommand(broker);
 
-                command.AddCommandArguments("715", "1");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, personIen);
 
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-
             }
-
         }
 
         [TestMethod]
@@ -188,12 +193,11 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPersonCommand command = new DsioGetPersonCommand(broker);
 
-                command.AddCommandArguments("715", "98");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "-98");
 
                 RpcResponse response = command.Execute();
 
-                Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-
+                Assert.AreEqual(RpcResponseStatus.Fail, response.Status);
             }
 
         }
@@ -206,14 +210,12 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPersonCommand command = new DsioGetPersonCommand(broker);
 
-                command.AddCommandArguments("740", "SPOUSE");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "SPOUSE");
 
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-
             }
-
         }
 
         [TestMethod]
@@ -225,7 +227,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPersonCommand command = new DsioGetPersonCommand(broker);
 
-                command.AddCommandArguments("715", "");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "");
 
                 RpcResponse response = command.Execute();
 
@@ -248,7 +250,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 //preg.PatientDfn = "704";
                 //preg.PatientDfn = "100007"; 
                 //preg.PatientDfn = "763"; 
-                preg.PatientDfn = "126"; 
+                preg.PatientDfn = TestConfiguration.DefaultPatientDfn; 
                 preg.Ien = "";
                 preg.RecordType = "HISTORICAL";
                 //preg.FatherOfFetusIen = "U";
@@ -273,7 +275,6 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-
             }
         }
 
@@ -286,22 +287,12 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPregDetailsCommand command = new DsioGetPregDetailsCommand(broker);
 
-                //command.AddCommandArguments("715", "7");
-                //command.AddCommandArguments("10", "");
-                //command.AddCommandArguments("100010", "");
-                //command.AddCommandArguments("144", "");
-                //command.AddCommandArguments("100007", "");
-                //command.AddCommandArguments("766", "41");
-                //command.AddCommandArguments("367", "58");
-                //command.AddCommandArguments("643", "68");
-                command.AddCommandArguments("126", "");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "");
 
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-
             }
-
         }
 
         [TestMethod]
@@ -318,7 +309,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-                Assert.IsNull(command.PregnancyList); 
+                Assert.IsTrue(command.PregnancyList.Count == 0);
 
             }
 
@@ -338,9 +329,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-                Assert.IsNull(command.PregnancyList);
-
-
+                Assert.IsTrue(command.PregnancyList.Count == 0);
             }
 
         }
@@ -355,7 +344,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 DsioSavePregDetailsCommand createCommand = new DsioSavePregDetailsCommand(broker);
 
                 DsioPregnancy preg = new DsioPregnancy();
-                preg.PatientDfn = "126";
+                preg.PatientDfn = TestConfiguration.DefaultPatientDfn;
                 preg.Ien = "";
                 preg.RecordType = "HISTORICAL";
                 preg.FatherOfFetusIen = "U";
@@ -389,7 +378,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPregDetailsCommand getCommand = new DsioGetPregDetailsCommand(broker);
 
-                getCommand.AddCommandArguments("126", ien);
+                getCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn, ien);
 
                 response = getCommand.Execute();
 

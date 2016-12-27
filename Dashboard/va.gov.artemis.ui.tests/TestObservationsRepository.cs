@@ -67,11 +67,5 @@ namespace VA.Gov.Artemis.UI.Tests
 
             Assert.AreEqual(dd.OtherDeliveryDetails, dd2.OtherDeliveryDetails); 
         }
-
-        [TestMethod]
-        public void TestObservationConstructors()
-        {
-
-        }
     }
 }

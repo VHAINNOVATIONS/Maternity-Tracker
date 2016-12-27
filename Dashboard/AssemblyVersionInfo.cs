@@ -112,9 +112,12 @@
 // ***                   Correct MDS data extraction to use section LOINC code instead of template id 
 // ***                   Load pregnancies if an error occurs in note save so that pregnancies selection still works 
 // ***                   Add label to outcomes bar chart tooltips
-// *** 12/??/2016 2.0.10 This release is dependent upon KID build ??
+// *** 12/27/2016 2.0.10 This release is dependent upon KID build DSIO 2 P5 T1
 // ***                   Only complete checklist item for contact notes for the specific pregnancy associated with the note. 
-//                       Exclude private files from project 
+// ***                   Exclude private files from project 
+// ***                   Correct issue when retrieving pregnancy history observation data 
+// ***                   Refactor tests to make configurable 
+
 
 [assembly: AssemblyFileVersion("2.0.10.0")]
 

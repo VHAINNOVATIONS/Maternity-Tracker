@@ -21,8 +21,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioVprGetPatientDataCommand command = new DsioVprGetPatientDataCommand(broker);
 
-                command.AddCommandArguments("126");
-                //command.AddCommandArguments("999");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn);
 
                 RpcResponse response = command.Execute();
 
@@ -58,7 +57,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioVprGetPatientDataCommand command = new DsioVprGetPatientDataCommand(broker);
 
-                command.AddCommandArguments("126", Vpr.VprDataType.Family);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, Vpr.VprDataType.Family);
 
                 RpcResponse response = command.Execute();
 
@@ -76,7 +75,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioVprGetPatientDataCommand command = new DsioVprGetPatientDataCommand(broker);
 
-                command.AddCommandArguments("715", Vpr.VprDataType.Labs);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, Vpr.VprDataType.Labs);
 
                 RpcResponse response = command.Execute();
 

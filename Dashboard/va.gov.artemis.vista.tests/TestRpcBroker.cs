@@ -7,9 +7,6 @@ namespace VA.Gov.Artemis.Vista.Tests
     [TestClass]
     public class TestRpcBroker
     {
-        // TODO: Use these, or move to config file...
-        private const string validServerName = "localhost"; 
-        private const int validServerPort = 9000; 
 
         [TestMethod]
         public void TestConnectNoServer()
@@ -21,7 +18,7 @@ namespace VA.Gov.Artemis.Vista.Tests
         [TestMethod]
         public void TestConnectValidServer()
         {
-            if (!TestConnect(validServerName, validServerPort))
+            if (!TestConnect(TestConfiguration.ValidServerName, TestConfiguration.ValidPort))
                 Assert.Fail("Could not connect to localhost:9000");
 
         }
@@ -29,14 +26,14 @@ namespace VA.Gov.Artemis.Vista.Tests
         [TestMethod]
         public void TestInvalidPort()
         {
-            if (TestConnect(validServerName, 342))
+            if (TestConnect(TestConfiguration.ValidServerName, 342))
                 Assert.Fail("Connected to invalid port"); 
         }
 
         [TestMethod]
         public void TestInvalidServer()
         {
-            if (TestConnect("noserver", validServerPort))
+            if (TestConnect("noserver", TestConfiguration.ValidPort))
                 Assert.Fail("Connected to invalid server"); 
         }
 
@@ -50,14 +47,14 @@ namespace VA.Gov.Artemis.Vista.Tests
         [TestMethod]
         public void TestDefaultServer() 
         {
-            if (!TestConnect("", validServerPort))
+            if (!TestConnect("", TestConfiguration.ValidPort))
                 Assert.Fail("Could not connect to localhost:9000");
         }
 
         [TestMethod]
         public void TestEmptyRpcName()
         {
-            using (RpcBroker broker = new RpcBroker("", validServerPort))
+            using (RpcBroker broker = new RpcBroker("", TestConfiguration.ValidPort))
             {
                 if (broker.Connect())
                 {
@@ -73,7 +70,7 @@ namespace VA.Gov.Artemis.Vista.Tests
         [TestMethod]
         public void TestCreateContext()
         {
-            using (RpcBroker broker = new RpcBroker("", validServerPort))
+            using (RpcBroker broker = new RpcBroker("", TestConfiguration.ValidPort))
             {
                 if (broker.Connect())
                 {
@@ -91,7 +88,7 @@ namespace VA.Gov.Artemis.Vista.Tests
         [TestMethod]
         public void TestValidRpc()
         {
-            using (RpcBroker broker = new RpcBroker("", validServerPort))
+            using (RpcBroker broker = new RpcBroker("", TestConfiguration.ValidPort))
             {
                 if (broker.Connect())
                 {
@@ -110,7 +107,7 @@ namespace VA.Gov.Artemis.Vista.Tests
         [TestMethod]
         public void TestInvalidRpc()
         {
-            using (RpcBroker broker = new RpcBroker("", validServerPort))
+            using (RpcBroker broker = new RpcBroker("", TestConfiguration.ValidPort))
             {
                 if (broker.Connect())
                 {
@@ -131,7 +128,7 @@ namespace VA.Gov.Artemis.Vista.Tests
         [TestMethod]
         public void TestSocketTimeout()
         {
-            using (RpcBroker broker = new RpcBroker("", validServerPort))
+            using (RpcBroker broker = new RpcBroker("", TestConfiguration.ValidPort))
             {
                 if (broker.Connect())
                 {
@@ -150,7 +147,7 @@ namespace VA.Gov.Artemis.Vista.Tests
         [TestMethod]
         public void TestDisconnectNotConnected()
         {
-            using (RpcBroker broker = new RpcBroker(validServerName, validServerPort))
+            using (RpcBroker broker = new RpcBroker(TestConfiguration.ValidServerName, TestConfiguration.ValidPort))
                 broker.Disconnect();
 
         }

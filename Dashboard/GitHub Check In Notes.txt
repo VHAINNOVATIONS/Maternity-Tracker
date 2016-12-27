@@ -1,7 +1,8 @@
 Checking In: 
 
-1. Remove files from project
-	a. va.gov.artemis.vista => remove VistaHash.cs
+1. Exclude files from project
+	a. va.gov.artemis.vista => remove VistaHashPrivate.cs
+		i. Uncomment cipherPad line in VistaHash.cs
 	b. va.gov.artemis.ui => remove AccountControllerPrivate.cs
 2. Check config files for private data 
 	a. va.gov.artemis.commands.tests -> App.config
@@ -14,7 +15,8 @@ Checking In:
 			3. Text4BabyApiPassword
 			4. Text4BabyApiReferringUrl
 			5. Text4BabyApiApplicationId
-		
+3. Rebuild to confirm all files/references are correct 
+
 To begin development locally, reverse the above process
 
 	

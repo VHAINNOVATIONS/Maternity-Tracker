@@ -324,7 +324,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
                                 // *** If newer replace ***
                                 if (newDate > existingDate)
-                                    mostRecentList[dsioObservation.EntryDate] = dsioObservation; 
+                                    mostRecentList[dsioObservation.Code.Code] = dsioObservation; 
                             }
 
                         // *** Loop through most recent and add to pregnancy history ***

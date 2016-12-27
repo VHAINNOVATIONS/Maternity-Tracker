@@ -17,7 +17,8 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetReminderListCommand command = new DsioGetReminderListCommand(broker);
 
-                command.AddCommandArguments("715", 1, 10);
+                //command.AddCommandArguments("715", 1, 10);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, 1, 10);
 
                 RpcResponse response = command.Execute();
 

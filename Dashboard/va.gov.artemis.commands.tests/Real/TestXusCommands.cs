@@ -62,7 +62,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         [TestMethod]
         public void TestValidAVCode()
         {
-            TestAvCode(ValidAccessCodes[2], ValidVerifyCodes[2], RpcResponseStatus.Success);
+            TestAvCode(TestConfiguration.ValidAccessCodes[2], TestConfiguration.ValidVerifyCodes[2], RpcResponseStatus.Success);
         }
 
         [TestMethod]
@@ -109,8 +109,8 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 if (response.Status == RpcResponseStatus.Success)
                 {
-                    accessCode = ValidAccessCodes[userIndex];
-                    verifyCode = ValidVerifyCodes[userIndex];
+                    accessCode = TestConfiguration.ValidAccessCodes[userIndex];
+                    verifyCode = TestConfiguration.ValidVerifyCodes[userIndex];
 
                     XusAvCodeCommand avCommand = new XusAvCodeCommand(broker);
                     
@@ -136,10 +136,10 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                             if (response.Status == RpcResponseStatus.Success)
                             {
-                                string[] verifyCodes = (string[])ValidVerifyCodes.Clone();
+                                string[] verifyCodes = (string[])TestConfiguration.ValidVerifyCodes.Clone();
 
                                 verifyCodes[userIndex] = newVCode;
-                                ValidVerifyCodes = verifyCodes; 
+                                TestConfiguration.ValidVerifyCodes = verifyCodes; 
                             }                            // *** Check results ***
                             Assert.AreEqual(RpcResponseStatus.Success, response.Status);
                         }
@@ -157,29 +157,6 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         [TestMethod]
         public void TestDivisionGet()
         {
-            //RpcResponse response;
-            //XusDivisionGetCommand divCommand;
-
-            //Queue<CommandBase> commandQueue = new Queue<CommandBase>();
-
-            //using (RpcBroker broker = GetConnectedBroker())
-            //{
-            //    commandQueue.Enqueue(new XusSignonSetupCommand(broker));
-
-            //    XusAvCodeCommand avCommand = new XusAvCodeCommand(broker);
-            //    avCommand.AddCommandArguments(ValidAccessCodes[0], ValidVerifyCodes[0]);
-
-            //    commandQueue.Enqueue(avCommand);
-
-            //    divCommand = new XusDivisionGetCommand(broker);
-
-            //    commandQueue.Enqueue(divCommand);
-
-            //    response = ExecuteCommandQueue(commandQueue);
-
-            //    broker.Disconnect();
-            //}
-
             using (RpcBroker broker = GetConnectedBroker())
             {
                 this.SignonToBroker(broker, 2);
@@ -190,22 +167,20 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 Assert.IsNotNull(response);
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-                Assert.IsNotNull(command.Divisions, "No divisions found");         
-                
+                Assert.IsNotNull(command.Divisions, "No divisions found");  
             }
-
         }
 
         [TestMethod]
         public void TestDivisionSetValid()
         {
-            TestDivisionSet(2, "678", RpcResponseStatus.Success); 
+            TestDivisionSet(2, TestConfiguration.ValidDivision, RpcResponseStatus.Success); 
         }
 
         [TestMethod]
         public void TestDivisionSetInvalid()
         {
-            TestDivisionSet(0, "", RpcResponseStatus.Fail);
+            TestDivisionSet(2, "", RpcResponseStatus.Fail);
         }
 
         private void TestDivisionSet(int userIndex, string divId, RpcResponseStatus expectedResponse) 
@@ -217,7 +192,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 commandQueue.Enqueue(new XusSignonSetupCommand(broker));
 
                 XusAvCodeCommand avCommand = new XusAvCodeCommand(broker);
-                avCommand.AddCommandArguments(ValidAccessCodes[userIndex], ValidVerifyCodes[userIndex]);
+                avCommand.AddCommandArguments(TestConfiguration.ValidAccessCodes[userIndex], TestConfiguration.ValidVerifyCodes[userIndex]);
 
                 commandQueue.Enqueue(avCommand);
 
@@ -232,7 +207,6 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 broker.Disconnect();
             }
-
         }
 
         [TestMethod]
@@ -246,7 +220,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 XusAvCodeCommand avCommand = new XusAvCodeCommand(broker);
                     
-                avCommand.AddCommandArguments(ValidAccessCodes[2], ValidVerifyCodes[2]);
+                avCommand.AddCommandArguments(TestConfiguration.ValidAccessCodes[2], TestConfiguration.ValidVerifyCodes[2]);
 
                 commandQueue.Enqueue(avCommand);
 
@@ -275,7 +249,6 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 broker.Disconnect();
             }
-
         }
 
         [TestMethod]
@@ -289,9 +262,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 XusAvCodeCommand avCommand = new XusAvCodeCommand(broker);
                 
-                avCommand.AddCommandArguments(ValidAccessCodes[0], ValidVerifyCodes[0]);
-
-                //commandQueue.Enqueue(avCommand);
+                avCommand.AddCommandArguments(TestConfiguration.ValidAccessCodes[0], TestConfiguration.ValidVerifyCodes[0]);
 
                 XusGetUserInfoCommand userInfoCommand = new XusGetUserInfoCommand(broker);
 
@@ -304,8 +275,6 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 broker.Disconnect();
             }
-
         }
-
     }
 }

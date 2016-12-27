@@ -18,7 +18,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetOrderListCommand command = new DsioGetOrderListCommand(broker);
 
-                command.AddCommandArguments("711", 1, 10);
+                command.AddCommandArguments(TestConfiguration.PatientWithOrdersDfn, 1, 10);
                 //command.AddCommandArguments("715"); 
 
                 RpcResponse response = command.Execute();

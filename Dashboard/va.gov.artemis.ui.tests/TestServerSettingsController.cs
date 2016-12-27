@@ -4,6 +4,7 @@ using VA.Gov.Artemis.UI.Controllers;
 using System.Web.Mvc;
 using VA.Gov.Artemis.UI.Data.Models;
 using VA.Gov.Artemis.UI.Data.Models.ServerSettings;
+using System.Configuration;
 
 namespace VA.Gov.Artemis.UI.Tests
 {
@@ -32,19 +33,16 @@ namespace VA.Gov.Artemis.UI.Tests
         {
             ServerSettingsController controller = new ServerSettingsController();
 
-            ServerConfig serverConfig = new ServerConfig()
-            {
-                ServerName = "localhost",
-                ListenerPort = 9000
-            };
+            ServerConfig serverConfig = new ServerConfig();
+
+            serverConfig.ServerName = ConfigurationManager.AppSettings["validServer"];
+            serverConfig.ListenerPort = int.Parse(ConfigurationManager.AppSettings["validListenerPort"]);
 
             ActionResult result = controller.ProcessEditGet(serverConfig, true);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(RedirectToRouteResult));
             RedirectToRouteResult routeResult = (RedirectToRouteResult)result;
-            //Assert.AreEqual("Index", routeResult.RouteValues["action"]);
-            //Assert.AreEqual("TrackedPatient", routeResult.RouteValues["controller"]);
 
         }
 
@@ -53,7 +51,10 @@ namespace VA.Gov.Artemis.UI.Tests
         {
             ServerSettingsController controller = new ServerSettingsController();
 
-            ActionResult result = controller.TestConnection("localhost", "9000");
+            string vistaServer = ConfigurationManager.AppSettings["validServer"];
+            string port = ConfigurationManager.AppSettings["validListenerPort"]; 
+
+            ActionResult result = controller.TestConnection(vistaServer, port);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ContentResult));

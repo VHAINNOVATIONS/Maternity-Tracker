@@ -5,15 +5,19 @@ using VA.Gov.Artemis.Vista.Broker;
 using VA.Gov.Artemis.Vista.Commands;
 using System.Collections.Generic;
 using VA.Gov.Artemis.Commands.Xus;
+using VA.Gov.Artemis.Commands.Dsio.Pregnancy;
+using VA.Gov.Artemis.Vista.Utility;
 
 namespace VA.Gov.Artemis.Commands.Tests.Real
 {
     [TestClass]
     public abstract class TestCommandsBase
     {
+        protected IRpcBroker Broker { get; set; }
+
         protected RpcBroker GetConnectedBroker()
         {
-            RpcBroker returnVal = new RpcBroker(ValidServerName, ValidPort);
+            RpcBroker returnVal = new RpcBroker(TestConfiguration.ValidServerName, TestConfiguration.ValidPort);
 
             if (!returnVal.Connect())
                 Assert.Fail("Could not connect broker");
@@ -44,59 +48,6 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             return returnVal;
         }
 
-        protected string ValidServerName
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["validServer"];
-            }
-        }
-
-        protected int ValidPort
-        {
-            get
-            {
-                int returnVal = 0;
-
-                int.TryParse(ConfigurationManager.AppSettings["validListenerPort"], out returnVal);
-
-                return returnVal;
-            }
-        }
-
-        protected string[] ValidAccessCodes
-        {
-            get
-            {
-                string concatenated = ConfigurationManager.AppSettings["validAccessCodes"];
-
-                return concatenated.Split(',');
-            }
-        }
-
-        protected string[] ValidVerifyCodes
-        {
-            get
-            {
-                string concatenated = ConfigurationManager.AppSettings["validVerifyCodes"];
-
-                return concatenated.Split(',');
-            }
-            set
-            {
-                string concatenated = string.Join(",", value);
-
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-                config.AppSettings.Settings["validVerifyCodes"].Value = concatenated;
-
-                config.Save();
-
-                //ConfigurationManager.AppSettings["validVerifyCodes"] = concatenated; 
-
-            }
-        }
-
         protected void SignonToBroker(IRpcBroker broker, int avCodeIndex)
         {
             XusSignonSetupCommand signonSetupCommand = new XusSignonSetupCommand(broker);
@@ -107,7 +58,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
             XusAvCodeCommand avCodeCommand = new XusAvCodeCommand(broker);
             
-            avCodeCommand.AddCommandArguments(ValidAccessCodes[avCodeIndex], ValidVerifyCodes[avCodeIndex]);
+            avCodeCommand.AddCommandArguments(TestConfiguration.ValidAccessCodes[avCodeIndex], TestConfiguration.ValidVerifyCodes[avCodeIndex]);
 
             response = avCodeCommand.Execute();
 
@@ -115,5 +66,55 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
         }
 
+        protected DsioPregnancy GetAnyPregnancy(IRpcBroker broker, string patientDfn)
+        {
+            DsioPregnancy returnVal = null;
+
+            DsioGetPregDetailsCommand command = new DsioGetPregDetailsCommand(broker);
+
+            command.AddCommandArguments(patientDfn, "");
+
+            RpcResponse response = command.Execute();
+                        
+            if (response.Status == RpcResponseStatus.Success)            
+                if (command.PregnancyList != null)
+                    if (command.PregnancyList.Count > 0)
+                        returnVal = command.PregnancyList[0];
+
+            return returnVal; 
+        }
+
+        public DsioPregnancy AddCurrentPregnancy(IRpcBroker broker, string patientDfn)
+        {
+            DsioSavePregDetailsCommand command = new DsioSavePregDetailsCommand(broker);
+
+            DsioPregnancy newPreg = new DsioPregnancy()
+            {
+                EDD = DateTime.Now.AddMonths(6).ToString(VistaDates.VistADateOnlyFormat),
+                RecordType = "CURRENT",
+                PatientDfn = patientDfn
+            };
+
+            command.AddCommandArguments(newPreg, false);
+
+            RpcResponse response = command.Execute();
+
+            Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+
+            newPreg.Ien = command.Ien; 
+
+            return newPreg; 
+        }
+
+
+        public DsioPregnancy GetOrCreatePregnancy(IRpcBroker broker, string patientDfn)
+        {
+            DsioPregnancy returnVal = this.GetAnyPregnancy(broker, patientDfn);
+
+            if (returnVal == null)
+                returnVal = this.AddCurrentPregnancy(broker, patientDfn); 
+
+            return returnVal; 
+        }
     }
 }

@@ -3,13 +3,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VA.Gov.Artemis.Commands.Dsio.Notes;
 using VA.Gov.Artemis.Vista.Broker;
 using System.Diagnostics;
+using VA.Gov.Artemis.Commands.Dsio.Pregnancy;
 
 namespace VA.Gov.Artemis.Commands.Tests.Real
 {
     [TestClass]
     public class TestNoteCommands: TestCommandsBase
     {
-        private const string patDfn = "126"; 
+        //private const string patDfn = "126"; 
 
         [TestMethod]
         public void TestCreateANote()
@@ -35,11 +36,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 foreach (string title in TiuNoteTitleText)
                 {
-                    command.AddCommandArguments(patDfn, title, "Monday Notes", "test subject", new DsioNoteData(), "");
-                    //command.AddCommandArguments("740", "MCC DASHBOARD NOTE", "Monday Notes", "test subject", new DsioNoteData());
-                    //command.AddCommandArguments("740", "MCC Phone Call #1 (Initial Contact)", "Test MCC Call #1", "test subject", new DsioNoteData());
-                    //command.AddCommandArguments("740", "PHONE CALL #7 (6 WEEKS POST-PARTUM) TOPICS", "Monday Notes", "test subject", new DsioNoteData());
-                    //command.AddCommandArguments("740", "PHONE CALL #6A (41 WEEKS NOT DELIVERED)", "Monday Notes", "test subject", new DsioNoteData());
+                    command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, title, "Monday Notes", "test subject", new DsioNoteData(), "");
 
                     RpcResponse response = command.Execute();
                     
@@ -57,7 +54,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioCreateANoteCommand command = new DsioCreateANoteCommand(broker);
 
-                command.AddCommandArguments("100017", "MCC DASHBOARD NOTE", "Note Text Here", "Some Subject", new DsioNoteData(), "");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "MCC DASHBOARD NOTE", "Note Text Here", "Some Subject", new DsioNoteData(), "");
 
                 RpcResponse response = command.Execute();
 
@@ -67,7 +64,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetTiuNotesCommand getCommand = new DsioGetTiuNotesCommand(broker);
 
-                getCommand.AddCommandArguments("100017", new string[] {"MCC DASHBOARD NOTE"}, "", "", 0, 0, false, command.Ien, "");
+                getCommand.AddCommandArguments(TestConfiguration.DefaultPatientDfn, new string[] {"MCC DASHBOARD NOTE"}, "", "", 0, 0, false, command.Ien, "");
 
                 response = getCommand.Execute();
 
@@ -127,7 +124,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                    Debug.WriteLine(" - Adding Note - ");
                    Debug.WriteLine(title);
 
-                   command.AddCommandArguments(patDfn, title, "Testing Discrete Data", "test subject", noteData, "");
+                   command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, title, "Testing Discrete Data", "test subject", noteData, "");
 
                    RpcResponse response = command.Execute();
 
@@ -136,11 +133,9 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                    Debug.WriteLine(string.Format("IEN RETURNED: {0}", command.Ien)); 
 
-                   //DsioGetNoteElementCommand getCommand = new DsioGetNoteElementCommand(broker);
                    DsioDdcsGetControlValue getCommand = new DsioDdcsGetControlValue(broker); 
 
                    getCommand.AddCommandArguments(command.Ien);
-                   //getCommand.AddCommandArguments("5143");
 
                    response = getCommand.Execute();
 
@@ -157,14 +152,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                    Debug.WriteLine(" -- "); 
                }                
-                
-                //DsioGetRecordTextCommand cmd = new DsioGetRecordTextCommand(broker);
-
-                //cmd.AddCommandArgument(command.Ien, DsioGetRecordTextMode.HeaderAndBody);
-
-                //response = cmd.Execute();
-
-                //Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+               
             }
         }
 
@@ -177,7 +165,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetTiuNotesCommand command = new DsioGetTiuNotesCommand(broker);
 
-                command.AddCommandArguments(patDfn, new string[]{"MCC DASHBOARD NOTE"}, "", "", 1, 100, true, "", "");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, new string[]{"MCC DASHBOARD NOTE"}, "", "", 1, 100, true, "", "");
 
                 RpcResponse response = command.Execute();
 
@@ -207,8 +195,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                     "PHONE CALL #7 (6 WEEKS POSTPARTUM) TOPICS", 
                     };
 
-                //command.AddCommandArguments("100032", tiuNoteTitleText, "", "", 1, 100, true, "", "");
-                command.AddCommandArguments("168", tiuNoteTitleText, "", "", 1, 100, true, "", "");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, tiuNoteTitleText, "", "", 1, 100, true, "", "");
 
                 RpcResponse response = command.Execute();
 
@@ -225,7 +212,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioCreateANoteCommand commandCreate = new DsioCreateANoteCommand(broker);
 
-                commandCreate.AddCommandArguments(patDfn, "MCC DASHBOARD NOTE", "Note text for Friday", "test subject", new DsioNoteData(), "");
+                commandCreate.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "MCC DASHBOARD NOTE", "Note text for Friday", "test subject", new DsioNoteData(), "");
 
                 RpcResponse response = commandCreate.Execute();
 
@@ -248,14 +235,21 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
-                DsioGetRecordTextCommand command = new DsioGetRecordTextCommand(broker);
+                DsioCreateANoteCommand command = new DsioCreateANoteCommand(broker);
 
-                //command.AddParameter("461");
-                //command.AddCommandArgument("4999", DsioGetRecordTextMode.HeaderAndBody);
-                //command.AddCommandArgument("5016", DsioGetRecordTextMode.HeaderAndBody);
-                command.AddCommandArgument("4850", DsioGetRecordTextMode.HeaderAndBody);
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "MCC DASHBOARD NOTE", "Note Text Here", "Some Subject", new DsioNoteData(), "");
 
                 RpcResponse response = command.Execute();
+
+                Assert.AreEqual(RpcResponseStatus.Success, response.Status, "MCC DASHBOARD NOTE could not be created");
+
+                Assert.IsFalse(string.IsNullOrWhiteSpace(command.Ien));
+
+                DsioGetRecordTextCommand getCommand = new DsioGetRecordTextCommand(broker);
+
+                getCommand.AddCommandArgument(command.Ien, DsioGetRecordTextMode.HeaderAndBody);
+
+                response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
 
@@ -291,7 +285,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioCreateANoteCommand commandCreate = new DsioCreateANoteCommand(broker);
 
-                commandCreate.AddCommandArguments(patDfn, "MCC DASHBOARD NOTE", "Note text for Friday", "test subject", new DsioNoteData(), "");
+                commandCreate.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "MCC DASHBOARD NOTE", "Note text for Friday", "test subject", new DsioNoteData(), "");
 
                 RpcResponse response = commandCreate.Execute();
 
@@ -299,7 +293,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioSignANoteCommand command = new DsioSignANoteCommand(broker);
 
-                command.AddCommandArguments(commandCreate.Ien, "NUR1234");
+                command.AddCommandArguments(commandCreate.Ien, TestConfiguration.ValidSigs[2]);
 
                 response = command.Execute();
 
@@ -318,7 +312,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioCreateANoteCommand commandCreate = new DsioCreateANoteCommand(broker);
 
-                commandCreate.AddCommandArguments(patDfn, "MCC DASHBOARD NOTE", "Note text for Friday", "test subject", new DsioNoteData(), "");
+                commandCreate.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "MCC DASHBOARD NOTE", "Note text for Friday", "test subject", new DsioNoteData(), "");
 
                 RpcResponse response = commandCreate.Execute();
 
@@ -343,7 +337,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioCreateANoteCommand commandCreate = new DsioCreateANoteCommand(broker);
 
-                commandCreate.AddCommandArguments(patDfn, "MCC DASHBOARD NOTE", "Note text for Friday", "test subject", new DsioNoteData(), "");
+                commandCreate.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "MCC DASHBOARD NOTE", "Note text for Friday", "test subject", new DsioNoteData(), "");
 
                 RpcResponse response = commandCreate.Execute();
 
@@ -394,7 +388,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 noteData.Add("COVERAGE_1", true.ToString());
                 noteData.Add("COVERAGE_2", false.ToString());
 
-                command.AddCommandArguments(patDfn, "MCC DASHBOARD NOTE", "Testing Discrete Data", "test subject", noteData, "");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "MCC DASHBOARD NOTE", "Testing Discrete Data", "test subject", noteData, "");
 
                 RpcResponse response = command.Execute();
 
@@ -447,7 +441,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                         "PHONE CALL #7 (6 WEEKS POSTPARTUM) TOPICS", 
                         "MCC Phone Call – Additional"}; 
 
-                command.AddCommandArguments(patDfn, TiuNoteTitleText, "", "", 1, 100, true, "", "");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, TiuNoteTitleText, "", "", 1, 100, true, "", "");
 
                 RpcResponse response = command.Execute();
 
@@ -476,7 +470,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                         "PHONE CALL #7 (6 WEEKS POSTPARTUM) TOPICS", 
                         "MCC Phone Call – Additional"};
 
-                command.AddCommandArguments(patDfn, TiuNoteTitleText, "08/11/2014", "08/15/2014", 1, 100, true, "", "");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, TiuNoteTitleText, "08/11/2014", "08/15/2014", 1, 100, true, "", "");
 
                 RpcResponse response = command.Execute();
 
@@ -494,10 +488,11 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioCreateANoteCommand command = new DsioCreateANoteCommand(broker);
 
-                // TODO: Use a real pregnancy...
-                //command.AddCommandArguments("197", "PHONE CALL #1 (FIRST CONTACT)", "Final Tuesday Testing?", "A Subject Goes Here", new DsioNoteData(), "140");
-                //command.AddCommandArguments("197", "PHONE CALL #1 (FIRST CONTACT)", "Wed Note", "A Subject Goes Here", new DsioNoteData(), "");
-                command.AddCommandArguments("100017", "PHONE CALL #1 (FIRST CONTACT)", "Tue Note", "A Subject Goes Here", new DsioNoteData(), "57");
+                DsioPregnancy preg = this.GetOrCreatePregnancy(broker, TestConfiguration.DefaultPatientDfn);
+
+                Assert.IsNotNull(preg);
+
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "PHONE CALL #1 (FIRST CONTACT)", "Tue Note", "A Subject Goes Here", new DsioNoteData(), preg.Ien);
 
                 RpcResponse response = command.Execute();
 
@@ -512,12 +507,24 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
-                DsioUpdateANoteCommand command = new DsioUpdateANoteCommand(broker);
+                DsioCreateANoteCommand command = new DsioCreateANoteCommand(broker);
 
-                //command.AddCommandArguments("197", "PHONE CALL #1 (FIRST CONTACT)", "Thursday Notes", "test subject", new DsioNoteData(), "9999");
-                command.AddCommandArguments("4850", "This is edited without preg", "New Subject", null, "");
+                DsioPregnancy preg = this.GetOrCreatePregnancy(broker, TestConfiguration.DefaultPatientDfn);
+
+                Assert.IsNotNull(preg);
+
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, "PHONE CALL #1 (FIRST CONTACT)", "Tue Note", "A Subject Goes Here", new DsioNoteData(), preg.Ien);
 
                 RpcResponse response = command.Execute();
+
+                Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+
+                DsioUpdateANoteCommand updCommand = new DsioUpdateANoteCommand(broker);
+
+                //command.AddCommandArguments("197", "PHONE CALL #1 (FIRST CONTACT)", "Thursday Notes", "test subject", new DsioNoteData(), "9999");
+                updCommand.AddCommandArguments(command.Ien, "This is edited without preg", "New Subject", null, "");
+
+                response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
             }

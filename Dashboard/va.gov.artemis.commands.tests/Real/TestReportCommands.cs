@@ -21,7 +21,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 OrwrpReportTextCommand command = new OrwrpReportTextCommand(broker);
 
-                command.AddCommandArguments("711");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn);
 
                 RpcResponse response = command.Execute();
 

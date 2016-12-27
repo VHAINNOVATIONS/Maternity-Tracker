@@ -22,18 +22,12 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientInformationCommand command = new DsioGetPatientInformationCommand(broker);
 
-                //command.AddCommandArguments("704");
-                //command.AddCommandArguments("100007"); 
-                //command.AddCommandArguments("434"); 
-                //command.AddCommandArguments("28"); 
-                command.AddCommandArguments("715"); 
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn); 
 
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
-
             }
-
         }
 
         [TestMethod]
@@ -45,11 +39,12 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetPatientInformationCommand command = new DsioGetPatientInformationCommand(broker);
 
-                command.AddCommandArguments("999");
+                command.AddCommandArguments("-999");
 
                 RpcResponse response = command.Execute();
 
-                Assert.AreEqual(RpcResponseStatus.Fail, response.Status);
+                Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+                Assert.IsNull(command.Patient);
 
             }
 
@@ -64,7 +59,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioSetPatientInformationCommand command = new DsioSetPatientInformationCommand(broker);
 
-                command.AddCommandArguments("715", DsioPatientInformationFields.LmpKey, "06/06/2014");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn, DsioPatientInformationFields.LmpKey, "06/06/2014");
 
                 RpcResponse response = command.Execute();
 

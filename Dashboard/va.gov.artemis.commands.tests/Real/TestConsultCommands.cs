@@ -17,12 +17,12 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         {
             using (RpcBroker broker = this.GetConnectedBroker())
             {
-                // TODO: Get working with non-programmer
                 this.SignonToBroker(broker, 2);
 
                 OrqqcnListCommand command = new OrqqcnListCommand(broker);
 
-                command.AddCommandArguments("715");
+                //command.AddCommandArguments("715");
+                command.AddCommandArguments(TestConfiguration.DefaultPatientDfn);
 
                 RpcResponse response = command.Execute();
 
@@ -37,12 +37,11 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         {
             using (RpcBroker broker = this.GetConnectedBroker())
             {
-                // TODO: Get working with non-programmer
                 this.SignonToBroker(broker, 2);
 
                 OrqqcnDetailCommand command = new OrqqcnDetailCommand(broker);
 
-                command.AddCommandArguments("554");
+                command.AddCommandArguments(TestConfiguration.ValidConsultIen);
 
                 RpcResponse response = command.Execute();
 

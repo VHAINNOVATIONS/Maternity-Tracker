@@ -21,9 +21,9 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetProviderCommand command = new DsioGetProviderCommand(broker);
 
-                string[] provIds = new string[] { "10958","10000000244" };
+                //string[] provIds = new string[] { "10958","10000000244" };
 
-                command.AddCommandArguments(provIds);
+                command.AddCommandArguments(TestConfiguration.ValidProviderIens);
 
                 RpcResponse response = command.Execute();
 

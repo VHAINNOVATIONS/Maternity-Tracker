@@ -24,7 +24,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 XusAvCodeCommand avCommand = new XusAvCodeCommand(broker);
 
-                avCommand.AddCommandArguments(ValidAccessCodes[2], ValidVerifyCodes[2]);
+                avCommand.AddCommandArguments(TestConfiguration.ValidAccessCodes[2], TestConfiguration.ValidVerifyCodes[2]);
 
                 commandQueue.Enqueue(avCommand);
 

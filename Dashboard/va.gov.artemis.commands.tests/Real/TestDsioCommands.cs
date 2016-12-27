@@ -83,26 +83,37 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         [TestMethod]
         public void TestPatientSearch_ILast4()
         {
-            TestPatientSearch("C0008");
-            TestPatientSearch("C1719");
+            //TestPatientSearch("C0008");
+            //TestPatientSearch("C1719");
+            TestPatientSearch(TestConfiguration.PatientSearchILast4[0]);
+            TestPatientSearch(TestConfiguration.PatientSearchILast4[1]);
         }
 
         [TestMethod]
         public void TestPatientSearch_PartialLast()
         {
-            TestPatientSearch("R");
+            //TestPatientSearch("R");
+            TestPatientSearch(TestConfiguration.PatientSearchPartial);
         }
 
         [TestMethod]
         public void TestPatientSearch_FullName()
         {
             //TestPatientSearch("CPRSPATIENT,FO");
-            TestPatientSearch("CPRSPATIENT,TWO F");
-            TestPatientSearch("CPRSPATIENT,TWO ");
-            TestPatientSearch("CPRSPATIENT,EIGHT");
-            TestPatientSearch("CPRSPATIENT,EIGHT ");
-            TestPatientSearch("CPRSPATIENT,EIGHT F");
-            TestPatientSearch(" CPRSPATIENT,EIGHT");
+            //TestPatientSearch("CPRSPATIENT,TWO F");
+            //TestPatientSearch("CPRSPATIENT,TWO ");
+            //TestPatientSearch("CPRSPATIENT,EIGHT");
+            //TestPatientSearch("CPRSPATIENT,EIGHT ");
+            //TestPatientSearch("CPRSPATIENT,EIGHT F");
+            //TestPatientSearch(" CPRSPATIENT,EIGHT");
+            TestPatientSearch(TestConfiguration.PatientsSearchFullNames[0]);
+            TestPatientSearch(TestConfiguration.PatientsSearchFullNames[0] + " ");
+            TestPatientSearch(" " + TestConfiguration.PatientsSearchFullNames[0]);
+
+            TestPatientSearch(TestConfiguration.PatientsSearchFullNames[1]);
+            TestPatientSearch(TestConfiguration.PatientsSearchFullNames[1] + " ");
+            TestPatientSearch(" " + TestConfiguration.PatientsSearchFullNames[1]);
+
         }
 
         [TestMethod]
@@ -117,11 +128,8 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
-                //DsioPatientSearchCommand patSearchCommand = new DsioPatientSearchCommand(broker);
-                //DsioFemalePatientSearchCommand command = new DsioFemalePatientSearchCommand(broker); 
                 DsioPatientListCommand command = new DsioPatientListCommand(broker); 
                                 
-                //patSearchCommand.AddCommandArguments(searchParam);
                 command.AddCommandArguments(searchParam, 1, 10); 
 
                 RpcResponse response = command.Execute();
@@ -176,9 +184,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetTrackingCommand command = new DsioGetTrackingCommand(broker);
 
-                //command.AddGetAllPageParameters("3131210.143031", 3);
                 command.AddGetAllParameters(1, 5);
-                //command.AddGetAllParameters(); 
 
                 RpcResponse response = command.Execute();
 
@@ -202,8 +208,8 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 broker.Disconnect();
 
             }
-
         }
+
         [TestMethod]
         public void TestGetTracking_FlaggedPatients()
         {
@@ -218,7 +224,6 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
                 RpcResponse response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status); 
-                //Assert.IsNotNull(command.FlaggedPatientResult);
                 
                 broker.Disconnect();
             }
@@ -253,7 +258,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioGetTrackingCommand command = new DsioGetTrackingCommand(broker);
 
-                command.AddPatientLogsParameter("307", 1, 3);
+                command.AddPatientLogsParameter(TestConfiguration.DefaultPatientDfn, 1, 3);
 
                 RpcResponse response = command.Execute();
 
@@ -273,28 +278,22 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioCreateTrackingLogCommand command = new DsioCreateTrackingLogCommand(broker);
 
-                //string dfn = "307";
-                //string eventType = "2";
-                //string reason = "Pregnant";
-                //string[] comment = null;
-
-                //string dfn = "715";
-                //string eventType = "1";
-                //string reason = "Pregnant";
-                //string[] comment = null;
-
-
-                //string dfn = "100007";
-                //string dfn = "313";
-                //string dfn = "28";
-                string dfn = "126";
-                string eventType = "1";
+                string dfn = TestConfiguration.DefaultPatientDfn;
+                string eventType = "0";
                 string reason = "Pregnant";
                 string[] comment = new string[]{"line1","line2"};
 
                 command.AddCommandArguments(dfn, eventType, reason, comment); 
 
                 RpcResponse response = command.Execute();
+
+                Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+
+                eventType = "1";
+
+                command.AddCommandArguments(dfn, eventType, reason, comment);
+
+                response = command.Execute();
 
                 Assert.AreEqual(RpcResponseStatus.Success, response.Status);
 
@@ -361,25 +360,24 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
         }
 
-        [TestMethod]
-        public void TestPatientSearch2()
-        {
-            using (RpcBroker broker = GetConnectedBroker())
-            {
-                this.SignonToBroker(broker, 2);
+        //[TestMethod]
+        //public void TestPatientSearch2()
+        //{
+        //    using (RpcBroker broker = GetConnectedBroker())
+        //    {
+        //        this.SignonToBroker(broker, 2);
 
-                //DsioFemalePatientSearchCommand command = new DsioFemalePatientSearchCommand(broker);
-                DsioPatientListCommand command = new DsioPatientListCommand(broker); 
+        //        DsioPatientListCommand command = new DsioPatientListCommand(broker); 
 
-                command.AddCommandArguments("Ay", 1, 10);
+        //        command.AddCommandArguments("Ay", 1, 10);
 
-                RpcResponse response = command.Execute();
+        //        RpcResponse response = command.Execute();
 
-                Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+        //        Assert.AreEqual(RpcResponseStatus.Success, response.Status);
 
-                broker.Disconnect(); 
-            }
-        }
+        //        broker.Disconnect(); 
+        //    }
+        //}
 
         [TestMethod]
         public void TestPatientFind()
@@ -388,12 +386,9 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 2);
 
-                //DsioFemalePatientSearchCommand command = new DsioFemalePatientSearchCommand(broker);
-                //DsioFemalePatientFindCommand command = new DsioFemalePatientFindCommand(broker); 
                 DsioPatientListCommand command = new DsioPatientListCommand(broker); 
 
-                //command.AddCommandArguments("J1111", -1, -1);
-                command.AddCommandArguments("C0008", -1, -1);
+                command.AddCommandArguments(TestConfiguration.PatientSearchILast4[0], -1, -1);
 
                 RpcResponse response = command.Execute();
 
@@ -410,30 +405,41 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 3);
 
-                DsioSaveExternalEntityCommand command = new DsioSaveExternalEntityCommand(broker);
-
-                DsioNonVAItem nonVAEntity = new DsioNonVAItem();
-
-                nonVAEntity.Ien = "";
-                nonVAEntity.EntityName = "Smallish Hospital Four";
-                nonVAEntity.EntityType = "F";
-                nonVAEntity.Address.StreetLine1 = "789 Test Street";
-                nonVAEntity.Address.StreetLine2 = "Suite XFD";
-                nonVAEntity.Address.City = "Sacramento";
-                nonVAEntity.Address.State = "CA";
-                nonVAEntity.Address.ZipCode = "93939";
-                nonVAEntity.TelephoneList.Add(new DsioTelephone() { Number = "8009008000", Usage = DsioTelephone.WorkPhoneUsage });
-                nonVAEntity.TelephoneList.Add(new DsioTelephone() { Number = "8887776666", Usage = DsioTelephone.FaxUsage }); 
-
-                nonVAEntity.PrimaryContact = "Extra Important";
-                nonVAEntity.Inactive = "0";
-
-                command.AddCommandArguments(nonVAEntity);
-
-                RpcResponse response = command.Execute();
-
-                Assert.AreEqual(RpcResponseStatus.Success, response.Status); 
+                SaveNewNonVAItem(broker);
             }
+        }
+
+        private string SaveNewNonVAItem(IRpcBroker broker)
+        {
+            string returnVal = ""; 
+
+            DsioSaveExternalEntityCommand command = new DsioSaveExternalEntityCommand(broker);
+
+            DsioNonVAItem nonVAEntity = new DsioNonVAItem();
+
+            nonVAEntity.Ien = "";
+            nonVAEntity.EntityName = string.Format("New {0} Hospital", GetRandom());
+            nonVAEntity.EntityType = "F";
+            nonVAEntity.Address.StreetLine1 = "789 Test Street";
+            nonVAEntity.Address.StreetLine2 = "Suite XFD";
+            nonVAEntity.Address.City = "Sacramento";
+            nonVAEntity.Address.State = "CA";
+            nonVAEntity.Address.ZipCode = "93939";
+            nonVAEntity.TelephoneList.Add(new DsioTelephone() { Number = "8009008000", Usage = DsioTelephone.WorkPhoneUsage });
+            nonVAEntity.TelephoneList.Add(new DsioTelephone() { Number = "8887776666", Usage = DsioTelephone.FaxUsage });
+
+            nonVAEntity.PrimaryContact = "Extra Important";
+            nonVAEntity.Inactive = "0";
+
+            command.AddCommandArguments(nonVAEntity);
+
+            RpcResponse response = command.Execute();
+
+            Assert.AreEqual(RpcResponseStatus.Success, response.Status);
+
+            returnVal = command.Ien;
+
+            return returnVal; 
         }
 
         [TestMethod]
@@ -443,9 +449,11 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             {
                 this.SignonToBroker(broker, 3);
 
+                string newIen = SaveNewNonVAItem(broker); 
+
                 DsioGetExternalEntityCommand getCommand = new DsioGetExternalEntityCommand(broker);
 
-                getCommand.AddCommandArguments("7", 1, 10);
+                getCommand.AddCommandArguments(newIen, 1, 10);
 
                 RpcResponse response = getCommand.Execute();
 
@@ -458,21 +466,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioNonVAItem nonVAEntity = getCommand.NonVAEntities[0];
 
-                nonVAEntity.EntityName = "Smallest Hospital Four"; 
-
-                //nonVAEntity.Ien = "";
-                //nonVAEntity.EntityName = "Smallish Hospital Four";
-                //nonVAEntity.EntityType = "F";
-                //nonVAEntity.Address.StreetLine1 = "789 Test Street";
-                //nonVAEntity.Address.StreetLine2 = "Suite XFD";
-                //nonVAEntity.Address.City = "Sacramento";
-                //nonVAEntity.Address.State = "CA";
-                //nonVAEntity.Address.ZipCode = "93939";
-                //nonVAEntity.TelephoneList.Add(new DsioTelephone() { Number = "8009008000", Usage = DsioTelephone.WorkPhoneUsage });
-                //nonVAEntity.TelephoneList.Add(new DsioTelephone() { Number = "8887776666", Usage = DsioTelephone.FaxUsage });
-
-                //nonVAEntity.PrimaryContact = "Extra Important";
-                //nonVAEntity.Inactive = "0";
+                nonVAEntity.EntityName =  string.Format("Updated {0} Hospital", GetRandom()); 
 
                 command.AddCommandArguments(nonVAEntity);
 
