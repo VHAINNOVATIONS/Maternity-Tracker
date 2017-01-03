@@ -16,7 +16,7 @@ Folder Structure
 
 	Routines - Source code for DSIO routines
 
-	kids - KID builds used to install routines for the DSIO namespace
+	kids - KID builds used to install routines and VistA components for the DSIO namespace
 
 
 
