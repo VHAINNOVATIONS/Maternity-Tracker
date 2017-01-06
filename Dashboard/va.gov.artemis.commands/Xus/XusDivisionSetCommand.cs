@@ -18,9 +18,9 @@ namespace VA.Gov.Artemis.Commands.Xus
         /// Creates the command
         /// </summary>
         /// <param name="newBroker">An object which allows communication with VistA and implements IRpcBroker</param>
-        public XusDivisionSetCommand(IRpcBroker newBroker, string divisionId): base(newBroker)
+        public XusDivisionSetCommand(IRpcBroker newBroker, string stationNumber): base(newBroker)
         {
-            this.CommandArgs = new object[] { divisionId };
+            this.CommandArgs = new object[] { stationNumber };
         }
 
         protected override void ProcessResponse()

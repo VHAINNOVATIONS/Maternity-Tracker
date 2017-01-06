@@ -72,11 +72,11 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
             }
         }
 
-        public static string ValidDivision
+        public static string ValidDivisionStationNumber
         {
             get
             {
-                return ConfigurationManager.AppSettings["validDivision"]; 
+                return ConfigurationManager.AppSettings["validDivisionStationNumber"]; 
             }
         }
 

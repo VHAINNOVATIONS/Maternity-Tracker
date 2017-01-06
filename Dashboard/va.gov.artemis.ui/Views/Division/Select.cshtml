@@ -42,11 +42,11 @@
                                     <td class="centered-txt">
                                         @if (division.IsDefault)
                                         {
-                                            @Html.RadioButtonFor(div => division.IsDefault, division.ID, new { @checked = "checked" })
+                                            @Html.RadioButtonFor(div => division.IsDefault, division.StationNumber, new { @checked = "checked" })
                                         }
                                         else
                                         {
-                                            @Html.RadioButtonFor(div => division.IsDefault, division.ID)
+                                            @Html.RadioButtonFor(div => division.IsDefault, division.StationNumber)
                                         }
                                     </td>
                                     <td>

@@ -174,7 +174,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         [TestMethod]
         public void TestDivisionSetValid()
         {
-            TestDivisionSet(2, TestConfiguration.ValidDivision, RpcResponseStatus.Success); 
+            TestDivisionSet(2, TestConfiguration.ValidDivisionStationNumber, RpcResponseStatus.Success); 
         }
 
         [TestMethod]

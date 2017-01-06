@@ -117,9 +117,10 @@
 // ***                   Exclude private files from project 
 // ***                   Correct issue when retrieving pregnancy history observation data 
 // ***                   Refactor tests to make configurable 
+// *** 01/06/2017 2.0.11 This release is dependent upon KID build DSIO 2 P6 T1
+// ***                   Use Station Number to properly select division
 
-
-[assembly: AssemblyFileVersion("2.0.10.0")]
+[assembly: AssemblyFileVersion("2.0.11.0")]
 
 // *** DEPLOYMENT NOTE:  Add skip rule to deploy.cmd command line parameters to prevent replacement of web.config file
 // ***                   va.gov.artemis.ui.deploy.cmd /T "-skip:objectName=filePath,absolutePath=web\.config" 

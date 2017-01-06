@@ -35,13 +35,13 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Division
             return returnResult;
         }
 
-        public BrokerOperationResult Select(string divId)
+        public BrokerOperationResult Select(string stationNumber)
         {
             BrokerOperationResult returnVal = new BrokerOperationResult(); 
 
             if (this.broker != null)
             {
-                XusDivisionSetCommand command = new XusDivisionSetCommand(this.broker, divId);
+                XusDivisionSetCommand command = new XusDivisionSetCommand(this.broker, stationNumber);
                 command.Execute();
 
                 returnVal.SetResult((command.Response.Status == RpcResponseStatus.Success), "") ;

@@ -65,11 +65,11 @@ namespace VA.Gov.Artemis.UI.Controllers
             if (formCollection.Get("division.IsDefault") != null)
             {
                 // *** Get the division id ***
-                string selectedDivId = formCollection["division.IsDefault"].ToString();
+                string selectedStationNumber = formCollection["division.IsDefault"].ToString();
 
                 // *** Attempt to select ***
 
-                BrokerOperationResult opResult = this.DashboardRepository.Divisions.Select(selectedDivId);
+                BrokerOperationResult opResult = this.DashboardRepository.Divisions.Select(selectedStationNumber);
 
                 if (opResult.Success)
                 {
