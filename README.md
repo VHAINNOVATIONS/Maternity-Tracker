@@ -1,6 +1,25 @@
 Maternity-Tracker
 =================
 
+Folder Structure
+----------------
+
+	DDCS - Source code and files for the Maternity Tracker oCNT (Open Clinical Note Template) documents
+
+	Dashboard - Web based maternity care coordinator dashboard 
+
+	Documentation - Project documents
+
+	Portal - Prototype of patient portal for maternity tracking
+
+	ReminderDialogs - Reminder dialogs for use with CPRS
+
+	Routines - Source code for DSIO routines
+
+	kids - KID builds used to install routines and VistA components for the DSIO namespace
+
+
+
  Namespace   | DSIO
  ----------- | ----
  Numberspace | 19641
