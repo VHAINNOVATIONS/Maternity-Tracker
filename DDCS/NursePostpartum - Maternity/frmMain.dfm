@@ -284,6 +284,10 @@ object Form1: TForm1
       end>
     object TabSheet1: TTabSheet
       Caption = 'Overview'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbFeedingMethod: TStaticText
         Left = 20
         Top = 5

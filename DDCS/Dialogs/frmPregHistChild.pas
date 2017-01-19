@@ -71,7 +71,8 @@ implementation
 {$R *.dfm}
 
 uses
-  udlgPregHist, frmPregHistPreg, frmPregHistPregInfo, uReportItems, uCommon;
+  udlgPregHist, frmPregHistPreg, frmPregHistPregInfo, uReportItems, uCommon,
+  DDCSUtils;
 
 procedure TfChild.spnLbChange(Sender: TObject);
 begin

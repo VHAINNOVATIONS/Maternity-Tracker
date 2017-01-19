@@ -60,9 +60,8 @@ begin
 
   if nComponent is TPageControl then
     Result := TPageControl(nComponent)
-  else
-    if nComponent is TTabSheet then
-      Result := TPageControl(TTabSheet(nComponent).PageControl);
+  else if nComponent is TTabSheet then
+    Result := TPageControl(TTabSheet(nComponent).PageControl);
 end;
 
 //Your actions from the popup menu of GetVerb

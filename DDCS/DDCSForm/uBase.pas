@@ -23,9 +23,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.TypInfo, System.Classes, System.Actions, System.Win.ComObj,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, Vcl.Themes, Vcl.Styles, Vcl.Consts,
-  Vcl.CheckLst, Vcl.ActnList, FSAPILib_TLB,
-  uReportItems, frmVitals, uExtndComBroker;
+  Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, Vcl.Themes, Vcl.Styles,
+  Vcl.Consts, Vcl.CheckLst, Vcl.ActnList, FSAPILib_TLB,
+  frmVitals, uReportItems, DDCSComBroker;
 
 const
   WM_SHOW_SPLASH = WM_USER + 270;
@@ -195,7 +195,7 @@ type
 implementation
 
 uses
-  frmSplash, frmReview, frmConfiguration, frmAbout, uCommon;
+  frmSplash, frmReview, frmConfiguration, frmAbout, uCommon, DDCSUtils;
 
 procedure Register;
 begin
@@ -1231,7 +1231,8 @@ var
   sl: TStringList;
   I: Integer;
   nItem: TDDCSNoteItem;
-  wControl: TWinControl;
+  wControl,vControl: TWinControl;
+  cVitals: TDDCSVitals;
   errMsg: string;
   cBool: Boolean;
 begin
@@ -1254,11 +1255,23 @@ begin
           cBool := False;
           // Collection all the errors (above) but just jump to the first control
           if wControl = nil then
-            wControl := nItem.OwningObject;
+          begin
+            if nItem.OwningObject is TDDCSVitals then
+              wControl := TDDCSVitals(nItem.OwningObject).ValidationControl
+            else
+              wControl := nItem.OwningObject;
+          end;
+
           if nItem.IdentifyingName <> '' then
             errMsg := errMsg + #13#10 + '  - ' + nItem.IdentifyingName
           else
             errMsg := errMsg + #13#10 + '  - ' + nItem.OwningObject.Name;
+
+          if nItem.OwningObject is TDDCSVitals then
+          begin
+            vControl := nItem.OwningObject;
+            errMsg := errMsg + #13#10 + TDDCSVitals(nItem.OwningObject).ValidateMsg;
+          end;
         end else
         begin
           nItem.GetValueNote(sl);
@@ -1275,6 +1288,7 @@ begin
       ShowMsg(errMsg);
       nItem := ReportCollection.GetNoteItem(wControl);
       if nItem <> nil then
+      begin
         if nItem.Page <> nil then
         begin
           ActivePageIndex := nItem.Page.PageIndex;
@@ -1282,6 +1296,24 @@ begin
           if wControl.Visible then
             wControl.SetFocus;
         end;
+      end
+      else if vControl <> nil then
+      begin
+        nItem := ReportCollection.GetNoteItem(vControl);
+        if nItem <> nil then
+          if nItem.Page <> nil then
+          begin
+            ActivePageIndex := nItem.Page.PageIndex;
+            Change;
+            // There's only one Vitals control required, if that changes then this
+            // could either be the first or third page.
+            cVitals := TDDCSVitals(vControl);
+            cVitals.fVitalsControl.ActivePageIndex := 0;
+            if wControl.Visible then
+              wControl.SetFocus;
+          end;
+      end;
+
       Exit;
     end;
 

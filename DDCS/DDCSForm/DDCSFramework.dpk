@@ -16,7 +16,7 @@ package DDCSFramework;
 {$OPTIMIZATION ON}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
-{$REFERENCEINFO OFF}
+{$REFERENCEINFO ON}
 {$SAFEDIVIDE OFF}
 {$STACKFRAMES OFF}
 {$TYPEDADDRESS OFF}
@@ -25,7 +25,6 @@ package DDCSFramework;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DEFINE DDCS}
-{$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
 {$IMPLICITBUILD ON}
 
@@ -39,14 +38,15 @@ requires
 contains
   frmAbout in 'frmAbout.pas' {DDCSAbout},
   frmSplash in 'frmSplash.pas' {DDCSSplash},
-  uExtndComBroker in 'uExtndComBroker.pas',
+  DDCSComBroker in 'DDCSComBroker.pas',
   frmConfiguration in 'frmConfiguration.pas' {DDCSConfiguration},
   uReportItems in 'uReportItems.pas',
   frmVitals in 'frmVitals.pas' {DDCSVitals: TFrame},
   uCommon in 'uCommon.pas',
   dBaseEditor in 'dBaseEditor.pas',
   uBase in 'uBase.pas',
-  frmReview in 'frmReview.pas' {DDCSReview};
+  frmReview in 'frmReview.pas' {DDCSReview},
+  DDCSUtils in 'DDCSUtils.pas';
 
 end.
 

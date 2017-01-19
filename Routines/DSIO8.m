@@ -1,4 +1,4 @@
-Routine DSIO8 saved using VFDXTRS routine on Oct 13, 2016 17:20
+Routine DSIO8 saved using VFDXTRS routine on Jan 19, 2017 13:44
 DSIO8^INT^64180,41191^Sep 19, 2016@11:26
 DSIO8 ;DSS/KAR - DSIO EDUCATION RPCs;08/26/2016 16:00
  ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1

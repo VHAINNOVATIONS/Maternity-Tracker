@@ -23,7 +23,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon, uExtndComBroker;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uCommon,
+  DDCSUtils, DDCSComBroker;
 
 type
   TdlgVisualChanges = class(TDDCSDialog)

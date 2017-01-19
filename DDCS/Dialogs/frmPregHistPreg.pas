@@ -62,7 +62,7 @@ implementation
 {$R *.dfm}
 
 uses
-  udlgPregHist, uCommon, uReportItems;
+  udlgPregHist, uCommon, DDCSUtils, uReportItems;
 
 procedure TfPreg.btnDeleteClick(Sender: TObject);
 begin

@@ -23,7 +23,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, uExtndComBroker;
+  StdCtrls, ExtCtrls, Buttons, ORCtrls, uDialog, DDCSComBroker;
 
 type
   TdlgBackPain = class(TDDCSDialog)

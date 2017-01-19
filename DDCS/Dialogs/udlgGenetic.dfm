@@ -37,6 +37,10 @@ object dlgGenetic: TdlgGenetic
     TabPosition = tpRight
     object TabSheet1: TTabSheet
       Caption = 'Page 1'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnllabels1: TPanel
         Left = 8
         Top = 4

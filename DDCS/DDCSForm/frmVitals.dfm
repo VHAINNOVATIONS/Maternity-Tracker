@@ -435,6 +435,7 @@ object DDCSVitals: TDDCSVitals
           TabOrder = 0
           Value = 0
           OnChange = spincheck
+          OnExit = spnPrePregWtExit
         end
       end
     end
@@ -445,10 +446,6 @@ object DDCSVitals: TDDCSVitals
       ParentDoubleBuffered = False
       OnResize = PageEDDResize
       OnShow = PageEDDShow
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         670
         326)
@@ -977,10 +974,6 @@ object DDCSVitals: TDDCSVitals
     object PageLMP: TTabSheet
       Caption = 'Menstrual History'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         670
         326)

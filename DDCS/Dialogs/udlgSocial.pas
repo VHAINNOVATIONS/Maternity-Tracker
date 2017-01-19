@@ -25,7 +25,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Samples.Spin, Vcl.Buttons, ORDtTm,
-  VA508AccessibilityManager, uDialog, uExtndComBroker, ORCtrls;
+  VA508AccessibilityManager, uDialog, ORCtrls, DDCSComBroker;
 
 type
   TdlgSocial = class(TDDCSDialog)

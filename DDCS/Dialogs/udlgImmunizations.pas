@@ -23,7 +23,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons, ExtCtrls, ORDtTm, uDialog, uExtndComBroker;
+  Dialogs, StdCtrls, Buttons, ExtCtrls, ORDtTm, uDialog, DDCSComBroker;
 
 type
   TdlgImmunizations = class(TDDCSDialog)

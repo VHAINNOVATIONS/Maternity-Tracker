@@ -1,7 +1,7 @@
-Routine DSIO2 saved using VFDXTRS routine on Oct 13, 2016 17:20
-DSIO2^INT^64180,40712^Sep 19, 2016@11:18
+Routine DSIO2 saved using VFDXTRS routine on Jan 19, 2017 13:44
+DSIO2^INT^64293,32946^Jan 10, 2017@09:09
 DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;08/26/2016 16:00
- ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
+ ;;2.0;DSIO 2.0;**6**;Aug 26, 2016;Build 1
  ;
  ;
  ;
@@ -228,6 +228,10 @@ TASK(ZTRTN) ; TaskMan
  S ZTDESC="DSIO (MATERNITY TRACKER) Trigger on "_$P(ZTRTN,U)
  S ZTDTH=$$FMTH^XLFDT($$NOW^XLFDT),ZTIO="NULL",ZTPRI=10
  D ^%ZTLOAD
+ Q
+ ;
+XY(IN,GL) ; Rebuild Array as Global staring with 1
+ N I S I="" F  S I=$O(IN(I)) Q:I=""  S @GL@(I+1)=IN(I)
  Q
  ;
  ; --------------------------------- SORTING ----------------------------------

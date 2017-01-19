@@ -6,10 +6,10 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 4/1/2016 4:46:42 PM (- $Rev: 12980 $, 27177234).
+// File generated on 11/17/2016 4:23:58 PM (- $Rev: 12980 $, 10689609).
 
 [
-  uuid(46474042-D235-4388-AF75-0BFD7BBC0F2C),
+  uuid(61BBAF10-F0AE-432C-89D7-1CF6D033BD47),
   version(1.0)
 
 ]
@@ -19,28 +19,64 @@ library DDCSFormBuilder
   importlib("stdole2.tlb");
   importlib("CPRSChart.exe");
 
-  interface IDDCS;
-  coclass DDCS;
+  interface IDDCSCPRSBroker;
+  interface IDDCSCPRSState;
+  interface IDDCSCPRSExtension;
+  coclass DDCSCPRSDefault;
 
 
   [
-    uuid(EFE41B95-30BF-47EA-86D3-B6183F167705),
-    helpstring("Dispatch interface for DDCS Object"),
+    uuid(5E41FD86-A90F-4D87-8C26-B30F46285580),
+    version(1.0)
+  ]
+  enum BrokerParamType
+  {
+    bptLiteral = 0,
+    bptReference = 1,
+    bptList = 2,
+    bptUndefined = 3
+  };
+
+  [
+    uuid(0DD1DF25-9EFF-4BF1-94CF-943E7109CE26),
+    version(1.0),
     dual,
     oleautomation
   ]
-  interface IDDCS: IDispatch
+  interface IDDCSCPRSBroker: ICPRSBroker
+  {
+  };
+
+  [
+    uuid(937E841E-CCB9-4D52-BA8A-33996E21876A),
+    version(1.0),
+    dual,
+    oleautomation
+  ]
+  interface IDDCSCPRSState: ICPRSState
+  {
+    [id(0x0000000A)]
+    HRESULT _stdcall StationID([out, retval] BSTR* OUT);
+  };
+
+  [
+    uuid(5D2BB4DC-FA83-41F5-B691-FD6A88A72802),
+    version(1.0),
+    dual,
+    oleautomation
+  ]
+  interface IDDCSCPRSExtension: ICPRSExtension
   {
   };
 
   [
     uuid(A5B2B08E-7045-4C77-9233-32B52C6E5B25),
-    helpstring("DDCS Object")
+    version(1.0),
+    helpstring("DDCSCPRSDefault")
   ]
-  coclass DDCS
+  coclass DDCSCPRSDefault
   {
-    [default] interface IDDCS;
-    interface ICPRSExtension;
+    [default] interface ICPRSExtension;
   };
 
 };

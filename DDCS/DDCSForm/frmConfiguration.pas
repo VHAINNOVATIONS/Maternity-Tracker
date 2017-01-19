@@ -130,7 +130,7 @@ var
 implementation
 
 uses
-  frmVitals, uCommon, uReportItems, uExtndComBroker;
+  frmVitals, uCommon, DDCSUtils, uReportItems, DDCSComBroker;
 
 {$R *.dfm}
 

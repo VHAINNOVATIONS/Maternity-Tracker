@@ -25,7 +25,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.StrUtils,
   System.Classes, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Controls, Vcl.Graphics, ORCtrls,
-  uDialog, uCommon, uExtndComBroker;
+  uDialog, uCommon, DDCSUtils, DDCSComBroker;
 
 type
   TdlgEducation = class(TDDCSDialog)

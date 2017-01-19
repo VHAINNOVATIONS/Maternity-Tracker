@@ -68,7 +68,8 @@ implementation
 {$R *.dfm}
 
 uses
-  frmPregHistPregInfo, frmPregHistChild, uCommon, uReportItems, uExtndComBroker;
+  frmPregHistPregInfo, frmPregHistChild, uCommon, uReportItems,
+  DDCSUtils, DDCSComBroker;
 
 procedure TdlgPregHist.FormCreate(Sender: TObject);
 var

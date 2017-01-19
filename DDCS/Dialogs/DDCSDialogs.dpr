@@ -25,8 +25,8 @@ uses
   Vcl.Forms,
   Vcl.Controls,
   uBase,
-  uCommon,
-  uExtndComBroker,
+  DDCSUtils,
+  DDCSComBroker,
   udlgAbdomPain in 'udlgAbdomPain.pas' {dlgAbdomPain},
   udlgBackPain in 'udlgBackPain.pas' {dlgBackPain},
   udlgCoughCongest in 'udlgCoughCongest.pas' {dlgCoughCongest},
@@ -122,17 +122,20 @@ begin
     Exit;
 
   dlg := dlgClass.Create;
-  sl := TStringList.Create;
   try
-    for I := 0 to dlg.ComponentCount - 1 do
-    begin
-      sl.Add('H^' + dlg.Components[I].Name + U + dlg.Components[I].ClassName);
-      // sl.Add('C^' + dlg.Components[I].Name + U);    // This would be updated by DDCSFramework configuration
-      // sl.Add('R^' + dlg.Components[I].Name + U);    // Once this is enabled you will be able to pass it to VistA
+    sl := TStringList.Create;
+    try
+      for I := 0 to dlg.ComponentCount - 1 do
+      begin
+        sl.Add('H^' + dlg.Components[I].Name + U + dlg.Components[I].ClassName);
+        // sl.Add('C^' + dlg.Components[I].Name + U);    // This would be updated by DDCSFramework configuration
+        // sl.Add('R^' + dlg.Components[I].Name + U);    // Once this is enabled you will be able to pass it to VistA
+      end;
+      Return := sl.Text;
+    finally
+      sl.Free;
     end;
   finally
-    Return := sl.Text;
-    sl.Free;
     dlg.Free;
   end;
 end;
@@ -161,7 +164,6 @@ begin
   if dlgClass = nil then
     Exit;
 
-  sl := TStringList.Create;
   dlg := dlgClass.Create(Broker, Piece(Build,'|',1), DebugMode, sTheme);
   try
     if DebugMode then
@@ -187,26 +189,29 @@ begin
     begin
       Result := True;
 
-      dlg.BuildSaveList(sl);
-      if sl.Count > 0 then
-        rSave := sl.Text;
-      sl.Clear;
-
-      dlg.Configuration.GetCollectiveText(sl);
-      if sl.Count > 0 then
-        rConfig := sl.Text;
+      sl := TStringList.Create;
+      try
+        dlg.BuildSaveList(sl);
+        if sl.Count > 0 then
+          rSave := sl.Text;
+        sl.Clear;
+        dlg.Configuration.GetCollectiveText(sl);
+        if sl.Count > 0 then
+          rConfig := sl.Text;
+      finally
+        sl.Free;
+      end;
 
       rText := dlg.TmpStrList.Text;
     end;
-  finally
-    dlg.Free;
-    sl.Free;
 
     if DebugMode then
     begin
       Application.HintPause := hp;
       Application.HintHidePause := hhp;
     end;
+  finally
+    dlg.Free;
   end;
 end;
 

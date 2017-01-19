@@ -24,7 +24,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.Buttons, ORCtrls, uDialog, uExtndComBroker;
+  Vcl.ExtCtrls, Vcl.Buttons, ORCtrls, uDialog, DDCSComBroker;
 
 type
   TdlgAbdomPain = class(TDDCSDialog)

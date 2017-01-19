@@ -128,7 +128,7 @@ type
 implementation
 
 uses
-  uBase, frmVitals, uCommon, uExtndComBroker;
+  uBase, frmVitals, uCommon, DDCSUtils, DDCSComBroker;
 
 
 {$REGION 'TConfigItem'}
@@ -188,7 +188,7 @@ begin
   Result := '';
 
   if FData.Count > 0 then
-    Result := uCommon.Piece(FData[0], TConfigCollection(Collection).Delimiter, Index);
+    Result := DDCSUtils.Piece(FData[0], TConfigCollection(Collection).Delimiter, Index);
 end;
 
 // Public ----------------------------------------------------------------------
@@ -984,6 +984,8 @@ begin
         end;
       end;
     // -------------------------------------------------------------------------
+    if FObject is TDDCSVitals then
+      Result := (TDDCSVitals(FObject).ValidateMsg = '');
   except
   end;
 end;

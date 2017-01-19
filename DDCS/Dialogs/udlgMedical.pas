@@ -23,7 +23,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, ComCtrls, uDialog, uExtndComBroker, ORDtTm;
+  StdCtrls, ExtCtrls, Buttons, ComCtrls, uDialog, ORDtTm, DDCSComBroker;
 
 type
   TdlgMedical = class(TDDCSDialog)

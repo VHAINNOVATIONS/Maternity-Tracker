@@ -26,7 +26,8 @@ uses
   System.Classes, System.StrUtils, Vcl.Graphics, Vcl.Controls, Vcl.Forms,
   Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.Grids, Vcl.Samples.Spin, Vcl.ActnList, Vcl.Menus, JvStringGrid,
-  JvExControls, JvExGrids, ORDtTm, ORFn, uDialog, uCommon, uExtndComBroker;
+  JvExControls, JvExGrids, ORDtTm, ORFn, uDialog, uCommon,
+  DDCSUtils, DDCSComBroker;
 
 const
   WM_CELLSELECT  = WM_USER + 200;

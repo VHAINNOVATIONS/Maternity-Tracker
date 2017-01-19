@@ -24,7 +24,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Buttons, ExtCtrls, ComCtrls, Spin, ORCtrls,
-  uDialog, uCommon, uExtndComBroker;
+  uDialog, uCommon, DDCSUtils, DDCSComBroker;
 
 type
   TdlgRTClinic = class(TDDCSDialog)

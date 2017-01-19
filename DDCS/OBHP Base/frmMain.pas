@@ -129,7 +129,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uCommon, uExtndComBroker;
+  uCommon, DDCSUtils, DDCSComBroker;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin

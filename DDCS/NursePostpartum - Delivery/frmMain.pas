@@ -128,7 +128,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uCommon, uReportItems, uExtndComBroker;
+  uReportItems, uCommon, DDCSUtils, DDCSComBroker;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin

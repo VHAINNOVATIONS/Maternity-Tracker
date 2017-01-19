@@ -22,7 +22,7 @@ library DDCSNursePostpartumDelivery;
 uses
   Winapi.Windows,
   Vcl.Forms,
-  uExtndComBroker,
+  DDCSComBroker,
   frmMain in 'frmMain.pas' {Form1},
   frmBaby in 'frmBaby.pas' {fChild: TFrame};
 

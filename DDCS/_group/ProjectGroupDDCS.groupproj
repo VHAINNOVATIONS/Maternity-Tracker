@@ -7,9 +7,12 @@
             <Dependencies/>
         </Projects>
         <Projects Include="..\DDCSFormBuilder\DDCSFormBuilder.dproj">
-            <Dependencies>..\DDCSForm\DDCSFramework.dproj</Dependencies>
+            <Dependencies/>
         </Projects>
         <Projects Include="..\Dialogs\DDCSDialogs.dproj">
+            <Dependencies>..\DDCSForm\DDCSFramework.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\OBHP Base\DDCSOBInitialBase.dproj">
             <Dependencies>..\DDCSForm\DDCSFramework.dproj</Dependencies>
         </Projects>
         <Projects Include="..\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj">
@@ -18,7 +21,7 @@
         <Projects Include="..\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj">
             <Dependencies>..\DDCSForm\DDCSFramework.dproj</Dependencies>
         </Projects>
-        <Projects Include="..\OBHP Base\DDCSOBInitialBase.dproj">
+        <Projects Include="..\DDCSPromptBuilder\DDCSPromptBuilder.dproj">
             <Dependencies>..\DDCSForm\DDCSFramework.dproj</Dependencies>
         </Projects>
     </ItemGroup>
@@ -38,13 +41,13 @@
     <Target Name="DDCSFramework:Make">
         <MSBuild Projects="..\DDCSForm\DDCSFramework.dproj" Targets="Make"/>
     </Target>
-    <Target Name="DDCSFormBuilder" DependsOnTargets="DDCSFramework">
+    <Target Name="DDCSFormBuilder">
         <MSBuild Projects="..\DDCSFormBuilder\DDCSFormBuilder.dproj"/>
     </Target>
-    <Target Name="DDCSFormBuilder:Clean" DependsOnTargets="DDCSFramework:Clean">
+    <Target Name="DDCSFormBuilder:Clean">
         <MSBuild Projects="..\DDCSFormBuilder\DDCSFormBuilder.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="DDCSFormBuilder:Make" DependsOnTargets="DDCSFramework:Make">
+    <Target Name="DDCSFormBuilder:Make">
         <MSBuild Projects="..\DDCSFormBuilder\DDCSFormBuilder.dproj" Targets="Make"/>
     </Target>
     <Target Name="DDCSDialogs" DependsOnTargets="DDCSFramework">
@@ -55,6 +58,15 @@
     </Target>
     <Target Name="DDCSDialogs:Make" DependsOnTargets="DDCSFramework:Make">
         <MSBuild Projects="..\Dialogs\DDCSDialogs.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DDCSOBInitialBase" DependsOnTargets="DDCSFramework">
+        <MSBuild Projects="..\OBHP Base\DDCSOBInitialBase.dproj"/>
+    </Target>
+    <Target Name="DDCSOBInitialBase:Clean" DependsOnTargets="DDCSFramework:Clean">
+        <MSBuild Projects="..\OBHP Base\DDCSOBInitialBase.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DDCSOBInitialBase:Make" DependsOnTargets="DDCSFramework:Make">
+        <MSBuild Projects="..\OBHP Base\DDCSOBInitialBase.dproj" Targets="Make"/>
     </Target>
     <Target Name="DDCSNursePostpartumMaternity" DependsOnTargets="DDCSFramework">
         <MSBuild Projects="..\NursePostpartum - Maternity\DDCSNursePostpartumMaternity.dproj"/>
@@ -74,23 +86,23 @@
     <Target Name="DDCSNursePostpartumDelivery:Make" DependsOnTargets="DDCSFramework:Make">
         <MSBuild Projects="..\NursePostpartum - Delivery\DDCSNursePostpartumDelivery.dproj" Targets="Make"/>
     </Target>
-    <Target Name="DDCSOBInitialBase" DependsOnTargets="DDCSFramework">
-        <MSBuild Projects="..\OBHP Base\DDCSOBInitialBase.dproj"/>
+    <Target Name="DDCSPromptBuilder" DependsOnTargets="DDCSFramework">
+        <MSBuild Projects="..\DDCSPromptBuilder\DDCSPromptBuilder.dproj"/>
     </Target>
-    <Target Name="DDCSOBInitialBase:Clean" DependsOnTargets="DDCSFramework:Clean">
-        <MSBuild Projects="..\OBHP Base\DDCSOBInitialBase.dproj" Targets="Clean"/>
+    <Target Name="DDCSPromptBuilder:Clean" DependsOnTargets="DDCSFramework:Clean">
+        <MSBuild Projects="..\DDCSPromptBuilder\DDCSPromptBuilder.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="DDCSOBInitialBase:Make" DependsOnTargets="DDCSFramework:Make">
-        <MSBuild Projects="..\OBHP Base\DDCSOBInitialBase.dproj" Targets="Make"/>
+    <Target Name="DDCSPromptBuilder:Make" DependsOnTargets="DDCSFramework:Make">
+        <MSBuild Projects="..\DDCSPromptBuilder\DDCSPromptBuilder.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="DDCSFramework;DDCSFormBuilder;DDCSDialogs;DDCSNursePostpartumMaternity;DDCSNursePostpartumDelivery;DDCSOBInitialBase"/>
+        <CallTarget Targets="DDCSFramework;DDCSFormBuilder;DDCSDialogs;DDCSOBInitialBase;DDCSNursePostpartumMaternity;DDCSNursePostpartumDelivery;DDCSPromptBuilder"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DDCSFramework:Clean;DDCSFormBuilder:Clean;DDCSDialogs:Clean;DDCSNursePostpartumMaternity:Clean;DDCSNursePostpartumDelivery:Clean;DDCSOBInitialBase:Clean"/>
+        <CallTarget Targets="DDCSFramework:Clean;DDCSFormBuilder:Clean;DDCSDialogs:Clean;DDCSOBInitialBase:Clean;DDCSNursePostpartumMaternity:Clean;DDCSNursePostpartumDelivery:Clean;DDCSPromptBuilder:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DDCSFramework:Make;DDCSFormBuilder:Make;DDCSDialogs:Make;DDCSNursePostpartumMaternity:Make;DDCSNursePostpartumDelivery:Make;DDCSOBInitialBase:Make"/>
+        <CallTarget Targets="DDCSFramework:Make;DDCSFormBuilder:Make;DDCSDialogs:Make;DDCSOBInitialBase:Make;DDCSNursePostpartumMaternity:Make;DDCSNursePostpartumDelivery:Make;DDCSPromptBuilder:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

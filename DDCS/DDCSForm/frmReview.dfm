@@ -82,7 +82,5 @@ object DDCSReview: TDDCSReview
     ParentFont = False
     ScrollBars = ssVertical
     TabOrder = 0
-    ExplicitWidth = 530
-    ExplicitHeight = 289
   end
 end

@@ -175,6 +175,7 @@ type
     procedure SpinCheck(Sender: TObject);
     procedure edtLMPExit(Sender: TObject);
     procedure ToggleCheckBoxes(Sender: TObject);
+    procedure spnPrePregWtExit(Sender: TObject);
   private
     FocusControlText: TObjectList<TSayOnFocus>;
     TabSeen: array of Boolean;
@@ -192,6 +193,8 @@ type
     procedure GetEDDNote(var oText: TStringList);
     procedure GetLMPNote(var oText: TStringList);
     procedure GetCompleteNote(var oText: TStringList);
+    function ValidateMsg: string;
+    function ValidationControl: TWinControl;
     function GetTextforFocus(Value: TWinControl): string;
   end;
 
@@ -200,7 +203,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uBase, uCommon, uExtndComBroker;
+  uBase, uCommon, DDCSUtils, DDCSComBroker;
 
 const
   FMT_DATETIME = 'mm/dd/yyyy';
@@ -286,7 +289,12 @@ begin
   dtUltraExit(Sender);
 end;
 
-   // Embryo Transfer ****
+procedure TDDCSVitals.spnPrePregWtExit(Sender: TObject);
+begin
+  spnPrePregWt.Value := StrToIntDef(spnPrePregWt.Text, 0);
+end;
+
+// Embryo Transfer ****
 procedure TDDCSVitals.dtEmbryoExit(Sender: TObject);
 begin
   if AnsiCompareText(dtEmbryo.Text, 'Today') = 0 then
@@ -1238,6 +1246,22 @@ begin
   finally
     sl.Free;
   end;
+end;
+
+function TDDCSVitals.ValidateMsg: string;
+begin
+  if gbPreg.Visible then
+    if spnPrePregWt.Value = 0 then
+      Result := '    > Patient pre-pregnancy weight cannot be zero.';
+end;
+
+function TDDCSVitals.ValidationControl: TWinControl;
+begin
+  Result := nil;
+
+  // *** You can only send out the first control that fails validation
+  if ValidateMsg <> '' then
+    Result := spnPrePregWt;
 end;
 
 function TDDCSVitals.GetTextforFocus(Value: TWinControl): string;

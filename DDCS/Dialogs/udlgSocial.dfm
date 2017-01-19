@@ -63,6 +63,10 @@ object dlgSocial: TdlgSocial
     object TabSheet1: TTabSheet
       Caption = 'Lifestyle'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbEducation: TLabel
         Left = 12
         Top = 578

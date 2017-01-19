@@ -23,7 +23,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
   System.Win.ComObj, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Themes, Vcl.Styles,
-  FSAPILib_TLB, uBase, uCommon, uReportItems, uExtndComBroker;
+  FSAPILib_TLB, uBase, uCommon, uReportItems, DDCSUtils, DDCSComBroker;
 
 Type
   TDDCSDialog = class(TForm)

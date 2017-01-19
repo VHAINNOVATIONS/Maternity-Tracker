@@ -98,12 +98,13 @@ object Form1: TForm1
       end
       item
         Order = 3
+        IdentifyingName = 'Vitals'
         DoNotSpace = False
         DoNotSave = False
         DoNotRestoreV = False
         HideFromNote = False
         OwningObject = DDCSVitals
-        Required = False
+        Required = True
       end
       item
         SayOnFocus = 

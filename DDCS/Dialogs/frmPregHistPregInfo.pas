@@ -75,7 +75,7 @@ implementation
 {$R *.dfm}
 
 uses
-  udlgPregHist, frmPregHistChild, uCommon, uReportItems;
+  udlgPregHist, frmPregHistChild, uReportItems, uCommon, DDCSUtils;
 
 procedure TfPregInfo.SpinCheck(Sender: TObject);
 begin

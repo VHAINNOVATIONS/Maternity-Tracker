@@ -1,7 +1,7 @@
-Routine DSIO65 saved using VFDXTRS routine on Nov 02, 2016 09:33
-DSIO65^INT^64223,61406^Nov 01, 2016@17:03
+Routine DSIO65 saved using VFDXTRS routine on Jan 19, 2017 13:44
+DSIO65^INT^64253,55645^Dec 01, 2016@15:27
 DSIO65 ;DSS/TFF - DSIO DDCS FORM SUPPORT;08/26/2016 16:00
- ;;2.0;DSIO 2.0;**1,2,3**;Aug 26, 2016;Build 1
+ ;;2.0;DSIO 2.0;**1,2,3,5**;Aug 26, 2016;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -365,7 +365,7 @@ VP(DFN,RECORD) ; VITALS PUSH
  S VAL=$P($G(^DSIO(19641.4941,DFN,2,IEN,4)),U) I VAL D  K VAL
  . ; *** PRE PREGNANCY WEIGHT
  . S PG=$$PG^DSIO4(DFN) Q:'PG  S OBJ(0)="PG."_PG
- . D O^DSIO03(DFN,.OBJ,,,"8348-5","LNC","Body weight Measured --pre pregnancy",VAL_"^lbs")
+ . D O^DSIO03(DFN,.OBJ,,,"8348-5","LNC","Body weight Measured --pre pregnancy",VAL_"^lb_av")
  ; *** EDD OBSERVATIONS
  I $P($G(^DSIO(19641.4941,DFN,2,IEN,1,0)),U,4) D
  . S IEDD=0 F  S IEDD=$O(^DSIO(19641.4941,DFN,2,IEN,1,IEDD)) Q:'IEDD  D
