@@ -1,7 +1,5 @@
-Routine DSIO12 saved using VFDXTRS routine on Jan 19, 2017 13:44
-DSIO12^INT^64180,40623^Sep 19, 2016@11:17
 DSIO12 ;DSS/CMW - DSIO CLINICAL RPCS;08/26/2016 16:00
- ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
+ ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----

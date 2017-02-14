@@ -1,7 +1,5 @@
-Routine DSIO7 saved using VFDXTRS routine on Jan 19, 2017 13:44
-DSIO7^INT^64180,41180^Sep 19, 2016@11:26
 DSIO7 ;DSS/TFF - DSIO VPR FOR IHE;08/26/2016 16:00
- ;;2.0;DSIO 2.0;;Aug 26, 2016;Build 1
+ ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -122,25 +120,25 @@ XMLPD(ITEM) ; -- Return patient data as XML in @VPR@(n)
  D ADD^VPRDPT("<patient>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(ITEM(ATT)) Q:ATT=""  D  D:$L(Y) ADD^VPRDPT(Y)
  . I ATT="exposures" D:X["1"  S Y="" Q
- .. S I=0,Y="<exposures>" D ADD^VPRDPT(Y)
- .. F ID="AO","IR","PG","HNC","MST","CV" S I=I+1 I $P(X,U,I) S Y="<exposure value='"_ID_"' />" D ADD^VPRDPT(Y)
- .. D ADD^VPRDPT("</exposures>")
+ . . S I=0,Y="<exposures>" D ADD^VPRDPT(Y)
+ . . F ID="AO","IR","PG","HNC","MST","CV" S I=I+1 I $P(X,U,I) S Y="<exposure value='"_ID_"' />" D ADD^VPRDPT(Y)
+ . . D ADD^VPRDPT("</exposures>")
  . I $L($O(ITEM(ATT,""))) D  Q  ;multiples
- .. S ID=$S($E(ATT,$L(ATT))="s":ATT_"es",$E(ATT,$L(ATT))="y":$E(ATT,1,$L(ATT)-1)_"ies",1:ATT_"s")
- .. D ADD^VPRDPT("<"_ID_">")
- .. S I="" F  S I=$O(ITEM(ATT,I)) Q:I=""  D  D:$L(Y) ADD^VPRDPT(Y)
- ... S X=ITEM(ATT,I),Y="<"_ATT_" "
- ... I ATT="support" D  S Y="" Q
- .... S Y=Y_"contactType='"_I_"' name='"_$$ESC^VPRD($P(X,U))_$S($L($P(X,U,2)):"' relationship='"_$$ESC^VPRD($P(X,U,2)),1:"")_"' >" D ADD^VPRDPT(Y)
- .... S X=$G(ITEM(ATT,I,"address")) I $L(X) D ADDR^VPRDPT(X)
- .... S X=$G(ITEM(ATT,I,"telecom")) I $L(X) D PHONE^VPRDPT(X)
- .... D ADD^VPRDPT("</support>")
- ... I ATT="alias" S Y=Y_"fullName='"_$$ESC^VPRD(X)_$S(X[",":"' familyName='"_$$ESC^VPRD($P(X,","))_"' givenNames='"_$$ESC^VPRD($P(X,",",2,99)),1:"")_"' />" Q
- ... I ATT="flag" S Y=Y_"name='"_$$ESC^VPRD($P(X,U))_"' text='"_$$ESC^VPRD($P(X,U,2))_"' />" Q
- ... I ATT="facility" D ADDFAC(X) S Y="" Q
- ... I ATT="disability" S Y=Y_"vaCode='"_I_"' printName='"_$$ESC^VPRD($P(X,U))_$S($P(X,U,3):"' sc='"_$P(X,U,3)_"' scPercent='"_$P(X,U,2),1:"")_"' />" Q
- ... S Y=Y_"value='"_$$ESC^VPRD(ITEM(ATT,I))_"' />"
- .. D ADD^VPRDPT("</"_ID_">") S Y=""
+ . . S ID=$S($E(ATT,$L(ATT))="s":ATT_"es",$E(ATT,$L(ATT))="y":$E(ATT,1,$L(ATT)-1)_"ies",1:ATT_"s")
+ . . D ADD^VPRDPT("<"_ID_">")
+ . . S I="" F  S I=$O(ITEM(ATT,I)) Q:I=""  D  D:$L(Y) ADD^VPRDPT(Y)
+ . . . S X=ITEM(ATT,I),Y="<"_ATT_" "
+ . . . I ATT="support" D  S Y="" Q
+ . . . . S Y=Y_"contactType='"_I_"' name='"_$$ESC^VPRD($P(X,U))_$S($L($P(X,U,2)):"' relationship='"_$$ESC^VPRD($P(X,U,2)),1:"")_"' >" D ADD^VPRDPT(Y)
+ . . . . S X=$G(ITEM(ATT,I,"address")) I $L(X) D ADDR^VPRDPT(X)
+ . . . . S X=$G(ITEM(ATT,I,"telecom")) I $L(X) D PHONE^VPRDPT(X)
+ . . . . D ADD^VPRDPT("</support>")
+ . . . I ATT="alias" S Y=Y_"fullName='"_$$ESC^VPRD(X)_$S(X[",":"' familyName='"_$$ESC^VPRD($P(X,","))_"' givenNames='"_$$ESC^VPRD($P(X,",",2,99)),1:"")_"' />" Q
+ . . . I ATT="flag" S Y=Y_"name='"_$$ESC^VPRD($P(X,U))_"' text='"_$$ESC^VPRD($P(X,U,2))_"' />" Q
+ . . . I ATT="facility" D ADDFAC(X) S Y="" Q
+ . . . I ATT="disability" S Y=Y_"vaCode='"_I_"' printName='"_$$ESC^VPRD($P(X,U))_$S($P(X,U,3):"' sc='"_$P(X,U,3)_"' scPercent='"_$P(X,U,2),1:"")_"' />" Q
+ . . . S Y=Y_"value='"_$$ESC^VPRD(ITEM(ATT,I))_"' />"
+ . . D ADD^VPRDPT("</"_ID_">") S Y=""
  . S X=$G(ITEM(ATT)),Y="" Q:'$L(X)
  . I ATT="address" D ADDR^VPRDPT(X) S Y="" Q
  . I ATT="telecom" D PHONE^VPRDPT(X) S Y="" Q
@@ -209,20 +207,20 @@ XMLA(ITEM) ; -- Return current user information as XML in @VPR@(n)
  N ATT,X,Y,I,ID
  D ADD^VPRDPT("<current_user>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(ITEM(ATT)) Q:ATT=""  D  D:$L(Y) ADD^VPRDPT(Y)
- .I $L($O(ITEM(ATT,""))) D  Q  ;multiples
- ..S ID=$S($E(ATT,$L(ATT))="s":ATT_"es",$E(ATT,$L(ATT))="y":$E(ATT,1,$L(ATT)-1)_"ies",1:ATT_"s")
- ..D ADD^VPRDPT("<"_ID_">")
- ..S I="" F  S I=$O(ITEM(ATT,I)) Q:I=""  D  D:$L(Y) ADD^VPRDPT(Y)
- ...S X=ITEM(ATT,I),Y="<"_ATT_" "
- ...I ATT="facility" D ADDFAC(X) S Y="" Q
- ...S Y=Y_"value='"_$$ESC^VPRD(ITEM(ATT,I))_"' />"
- ..D ADD^VPRDPT("</"_ID_">") S Y=""
- .S X=$G(ITEM(ATT)),Y="" Q:'$L(X)
- .I ATT="npi" S Y="<"_ATT_" value='"_$P(X,U)_"' status='"_$$ESC^VPRD($P(X,U,2))_"' />" Q
- .I ATT="address" D ADDR^VPRDPT(X) S Y="" Q
- .I ATT="telecom" D PHONE^VPRDPT(X) S Y="" Q
- .I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
- .S Y="<"_ATT_" code='"_$P(X,U)_"' name='"_$$ESC^VPRD($P(X,U,2))_"' />"
+ . I $L($O(ITEM(ATT,""))) D  Q  ;multiples
+ . . S ID=$S($E(ATT,$L(ATT))="s":ATT_"es",$E(ATT,$L(ATT))="y":$E(ATT,1,$L(ATT)-1)_"ies",1:ATT_"s")
+ . . D ADD^VPRDPT("<"_ID_">")
+ . . S I="" F  S I=$O(ITEM(ATT,I)) Q:I=""  D  D:$L(Y) ADD^VPRDPT(Y)
+ . . . S X=ITEM(ATT,I),Y="<"_ATT_" "
+ . . . I ATT="facility" D ADDFAC(X) S Y="" Q
+ . . . S Y=Y_"value='"_$$ESC^VPRD(ITEM(ATT,I))_"' />"
+ . . D ADD^VPRDPT("</"_ID_">") S Y=""
+ . S X=$G(ITEM(ATT)),Y="" Q:'$L(X)
+ . I ATT="npi" S Y="<"_ATT_" value='"_$P(X,U)_"' status='"_$$ESC^VPRD($P(X,U,2))_"' />" Q
+ . I ATT="address" D ADDR^VPRDPT(X) S Y="" Q
+ . I ATT="telecom" D PHONE^VPRDPT(X) S Y="" Q
+ . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
+ . S Y="<"_ATT_" code='"_$P(X,U)_"' name='"_$$ESC^VPRD($P(X,U,2))_"' />"
  D ADD^VPRDPT("</current_user>")
  Q
  ;
@@ -236,14 +234,14 @@ PAR(DFN,BEG,END,MAX,ID) ; -- find patient family information (Participant)
  N PAT,OUT,ERR,I,RT,FLE,FOF,FOFIEN
  D LIST^DIC(408.12,,"@;.01;.02;.03","P",,,,,"I $P(^(0),U)=DFN",,"OUT","ERR")
  I $D(OUT) S I=$NA(OUT) F  S I=$Q(@I) Q:I=""  D
- .Q:$QS(I,2)<1
- .;name^relationship
- .Q:$P(@I,U,3)="SELF"
- .S PAT("family_member",$QS(I,2))=$P(@I,U,4)_U_$P(@I,U,3)
- .; POINTER TO (2) OR (408.13)
- .S RT=$$GET1^DIQ(408.12,+@I_",",.03,"I")
- .S FLE=$S(RT["DPT,":2,1:$TR($P($P(RT,U,";",2),"(",2),",",""))
- .D ATCS(FLE,+RT)
+ . Q:$QS(I,2)<1
+ . ;name^relationship
+ . Q:$P(@I,U,3)="SELF"
+ . S PAT("family_member",$QS(I,2))=$P(@I,U,4)_U_$P(@I,U,3)
+ . ; POINTER TO (2) OR (408.13)
+ . S RT=$$GET1^DIQ(408.12,+@I_",",.03,"I")
+ . S FLE=$S(RT["DPT,":2,1:$TR($P($P(RT,U,";",2),"(",2),",",""))
+ . D ATCS(FLE,+RT)
  ;
  ; *** GET ONLY CURRENT FOF
  D PREGG^DSIO15(.OUT,"C",DFN) I $G(@OUT@(0)) D
@@ -261,17 +259,17 @@ ATCS(FLE,IEN) ;-address & telecom
  ;street1^st2^st3^city^state^zip
  ;home^cell^work phones
  N FLD I FLE=2!(FLE=200) D  Q
- .S PAT("address")=$$GET1^DIQ(FLE,IEN_",",.111)
- .F FLD=.112,.113,.114,.115,.116 D
- ..S PAT("address")=PAT("address")_U_$$GET1^DIQ(FLE,IEN_",",FLD)
- .S PAT("telecom")=$$FORMAT^VPRDPT($$GET1^DIQ(FLE,IEN_",",.131))
- .F FLD=$S(FLE=2:.134,1:.133),.132 D
- ..S PAT("telecom")=PAT("telecom")_U_$$FORMAT^VPRDPT($$GET1^DIQ(FLE,IEN_",",FLD))
+ . S PAT("address")=$$GET1^DIQ(FLE,IEN_",",.111)
+ . F FLD=.112,.113,.114,.115,.116 D
+ . . S PAT("address")=PAT("address")_U_$$GET1^DIQ(FLE,IEN_",",FLD)
+ . S PAT("telecom")=$$FORMAT^VPRDPT($$GET1^DIQ(FLE,IEN_",",.131))
+ . F FLD=$S(FLE=2:.134,1:.133),.132 D
+ . . S PAT("telecom")=PAT("telecom")_U_$$FORMAT^VPRDPT($$GET1^DIQ(FLE,IEN_",",FLD))
  I FLE=408.13 D
- .S PAT("address")=$$GET1^DIQ(FLE,IEN_",",1.2)
- .F FLD=1.3,1.4,1.5,1.6,1.7 D
- ..S PAT("address")=PAT("address")_U_$$GET1^DIQ(FLE,IEN_",",FLD)
- .S PAT("telecom")=$$FORMAT^VPRDPT($$GET1^DIQ(FLE,IEN_",",1.8))
+ . S PAT("address")=$$GET1^DIQ(FLE,IEN_",",1.2)
+ . F FLD=1.3,1.4,1.5,1.6,1.7 D
+ . . S PAT("address")=PAT("address")_U_$$GET1^DIQ(FLE,IEN_",",FLD)
+ . S PAT("telecom")=$$FORMAT^VPRDPT($$GET1^DIQ(FLE,IEN_",",1.8))
  Q
  ;
 XMLP(ITEM) ; -- Return patient family information data as XML in @VPR@(n)
@@ -279,25 +277,25 @@ XMLP(ITEM) ; -- Return patient family information data as XML in @VPR@(n)
  N ATT,X,Y,I,ID
  D ADD^VPRDPT("<patient_family>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(ITEM(ATT)) Q:ATT=""  D  D:$L(Y) ADD^VPRDPT(Y)
- .I $L($O(ITEM(ATT,""))) D  Q  ;multiples
- ..S ID=$S($E(ATT,$L(ATT))="s":ATT_"es",$E(ATT,$L(ATT))="y":$E(ATT,1,$L(ATT)-1)_"ies",1:ATT_"s")
- ..D ADD^VPRDPT("<"_ID_">")
- ..S I="" F  S I=$O(ITEM(ATT,I)) Q:I=""  D  D:$L(Y) ADD^VPRDPT(Y)
- ...S X=ITEM(ATT,I),Y="<"_ATT_" "
- ...I ATT="family_member" D  S Y="" Q
- ....S Y=Y_"name='"_$$ESC^VPRD($P(X,U))_$S($L($P(X,U,2)):"' relationship='"_$$ESC^VPRD($P(X,U,2)),1:"")_"' >" D ADD^VPRDPT(Y)
- ....S X=$G(ITEM(ATT,I,"address")) I $L(X) D ADDR^VPRDPT(X)
- ....S X=$G(ITEM(ATT,I,"telecom")) I $L(X) D PHONE^VPRDPT(X)
- ....D ADD^VPRDPT("</family_member>")
- ...I ATT="father_of_fetus" D  S Y="" Q
- ....S Y=Y_"name='"_$$ESC^VPRD($P(X,U))_"' >" D ADD^VPRDPT(Y)
- ....S X=$G(ITEM(ATT,I,"address")) I $L(X) D ADDR^VPRDPT(X)
- ....S X=$G(ITEM(ATT,I,"telecom")) I $L(X) D PHONE^VPRDPT(X)
- ....D ADD^VPRDPT("</father_of_fetus>")
- ...S Y=Y_"value='"_$$ESC^VPRD(ITEM(ATT,I))_"' />"
- ..D ADD^VPRDPT("</"_ID_">") S Y=""
- .S X=$G(ITEM(ATT)),Y="" Q:'$L(X)
- .I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
- .S Y="<"_ATT_" code='"_$P(X,U)_"' name='"_$$ESC^VPRD($P(X,U,2))_"' />"
+ . I $L($O(ITEM(ATT,""))) D  Q  ;multiples
+ . . S ID=$S($E(ATT,$L(ATT))="s":ATT_"es",$E(ATT,$L(ATT))="y":$E(ATT,1,$L(ATT)-1)_"ies",1:ATT_"s")
+ . . D ADD^VPRDPT("<"_ID_">")
+ . . S I="" F  S I=$O(ITEM(ATT,I)) Q:I=""  D  D:$L(Y) ADD^VPRDPT(Y)
+ . . . S X=ITEM(ATT,I),Y="<"_ATT_" "
+ . . . I ATT="family_member" D  S Y="" Q
+ . . . . S Y=Y_"name='"_$$ESC^VPRD($P(X,U))_$S($L($P(X,U,2)):"' relationship='"_$$ESC^VPRD($P(X,U,2)),1:"")_"' >" D ADD^VPRDPT(Y)
+ . . . . S X=$G(ITEM(ATT,I,"address")) I $L(X) D ADDR^VPRDPT(X)
+ . . . . S X=$G(ITEM(ATT,I,"telecom")) I $L(X) D PHONE^VPRDPT(X)
+ . . . . D ADD^VPRDPT("</family_member>")
+ . . . I ATT="father_of_fetus" D  S Y="" Q
+ . . . . S Y=Y_"name='"_$$ESC^VPRD($P(X,U))_"' >" D ADD^VPRDPT(Y)
+ . . . . S X=$G(ITEM(ATT,I,"address")) I $L(X) D ADDR^VPRDPT(X)
+ . . . . S X=$G(ITEM(ATT,I,"telecom")) I $L(X) D PHONE^VPRDPT(X)
+ . . . . D ADD^VPRDPT("</father_of_fetus>")
+ . . . S Y=Y_"value='"_$$ESC^VPRD(ITEM(ATT,I))_"' />"
+ . . D ADD^VPRDPT("</"_ID_">") S Y=""
+ . S X=$G(ITEM(ATT)),Y="" Q:'$L(X)
+ . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
+ . S Y="<"_ATT_" code='"_$P(X,U)_"' name='"_$$ESC^VPRD($P(X,U,2))_"' />"
  D ADD^VPRDPT("</patient_family>")
  Q
