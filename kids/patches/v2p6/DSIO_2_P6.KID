@@ -1,0 +1,3168 @@
+KIDS Distribution saved on Jan 10, 2017@09:10:24
+DSIO*2.0*6
+**KIDS**:DSIO*2.0*6^
+
+**INSTALL NAME**
+DSIO*2.0*6
+"BLD",9908,0)
+DSIO*2.0*6^^0^3170110^n
+"BLD",9908,4,0)
+^9.64PA^^
+"BLD",9908,6.3)
+2
+"BLD",9908,"KRN",0)
+^9.67PA^779.2^20
+"BLD",9908,"KRN",.4,0)
+.4
+"BLD",9908,"KRN",.401,0)
+.401
+"BLD",9908,"KRN",.402,0)
+.402
+"BLD",9908,"KRN",.403,0)
+.403
+"BLD",9908,"KRN",.5,0)
+.5
+"BLD",9908,"KRN",.84,0)
+.84
+"BLD",9908,"KRN",3.6,0)
+3.6
+"BLD",9908,"KRN",3.8,0)
+3.8
+"BLD",9908,"KRN",9.2,0)
+9.2
+"BLD",9908,"KRN",9.8,0)
+9.8
+"BLD",9908,"KRN",9.8,"NM",0)
+^9.68A^5^5
+"BLD",9908,"KRN",9.8,"NM",1,0)
+DSIO15^^0^B104007914
+"BLD",9908,"KRN",9.8,"NM",2,0)
+DSIO14^^0^B22789803
+"BLD",9908,"KRN",9.8,"NM",3,0)
+DSIO10^^0^B122639729
+"BLD",9908,"KRN",9.8,"NM",4,0)
+DSIO1^^0^B233309882
+"BLD",9908,"KRN",9.8,"NM",5,0)
+DSIO2^^0^B48511547
+"BLD",9908,"KRN",9.8,"NM","B","DSIO1",4)
+
+"BLD",9908,"KRN",9.8,"NM","B","DSIO10",3)
+
+"BLD",9908,"KRN",9.8,"NM","B","DSIO14",2)
+
+"BLD",9908,"KRN",9.8,"NM","B","DSIO15",1)
+
+"BLD",9908,"KRN",9.8,"NM","B","DSIO2",5)
+
+"BLD",9908,"KRN",19,0)
+19
+"BLD",9908,"KRN",19.1,0)
+19.1
+"BLD",9908,"KRN",101,0)
+101
+"BLD",9908,"KRN",409.61,0)
+409.61
+"BLD",9908,"KRN",771,0)
+771
+"BLD",9908,"KRN",779.2,0)
+779.2
+"BLD",9908,"KRN",870,0)
+870
+"BLD",9908,"KRN",8989.51,0)
+8989.51
+"BLD",9908,"KRN",8989.52,0)
+8989.52
+"BLD",9908,"KRN",8994,0)
+8994
+"BLD",9908,"KRN","B",.4,.4)
+
+"BLD",9908,"KRN","B",.401,.401)
+
+"BLD",9908,"KRN","B",.402,.402)
+
+"BLD",9908,"KRN","B",.403,.403)
+
+"BLD",9908,"KRN","B",.5,.5)
+
+"BLD",9908,"KRN","B",.84,.84)
+
+"BLD",9908,"KRN","B",3.6,3.6)
+
+"BLD",9908,"KRN","B",3.8,3.8)
+
+"BLD",9908,"KRN","B",9.2,9.2)
+
+"BLD",9908,"KRN","B",9.8,9.8)
+
+"BLD",9908,"KRN","B",19,19)
+
+"BLD",9908,"KRN","B",19.1,19.1)
+
+"BLD",9908,"KRN","B",101,101)
+
+"BLD",9908,"KRN","B",409.61,409.61)
+
+"BLD",9908,"KRN","B",771,771)
+
+"BLD",9908,"KRN","B",779.2,779.2)
+
+"BLD",9908,"KRN","B",870,870)
+
+"BLD",9908,"KRN","B",8989.51,8989.51)
+
+"BLD",9908,"KRN","B",8989.52,8989.52)
+
+"BLD",9908,"KRN","B",8994,8994)
+
+"MBREQ")
+0
+"QUES","XPF1",0)
+Y
+"QUES","XPF1","??")
+^D REP^XPDH
+"QUES","XPF1","A")
+Shall I write over your |FLAG| File
+"QUES","XPF1","B")
+YES
+"QUES","XPF1","M")
+D XPF1^XPDIQ
+"QUES","XPF2",0)
+Y
+"QUES","XPF2","??")
+^D DTA^XPDH
+"QUES","XPF2","A")
+Want my data |FLAG| yours
+"QUES","XPF2","B")
+YES
+"QUES","XPF2","M")
+D XPF2^XPDIQ
+"QUES","XPI1",0)
+YO
+"QUES","XPI1","??")
+^D INHIBIT^XPDH
+"QUES","XPI1","A")
+Want KIDS to INHIBIT LOGONs during the install
+"QUES","XPI1","B")
+NO
+"QUES","XPI1","M")
+D XPI1^XPDIQ
+"QUES","XPM1",0)
+PO^VA(200,:EM
+"QUES","XPM1","??")
+^D MG^XPDH
+"QUES","XPM1","A")
+Enter the Coordinator for Mail Group '|FLAG|'
+"QUES","XPM1","B")
+
+"QUES","XPM1","M")
+D XPM1^XPDIQ
+"QUES","XPO1",0)
+Y
+"QUES","XPO1","??")
+^D MENU^XPDH
+"QUES","XPO1","A")
+Want KIDS to Rebuild Menu Trees Upon Completion of Install
+"QUES","XPO1","B")
+NO
+"QUES","XPO1","M")
+D XPO1^XPDIQ
+"QUES","XPZ1",0)
+Y
+"QUES","XPZ1","??")
+^D OPT^XPDH
+"QUES","XPZ1","A")
+Want to DISABLE Scheduled Options, Menu Options, and Protocols
+"QUES","XPZ1","B")
+NO
+"QUES","XPZ1","M")
+D XPZ1^XPDIQ
+"QUES","XPZ2",0)
+Y
+"QUES","XPZ2","??")
+^D RTN^XPDH
+"QUES","XPZ2","A")
+Want to MOVE routines to other CPUs
+"QUES","XPZ2","B")
+NO
+"QUES","XPZ2","M")
+D XPZ2^XPDIQ
+"RTN")
+5
+"RTN","DSIO1")
+0^4^B233309882
+"RTN","DSIO1",1,0)
+DSIO1 ;DSS/TFF - DSIO GENERAL RPCS;08/26/2016 16:00
+"RTN","DSIO1",2,0)
+ ;;2.0;DSIO 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","DSIO1",3,0)
+ ;
+"RTN","DSIO1",4,0)
+ ; External References      DBIA#
+"RTN","DSIO1",5,0)
+ ; -------------------      -----
+"RTN","DSIO1",6,0)
+ ; $$DOB^DPTLK1
+"RTN","DSIO1",7,0)
+ ; $$SCREEN^DPTLK1
+"RTN","DSIO1",8,0)
+ ; $$SSN^DPTLK1
+"RTN","DSIO1",9,0)
+ ;
+"RTN","DSIO1",10,0)
+ Q
+"RTN","DSIO1",11,0)
+ ;
+"RTN","DSIO1",12,0)
+ ; ------------------------------ PATIENT SEARCH ------------------------------
+"RTN","DSIO1",13,0)
+ ;
+"RTN","DSIO1",14,0)
+PATIENT(RET,KEY,SORT) ; RPC: DSIO PATIENT LIST
+"RTN","DSIO1",15,0)
+ ;
+"RTN","DSIO1",16,0)
+ ;  KEY  SSN: SSN
+"RTN","DSIO1",17,0)
+ ;        BS: LAST 4
+"RTN","DSIO1",18,0)
+ ;       BS5: FIRST LETTER OF LAST NAME + LAST 4 OF SSN
+"RTN","DSIO1",19,0)
+ ;         B: PARTIAL NAME - TO - FULL NAME
+"RTN","DSIO1",20,0)
+ ; SORT     : PAGE#,CT
+"RTN","DSIO1",21,0)
+ ;
+"RTN","DSIO1",22,0)
+ ; RETURN FORMAT:
+"RTN","DSIO1",23,0)
+ ;  DFN^LASTNAME,FIRSTNAME^SSN(LAST 4)^DATE OF BIRTH^VETERAN STATUS^
+"RTN","DSIO1",24,0)
+ ;  LOCATION(WARD)^ROOM/BED^SERVICE CONNECTED^CURRENTLY TRACKING^
+"RTN","DSIO1",25,0)
+ ;  SSN^CITY^STATE^ZIP^SENSITIVE STATUS (1,0)
+"RTN","DSIO1",26,0)
+ ;
+"RTN","DSIO1",27,0)
+ ;  CURRENTLY TRACKING: 0:NO,1:YES,2:FLAG
+"RTN","DSIO1",28,0)
+ ; IF NOTHING IS FOUND: RET(0)="0^Patient(s) not found."
+"RTN","DSIO1",29,0)
+ ;
+"RTN","DSIO1",30,0)
+ S RET=$NA(^TMP($J,"DSIO PATIENT")) K @RET S @RET@(0)="0^Patient(s) not found."
+"RTN","DSIO1",31,0)
+ S KEY=$G(KEY) D PAR^DSIO2
+"RTN","DSIO1",32,0)
+ ; *** LIST BY FULL SSN
+"RTN","DSIO1",33,0)
+ I KEY?9N!(KEY?3N1"-"2N1"-"4N) D LIST($TR(KEY,"-",""),"SSN") Q
+"RTN","DSIO1",34,0)
+ ; *** LIST BY LAST 4
+"RTN","DSIO1",35,0)
+ I KEY?4N D LIST(KEY,"BS") Q
+"RTN","DSIO1",36,0)
+ ; *** LIST BY FIRST LETTER OF LAST NAME + LAST 4 OF SSN
+"RTN","DSIO1",37,0)
+ I KEY?1A4N D LIST(KEY,"BS5") Q
+"RTN","DSIO1",38,0)
+ ; *** ALL PATIENTS, ASSUME NAME OR PARTIAL NAME
+"RTN","DSIO1",39,0)
+ D LIST(KEY,"B")
+"RTN","DSIO1",40,0)
+ Q
+"RTN","DSIO1",41,0)
+ ;
+"RTN","DSIO1",42,0)
+LIST(KEY,IX) ; Get Patient List
+"RTN","DSIO1",43,0)
+ N RCT,TS,KCT,CT,DFN,STRT,END D S^DSIO2($G(SORT))
+"RTN","DSIO1",44,0)
+ S (RCT,TS)=0
+"RTN","DSIO1",45,0)
+ S (KCT,CT)=$E(KEY,1,($L(KEY)-1))_$$M^DSIO2($E(KEY,$L(KEY)))
+"RTN","DSIO1",46,0)
+ F  S CT=$O(^DPT(IX,CT)) Q:CT=""  Q:$L(KCT)>1&($$KEY^DSIO2(CT,KEY))  D
+"RTN","DSIO1",47,0)
+ . Q:$$KEY^DSIO2(CT,KEY)
+"RTN","DSIO1",48,0)
+ . S DFN=0 F  S DFN=$O(^DPT(IX,CT,DFN)) Q:'DFN  D
+"RTN","DSIO1",49,0)
+ . . Q:$$GET1^DIQ(2,DFN_",",.02,"I")'="F"
+"RTN","DSIO1",50,0)
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","DSIO1",51,0)
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","DSIO1",52,0)
+ . . S @RET@(RCT)=$$FLDS(DFN)
+"RTN","DSIO1",53,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","DSIO1",54,0)
+ Q
+"RTN","DSIO1",55,0)
+ ;
+"RTN","DSIO1",56,0)
+FLDS(DFN) ; Return Transformed Fields
+"RTN","DSIO1",57,0)
+ ;
+"RTN","DSIO1",58,0)
+ ; DFN^LASTNAME,FIRSTNAME^SSN(LAST 4)^DATE OF BIRTH^VETERAN STATUS^
+"RTN","DSIO1",59,0)
+ ; LOCATION(WARD)^ROOM/BED^SERVICE CONNECTED^CURRENTLY TRACKING^
+"RTN","DSIO1",60,0)
+ ; SSN^CITY^STATE^ZIP^SENSITIVE STATUS(1,0)
+"RTN","DSIO1",61,0)
+ ;
+"RTN","DSIO1",62,0)
+ N OUT,LINE,FLD,SSN,STR
+"RTN","DSIO1",63,0)
+ D GETS^DIQ(2,DFN_",",".01;1901;.1;.101;.301;.09;.114;.115;.116","IE","OUT")
+"RTN","DSIO1",64,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","DSIO1",65,0)
+ S SSN=$$SSN^DPTLK1(DFN)
+"RTN","DSIO1",66,0)
+ S STR=DFN_U
+"RTN","DSIO1",67,0)
+ S STR=STR_$$NAME^DSIO2(FLD(.01,"E"))_U                ; NAME
+"RTN","DSIO1",68,0)
+ S STR=STR_$S(SSN?.N:$E(SSN,6,9),1:SSN)_U              ; LAST FOUR
+"RTN","DSIO1",69,0)
+ S STR=STR_$$FMTE^XLFDT($$DT^DSIO2($$DOB^DPTLK1(DFN,0)),"5Z")_U   ; DATE OF BIRTH
+"RTN","DSIO1",70,0)
+ S STR=STR_FLD(1901,"E")_U                             ; VETERAN STATUS
+"RTN","DSIO1",71,0)
+ S STR=STR_FLD(.1,"I")_U                               ; WARD LOCATOIN
+"RTN","DSIO1",72,0)
+ S STR=STR_FLD(.101,"I")_U                             ; ROOM-BED
+"RTN","DSIO1",73,0)
+ S STR=STR_FLD(.301,"E")_U                             ; SERVICE CONNECTED?
+"RTN","DSIO1",74,0)
+ S STR=STR_$$TRACK^DSIO4(DFN,1)_U                      ; TRACKING STATUS
+"RTN","DSIO1",75,0)
+ S STR=STR_FLD(.09,"I")_U                              ; SOCIAL SECURITY NUMBER
+"RTN","DSIO1",76,0)
+ S STR=STR_FLD(.114,"I")_U                             ; CITY
+"RTN","DSIO1",77,0)
+ S STR=STR_$$GET1^DIQ(5,FLD(.115,"I")_",",1)_U         ; STATE
+"RTN","DSIO1",78,0)
+ S STR=STR_FLD(.116,"I")_U                             ; ZIP CODE
+"RTN","DSIO1",79,0)
+ S STR=STR_$$SCREEN^DPTLK1(DFN)                        ; SENSITIVE STATUS
+"RTN","DSIO1",80,0)
+ Q STR
+"RTN","DSIO1",81,0)
+ ;
+"RTN","DSIO1",82,0)
+ ; ------------------------------ PATIENT FIELDS ------------------------------
+"RTN","DSIO1",83,0)
+ ;
+"RTN","DSIO1",84,0)
+INFO(RET,DFN) ; RPC: DSIO GET PATIENT INFORMATION
+"RTN","DSIO1",85,0)
+ ;
+"RTN","DSIO1",86,0)
+ ; RETURN:
+"RTN","DSIO1",87,0)
+ ;   FIELD NUMBER^VALUE (*** HIGH RISK = Field#^(TRUE,FALSE)^COMMENTS)
+"RTN","DSIO1",88,0)
+ ;   0^MESSAGE
+"RTN","DSIO1",89,0)
+ ;
+"RTN","DSIO1",90,0)
+ N OUT,LINE
+"RTN","DSIO1",91,0)
+ I '$$CHECK^DSIO2($G(DFN)) S RET(0)="0^Patient entry not found." Q
+"RTN","DSIO1",92,0)
+ D GETS^DIQ(19641,DFN_",",".01:999999","E","OUT")
+"RTN","DSIO1",93,0)
+ I '$D(OUT) S RET(0)="0^Nothing found." Q
+"RTN","DSIO1",94,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  D
+"RTN","DSIO1",95,0)
+ . S RET($QS(LINE,3))=$QS(LINE,3)_U_@LINE
+"RTN","DSIO1",96,0)
+ S RET(3)="3^"_$$FMTE^XLFDT($P($G(^DSIO(19641,DFN,3,+$$LACE^DSIO4(DFN),0)),U),"5ZS")
+"RTN","DSIO1",97,0)
+ I $P($G(RET(999.15)),U,2)="TRUE" S $P(RET(999.15),U,3)=$$HR^DSIO4($$PG^DSIO4(DFN))
+"RTN","DSIO1",98,0)
+ Q
+"RTN","DSIO1",99,0)
+ ;
+"RTN","DSIO1",100,0)
+PATSET(RET,DFN,FLD,VAL) ; RPC: DSIO SET PATIENT INFORMATION
+"RTN","DSIO1",101,0)
+ S RET=0 I '$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
+"RTN","DSIO1",102,0)
+ N TRVAL,OUT,IPT,ERR
+"RTN","DSIO1",103,0)
+ I $G(FLD)=.01 S RET="-1^You cannot change the PATIENT NAME." Q
+"RTN","DSIO1",104,0)
+ I '$$VFIELD^DILFD(19641,$G(FLD)) S RET="-1^Not a valid field." Q
+"RTN","DSIO1",105,0)
+ I $G(FLD)=999.22 D EMAIL Q
+"RTN","DSIO1",106,0)
+ I $$GET1^DID(19641,FLD,,"TYPE")="COMPUTED" S RET="-1^You cannot set a computed field." Q
+"RTN","DSIO1",107,0)
+ I "^.04^1.2^"[(U_FLD_U) S RET="-1^This field cannot be set directly." Q
+"RTN","DSIO1",108,0)
+ S TRVAL=$S($$GET1^DID(19641,FLD,,"TYPE")="DATE/TIME":$$DT^DSIO2($G(VAL)),1:$G(VAL))
+"RTN","DSIO1",109,0)
+ D VAL^DIE(19641,DFN,FLD,,TRVAL,.OUT) I TRVAL'=OUT S RET="-1^The value is not valid." Q
+"RTN","DSIO1",110,0)
+ S IPT(19641,DFN_",",FLD)=TRVAL
+"RTN","DSIO1",111,0)
+ D FILE^DIE("E","IPT","ERR") I '$D(ERR) S RET=1
+"RTN","DSIO1",112,0)
+ Q
+"RTN","DSIO1",113,0)
+ ;
+"RTN","DSIO1",114,0)
+EMAIL ; Update the patient's email address
+"RTN","DSIO1",115,0)
+ I $G(VAL)="" S RET="-1^Cannot leave the patient's email address blank." Q
+"RTN","DSIO1",116,0)
+ D VAL^DIE(2,DFN,.133,,VAL,.OUT) I VAL'=OUT S RET="-1^The value is not valid." Q
+"RTN","DSIO1",117,0)
+ S IPT(2,DFN_",",.133)=VAL
+"RTN","DSIO1",118,0)
+ D FILE^DIE("E","IPT","ERR") I '$D(ERR) S RET=1
+"RTN","DSIO1",119,0)
+ Q
+"RTN","DSIO1",120,0)
+ ;
+"RTN","DSIO1",121,0)
+ ; ----------------------------- PATIENT TRACKING -----------------------------
+"RTN","DSIO1",122,0)
+ ;
+"RTN","DSIO1",123,0)
+TRCLIST(RET,TYP,SORT) ; RPC: DSIO GET TRACKING
+"RTN","DSIO1",124,0)
+ ;
+"RTN","DSIO1",125,0)
+ ; RETURN MATERNITY TRACKING LISTS
+"RTN","DSIO1",126,0)
+ ;
+"RTN","DSIO1",127,0)
+ ;   TYP "": ALL LOGS
+"RTN","DSIO1",128,0)
+ ;        T: ALL CURRENTLY TRACKED PATIENTS
+"RTN","DSIO1",129,0)
+ ;        F: ALL CURRENTLY FLAGGED PATIENTS
+"RTN","DSIO1",130,0)
+ ;      DFN: ALL LOGS FOR A PATIENT
+"RTN","DSIO1",131,0)
+ ;       F#: ALL CURRENTLY FLAGGED LOGS FOR A PATIENT
+"RTN","DSIO1",132,0)
+ ;  SORT   : PAGE#,CT
+"RTN","DSIO1",133,0)
+ ;
+"RTN","DSIO1",134,0)
+ S RET=$NA(^TMP($J,"DSIO TRCLIST")) K @RET S @RET@(0)="0^No entries found."
+"RTN","DSIO1",135,0)
+ D PAR^DSIO2 S TYP=$G(TYP)
+"RTN","DSIO1",136,0)
+ ;
+"RTN","DSIO1",137,0)
+ ; *** GET ALL CURRENTLY TRACKED PATIENTS
+"RTN","DSIO1",138,0)
+ ;     P^DFN^LASTNAME,FIRSTNAME^LAST 4^DOB^PHONE^EDD^OB^PLANNED DELV LOC^
+"RTN","DSIO1",139,0)
+ ;     CURRENTLY PREGNANT^CURRENTLY LACATING^LAST CONTACT DATE^
+"RTN","DSIO1",140,0)
+ ;     NEXT CONTACT DATE^NEXT CHECKLIST DATE^HIGH RISK FLAG^HIGH RISK DETAILS^T4BSTAT
+"RTN","DSIO1",141,0)
+ ;     ^DSIO(19641.2,"TRACKING",PATIENT NAME,DFN,DA)=""
+"RTN","DSIO1",142,0)
+ I TYP="T" D T1("TRACKING",4) Q
+"RTN","DSIO1",143,0)
+ ;
+"RTN","DSIO1",144,0)
+ ; *** GET ALL CURRENTLY FLAGGED PATIENTS
+"RTN","DSIO1",145,0)
+ ;     P^DFN^LASTNAME,FIRSTNAME^LAST 4^DOB^PHONE^REASON
+"RTN","DSIO1",146,0)
+ ;     ^DSIO(19641.2,"FLAGGED",PATIENT NAME,DFN,DA)=""
+"RTN","DSIO1",147,0)
+ I TYP="F" D T1("FLAGGED",5) Q
+"RTN","DSIO1",148,0)
+ ;
+"RTN","DSIO1",149,0)
+ ; *** GET ALL LOGS FOR A PATIENT
+"RTN","DSIO1",150,0)
+ ;     L^IEN^TRACKING DT(E)^DFN^LASTNAME,FIRSTNAME^USER^ACTION^SOURCE^REASON|REASON
+"RTN","DSIO1",151,0)
+ ;     C^IEN^COMMENT
+"RTN","DSIO1",152,0)
+ ;     ^DSIO(19641.2,DFN,1,"B",LOG DATE,DA)=""
+"RTN","DSIO1",153,0)
+ I TYP D T1("B",2,+TYP) Q
+"RTN","DSIO1",154,0)
+ ;
+"RTN","DSIO1",155,0)
+ ; *** GET CURRENTLY FLAGGED ENTRIES FOR A PATIENT
+"RTN","DSIO1",156,0)
+ ;     ^DSIO(19641.2,DFN,1,"FLAG",LOG DATE,DA)
+"RTN","DSIO1",157,0)
+ I TYP?1"F".N D T1("FLAG",3,$E(TYP,2,$L(TYP))) Q
+"RTN","DSIO1",158,0)
+ ;
+"RTN","DSIO1",159,0)
+ ; *** GET ALL LOGS
+"RTN","DSIO1",160,0)
+ ;     ^DSIO(19641.2,"C",LOG DATE,DFN,DA)=""
+"RTN","DSIO1",161,0)
+ I TYP="" D T1("C",1)
+"RTN","DSIO1",162,0)
+ Q
+"RTN","DSIO1",163,0)
+ ;
+"RTN","DSIO1",164,0)
+T1(IX,FLG,KEY) ; Get Tracking List
+"RTN","DSIO1",165,0)
+ N RCT,TS,NAME,DATE,DFN,IEN,STRT,END D S^DSIO2($G(SORT))
+"RTN","DSIO1",166,0)
+ S (RCT,TS)=0
+"RTN","DSIO1",167,0)
+ I FLG=1 D
+"RTN","DSIO1",168,0)
+ . ; IX: C                   ^DSIO(19641.2,"C",DATE,DFN,DA)=""
+"RTN","DSIO1",169,0)
+ . S DATE="" F  S DATE=$O(^DSIO(19641.2,"C",DATE),-1) Q:DATE=""  D
+"RTN","DSIO1",170,0)
+ . . S DFN=0 F  S DFN=$O(^DSIO(19641.2,"C",DATE,DFN)) Q:'DFN  D
+"RTN","DSIO1",171,0)
+ . . . S IEN="" F  S IEN=$O(^DSIO(19641.2,"C",DATE,DFN,IEN),-1) Q:IEN=""  D T2
+"RTN","DSIO1",172,0)
+ I FLG=2!(FLG=3) S DFN=$$M^DSIO2(KEY) D
+"RTN","DSIO1",173,0)
+ . ; IX: B, FLAG             ^DSIO(19641.2,DFN,1,IX,DATE,DA)=""
+"RTN","DSIO1",174,0)
+ . F  S DFN=$O(^DSIO(19641.2,DFN)) Q:DFN'=KEY  D
+"RTN","DSIO1",175,0)
+ . . S DATE="" F  S DATE=$O(^DSIO(19641.2,DFN,1,IX,DATE),-1) Q:DATE=""  D
+"RTN","DSIO1",176,0)
+ . . . S IEN="" F  S IEN=$O(^DSIO(19641.2,DFN,1,IX,DATE,IEN),-1) Q:IEN=""  D T2
+"RTN","DSIO1",177,0)
+ I FLG=4!(FLG=5) D
+"RTN","DSIO1",178,0)
+ . ; IX: TRACKING, FLAGGED   ^DSIO(19641.2,IX,PATIENT-NAME,DFN,DA)=""
+"RTN","DSIO1",179,0)
+ . S NAME="" F  S NAME=$O(^DSIO(19641.2,IX,NAME)) Q:NAME=""  D
+"RTN","DSIO1",180,0)
+ . . S DFN=0 F  S DFN=$O(^DSIO(19641.2,IX,NAME,DFN)) Q:'DFN  D
+"RTN","DSIO1",181,0)
+ . . . S IEN="" F  S IEN=$O(^DSIO(19641.2,IX,NAME,DFN,IEN),-1) Q:IEN=""  D T2
+"RTN","DSIO1",182,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","DSIO1",183,0)
+ Q
+"RTN","DSIO1",184,0)
+ ;
+"RTN","DSIO1",185,0)
+T2 ; Continue
+"RTN","DSIO1",186,0)
+ S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","DSIO1",187,0)
+ S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","DSIO1",188,0)
+ D TGET(FLG)
+"RTN","DSIO1",189,0)
+ Q
+"RTN","DSIO1",190,0)
+ ;
+"RTN","DSIO1",191,0)
+TGET(F) ; Return Unique String of Data
+"RTN","DSIO1",192,0)
+ N OUT,LINE,FLD
+"RTN","DSIO1",193,0)
+ D GETS^DIQ(19641.24,IEN_","_DFN_",",".01;.02;.03;.04","IE","OUT")
+"RTN","DSIO1",194,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","DSIO1",195,0)
+ ;
+"RTN","DSIO1",196,0)
+ ; L^IEN^TRACKING DT(E)^DFN^LASTNAME,FIRSTNAME^USER^ACTION^SOURCE^REASON|REASON
+"RTN","DSIO1",197,0)
+ ; C^IEN^COMMENT
+"RTN","DSIO1",198,0)
+ I F=1 D TG0    ; ALL
+"RTN","DSIO1",199,0)
+ I F=2 D TG0    ; ALL LOGS FOR A PATIENT
+"RTN","DSIO1",200,0)
+ I F=3 D TG0    ; ALL FLAGGED LOGS FOR A PATIENT
+"RTN","DSIO1",201,0)
+ ;
+"RTN","DSIO1",202,0)
+ ; P^DFN^LASTNAME,FIRSTNAME^LAST 4^DOB^PHONE^EDD^OB^PLANNED DELV LOC^
+"RTN","DSIO1",203,0)
+ ; CURRENTLY PREGNANT^CURRENTLY LACATING^LAST CONTACT DATE^
+"RTN","DSIO1",204,0)
+ ; NEXT CONTACT DATE^NEXT CHECKLIST DATE^HIGH RISK FLAG^HIGH RISK DETAILS^T4BSTAT
+"RTN","DSIO1",205,0)
+ I F=4 D TG4    ; TRACKING
+"RTN","DSIO1",206,0)
+ ;
+"RTN","DSIO1",207,0)
+ ; P^DFN^LASTNAME,FIRSTNAME^LAST 4^DOB^PHONE^REASON
+"RTN","DSIO1",208,0)
+ I F=5 D TG5    ; FLAGGED
+"RTN","DSIO1",209,0)
+ Q
+"RTN","DSIO1",210,0)
+ ;
+"RTN","DSIO1",211,0)
+TG0 ; 1,2,3
+"RTN","DSIO1",212,0)
+ N STR
+"RTN","DSIO1",213,0)
+ S STR="L^"_IEN_U
+"RTN","DSIO1",214,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.01,"I"),"5ZS")_U          ; TRACKING DATE
+"RTN","DSIO1",215,0)
+ S STR=STR_DFN_U                                       ; DFN
+"RTN","DSIO1",216,0)
+ S STR=STR_$$NAME^DSIO2($$GET1^DIQ(2,DFN,.01))_U       ; PATIENT
+"RTN","DSIO1",217,0)
+ S STR=STR_$$NAME^DSIO2(FLD(.03,"E"))_U                ; USER
+"RTN","DSIO1",218,0)
+ S STR=STR_FLD(.02,"I")_U                              ; ACTION
+"RTN","DSIO1",219,0)
+ S STR=STR_FLD(.04,"I")_U                              ; SOURCE
+"RTN","DSIO1",220,0)
+ S STR=STR_$$RES                                       ; REASON
+"RTN","DSIO1",221,0)
+ S @RET@(RCT,0)=STR D COM                              ; COMMENTS
+"RTN","DSIO1",222,0)
+ Q
+"RTN","DSIO1",223,0)
+TG4 ; 4
+"RTN","DSIO1",224,0)
+ N SSN,DOB,PHONE,EDD,OB,LOC,PREG,LAC,STR
+"RTN","DSIO1",225,0)
+ D TGV
+"RTN","DSIO1",226,0)
+ S STR="P^"_DFN_U
+"RTN","DSIO1",227,0)
+ S STR=STR_$$NAME^DSIO2($$GET1^DIQ(2,DFN,.01))_U       ; PATIENT
+"RTN","DSIO1",228,0)
+ S STR=STR_SSN_U                                       ; LAST FOUR
+"RTN","DSIO1",229,0)
+ S STR=STR_DOB_U                                       ; BIRTH DATE
+"RTN","DSIO1",230,0)
+ S STR=STR_PHONE_U                                     ; PHONE
+"RTN","DSIO1",231,0)
+ S STR=STR_EDD_U                                       ; ESTIMATED DATE OF DELIVERY
+"RTN","DSIO1",232,0)
+ S STR=STR_OB_U                                        ; OB
+"RTN","DSIO1",233,0)
+ S STR=STR_LOC_U                                       ; PLANNED DELIVERY LOCATION
+"RTN","DSIO1",234,0)
+ S STR=STR_PREG_U                                      ; CURRENTLY PREGNANT
+"RTN","DSIO1",235,0)
+ S STR=STR_LAC_U                                       ; CURRENTLY LACTATING
+"RTN","DSIO1",236,0)
+ S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(19641,DFN_",",.05,"I"),"5ZS")_U    ; LAST CONTACT DATE
+"RTN","DSIO1",237,0)
+ S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(19641,DFN_",",.03,"I"),"5ZS")_U    ; NEXT CONTACT DATE
+"RTN","DSIO1",238,0)
+ S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(19641,DFN_",",.06,"I"),"5ZS")_U    ; NEXT CHECKLIST DATE
+"RTN","DSIO1",239,0)
+ S STR=STR_$$GET1^DIQ(19641,DFN_",",999.15)_U          ; HIGH RISK FLAG
+"RTN","DSIO1",240,0)
+ S STR=STR_$$HR^DSIO4($$PG^DSIO4(DFN))_U               ; HIGH RISK DESCRIPTION
+"RTN","DSIO1",241,0)
+ S STR=STR_$$GET1^DIQ(19641,DFN_",",4.1)               ; T4BSTAT
+"RTN","DSIO1",242,0)
+ S @RET@(RCT)=STR
+"RTN","DSIO1",243,0)
+ Q
+"RTN","DSIO1",244,0)
+TG5 ; 5
+"RTN","DSIO1",245,0)
+ N SSN,DOB,PHONE,EDD,OB,LOC,PREG,LAC,STR
+"RTN","DSIO1",246,0)
+ D TGV
+"RTN","DSIO1",247,0)
+ S STR="P^"_DFN_U
+"RTN","DSIO1",248,0)
+ S STR=STR_$$NAME^DSIO2($$GET1^DIQ(2,DFN,.01))_U       ; PATIENT
+"RTN","DSIO1",249,0)
+ S STR=STR_SSN_U                                       ; LAST FOUR
+"RTN","DSIO1",250,0)
+ S STR=STR_DOB_U                                       ; BIRTH DATE
+"RTN","DSIO1",251,0)
+ S STR=STR_PHONE_U                                     ; PHONE
+"RTN","DSIO1",252,0)
+ S STR=STR_$$RES                                       ; REASON
+"RTN","DSIO1",253,0)
+ S @RET@(RCT)=STR
+"RTN","DSIO1",254,0)
+ Q
+"RTN","DSIO1",255,0)
+ ;
+"RTN","DSIO1",256,0)
+TGV ; Get Common Variables
+"RTN","DSIO1",257,0)
+ S SSN=$$SSN^DPTLK1(DFN) I SSN?.N S SSN=$E(SSN,6,9)
+"RTN","DSIO1",258,0)
+ S DOB=$$FMTE^XLFDT($$DT^DSIO2($$DOB^DPTLK1(DFN,0)),"5Z")
+"RTN","DSIO1",259,0)
+ S PHONE=$$GET1^DIQ(2,DFN,.131)
+"RTN","DSIO1",260,0)
+ S EDD=$$FMTE^XLFDT($$GET1^DIQ(19641.03,$$GET1^DIQ(19641.13,$$PG^DSIO4(DFN)_",",.06,"I")_",",.01,"I"),"5Z")
+"RTN","DSIO1",261,0)
+ S OB=$$TITLE^XLFSTR($$GET1^DIQ(19641.13,$$PG^DSIO4(DFN)_",",.08))
+"RTN","DSIO1",262,0)
+ S LOC=$$TITLE^XLFSTR($$GET1^DIQ(19641.13,$$PG^DSIO4(DFN)_",",.09))
+"RTN","DSIO1",263,0)
+ S PREG=$$PSTAT^DSIO4(DFN),LAC=$$LACT^DSIO4(DFN)
+"RTN","DSIO1",264,0)
+ Q
+"RTN","DSIO1",265,0)
+ ;
+"RTN","DSIO1",266,0)
+RES() ; Reason Multiple
+"RTN","DSIO1",267,0)
+ N RES,R,STR
+"RTN","DSIO1",268,0)
+ D GETS^DIQ(19641.24,IEN_","_DFN_",","1*","I","RES")
+"RTN","DSIO1",269,0)
+ S R=$NA(RES) F  S R=$Q(@R) Q:R=""  D
+"RTN","DSIO1",270,0)
+ . S STR=$G(STR)_$$TITLE^XLFSTR(@R)_"|"
+"RTN","DSIO1",271,0)
+ Q $E($G(STR),1,($L($G(STR))-1))
+"RTN","DSIO1",272,0)
+ ;
+"RTN","DSIO1",273,0)
+COM ; Comment Multiple
+"RTN","DSIO1",274,0)
+ N COM,C,CT
+"RTN","DSIO1",275,0)
+ D GETS^DIQ(19641.24,IEN_","_DFN_",",2,,"COM")
+"RTN","DSIO1",276,0)
+ S CT=1,C=$NA(COM) F  S C=$Q(@C) Q:C=""  D
+"RTN","DSIO1",277,0)
+ . Q:$QL(C)<4
+"RTN","DSIO1",278,0)
+ . S @RET@(RCT,CT)="C^"_IEN_U_@C,CT=CT+1
+"RTN","DSIO1",279,0)
+ Q
+"RTN","DSIO1",280,0)
+ ;
+"RTN","DSIO1",281,0)
+REC(RET,DFN,ACT,RES,COM,SOR) ; RPC: DSIO CREATE TRACKING LOG
+"RTN","DSIO1",282,0)
+ ;
+"RTN","DSIO1",283,0)
+ ; MCC DASHBOARD PURPOSE -  TO CHANGE THE TRACKING STATUS OF A PATIENT
+"RTN","DSIO1",284,0)
+ ;
+"RTN","DSIO1",285,0)
+ ;  INPUT PARAMETER:
+"RTN","DSIO1",286,0)
+ ;         DFN : PATIENT NUMBER
+"RTN","DSIO1",287,0)
+ ;         ACT : ACTION 
+"RTN","DSIO1",288,0)
+ ;                0: STOP
+"RTN","DSIO1",289,0)
+ ;                1: START
+"RTN","DSIO1",290,0)
+ ;                2: FLAG
+"RTN","DSIO1",291,0)
+ ;                3: REJECT
+"RTN","DSIO1",292,0)
+ ;                4: ACCEPT
+"RTN","DSIO1",293,0)
+ ;         RES : REASON  - #^#^#
+"RTN","DSIO1",294,0)
+ ;         COM : COMMENT - ARRAY
+"RTN","DSIO1",295,0)
+ ;         SOR : SOURCE  - DEFAULT IS DASHBOARD
+"RTN","DSIO1",296,0)
+ ;
+"RTN","DSIO1",297,0)
+ ; RETURN: -1^ERROR OR IEN
+"RTN","DSIO1",298,0)
+ ;
+"RTN","DSIO1",299,0)
+ N DSIOSILENT,DIC,DA,X,Y,DLAYGO,IPT,IEN,I
+"RTN","DSIO1",300,0)
+ S DSIOSILENT=1,RET=-1
+"RTN","DSIO1",301,0)
+ I '$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
+"RTN","DSIO1",302,0)
+ S DLAYGO=19641.2,DIC="^DSIO(19641.2,",DIC(0)="XL",X="`"_DFN
+"RTN","DSIO1",303,0)
+ D ^DIC I +Y<1 S RET="-1^Failed to create log." Q
+"RTN","DSIO1",304,0)
+ ; *** TRACKING STATUS/EVENT
+"RTN","DSIO1",305,0)
+ S ACT=$E($G(ACT),1) S ACT=$S(ACT?1N:ACT,1:"")
+"RTN","DSIO1",306,0)
+ I ACT="" S RET="-1^EVENT TYPE could not be identified." Q
+"RTN","DSIO1",307,0)
+ I ACT<0!(ACT>4) S RET="-1^EVENT TYPE reference number is invalid." Q
+"RTN","DSIO1",308,0)
+ I $$TRACK^DSIO4(DFN,1)=1,ACT'=0 S RET="-1^EVENT TYPE can only be to STOP an already TRACKED patient." Q
+"RTN","DSIO1",309,0)
+ S SOR=$$UP^XLFSTR($G(SOR,"DASHBOARD"))
+"RTN","DSIO1",310,0)
+ S IPT(19641.22,"?+1,",.01)=SOR
+"RTN","DSIO1",311,0)
+ S:SOR="DASHBOARD"!(SOR="FILEMAN") IPT(19641.22,"?+1,",.02)=1
+"RTN","DSIO1",312,0)
+ S DLAYGO=19641.22 D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO1",313,0)
+ S IPT(19641.24,"+1,"_DFN_",",.01)=$$NOW^XLFDT
+"RTN","DSIO1",314,0)
+ S IPT(19641.24,"+1,"_DFN_",",.02)=ACT
+"RTN","DSIO1",315,0)
+ S IPT(19641.24,"+1,"_DFN_",",.03)=DUZ
+"RTN","DSIO1",316,0)
+ S IPT(19641.24,"+1,"_DFN_",",.04)=SOR
+"RTN","DSIO1",317,0)
+ S DLAYGO=19641.24 D UPDATE^DIE(,"IPT","IEN") K IPT
+"RTN","DSIO1",318,0)
+ I '$G(IEN(1)) S RET="-1^Failed to create log." Q
+"RTN","DSIO1",319,0)
+ ; *** UPDATE THE DSIO PATIENT FILE
+"RTN","DSIO1",320,0)
+ S IPT(19641,DFN_",",.02)=$S(ACT=3:0,ACT=4:1,1:ACT)
+"RTN","DSIO1",321,0)
+ D FILE^DIE(,"IPT") K IPT
+"RTN","DSIO1",322,0)
+ ; *** BUILD THE REASON MULTIPLE
+"RTN","DSIO1",323,0)
+ S RES=$G(RES) F I=1:1:$L(RES,U) D
+"RTN","DSIO1",324,0)
+ . S IPT(19641.241,"?+1,"_IEN(1)_","_DFN_",",.01)=$P(RES,U,I)
+"RTN","DSIO1",325,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO1",326,0)
+ ; *** SET THE COMMENT WORD PROCESSING FIELD
+"RTN","DSIO1",327,0)
+ ;     WE CAN'T PROCESS THE ZERO NODE WITH WP^DIE
+"RTN","DSIO1",328,0)
+ I $D(COM)>9 K ^TMP($J,"DSIO REC") D
+"RTN","DSIO1",329,0)
+ . D XY^DSIO2(.COM,$NA(^TMP($J,"DSIO REC")))
+"RTN","DSIO1",330,0)
+ . D WP^DIE(19641.24,IEN(1)_","_DFN_",",2,"K","^TMP($J,""DSIO REC"")")
+"RTN","DSIO1",331,0)
+ . K ^TMP($J,"DSIO REC")
+"RTN","DSIO1",332,0)
+ S RET=$S(SOR="DASHBOARD":1,1:IEN(1))
+"RTN","DSIO1",333,0)
+ Q
+"RTN","DSIO1",334,0)
+ ;
+"RTN","DSIO1",335,0)
+ ; -------------------------------- SELECTION ---------------------------------
+"RTN","DSIO1",336,0)
+ ;
+"RTN","DSIO1",337,0)
+SELECT(RET,TYP) ; RPC: DSIO SELECT LIST
+"RTN","DSIO1",338,0)
+ ;
+"RTN","DSIO1",339,0)
+ ; RETURN DROP DOWN LIST
+"RTN","DSIO1",340,0)
+ ;
+"RTN","DSIO1",341,0)
+ ;  TYP : 'S' FOR FILE 19641.22
+"RTN","DSIO1",342,0)
+ ;  TYP : 'R' FOR FILE 19641.23
+"RTN","DSIO1",343,0)
+ ;
+"RTN","DSIO1",344,0)
+ ;  LETTER^ENTRY^A : ADD AN ENTRY TO ONE OF THE ABOVE FILES
+"RTN","DSIO1",345,0)
+ ;  LETTER^ENTRY^D : DELETE AN ENTRY FROM ONE OF THE ABOVE FILES
+"RTN","DSIO1",346,0)
+ ;
+"RTN","DSIO1",347,0)
+ ;  RETURN LIST FOR SUCCESS OR RET(0)="-1^MESSAGE" FOR FAILURE
+"RTN","DSIO1",348,0)
+ ;
+"RTN","DSIO1",349,0)
+ N FILE,FLD,DIK,DA,X,Y,IPT,I,CT
+"RTN","DSIO1",350,0)
+ S RET(0)="0^No entries found.",TYP=$$UP^XLFSTR($G(TYP)) Q:TYP=""
+"RTN","DSIO1",351,0)
+ S FILE=$S($P(TYP,U)="S":19641.22,$P(TYP,U)="R":19641.23,1:"") Q:FILE=""
+"RTN","DSIO1",352,0)
+ S FLD=$S(FILE=19641.22:"@;.01;.02I",1:"@;.01")
+"RTN","DSIO1",353,0)
+ I $P(TYP,U,3)="D" D
+"RTN","DSIO1",354,0)
+ . S DIK="^DSIO("_FILE_","
+"RTN","DSIO1",355,0)
+ . S DA=$$FIND1^DIC(FILE,,"X",$$UP^XLFSTR($P(TYP,U,2))) D:DA ^DIK
+"RTN","DSIO1",356,0)
+ I $P(TYP,U,3)="A" D
+"RTN","DSIO1",357,0)
+ . S IPT(FILE,"?+1,",.01)=$$UP^XLFSTR($P(TYP,U,2))
+"RTN","DSIO1",358,0)
+ . D UPDATE^DIE(,"IPT")
+"RTN","DSIO1",359,0)
+ S I=0,CT="" F  S CT=$O(^DSIO(FILE,"B",CT)) Q:CT=""  D
+"RTN","DSIO1",360,0)
+ . Q:$$GET1^DIQ(FILE,$O(^DSIO(FILE,"B",CT,""))_",",.02,"I")
+"RTN","DSIO1",361,0)
+ . S RET(I)=$$TITLE^XLFSTR(CT),I=I+1
+"RTN","DSIO1",362,0)
+ Q
+"RTN","DSIO1",363,0)
+ ;
+"RTN","DSIO1",364,0)
+ ; ----------------------------- EXTERNAL ENTITY ------------------------------
+"RTN","DSIO1",365,0)
+ ;
+"RTN","DSIO1",366,0)
+SENT(RET,IEN,NAME,TYP,ACT,PCON,ADDR,PHONE,AB) ; RPC: DSIO SAVE EXTERNAL ENTITY
+"RTN","DSIO1",367,0)
+ ;
+"RTN","DSIO1",368,0)
+ ;  ADDR = ARRAY OF LABELS: 1,2,3,CITY,STATE,ZIP
+"RTN","DSIO1",369,0)
+ ; PHONE = ARRAY OF LABLES: H,MC,WP,FAX
+"RTN","DSIO1",370,0)
+ ;
+"RTN","DSIO1",371,0)
+ ; RETURN: IEN OR -1^MESSAGE
+"RTN","DSIO1",372,0)
+ ;
+"RTN","DSIO1",373,0)
+ D:'$G(AB) AB^DSIO2("NAME,TYP,ACT,PCON,ADDR,PHONE")
+"RTN","DSIO1",374,0)
+ N IPT,CT,LOC,VAL,ZFLG,DIK,DA,X,Y,PFLG,FLG
+"RTN","DSIO1",375,0)
+ S RET=-1,IEN=$S($G(IEN):IEN,1:"?+1")
+"RTN","DSIO1",376,0)
+ S NAME=$$UP^XLFSTR($G(NAME))
+"RTN","DSIO1",377,0)
+ I IEN,NAME'="",NAME'="@" D  Q:$P(RET,U,2)'=""
+"RTN","DSIO1",378,0)
+ . Q:'$D(^DSIO(19641.1,"B",NAME))
+"RTN","DSIO1",379,0)
+ . Q:$O(^DSIO(19641.1,"B",NAME,""))=IEN
+"RTN","DSIO1",380,0)
+ . S RET="-1^Duplicate name not allowed."
+"RTN","DSIO1",381,0)
+ I IEN,NAME="@" D  Q
+"RTN","DSIO1",382,0)
+ . S DA=IEN,DIK="^DSIO(19641.1," D ^DIK I '$D(^DSIO(19641.1,IEN)) S RET=0
+"RTN","DSIO1",383,0)
+ S:NAME'=""&(NAME'="@") IPT(19641.1,IEN_",",.01)=NAME         ; NAME
+"RTN","DSIO1",384,0)
+ S:$G(TYP)'=""&($G(TYP)'="@") IPT(19641.1,IEN_",",.02)=TYP    ; TYPE
+"RTN","DSIO1",385,0)
+ S:$G(ACT)'="" IPT(19641.1,IEN_",",.03)=ACT                   ; INACTIVE
+"RTN","DSIO1",386,0)
+ S:$G(PCON)'="" IPT(19641.1,IEN_",",.04)=PCON                 ; PRIMARY CONTACT
+"RTN","DSIO1",387,0)
+ I $D(ADDR) D                                           ; ADDRESS
+"RTN","DSIO1",388,0)
+ . S CT=$NA(ADDR) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO1",389,0)
+ . . S LOC=$$UP^XLFSTR($P(@CT,U)),VAL=$P(@CT,U,2)
+"RTN","DSIO1",390,0)
+ . . I LOC[1 S IPT(19641.1,IEN_",",1.1)=VAL Q                 ; STREET ADDRESS 1
+"RTN","DSIO1",391,0)
+ . . I LOC[2 S IPT(19641.1,IEN_",",1.2)=VAL Q                 ; STREET ADDRESS 2
+"RTN","DSIO1",392,0)
+ . . I LOC[3 S IPT(19641.1,IEN_",",1.3)=VAL Q                 ; STREET ADDRESS 3
+"RTN","DSIO1",393,0)
+ . . I LOC="CITY" S IPT(19641.1,IEN_",",1.4)=VAL Q            ; CITY
+"RTN","DSIO1",394,0)
+ . . I LOC="STATE",$$FIND1^DIC(5,,"XM",VAL) D
+"RTN","DSIO1",395,0)
+ . . . S IPT(19641.1,IEN_",",1.5)=$$FIND1^DIC(5,,"XM",VAL) Q  ; STATE
+"RTN","DSIO1",396,0)
+ . . I LOC="ZIP" S ZFLG=0 D                                   ; ZIP CODE
+"RTN","DSIO1",397,0)
+ . . . S VAL=$TR(VAL,"-") Q:VAL'?.N
+"RTN","DSIO1",398,0)
+ . . . S ZFLG=1,IPT(19641.1,IEN_",",1.6)=VAL
+"RTN","DSIO1",399,0)
+ D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
+"RTN","DSIO1",400,0)
+ S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
+"RTN","DSIO1",401,0)
+ I $D(PHONE) D                                          ; PHONE
+"RTN","DSIO1",402,0)
+ . S CT=$NA(PHONE) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO1",403,0)
+ . . S LOC=$$UP^XLFSTR($P(@CT,U)) Q:"^H^MC^WP^FAX^O^"'[(U_LOC_U)
+"RTN","DSIO1",404,0)
+ . . S PFLG=0
+"RTN","DSIO1",405,0)
+ . . S VAL=$TR($P(@CT,U,2),"()- ") Q:VAL=""!(VAL'?.N)
+"RTN","DSIO1",406,0)
+ . . S IPT(19641.15,"?+1,"_IEN_",",.01)=LOC                   ; PHONE TYPE
+"RTN","DSIO1",407,0)
+ . . S IPT(19641.15,"?+1,"_IEN_",",.02)=VAL                   ; NUMBER
+"RTN","DSIO1",408,0)
+ . . S PFLG=1 D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO1",409,0)
+ I $D(PFLG),'PFLG S FLG=1
+"RTN","DSIO1",410,0)
+ I $D(ZFLG),'ZFLG S FLG=$G(FLG)_2
+"RTN","DSIO1",411,0)
+ Q:'$D(FLG)
+"RTN","DSIO1",412,0)
+ S RET=RET_"^Record saved but "_$S(FLG=1:"phone number(s)",FLG=2:"ZIP code",1:"phone number(s) and ZIP code")_" not updated."
+"RTN","DSIO1",413,0)
+ Q
+"RTN","DSIO1",414,0)
+ ;
+"RTN","DSIO1",415,0)
+RENT(RET,TYP,SORT) ; RPC: DSIO GET EXTERNAL ENTITY
+"RTN","DSIO1",416,0)
+ ;
+"RTN","DSIO1",417,0)
+ ; TYP - F        (FACILITIES)
+"RTN","DSIO1",418,0)
+ ;       P        (PROVIDERS)
+"RTN","DSIO1",419,0)
+ ;       NULL     (ALL ENTITIES)
+"RTN","DSIO1",420,0)
+ ;       IEN/NAME (SINGLE ENTITY)
+"RTN","DSIO1",421,0)
+ ;
+"RTN","DSIO1",422,0)
+ ; IEN^NAME^TYPE^INACTIVE^PRIMARY PROVIDER NAME^STREET ADDRESS 1
+"RTN","DSIO1",423,0)
+ ; ^STREET ADDRESS 2^STREET ADDRESS 3^CITY^STATE^ZIP CODE
+"RTN","DSIO1",424,0)
+ ; ^PHONE NUMBER (HOME)^PHONE NUMBER (OFFICE)^PHONE NUMBER (CELL)^FAX NUMBER
+"RTN","DSIO1",425,0)
+ ;
+"RTN","DSIO1",426,0)
+ S RET=$NA(^TMP($J,"DSIO RENT")) K @RET S @RET@(0)="0^No entries found."
+"RTN","DSIO1",427,0)
+ S TYP=$$UP^XLFSTR($G(TYP))
+"RTN","DSIO1",428,0)
+ ; *** SINGLE (IEN)
+"RTN","DSIO1",429,0)
+ I TYP,$D(^DSIO(19641.1,TYP)) D R1("B",TYP) Q
+"RTN","DSIO1",430,0)
+ ; *** FACILITIES/PROVIDERS
+"RTN","DSIO1",431,0)
+ I "^F^P^"[(U_TYP_U) D R1(TYP) Q
+"RTN","DSIO1",432,0)
+ ; *** SINGLE (NAME)
+"RTN","DSIO1",433,0)
+ I TYP'="",$D(^DSIO(19641.1,"B",TYP)) D R1("B",$O(^DSIO(19641.1,"B",TYP,""))) Q
+"RTN","DSIO1",434,0)
+ ; *** ALL
+"RTN","DSIO1",435,0)
+ I TYP="" D R1("B")
+"RTN","DSIO1",436,0)
+ Q
+"RTN","DSIO1",437,0)
+ ;
+"RTN","DSIO1",438,0)
+R1(IX,KEY) ; Get Entity List
+"RTN","DSIO1",439,0)
+ N RCT,TS,CT,IEN,STRT,END D S^DSIO2($G(SORT))
+"RTN","DSIO1",440,0)
+ S KEY=$$GET1^DIQ(19641.1,$G(KEY)_",",.01)
+"RTN","DSIO1",441,0)
+ S (RCT,TS)=0,CT=$E(KEY,1,($L(KEY)-1))_$$M^DSIO2($E(KEY,$L(KEY)))
+"RTN","DSIO1",442,0)
+ F  S CT=$O(^DSIO(19641.1,IX,CT)) Q:CT=""  Q:$$KEY^DSIO2(CT,KEY)  D
+"RTN","DSIO1",443,0)
+ . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","DSIO1",444,0)
+ . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","DSIO1",445,0)
+ . S IEN=$O(^DSIO(19641.1,IX,CT,""))
+"RTN","DSIO1",446,0)
+ . S @RET@(RCT)=$$RFLDS(IEN)
+"RTN","DSIO1",447,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","DSIO1",448,0)
+ Q
+"RTN","DSIO1",449,0)
+ ;
+"RTN","DSIO1",450,0)
+RFLDS(IEN) ; Return Transformed Fields
+"RTN","DSIO1",451,0)
+ N OUT,LINE,FLD,STR
+"RTN","DSIO1",452,0)
+ D GETS^DIQ(19641.1,IEN_",","*","IE","OUT")
+"RTN","DSIO1",453,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","DSIO1",454,0)
+ S STR=IEN_U
+"RTN","DSIO1",455,0)
+ S STR=STR_$$NAME^DSIO2(FLD(.01,"E"))_U          ; NAME
+"RTN","DSIO1",456,0)
+ S STR=STR_FLD(.02,"I")_U                        ; TYPE
+"RTN","DSIO1",457,0)
+ S STR=STR_+FLD(.03,"I")_U                       ; INACTIVE
+"RTN","DSIO1",458,0)
+ S STR=STR_$$NAME^DSIO2(FLD(.04,"E"))_U          ; PRIMARY CONTACT
+"RTN","DSIO1",459,0)
+ S STR=STR_FLD(1.1,"I")_U                        ; STREET 1
+"RTN","DSIO1",460,0)
+ S STR=STR_FLD(1.2,"I")_U                        ; STREET 2
+"RTN","DSIO1",461,0)
+ S STR=STR_FLD(1.3,"I")_U                        ; STREET 3
+"RTN","DSIO1",462,0)
+ S STR=STR_FLD(1.4,"I")_U                        ; CITY
+"RTN","DSIO1",463,0)
+ S STR=STR_$$GET1^DIQ(5,FLD(1.5,"I")_",",1)_U    ; STATE
+"RTN","DSIO1",464,0)
+ S STR=STR_FLD(1.6,"I")_U                        ; ZIP CODE
+"RTN","DSIO1",465,0)
+ S STR=STR_$$PHONE(19641.1,IEN)                  ; PHONE NUMBERS
+"RTN","DSIO1",466,0)
+ Q STR
+"RTN","DSIO1",467,0)
+ ;
+"RTN","DSIO1",468,0)
+PHONE(FLE,IEN) ; Return Phone List
+"RTN","DSIO1",469,0)
+ ;               H ^ WP ^ MC ^ FAX
+"RTN","DSIO1",470,0)
+ N STR,OUT,CT,F,P
+"RTN","DSIO1",471,0)
+ S STR="^^^" D GETS^DIQ(FLE,IEN_",","2*","I","OUT")
+"RTN","DSIO1",472,0)
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO1",473,0)
+ . I $QS(CT,3)=.01 S F=@CT Q
+"RTN","DSIO1",474,0)
+ . I $D(F) D
+"RTN","DSIO1",475,0)
+ . . S P=$S(F="H":1,F="WP":2,F="MC":3,F="FAX":4,1:"") K F
+"RTN","DSIO1",476,0)
+ . . S:P $P(STR,U,P)=$$FORMAT^DSIO2($TR(@CT,"()- "))
+"RTN","DSIO1",477,0)
+ Q STR
+"RTN","DSIO10")
+0^3^B122639729
+"RTN","DSIO10",1,0)
+DSIO10 ;DSS/TFF - DSIO OBSERVATION;08/26/2016 16:00
+"RTN","DSIO10",2,0)
+ ;;2.0;DSIO 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","DSIO10",3,0)
+ ;
+"RTN","DSIO10",4,0)
+ ;
+"RTN","DSIO10",5,0)
+ ;
+"RTN","DSIO10",6,0)
+ Q
+"RTN","DSIO10",7,0)
+ ;
+"RTN","DSIO10",8,0)
+OBS(RET,IEN,DFN,DATES,OBJECT,REF,REL,CAT,CODE,VAL,VALCD,NEG,QUAL,NAR,AB) ; RPC: DSIO SAVE OBSERVATION
+"RTN","DSIO10",9,0)
+ ;
+"RTN","DSIO10",10,0)
+ ;    IEN = IF NOT NULL THEN EDIT
+"RTN","DSIO10",11,0)
+ ;    DFN = PATIENT
+"RTN","DSIO10",12,0)
+ ;  DATES = OBSERVATION^START^END
+"RTN","DSIO10",13,0)
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+"RTN","DSIO10",14,0)
+ ;          FB.IEN (FETUS/BABY)
+"RTN","DSIO10",15,0)
+ ;          PG.IEN (PREGNANCY)
+"RTN","DSIO10",16,0)
+ ;    REF = OBJECTS OF REFERENCE (ARRAY)
+"RTN","DSIO10",17,0)
+ ;         TIU.IEN (NOTE)
+"RTN","DSIO10",18,0)
+ ;         IHE.IEN (IHE DOCUMENT)
+"RTN","DSIO10",19,0)
+ ;    REL = RELATIONSHIP
+"RTN","DSIO10",20,0)
+ ;    CAT = CATEGORY
+"RTN","DSIO10",21,0)
+ ;   CODE = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+"RTN","DSIO10",22,0)
+ ;    VAL = TYPE^UNIT^VALUE
+"RTN","DSIO10",23,0)
+ ;  VALCD = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+"RTN","DSIO10",24,0)
+ ;    NEG = NEGATION (T/F)
+"RTN","DSIO10",25,0)
+ ;   QUAL = QUALIFIERS (ARRAY OF QUALIFIER^VALUE)
+"RTN","DSIO10",26,0)
+ ;    NAR = NARRATIVE (ARRAY OF TEXT)
+"RTN","DSIO10",27,0)
+ ;  **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+"RTN","DSIO10",28,0)
+ ;
+"RTN","DSIO10",29,0)
+ ; RETURN: IEN OR -1^MESSAGE
+"RTN","DSIO10",30,0)
+ ;
+"RTN","DSIO10",31,0)
+ N OBSD,STRT,END,VTYP,VUNT,SYS,CDSV,CDIS,VALCDS,VALCDSV,VALCDIS,IENS,DIK
+"RTN","DSIO10",32,0)
+ N DA,X,Y,IPT,CT,OIEN
+"RTN","DSIO10",33,0)
+ S DATES=$G(DATES),OBSD=$P(DATES,U),STRT=$P(DATES,U,2),END=$P(DATES,U,3)
+"RTN","DSIO10",34,0)
+ S VAL=$G(VAL)
+"RTN","DSIO10",35,0)
+ S VTYP=$P(VAL,U)                                          ; VALUE TYPE
+"RTN","DSIO10",36,0)
+ S VUNT=$P(VAL,U,2)                                        ; VALUE UNIT
+"RTN","DSIO10",37,0)
+ S VAL=$P(VAL,U,3)                                         ; VALUE
+"RTN","DSIO10",38,0)
+ S NEG=$$UP^XLFSTR($E($G(NEG),1)),NEG=$S(NEG="Y"!(NEG="T")!(NEG=1):1,1:0)  ; NEGATION
+"RTN","DSIO10",39,0)
+ D:'$G(AB) AB^DSIO2("OBSD,STRT,END,REL,CAT,VAL,VTYP,VUNT")
+"RTN","DSIO10",40,0)
+ S:$G(OBSD)'="@" OBSD=$$DT^DSIO2($G(OBSD))                 ; OBSERVATION DATE
+"RTN","DSIO10",41,0)
+ S:$G(STRT)'="@" STRT=$$DT^DSIO2($G(STRT))                 ; START
+"RTN","DSIO10",42,0)
+ S:$G(END)'="@" END=$$DT^DSIO2($G(END))                    ; END
+"RTN","DSIO10",43,0)
+ ; *** CODE (SYS^SYSVAL^CODE^DISPLAY NAME)
+"RTN","DSIO10",44,0)
+ S CODE=$G(CODE)
+"RTN","DSIO10",45,0)
+ S SYS=$$UP^XLFSTR($P(CODE,U))                             ; SYSTEM NAME
+"RTN","DSIO10",46,0)
+ S SYS=$S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+"RTN","DSIO10",47,0)
+ S CDSV=$P(CODE,U,2)                                       ; SYSTEM VALUE
+"RTN","DSIO10",48,0)
+ S CDIS=$P(CODE,U,4)                                       ; DISPLAY NAME
+"RTN","DSIO10",49,0)
+ S CODE=$P(CODE,U,3)                                       ; CODE
+"RTN","DSIO10",50,0)
+ D:'$G(AB) AB^DSIO2("CODE,SYS,CDSV,CDIS")
+"RTN","DSIO10",51,0)
+ I CODE="@"!($G(AB)&('$G(IEN))&(CODE="")) S RET="-1^Code is required" Q
+"RTN","DSIO10",52,0)
+ ; *** VALUE CODE (SYS^SYSVAL^CODE^DISPLAY NAME)
+"RTN","DSIO10",53,0)
+ S VALCD=$G(VALCD)
+"RTN","DSIO10",54,0)
+ S VALCDS=$$UP^XLFSTR($P(VALCD,U))                         ; CODING SYSTEM
+"RTN","DSIO10",55,0)
+ S VALCDS=$S(VALCDS="LNC":"LOINC",VALCDS="SCT":"SNOMED-CT",1:VALCDS)
+"RTN","DSIO10",56,0)
+ S VALCDSV=$P(VALCD,U,2)                                   ; SYSTEM VALUE
+"RTN","DSIO10",57,0)
+ S VALCDIS=$P(VALCD,U,4)                                   ; DISPLAY NAME
+"RTN","DSIO10",58,0)
+ S VALCD=$P(VALCD,U,3)                                     ; CODE
+"RTN","DSIO10",59,0)
+ D:'$G(AB) AB^DSIO2("VALCD,VALCDS,VALCDSV,VALCDIS")
+"RTN","DSIO10",60,0)
+ ; *** Determine to Update or Create New
+"RTN","DSIO10",61,0)
+ S IEN=$G(IEN)
+"RTN","DSIO10",62,0)
+ I 'IEN S IEN=$$OIEN I IEN=-1 S RET="-1^Failed to update observation."  Q
+"RTN","DSIO10",63,0)
+ I 'IEN,'$D(^DPT(+$G(DFN))) S RET="-1^Patient entry not found." Q
+"RTN","DSIO10",64,0)
+ I IEN,OBSD="@" D  Q:$D(RET)
+"RTN","DSIO10",65,0)
+ . I $$GET1^DIQ(19641.12,IEN_",",.09,"I")'="" D  Q
+"RTN","DSIO10",66,0)
+ . . S RET="-1^Observation has already been PUSHed, so it cannot be deleted."
+"RTN","DSIO10",67,0)
+ . S DIK="^DSIO(19641.12,",DA=IEN D ^DIK S RET=1
+"RTN","DSIO10",68,0)
+ S IENS=$S(IEN:IEN_",",1:"+1,") I IENS["+",OBSD="" S OBSD=$$NOW^XLFDT
+"RTN","DSIO10",69,0)
+ S:$G(OBSD)'="" IPT(19641.12,IENS,.01)=OBSD                ; DATE OF OBSERVATION
+"RTN","DSIO10",70,0)
+ S:$G(DFN) IPT(19641.12,IENS,.02)=DFN                      ; PATIENT
+"RTN","DSIO10",71,0)
+ S:$G(CAT)'="" IPT(19641.12,IENS,.03)=CAT                  ; CATEGORY
+"RTN","DSIO10",72,0)
+ S:$G(REL)'="" IPT(19641.12,IENS,.04)=REL                  ; RELATIONSHIP
+"RTN","DSIO10",73,0)
+ S:STRT'="" IPT(19641.12,IENS,.05)=STRT                    ; START
+"RTN","DSIO10",74,0)
+ S:END'="" IPT(19641.12,IENS,.06)=END                      ; END
+"RTN","DSIO10",75,0)
+ S IPT(19641.12,IENS,.07)=DUZ                              ; UPDATED BY
+"RTN","DSIO10",76,0)
+ S IPT(19641.12,IENS,.08)=$$NOW^XLFDT                      ; MODIFIED
+"RTN","DSIO10",77,0)
+ S:VTYP'="" IPT(19641.12,IENS,4.1)=VTYP                    ; VALUE TYPE
+"RTN","DSIO10",78,0)
+ S:VAL'="" IPT(19641.12,IENS,4.2)=VAL                      ; VALUE
+"RTN","DSIO10",79,0)
+ S:VUNT'="" IPT(19641.12,IENS,4.3)=VUNT                    ; VALUE UNIT
+"RTN","DSIO10",80,0)
+ S IPT(19641.12,IENS,4.4)=NEG                              ; NEGATION
+"RTN","DSIO10",81,0)
+ D UPDATE^DIE(,"IPT","IEN") K IPT
+"RTN","DSIO10",82,0)
+ S (RET,IEN)=$S(IEN:IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to build observation." Q
+"RTN","DSIO10",83,0)
+ I SYS'="LOINC",SYS'="SNOMED-CT" D LCODE^DSIO2(CODE,SYS,IEN_";DSIO(19641.12,")
+"RTN","DSIO10",84,0)
+ ; *** OBJECTS OF OBSERVATION/OBJECTS OF REFERENCE
+"RTN","DSIO10",85,0)
+ D TOBJ(IEN,.OBJECT,.REF)
+"RTN","DSIO10",86,0)
+ ; *** SAVE CODE AND VALUE CODE
+"RTN","DSIO10",87,0)
+ S IPT(19641.17,"?+1,"_IEN_",",.01)="C"                    ; CODE TYPE
+"RTN","DSIO10",88,0)
+ S:CODE'="" IPT(19641.17,"?+1,"_IEN_",",1)=CODE            ; CODE
+"RTN","DSIO10",89,0)
+ S:CDIS'="" IPT(19641.17,"?+1,"_IEN_",",2)=CDIS            ; DISPLAY NAME
+"RTN","DSIO10",90,0)
+ S:SYS'="" IPT(19641.17,"?+1,"_IEN_",",3)=SYS              ; SYSTEM NAME
+"RTN","DSIO10",91,0)
+ S:CDSV'="" IPT(19641.17,"?+1,"_IEN_",",4)=CDSV            ; SYSTEM VALUE
+"RTN","DSIO10",92,0)
+ D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO10",93,0)
+ S IPT(19641.17,"?+1,"_IEN_",",.01)="V"                    ; CODE TYPE
+"RTN","DSIO10",94,0)
+ S:VALCD'="" IPT(19641.17,"?+1,"_IEN_",",1)=VALCD          ; CODE
+"RTN","DSIO10",95,0)
+ S:VALCDIS'="" IPT(19641.17,"?+1,"_IEN_",",2)=VALCDIS      ; DISPLAY NAME
+"RTN","DSIO10",96,0)
+ S:VALCDS'="" IPT(19641.17,"?+1,"_IEN_",",3)=VALCDS        ; SYSTEM NAME
+"RTN","DSIO10",97,0)
+ S:VALCDSV'="" IPT(19641.17,"?+1,"_IEN_",",4)=VALCDSV      ; SYSTEM VALUE
+"RTN","DSIO10",98,0)
+ D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO10",99,0)
+ ; *** QUALIFIERS
+"RTN","DSIO10",100,0)
+ S CT=$NA(QUAL) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO10",101,0)
+ . S IPT(19641.125,"?+1,"_IEN_",",.01)=$P(@CT,U)
+"RTN","DSIO10",102,0)
+ . S IPT(19641.125,"?+1,"_IEN_",",.02)=$P(@CT,U,2)
+"RTN","DSIO10",103,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO10",104,0)
+ ; *** NARRATIVE
+"RTN","DSIO10",105,0)
+ I $D(NAR)>9 K ^TMP($J,"DSIO OBS") D
+"RTN","DSIO10",106,0)
+ . D XY^DSIO2(.NAR,$NA(^TMP($J,"DSIO OBS")))
+"RTN","DSIO10",107,0)
+ . D WP^DIE(19641.12,IEN_",",6,"K","^TMP($J,""DSIO OBS"")")
+"RTN","DSIO10",108,0)
+ . K ^TMP($J,"DSIO OBS")
+"RTN","DSIO10",109,0)
+ D OPUSH(DFN,IEN)
+"RTN","DSIO10",110,0)
+ Q
+"RTN","DSIO10",111,0)
+ ;
+"RTN","DSIO10",112,0)
+OIEN() ; Find the Observation Push configuration record
+"RTN","DSIO10",113,0)
+ ;       Is this Observation required to be updated?
+"RTN","DSIO10",114,0)
+ ;       If it is then return the IEN of the last observation using the data supplied.
+"RTN","DSIO10",115,0)
+ ;
+"RTN","DSIO10",116,0)
+ ; NULL = Not configurated, not enough information, carry on
+"RTN","DSIO10",117,0)
+ ;   -1 = Not allowed to continue
+"RTN","DSIO10",118,0)
+ ;
+"RTN","DSIO10",119,0)
+ N CD,DF,PUSH,CT,I,OBJ,OUT,OIEN,DATE,FDA,MSG
+"RTN","DSIO10",120,0)
+ S CD=$G(CODE),DF=$G(DFN)
+"RTN","DSIO10",121,0)
+ I CD=""&($G(IEN)) S CD=$$GETCODE(IEN,"C",1)
+"RTN","DSIO10",122,0)
+ I DF=""&($G(IEN)) S DF=$$GET1^DIQ(19641.12,IEN_",",.02,"I")
+"RTN","DSIO10",123,0)
+ I CD=""!(DF="") Q ""
+"RTN","DSIO10",124,0)
+ S PUSH=$O(^DSIO(19641.123,"C",CODE,"")) Q:'PUSH ""           ; Not Configured
+"RTN","DSIO10",125,0)
+ Q:'$P($G(^DSIO(19641.123,PUSH,0)),U,5) ""                    ; Update is NOT True
+"RTN","DSIO10",126,0)
+ S CT=$NA(OBJECT) F I=0:1 S CT=$Q(@CT) Q:CT=""  S OBJ(I)=$$OBJECT(@CT)
+"RTN","DSIO10",127,0)
+ D OBG(.OUT,,DF,.OBJ,$G(REF),,,$G(REL),$G(CAT),SYS,CD,"1,1") Q:+$G(@OUT@(0))=0 ""
+"RTN","DSIO10",128,0)
+ S OIEN=$P($G(@OUT@(1,0)),U,2) K @OUT Q:'OIEN "-1"
+"RTN","DSIO10",129,0)
+ I '$G(AB),OBSD="" S OBSD=$$NOW^XLFDT
+"RTN","DSIO10",130,0)
+ S DATE=$$GET1^DIQ(19641.12,OIEN_",",.09,"I") I DATE'="" D  Q:$D(MSG) -1
+"RTN","DSIO10",131,0)
+ . S FDA(19641.127,"?+1,"_OIEN_",",.01)=DATE
+"RTN","DSIO10",132,0)
+ . D UPDATE^DIE(,"FDA",,"MSG") K FDA Q:$D(MSG)
+"RTN","DSIO10",133,0)
+ . S FDA(19641.12,OIEN_",",.09)=""
+"RTN","DSIO10",134,0)
+ . D UPDATE^DIE(,"FDA",,"MSG")
+"RTN","DSIO10",135,0)
+ Q OIEN
+"RTN","DSIO10",136,0)
+ ;       
+"RTN","DSIO10",137,0)
+ ;
+"RTN","DSIO10",138,0)
+TOBJ(IEN,OBJECT,REF) ; Transform Objects of Observation and Reference and Save
+"RTN","DSIO10",139,0)
+ ;
+"RTN","DSIO10",140,0)
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+"RTN","DSIO10",141,0)
+ ;          FB.IEN (FETUS/BABY)
+"RTN","DSIO10",142,0)
+ ;          PG.IEN (PREGNANCY)
+"RTN","DSIO10",143,0)
+ ;    REF = OBJECTS OF REFERENCE (ARRAY)
+"RTN","DSIO10",144,0)
+ ;         TIU.IEN (NOTE)
+"RTN","DSIO10",145,0)
+ ;         IHE.IEN (IHE DOCUMENT)
+"RTN","DSIO10",146,0)
+ ;
+"RTN","DSIO10",147,0)
+ N CT,IPT
+"RTN","DSIO10",148,0)
+ ; *** SET UP OBJECTS OF OBSERVATION
+"RTN","DSIO10",149,0)
+ S CT=$NA(OBJECT) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO10",150,0)
+ . S IPT(19641.121,"?+1,"_IEN_",",.01)=$$OBJECT(@CT)
+"RTN","DSIO10",151,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO10",152,0)
+ ; *** SAVE OBJECTS OF REFERENCE
+"RTN","DSIO10",153,0)
+ S CT=$NA(REF) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO10",154,0)
+ . S IPT(19641.16,"?+1,"_IEN_",",.01)=$$OBJECT(@CT)
+"RTN","DSIO10",155,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO10",156,0)
+ Q
+"RTN","DSIO10",157,0)
+ ;
+"RTN","DSIO10",158,0)
+OBJECT(OBJECT) ; Transform External Object to Internal/ Validate Internal
+"RTN","DSIO10",159,0)
+ N OBJ,IEN,GL
+"RTN","DSIO10",160,0)
+ S (OBJ,IEN)=""
+"RTN","DSIO10",161,0)
+ I $G(OBJECT)?.A1".".N D
+"RTN","DSIO10",162,0)
+ . S OBJ=$P(OBJECT,"."),IEN=$P(OBJECT,".",2)
+"RTN","DSIO10",163,0)
+ . S OBJ=$S(OBJ="FB":"DSIO(19641.112,",OBJ="PG":"DSIO(19641.13,",OBJ="TIU":"TIU(8925,",OBJ="IHE":"DSIO(19641.6,",1:"")
+"RTN","DSIO10",164,0)
+ S:OBJ=""&($G(OBJECT)[";") OBJ=$P(OBJECT,";",2),IEN=+OBJECT
+"RTN","DSIO10",165,0)
+ Q:OBJ=""!('IEN) ""
+"RTN","DSIO10",166,0)
+ S GL=U_OBJ_+IEN_")" Q:$D(@GL) +IEN_";"_OBJ
+"RTN","DSIO10",167,0)
+ Q ""
+"RTN","DSIO10",168,0)
+ ;
+"RTN","DSIO10",169,0)
+OPUSH(DFN,OIEN) ; Push Observation
+"RTN","DSIO10",170,0)
+ N CODE,X,VAL,IEN,INPUT,ROU,RET,IPT
+"RTN","DSIO10",171,0)
+ S CODE=$$GETCODE(OIEN,"C",1) Q:CODE=""
+"RTN","DSIO10",172,0)
+ S (X,VAL)=$$UP^XLFSTR($$GET1^DIQ(19641.12,OIEN_",",4.2))
+"RTN","DSIO10",173,0)
+ Q:$$GET1^DIQ(19641.12,OIEN_",",.09,"I")'=""      ; *** ALREADY PUSHED
+"RTN","DSIO10",174,0)
+ S IEN=$O(^DSIO(19641.123,"C",CODE,"")) Q:IEN=""
+"RTN","DSIO10",175,0)
+ S INPUT=$$GET1^DIQ(19641.123,IEN_",",1)
+"RTN","DSIO10",176,0)
+ S ROU=$$GET1^DIQ(19641.123,IEN_",",2) Q:ROU=""
+"RTN","DSIO10",177,0)
+ S TMP=$NA(^TMP($J,"SETDATA VALUE")) K @TMP
+"RTN","DSIO10",178,0)
+ X:INPUT'="" INPUT X:ROU'="" ROU
+"RTN","DSIO10",179,0)
+ S RET=$$HISTORY^DSIO6(IEN_";DSIO(19641.123,",DFN_";DPT(",ROU)
+"RTN","DSIO10",180,0)
+ I RET D
+"RTN","DSIO10",181,0)
+ . S IPT(19641.12,OIEN_",",.09)=$$GET1^DIQ(19641.124,RET_",",.01,"I")
+"RTN","DSIO10",182,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO10",183,0)
+ D OPDEL(IEN,OIEN,RET)
+"RTN","DSIO10",184,0)
+ Q
+"RTN","DSIO10",185,0)
+ ;
+"RTN","DSIO10",186,0)
+GETCODE(IEN,IX,PC) ; Get Observation Code from Codes Multiple
+"RTN","DSIO10",187,0)
+ N IENS
+"RTN","DSIO10",188,0)
+ S PC=+$G(PC)
+"RTN","DSIO10",189,0)
+ S IENS=$O(^DSIO(19641.12,IEN,3,"B",IX,"")) Q:IENS="" ""
+"RTN","DSIO10",190,0)
+ Q $G(^DSIO(19641.12,IEN,3,IENS,PC))
+"RTN","DSIO10",191,0)
+ ;
+"RTN","DSIO10",192,0)
+OPDEL(PUSH,OIEN,HIS) ; Delete Actions
+"RTN","DSIO10",193,0)
+ ;
+"RTN","DSIO10",194,0)
+ ; Some observations may be non-clinical in nature and be set to be deleted
+"RTN","DSIO10",195,0)
+ ; after the data is pushed.
+"RTN","DSIO10",196,0)
+ ;   1 TRUE = DELETE THE OBSERVATION
+"RTN","DSIO10",197,0)
+ ;   2 BOTH = DELETE THE OBSERVATION AND HISTORY
+"RTN","DSIO10",198,0)
+ ;
+"RTN","DSIO10",199,0)
+ N DEL,DIK,DA,X,Y
+"RTN","DSIO10",200,0)
+ S DEL=$$GET1^DIQ(19641.123,PUSH_",",.04,"I") Q:'DEL
+"RTN","DSIO10",201,0)
+ S DIK="^DSIO(19641.12,",DA=OIEN D ^DIK
+"RTN","DSIO10",202,0)
+ I DEL=2 K DIK,DA,X,Y S DIK="^DSIO(19641.124,",DA=HIS D ^DIK
+"RTN","DSIO10",203,0)
+ Q
+"RTN","DSIO10",204,0)
+ ;
+"RTN","DSIO10",205,0)
+OBG(RET,IEN,DFN,OBJECT,REF,FDT,TDT,REL,CAT,SYS,CODE,SORT) ; RPC: DSIO GET OBSERVATIONS
+"RTN","DSIO10",206,0)
+ ;
+"RTN","DSIO10",207,0)
+ ;    IEN = IF NOT NULL THEN RETURN ONLY
+"RTN","DSIO10",208,0)
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+"RTN","DSIO10",209,0)
+ ;          FB.IEN (FETUS/BABY)
+"RTN","DSIO10",210,0)
+ ;          PG.IEN (PREGNANCY)
+"RTN","DSIO10",211,0)
+ ;    REF = OBJECTS OF REFERENCE (ARRAY)
+"RTN","DSIO10",212,0)
+ ;         TIU.IEN (NOTE)
+"RTN","DSIO10",213,0)
+ ;         IHE.IEN (IHE DOCUMENT)
+"RTN","DSIO10",214,0)
+ ; *** OBJECT AND REF - The entry must have at least the provided values
+"RTN","DSIO10",215,0)
+ ;    FDT = FROM DATE
+"RTN","DSIO10",216,0)
+ ;    TDT = TO DATE
+"RTN","DSIO10",217,0)
+ ;    REL = RELATIONSHIP
+"RTN","DSIO10",218,0)
+ ;    CAT = CATEGORY
+"RTN","DSIO10",219,0)
+ ;    SYS = CODING SYSTEM
+"RTN","DSIO10",220,0)
+ ;          **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+"RTN","DSIO10",221,0)
+ ;
+"RTN","DSIO10",222,0)
+ ; RETURN:
+"RTN","DSIO10",223,0)
+ ;  L^IEN^DFN^DATE^OBJ OF OBS;EXTERNAL VALUE|...^OBJ OF REF;EXTERNAL VALUE|...^
+"RTN","DSIO10",224,0)
+ ;    REL^CAT^START^END^PUSHED^CODE^SYS^SYS VALUE^DISPLAY NAME^VALUE CODE^
+"RTN","DSIO10",225,0)
+ ;    VALUE SYS^VALUE SYS VALUE^VALUE DISPLAY NAME^VALUE TYPE^VALUE^VALUE UNIT^
+"RTN","DSIO10",226,0)
+ ;    NEGATION^UPDATED BY^MODIFIED DATE^QUALIFIERS(NAME;VALUE)|...
+"RTN","DSIO10",227,0)
+ ;  C^IEN^NARRATIVE
+"RTN","DSIO10",228,0)
+ ;
+"RTN","DSIO10",229,0)
+ N RCT,TS,DATE,STRT,END
+"RTN","DSIO10",230,0)
+ S RET=$NA(^TMP($J,"DSIO OBG")) K @RET S @RET@(0)="0^Nothing found."
+"RTN","DSIO10",231,0)
+ I $G(IEN) D FLDS(IEN,1) S:$D(@RET@(1)) @RET@(0)=1 Q
+"RTN","DSIO10",232,0)
+ I '$D(^DPT(+$G(DFN))) S @RET@(0)="-1^Patient entry not found." Q
+"RTN","DSIO10",233,0)
+ D OBJL(.OBJECT),OBJL(.REF),SORT($G(SORT))
+"RTN","DSIO10",234,0)
+ ; *** RANGE
+"RTN","DSIO10",235,0)
+ S FDT=$S($G(FDT)'="":$$FMADD^XLFDT($$DT^DSIO2(FDT),,,,-1),1:"")
+"RTN","DSIO10",236,0)
+ S TDT=$$DT^DSIO2($G(TDT)) S:TDT="" TDT=$$NOW^XLFDT
+"RTN","DSIO10",237,0)
+ ; *** FILTERS
+"RTN","DSIO10",238,0)
+ S REL=$$UP^XLFSTR($G(REL)),CAT=$$UP^XLFSTR($G(CAT))
+"RTN","DSIO10",239,0)
+ S SYS=$$UP^XLFSTR($G(SYS)),CODE=$G(CODE)
+"RTN","DSIO10",240,0)
+ S SYS=$S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+"RTN","DSIO10",241,0)
+ S (RCT,TS)=0,DATE=FDT
+"RTN","DSIO10",242,0)
+ F  S DATE=$O(^DSIO(19641.12,"P",DFN,DATE)) Q:DATE=""  Q:DATE>TDT  D
+"RTN","DSIO10",243,0)
+ . S IEN="" F  S IEN=$O(^DSIO(19641.12,"P",DFN,DATE,IEN)) Q:IEN=""  D
+"RTN","DSIO10",244,0)
+ . . ; *** OBJECT AND REF - The entry must have at least the provided values
+"RTN","DSIO10",245,0)
+ . . I $D(OBJECT) Q:$$CONTAIN(IEN,.OBJECT,1)
+"RTN","DSIO10",246,0)
+ . . I $D(REF) Q:$$CONTAIN(IEN,.REF,2)
+"RTN","DSIO10",247,0)
+ . . I CODE'="",$$GETCODE(IEN,"C",1)'=CODE Q
+"RTN","DSIO10",248,0)
+ . . I SYS'="",$$GETCODE(IEN,"C",3)'=SYS Q
+"RTN","DSIO10",249,0)
+ . . I REL'="",$$UP^XLFSTR($$GET1^DIQ(19641.12,IEN_",",.04))'=REL Q
+"RTN","DSIO10",250,0)
+ . . I CAT'="",$$UP^XLFSTR($$GET1^DIQ(19641.12,IEN_",",.03))'=CAT Q
+"RTN","DSIO10",251,0)
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","DSIO10",252,0)
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","DSIO10",253,0)
+ . . D FLDS(IEN,RCT)
+"RTN","DSIO10",254,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","DSIO10",255,0)
+ Q
+"RTN","DSIO10",256,0)
+ ;
+"RTN","DSIO10",257,0)
+CONTAIN(IEN,VALS,ND) ; Does the entry contain all objects?
+"RTN","DSIO10",258,0)
+ N CT,FLG
+"RTN","DSIO10",259,0)
+ S CT="" F  S CT=$O(VALS(CT)) Q:CT=""  D  Q:$D(FLG)
+"RTN","DSIO10",260,0)
+ . I '$D(^DSIO(19641.12,IEN,ND,"B",CT)) S FLG=1
+"RTN","DSIO10",261,0)
+ Q $D(FLG)
+"RTN","DSIO10",262,0)
+ ;
+"RTN","DSIO10",263,0)
+OBJL(ARY) ; Prep Object List
+"RTN","DSIO10",264,0)
+ N CT,OUT,NEW
+"RTN","DSIO10",265,0)
+ S CT=$NA(ARY) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO10",266,0)
+ . S OUT=$$OBJECT(@CT) I OUT'="" S NEW(OUT)=""
+"RTN","DSIO10",267,0)
+ K ARY I $D(NEW) M ARY=NEW
+"RTN","DSIO10",268,0)
+ Q
+"RTN","DSIO10",269,0)
+ ;
+"RTN","DSIO10",270,0)
+FLDS(IEN,ND) ; Continue
+"RTN","DSIO10",271,0)
+ N OUT,LINE,FLD,STR
+"RTN","DSIO10",272,0)
+ D GETS^DIQ(19641.12,IEN_",","*","IE","OUT") Q:'$D(OUT)
+"RTN","DSIO10",273,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","DSIO10",274,0)
+ S STR="L^"_IEN_U
+"RTN","DSIO10",275,0)
+ S STR=STR_FLD(.02,"I")_U                               ; DFN
+"RTN","DSIO10",276,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U            ; DATE OF OBSERVATION
+"RTN","DSIO10",277,0)
+ S STR=STR_$$OBJ(IEN,1)_U                               ; OBJECTS OF OBSERVATION
+"RTN","DSIO10",278,0)
+ S STR=STR_$$OBJ(IEN,2)_U                               ; OBJECTS OF REFERENCE
+"RTN","DSIO10",279,0)
+ S STR=STR_FLD(.04,"I")_U                               ; RELATIONSHIP
+"RTN","DSIO10",280,0)
+ S STR=STR_FLD(.03,"I")_U                               ; CATEGORY
+"RTN","DSIO10",281,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.05,"I"),"5Z")_U            ; START
+"RTN","DSIO10",282,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.06,"I"),"5Z")_U            ; END
+"RTN","DSIO10",283,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.09,"I"),"5Z")_U            ; PUSHED
+"RTN","DSIO10",284,0)
+ S STR=STR_$$GETCODE(IEN,"C",1)_U                       ; CODE
+"RTN","DSIO10",285,0)
+ S STR=STR_$$GETCODE(IEN,"C",3)_U                       ; CODE SYSTEM NAME
+"RTN","DSIO10",286,0)
+ S STR=STR_$$GETCODE(IEN,"C",4)_U                       ; CODE SYSTEM VALUE
+"RTN","DSIO10",287,0)
+ S STR=STR_$$GETCODE(IEN,"C",2)_U                       ; CODE DISPLAY NAME
+"RTN","DSIO10",288,0)
+ S STR=STR_$$GETCODE(IEN,"V",1)_U                       ; VALUE CODE
+"RTN","DSIO10",289,0)
+ S STR=STR_$$GETCODE(IEN,"V",3)_U                       ; VALUE SYSTEM NAME
+"RTN","DSIO10",290,0)
+ S STR=STR_$$GETCODE(IEN,"V",4)_U                       ; VALUE SYSTEM VALUE
+"RTN","DSIO10",291,0)
+ S STR=STR_$$GETCODE(IEN,"V",2)_U                       ; VALUE DISPLAY NAME
+"RTN","DSIO10",292,0)
+ S STR=STR_FLD(4.1,"I")_U                               ; VALUE TYPE
+"RTN","DSIO10",293,0)
+ S STR=STR_FLD(4.2,"I")_U                               ; VALUE
+"RTN","DSIO10",294,0)
+ S STR=STR_FLD(4.3,"I")_U                               ; VALUE UNIT
+"RTN","DSIO10",295,0)
+ S STR=STR_FLD(4.4,"E")_U                               ; NEGATION
+"RTN","DSIO10",296,0)
+ S STR=STR_$$NAME^DSIO2(FLD(.07,"E"))_U                 ; UPDATED BY
+"RTN","DSIO10",297,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.08,"I"),"5Z")_U            ; MODIFIED DATE
+"RTN","DSIO10",298,0)
+ S STR=STR_$$QUAL(IEN)                                  ; QUALIFIERS
+"RTN","DSIO10",299,0)
+ S @RET@(ND,0)=STR
+"RTN","DSIO10",300,0)
+ S LINE=0 F  S LINE=$O(FLD(6,LINE)) Q:'LINE  S @RET@(ND,LINE)="C^"_IEN_U_FLD(6,LINE)
+"RTN","DSIO10",301,0)
+ Q
+"RTN","DSIO10",302,0)
+ ;
+"RTN","DSIO10",303,0)
+OBJ(IEN,ND) ; OBJECTS
+"RTN","DSIO10",304,0)
+ N OBJ,Q,STR
+"RTN","DSIO10",305,0)
+ D GETS^DIQ(19641.12,IEN_",",ND_"*","I","OBJ")
+"RTN","DSIO10",306,0)
+ S Q=$NA(OBJ) F  S Q=$Q(@Q) Q:Q=""  D
+"RTN","DSIO10",307,0)
+ . S STR=$G(STR)_$$EOBJ(@Q)_"|"
+"RTN","DSIO10",308,0)
+ Q $E($G(STR),1,($L($G(STR))-1))
+"RTN","DSIO10",309,0)
+ ;
+"RTN","DSIO10",310,0)
+EOBJ(OBJ) ; Transform to External Form
+"RTN","DSIO10",311,0)
+ N STR
+"RTN","DSIO10",312,0)
+ S STR=$S(OBJ[8925:"TIU."_+OBJ,OBJ[19641.6:"IHE."_+OBJ,OBJ[19641.13:"PG."_+OBJ,OBJ[19641.112:"FB."_+OBJ,1:"")
+"RTN","DSIO10",313,0)
+ S:STR'="" STR=STR_";"_$$GET1^DIQ($TR($P(OBJ,"(",2),","),+OBJ_",",.01)
+"RTN","DSIO10",314,0)
+ Q STR
+"RTN","DSIO10",315,0)
+ ;
+"RTN","DSIO10",316,0)
+QUAL(IEN) ; QUALIFIERS
+"RTN","DSIO10",317,0)
+ N QUAL,Q,STR
+"RTN","DSIO10",318,0)
+ D GETS^DIQ(19641.12,IEN_",","5*","I","QUAL")
+"RTN","DSIO10",319,0)
+ S Q=$NA(QUAL) F  S Q=$Q(@Q) Q:Q=""  D
+"RTN","DSIO10",320,0)
+ . S STR=$G(STR)_$$TITLE^XLFSTR(@Q)
+"RTN","DSIO10",321,0)
+ . I $QS(Q,3)=".01" S STR=STR_";"
+"RTN","DSIO10",322,0)
+ . I $QS(Q,3)=".02" S STR=STR_"|"
+"RTN","DSIO10",323,0)
+ Q $E($G(STR),1,($L($G(STR))-1))
+"RTN","DSIO10",324,0)
+ ;
+"RTN","DSIO10",325,0)
+ ; ---------------------------------- COMMON ----------------------------------
+"RTN","DSIO10",326,0)
+ ;
+"RTN","DSIO10",327,0)
+SORT(SORT) ; Set Start and End
+"RTN","DSIO10",328,0)
+ D S^DSIO2(SORT)
+"RTN","DSIO10",329,0)
+ Q
+"RTN","DSIO14")
+0^2^B22789803
+"RTN","DSIO14",1,0)
+DSIO14 ;DSS/TFF - DSIO IHE;08/26/2016 16:00
+"RTN","DSIO14",2,0)
+ ;;2.0;DSIO 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","DSIO14",3,0)
+ ;
+"RTN","DSIO14",4,0)
+ ;
+"RTN","DSIO14",5,0)
+ ;
+"RTN","DSIO14",6,0)
+ Q
+"RTN","DSIO14",7,0)
+ ;
+"RTN","DSIO14",8,0)
+SAVE(RET,IEN,DFN,DATES,TYP,DIRECT,GUID,TITLE,FAC,REC,DOC,AB) ; RPC: DSIO SAVE IHE DOC
+"RTN","DSIO14",9,0)
+ ;
+"RTN","DSIO14",10,0)
+ ;    IEN = IF NULL THEN NEW
+"RTN","DSIO14",11,0)
+ ;    DFN = PATIENT IEN
+"RTN","DSIO14",12,0)
+ ;  DATES = DT CREATION^DT IMPORT/EXPORT
+"RTN","DSIO14",13,0)
+ ;    TYP = DOCUMENT TYPE
+"RTN","DSIO14",14,0)
+ ; DIRECT = DIRECTION
+"RTN","DSIO14",15,0)
+ ;   GUID = GUID
+"RTN","DSIO14",16,0)
+ ;  TITLE = DOCUMENT TITLE
+"RTN","DSIO14",17,0)
+ ;    FAC = SENDING FACILITY/PROVIDER
+"RTN","DSIO14",18,0)
+ ;    REC = INTENDED RECIPIENT
+"RTN","DSIO14",19,0)
+ ;    DOC = ARRAY OF TEXT
+"RTN","DSIO14",20,0)
+ ;
+"RTN","DSIO14",21,0)
+ ; RETURN: IEN OR -1^MESSAGE
+"RTN","DSIO14",22,0)
+ ; 
+"RTN","DSIO14",23,0)
+ N DTC,DTI,IPT
+"RTN","DSIO14",24,0)
+ I '$G(IEN),'$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
+"RTN","DSIO14",25,0)
+ S DTC=$P(DATES,U),DTI=$P(DATES,U,2)
+"RTN","DSIO14",26,0)
+ S DIRECT=$$UP^XLFSTR($E($G(DIRECT),1)) S:"^I^O^"'[(U_DIRECT_U) DIRECT=""
+"RTN","DSIO14",27,0)
+ D:'$G(AB) AB^DSIO2("DFN,DTC,DTI,TYP,DIRECT,GUID,TITLE,FAC,REC")
+"RTN","DSIO14",28,0)
+ S:$G(DTC)'="@" DTC=$$DT^DSIO2($G(DTC))
+"RTN","DSIO14",29,0)
+ S:$G(DTI)'="@" DTI=$$DT^DSIO2($G(DTI))
+"RTN","DSIO14",30,0)
+ S IEN=$S($G(IEN):IEN,GUID'="":$O(^DSIO(19641.6,"GUID",GUID,"")),1:"")
+"RTN","DSIO14",31,0)
+ S:IEN="" IEN="?+1"
+"RTN","DSIO14",32,0)
+ S:IEN["+" IPT(19641.6,IEN_",",.01)=$$NOW^XLFDT            ; DT OF ENTRY
+"RTN","DSIO14",33,0)
+ S IPT(19641.6,IEN_",",.02)=DFN                            ; PATIENT
+"RTN","DSIO14",34,0)
+ S:$G(DTC)'="" IPT(19641.6,IEN_",",.03)=DTC                ; DT CREATION
+"RTN","DSIO14",35,0)
+ S:$G(DTI)'="" IPT(19641.6,IEN_",",.04)=DTI                ; DT IMPORT/EXPORT
+"RTN","DSIO14",36,0)
+ S:$G(TYP)'="" IPT(19641.6,IEN_",",.05)=$$TYP(TYP)         ; DOCUMENT TYPE
+"RTN","DSIO14",37,0)
+ S:$G(DIRECT)'="" IPT(19641.6,IEN_",",.06)=DIRECT          ; DIRECTION
+"RTN","DSIO14",38,0)
+ ;S IPT(19641.6,IEN_",",.07)=$$GUID($S(IEN["+":"",1:IEN),$G(GUID))
+"RTN","DSIO14",39,0)
+ S:$G(GUID)'="" IPT(19641.6,IEN_",",.07)=GUID              ; GUID/ID
+"RTN","DSIO14",40,0)
+ S:$G(TITLE)'="" IPT(19641.6,IEN_",",1.1)=TITLE            ; DOCUMENT TITLE
+"RTN","DSIO14",41,0)
+ S:$G(FAC)'="" IPT(19641.6,IEN_",",1.2)=FAC                ; SENDING FACILITY/PROVIDER
+"RTN","DSIO14",42,0)
+ S:$G(REC)'="" IPT(19641.6,IEN_",",1.3)=REC                ; INTENDED RECIPIENT
+"RTN","DSIO14",43,0)
+ D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
+"RTN","DSIO14",44,0)
+ S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
+"RTN","DSIO14",45,0)
+ ; *** DOCUMENT CONTENT
+"RTN","DSIO14",46,0)
+ I $D(DOC)>9 K ^TMP($J,"DSIO14 SAVE") D
+"RTN","DSIO14",47,0)
+ . D XY^DSIO2(.DOC,$NA(^TMP($J,"DSIO14 SAVE")))
+"RTN","DSIO14",48,0)
+ . D WP^DIE(19641.6,IEN_",",2,"K","^TMP($J,""DSIO14 SAVE"")")
+"RTN","DSIO14",49,0)
+ . K ^TMP($J,"DSIO14 SAVE")
+"RTN","DSIO14",50,0)
+ Q
+"RTN","DSIO14",51,0)
+ ;
+"RTN","DSIO14",52,0)
+TYP(TYP) ; Create the Document Type and return the IEN
+"RTN","DSIO14",53,0)
+ Q:$G(TYP)="" ""
+"RTN","DSIO14",54,0)
+ N DLAYGO,DIC,DA,X,Y
+"RTN","DSIO14",55,0)
+ S DLAYGO=19641.61,DIC="^DSIO(19641.61,",DIC(0)="XL",X=TYP D ^DIC
+"RTN","DSIO14",56,0)
+ Q $S(Y:+Y,1:"")
+"RTN","DSIO14",57,0)
+ ;
+"RTN","DSIO14",58,0)
+GUID(IEN,GUID) ; Find or Generate a GUID
+"RTN","DSIO14",59,0)
+ I IEN,GUID'="",$O(^DSIO(19641.6,"GUID",GUID,""))=IEN Q GUID
+"RTN","DSIO14",60,0)
+ I 'IEN,GUID'="",'$O(^DSIO(19641.6,"GUID",GUID,"")),GUID?8E1"-"4E1"-"4E1"-"4E1"-"12E Q GUID
+"RTN","DSIO14",61,0)
+ F  Q:$$GEN(.GUID)
+"RTN","DSIO14",62,0)
+ Q GUID
+"RTN","DSIO14",63,0)
+ ;
+"RTN","DSIO14",64,0)
+GEN(GUID) ; Generate and Determine that GUID is unique
+"RTN","DSIO14",65,0)
+ N TST S TST=$$G I '$O(^DSIO(19641.6,"GUID",TST,"")) S GUID=TST Q 1
+"RTN","DSIO14",66,0)
+ Q 0
+"RTN","DSIO14",67,0)
+ ;
+"RTN","DSIO14",68,0)
+G() ; Generate GUID
+"RTN","DSIO14",69,0)
+ ; 21EC2020-3AEA-4069-A2DD-08002B30309D
+"RTN","DSIO14",70,0)
+ N G1,G2,G3,G4,G5 S (G1,G2,G3,G4,G5)=""
+"RTN","DSIO14",71,0)
+ F V="8^G1","4^G2","4^G3","4^G4","12^G5" S @$P(V,U,2)=$$GP(+V,@$P(V,U,2))
+"RTN","DSIO14",72,0)
+ Q G1_"-"_G2_"-"_G3_"-"_G4_"-"_G5
+"RTN","DSIO14",73,0)
+ ;
+"RTN","DSIO14",74,0)
+GP(NUM,VAR) ; Generate GUID Segment
+"RTN","DSIO14",75,0)
+ N I F I=1:1:NUM S VAR=VAR_$R($S($R(9)<5:26,1:9))_U
+"RTN","DSIO14",76,0)
+ S VAR=$E(VAR,1,($L(VAR)-1))
+"RTN","DSIO14",77,0)
+ F I=1:1:NUM S:$L($P(VAR,U,I))=2 $P(VAR,U,I)=$$A($P(VAR,U,I))
+"RTN","DSIO14",78,0)
+ Q $TR(VAR,U)
+"RTN","DSIO14",79,0)
+ ;
+"RTN","DSIO14",80,0)
+A(NUM) ; Return Alpha
+"RTN","DSIO14",81,0)
+ Q $E("ABCDEFGHIJKLMNOPQRSTUVWXYZ",NUM)
+"RTN","DSIO14",82,0)
+ ;
+"RTN","DSIO14",83,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO14",84,0)
+ ;
+"RTN","DSIO14",85,0)
+GD(RET,IEN) ; RPC: DSIO GET IHE CONTENT
+"RTN","DSIO14",86,0)
+ D GET(.RET,$G(IEN),,,1)
+"RTN","DSIO14",87,0)
+ Q
+"RTN","DSIO14",88,0)
+ ;
+"RTN","DSIO14",89,0)
+GET(RET,IEN,DFN,SORT,DOC) ; RPC: DSIO GET IHE DOCS
+"RTN","DSIO14",90,0)
+ ;
+"RTN","DSIO14",91,0)
+ ; IEN^DATE OF ENTRY^DFN^DATE OF CREATION^DATE OF IMPORT/EXPORT^DOCUMENT TYPE^
+"RTN","DSIO14",92,0)
+ ; DIRECTION^GUID/ID^DOCUMENT TITLE^SENDING FACILITY/PROVIDER^INTENDED RECIPIENT
+"RTN","DSIO14",93,0)
+ ;
+"RTN","DSIO14",94,0)
+ N RCT,TS,STRT,END D SORT($G(SORT))
+"RTN","DSIO14",95,0)
+ S RET=$NA(^TMP($J,"DSIO14 GET")) K @RET S @RET@(0)="0^Nothing found."
+"RTN","DSIO14",96,0)
+ I $G(DOC) D  Q
+"RTN","DSIO14",97,0)
+ . Q:'$G(IEN)
+"RTN","DSIO14",98,0)
+ . K @RET D GETS^DIQ(19641.6,IEN_",",2,"E",RET)
+"RTN","DSIO14",99,0)
+ . K @RET@(19641.6,IEN_",",2,"E") S:'$D(@RET) @RET@(0)=""
+"RTN","DSIO14",100,0)
+ I $G(IEN) D  Q
+"RTN","DSIO14",101,0)
+ . Q:'$D(^DSIO(19641.6,IEN))
+"RTN","DSIO14",102,0)
+ . S @RET@(1)=$$FLDS(IEN),@RET@(0)=1
+"RTN","DSIO14",103,0)
+ I '$$CHECK^DSIO2($G(DFN)) S @RET@(0)="0^Patient entry not found." Q
+"RTN","DSIO14",104,0)
+ S (RCT,TS,IEN)=0
+"RTN","DSIO14",105,0)
+ F  S IEN=$O(^DSIO(19641.6,"P",DFN,IEN)) Q:'IEN  D
+"RTN","DSIO14",106,0)
+ . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","DSIO14",107,0)
+ . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","DSIO14",108,0)
+ . S @RET@(RCT)=$$FLDS(IEN)
+"RTN","DSIO14",109,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","DSIO14",110,0)
+ Q
+"RTN","DSIO14",111,0)
+ ;
+"RTN","DSIO14",112,0)
+FLDS(IEN) ; Return Transformed Fields
+"RTN","DSIO14",113,0)
+ N OUT,LINE,FLD,STR
+"RTN","DSIO14",114,0)
+ D GETS^DIQ(19641.6,IEN_",","*","IE","OUT")
+"RTN","DSIO14",115,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","DSIO14",116,0)
+ S STR=IEN_U
+"RTN","DSIO14",117,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U            ; DT OF ENTRY
+"RTN","DSIO14",118,0)
+ S STR=STR_FLD(.02,"I")_U                               ; DFN
+"RTN","DSIO14",119,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.03,"I"),"5Z")_U            ; DT CREATION
+"RTN","DSIO14",120,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.04,"I"),"5Z")_U            ; DT IMPORT/EXPORT
+"RTN","DSIO14",121,0)
+ S STR=STR_$$GET1^DIQ(19641.61,FLD(.05,"I")_",",.01)_U  ; DOCUMENT TYPE
+"RTN","DSIO14",122,0)
+ S STR=STR_FLD(.06,"E")_U                               ; DIRECTION
+"RTN","DSIO14",123,0)
+ S STR=STR_FLD(.07,"I")_U                               ; GUID/ID
+"RTN","DSIO14",124,0)
+ S STR=STR_FLD(1.1,"I")_U                               ; DOCUMENT TITLE
+"RTN","DSIO14",125,0)
+ S STR=STR_FLD(1.2,"I")_U                               ; SENDING FACILITY/PROVIDER
+"RTN","DSIO14",126,0)
+ S STR=STR_FLD(1.3,"I")                                 ; INTENDED RECIPIENT
+"RTN","DSIO14",127,0)
+ Q STR
+"RTN","DSIO14",128,0)
+ ;
+"RTN","DSIO14",129,0)
+ ; ---------------------------------- COMMON ----------------------------------
+"RTN","DSIO14",130,0)
+ ;
+"RTN","DSIO14",131,0)
+SORT(SORT) ; Set Start and End
+"RTN","DSIO14",132,0)
+ D S^DSIO2(SORT)
+"RTN","DSIO14",133,0)
+ Q
+"RTN","DSIO15")
+0^1^B104007914
+"RTN","DSIO15",1,0)
+DSIO15 ;DSS/TFF - DSIO PREGNANCY;08/26/2016 16:00
+"RTN","DSIO15",2,0)
+ ;;2.0;DSIO 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","DSIO15",3,0)
+ ;
+"RTN","DSIO15",4,0)
+ ;
+"RTN","DSIO15",5,0)
+ ;
+"RTN","DSIO15",6,0)
+ Q
+"RTN","DSIO15",7,0)
+ ;
+"RTN","DSIO15",8,0)
+PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,HRD,AB) ; RPC: DSIO SAVE PREG DETAILS
+"RTN","DSIO15",9,0)
+ ;
+"RTN","DSIO15",10,0)
+ ; CREATE, UPDATE, or DELETE a PREGNANCY HISTORY record
+"RTN","DSIO15",11,0)
+ ;
+"RTN","DSIO15",12,0)
+ ;    DFN = PATIENT IEN
+"RTN","DSIO15",13,0)
+ ;    IEN = If not null then edit unless ###@ then delete
+"RTN","DSIO15",14,0)
+ ;  DATES = EDC^END^EDD
+"RTN","DSIO15",15,0)
+ ;    TYP = C(urrent),H(istorical)
+"RTN","DSIO15",16,0)
+ ;    FOF = IEN, U(nspecified), S(pouse)
+"RTN","DSIO15",17,0)
+ ;    OBP = OB (VARIABLE POINTER)
+"RTN","DSIO15",18,0)
+ ;          NVA.IEN (NON-VA) (19641.1)
+"RTN","DSIO15",19,0)
+ ;           VA.IEN (VA) (200)
+"RTN","DSIO15",20,0)
+ ;    FAP = FACILITY (VARIABLE POINTER)
+"RTN","DSIO15",21,0)
+ ;          NVA.IEN (NON-VA) (19641.1)
+"RTN","DSIO15",22,0)
+ ;           VA.IEN (VA) (4)
+"RTN","DSIO15",23,0)
+ ;    BAB = NUMBER
+"RTN","DSIO15",24,0)
+ ;            IF 1,2,3 THEN THREE BABIES WILL BE ADDED
+"RTN","DSIO15",25,0)
+ ;            IF 1,2@,3 THEN BABY 2 WILL BE DELETED
+"RTN","DSIO15",26,0)
+ ;            *** + is the next number.
+"RTN","DSIO15",27,0)
+ ;   POST = ADDITIONAL DETAILS (CARET DELIMITED STRING)
+"RTN","DSIO15",28,0)
+ ;            1: GESTATIONAL AGE (#W#D or # (in days))
+"RTN","DSIO15",29,0)
+ ;            2: LENGTH OF LABOR (NUMBER (IN HOURS))
+"RTN","DSIO15",30,0)
+ ;            3: TYPE OF DELIVERY (TEXT 1-20 CHARACTERS)
+"RTN","DSIO15",31,0)
+ ;            4: ANESTHESIA (TEXT 1-50 CHARACTERS)
+"RTN","DSIO15",32,0)
+ ;            5: PRETERM DELIVERY (0:NO,1:YES)
+"RTN","DSIO15",33,0)
+ ;            6: OUTCOME
+"RTN","DSIO15",34,0)
+ ;            7: HIGH RISK FLAG (0:FALSE,1:TRUE)
+"RTN","DSIO15",35,0)
+ ;            8: DAYS IN HOSPITAL
+"RTN","DSIO15",36,0)
+ ;    COM = COMMENTS (ARRAY of Text)
+"RTN","DSIO15",37,0)
+ ;    HRD = HIGH RISK DESCRIPTION (ARRAY of Text)
+"RTN","DSIO15",38,0)
+ ;
+"RTN","DSIO15",39,0)
+ ; X-REFS on EDD and STATUS
+"RTN","DSIO15",40,0)
+ ; If EDD>DT then update WV PATIENT - CURRENTLY PREGNANT (#.13) to 'YES'
+"RTN","DSIO15",41,0)
+ ; and EDC (#.14) with the EDD value
+"RTN","DSIO15",42,0)
+ ;
+"RTN","DSIO15",43,0)
+ ; RETURN: IEN^IEN;BABY|...
+"RTN","DSIO15",44,0)
+ ;         OR -1^MESSAGE
+"RTN","DSIO15",45,0)
+ ;
+"RTN","DSIO15",46,0)
+ N EDC,END,EDD,CT,FLD,IENS,IPT,STR S RET=-1
+"RTN","DSIO15",47,0)
+ I $G(IEN)?.N1"@" D DELETE(+IEN) Q
+"RTN","DSIO15",48,0)
+ S DATES=$G(DATES)
+"RTN","DSIO15",49,0)
+ S EDC=$P(DATES,U),END=$P(DATES,U,2),EDD=$P(DATES,U,3)
+"RTN","DSIO15",50,0)
+ ; *** POST PREGNANCY DATA
+"RTN","DSIO15",51,0)
+ F CT=1:1:8 S FLD("3."_CT)=$P($G(POST),U,CT)
+"RTN","DSIO15",52,0)
+ D:'$G(AB) AB^DSIO2("EDC,END,EDD,FOF,OBP,FAP,BAB,FLD")
+"RTN","DSIO15",53,0)
+ S:$G(EDC)'="@" EDC=$$DT^DSIO2($G(EDC))
+"RTN","DSIO15",54,0)
+ S:$G(END)'="@" END=$$DT^DSIO2($G(END))
+"RTN","DSIO15",55,0)
+ S:$G(EDD)'="@" EDD=$$DT^DSIO2($G(EDD))
+"RTN","DSIO15",56,0)
+ S TYP=$$UP^XLFSTR($E($G(TYP))) S:TYP=""!(TYP="C") TYP=$S(EDD>DT:"C",EDD&(EDD<DT):"H",1:"")
+"RTN","DSIO15",57,0)
+ I '$G(IEN) D  Q:$P(RET,U,2)'=""
+"RTN","DSIO15",58,0)
+ . I '$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
+"RTN","DSIO15",59,0)
+ . S IENS="+1,",IPT(19641.13,IENS,.01)=$$NOW^XLFDT               ; DATE RECORDED
+"RTN","DSIO15",60,0)
+ . S:TYP="" TYP="C"
+"RTN","DSIO15",61,0)
+ S:$G(IEN) IENS=+IEN_","
+"RTN","DSIO15",62,0)
+ S:EDC'="" IPT(19641.13,IENS,.02)=EDC                            ; EDC
+"RTN","DSIO15",63,0)
+ I $G(DFN),$D(^DPT(DFN)) S IPT(19641.13,IENS,.03)=DFN            ; PATIENT
+"RTN","DSIO15",64,0)
+ S:TYP'="" IPT(19641.13,IENS,.04)=TYP                            ; STATUS
+"RTN","DSIO15",65,0)
+ S:END'="" IPT(19641.13,IENS,.07)=END                            ; END
+"RTN","DSIO15",66,0)
+ I $G(OBP)'="",$$VPG(.OBP,0) S IPT(19641.13,IENS,.08)=OBP        ; OB
+"RTN","DSIO15",67,0)
+ I $G(FAP)'="",$$VPG(.FAP,1) S IPT(19641.13,IENS,.09)=FAP        ; FACILITY
+"RTN","DSIO15",68,0)
+ S IPT(19641.13,IENS,1.1)=DUZ                                    ; UPDATED BY
+"RTN","DSIO15",69,0)
+ S:$G(FLD(3.1))'="" IPT(19641.13,IENS,3.1)=$$G1^DSIO4(FLD(3.1))  ; GESTATIONAL AGE
+"RTN","DSIO15",70,0)
+ S:$G(FLD(3.2))'="" IPT(19641.13,IENS,3.2)=FLD(3.2)              ; LENGTH OF LABOR
+"RTN","DSIO15",71,0)
+ S:$G(FLD(3.3))'="" IPT(19641.13,IENS,3.3)=FLD(3.3)              ; TYPE OF DELIVERY
+"RTN","DSIO15",72,0)
+ S:$G(FLD(3.4))'="" IPT(19641.13,IENS,3.4)=FLD(3.4)              ; ANESTHESIA
+"RTN","DSIO15",73,0)
+ S FLD(3.5)=$E($$UP^XLFSTR(FLD(3.5)),1)
+"RTN","DSIO15",74,0)
+ S FLD(3.5)=$S(FLD(3.5)="Y"!(FLD(3.5)="T"):1,FLD(3.5)="N"!(FLD(3.5)="F"):0,1:"")
+"RTN","DSIO15",75,0)
+ S:$G(FLD(3.5))'="" IPT(19641.13,IENS,3.5)=FLD(3.5)              ; PRETERM DELIVERY
+"RTN","DSIO15",76,0)
+ S:$G(FLD(3.6))'="" IPT(19641.13,IENS,3.6)=FLD(3.6)              ; OUTCOME
+"RTN","DSIO15",77,0)
+ S:$G(FLD(3.7))'="" IPT(19641.13,IENS,3.7)=FLD(3.7)              ; HIGH RISK FLAG
+"RTN","DSIO15",78,0)
+ S:$G(FLD(3.8))'="" IPT(19641.13,IENS,3.8)=FLD(3.8)              ; DAYS IN HOSPITAL
+"RTN","DSIO15",79,0)
+ D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
+"RTN","DSIO15",80,0)
+ S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
+"RTN","DSIO15",81,0)
+ S DFN=$$GET1^DIQ(19641.13,IEN_",",.03,"I")
+"RTN","DSIO15",82,0)
+ I $G(FOF)'="" D
+"RTN","DSIO15",83,0)
+ . S FOF=$$FOF^DSIO9(DFN,FOF)
+"RTN","DSIO15",84,0)
+ . S IPT(19641.13,IEN_",",.05)=FOF                               ; FATHER OF FETUS/BABY
+"RTN","DSIO15",85,0)
+ S:EDD'="" IPT(19641.13,IEN_",",.06)=$S(EDD="@":"@",1:$$EDD(EDD,IEN))  ; EDD
+"RTN","DSIO15",86,0)
+ D:$D(IPT) UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO15",87,0)
+ ; *** BABIES
+"RTN","DSIO15",88,0)
+ I $G(BAB)'="" D
+"RTN","DSIO15",89,0)
+ . I BAB="+" S RET=IEN_U_$$BAB("+",IEN) Q
+"RTN","DSIO15",90,0)
+ . F CT=1:1:$L(BAB,",") D
+"RTN","DSIO15",91,0)
+ . . I $P(BAB,",",CT) S STR=$G(STR)_$$BAB($P(BAB,",",CT),IEN)_"|"
+"RTN","DSIO15",92,0)
+ . Q:'$D(STR)
+"RTN","DSIO15",93,0)
+ . I $E(STR,$L(STR))="|" S STR=$E(STR,1,($L(STR)-1))
+"RTN","DSIO15",94,0)
+ . S RET=IEN_U_STR
+"RTN","DSIO15",95,0)
+ ; *** COMMENTS
+"RTN","DSIO15",96,0)
+ I $D(COM)>9 K ^TMP($J,"DSIO PREG") D
+"RTN","DSIO15",97,0)
+ . D XY^DSIO2(.COM,$NA(^TMP($J,"DSIO PREG")))
+"RTN","DSIO15",98,0)
+ . D WP^DIE(19641.13,IEN_",",4,"K","^TMP($J,""DSIO PREG"")")
+"RTN","DSIO15",99,0)
+ . K ^TMP($J,"DSIO PREG")
+"RTN","DSIO15",100,0)
+ I '$G(AB)&('$D(COM)!($G(COM(+$O(COM(""))))="")) D
+"RTN","DSIO15",101,0)
+ . K ^TMP($J,"DSIO PREG") S ^TMP($J,"DSIO PREG",1)=""
+"RTN","DSIO15",102,0)
+ . D WP^DIE(19641.13,IEN_",",4,"K","^TMP($J,""DSIO PREG"")")
+"RTN","DSIO15",103,0)
+ . K ^TMP($J,"DSIO PREG")
+"RTN","DSIO15",104,0)
+ ; *** HIGH RISK DESCRIPTION
+"RTN","DSIO15",105,0)
+ I $D(HRD)>9 K ^TMP($J,"DSIO PREG") D
+"RTN","DSIO15",106,0)
+ . D XY^DSIO2(.HRD,$NA(^TMP($J,"DSIO PREG")))
+"RTN","DSIO15",107,0)
+ . D WP^DIE(19641.13,IEN_",",5,"K","^TMP($J,""DSIO PREG"")")
+"RTN","DSIO15",108,0)
+ . K ^TMP($J,"DSIO PREG")
+"RTN","DSIO15",109,0)
+ I '$G(AB)&('$D(HRD)!($G(HRD(+$O(HRD(""))))="")) D
+"RTN","DSIO15",110,0)
+ . K ^TMP($J,"DSIO PREG") S ^TMP($J,"DSIO PREG",1)=""
+"RTN","DSIO15",111,0)
+ . D WP^DIE(19641.13,IEN_",",5,"K","^TMP($J,""DSIO PREG"")")
+"RTN","DSIO15",112,0)
+ . K ^TMP($J,"DSIO PREG")
+"RTN","DSIO15",113,0)
+ Q
+"RTN","DSIO15",114,0)
+ ;
+"RTN","DSIO15",115,0)
+VPG(VAL,TYP) ; Validate variable pointer for Pregnancy File
+"RTN","DSIO15",116,0)
+ Q:VAL="@" 1
+"RTN","DSIO15",117,0)
+ N LOC,IEN,FLG
+"RTN","DSIO15",118,0)
+ S LOC=$P(VAL,"."),IEN=+$P(VAL,".",2)
+"RTN","DSIO15",119,0)
+ Q:"^NVA^VA^"'[(U_LOC_U) 0
+"RTN","DSIO15",120,0)
+ I 'TYP D  Q:$D(FLG) 0
+"RTN","DSIO15",121,0)
+ . I (LOC="NVA"&('$D(^DSIO(19641.1,IEN))))!(LOC="VA"&('$D(^VA(200,IEN)))) S FLG=1
+"RTN","DSIO15",122,0)
+ . S VAL=IEN_";VA(200,"
+"RTN","DSIO15",123,0)
+ I TYP D  Q:$D(FLG) 0
+"RTN","DSIO15",124,0)
+ . I (LOC="NVA"&('$D(^DSIO(19641.1,IEN))))!(LOC="VA"&('$D(^DIC(4,IEN)))) S FLG=1
+"RTN","DSIO15",125,0)
+ . S VAL=IEN_";DIC(4,"
+"RTN","DSIO15",126,0)
+ I LOC="NVA" S VAL=IEN_";DSIO(19641.1,"
+"RTN","DSIO15",127,0)
+ Q 1
+"RTN","DSIO15",128,0)
+ ;
+"RTN","DSIO15",129,0)
+EDD(DATE,PIEN) ; Create an EDD record and return the IEN
+"RTN","DSIO15",130,0)
+ Q:'$G(PIEN) ""
+"RTN","DSIO15",131,0)
+ N DFN,FLG,IPT,IEN
+"RTN","DSIO15",132,0)
+ S DFN=$$GET1^DIQ(19641.13,PIEN_",",.03,"I") Q:'DFN ""
+"RTN","DSIO15",133,0)
+ S FLG=$O(^DSIO(19641.03,"C",DFN,DATE,"")) Q:FLG FLG
+"RTN","DSIO15",134,0)
+ S IPT(19641.03,"+1,",.01)=DATE            ; ESTIMATED DELIVERY DATE
+"RTN","DSIO15",135,0)
+ S IPT(19641.03,"+1,",.02)=DFN             ; PATIENT
+"RTN","DSIO15",136,0)
+ S IPT(19641.03,"+1,",.03)=DUZ             ; ENTERED BY
+"RTN","DSIO15",137,0)
+ S IPT(19641.03,"+1,",.04)=$$NOW^XLFDT     ; DATE ENTERED
+"RTN","DSIO15",138,0)
+ S IPT(19641.03,"+1,",2.1)=PIEN
+"RTN","DSIO15",139,0)
+ D UPDATE^DIE(,"IPT","IEN")
+"RTN","DSIO15",140,0)
+ Q $G(IEN(1))
+"RTN","DSIO15",141,0)
+ ;
+"RTN","DSIO15",142,0)
+BAB(VAL,PIEN) ; Record baby to pregnancy
+"RTN","DSIO15",143,0)
+ N DIK,DA,X,Y,IPT,IEN,NUM
+"RTN","DSIO15",144,0)
+ I '$D(DFN) N DFN S DFN=$$GET1^DIQ(19641.13,PIEN_",",.03,"I")
+"RTN","DSIO15",145,0)
+ Q:'DFN ""
+"RTN","DSIO15",146,0)
+ S IEN=$O(^DSIO(19641.112,"C",DFN,PIEN,+VAL,""))
+"RTN","DSIO15",147,0)
+ I VAL["@" D  Q ""
+"RTN","DSIO15",148,0)
+ . Q:'IEN
+"RTN","DSIO15",149,0)
+ . S DA=IEN,DIK="^DSIO(19641.112," D ^DIK
+"RTN","DSIO15",150,0)
+ . ; *** Delete from Pregnancy
+"RTN","DSIO15",151,0)
+ . S DA=$O(^DSIO(19641.13,PIEN,2,"B",IEN,""))
+"RTN","DSIO15",152,0)
+ . S DA(1)=PIEN,DIK="^DSIO(19641.13,"_DA(1)_",2," D ^DIK
+"RTN","DSIO15",153,0)
+ S:'IEN IEN="+1"
+"RTN","DSIO15",154,0)
+ S (NUM,IPT(19641.112,IEN_",",.01))=$$NUM    ; NUMBER
+"RTN","DSIO15",155,0)
+ S IPT(19641.112,IEN_",",.02)=DFN            ; PATIENT
+"RTN","DSIO15",156,0)
+ S IPT(19641.112,IEN_",",.03)=PIEN           ; PREGNANCY
+"RTN","DSIO15",157,0)
+ K IEN D UPDATE^DIE(,"IPT","IEN") Q:'$G(IEN(1)) ""
+"RTN","DSIO15",158,0)
+ S IPT(19641.132,"+1,"_PIEN_",",.01)=IEN(1)
+"RTN","DSIO15",159,0)
+ D UPDATE^DIE(,"IPT")
+"RTN","DSIO15",160,0)
+ Q IEN(1)_";"_NUM
+"RTN","DSIO15",161,0)
+ ;
+"RTN","DSIO15",162,0)
+NUM() ; Set Baby Number for new entries
+"RTN","DSIO15",163,0)
+ Q $O(^DSIO(19641.112,"C",DFN,PIEN,""),-1)+1
+"RTN","DSIO15",164,0)
+ ;
+"RTN","DSIO15",165,0)
+PREGG(RET,IEN,DFN,SORT,NCOM) ; RPC: DSIO GET PREG DETAILS
+"RTN","DSIO15",166,0)
+ ;
+"RTN","DSIO15",167,0)
+ ; If IEN = "C" get only the CURRENT pregnancy
+"RTN","DSIO15",168,0)
+ ;
+"RTN","DSIO15",169,0)
+ ; RETURN:
+"RTN","DSIO15",170,0)
+ ;  L^IEN^DATE RECORDED^EDC^DFN|PATIENT^STATUS^FOF|(IEN OR IDENTIFIER)^
+"RTN","DSIO15",171,0)
+ ;    EDD^END^OB IEN|OB^FACILITY IEN|FACILITY^
+"RTN","DSIO15",172,0)
+ ;    UPDATED BY IEN|UPDATED BY^GESTATIONAL AGE^LENGTH OF DELIVERY^
+"RTN","DSIO15",173,0)
+ ;    TYPE OF DELIVERY^ANESTHESIA^PRETERM DELIVERY^BIRTH TYPE^
+"RTN","DSIO15",174,0)
+ ;    IEN;BABY#|IEN;BABY#^OUTCOME^HIGH RISK FLAG(0,1)^DAYS IN HOSPITAL
+"RTN","DSIO15",175,0)
+ ;    
+"RTN","DSIO15",176,0)
+ ;  C^IEN^COMMENT
+"RTN","DSIO15",177,0)
+ ;  H^IEN^COMMENT
+"RTN","DSIO15",178,0)
+ ;
+"RTN","DSIO15",179,0)
+ N RCT,TS,DATE,STRT,END D SORT($G(SORT))
+"RTN","DSIO15",180,0)
+ S RET=$NA(^TMP($J,"DSIO PREG")) K @RET S @RET@(0)="0^Nothing found."
+"RTN","DSIO15",181,0)
+ I $G(IEN) D P1(IEN,1) S:$D(@RET@(1)) @RET@(0)=1 Q
+"RTN","DSIO15",182,0)
+ I $G(IEN)="C" Q:'$G(DFN)  D  Q
+"RTN","DSIO15",183,0)
+ . S IEN=$$PG^DSIO4(DFN) Q:'IEN
+"RTN","DSIO15",184,0)
+ . D P1(IEN,1) S @RET@(0)=1
+"RTN","DSIO15",185,0)
+ Q:'$G(DFN)
+"RTN","DSIO15",186,0)
+ I '$$CHECK^DSIO2($G(DFN)) S @RET@(0)="0^Patient entry not found." Q
+"RTN","DSIO15",187,0)
+ S (RCT,TS)=0,DATE=""
+"RTN","DSIO15",188,0)
+ F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE),-1) Q:DATE=""  D
+"RTN","DSIO15",189,0)
+ . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D
+"RTN","DSIO15",190,0)
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","DSIO15",191,0)
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","DSIO15",192,0)
+ . . D P1(IEN,RCT)
+"RTN","DSIO15",193,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","DSIO15",194,0)
+ Q
+"RTN","DSIO15",195,0)
+ ;
+"RTN","DSIO15",196,0)
+P1(IEN,ND) ; Continue
+"RTN","DSIO15",197,0)
+ N OUT,CT,FLD,STR,HT
+"RTN","DSIO15",198,0)
+ D GETS^DIQ(19641.13,IEN_",","*","IE","OUT") Q:'$D(OUT)
+"RTN","DSIO15",199,0)
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  S FLD($QS(CT,3),$QS(CT,4))=@CT
+"RTN","DSIO15",200,0)
+ S STR="L^"_IEN_U_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U         ; DATE RECORDED
+"RTN","DSIO15",201,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.02,"I"),"5Z")_U                ; EDC
+"RTN","DSIO15",202,0)
+ S STR=STR_FLD(.03,"I")_"|"_$$NAME^DSIO2(FLD(.03,"E"))_U    ; PATIENT
+"RTN","DSIO15",203,0)
+ S STR=STR_FLD(.04,"E")_U                                   ; STATUS
+"RTN","DSIO15",204,0)
+ S STR=STR_$$NAME^DSIO2(FLD(.05,"I"))_U                     ; FATHER OF FETUS/BABY
+"RTN","DSIO15",205,0)
+ S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(19641.03,FLD(.06,"I")_",",.01,"I"),"5Z")_U    ; EDD
+"RTN","DSIO15",206,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.07,"I"),"5Z")_U                ; END
+"RTN","DSIO15",207,0)
+ S STR=STR_$S(FLD(.08,"I"):+FLD(.08,"I"),1:"")_"|"_$$NAME^DSIO2(FLD(.08,"E"))_U  ; OB
+"RTN","DSIO15",208,0)
+ S STR=STR_$S(FLD(.09,"I"):+FLD(.09,"I"),1:"")_"|"_$$NAME^DSIO2(FLD(.09,"E"))_U  ; FACILITY
+"RTN","DSIO15",209,0)
+ S STR=STR_FLD(1.1,"I")_"|"_$$NAME^DSIO2(FLD(1.1,"E"))_U    ; UPDATED BY
+"RTN","DSIO15",210,0)
+ S STR=STR_FLD(3.1,"I")_U                                   ; GESTATIONAL AGE
+"RTN","DSIO15",211,0)
+ S STR=STR_FLD(3.2,"I")_U                                   ; LENGTH OF LABOR
+"RTN","DSIO15",212,0)
+ S STR=STR_FLD(3.3,"I")_U                                   ; TYPE OF DELIVERY
+"RTN","DSIO15",213,0)
+ S STR=STR_FLD(3.4,"I")_U                                   ; ANESTHESIA
+"RTN","DSIO15",214,0)
+ S STR=STR_FLD(3.5,"E")_U                                   ; PRETERM DELIVERY
+"RTN","DSIO15",215,0)
+ S STR=STR_FLD(999.1,"E")_U                                 ; BIRTH TYPE (C)
+"RTN","DSIO15",216,0)
+ S STR=STR_$$FETUS(IEN)_U                                   ; BABIES
+"RTN","DSIO15",217,0)
+ S STR=STR_$$OT^DSIO03(FLD(3.6,"I"))_U                      ; OUTCOME
+"RTN","DSIO15",218,0)
+ S STR=STR_+FLD(3.7,"I")_U                                  ; HIGH RISK FLAG
+"RTN","DSIO15",219,0)
+ S STR=STR_+FLD(3.8,"I")                                    ; DAYS IN HOSPITAL
+"RTN","DSIO15",220,0)
+ S @RET@(ND)=STR Q:$D(NCOM)
+"RTN","DSIO15",221,0)
+ ; *** COMMENTS
+"RTN","DSIO15",222,0)
+ S CT=0 F  S CT=$O(FLD(4,CT)) Q:'CT  S @RET@(ND,CT)="C^"_IEN_U_FLD(4,CT)
+"RTN","DSIO15",223,0)
+ ; *** HIGH RISK DESCRIPTION
+"RTN","DSIO15",224,0)
+ S CT=$O(@RET@(ND,""),-1)
+"RTN","DSIO15",225,0)
+ S HT=0 F  S HT=$O(FLD(5,HT)) Q:'HT  S @RET@(ND,(CT+HT))="H^"_IEN_U_FLD(5,HT)
+"RTN","DSIO15",226,0)
+ Q
+"RTN","DSIO15",227,0)
+ ;
+"RTN","DSIO15",228,0)
+FETUS(IEN) ; Return Baby String as IEN;Number|...
+"RTN","DSIO15",229,0)
+ N OUT,CT,STR
+"RTN","DSIO15",230,0)
+ D GETS^DIQ(19641.13,IEN_",","2*","IE","OUT") Q:'$D(OUT) ""
+"RTN","DSIO15",231,0)
+ S CT="" F  S CT=$O(OUT(19641.132,CT)) Q:CT=""  D
+"RTN","DSIO15",232,0)
+ . S STR=$G(STR)_OUT(19641.132,CT,.01,"I")_";"_OUT(19641.132,CT,.01,"E")_"|"
+"RTN","DSIO15",233,0)
+ I $E(STR,$L(STR))="|" S STR=$E(STR,1,($L(STR)-1))
+"RTN","DSIO15",234,0)
+ Q $G(STR)
+"RTN","DSIO15",235,0)
+ ;
+"RTN","DSIO15",236,0)
+ ;
+"RTN","DSIO15",237,0)
+HPG(RET,RSTRT,RSTOP,SORT) ; RPC: DSIO GET PREG HISTORY RANGE
+"RTN","DSIO15",238,0)
+ ;
+"RTN","DSIO15",239,0)
+ ; Get all historical pregnancies (for all patients) where the End Date falls within a specific range
+"RTN","DSIO15",240,0)
+ ; File 19641.13, Index S - PREGNANCY END  (19641.13,.07)
+"RTN","DSIO15",241,0)
+ ;
+"RTN","DSIO15",242,0)
+ N RCT,TS,DATE,IEN,STRT,END D SORT($G(SORT))
+"RTN","DSIO15",243,0)
+ S RET=$NA(^TMP($J,"DSIO HPG")) K @RET S @RET@(0)="0^Nothing found."
+"RTN","DSIO15",244,0)
+ S RSTRT=$$DT^DSIO2($G(RSTRT)),RSTOP=$$DT^DSIO2($G(RSTOP)) Q:RSTRT=""!(RSTOP="")
+"RTN","DSIO15",245,0)
+ S (RCT,TS)=0,DATE=RSTRT
+"RTN","DSIO15",246,0)
+ F  S DATE=$O(^DSIO(19641.13,"S",DATE)) Q:DATE=""  Q:DATE>=RSTOP  D
+"RTN","DSIO15",247,0)
+ . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"S",DATE,IEN)) Q:'IEN  D
+"RTN","DSIO15",248,0)
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","DSIO15",249,0)
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","DSIO15",250,0)
+ . . S @RET@(RCT)=$$HPG1(IEN)
+"RTN","DSIO15",251,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","DSIO15",252,0)
+ Q
+"RTN","DSIO15",253,0)
+ ;
+"RTN","DSIO15",254,0)
+HPG1(IEN) ; Continue
+"RTN","DSIO15",255,0)
+ N OUT,STR
+"RTN","DSIO15",256,0)
+ D PREGG^DSIO15(.OUT,IEN,,,1) S STR=$G(@OUT@(1)) K @OUT
+"RTN","DSIO15",257,0)
+ Q STR
+"RTN","DSIO15",258,0)
+ ;
+"RTN","DSIO15",259,0)
+DELETE(IEN) ; Delete Pregnancy
+"RTN","DSIO15",260,0)
+ N DIK,DA,X,Y,CT Q:'$G(IEN)
+"RTN","DSIO15",261,0)
+ ; *** DELETE BABIES
+"RTN","DSIO15",262,0)
+ I $D(^DSIO(19641.13,IEN,2)) D
+"RTN","DSIO15",263,0)
+ . S DIK="^DSIO(19641.112,"
+"RTN","DSIO15",264,0)
+ . S DA=0 F  S DA=$O(^DSIO(19641.13,IEN,2,"B",DA)) Q:'DA  D ^DIK
+"RTN","DSIO15",265,0)
+ ; *** DSIO EDD HISTORY
+"RTN","DSIO15",266,0)
+ ;     DSIO OBSERVATIONS
+"RTN","DSIO15",267,0)
+ S CT=0 F  S CT=$O(^DSIO(19641.03,"P",IEN,CT)) Q:'CT  D
+"RTN","DSIO15",268,0)
+ . S DIK="^DSIO(19641.12,",DA=$$GET1^DIQ(19641.03,CT_",",2.2,"I") D:DA ^DIK
+"RTN","DSIO15",269,0)
+ . S DIK="^DSIO(19641.03,",DA=CT D ^DIK
+"RTN","DSIO15",270,0)
+ ; *** DSIO OBSERVATIONS
+"RTN","DSIO15",271,0)
+ S DIK="^DSIO(19641.12,"
+"RTN","DSIO15",272,0)
+ S DA=0 F  S DA=$O(^DSIO(19641.12,"OBJ",IEN_";DSIO(19641.13,",DA)) Q:'DA  D ^DIK
+"RTN","DSIO15",273,0)
+ ; *** DSIO MCC PATIENT CHECKLIST
+"RTN","DSIO15",274,0)
+ S CT=$NA(^DSIO(19641.76,"C",IEN)) F  S CT=$Q(@CT) Q:CT=""  Q:$QS(CT,3)'=IEN  D
+"RTN","DSIO15",275,0)
+ . S DA(1)=$QS(CT,4),DA=$QS(CT,5),DIK="^DSIO(19641.76,"_DA(1)_",1," D ^DIK
+"RTN","DSIO15",276,0)
+ ; *** DSIO PREGNANCY-NOTE
+"RTN","DSIO15",277,0)
+ S CT=$NA(^DSIO(19641.83,"P",IEN)) F  S CT=$Q(@CT) Q:CT=""  Q:$QS(CT,3)'=IEN  D
+"RTN","DSIO15",278,0)
+ . S DA(1)=$QS(CT,4),DA=$QS(CT,5),DIK="^DSIO(19641.83,"_DA(1)_",1," D ^DIK
+"RTN","DSIO15",279,0)
+ ; *** DELETE the PREGNANCY
+"RTN","DSIO15",280,0)
+ S DIK="^DSIO(19641.13,",DA=+IEN D ^DIK S:'$D(^DSIO(19641.13,+IEN)) RET=1
+"RTN","DSIO15",281,0)
+ Q
+"RTN","DSIO15",282,0)
+ ;
+"RTN","DSIO15",283,0)
+OPTION ; OPTION: DSIO DELETE PREGNANCY
+"RTN","DSIO15",284,0)
+ N DIR,DA,X,Y,DIRUT,IEN
+"RTN","DSIO15",285,0)
+ S DIR("A")="Select PREGNANCY HISTORY to DELETE"
+"RTN","DSIO15",286,0)
+ S DIR(0)="PO^19641.13:AEQ" D ^DIR Q:$D(DIRUT)!(Y<1)  S IEN=+Y
+"RTN","DSIO15",287,0)
+ W !!,$$CJ^XLFSTR("****** ARE YOU SURE? THIS CANNOT BE UNDONE! ******",80),!!
+"RTN","DSIO15",288,0)
+ S DIR("A")="I am sure that I want to DELETE this PREGNANCY HISTORY record"
+"RTN","DSIO15",289,0)
+ S DIR(0)="Y",DIR("B")="NO" D ^DIR Q:$D(DIRUT)!(Y<1)
+"RTN","DSIO15",290,0)
+ D DELETE(IEN)
+"RTN","DSIO15",291,0)
+ Q
+"RTN","DSIO15",292,0)
+ ;
+"RTN","DSIO15",293,0)
+ ; ---------------------------------- COMMON ----------------------------------
+"RTN","DSIO15",294,0)
+ ;
+"RTN","DSIO15",295,0)
+SORT(SORT) ; Set Start and End
+"RTN","DSIO15",296,0)
+ D S^DSIO2(SORT)
+"RTN","DSIO15",297,0)
+ Q
+"RTN","DSIO2")
+0^5^B48511547
+"RTN","DSIO2",1,0)
+DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;08/26/2016 16:00
+"RTN","DSIO2",2,0)
+ ;;2.0;DSIO 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","DSIO2",3,0)
+ ;
+"RTN","DSIO2",4,0)
+ ;
+"RTN","DSIO2",5,0)
+ ;
+"RTN","DSIO2",6,0)
+ Q
+"RTN","DSIO2",7,0)
+ ;
+"RTN","DSIO2",8,0)
+ ; --------------------------------- CODING -----------------------------------
+"RTN","DSIO2",9,0)
+ ;
+"RTN","DSIO2",10,0)
+ICODE(SYS,CD) ; Transform and lookup code (internal)
+"RTN","DSIO2",11,0)
+ Q:CD="@" CD
+"RTN","DSIO2",12,0)
+ N IEN,CODE,CK
+"RTN","DSIO2",13,0)
+ I SYS="LNC" D
+"RTN","DSIO2",14,0)
+ . S IEN=+CD,CK=$P(CD,"-",2)
+"RTN","DSIO2",15,0)
+ . I $$FIND1^DIC(95.3,,"A",IEN)&($$GET1^DIQ(95.3,IEN_",",15)=CK) D
+"RTN","DSIO2",16,0)
+ . . S CODE=IEN_";LAB(95.3,"
+"RTN","DSIO2",17,0)
+ I SYS="SCT" D
+"RTN","DSIO2",18,0)
+ . S IEN=$$FIND1^DIC(757.02,,"O",CD,"CODE") Q:'IEN
+"RTN","DSIO2",19,0)
+ . I $$GET1^DIQ(757.02,IEN_",",1)=CD D
+"RTN","DSIO2",20,0)
+ . . S CODE=IEN_";LEX(757.02,"
+"RTN","DSIO2",21,0)
+ Q $G(CODE)
+"RTN","DSIO2",22,0)
+ ;
+"RTN","DSIO2",23,0)
+DCODE(Y) ; Display Code
+"RTN","DSIO2",24,0)
+ N FLE S FLE=$TR($P(Y,"(",2),",","")
+"RTN","DSIO2",25,0)
+ I $P(Y,";",2)="LAB(95.3," S Y=$$GET1^DIQ(FLE,+Y_",",.01)
+"RTN","DSIO2",26,0)
+ E  I $P(Y,";",2)="LEX(757.02," S Y=$$GET1^DIQ(FLE,+Y_",",1)
+"RTN","DSIO2",27,0)
+ Q Y
+"RTN","DSIO2",28,0)
+ ;
+"RTN","DSIO2",29,0)
+SCODE(VP,IEN,FLE) ; Set the Code Type
+"RTN","DSIO2",30,0)
+ N TYP,IPT
+"RTN","DSIO2",31,0)
+ S TYP=$S($P(VP,";",2)="LAB(95.3,":"LNC",$P(VP,";",2)="LEX(757.02,":"SCT",1:"OTHER")
+"RTN","DSIO2",32,0)
+ S IPT(FLE,IEN_",",$S(FLE=19641.123:.03,FLE=19641.12:.07,1:""))=TYP
+"RTN","DSIO2",33,0)
+ D UPDATE^DIE(,"IPT")
+"RTN","DSIO2",34,0)
+ Q
+"RTN","DSIO2",35,0)
+ ;
+"RTN","DSIO2",36,0)
+LCODE(CODE,TYP,SOR) ; Log codes that are not found in DSIO CODES (19641.99)
+"RTN","DSIO2",37,0)
+ ; *** USED BY DSIO OBSERVATION
+"RTN","DSIO2",38,0)
+ N IPT,REASON,DLAYGO
+"RTN","DSIO2",39,0)
+ S DLAYGO=19641.99
+"RTN","DSIO2",40,0)
+ S IPT(19641.99,"+1,",.01)=$$NOW^XLFDT
+"RTN","DSIO2",41,0)
+ S IPT(19641.99,"+1,",.02)=CODE
+"RTN","DSIO2",42,0)
+ S IPT(19641.99,"+1,",.03)=TYP
+"RTN","DSIO2",43,0)
+ S IPT(19641.99,"+1,",.04)=DUZ
+"RTN","DSIO2",44,0)
+ S IPT(19641.99,"+1,",.05)=SOR
+"RTN","DSIO2",45,0)
+ S REASON=$S(TYP'="LNC"&(TYP'="SCT"):"Type is not LOINC or SNOMED CT.",1:"Unable to find code as "_TYP_".")
+"RTN","DSIO2",46,0)
+ S IPT(19641.99,"+1,",.06)=REASON
+"RTN","DSIO2",47,0)
+ D UPDATE^DIE(,"IPT")
+"RTN","DSIO2",48,0)
+ Q
+"RTN","DSIO2",49,0)
+ ;
+"RTN","DSIO2",50,0)
+ ; --------------------------------- UTILITIES --------------------------------
+"RTN","DSIO2",51,0)
+ ;
+"RTN","DSIO2",52,0)
+WITHIN(SUB,WOLE,DL) ; Is a string within another
+"RTN","DSIO2",53,0)
+ ; WOLE IS DELIMITED BY CARET
+"RTN","DSIO2",54,0)
+ N CT,FLG S:'$D(DL) DL=U
+"RTN","DSIO2",55,0)
+ F CT=1:1:$L(WOLE,DL) I $P(WOLE,DL,CT)=SUB S FLG=1
+"RTN","DSIO2",56,0)
+ Q +$G(FLG)
+"RTN","DSIO2",57,0)
+ ;
+"RTN","DSIO2",58,0)
+FORMAT(X) ; -- enforce (xxx)xxx-xxxx phone format
+"RTN","DSIO2",59,0)
+ S X=$G(X) I X?1"("3N1")"3N1"-"4N.E Q X
+"RTN","DSIO2",60,0)
+ N P,N,I,Y S P=""
+"RTN","DSIO2",61,0)
+ F I=1:1:$L(X) S N=$E(X,I) I N=+N S P=P_N
+"RTN","DSIO2",62,0)
+ S:$L(P)<10 P=$E("0000000000",1,10-$L(P))_P
+"RTN","DSIO2",63,0)
+ S Y=$S(P:"("_$E(P,1,3)_")"_$E(P,4,6)_"-"_$E(P,7,10),1:"")
+"RTN","DSIO2",64,0)
+ Q Y
+"RTN","DSIO2",65,0)
+ ;
+"RTN","DSIO2",66,0)
+AB(LIST) ; Change null to @ for null means delete
+"RTN","DSIO2",67,0)
+ ;
+"RTN","DSIO2",68,0)
+ ; This API turns non-existing or existing but equal to null variables
+"RTN","DSIO2",69,0)
+ ; into the @. Originally, most DSIO RPCS were set up to ignore null
+"RTN","DSIO2",70,0)
+ ; and use @ as the user's confirmation that they wish to delete data
+"RTN","DSIO2",71,0)
+ ; before using FileMan API's.
+"RTN","DSIO2",72,0)
+ ;
+"RTN","DSIO2",73,0)
+ ; The implementation of this API means that before calling any DSIO
+"RTN","DSIO2",74,0)
+ ; add or update action all values expressing the current state of the
+"RTN","DSIO2",75,0)
+ ; record must be passed - thus a get function may need to be called first
+"RTN","DSIO2",76,0)
+ ; Some methods will include the AB input variable and if set to 1 will
+"RTN","DSIO2",77,0)
+ ; bypass the use of this method.
+"RTN","DSIO2",78,0)
+ ;
+"RTN","DSIO2",79,0)
+ ; THE MCCDASHBOARD expects that by sending a null the user wishes to
+"RTN","DSIO2",80,0)
+ ; delete that associated data element.
+"RTN","DSIO2",81,0)
+ ;
+"RTN","DSIO2",82,0)
+ ; Array inputs are expected to be IDENTIFIER^VALUE PAIRS
+"RTN","DSIO2",83,0)
+ ; EXAMPLE: ARRAY(<SUBSCRIPT>)="ZIP<^ - THE LAST PIECE IS THE VALUE>66666"
+"RTN","DSIO2",84,0)
+ ;
+"RTN","DSIO2",85,0)
+ N I,VAR,CT
+"RTN","DSIO2",86,0)
+ F I=1:1:$L(LIST,",") S VAR=$P(LIST,",",I) D
+"RTN","DSIO2",87,0)
+ . I '$D(@VAR) S @VAR="@"
+"RTN","DSIO2",88,0)
+ . E  I $D(@VAR)=10 S CT=$NA(@VAR) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO2",89,0)
+ . . I $P(@CT,U,$L(@CT,U))="" S $P(@CT,U,$L(@CT,U))="@"
+"RTN","DSIO2",90,0)
+ . E  I $D(@VAR)=1&(@VAR="") S @VAR="@"
+"RTN","DSIO2",91,0)
+ Q
+"RTN","DSIO2",92,0)
+ ;
+"RTN","DSIO2",93,0)
+STORE ; Save FileMan variables for restoration
+"RTN","DSIO2",94,0)
+ M:$D(DO) VFDDO=DO
+"RTN","DSIO2",95,0)
+ M:$D(DI) VFDDI=DI
+"RTN","DSIO2",96,0)
+ M:$D(DQ) VFDDQ=DQ
+"RTN","DSIO2",97,0)
+ M:$D(DC) VFDDC=DC
+"RTN","DSIO2",98,0)
+ M:$D(DM) VFDDM=DM
+"RTN","DSIO2",99,0)
+ M:$D(DK) VFDDK=DK
+"RTN","DSIO2",100,0)
+ M:$D(DP) VFDDP=DP
+"RTN","DSIO2",101,0)
+ M:$D(DL) VFDDL=DL
+"RTN","DSIO2",102,0)
+ M:$D(DV) VFDDV=DV
+"RTN","DSIO2",103,0)
+ M:$D(DIU) VFDDIU=DIU
+"RTN","DSIO2",104,0)
+ Q
+"RTN","DSIO2",105,0)
+ ;
+"RTN","DSIO2",106,0)
+GETVAR ; Restore FileMan variables
+"RTN","DSIO2",107,0)
+ M:$D(VFDDO) DO=VFDDO
+"RTN","DSIO2",108,0)
+ M:$D(VFDDI) DI=VFDDI
+"RTN","DSIO2",109,0)
+ M:$D(VFDDQ) DQ=VFDDQ
+"RTN","DSIO2",110,0)
+ M:$D(VFDDC) DC=VFDDC
+"RTN","DSIO2",111,0)
+ M:$D(VFDDM) DM=VFDDM
+"RTN","DSIO2",112,0)
+ M:$D(VFDDK) DK=VFDDK
+"RTN","DSIO2",113,0)
+ M:$D(VFDDP) DP=VFDDP
+"RTN","DSIO2",114,0)
+ M:$D(VFDDL) DL=VFDDL
+"RTN","DSIO2",115,0)
+ M:$D(VFDDV) DV=VFDDV
+"RTN","DSIO2",116,0)
+ M:$D(VFDDIU) DIU=VFDDIU
+"RTN","DSIO2",117,0)
+ Q
+"RTN","DSIO2",118,0)
+ ;
+"RTN","DSIO2",119,0)
+CHECK(DFN) ; Check for patient in DSIO PATIENT
+"RTN","DSIO2",120,0)
+ N VFDDO,VFDDI,VFDDQ,VFDDC,VFDDM,VFDDK,VFDDP,VFDDL,VFDDV,VFDDIU
+"RTN","DSIO2",121,0)
+ D STORE
+"RTN","DSIO2",122,0)
+ N DIC,DA,X,Y,DLAYGO S DLAYGO=19641
+"RTN","DSIO2",123,0)
+ S DIC="^DSIO(19641,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
+"RTN","DSIO2",124,0)
+ ; *** ADD PATIENT TO WV PATIENT (790)
+"RTN","DSIO2",125,0)
+ N DIC,DA,X,Y,DLAYGO S DLAYGO=790
+"RTN","DSIO2",126,0)
+ S DIC="^WV(790,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
+"RTN","DSIO2",127,0)
+ D GETVAR
+"RTN","DSIO2",128,0)
+ Q 1
+"RTN","DSIO2",129,0)
+ ;
+"RTN","DSIO2",130,0)
+NAME(NAM) ; Transform NAME,NAME to title case thats Name,Name
+"RTN","DSIO2",131,0)
+ I NAM["," S NAM=$$TITLE^XLFSTR($P(NAM,","))_","_$$TITLE^XLFSTR($P(NAM,",",2))
+"RTN","DSIO2",132,0)
+ E  S NAM=$$TITLE^XLFSTR(NAM)
+"RTN","DSIO2",133,0)
+ Q NAM
+"RTN","DSIO2",134,0)
+ ;
+"RTN","DSIO2",135,0)
+VALID(FLE,FLD,IENS,VAL) ; Check if a value is valid
+"RTN","DSIO2",136,0)
+ N VALID,ERR
+"RTN","DSIO2",137,0)
+ D VAL^DIE($G(FLE),$G(IENS),$G(FLD),,$G(VAL),.VALID,,"ERR")
+"RTN","DSIO2",138,0)
+ I VALID["^"!($D(ERR)) Q 0
+"RTN","DSIO2",139,0)
+ Q 1
+"RTN","DSIO2",140,0)
+ ;
+"RTN","DSIO2",141,0)
+DT(X) ; Validate and attempt to return a valid date
+"RTN","DSIO2",142,0)
+ N %DT S %DT="ST" D ^%DT
+"RTN","DSIO2",143,0)
+ I +Y<1 S X=$$DT1(X) S:+X'=-1 Y=X I +X<1 S X=$P(X,U,2) S %DT="STX" D ^%DT
+"RTN","DSIO2",144,0)
+ Q $S(Y'<1:Y,1:"")
+"RTN","DSIO2",145,0)
+ ;
+"RTN","DSIO2",146,0)
+DT1(VAL) ; Translate external date time to FM date time
+"RTN","DSIO2",147,0)
+ ;
+"RTN","DSIO2",148,0)
+ ; Converts these 9/23/2004 10:53:25 AM
+"RTN","DSIO2",149,0)
+ ;                09/03/2014 21:00:00
+"RTN","DSIO2",150,0)
+ ;                2009-10-22 05:00:00.0
+"RTN","DSIO2",151,0)
+ ;                10-22-2009 05:00:00.0
+"RTN","DSIO2",152,0)
+ ;                OCT 12,(, )2012 12:10 AM
+"RTN","DSIO2",153,0)
+ ;                OCT 12,(, )2012 13:00
+"RTN","DSIO2",154,0)
+ ;                July 26, 2014 @ 10
+"RTN","DSIO2",155,0)
+ ;                02-OCT-2014 13.29.28
+"RTN","DSIO2",156,0)
+ ;
+"RTN","DSIO2",157,0)
+ ; The FM call below does not work with the time portions
+"RTN","DSIO2",158,0)
+ ; of the above format
+"RTN","DSIO2",159,0)
+ ; ------------------------------------------------------
+"RTN","DSIO2",160,0)
+ ; D DT^DILF("E","DEC 12,2014",.RESULT)
+"RTN","DSIO2",161,0)
+ ; RESULT=3141212
+"RTN","DSIO2",162,0)
+ ; RESULT(0)="DEC 12, 2014"
+"RTN","DSIO2",163,0)
+ ;
+"RTN","DSIO2",164,0)
+ Q:VAL="" ""
+"RTN","DSIO2",165,0)
+ I $$FMTH^XLFDT(VAL)'=-1 Q VAL
+"RTN","DSIO2",166,0)
+ N DATE,FLG,TIME S DATE=-1,FLG=0
+"RTN","DSIO2",167,0)
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N S FLG=1
+"RTN","DSIO2",168,0)
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1" ".2A S FLG=1
+"RTN","DSIO2",169,0)
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1".".2N S FLG=1
+"RTN","DSIO2",170,0)
+ I VAL?3A1" "1.2N1","4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=2
+"RTN","DSIO2",171,0)
+ I VAL?3A1" "1.2N1","1" "4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=3
+"RTN","DSIO2",172,0)
+ I VAL?1.A1" "1.2N1","1" "4N.1" ".1"@".1" ".2N.1":".2N S FLG=4
+"RTN","DSIO2",173,0)
+ I VAL?2N1"-"3A1"-"4N.1" ".2N.1".".2N.1".".2N S FLG=5
+"RTN","DSIO2",174,0)
+ I FLG=0 D DT^DILF("E",VAL,.DATE)
+"RTN","DSIO2",175,0)
+ I FLG=1 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($P(VAL," ",2,99))
+"RTN","DSIO2",176,0)
+ I FLG=2 D DT^DILF("E",$P(VAL," ",1,2),.DATE) S TIME=$$DT2($P(VAL," ",3,99))
+"RTN","DSIO2",177,0)
+ I FLG=3 D DT^DILF("E",$P(VAL," ",1,3),.DATE) S TIME=$$DT2($P(VAL," ",4,99))
+"RTN","DSIO2",178,0)
+ I FLG=4 D DT^DILF("E",$$TRIM^XLFSTR($P(VAL,"@")),.DATE) D
+"RTN","DSIO2",179,0)
+ . S TIME=$$DT2($$TRIM^XLFSTR($P(VAL,"@",2)))
+"RTN","DSIO2",180,0)
+ I FLG=5 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($TR($P(VAL," ",2,99),".",":"))
+"RTN","DSIO2",181,0)
+ I DATE=-1 Q -1_U_VAL
+"RTN","DSIO2",182,0)
+ Q DATE_$S($G(TIME)'="":"."_TIME,1:"")
+"RTN","DSIO2",183,0)
+ ;
+"RTN","DSIO2",184,0)
+DT2(TM) ; Convert Time
+"RTN","DSIO2",185,0)
+ N SEC,MIN,HR S TM=$$TRIM^XLFSTR($$UP^XLFSTR(TM))
+"RTN","DSIO2",186,0)
+ I TM'[":",TM?.N D  Q $G(TM)
+"RTN","DSIO2",187,0)
+ . F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
+"RTN","DSIO2",188,0)
+ Q:TM'[":" ""
+"RTN","DSIO2",189,0)
+ S SEC=$S(TM[" ":$P($P(TM,":",3)," "),TM[".":$P($P(TM,":",3),"."),1:$P(TM,":",3))
+"RTN","DSIO2",190,0)
+ S SEC=$$DT3(SEC) S:$L(SEC)=1 SEC=0_SEC
+"RTN","DSIO2",191,0)
+ S MIN=$P($P(TM,":",2)," "),MIN=$$DT3(MIN) S:$L(MIN)=1 MIN=0_MIN
+"RTN","DSIO2",192,0)
+ S HR=$P($P(TM,":")," "),HR=$$DT3(HR) S:$L(HR)=1 HR=0_HR
+"RTN","DSIO2",193,0)
+ I HR=12&((TM["AM")!($E(TM,$L(TM)-1,$L(TM))="AM")) S HR="00"
+"RTN","DSIO2",194,0)
+ I HR<12&((TM["PM")!($E(TM,$L(TM)-1,$L(TM))="PM")) S HR=HR+12
+"RTN","DSIO2",195,0)
+ S TM=HR_MIN_SEC
+"RTN","DSIO2",196,0)
+ F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
+"RTN","DSIO2",197,0)
+ Q $S($G(TM)'="":TM,1:"")
+"RTN","DSIO2",198,0)
+ ;
+"RTN","DSIO2",199,0)
+DT3(SEG) ; Only Numbers
+"RTN","DSIO2",200,0)
+ Q $$TRIM^XLFSTR($TR($$UP^XLFSTR(SEG),"ABCDEFGHIJKLMNOPQRSTUVWXYZ",""))
+"RTN","DSIO2",201,0)
+ ;
+"RTN","DSIO2",202,0)
+M(VAL) ; Minus One
+"RTN","DSIO2",203,0)
+ I VAL?.N S VAL=VAL-1 Q VAL
+"RTN","DSIO2",204,0)
+ I VAL?.A Q $$ALPHA(VAL)
+"RTN","DSIO2",205,0)
+ Q VAL
+"RTN","DSIO2",206,0)
+ ;
+"RTN","DSIO2",207,0)
+ALPHA(AL) ; Return the Prior Alpha
+"RTN","DSIO2",208,0)
+ N VAL,I,X
+"RTN","DSIO2",209,0)
+ S VAL="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+"RTN","DSIO2",210,0)
+ F I=1:1:26 I $E(VAL,I)=AL S X=I-1 Q
+"RTN","DSIO2",211,0)
+ Q $E(VAL,$G(X))
+"RTN","DSIO2",212,0)
+ ;
+"RTN","DSIO2",213,0)
+KEY(VAL,KEY) ; Value to Key
+"RTN","DSIO2",214,0)
+ I KEY="" Q 0
+"RTN","DSIO2",215,0)
+ I $E(VAL,1,$L(KEY))'=KEY Q 1
+"RTN","DSIO2",216,0)
+ Q 0
+"RTN","DSIO2",217,0)
+ ;
+"RTN","DSIO2",218,0)
+PAR ; Check Parameters
+"RTN","DSIO2",219,0)
+ D:$$GET^XPAR("SYS","DSIO EVAL LABS NOW") TASK("LAB^DSIO5")
+"RTN","DSIO2",220,0)
+ D:$$GET^XPAR("SYS","DSIO EVAL PROBLEMS NOW") TASK("PROBLEM^DSIO5")
+"RTN","DSIO2",221,0)
+ D:$$GET^XPAR("SYS","DSIO EVAL CONSULTS NOW") TASK("CONSULT^DSIO5")
+"RTN","DSIO2",222,0)
+ Q
+"RTN","DSIO2",223,0)
+ ;
+"RTN","DSIO2",224,0)
+TASK(ZTRTN) ; TaskMan
+"RTN","DSIO2",225,0)
+ N ZTDESC,ZTDTH,ZTIO,ZTUCI,ZTCPU,ZTPRI,ZTSAVE,ZTKIL,ZTSYNC,ZTSK
+"RTN","DSIO2",226,0)
+ S ZTDESC="DSIO (MATERNITY TRACKER) Trigger on "_$P(ZTRTN,U)
+"RTN","DSIO2",227,0)
+ S ZTDTH=$$FMTH^XLFDT($$NOW^XLFDT),ZTIO="NULL",ZTPRI=10
+"RTN","DSIO2",228,0)
+ D ^%ZTLOAD
+"RTN","DSIO2",229,0)
+ Q
+"RTN","DSIO2",230,0)
+ ;
+"RTN","DSIO2",231,0)
+XY(IN,GL) ; Rebuild Array as Global staring with 1
+"RTN","DSIO2",232,0)
+ N I S I="" F  S I=$O(IN(I)) Q:I=""  S @GL@(I+1)=IN(I)
+"RTN","DSIO2",233,0)
+ Q
+"RTN","DSIO2",234,0)
+ ;
+"RTN","DSIO2",235,0)
+ ; --------------------------------- SORTING ----------------------------------
+"RTN","DSIO2",236,0)
+ ;
+"RTN","DSIO2",237,0)
+FN(P,C) ; Get the next record by dashboard page and count forward
+"RTN","DSIO2",238,0)
+ Q:P<2 0
+"RTN","DSIO2",239,0)
+ Q C*(P-1)
+"RTN","DSIO2",240,0)
+ ;
+"RTN","DSIO2",241,0)
+S(SORT) ; Set Start and End
+"RTN","DSIO2",242,0)
+ ;S STRT="",END="",SORT=$G(SORT),SORT=$G(SORT,"1,500")
+"RTN","DSIO2",243,0)
+ ;S:'(SORT?.N1",".N) SORT="1,500" S:$P(SORT,",",2)>500 SORT=$P(SORT,",")_",500"
+"RTN","DSIO2",244,0)
+ S STRT="",END="",SORT=$G(SORT)
+"RTN","DSIO2",245,0)
+ S STRT=$$FN($P(SORT,","),$P(SORT,",",2)),END=$P(SORT,",",2)
+"RTN","DSIO2",246,0)
+ Q
+"VER")
+8.0^22.0
+**END**
+**END**

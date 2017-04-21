@@ -1,0 +1,246 @@
+DSIO05 ;DSS/TFF - DSIO DDCS PUSH SUPPORT DIALOG TEXT;08/26/2016 16:00
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
+ ;
+ ;
+ ;
+ Q
+ ;
+GENETI ; Genetic Screen Text List of Control Names
+ ;;CHECKBOX1;EDIT1;SCT;40108008;Thalassemia
+ ;;CHECKBOX2;EDIT1;SCT;40108008;Thalassemia
+ ;;CHECKBOX3;EDIT1;SCT;40108008;Thalassemia
+ ;;CHECKBOX4;EDIT2;SCT;253098009;Neural Tube Defect
+ ;;CHECKBOX5;EDIT2;SCT;253098009;Neural Tube Defect
+ ;;CHECKBOX6;EDIT2;SCT;253098009;Neural Tube Defect
+ ;;CHECKBOX7;EDIT3;SCT;13213009;Congenital Heart Defect
+ ;;CHECKBOX8;EDIT3;SCT;13213009;Congenital Heart Defect
+ ;;CHECKBOX9;EDIT3;SCT;13213009;Congenital Heart Defect
+ ;;CHECKBOX10;EDIT4;SCT;41040004;Down Syndrome
+ ;;CHECKBOX11;EDIT4;SCT;41040004;Down Syndrome
+ ;;CHECKBOX12;EDIT4;SCT;41040004;Down Syndrome
+ ;;CHECKBOX13;EDIT5;SCT;111385000;Tay-Sachs
+ ;;CHECKBOX14;EDIT5;SCT;111385000;Tay-Sachs
+ ;;CHECKBOX15;EDIT5;SCT;111385000;Tay-Sachs
+ ;;CHECKBOX16;EDIT6;SCT;80544005;Canavan Disease
+ ;;CHECKBOX17;EDIT6;SCT;80544005;Canavan Disease
+ ;;CHECKBOX18;EDIT6;SCT;80544005;Canavan Disease
+ ;;CHECKBOX19;EDIT7;SCT;29159009;Familial Dysautonomia
+ ;;CHECKBOX20;EDIT7;SCT;29159009;Familial Dysautonomia
+ ;;CHECKBOX21;EDIT7;SCT;29159009;Familial Dysautonomia
+ ;;CHECKBOX22;EDIT8;SCT;417357006;Sickle Cell Disease
+ ;;CHECKBOX23;EDIT8;SCT;417357006;Sickle Cell Disease
+ ;;CHECKBOX24;EDIT8;SCT;417357006;Sickle Cell Disease
+ ;;CHECKBOX25;EDIT9;SCT;16402000;Sickle Cell Trait
+ ;;CHECKBOX26;EDIT9;SCT;16402000;Sickle Cell Trait
+ ;;CHECKBOX27;EDIT9;SCT;16402000;Sickle Cell Trait
+ ;;CHECKBOX28;EDIT10;SCT;90935002;Hemophilia
+ ;;CHECKBOX29;EDIT10;SCT;90935002;Hemophilia
+ ;;CHECKBOX30;EDIT10;SCT;90935002;Hemophilia
+ ;;CHECKBOX31;EDIT11;SCT;414022008;Blood Disorders
+ ;;CHECKBOX32;EDIT11;SCT;414022008;Blood Disorders
+ ;;CHECKBOX33;EDIT11;SCT;414022008;Blood Disorders
+ ;;CHECKBOX34;EDIT12;SCT;73297009;Muscular Dystrophy
+ ;;CHECKBOX35;EDIT12;SCT;73297009;Muscular Dystrophy
+ ;;CHECKBOX36;EDIT12;SCT;73297009;Muscular Dystrophy
+ ;;CHECKBOX37;EDIT13;SCT;190905008;Cystic Fibrosis
+ ;;CHECKBOX38;EDIT13;SCT;190905008;Cystic Fibrosis
+ ;;CHECKBOX39;EDIT13;SCT;190905008;Cystic Fibrosis
+ ;;CHECKBOX40;EDIT14;SCT;58756001;Huntington's Chorea
+ ;;CHECKBOX41;EDIT14;SCT;58756001;Huntington's Chorea
+ ;;CHECKBOX42;EDIT14;SCT;58756001;Huntington's Chorea
+ ;;CHECKBOX43;EDIT15;SCT;91138005;Mental Retardation
+ ;;CHECKBOX54;EDIT15;SCT;91138005;Mental Retardation
+ ;;CHECKBOX65;EDIT15;SCT;91138005;Mental Retardation
+ ;;CHECKBOX76;EDIT21;SCT;408856003;Autism
+ ;;CHECKBOX80;EDIT21;SCT;408856003;Autism
+ ;;CHECKBOX81;EDIT21;SCT;408856003;Autism
+ ;;CHECKBOX82;EDIT22;SCT;409709004;Chrosomosal Disorder Includes any inherited genetic or chromosomal disorders
+ ;;CHECKBOX83;EDIT22;SCT;409709004;Chrosomosal Disorder Includes any inherited genetic or chromosomal disorders
+ ;;CHECKBOX84;EDIT22;SCT;409709004;Chrosomosal Disorder Includes any inherited genetic or chromosomal disorders
+ ;;CHECKBOX53;EDIT23;SCT;75934005;Maternal Metabolic Disorder
+ ;;CHECKBOX55;EDIT23;SCT;75934005;Maternal Metabolic Disorder
+ ;;CHECKBOX56;EDIT23;SCT;75934005;Maternal Metabolic Disorder
+ ;;CHECKBOX57;EDIT26;SCT;276720006;Dysmorphism (Birth Defect) Patient or baby's father has a child with birth defects
+ ;;CHECKBOX58;EDIT26;SCT;276720006;Dysmorphism (Birth Defect) Patient or baby's father has a child with birth defects
+ ;;CHECKBOX59;EDIT26;SCT;276720006;Dysmorphism (Birth Defect) Patient or baby's father has a child with birth defects
+ ;;CHECKBOX60;EDIT28;SCT;102878001;Recurrent pregnancy loss/stillbirth
+ ;;CHECKBOX61;EDIT28;SCT;102878001;Recurrent pregnancy loss/stillbirth
+ ;;CHECKBOX62;EDIT28;SCT;102878001;Recurrent pregnancy loss/stillbirth
+ ;;
+ Q
+ ;
+INFECT ; Infection History Text List of Control Names
+ ;;CHECKBOX2;EDIT1;SCT;170464005;Live with someone with Tuberculosis or exposed to Tuberculosis
+ ;;CHECKBOX3;EDIT1;SCT;170464005;Live with someone with Tuberculosis or exposed to Tuberculosis
+ ;;CHECKBOX13;EDIT1;SCT;170464005;Live with someone with Tuberculosis or exposed to Tuberculosis
+ ;;CHECKBOX4;EDIT2;SCT;402888002;History of Genital Herpes
+ ;;CHECKBOX5;EDIT2;SCT;402888002;History of Genital Herpes
+ ;;CHECKBOX12;EDIT2;SCT;402888002;History of Genital Herpes
+ ;;CHECKBOX8;EDIT3;SCT;240480009;Exposed to Genital Herpes
+ ;;CHECKBOX9;EDIT3;SCT;240480009;Exposed to Genital Herpes
+ ;;CHECKBOX7;EDIT3;SCT;240480009;Exposed to Genital Herpes
+ ;;CHECKBOX10;EDIT4;SCT;49882001;Rash since Last Menstral Period
+ ;;CHECKBOX11;EDIT4;SCT;49882001;Rash since Last Menstral Period
+ ;;CHECKBOX6;EDIT4;SCT;49882001;Rash since Last Menstral Period
+ ;;CHECKBOX14;EDIT5;SCT;34014006;Viral illness since Last Menstral Period
+ ;;CHECKBOX15;EDIT5;SCT;34014006;Viral illness since Last Menstral Period
+ ;;CHECKBOX16;EDIT5;SCT;34014006;Viral illness since Last Menstral Period
+ ;;CHECKBOX17;EDIT6;SCT;235871004;Hepatitis B
+ ;;CHECKBOX18;EDIT6;SCT;235871004;Hepatitis B
+ ;;CHECKBOX19;EDIT6;SCT;235871004;Hepatitis B
+ ;;CHECKBOX20;EDIT7;SCT;235872006;Hepatitis C
+ ;;CHECKBOX22;EDIT7;SCT;235872006;Hepatitis C
+ ;;CHECKBOX24;EDIT7;SCT;235872006;Hepatitis C
+ ;;CHECKBOX21;EDIT8;SCT;8098009;History of Sexual Transmitted Disease
+ ;;CHECKBOX23;EDIT8;SCT;8098009;History of Sexual Transmitted Disease
+ ;;CHECKBOX25;EDIT8;SCT;8098009;History of Sexual Transmitted Disease
+ ;;CHECKBOX1;EDIT9;SCT;15628003;History of Gonorrhea
+ ;;CHECKBOX30;EDIT9;SCT;15628003;History of Gonorrhea
+ ;;CHECKBOX35;EDIT9;SCT;15628003;History of Gonorrhea
+ ;;CHECKBOX26;EDIT10;SCT;312099009;History of Chlamydia
+ ;;CHECKBOX31;EDIT10;SCT;312099009;History of Chlamydia
+ ;;CHECKBOX36;EDIT10;SCT;312099009;History of Chlamydia
+ ;;CHECKBOX27;EDIT11;SCT;302812006;History of Human Papillomavirus
+ ;;CHECKBOX32;EDIT11;SCT;302812006;History of Human Papillomavirus
+ ;;CHECKBOX37;EDIT11;SCT;302812006;History of Human Papillomavirus
+ ;;CHECKBOX28;EDIT12;SCT;165816005;History of Human Immunodeficiency Virus
+ ;;CHECKBOX33;EDIT12;SCT;165816005;History of Human Immunodeficiency Virus
+ ;;CHECKBOX38;EDIT12;SCT;165816005;History of Human Immunodeficiency Virus
+ ;;CHECKBOX29;EDIT13;SCT;76272004;History of Syphilis
+ ;;CHECKBOX34;EDIT13;SCT;76272004;History of Syphilis
+ ;;CHECKBOX39;EDIT13;SCT;76272004;History of Syphilis
+ ;;
+ Q
+ ;
+MEDICA ; Medical History Text List of Control Names
+ ;;CHECKBOX1;EDIT1;SCT;73211009;Diabetes
+ ;;CHECKBOX2;EDIT1;SCT;73211009;Diabetes
+ ;;CHECKBOX3;EDIT1;SCT;73211009;Diabetes
+ ;;CHECKBOX4;EDIT2;SCT;38341003;Hypertension
+ ;;CHECKBOX5;EDIT2;SCT;38341003;Hypertension
+ ;;CHECKBOX6;EDIT2;SCT;38341003;Hypertension
+ ;;CHECKBOX7;EDIT3;SCT;56265001;Heart Disease
+ ;;CHECKBOX8;EDIT3;SCT;56265001;Heart Disease
+ ;;CHECKBOX9;EDIT3;SCT;56265001;Heart Disease
+ ;;CHECKBOX10;EDIT4;SCT;85828009;Autoimmune Disorder
+ ;;CHECKBOX11;EDIT4;SCT;85828009;Autoimmune Disorder
+ ;;CHECKBOX12;EDIT4;SCT;85828009;Autoimmune Disorder
+ ;;CHECKBOX13;EDIT5;SCT;90708001;Kidney Disease
+ ;;CHECKBOX14;EDIT5;SCT;90708001;Kidney Disease
+ ;;CHECKBOX15;EDIT5;SCT;90708001;Kidney Disease
+ ;;CHECKBOX16;EDIT6;SCT;68566005;Urinary Tract Infection
+ ;;CHECKBOX17;EDIT6;SCT;68566005;Urinary Tract Infection
+ ;;CHECKBOX18;EDIT6;SCT;68566005;Urinary Tract Infection
+ ;;CHECKBOX19;EDIT7;SCT;118940003;Neurologic
+ ;;CHECKBOX20;EDIT7;SCT;118940003;Neurologic
+ ;;CHECKBOX21;EDIT7;SCT;118940003;Neurologic
+ ;;CHECKBOX22;EDIT8;SCT;84757009;Epilepsy
+ ;;CHECKBOX23;EDIT8;SCT;84757009;Epilepsy
+ ;;CHECKBOX24;EDIT8;SCT;84757009;Epilepsy
+ ;;CHECKBOX25;EDIT9;SCT;74732009;Psychiatric
+ ;;CHECKBOX26;EDIT9;SCT;74732009;Psychiatric
+ ;;CHECKBOX27;EDIT9;SCT;74732009;Psychiatric
+ ;;CHECKBOX28;EDIT10;SCT;41006004;Depression
+ ;;CHECKBOX29;EDIT10;SCT;41006004;Depression
+ ;;CHECKBOX30;EDIT10;SCT;41006004;Depression
+ ;;CHECKBOX31;EDIT11;SCT;58703003;Postpartum Depression
+ ;;CHECKBOX32;EDIT11;SCT;58703003;Postpartum Depression
+ ;;CHECKBOX33;EDIT11;SCT;58703003;Postpartum Depression
+ ;;CHECKBOX34;EDIT12;SCT;128241005;Hepatitis
+ ;;CHECKBOX35;EDIT12;SCT;128241005;Hepatitis
+ ;;CHECKBOX36;EDIT12;SCT;128241005;Hepatitis
+ ;;CHECKBOX37;EDIT13;SCT;235856003;Liver Disease
+ ;;CHECKBOX38;EDIT13;SCT;235856003;Liver Disease
+ ;;CHECKBOX39;EDIT13;SCT;235856003;Liver Disease
+ ;;CHECKBOX40;EDIT14;SCT;276504003;Varicosities
+ ;;CHECKBOX41;EDIT14;SCT;276504003;Varicosities
+ ;;CHECKBOX42;EDIT14;SCT;276504003;Varicosities
+ ;;CHECKBOX44;EDIT16;SCT;61599003;Phlebitis
+ ;;CHECKBOX45;EDIT16;SCT;61599003;Phlebitis
+ ;;CHECKBOX46;EDIT16;SCT;61599003;Phlebitis
+ ;;CHECKBOX47;EDIT17;SCT;14304000;Thyroid Dysfunction
+ ;;CHECKBOX48;EDIT17;SCT;14304000;Thyroid Dysfunction
+ ;;CHECKBOX49;EDIT17;SCT;14304000;Thyroid Dysfunction
+ ;;CHECKBOX50;EDIT18;SCT;417746004;Trauma
+ ;;CHECKBOX51;EDIT18;SCT;417746004;Trauma
+ ;;CHECKBOX52;EDIT18;SCT;417746004;Trauma
+ ;;CHECKBOX63;EDIT19;SCT;225818009;Violence
+ ;;CHECKBOX64;EDIT19;SCT;225818009;Violence
+ ;;CHECKBOX66;EDIT19;SCT;225818009;Violence
+ ;;CHECKBOX43;EDIT15;SCT;116859006;History of Blood Transfusion
+ ;;CHECKBOX54;EDIT15;SCT;116859006;History of Blood Transfusion
+ ;;CHECKBOX65;EDIT15;SCT;116859006;History of Blood Transfusion
+ ;;CHECKBOX76;EDIT21;SCT;3885002;D(Rh) Sensitized
+ ;;CHECKBOX80;EDIT21;SCT;3885002;D(Rh) Sensitized
+ ;;CHECKBOX81;EDIT21;SCT;3885002;D(Rh) Sensitized
+ ;;CHECKBOX82;EDIT22;SCT;19829001;Pulmonary
+ ;;CHECKBOX83;EDIT22;SCT;19829001;Pulmonary
+ ;;CHECKBOX84;EDIT22;SCT;19829001;Pulmonary
+ ;;CHECKBOX53;EDIT23;SCT;367498001;Seasonal Allergies
+ ;;CHECKBOX55;EDIT23;SCT;367498001;Seasonal Allergies
+ ;;CHECKBOX56;EDIT23;SCT;367498001;Seasonal Allergies
+ ;;CHECKBOX57;EDIT26;SCT;416098002;Drug Allergy
+ ;;CHECKBOX58;EDIT26;SCT;416098002;Drug Allergy
+ ;;CHECKBOX59;EDIT26;SCT;416098002;Drug Allergy
+ ;;CHECKBOX60;EDIT28;SCT;300916003;Latex Allergy
+ ;;CHECKBOX61;EDIT28;SCT;300916003;Latex Allergy
+ ;;CHECKBOX62;EDIT28;SCT;300916003;Latex Allergy
+ ;;CHECKBOX67;EDIT20;SCT;414285001;Food Allergy
+ ;;CHECKBOX68;EDIT20;SCT;414285001;Food Allergy
+ ;;CHECKBOX69;EDIT20;SCT;414285001;Food Allergy
+ ;;CHECKBOX70;EDIT24;SCT;79604008;Breast
+ ;;CHECKBOX78;EDIT24;SCT;79604008;Breast
+ ;;CHECKBOX90;EDIT24;SCT;79604008;Breast
+ ;;CHECKBOX71;EDIT25;SCT;12658000;Gynecology Surgery
+ ;;CHECKBOX79;EDIT25;SCT;12658000;Gynecology Surgery
+ ;;CHECKBOX90;EDIT25;SCT;12658000;Gynecology Surgery
+ ;;CHECKBOX72;EDIT27;SCT;387713003;Operations
+ ;;CHECKBOX85;EDIT27;SCT;387713003;Operations
+ ;;CHECKBOX92;EDIT27;SCT;387713003;Operations
+ ;;CHECKBOX73;EDIT29;SCT;32485007;Hospitalizations
+ ;;CHECKBOX86;EDIT29;SCT;32485007;Hospitalizations
+ ;;CHECKBOX93;EDIT29;SCT;32485007;Hospitalizations
+ ;;CHECKBOX74;EDIT30;SCT;33211000;Anesthetic Complications
+ ;;CHECKBOX87;EDIT30;SCT;33211000;Anesthetic Complications
+ ;;CHECKBOX94;EDIT30;SCT;33211000;Anesthetic Complications
+ ;;CHECKBOX75;EDIT31;SCT;274688009;History of Abnormal Pap
+ ;;CHECKBOX88;EDIT31;SCT;274688009;History of Abnormal Pap
+ ;;CHECKBOX95;EDIT31;SCT;274688009;History of Abnormal Pap
+ ;;CHECKBOX77;EDIT32;SCT;37849005;Uterine Anomaly Diethylstilbestrol
+ ;;CHECKBOX89;EDIT32;SCT;37849005;Uterine Anomaly Diethylstilbestrol
+ ;;CHECKBOX96;EDIT32;SCT;37849005;Uterine Anomaly Diethylstilbestrol
+ ;;CHECKBOX97;EDIT33;SCT;xx-desexposure;Diethylstilbestrol Exposure
+ ;;CHECKBOX98;EDIT33;SCT;xx-desexposure;Diethylstilbestrol Exposure
+ ;;CHECKBOX99;EDIT33;SCT;xx-desexposure;Diethylstilbestrol Exposure
+ ;;CHECKBOX100;EDIT34;SCT;8619003;Infertility
+ ;;CHECKBOX102;EDIT34;SCT;8619003;Infertility
+ ;;CHECKBOX104;EDIT34;SCT;8619003;Infertility
+ ;;CHECKBOX101;EDIT35;SCT;63487001;Art Treatment
+ ;;CHECKBOX103;EDIT35;SCT;63487001;Art Treatment
+ ;;CHECKBOX105;EDIT35;SCT;63487001;Art Treatment
+ ;;
+ Q
+ ;
+OBSPRE ; Flow Sheet Text List Values by Column
+ ;;0;Exam Date
+ ;;1;Gestational Age (wks);LNC;11884-4;wks
+ ;;2;Fundal Height (cm);LNC;11881-0;cm
+ ;;3;Weight (lbs);LNC;3141-9;lbs
+ ;;4;Cumulative Weight (lbs)
+ ;;5;Albumin;LNC;1753-3
+ ;;6;Glucose;LNC;2349-9
+ ;;7;Edema;LNC;44966-0
+ ;;8;Fetal Weight (g);LNC;57067-1;g
+ ;;9;Fetal Heart(s)
+ ;;10;Fetal Presentation;LNC;11876-0
+ ;;11;Fetal Movement;LNC;57088-7
+ ;;12;Preterm Labor Symptoms;LNC;57069-7
+ ;;13;Dilation (cm);LNC;11785-3;cm
+ ;;14;Effacement (%);LNC;11867-9;percent
+ ;;15;Long Axis (cm);LNC;11961-0;cm
+ ;;16;Intravascular Systolic (mmHg);LNC;8480-6;mmHg
+ ;;17;Intravascular Diastolic (mmHg);LNC;8462-4;mmHg
+ ;;18;Pain Severity;LNC;38208-5
+ ;;19;Cervical Exam
+ ;;
+ Q
