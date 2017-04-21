@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+// Authored by DSS, Inc. 2014-2017
+
+using System.Web.Mvc;
 using BootstrapSupport;
 
 namespace VA.Gov.Artemis.UI.Controllers

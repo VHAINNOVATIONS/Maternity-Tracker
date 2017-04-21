@@ -1,4 +1,7 @@
-﻿using VA.Gov.Artemis.Commands.Dsio.Base;
+﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+// Authored by DSS, Inc. 2014-2017
+
+using VA.Gov.Artemis.Commands.Dsio.Base;
 using VA.Gov.Artemis.Commands.Dsio.Pregnancy;
 using VA.Gov.Artemis.Vista.Broker;
 using VA.Gov.Artemis.Vista.Commands;

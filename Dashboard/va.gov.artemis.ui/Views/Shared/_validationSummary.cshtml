@@ -1,5 +1,10 @@
-@if (ViewData.ModelState.Any(x => x.Value.Errors.Any())) 
-{ 
+@*
+    Originally submitted to OSEHRA 2/21/2017 by DSS, Inc.
+    Authored by DSS, Inc. 2014-2017
+*@
+
+@if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+{
    <div class="alert alert-danger"> 
       <a class="close" data-dismiss="alert">&times;</a> 
       @Html.ValidationSummary(true)

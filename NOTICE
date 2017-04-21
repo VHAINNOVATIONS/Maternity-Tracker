@@ -4,6 +4,39 @@ Copyright 2017 The Open Source Electronic Health Record Alliance
 This product includes software developed for the Open Source
 Electronic Health Record Alliance (http://www.osehra.org/).
 
+The following libraries are utilized by the MCC Dashboard...
+
+Bootstrap v3.2.0 (http://getbootstrap.com)
+Copyright 2011-2014 Twitter, Inc.
+Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+
+Chart.js
+http://chartjs.org/
+Version: 1.0.2
+
+Copyright 2015 Nick Downie
+Released under the MIT license
+https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
+
+jQuery JavaScript Library v1.9.1
+http://jquery.com/
+
+Includes Sizzle.js
+http://sizzlejs.com/
+
+Copyright 2005, 2012 jQuery Foundation, Inc. and other contributors
+Released under the MIT license
+http://jquery.org/license
+
+Date: 2013-2-4
+
+LESS - Leaner CSS v1.3.3
+http://lesscss.org
+ 
+Copyright (c) 2009-2013, Alexis Sellier
+Licensed under the Apache 2.0 License.
+
 The Apache 2 license covers the following source and test files
 
-*.cs
+Dashboard/*.cs
+

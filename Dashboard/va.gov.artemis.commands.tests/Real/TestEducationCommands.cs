@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+// Authored by DSS, Inc. 2014-2017
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +27,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                 DsioEducationItem edItem = new DsioEducationItem()
                 {
-                    Description = "-----Purple Book",
+                    Description = "Purple Book 345",
                     Category = "Other",
                     ItemType = "L",
                     Url = "http://www.medlineplus.com", 

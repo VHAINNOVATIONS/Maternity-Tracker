@@ -1,4 +1,7 @@
-﻿using VA.Gov.Artemis.Vista.Broker;
+﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+// Authored by DSS, Inc. 2014-2017
+
+using VA.Gov.Artemis.Vista.Broker;
 using System;
 using System.Collections.Generic;
 using VA.Gov.Artemis.UI.Data.Models;

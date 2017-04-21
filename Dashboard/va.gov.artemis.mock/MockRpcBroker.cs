@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+// Authored by DSS, Inc. 2014-2017
+
+using System.Collections.Generic;
 using VA.Gov.Artemis.Vista.Broker;
 
 namespace VA.Gov.Artemis.UI.Mock

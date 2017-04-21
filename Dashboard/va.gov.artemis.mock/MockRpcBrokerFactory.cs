@@ -1,4 +1,7 @@
-﻿using VA.Gov.Artemis.Commands.Orwu;
+﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+// Authored by DSS, Inc. 2014-2017
+
+using VA.Gov.Artemis.Commands.Orwu;
 using VA.Gov.Artemis.Commands.Dsio;
 using VA.Gov.Artemis.Vista.Broker;
 using VA.Gov.Artemis.Vista.Commands;

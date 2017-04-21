@@ -1,4 +1,7 @@
-﻿using VA.Gov.Artemis.Commands.Xus;
+﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+// Authored by DSS, Inc. 2014-2017
+
+using VA.Gov.Artemis.Commands.Xus;
 using VA.Gov.Artemis.UI.Data.Brokers;
 using VA.Gov.Artemis.UI.Filters;
 using System;

@@ -1,4 +1,7 @@
-﻿// *** Basic representation of a message to be send through the socket ***
+﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+// Authored by DSS, Inc. 2014-2017
+
+// *** Basic representation of a message to be send through the socket ***
 
 using VA.Gov.Artemis.Vista.Utility;
 using System;

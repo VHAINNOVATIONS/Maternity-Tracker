@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+// Authored by DSS, Inc. 2014-2017using System.Reflection;
+
+using System.Reflection; 
 
 [assembly: AssemblyVersion("1.0.0.0")]
 
@@ -121,8 +124,10 @@
 // ***                   Use Station Number to properly select division
 // *** 02/02/2017 3.0.0  This release is dependent upon KID build DSIO 3
 // ***                   Update version to 3.0.0.0
+// *** 04/21/2017 3.0.1  This release is dependent upon KID build DSIO 3
+// ***                   Add code attribution headers for OSEHRA Technical Journal submission
 
-[assembly: AssemblyFileVersion("3.0.0.0")]
+[assembly: AssemblyFileVersion("3.0.1.0")]
 
 // *** DEPLOYMENT NOTE:  Add skip rule to deploy.cmd command line parameters to prevent replacement of web.config file
 // ***                   va.gov.artemis.ui.deploy.cmd /T "-skip:objectName=filePath,absolutePath=web\.config" 
