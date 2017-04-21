@@ -1,5 +1,5 @@
 DSIO04 ;DSS/TFF - DSIO DDCS PUSH SUPPORT DIALOGS;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ;
  ; 
@@ -63,7 +63,7 @@ FAMILY ; Family History
  . F I=1:1:$L($P(LN,U,21),"|") S PROB(I)=$P($P(LN,U,21),"|",I)
  . K PR D SAVE^DSIO9(.PR,+$P(LN,U,2),DFN,$P(LN,U,3),DATES,.ADDR,.PHONE,$P(LN,U,6),$P(LN,U,4),$P(LN,U,19),$P(LN,U,20),.PROB,1)
  . S FDA(19641.11,+$P(LN,U,2)_",",4)=$P(LN,U,22)
- . D UPDATE^DIE(,"FDA") K FDA
+ . D UPDATE^DIE("E","FDA") K FDA
  Q
  ;
  ; ----------------------------------------------------------------------------
@@ -242,7 +242,7 @@ PREGHI ; Pregnancy History
  . . K PREG D PREG^DSIO15(.PREG,$P(LN,U,2),DFN,DATES,,,,$G(FAC),,U_$P(LN,U,14)_"^^"_$P(LN,U,16),,,1)
  . ; *** DELIVERY COMMENTS
  . I $P(LN,U)="C" D
- . . S DNOTES(+$P(LN,U,2),+$O(DNOTES(+$P(LN,U,2),""),-1)+1)=$P(LN,U,3,9999)
+ . . S DNOTES(+$P(LN,U,2),+$O(DNOTES(+$P(LN,U,2),""),-1)+1)=$P(LN,U,3,999)
  ;     *** OBS PREGANCY NOTES
  I $D(DNOTES) D
  . S CT=0 F  S CT=$O(DNOTES(CT)) Q:'CT  D

@@ -1,5 +1,5 @@
 DSIO03 ;DSS/TFF - DSIO OBSERVATION PUSH;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ;
  ;
@@ -19,7 +19,7 @@ CREATE(RET,NA,CD,SY,DL) ; Create Observation PUSH
  S FDA(19641.123,"?+1,",.02)=CD
  S FDA(19641.123,"?+1,",.03)=$G(SY,"OTHER")
  S FDA(19641.123,"?+1,",.04)=$S(+$G(DL)<3&(+$G(DL)>0):DL,1:0)
- D UPDATE^DIE(,"FDA","IEN") S:$G(IEN(1)) RET=IEN(1)
+ D UPDATE^DIE("E","FDA","IEN") S:$G(IEN(1)) RET=IEN(1)
  Q
  ;
  ; OBSERVATION CREATION -------------------------------------------------------
@@ -62,32 +62,31 @@ LAS ; LACTATION STATUS (CODE: Lactating)
  ;         .02  END DATE (D), [0;2]
  ;
  Q:$G(X)=""!('$G(DFN))
- N IPT,IENS
+ N FDA,IENS
  I X="YES" D
  . Q:$$LACT^DSIO4(DFN)="YES"
- . S IPT(19641.04,"?+1,"_DFN_",",.01)=$$NOW^XLFDT
+ . S FDA(19641.04,"?+1,"_DFN_",",.01)=$$NOW^XLFDT
  I X="NO" D
  . Q:$$LACT^DSIO4(DFN)="NO"
  . S IENS=$$LACE^DSIO4(DFN)_","_DFN_","
- . S:'IENS IENS="?+1,"_DFN_",",IPT(19641.04,IENS,.01)=$$NOW^XLFDT
- . S IPT(19641.04,IENS,.02)=$$NOW^XLFDT
- D:$D(IPT) UPDATE^DIE(,"IPT")
+ . S:'IENS IENS="?+1,"_DFN_",",FDA(19641.04,IENS,.01)=$$NOW^XLFDT
+ . S FDA(19641.04,IENS,.02)=$$NOW^XLFDT
+ D:$D(FDA) UPDATE^DIE(,"FDA")
  Q
  ;
 PATIENT(FLD) ; Update Patient Element
  Q:$G(X)=""!('$G(DFN))
- N IPT
- S IPT(19641,DFN_",",FLD)=X
- D UPDATE^DIE("E","IPT")
+ N FDA S FDA(19641,DFN_",",FLD)=X
+ D UPDATE^DIE("E","FDA")
  Q
  ;
 BABY(FLD) ; Update Baby Information
  Q:'$G(DFN)!('$G(OIEN))
- N IEN,IPT
+ N IEN,FDA
  S IEN=$$OBJ("DSIO(19641.112,") Q:'IEN
  I FLD=.06 S X=$$BW(X)
- S IPT(19641.112,IEN_",",FLD)=X
- D UPDATE^DIE("E","IPT")
+ S FDA(19641.112,IEN_",",FLD)=X
+ D UPDATE^DIE("E","FDA")
  Q
  ;
 BW(VAL) ; Convert Birth Weight
@@ -103,7 +102,7 @@ BW(VAL) ; Convert Birth Weight
  ;
 PREG(FLD) ; Update Pregnancy Element
  Q:$G(X)=""!('$G(DFN))
- N V,IEN,IPT S V=X
+ N V,IEN,FDA S V=X
  I FLD=3.1,$$UP^XLFSTR($P(X,"|",2))="TRUE" D EDD("ULT") Q
  I FLD=3.1 D
  . I $$UP^XLFSTR($P(V,U,2))="WKS" S V=$$G2^DSIO4(+V_"W") Q
@@ -116,23 +115,23 @@ PREG(FLD) ; Update Pregnancy Element
  . I V="Stillbirth"!(V="Spontaneous Abortion")!(V="Termination") D
  . . S X="DEMISE" D BABY(.011)
  S IEN=$$OBJ("DSIO(19641.13,") Q:'IEN
- S IPT(19641.13,IEN_",",FLD)=V
- D UPDATE^DIE("E","IPT")
+ S FDA(19641.13,IEN_",",FLD)=V
+ D UPDATE^DIE("E","FDA")
  Q
  ;
 MHIST(FLD) ; Update Menstrual History
  Q:$G(X)=""!('$G(DFN))
- N LMP,IEN,IPT
+ N LMP,IEN,FDA
  S LMP=$$GET1^DIQ(19641,DFN_",",1.2,"I") Q:'LMP
  I FLD=1.5!(FLD=1.8)!(FLD=1.9) D
- . S X=$$UP^XLFSTR($E(X,1)),X=$S(X="Y"!(X="T"):"YES",1:"NO")
- S IPT(19641.01,LMP_",",FLD)=X
- D UPDATE^DIE("E","IPT")
+ . S X=$$UP^XLFSTR($E(X,1)),X=$S(X="Y"!(X="T")!(X=1):"YES",1:"NO")
+ S FDA(19641.01,LMP_",",FLD)=X
+ S FDA(19641.01,LMP_",",.02)="`"_DFN
+ D UPDATE^DIE("E","FDA")
  Q
  ;
 ODM(VAL) ; Validate and transform a obsteric delivery method
- S VAL=$$UP^XLFSTR($G(VAL))
- Q $S("^V^C^O^"[(U_VAL_U):VAL,VAL["VAGIN":"V",VAL["CESAR":"C",1:"O")
+ Q $G(VAL)
  ;
 OT(VAL) ; Transform OutcomeType from End User to Observation value
  S VAL=$$UP^XLFSTR($TR(VAL," "))
@@ -158,12 +157,12 @@ GA(TYP) ; Update Gestational Age for Pregnancy
  ;
  ; TYP = "D" or "W"
  ;
- N PREG,FLD,FWK,FDY,IPT
+ N PREG,FLD,FWK,FDY,FDA
  S PREG=$$OBJ("DSIO(19641.13,") Q:'PREG
  S FLD=$$UP^XLFSTR($$GET1^DIQ(19641.13,PREG_",",3.1))
  S FWK=+$P(FLD,"W"),FDY=+$P($P(FLD,"D"),"W",2)
- S IPT(19641.13,PREG_",",3.1)=$S(TYP="W":X_"W"_FDY_"D",TYP="D":FWK_"W"_X_"D",1:"")
- D UPDATE^DIE(,"IPT")
+ S FDA(19641.13,PREG_",",3.1)=$S(TYP="W":X_"W"_FDY_"D",TYP="D":FWK_"W"_X_"D",1:"")
+ D UPDATE^DIE("E","FDA")
  Q
  ;
 PTXT ; Add to the Pregnacy History Comments
@@ -243,12 +242,12 @@ LMP ; Push LMP
  S DATE=$$DT^DSIO2($P(X,"|"))
  S DATE=$S($G(CODE)="11779-6":$$FMADD^XLFDT(DATE,-280),1:DATE) Q:DATE=""
  S FDA(19641.01,"?+1,",.01)=DATE                        ; LAST MENSTRAL PERIOD
- S FDA(19641.01,"?+1,",.02)=DFN                         ; PATIENT
- S FDA(19641.01,"?+1,",.03)=DUZ                         ; ENTERED BY
+ S FDA(19641.01,"?+1,",.02)="`"_DFN                     ; PATIENT
+ S FDA(19641.01,"?+1,",.03)="`"_DUZ                     ; ENTERED BY
  S FDA(19641.01,"?+1,",.04)=$$NOW^XLFDT                 ; DATE ENTERED
  S:$G(CODE)="8665-2" QU=$$UP^XLFSTR($E($P(X,"|",2),1))
  S:$D(QU) FDA(19641.01,"?+1,",.05)=QU                   ; QUALIFIER
- D UPDATE^DIE(,"FDA","LEN") K FDA Q:'$G(LEN(1))
+ D UPDATE^DIE("E","FDA","LEN") K FDA Q:'$G(LEN(1))
  S FDA(19641,DFN_",",1.2)=LEN(1)
  D UPDATE^DIE(,"FDA") K FDA
  Q 

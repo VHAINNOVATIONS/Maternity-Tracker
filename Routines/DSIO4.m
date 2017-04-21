@@ -1,5 +1,5 @@
 DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ;
  ;
@@ -7,24 +7,30 @@ DSIO4 ;DSS/TFF - DSIO PREGNANCY X-REF AND FILE SUPPORT;08/26/2016 16:00
  ;
  ; ------------------------------- UTILITIES ----------------------------------
  ;
+SEX(DFN) ; Female Patient?
+ Q $S($$GET1^DIQ(2,+$G(DFN)_",",.02,"I")="F":1,1:0)
+ ;
 PG(DFN) ; Get Current Pregnancy
- N DATE,IEN,FLG Q:'$G(DFN) ""
+ N DATE,IEN,FLG
+ Q:'$G(DFN) ""
  S DATE="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE),-1) Q:DATE=""  D  Q:$D(FLG)
  . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D  Q:$D(FLG)
  . . I $P($G(^DSIO(19641.13,IEN,0)),U,4)="C" S FLG=IEN
  Q $G(FLG)
  ;
 PSTAT(DFN) ; CURRENTLY PREGNANT
+ Q:'$G(DFN) ""
  I $$PG(DFN) Q "YES"
  Q "NO"
  ;
 PGL(DFN) ; Get last PREGNANCY HISTORY record
- N DATE
- S DATE=$O(^DSIO(19641.13,"P",DFN,""),-1) Q:DATE="" ""
+ Q:'$G(DFN) ""
+ N DATE S DATE=$O(^DSIO(19641.13,"P",DFN,""),-1) Q:DATE="" ""
  Q $O(^DSIO(19641.13,"P",DFN,DATE,""),-1)
  ;
 PGE(DFN) ; Get last PREGNANCY HISTORY record with an end
  N DATE,IEN,FLG
+ Q:'$G(DFN) ""
  S DATE="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE),-1) Q:DATE=""  D  Q:$D(FLG)
  . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D  Q:$D(FLG)
  . . I $P($G(^DSIO(19641.13,IEN,0)),U,7)'="" S FLG=IEN
@@ -34,6 +40,7 @@ PGEL(DFN) ; Get last PREGNANCY HISTORY record with a live birth
  ; ***PREGNANCY MUST HAVE AN OBSERVATION USING LOINC 75092-7
  ;
  N DATE,IEN,OBS,FLG
+ Q:'$G(DFN) ""
  S DATE="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE),-1) Q:DATE=""  D  Q:$D(FLG)
  . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D  Q:$D(FLG)
  . . Q:$P($G(^DSIO(19641.13,IEN,0)),U,7)=""
@@ -47,21 +54,9 @@ GA(DFN,PREG,FLG) ; Return Gestational Age of Pregnancy
  ;
  ; If FLG then return in number of days
  ;
- I '$G(PREG) S PREG=$$PG($G(DFN)) Q:'PREG ""
+ I '$G(PREG) S PREG=$$PG(+$G(DFN)) Q:'PREG ""
  N AGE S AGE=$$G1($TR($$UP^XLFSTR($$GET1^DIQ(19641.13,PREG_",",3.1))," "))
  Q $S($G(FLG):AGE,1:$$G2(AGE))
- ; *** Need to record How it was calucated in the DSIO EDD HISTORY file
- ;N EDC,EDD,END,DAYS,DATE
- ;S EDC=$$GET1^DIQ(19641.13,PREG_",",.02,"I")
- ;S EDD=$$GET1^DIQ(19641.03,$$GET1^DIQ(19641.13,PREG_",",.06,"I")_",",.01,"I")
- ;S END=$$GET1^DIQ(19641.13,PREG_",",.07,"I"),DAYS=""
- ;; *** Pregnancy has ENDed
- ;I EDC,END S DAYS=$$FMDIFF^XLFDT(END,EDC) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
- ;Q:END!('EDD) $S($G(FLG):AGE,1:$$G2(AGE))
- ; *** Pregnancy is ongoing
- ;I EDC S DAYS=$$FMDIFF^XLFDT(DT,EDC) Q $S($G(FLG):DAYS,1:$$G2(DAYS))
- ; *** no END, no EDD, no EDC
- ;Q $S($G(FLG):AGE,1:$$G2(AGE))
  ;
 G1(AGE) ; Convert #W#D to Numeric
  Q:AGE?.N1"W".N1"D" +AGE*7+$P($P(AGE,"D"),"W",2)
@@ -78,14 +73,16 @@ GP(DFN) ; Return GravidaParaSummary
  Q "G"_$$TOTAL(DFN)_" P"_$$FULLT(DFN)_$$PRETM(DFN)_$$ABORT(DFN)_$$LIVIG(DFN)
  ;
 TOTAL(DFN) ; Return TOTAL PREGNANCIES
- N DATE,IEN,FLG Q:'$G(DFN) "?"
+ N DATE,IEN,FLG
+ Q:'$G(DFN) "?"
  S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
  . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
  . . S FLG=FLG+1
  Q $S($G(FLG):FLG,1:"?")
  ;
 ABORT(DFN,RET) ; Return Abortions, Terminations, and Ectopics
- N DATE,IEN,TYP,FLG Q:'$G(DFN) "?"
+ N DATE,IEN,TYP,FLG
+ Q:'$G(DFN) "?"
  S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
  . S IEN="" F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:IEN=""  D
  . . S TYP=$$OT^DSIO03($P($G(^DSIO(19641.13,IEN,3)),U,6))
@@ -97,7 +94,8 @@ ABORT(DFN,RET) ; Return Abortions, Terminations, and Ectopics
  Q $S($G(FLG):FLG,$D(RET):0,1:"?")
  ;
 STILL(DFN) ; Return STILLBIRTHS
- N DATE,IEN,BABY,OUT,FLG Q:'$G(DFN) "?"
+ N DATE,IEN,BABY,OUT,FLG
+ Q:'$G(DFN) "?"
  S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
  . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:'IEN  D
  . . Q:$$GET1^DIQ(19641.13,IEN_",",999.1)="NONE"
@@ -123,7 +121,8 @@ PRETM(DFN) ; Return PRETERM (including stillborn)
  Q $S($G(FLG):FLG,1:"?")
  ;
 LIVIG(DFN) ; Return LIVING
- N DATE,IEN,BABY,FLG Q:'$G(DFN) "?"
+ N DATE,IEN,BABY,FLG
+ Q:'$G(DFN) "?"
  S (FLG,DATE)="" F  S DATE=$O(^DSIO(19641.13,"P",DFN,DATE)) Q:DATE=""  D
  . S IEN=0 F  S IEN=$O(^DSIO(19641.13,"P",DFN,DATE,IEN)) Q:'IEN  D
  . . Q:$$GET1^DIQ(19641.13,IEN_",",999.1)="NONE"
@@ -134,25 +133,27 @@ LIVIG(DFN) ; Return LIVING
  Q $S($G(FLG):FLG,1:"?")
  ;
 FULLT(DFN) ; Return TERM BIRTHS (including stillborn)
- N OUT
- S OUT=$$LIVIG(DFN)-$$PRETM(DFN)
+ Q:'$G(DFN) "?"
+ N OUT S OUT=$$LIVIG(DFN)-$$PRETM(DFN)
  Q $S(OUT<0:"?",1:OUT)
  ;
 EDDC(DFN) ; Get EDD for computed fields
  N PG,EDD
+ Q:'$G(DFN) ""
  S PG=$$PG^DSIO4(DFN) Q:'PG ""
  S EDD=$P(^DSIO(19641.13,PG,0),U,6) Q:'EDD ""
  Q $$FMTE^XLFDT($P(^DSIO(19641.03,EDD,0),U),"5Z")
  ;
 LACT(DFN) ; CURRENTLY LACTATING
  N DATE,IEN
+ Q:'$G(DFN) ""
  S DATE=$O(^DSIO(19641,DFN,3,"B",""),-1) Q:DATE="" "NO"
  S IEN=$O(^DSIO(19641,DFN,3,"B",DATE,""),-1)
  Q $S($P(^DSIO(19641,DFN,3,IEN,0),U,2)="":"YES",1:"NO")
  ;
 LACE(DFN) ; CURRENTLY LACTATING record
- N DATE
- S DATE=$O(^DSIO(19641,DFN,3,"B",""),-1) Q:DATE="" ""
+ Q:'$G(DFN) ""
+ N DATE S DATE=$O(^DSIO(19641,DFN,3,"B",""),-1) Q:DATE="" ""
  Q $O(^DSIO(19641,DFN,3,"B",DATE,""),-1)
  ;
 TRACK(DFN,FL) ; Get TRACKING STATUS of a patient
@@ -229,7 +230,7 @@ EDD(EDD,IEN) ; Update WV,DSIO PATIENT files when EDD is future
  ;
  I '$G(DFN) S DFN=$$GET1^DIQ(19641.13,IEN_",",.03,"I") Q:'DFN
  K ^DSIO(19641.13,"EDD",DFN)
- S:EDD'="@" ^DSIO(19641.13,"EDD",DFN,EDD,DA)="",EDD=$$GET1^DIQ(19641.03,EDD_",",.01,"I")
+ S:EDD'="@" ^DSIO(19641.13,"EDD",DFN,EDD,+$G(DA))="",EDD=$$GET1^DIQ(19641.03,EDD_",",.01,"I")
  Q:$D(DSIOSILENT)  N DSIOSILENT S DSIOSILENT=1
  Q:$$GET1^DIQ(19641.13,IEN_",",.04,"I")="H"
  ;N WVIEN,DLAYGO,FDA

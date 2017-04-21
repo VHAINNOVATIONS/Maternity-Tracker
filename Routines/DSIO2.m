@@ -1,5 +1,5 @@
 DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ;
  ;
@@ -8,7 +8,7 @@ DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;08/26/2016 16:00
  ; --------------------------------- CODING -----------------------------------
  ;
 ICODE(SYS,CD) ; Transform and lookup code (internal)
- Q:CD="@" CD
+ Q:'$L($G(SYS)) ""  Q:'$L($G(CD)) ""  Q:CD="@" CD
  N IEN,CODE,CK
  I SYS="LNC" D
  . S IEN=+CD,CK=$P(CD,"-",2)
@@ -21,36 +21,44 @@ ICODE(SYS,CD) ; Transform and lookup code (internal)
  Q $G(CODE)
  ;
 DCODE(Y) ; Display Code
+ Q:'$L($G(Y)) ""
  N FLE S FLE=$TR($P(Y,"(",2),",","")
  I $P(Y,";",2)="LAB(95.3," S Y=$$GET1^DIQ(FLE,+Y_",",.01)
  E  I $P(Y,";",2)="LEX(757.02," S Y=$$GET1^DIQ(FLE,+Y_",",1)
  Q Y
  ;
-SCODE(VP,IEN,FLE) ; Set the Code Type
- N TYP,IPT
+SCODE(VP,IEN,FLE) ; Set the Code System
+ Q:'$L($G(VP))  Q:'$G(IEN)  Q:'$G(FLE)
+ N TYP,FDA,IENS
  S TYP=$S($P(VP,";",2)="LAB(95.3,":"LNC",$P(VP,";",2)="LEX(757.02,":"SCT",1:"OTHER")
- S IPT(FLE,IEN_",",$S(FLE=19641.123:.03,FLE=19641.12:.07,1:""))=TYP
- D UPDATE^DIE(,"IPT")
+ I FLE=19641.123 D  Q
+ . S FDA(FLE,IEN_",",.03)=TYP
+ . D UPDATE^DIE(,"FDA")
+ I FLE=19641.12 D
+ . S IENS=$O(^DSIO(19641.12,IEN,3,"B","C","")) Q:IENS=""
+ . S FDA(19641.17,IENS_","_IEN_",",3)=TYP
+ . D UPDATE^DIE(,"FDA")
  Q
  ;
 LCODE(CODE,TYP,SOR) ; Log codes that are not found in DSIO CODES (19641.99)
  ; *** USED BY DSIO OBSERVATION
- N IPT,REASON,DLAYGO
+ N FDA,REASON,DLAYGO
  S DLAYGO=19641.99
- S IPT(19641.99,"+1,",.01)=$$NOW^XLFDT
- S IPT(19641.99,"+1,",.02)=CODE
- S IPT(19641.99,"+1,",.03)=TYP
- S IPT(19641.99,"+1,",.04)=DUZ
- S IPT(19641.99,"+1,",.05)=SOR
+ S FDA(19641.99,"+1,",.01)=$$NOW^XLFDT
+ S FDA(19641.99,"+1,",.02)=$G(CODE)
+ S FDA(19641.99,"+1,",.03)=$G(TYP)
+ S FDA(19641.99,"+1,",.04)=DUZ
+ S FDA(19641.99,"+1,",.05)=$G(SOR)
  S REASON=$S(TYP'="LNC"&(TYP'="SCT"):"Type is not LOINC or SNOMED CT.",1:"Unable to find code as "_TYP_".")
- S IPT(19641.99,"+1,",.06)=REASON
- D UPDATE^DIE(,"IPT")
+ S FDA(19641.99,"+1,",.06)=REASON
+ D UPDATE^DIE(,"FDA")
  Q
  ;
  ; --------------------------------- UTILITIES --------------------------------
  ;
-WITHIN(SUB,WOLE,DL) ; Is a string within another
+WITHIN(SUB,WOLE,DL) ; Is a string within a delimited string?
  ; WOLE IS DELIMITED BY CARET
+ Q:'$L($G(SUB)) "" Q:'$L($G(WOLE)) ""
  N CT,FLG S:'$D(DL) DL=U
  F CT=1:1:$L(WOLE,DL) I $P(WOLE,DL,CT)=SUB S FLG=1
  Q +$G(FLG)
@@ -117,6 +125,7 @@ GETVAR ; Restore FileMan variables
  Q
  ;
 CHECK(DFN) ; Check for patient in DSIO PATIENT
+ Q:'$G(DFN) 0
  N VFDDO,VFDDI,VFDDQ,VFDDC,VFDDM,VFDDK,VFDDP,VFDDL,VFDDV,VFDDIU
  D STORE
  N DIC,DA,X,Y,DLAYGO S DLAYGO=19641
@@ -243,4 +252,14 @@ S(SORT) ; Set Start and End
  ;S:'(SORT?.N1",".N) SORT="1,500" S:$P(SORT,",",2)>500 SORT=$P(SORT,",")_",500"
  S STRT="",END="",SORT=$G(SORT)
  S STRT=$$FN($P(SORT,","),$P(SORT,",",2)),END=$P(SORT,",",2)
+ Q
+ ;
+SORTA(IN,OUT) ; CREATE PAGING (ARRAY)
+ N PG,CNT,PGS,PGX K OUT
+ S PG=+SORT,CNT=$P(SORT,",",2),PGS=0
+ I '$G(PG)!'$G(CNT) Q
+ S PGX=PG*CNT
+ I PG>1 S PGS=PGX-CNT
+ F  S PGS=$O(IN(PGS)) Q:PGS=""!(PGS>PGX)  D
+ .S OUT(PGS)=IN(PGS)
  Q

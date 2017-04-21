@@ -1,5 +1,5 @@
 DSIO12 ;DSS/CMW - DSIO CLINICAL RPCS;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -71,8 +71,8 @@ DETAIL(RET,DFN,RIEN) ; RPC: DSIO GET REMINDER DETAIL
  ; RETURN:
  ;  RET(1)="The reminder ZZ Breast Exam was inactivated 04/13/2005@21:55:15"
  ;
+ K RET S RET(0)="0^Entry not found."
  I $G(DFN),$G(RIEN) D REMDET^PXRMRPCA(.RET,DFN,RIEN)
- S:'$D(RET) RET(0)="0^Entry not found."
  Q
  ;
 ALERT(RET,SORT,DFN) ; RPC: DSIO GET NOTIFICATIONS/ALERTS
@@ -86,13 +86,13 @@ ALERT(RET,SORT,DFN) ; RPC: DSIO GET NOTIFICATIONS/ALERTS
  S FLG=+$G(DFN),(RCT,TS,CT)=0
  S DATE="" F  S DATE=$O(^XTV(8992.1,"D",DATE),-1) Q:DATE=""  D
  . S IEN=0 F  S IEN=$O(^XTV(8992.1,"D",DATE,IEN)) Q:'IEN  D
- . . Q:$$R
+ . . Q:$$R()
  . . S ID=$P(^XTV(8992.1,IEN,0),U)
  . . S DFN=$S(ID["TIU":$$GET1^DIQ($E($P(ID,";"),"TIU")_",",.02,"I"),1:$P(^XTV(8992.1,IEN,0),U,4))
  . . Q:'DFN  Q:'$$TRACK^DSIO4(DFN,1)  I FLG Q:FLG'=DFN
  . . S TS=TS+1 I STRT'="",TS'>STRT Q
  . . S RCT=RCT+1 I END'="",RCT>END Q
- . . S @RET@(RCT)=$$A
+ . . S @RET@(RCT)=$$A()
  S:$G(TS) @RET@(0)=TS
  Q
  ;

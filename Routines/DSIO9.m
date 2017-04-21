@@ -1,5 +1,5 @@
 DSIO9 ;DSS/TFF - DSIO PERSON;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ;
  ;
@@ -21,53 +21,59 @@ SAVE(RET,IEN,DFN,NAME,DOB,ADDR,PHONE,EDU,SEX,REL,STATUS,PROB,AB) ; RPC: DSIO SAV
  ;
  ; RETURN: IEN OR -1^MESSAGE
  ;
- N IPT,CT
- I '$G(IEN),'$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
+ N FDA,CT,LOC,VAL,UIEN,ERR
+ S DFN=+$G(DFN) S:'DFN!('$D(^DPT(DFN))) DFN=""
+ I '$G(IEN),'$$CHECK^DSIO2(DFN) S RET="-1^Patient entry not found." Q
  S NAME=$$UP^XLFSTR($G(NAME))
+ S DOB=$$DT^DSIO2($G(DOB)),EDU=+$G(EDU)
  S SEX=$$UP^XLFSTR($E($G(SEX),1)) S:"^M^F^U^"'[(U_SEX_U) SEX=""
- S EDU=+$G(EDU) S:'EDU EDU=""
- S DFN=+$G(DFN) S:'$D(^DPT(DFN)) DFN=""
  S REL=$$FIND1^DIC(408.11,,"X",$$UP^XLFSTR($G(REL))) S:'REL REL=""
  S STATUS=$$UP^XLFSTR($E($G(STATUS),1)) S:"^L^D^"'[(U_STATUS_U) STATUS=""
- D:'$G(AB) AB^DSIO2("DFN,DOB,ADDR,PHONE,EDU,SEX,REL,STATUS")
- S:$G(DOB)'="@" DOB=$$DT^DSIO2($G(DOB))
- S IEN=$S($G(IEN):IEN,NAME'=""&($G(DFN)):$O(^DSIO(19641.11,"C",DFN,NAME,"")),1:"")
- S:IEN="" IEN="?+1"
- S:$G(NAME)'="" IPT(19641.11,IEN_",",.01)=NAME             ; NAME
- S:$G(SEX)'="" IPT(19641.11,IEN_",",.02)=SEX               ; SEX
- S:$G(DOB)'="" IPT(19641.11,IEN_",",.03)=DOB               ; DATE OF BIRTH
- S:$G(EDU)'="" IPT(19641.11,IEN_",",.04)=EDU               ; EDUCATION
- S:$G(DFN)'="" IPT(19641.11,IEN_",",.05)=DFN               ; PATIENT
- S:$G(REL)'="" IPT(19641.11,IEN_",",.06)=REL               ; RELATIONSHIP
- S:$G(STATUS)'="" IPT(19641.11,IEN_",",.07)=STATUS         ; STATUS
- I $D(ADDR) D                                           ; ADDRESS
- . S CT=$NA(ADDR) F  S CT=$Q(@CT) Q:CT=""  D
+ D:'$G(AB) AB^DSIO2("DFN,NAME,DOB,ADDR,PHONE,EDU,SEX,REL,STATUS")
+ I $G(IEN) S IEN=IEN_","
+ E  I NAME'="",NAME'="@",DFN,$O(^DSIO(19641.11,"C",DFN,NAME,"")) D
+ . S IEN=$O(^DSIO(19641.11,"C",DFN,NAME,""))_","
+ E  S IEN="?+1,"
+ S:$G(NAME)'="" FDA(19641.11,IEN,.01)=NAME             ; NAME
+ S:$G(SEX)'="" FDA(19641.11,IEN,.02)=SEX               ; SEX
+ S:$G(DOB)'="" FDA(19641.11,IEN,.03)=DOB               ; DATE OF BIRTH
+ S:$G(EDU)'="" FDA(19641.11,IEN,.04)=EDU               ; EDUCATION
+ S:$G(DFN)'="" FDA(19641.11,IEN,.05)=$S(DFN'="@":"`",1:"")_DFN  ; PATIENT
+ S:$G(REL)'="" FDA(19641.11,IEN,.06)=$S(REL'="@":"`",1:"")_REL  ; RELATIONSHIP
+ S:$G(STATUS)'="" FDA(19641.11,IEN,.07)=STATUS         ; STATUS
+ I $D(ADDR) D
+ . S CT=$NA(ADDR) F  S CT=$Q(@CT) Q:CT=""  D               ; ADDRESS
  . . S LOC=$$UP^XLFSTR($P(@CT,U)),VAL=$P(@CT,U,2)
- . . I LOC[1 S IPT(19641.11,IEN_",",1.1)=VAL Q                 ; STREET ADDRESS 1
- . . I LOC[2 S IPT(19641.11,IEN_",",1.2)=VAL Q                 ; STREET ADDRESS 2
- . . I LOC[3 S IPT(19641.11,IEN_",",1.3)=VAL Q                 ; STREET ADDRESS 3
- . . I LOC="CITY" S IPT(19641.11,IEN_",",1.4)=VAL Q            ; CITY
- . . I LOC="STATE",$$FIND1^DIC(5,,"XM",$$UP^XLFSTR(VAL)) D
- . . . S IPT(19641.11,IEN_",",1.5)=$$FIND1^DIC(5,,"XM",$$UP^XLFSTR(VAL)) Q  ; STATE
- . . I LOC="ZIP" S IPT(19641.11,IEN_",",1.6)=VAL               ; ZIP CODE
- D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
- S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
- I $D(PHONE) D                                          ; PHONE
- . S CT=$NA(PHONE) F  S CT=$Q(@CT) Q:CT=""  D
+ . . I LOC[1 S FDA(19641.11,IEN,1.1)=VAL Q                 ; STREET ADDRESS 1
+ . . I LOC[2 S FDA(19641.11,IEN,1.2)=VAL Q                 ; STREET ADDRESS 2
+ . . I LOC[3 S FDA(19641.11,IEN,1.3)=VAL Q                 ; STREET ADDRESS 3
+ . . I LOC="CITY" S FDA(19641.11,IEN,1.4)=VAL Q            ; CITY
+ . . I LOC="STATE" D  Q                                    ; STATE
+ . . . S VAL=$$FIND1^DIC(5,,"XM",$$UP^XLFSTR(VAL))
+ . . . S:VAL FDA(19641.11,IEN,1.5)="`"_VAL
+ . . I LOC="ZIP" S FDA(19641.11,IEN,1.6)=VAL               ; ZIP CODE
+ D UPDATE^DIE("E","FDA","UIEN","ERR") K FDA
+ I $D(ERR) S RET="-1^"_$G(ERR("DIERR",1,"TEXT",1)) Q
+ S RET=$S($G(UIEN(1)):UIEN(1),1:+IEN)
+ I $D(PHONE) D  Q:$D(ERR)                                  ; PHONE
+ . S CT=$NA(PHONE) F  S CT=$Q(@CT) Q:CT=""  D  Q:$D(ERR)
  . . S LOC=$$UP^XLFSTR($P(@CT,U)) Q:"^H^MC^WP^FAX^O^"'[(U_LOC_U)
- . . S VAL=$TR($P(@CT,U,2),"()- ") Q:VAL=""!(VAL'?.N)
- . . S IPT(19641.14,"?+1,"_IEN_",",.01)=LOC                ; PHONE TYPE
- . . S IPT(19641.14,"?+1,"_IEN_",",.02)=VAL                ; NUMBER
- . . D UPDATE^DIE(,"IPT") K IPT
+ . . S VAL=$TR($P(@CT,U,2),"()- ")
+ . . S IEN=$O(^DSIO(19641.11,+RET,2,"B",LOC,"")) S:IEN="" IEN="?+1"
+ . . S FDA(19641.14,IEN_","_+RET_",",.01)=LOC              ; PHONE TYPE
+ . . S FDA(19641.14,IEN_","_+RET_",",.02)=VAL              ; NUMBER
+ . . D UPDATE^DIE("E","FDA",,"ERR") K FDA
+ . . S:$D(ERR) RET="-1^"_$G(ERR("DIERR",1,"TEXT",1))
  ; *** DIAGNOSIS MULTIPLE
- I $D(PROB) D DEL(IEN) D
- . S CT=$NA(PROB) F  S CT=$Q(@CT) Q:CT=""  D
- . . S IPT(19641.113,"?+1,"_IEN_",",.01)=$$UP^XLFSTR(@CT)
- . . D UPDATE^DIE(,"IPT") K IPT
+ I $D(PROB) D DEL(+RET) D
+ . S CT=$NA(PROB) F  S CT=$Q(@CT) Q:CT=""  D  Q:$D(ERR)
+ . . S FDA(19641.113,"?+1,"_+RET_",",.01)=$$UP^XLFSTR(@CT)
+ . . D UPDATE^DIE("E","FDA",,"ERR") K FDA
+ . . S:$D(ERR) RET="-1^"_$G(ERR("DIERR",1,"TEXT",1))
  Q
  ;
 DEL(IEN) ; Delete DIAGNOSIS Multiple
- N OUT,CT,DIK,DA
+ N OUT,DA,DIK,CT
  D GETS^DIQ(19641.11,IEN_",","3*",,"OUT")
  S DA(1)=IEN,DIK="^DSIO(19641.11,"_DA(1)_",3,"
  S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  S DA=+$QS(CT,2) D ^DIK
@@ -95,7 +101,7 @@ PERSON(RET,DFN,FIND,SEX) ; RPC: DSIO GET PERSON
  ;  ZIP^PHONE HOME^PHONE WORK^PHONE CELL^PHONE FAX^PATIENT^DFN
  ;
  N IEN,NAM,CT,SP
- S RET(0)="-1^PERSON(s) not found."
+ S SEX=$G(SEX),RET(0)="-1^PERSON(s) not found."
  I $G(DFN) D  D P3 Q
  . I $G(FIND) D  Q
  . . Q:'$$P2(FIND)
@@ -108,8 +114,10 @@ PERSON(RET,DFN,FIND,SEX) ; RPC: DSIO GET PERSON
  . . I IEN,$$P2(IEN) S RET(1)=$$P1(IEN)
  . S CT=1,NAM="" F  S NAM=$O(^DSIO(19641.11,"C",DFN,NAM)) Q:NAM=""  D
  . . S IEN=$O(^DSIO(19641.11,"C",DFN,NAM,""))
- . . Q:'$G(SEX)&($$GET1^DIQ(19641.11,IEN_",",.02,"I")'="M")
- . . S RET(CT)=$$P1(IEN),CT=CT+1
+ . . I $G(SEX)="" D  Q
+ . . . Q:$$GET1^DIQ(19641.11,IEN_",",.02,"I")'="M"
+ . . . S RET(CT)=$$P1(IEN),CT=CT+1
+ . . S:$$GET1^DIQ(19641.11,IEN_",",.02,"I")=SEX RET(CT)=$$P1(IEN),CT=CT+1
  . S SP=$$SPOUSE(DFN) D:SP PO(SP)
  ; *** Find the PERSON
  I $G(FIND),$D(^DSIO(19641.11,FIND)) S RET(1)=$$P1(FIND) D P3 Q
@@ -135,7 +143,6 @@ P1(IEN) ; Continue with 19641.11
  S STR=STR_$$PHONE^DSIO1(19641.11,IEN)_U                    ; PHONE NUMBERS 
  S STR=STR_$$NAME^DSIO2(FLD(.05,"E"))_U                     ; PATIENT
  S STR=STR_FLD(.05,"I")                                     ; DFN
- Q:'$G(SEX) STR
  S STR=STR_U_FLD(.06,"E")_U                                 ; RELATIONSHIP
  S STR=STR_FLD(.07,"E")_U                                   ; STATUS
  S STR=STR_$$DG(IEN)                                        ; DIAGNOSIS

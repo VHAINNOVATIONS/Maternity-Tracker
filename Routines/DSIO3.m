@@ -1,5 +1,5 @@
 DSIO3 ;DSS/TFF - DSIO TIU SUPPORT;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -92,10 +92,11 @@ SET(RET,IEN,NOTE,DATA,SUBJ,PREG) ; RPC: DSIO UPDATE A NOTE
  ; If unsuccessful:
  ;   0^0^0^Explanatory text
  ;
- N DFN,DTIUX S RET="0^Not found."
+ N DFN,DTIUX
+ S IEN=+$G(IEN),RET="0^Not found."
  I '$$TM^%ZTLOAD S RET="-1^TASKMAN must be running." Q
  Q:'$$AUTH(IEN,"EDIT RECORD")
- S DFN=$$GET1^DIQ(8925,$G(IEN),.02,"I") Q:'DFN
+ S DFN=$$GET1^DIQ(8925,IEN_",",.02,"I") Q:'DFN
  S DTIUX(1301)=$$NOW^XLFDT
 UPDATE1 ; Continue for Create, Set, and Addendum
  N PFLG,TASK,NOTIN,CT,I,X N:'$D(DTIUX) DTIUX
@@ -121,9 +122,11 @@ UPDATE1 ; Continue for Create, Set, and Addendum
 SPG(DFN,TIEN,PREG) ; Associate TIU note to a Pregnancy
  Q:'$G(PREG) 0
  Q:'$D(^DSIO(19641.13,PREG)) 0
- Q:$$GET1^DIQ(19641.13,PREG_",",.03,"I")'=DFN 0
+ S DFN=+$G(DFN) Q:$$GET1^DIQ(19641.13,PREG_",",.03,"I")'=DFN 0
  N DLAYGO,DIC,DA,X,Y,FDA,ERR
  S DLAYGO=19641.83
+ S TIEN=+$G(TIEN) Q:$$GET1^DIQ(8925,TIEN_",",.02,"I")'=DFN
+ S PREG=+$G(PREG) Q:$$GET1^DIQ(19641.13,PREG_",",.03,"I")'=DFN
  S DIC="^DSIO(19641.83,",DIC(0)="XL",X="`"_DFN D ^DIC Q:+Y<1 0
  S FDA(19641.831,"?+1,"_DFN_",",.01)=TIEN
  S FDA(19641.831,"?+1,"_DFN_",",.02)=PREG
@@ -132,7 +135,7 @@ SPG(DFN,TIEN,PREG) ; Associate TIU note to a Pregnancy
  ;
 ADDEN(RET,IEN,NOTE,DATA,SUBJ) ; RPC: DSIO MAKE ADDENDUM
  N DTIUX S RET="-1^Not authorized to make addenda."
- Q:'$$AUTH(IEN,"MAKE ADDENDUM")
+ Q:'$$AUTH(+$G(IEN),"MAKE ADDENDUM")
  S DTIUX(1202)=DUZ                  ; AUTHOR/DICTATOR
  S DTIUX(1301)=$$NOW^XLFDT          ; REFERENCE DATE
  S:$G(SUBJ)'="" DTIUX(1701)=SUBJ    ; SUBJECT
@@ -176,16 +179,33 @@ GET(RET,IEN,TYP) ; RPC: DSIO GET RECORD TEXT
  ;
 DELETE(RET,IEN,JUST) ; RPC: DSIO DELETE A NOTE
  S RET="-1^Not authorized to delete."
- Q:'$$AUTH(IEN,"DELETE RECORD")
+ Q:'$$AUTH(+$G(IEN),"DELETE RECORD")
  D NEEDJUST^TIUSRVA(.RET,IEN) I RET D  Q
  . S:$G(JUST)="" RET="-1^Justification for deletion is required."
  ; *** If LCK is TRUE then FAILED to lock
  S RET=$$LCK(IEN) I RET S $P(RET,U)=-1 Q
  D DELETE^TIUSRVP(.RET,IEN,$G(JUST))
- I RET<1 S RET=1
+ I RET<1 S RET=1 D
+ . D D16(IEN),D831(IEN)
  E  S $P(RET,U)=-1
  ; *** UNLOCK is always TRUE
  D UNLCK(IEN)
+ Q
+D16(IEN) ; Delete DSIO OBSERVATIONS References
+ Q:'$G(IEN)  Q:$D(^TIU(8925,IEN))
+ N ND,DA,DIK
+ S ND=0 F  S ND=$O(^DSIO(19641.12,ND)) Q:'ND  D
+ . S DA(1)=ND,DIK="^DSIO(19641.12,"_ND_",2,"
+ . S DA=0 F  S DA=$O(^DSIO(19641.12,ND,2,DA)) Q:'DA  D
+ . . I $P(^DSIO(19641.12,ND,2,DA,0),U)=(IEN_";TIU(8925,") D ^DIK
+ Q
+D831(IEN) ; Delete DSIO PREGNANCY-NOTE References
+ Q:'$G(IEN)  Q:$D(^TIU(8925,IEN))
+ N ND,DA,DIK
+ S ND=0 F  S ND=$O(^DSIO(19641.83,ND)) Q:'ND  D
+ . S DA(1)=ND,DIK="^DSIO(19641.83,"_ND_",1,"
+ . S DA=0 F  S DA=$O(^DSIO(19641.83,ND,1,DA)) Q:'DA  D
+ . . I $P(^DSIO(19641.83,ND,1,DA,0),U)=IEN D ^DIK
  Q
  ;
 SIGN(RET,IEN,SIG) ; RPC: DSIO SIGN A NOTE
@@ -193,6 +213,7 @@ SIGN(RET,IEN,SIG) ; RPC: DSIO SIGN A NOTE
  ; $$ENCRYP^XUSRB1 - DEBUG
  ;
  N ACT
+ S IEN=+$G(IEN),SIG=$G(SIG)
  D SAVED^TIUSRVP1(.RET,IEN) I RET<1 S $P(RET,U)=-1 Q
  ; *** If LCK is TRUE then FAILED to lock
  S RET=$$LCK(IEN) I RET S $P(RET,U)=-1 Q
@@ -279,7 +300,7 @@ L1(IEN) ; Continue
  ;
 DAD(IEN) ; Create Addendum List
  N CT,RT
- S CT=0 F  S CT=$O(^TIU(8925,"DAD",IEN,CT)) Q:'CT  S RT=$G(RT)_$S($D(RT):"|",1:"")_CT
+ S CT=0 F  S CT=$O(^TIU(8925,"DAD",+$G(IEN),CT)) Q:'CT  S RT=$G(RT)_$S($D(RT):"|",1:"")_CT
  Q $G(RT)
  ;
 PG(IEN,PREG) ; Is the Note and PREGNACY associated?
@@ -290,12 +311,11 @@ PG(IEN,PREG) ; Is the Note and PREGNACY associated?
 PREG(IEN) ; Get associated PREGNANCY
  Q:'$G(IEN) ""
  I '$G(DFN) N DFN S DFN=$$GET1^DIQ(8925,IEN_",",.02,"I") Q:'DFN ""
- N IENS
- S IENS=$O(^DSIO(19641.83,"N",IEN,DFN,"")) Q:'IENS ""
+ N IENS S IENS=$O(^DSIO(19641.83,"N",IEN,DFN,"")) Q:'IENS ""
  Q $$GET1^DIQ(19641.831,IENS_","_DFN_",",.02,"I")
  ;
 STATUS(IEN) ; Check the status of the note, can this user view it
- Q:'$$AUTH(IEN,"VIEW") 0
+ Q:'$$AUTH(+$G(IEN),"VIEW") 0
  Q 1
  ;
  ; ---------------------------------- COMMON ----------------------------------
@@ -311,7 +331,7 @@ TITLE(TITLE) ; Find Title IEN from TITLE as Alpha or 8925 IEN
  ;
 AUTH(IEN,ACT) ; TIU Authorization
  N RET
- D CANDO^TIUSRVA(.RET,IEN,ACT)
+ D CANDO^TIUSRVA(.RET,+$G(IEN),$G(ACT))
  Q +$G(RET)
  ;
 LCK(IEN) ; TIU Lock Record
@@ -319,9 +339,9 @@ LCK(IEN) ; TIU Lock Record
  ; 0 if the LOCK was GRANTED
  ; 1^<Explanatory Message> if LOCK was DENIED
  ;
- D LOCK^TIUSRVP(.OUT,IEN)
+ D LOCK^TIUSRVP(.OUT,+$G(IEN))
  Q $G(OUT)
  ;
 UNLCK(IEN) ; TIU Unlock Record
- N OUT D UNLOCK^TIUSRVP(.OUT,IEN)
+ N OUT D UNLOCK^TIUSRVP(.OUT,+$G(IEN))
  Q

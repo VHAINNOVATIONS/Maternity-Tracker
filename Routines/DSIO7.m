@@ -1,5 +1,5 @@
 DSIO7 ;DSS/TFF - DSIO VPR FOR IHE;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -26,22 +26,21 @@ DSIO7 ;DSS/TFF - DSIO VPR FOR IHE;08/26/2016 16:00
  Q
  ;
 GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; RPC: DSIO VPR GET PATIENT DATA
- N ICN,VPRI,VPRTOTL,VPRTEXT
+ N ICN,X,VPRI,VPRTOTL,VPRTEXT
  S VPR=$NA(^TMP("VPR",$J)) K @VPR
- S VPRTEXT=+$G(FILTER("text")) ;include report/document text?
+ S VPRTEXT=+$G(FILTER("text")) ; Include Report/Document Text?
  ;
- ; parse & validate input parameters
+ ; Parse & Validate Input Parameters
  S ICN=+$P($G(DFN),";",2),DFN=+$G(DFN),ID=$G(ID)
  I DFN<1,ICN S DFN=+$$GETDFN^MPIF001(ICN)
- S TYPE=$$LOW^XLFSTR($G(TYPE)) I TYPE="" D
- .S TYPE=$$ALL^VPRD_";author;participant"
- I TYPE'="new",DFN<1!'$D(^DPT(DFN)) D ERR^VPRD(1,DFN) G GTQ
+ S TYPE=$$LOW^XLFSTR($G(TYPE)) S:TYPE="" TYPE=$$ALL^VPRD_";author;participant"
+ I TYPE'="new",'DFN!('$D(^DPT(DFN))) D ERR^VPRD(1,DFN) G GTQ
  S:'$G(START) START=1410102 S:'$G(STOP) STOP=4141015 S:'$G(MAX) MAX=9999
- I START,STOP,STOP<START N X S X=START,START=STOP,STOP=X  ;switch
+ I START,STOP,STOP<START S X=START,START=STOP,STOP=X
  I STOP,$L(STOP,".")<2 S STOP=STOP_".24"
  I ID="",$D(FILTER("id")) S ID=FILTER("id")
  ;
- ; extract data
+ ; Extract Data
  N VPRTYPE,VPRP,VPRHDR,VPRTAG,VPRTN
  S VPRTYPE=TYPE D ADD^VPRD("<results version='1.1' timeZone='"_$$TZ^XLFDT_"' >")
  F VPRP=1:1:$L(VPRTYPE,";") S VPRTAG=$P(VPRTYPE,";",VPRP) I $L(VPRTAG) D
@@ -50,7 +49,7 @@ GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; RPC: DSIO VPR GET PATIENT DATA
  . D @(VPRTN_"(DFN,START,STOP,MAX,ID)")
  . S @VPR@(VPRHDR)=@VPR@(VPRHDR)_" total='"_+$G(VPRTOTL)_"' >" D ADD^VPRD("</"_VPRTAG_">")
  D ADD^VPRD("</results>")
-GTQ ; end
+GTQ ; End
  Q
  ;
 RTN(X) ; -- Return name of VPRDxxxx routine for clinical domain X
@@ -67,37 +66,37 @@ RTN(X) ; -- Return name of VPRDxxxx routine for clinical domain X
  ;                            PATIENT/DEMOGRAPHICS
  ;=============================================================================
  ;
-EN(DFN,BEG,END,MAX,ID) ; -- find current patient demographics
+EN(DFN,BEG,END,MAX,ID) ; -- Find current patient demographics
  ; [BEG,END,MAX,ID not currently used]
- S DFN=+$G(DFN) Q:DFN<1  ;invalid patient
+ S DFN=+$G(DFN) Q:DFN<1
  N PAT,SYS S SYS=$$SITE^VASITE
  D DEM^VPRDPT,SVC^VPRDPT,PRF^VPRDPT,ATC^VPRDPT,SUPP^VPRDPT
  D ALIAS^VPRDPT,FAC,GAR,BIR
  I $D(PAT)>9 D XMLPD(.PAT)
  Q
  ;
-FAC ;-treating facilities [see FACLIST^ORWCIRN]
- N IFN S DFN=+$G(DFN) Q:DFN<1
- N VPRY,HOME,LAST,I,X,IEN
+FAC ; -- Treating facilities [see FACLIST^ORWCIRN]
+ N IFN,VPRY,HOME,LAST,I,X,IEN
+ S DFN=+$G(DFN) Q:DFN<1
  I $L($T(TFL^VAFCTFU1)) D TFL^VAFCTFU1(.VPRY,DFN)
- S HOME=+$P($G(^DPT(DFN,"MPI")),U,3) ;home facility
- I $P($G(VPRY(1)),U)<0 D  Q  ;not setup
+ S HOME=+$P($G(^DPT(DFN,"MPI")),U,3)   ; Home Facility
+ I $P($G(VPRY(1)),U)<0 D  Q            ; Not Setup
  . S X=$O(^AUPNVSIT("AA",DFN,0)),LAST=$S(X:9999999-$P(X,"."),1:"")
  . S X=$$SITE^VASITE
  . S PAT("facility",+X)=$P(X,U,3)_U_$P(X,U,2)_U_LAST_U_$$GET1^DIQ(4,+X_",",60)_U_$$GET1^DIQ(4,+X_",",41.99)
- . ;street1^st2^city^state^zip
+ . ; Street1^Street2^City^State^Zip
  . S $P(PAT("facility",+X),U,6)=$$GET1^DIQ(4,+X_",",1.01)
  . S $P(PAT("facility",+X),U,7)=$$GET1^DIQ(4,+X_",",1.02)
  . S $P(PAT("facility",+X),U,8)=$$GET1^DIQ(4,+X_",",1.03)
  . S $P(PAT("facility",+X),U,9)=$$GET1^DIQ(4,+X_",",.02)
  . S $P(PAT("facility",+X),U,10)=$$GET1^DIQ(4,+X_",",1.04)
  S I=0 F  S I=$O(VPRY(I)) Q:I<1  D
- . S X=VPRY(I) Q:$P(X,U)=""  ;unknown
+ . S X=VPRY(I) Q:$P(X,U)=""
  . S IEN=+$$IEN^XUAF4($P(X,U))
  . I +X=776!(+X=200) S $P(X,U,2)="DEPT. OF DEFENSE"
  . S PAT("facility",IEN)=$P(X,U,1,3) ;stn# ^ name ^ last date ^ VistA domain ^ npi
  . S $P(PAT("facility",IEN),U,4)=$$GET1^DIQ(4,IEN_",",60)_U_$$GET1^DIQ(4,IEN_",",41.99)
- . ;street1^st2^city^state^zip
+ . ; Street1^Street2^City^State^Zip
  . S $P(PAT("facility",IEN),U,6)=$$GET1^DIQ(4,IEN_",",1.01)
  . S $P(PAT("facility",IEN),U,7)=$$GET1^DIQ(4,IEN_",",1.02)
  . S $P(PAT("facility",IEN),U,8)=$$GET1^DIQ(4,IEN_",",1.03)
@@ -106,12 +105,12 @@ FAC ;-treating facilities [see FACLIST^ORWCIRN]
  . I IEN=HOME S $P(PAT("facility",IEN),U,11)=1
  Q
  ;
-GAR ;-guardian
- S PAT("guardian")=$$GET1^DIQ(2,DFN_",",.2912)_U_$$GET1^DIQ(2,DFN_",",.2922) ;va^civil
+GAR ; -- Guardian
+ S PAT("guardian")=$$GET1^DIQ(2,DFN_",",.2912)_U_$$GET1^DIQ(2,DFN_",",.2922)  ; va^civil
  Q
  ;
-BIR ;-birthplace
- S PAT("birthplace")=$$GET1^DIQ(2,DFN_",",.092)_U_$$GET1^DIQ(2,DFN_",",.093) ;city^state
+BIR ; -- Birthplace
+ S PAT("birthplace")=$$GET1^DIQ(2,DFN_",",.092)_U_$$GET1^DIQ(2,DFN_",",.093)  ; city^state
  Q
  ;
 XMLPD(ITEM) ; -- Return patient data as XML in @VPR@(n)
@@ -149,7 +148,7 @@ XMLPD(ITEM) ; -- Return patient data as XML in @VPR@(n)
  D ADD^VPRDPT("</patient>")
  Q
  ;
-ADDFAC(X) ;
+ADDFAC(X) ; -- Facility
  N IEN,I S IEN=+$P(X,U)
  S Y=Y_"code='"_$P(X,U)_"' name='"_$$ESC^VPRD($P(X,U,2))_"'"
  S Y=Y_$S($P(X,U,3):" latestDate='"_$P($P(X,U,3),".")_"'",1:"")
@@ -187,7 +186,7 @@ ADDB(X) ; -- XML birthplace node from X=city^state
  ;                                    AUTHOR
  ;=============================================================================
  ;
-AUT(DFN,BEG,END,MAX,ID) ; -- find current user information (Author)
+AUT(DFN,BEG,END,MAX,ID) ; -- Find current user information (Author)
  ; [BEG,END,MAX,ID not currently used]
  ;
  ; IF PRIMARY PROVIDER OF THE PATIENT USE THE FOLLOWING
@@ -228,14 +227,14 @@ XMLA(ITEM) ; -- Return current user information as XML in @VPR@(n)
  ;                                  PARTICIPANT
  ;=============================================================================
  ;
-PAR(DFN,BEG,END,MAX,ID) ; -- find patient family information (Participant)
+PAR(DFN,BEG,END,MAX,ID) ; -- Find patient family information (Participant)
  ; [BEG,END,MAX,ID not currently used]
  S DFN=+$G(DFN) Q:DFN<1  ;invalid patient
  N PAT,OUT,ERR,I,RT,FLE,FOF,FOFIEN
  D LIST^DIC(408.12,,"@;.01;.02;.03","P",,,,,"I $P(^(0),U)=DFN",,"OUT","ERR")
  I $D(OUT) S I=$NA(OUT) F  S I=$Q(@I) Q:I=""  D
  . Q:$QS(I,2)<1
- . ;name^relationship
+ . ; name^relationship
  . Q:$P(@I,U,3)="SELF"
  . S PAT("family_member",$QS(I,2))=$P(@I,U,4)_U_$P(@I,U,3)
  . ; POINTER TO (2) OR (408.13)
@@ -256,8 +255,9 @@ PAR(DFN,BEG,END,MAX,ID) ; -- find patient family information (Participant)
  Q
  ;
 ATCS(FLE,IEN) ;-address & telecom
- ;street1^st2^st3^city^state^zip
- ;home^cell^work phones
+ ;
+ ; Street1^Street2^City^State^Zip
+ ; Home^Cell^Work Phones
  N FLD I FLE=2!(FLE=200) D  Q
  . S PAT("address")=$$GET1^DIQ(FLE,IEN_",",.111)
  . F FLD=.112,.113,.114,.115,.116 D

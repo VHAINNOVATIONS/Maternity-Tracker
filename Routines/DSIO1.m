@@ -1,5 +1,5 @@
 DSIO1 ;DSS/TFF - DSIO GENERAL RPCS;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -99,7 +99,7 @@ INFO(RET,DFN) ; RPC: DSIO GET PATIENT INFORMATION
  ;
 PATSET(RET,DFN,FLD,VAL) ; RPC: DSIO SET PATIENT INFORMATION
  S RET=0 I '$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
- N TRVAL,OUT,IPT,ERR
+ N TRVAL,OUT,FDA,ERR
  I $G(FLD)=.01 S RET="-1^You cannot change the PATIENT NAME." Q
  I '$$VFIELD^DILFD(19641,$G(FLD)) S RET="-1^Not a valid field." Q
  I $G(FLD)=999.22 D EMAIL Q
@@ -107,15 +107,17 @@ PATSET(RET,DFN,FLD,VAL) ; RPC: DSIO SET PATIENT INFORMATION
  I "^.04^1.2^"[(U_FLD_U) S RET="-1^This field cannot be set directly." Q
  S TRVAL=$S($$GET1^DID(19641,FLD,,"TYPE")="DATE/TIME":$$DT^DSIO2($G(VAL)),1:$G(VAL))
  D VAL^DIE(19641,DFN,FLD,,TRVAL,.OUT) I TRVAL'=OUT S RET="-1^The value is not valid." Q
- S IPT(19641,DFN_",",FLD)=TRVAL
- D FILE^DIE("E","IPT","ERR") I '$D(ERR) S RET=1
+ S FDA(19641,DFN_",",FLD)=TRVAL
+ D FILE^DIE("E","FDA","ERR")
+ S RET=$S($D(ERR):-1,1:1)
  Q
  ;
 EMAIL ; Update the patient's email address
  I $G(VAL)="" S RET="-1^Cannot leave the patient's email address blank." Q
  D VAL^DIE(2,DFN,.133,,VAL,.OUT) I VAL'=OUT S RET="-1^The value is not valid." Q
- S IPT(2,DFN_",",.133)=VAL
- D FILE^DIE("E","IPT","ERR") I '$D(ERR) S RET=1
+ S FDA(2,DFN_",",.133)=VAL
+ D FILE^DIE("E","FDA","ERR")
+ S RET=$S($D(ERR):-1,1:1)
  Q
  ;
  ; ----------------------------- PATIENT TRACKING -----------------------------
@@ -355,7 +357,7 @@ SELECT(RET,TYP) ; RPC: DSIO SELECT LIST
  . S DA=$$FIND1^DIC(FILE,,"X",$$UP^XLFSTR($P(TYP,U,2))) D:DA ^DIK
  I $P(TYP,U,3)="A" D
  . S IPT(FILE,"?+1,",.01)=$$UP^XLFSTR($P(TYP,U,2))
- . D UPDATE^DIE(,"IPT")
+ . D UPDATE^DIE("E","IPT")
  S I=0,CT="" F  S CT=$O(^DSIO(FILE,"B",CT)) Q:CT=""  D
  . Q:$$GET1^DIQ(FILE,$O(^DSIO(FILE,"B",CT,""))_",",.02,"I")
  . S RET(I)=$$TITLE^XLFSTR(CT),I=I+1
@@ -396,7 +398,7 @@ SENT(RET,IEN,NAME,TYP,ACT,PCON,ADDR,PHONE,AB) ; RPC: DSIO SAVE EXTERNAL ENTITY
  . . I LOC="ZIP" S ZFLG=0 D                                   ; ZIP CODE
  . . . S VAL=$TR(VAL,"-") Q:VAL'?.N
  . . . S ZFLG=1,IPT(19641.1,IEN_",",1.6)=VAL
- D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
+ D UPDATE^DIE("E","IPT",$S($G(IEN):"",1:"IEN")) K IPT
  S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
  I $D(PHONE) D                                          ; PHONE
  . S CT=$NA(PHONE) F  S CT=$Q(@CT) Q:CT=""  D
@@ -405,7 +407,7 @@ SENT(RET,IEN,NAME,TYP,ACT,PCON,ADDR,PHONE,AB) ; RPC: DSIO SAVE EXTERNAL ENTITY
  . . S VAL=$TR($P(@CT,U,2),"()- ") Q:VAL=""!(VAL'?.N)
  . . S IPT(19641.15,"?+1,"_IEN_",",.01)=LOC                   ; PHONE TYPE
  . . S IPT(19641.15,"?+1,"_IEN_",",.02)=VAL                   ; NUMBER
- . . S PFLG=1 D UPDATE^DIE(,"IPT") K IPT
+ . . S PFLG=1 D UPDATE^DIE("E","IPT") K IPT
  I $D(PFLG),'PFLG S FLG=1
  I $D(ZFLG),'ZFLG S FLG=$G(FLG)_2
  Q:'$D(FLG)

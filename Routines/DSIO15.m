@@ -1,5 +1,5 @@
 DSIO15 ;DSS/TFF - DSIO PREGNANCY;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ;
  ;
@@ -17,7 +17,7 @@ PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,HRD,AB) ; RPC: DSIO SAVE PRE
  ;    OBP = OB (VARIABLE POINTER)
  ;          NVA.IEN (NON-VA) (19641.1)
  ;           VA.IEN (VA) (200)
- ;    FAP = FACILITY (VARIABLE POINTER)
+ ;    FAP = FACILITY(VARIABLE POINTER)
  ;          NVA.IEN (NON-VA) (19641.1)
  ;           VA.IEN (VA) (4)
  ;    BAB = NUMBER
@@ -43,81 +43,82 @@ PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,HRD,AB) ; RPC: DSIO SAVE PRE
  ; RETURN: IEN^IEN;BABY|...
  ;         OR -1^MESSAGE
  ;
- N EDC,END,EDD,CT,FLD,IENS,IPT,STR S RET=-1
- I $G(IEN)?.N1"@" D DELETE(+IEN) Q
+ N EDC,END,EDD,CT,FLD,IENS,FDA,UIEN,ERR,OUT,STR
+ S RET=-1 I $G(IEN)?.N1"@" D DELETE(+IEN) Q
  S DATES=$G(DATES)
- S EDC=$P(DATES,U),END=$P(DATES,U,2),EDD=$P(DATES,U,3)
+ S EDC=$$DT^DSIO2($P(DATES,U))
+ S END=$$DT^DSIO2($P(DATES,U,2))
+ S EDD=$$DT^DSIO2($P(DATES,U,3))
  ; *** POST PREGNANCY DATA
- F CT=1:1:8 S FLD("3."_CT)=$P($G(POST),U,CT)
+ S POST=$G(POST) F CT=1:1:8 S FLD("3."_CT)=$P(POST,U,CT)
  D:'$G(AB) AB^DSIO2("EDC,END,EDD,FOF,OBP,FAP,BAB,FLD")
- S:$G(EDC)'="@" EDC=$$DT^DSIO2($G(EDC))
- S:$G(END)'="@" END=$$DT^DSIO2($G(END))
- S:$G(EDD)'="@" EDD=$$DT^DSIO2($G(EDD))
- S TYP=$$UP^XLFSTR($E($G(TYP))) S:TYP=""!(TYP="C") TYP=$S(EDD>DT:"C",EDD&(EDD<DT):"H",1:"")
+ S TYP=$$UP^XLFSTR($E($G(TYP)))
+ S:TYP=""!(TYP="C") TYP=$S(EDD>DT:"C",EDD&(EDD<DT):"H",1:"")
  I '$G(IEN) D  Q:$P(RET,U,2)'=""
  . I '$$CHECK^DSIO2($G(DFN)) S RET="-1^Patient entry not found." Q
- . S IENS="+1,",IPT(19641.13,IENS,.01)=$$NOW^XLFDT               ; DATE RECORDED
+ . S IENS="+1,",FDA(19641.13,IENS,.01)=$$NOW^XLFDT               ; DATE RECORDED
  . S:TYP="" TYP="C"
  S:$G(IEN) IENS=+IEN_","
- S:EDC'="" IPT(19641.13,IENS,.02)=EDC                            ; EDC
- I $G(DFN),$D(^DPT(DFN)) S IPT(19641.13,IENS,.03)=DFN            ; PATIENT
- S:TYP'="" IPT(19641.13,IENS,.04)=TYP                            ; STATUS
- S:END'="" IPT(19641.13,IENS,.07)=END                            ; END
- I $G(OBP)'="",$$VPG(.OBP,0) S IPT(19641.13,IENS,.08)=OBP        ; OB
- I $G(FAP)'="",$$VPG(.FAP,1) S IPT(19641.13,IENS,.09)=FAP        ; FACILITY
- S IPT(19641.13,IENS,1.1)=DUZ                                    ; UPDATED BY
- S:$G(FLD(3.1))'="" IPT(19641.13,IENS,3.1)=$$G1^DSIO4(FLD(3.1))  ; GESTATIONAL AGE
- S:$G(FLD(3.2))'="" IPT(19641.13,IENS,3.2)=FLD(3.2)              ; LENGTH OF LABOR
- S:$G(FLD(3.3))'="" IPT(19641.13,IENS,3.3)=FLD(3.3)              ; TYPE OF DELIVERY
- S:$G(FLD(3.4))'="" IPT(19641.13,IENS,3.4)=FLD(3.4)              ; ANESTHESIA
+ S:EDC'="" FDA(19641.13,IENS,.02)=EDC                            ; EDC
+ I $G(DFN),$D(^DPT(DFN)) S FDA(19641.13,IENS,.03)=DFN            ; PATIENT
+ S:TYP'="" FDA(19641.13,IENS,.04)=TYP                            ; STATUS
+ S:END'="" FDA(19641.13,IENS,.07)=END                            ; END
+ I $G(OBP)'="",$$VPG(.OBP,0) S FDA(19641.13,IENS,.08)=OBP        ; OB
+ I $G(FAP)'="",$$VPG(.FAP,1) S FDA(19641.13,IENS,.09)=FAP        ; FACILITY
+ S FDA(19641.13,IENS,1.1)=DUZ                                    ; UPDATED BY
+ S:$G(FLD(3.1))'="" FDA(19641.13,IENS,3.1)=$$G1^DSIO4(FLD(3.1))  ; GESTATIONAL AGE
+ S:$G(FLD(3.2))'="" FDA(19641.13,IENS,3.2)=FLD(3.2)              ; LENGTH OF LABOR
+ S:$G(FLD(3.3))'="" FDA(19641.13,IENS,3.3)=FLD(3.3)              ; TYPE OF DELIVERY
+ S:$G(FLD(3.4))'="" FDA(19641.13,IENS,3.4)=FLD(3.4)              ; ANESTHESIA
  S FLD(3.5)=$E($$UP^XLFSTR(FLD(3.5)),1)
  S FLD(3.5)=$S(FLD(3.5)="Y"!(FLD(3.5)="T"):1,FLD(3.5)="N"!(FLD(3.5)="F"):0,1:"")
- S:$G(FLD(3.5))'="" IPT(19641.13,IENS,3.5)=FLD(3.5)              ; PRETERM DELIVERY
- S:$G(FLD(3.6))'="" IPT(19641.13,IENS,3.6)=FLD(3.6)              ; OUTCOME
- S:$G(FLD(3.7))'="" IPT(19641.13,IENS,3.7)=FLD(3.7)              ; HIGH RISK FLAG
- S:$G(FLD(3.8))'="" IPT(19641.13,IENS,3.8)=FLD(3.8)              ; DAYS IN HOSPITAL
- D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
- S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
- S DFN=$$GET1^DIQ(19641.13,IEN_",",.03,"I")
+ S:$G(FLD(3.5))'="" FDA(19641.13,IENS,3.5)=FLD(3.5)              ; PRETERM DELIVERY
+ S:$G(FLD(3.6))'="" FDA(19641.13,IENS,3.6)=FLD(3.6)              ; OUTCOME
+ S:$G(FLD(3.7))'="" FDA(19641.13,IENS,3.7)=FLD(3.7)              ; HIGH RISK FLAG
+ S:$G(FLD(3.8))'="" FDA(19641.13,IENS,3.8)=FLD(3.8)              ; DAYS IN HOSPITAL
+ D UPDATE^DIE(,"FDA","UIEN","ERR")
+ I $D(ERR) S RET="-1^"_$G(ERR("DIERR",1,"TEXT",1)) Q
+ S RET=$S($G(UIEN(1)):UIEN(1),1:+IEN)
+ S DFN=$$GET1^DIQ(19641.13,RET_",",.03,"I")
  I $G(FOF)'="" D
  . S FOF=$$FOF^DSIO9(DFN,FOF)
- . S IPT(19641.13,IEN_",",.05)=FOF                               ; FATHER OF FETUS/BABY
- S:EDD'="" IPT(19641.13,IEN_",",.06)=$S(EDD="@":"@",1:$$EDD(EDD,IEN))  ; EDD
- D:$D(IPT) UPDATE^DIE(,"IPT") K IPT
+ . S FDA(19641.13,RET_",",.05)=FOF                               ; FATHER OF FETUS/BABY
+ S:EDD'="" FDA(19641.13,RET_",",.06)=$S(EDD="@":"@",1:$$EDD(EDD,RET))  ; EDD
+ D:$D(FDA) UPDATE^DIE(,"FDA") K FDA
  ; *** BABIES
  I $G(BAB)'="" D
- . I BAB="+" S RET=IEN_U_$$BAB("+",IEN) Q
+ . I BAB="+" S OUT=RET_U_$$BAB("+",RET) Q
  . F CT=1:1:$L(BAB,",") D
- . . I $P(BAB,",",CT) S STR=$G(STR)_$$BAB($P(BAB,",",CT),IEN)_"|"
+ . . I $P(BAB,",",CT) S STR=$G(STR)_$$BAB($P(BAB,",",CT),RET)_"|"
  . Q:'$D(STR)
  . I $E(STR,$L(STR))="|" S STR=$E(STR,1,($L(STR)-1))
- . S RET=IEN_U_STR
+ . S RET=RET_U_STR
  ; *** COMMENTS
  I $D(COM)>9 K ^TMP($J,"DSIO PREG") D
  . D XY^DSIO2(.COM,$NA(^TMP($J,"DSIO PREG")))
- . D WP^DIE(19641.13,IEN_",",4,"K","^TMP($J,""DSIO PREG"")")
+ . D WP^DIE(19641.13,+RET_",",4,"K","^TMP($J,""DSIO PREG"")")
  . K ^TMP($J,"DSIO PREG")
  I '$G(AB)&('$D(COM)!($G(COM(+$O(COM(""))))="")) D
  . K ^TMP($J,"DSIO PREG") S ^TMP($J,"DSIO PREG",1)=""
- . D WP^DIE(19641.13,IEN_",",4,"K","^TMP($J,""DSIO PREG"")")
+ . D WP^DIE(19641.13,+RET_",",4,"K","^TMP($J,""DSIO PREG"")")
  . K ^TMP($J,"DSIO PREG")
- ; *** HIGH RISK DESCRIPTION
+ ; *** HIGH RISK DESCRFDAION
  I $D(HRD)>9 K ^TMP($J,"DSIO PREG") D
  . D XY^DSIO2(.HRD,$NA(^TMP($J,"DSIO PREG")))
- . D WP^DIE(19641.13,IEN_",",5,"K","^TMP($J,""DSIO PREG"")")
+ . D WP^DIE(19641.13,+RET_",",5,"K","^TMP($J,""DSIO PREG"")")
  . K ^TMP($J,"DSIO PREG")
  I '$G(AB)&('$D(HRD)!($G(HRD(+$O(HRD(""))))="")) D
  . K ^TMP($J,"DSIO PREG") S ^TMP($J,"DSIO PREG",1)=""
- . D WP^DIE(19641.13,IEN_",",5,"K","^TMP($J,""DSIO PREG"")")
+ . D WP^DIE(19641.13,+RET_",",5,"K","^TMP($J,""DSIO PREG"")")
  . K ^TMP($J,"DSIO PREG")
  Q
  ;
 VPG(VAL,TYP) ; Validate variable pointer for Pregnancy File
- Q:VAL="@" 1
  N LOC,IEN,FLG
+ S VAL=$G(VAL),TYP=$G(TYP) Q:VAL="@" 1
  S LOC=$P(VAL,"."),IEN=+$P(VAL,".",2)
  Q:"^NVA^VA^"'[(U_LOC_U) 0
- I 'TYP D  Q:$D(FLG) 0
+ I TYP D  Q:$D(FLG) 0
  . I (LOC="NVA"&('$D(^DSIO(19641.1,IEN))))!(LOC="VA"&('$D(^VA(200,IEN)))) S FLG=1
  . S VAL=IEN_";VA(200,"
  I TYP D  Q:$D(FLG) 0
@@ -128,19 +129,25 @@ VPG(VAL,TYP) ; Validate variable pointer for Pregnancy File
  ;
 EDD(DATE,PIEN) ; Create an EDD record and return the IEN
  Q:'$G(PIEN) ""
- N DFN,FLG,IPT,IEN
+ N DFN,FLG,FDA,IEN
+ S DATE=$$DT^DSIO2($G(DATE)) Q:'$L(DATE) ""
  S DFN=$$GET1^DIQ(19641.13,PIEN_",",.03,"I") Q:'DFN ""
  S FLG=$O(^DSIO(19641.03,"C",DFN,DATE,"")) Q:FLG FLG
- S IPT(19641.03,"+1,",.01)=DATE            ; ESTIMATED DELIVERY DATE
- S IPT(19641.03,"+1,",.02)=DFN             ; PATIENT
- S IPT(19641.03,"+1,",.03)=DUZ             ; ENTERED BY
- S IPT(19641.03,"+1,",.04)=$$NOW^XLFDT     ; DATE ENTERED
- S IPT(19641.03,"+1,",2.1)=PIEN
- D UPDATE^DIE(,"IPT","IEN")
+ S FDA(19641.03,"+1,",.01)=DATE          ; ESTIMATED DELIVERY DATE
+ S FDA(19641.03,"+1,",.02)=DFN           ; PATIENT
+ S FDA(19641.03,"+1,",.03)=DUZ           ; ENTERED BY
+ S FDA(19641.03,"+1,",.04)=$$NOW^XLFDT   ; DATE ENTERED
+ S FDA(19641.03,"+1,",2.1)=PIEN          ; PREGNANCY
+ D UPDATE^DIE(,"FDA","IEN") K FDA
  Q $G(IEN(1))
  ;
 BAB(VAL,PIEN) ; Record baby to pregnancy
- N DIK,DA,X,Y,IPT,IEN,NUM
+ ;
+ ;    ADD: "+" OR # (A Number)
+ ; DELETE: #@ (3@ would delete baby 3)
+ ;
+ N IEN,DIK,DA,FDA,NUM,UIEN,ERR,OUT
+ S VAL=$G(VAL) Q:'$G(PIEN) ""
  I '$D(DFN) N DFN S DFN=$$GET1^DIQ(19641.13,PIEN_",",.03,"I")
  Q:'DFN ""
  S IEN=$O(^DSIO(19641.112,"C",DFN,PIEN,+VAL,""))
@@ -148,19 +155,21 @@ BAB(VAL,PIEN) ; Record baby to pregnancy
  . Q:'IEN
  . S DA=IEN,DIK="^DSIO(19641.112," D ^DIK
  . ; *** Delete from Pregnancy
- . S DA=$O(^DSIO(19641.13,PIEN,2,"B",IEN,""))
- . S DA(1)=PIEN,DIK="^DSIO(19641.13,"_DA(1)_",2," D ^DIK
- S:'IEN IEN="+1"
- S (NUM,IPT(19641.112,IEN_",",.01))=$$NUM    ; NUMBER
- S IPT(19641.112,IEN_",",.02)=DFN            ; PATIENT
- S IPT(19641.112,IEN_",",.03)=PIEN           ; PREGNANCY
- K IEN D UPDATE^DIE(,"IPT","IEN") Q:'$G(IEN(1)) ""
- S IPT(19641.132,"+1,"_PIEN_",",.01)=IEN(1)
- D UPDATE^DIE(,"IPT")
- Q IEN(1)_";"_NUM
+ . S DA=$O(^DSIO(19641.13,PIEN,2,"B",IEN,"")),DA(1)=PIEN
+ . S DIK="^DSIO(19641.13,"_DA(1)_",2," D ^DIK
+ I 'IEN S IEN="+1",NUM=$$NUM
+ E  S NUM=$$GET1^DIQ(19641.112,IEN_",",.01)
+ S FDA(19641.112,IEN_",",.01)=NUM        ; NUMBER
+ S FDA(19641.112,IEN_",",.02)=DFN        ; PATIENT
+ S FDA(19641.112,IEN_",",.03)=PIEN       ; PREGNANCY
+ D UPDATE^DIE(,"FDA","UIEN","ERR") K FDA Q:$D(ERR) ""
+ S OUT=$S($G(UIEN(1)):UIEN(1),1:+IEN)
+ S FDA(19641.132,"?+1,"_PIEN_",",.01)=OUT
+ D UPDATE^DIE(,"FDA",,"ERR") Q:$D(ERR) ""
+ Q OUT_";"_NUM
  ;
 NUM() ; Set Baby Number for new entries
- Q $O(^DSIO(19641.112,"C",DFN,PIEN,""),-1)+1
+ Q $O(^DSIO(19641.112,"C",+$G(DFN),+$G(PIEN),""),-1)+1
  ;
 PREGG(RET,IEN,DFN,SORT,NCOM) ; RPC: DSIO GET PREG DETAILS
  ;
@@ -192,7 +201,6 @@ PREGG(RET,IEN,DFN,SORT,NCOM) ; RPC: DSIO GET PREG DETAILS
  . . D P1(IEN,RCT)
  S:$G(TS) @RET@(0)=TS
  Q
- ;
 P1(IEN,ND) ; Continue
  N OUT,CT,FLD,STR,HT
  D GETS^DIQ(19641.13,IEN_",","*","IE","OUT") Q:'$D(OUT)
@@ -227,7 +235,7 @@ P1(IEN,ND) ; Continue
  ;
 FETUS(IEN) ; Return Baby String as IEN;Number|...
  N OUT,CT,STR
- D GETS^DIQ(19641.13,IEN_",","2*","IE","OUT") Q:'$D(OUT) ""
+ D GETS^DIQ(19641.13,+$G(IEN)_",","2*","IE","OUT") Q:'$D(OUT) ""
  S CT="" F  S CT=$O(OUT(19641.132,CT)) Q:CT=""  D
  . S STR=$G(STR)_OUT(19641.132,CT,.01,"I")_";"_OUT(19641.132,CT,.01,"E")_"|"
  I $E(STR,$L(STR))="|" S STR=$E(STR,1,($L(STR)-1))
@@ -250,14 +258,14 @@ HPG(RET,RSTRT,RSTOP,SORT) ; RPC: DSIO GET PREG HISTORY RANGE
  . . S @RET@(RCT)=$$HPG1(IEN)
  S:$G(TS) @RET@(0)=TS
  Q
- ;
 HPG1(IEN) ; Continue
  N OUT,STR
  D PREGG^DSIO15(.OUT,IEN,,,1) S STR=$G(@OUT@(1)) K @OUT
  Q STR
  ;
 DELETE(IEN) ; Delete Pregnancy
- N DIK,DA,X,Y,CT Q:'$G(IEN)
+ N DIK,DA,X,Y,CT
+ Q:'$G(IEN)  Q:$D(^DSIO(19641.13,IEN))
  ; *** DELETE BABIES
  I $D(^DSIO(19641.13,IEN,2)) D
  . S DIK="^DSIO(19641.112,"
@@ -285,7 +293,7 @@ OPTION ; OPTION: DSIO DELETE PREGNANCY
  S DIR("A")="Select PREGNANCY HISTORY to DELETE"
  S DIR(0)="PO^19641.13:AEQ" D ^DIR Q:$D(DIRUT)!(Y<1)  S IEN=+Y
  W !!,$$CJ^XLFSTR("****** ARE YOU SURE? THIS CANNOT BE UNDONE! ******",80),!!
- S DIR("A")="I am sure that I want to DELETE this PREGNANCY HISTORY record"
+ S DIR("A")="Are you sure that you want to DELETE this PREGNANCY HISTORY record"
  S DIR(0)="Y",DIR("B")="NO" D ^DIR Q:$D(DIRUT)!(Y<1)
  D DELETE(IEN)
  Q

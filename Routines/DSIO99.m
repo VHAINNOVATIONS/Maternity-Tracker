@@ -1,5 +1,5 @@
 DSIO99 ;DSS/TFF - DSIO IMPORT/EXPORT TIU TITLES;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -137,7 +137,7 @@ PARSE ; Continue
  Q
  ;
 CONFIG(IEN,CAT,LOC) ; Add/Edit DSIO TITLE CONFIGURATION (19641.5)
- N DIC,DIE,DA,X,Y,DIRUT
+ N DIC,DIE,DA,X,Y,DIRUT,DR
  S (DIC,DIE)="^DSIO(19641.5,",DIC(0)="XL",X="`"_IEN D ^DIC Q:+Y<1
  S DA=IEN,DR=".02////"_LOC_";.03////"_CAT D ^DIE
  Q

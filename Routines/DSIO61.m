@@ -1,5 +1,5 @@
 DSIO61 ;DSS/TFF - DSIO DDCS SPECIAL LOOKUP;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ; External References      DBIA#
  ; -------------------      -----
@@ -150,5 +150,5 @@ LV(VAL) ; LINK Validation
 LH(IEN) ; LINK Help
  N VAL
  S VAL=$$RECORD^DSIO61("Select LINK File")
- I $G(IEN),VAL'="" S (DE(2),$P(^DSIO(19641.401,IEN,0),U,5))=VAL
+ I $G(IEN),VAL'="" S $P(^DSIO(19641.401,IEN,0),U,5)=VAL
  Q

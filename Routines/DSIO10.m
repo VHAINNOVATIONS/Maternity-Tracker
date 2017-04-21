@@ -1,5 +1,5 @@
 DSIO10 ;DSS/TFF - DSIO OBSERVATION;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ;
  ;
@@ -67,18 +67,18 @@ OBS(RET,IEN,DFN,DATES,OBJECT,REF,REL,CAT,CODE,VAL,VALCD,NEG,QUAL,NAR,AB) ; RPC: 
  . S DIK="^DSIO(19641.12,",DA=IEN D ^DIK S RET=1
  S IENS=$S(IEN:IEN_",",1:"+1,") I IENS["+",OBSD="" S OBSD=$$NOW^XLFDT
  S:$G(OBSD)'="" IPT(19641.12,IENS,.01)=OBSD                ; DATE OF OBSERVATION
- S:$G(DFN) IPT(19641.12,IENS,.02)=DFN                      ; PATIENT
+ S:$G(DFN) IPT(19641.12,IENS,.02)="`"_DFN                  ; PATIENT
  S:$G(CAT)'="" IPT(19641.12,IENS,.03)=CAT                  ; CATEGORY
  S:$G(REL)'="" IPT(19641.12,IENS,.04)=REL                  ; RELATIONSHIP
  S:STRT'="" IPT(19641.12,IENS,.05)=STRT                    ; START
  S:END'="" IPT(19641.12,IENS,.06)=END                      ; END
- S IPT(19641.12,IENS,.07)=DUZ                              ; UPDATED BY
+ S IPT(19641.12,IENS,.07)="`"_DUZ                          ; UPDATED BY
  S IPT(19641.12,IENS,.08)=$$NOW^XLFDT                      ; MODIFIED
  S:VTYP'="" IPT(19641.12,IENS,4.1)=VTYP                    ; VALUE TYPE
  S:VAL'="" IPT(19641.12,IENS,4.2)=VAL                      ; VALUE
  S:VUNT'="" IPT(19641.12,IENS,4.3)=VUNT                    ; VALUE UNIT
  S IPT(19641.12,IENS,4.4)=NEG                              ; NEGATION
- D UPDATE^DIE(,"IPT","IEN") K IPT
+ D UPDATE^DIE("E","IPT","IEN") K IPT
  S (RET,IEN)=$S(IEN:IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to build observation." Q
  I SYS'="LOINC",SYS'="SNOMED-CT" D LCODE^DSIO2(CODE,SYS,IEN_";DSIO(19641.12,")
  ; *** OBJECTS OF OBSERVATION/OBJECTS OF REFERENCE
@@ -89,18 +89,18 @@ OBS(RET,IEN,DFN,DATES,OBJECT,REF,REL,CAT,CODE,VAL,VALCD,NEG,QUAL,NAR,AB) ; RPC: 
  S:CDIS'="" IPT(19641.17,"?+1,"_IEN_",",2)=CDIS            ; DISPLAY NAME
  S:SYS'="" IPT(19641.17,"?+1,"_IEN_",",3)=SYS              ; SYSTEM NAME
  S:CDSV'="" IPT(19641.17,"?+1,"_IEN_",",4)=CDSV            ; SYSTEM VALUE
- D UPDATE^DIE(,"IPT") K IPT
+ D UPDATE^DIE("E","IPT") K IPT
  S IPT(19641.17,"?+1,"_IEN_",",.01)="V"                    ; CODE TYPE
  S:VALCD'="" IPT(19641.17,"?+1,"_IEN_",",1)=VALCD          ; CODE
  S:VALCDIS'="" IPT(19641.17,"?+1,"_IEN_",",2)=VALCDIS      ; DISPLAY NAME
  S:VALCDS'="" IPT(19641.17,"?+1,"_IEN_",",3)=VALCDS        ; SYSTEM NAME
  S:VALCDSV'="" IPT(19641.17,"?+1,"_IEN_",",4)=VALCDSV      ; SYSTEM VALUE
- D UPDATE^DIE(,"IPT") K IPT
+ D UPDATE^DIE("E","IPT") K IPT
  ; *** QUALIFIERS
  S CT=$NA(QUAL) F  S CT=$Q(@CT) Q:CT=""  D
  . S IPT(19641.125,"?+1,"_IEN_",",.01)=$P(@CT,U)
  . S IPT(19641.125,"?+1,"_IEN_",",.02)=$P(@CT,U,2)
- . D UPDATE^DIE(,"IPT") K IPT
+ . D UPDATE^DIE("E","IPT") K IPT
  ; *** NARRATIVE
  I $D(NAR)>9 K ^TMP($J,"DSIO OBS") D
  . D XY^DSIO2(.NAR,$NA(^TMP($J,"DSIO OBS")))
@@ -129,7 +129,7 @@ OIEN() ; Find the Observation Push configuration record
  I '$G(AB),OBSD="" S OBSD=$$NOW^XLFDT
  S DATE=$$GET1^DIQ(19641.12,OIEN_",",.09,"I") I DATE'="" D  Q:$D(MSG) -1
  . S FDA(19641.127,"?+1,"_OIEN_",",.01)=DATE
- . D UPDATE^DIE(,"FDA",,"MSG") K FDA Q:$D(MSG)
+ . D UPDATE^DIE("E","FDA",,"MSG") K FDA Q:$D(MSG)
  . S FDA(19641.12,OIEN_",",.09)=""
  . D UPDATE^DIE(,"FDA",,"MSG")
  Q OIEN
@@ -167,14 +167,14 @@ OBJECT(OBJECT) ; Transform External Object to Internal/ Validate Internal
  Q ""
  ;
 OPUSH(DFN,OIEN) ; Push Observation
- N CODE,X,VAL,IEN,INPUT,ROU,RET,IPT
+ N CODE,X,VAL,IEN,INPUT,ROU,RET,IPT,TMP
  S CODE=$$GETCODE(OIEN,"C",1) Q:CODE=""
  S (X,VAL)=$$UP^XLFSTR($$GET1^DIQ(19641.12,OIEN_",",4.2))
  Q:$$GET1^DIQ(19641.12,OIEN_",",.09,"I")'=""      ; *** ALREADY PUSHED
  S IEN=$O(^DSIO(19641.123,"C",CODE,"")) Q:IEN=""
  S INPUT=$$GET1^DIQ(19641.123,IEN_",",1)
  S ROU=$$GET1^DIQ(19641.123,IEN_",",2) Q:ROU=""
- S TMP=$NA(^TMP($J,"SETDATA VALUE")) K @TMP
+ S TMP=$NA(^TMP($J,"DSIO10 OPUSH")) K @TMP
  X:INPUT'="" INPUT X:ROU'="" ROU
  S RET=$$HISTORY^DSIO6(IEN_";DSIO(19641.123,",DFN_";DPT(",ROU)
  I RET D

@@ -1,5 +1,5 @@
 DSIO6 ;DSS/TFF - DSIO DISCREET DATA - DDCS;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ;
  ;
@@ -79,6 +79,7 @@ SETDATA ; Save data as DISCREET ELEMENTS for a RECORD
  ;
  ; INCOMING: OBJECT,SIEN,INFACE,IDATA
  ;
+ S:$D(ZTQUEUED) ZTREQ="@"
  N DLAYGO,DFLE,DFN,SHARE,FDA,DATA,DIC,X,Y,FORM,SFORM
  S DLAYGO=19641.41
  ; *** DESTINATION FILE required to create RECORD
@@ -117,8 +118,8 @@ SETDATA1(FLE,IENS,DATA) ; Continue
  ;                          a list rather than word processing (stored within wp)
  ;                  VALUE = The user supplied value
  ;
- N CT,CI,CONTROL,BUILD,FDA,IEN,EIEN
- S SAVE=$NA(^TMP($J,"SETDATA1")) K @SAVE
+ N SAVE,CT,CI,CONTROL,BUILD,FDA,IEN,EIEN
+ S SAVE=$NA(^TMP($J,"DSIO6 SETDATA1")) K @SAVE
  I $G(ACT)="C" D
  . S CONTROL="##TCONFIGCOLLECTION##",BUILD(CONTROL)=""
  . S CI=1,CT=$NA(DATA) F  S CT=$Q(@CT) Q:CT=""  D
@@ -127,7 +128,7 @@ SETDATA1(FLE,IENS,DATA) ; Continue
  . S CT=$NA(DATA) F  S CT=$Q(@CT) Q:CT=""  D
  . . S CONTROL=$$UP^XLFSTR($P(@CT,U)) Q:CONTROL=""
  . . S BUILD(CONTROL)=""
- . . S @SAVE@(CONTROL,($O(@SAVE@(CONTROL,""),-1)+1))=$P(@CT,U,2,9999)
+ . . S @SAVE@(CONTROL,($O(@SAVE@(CONTROL,""),-1)+1))=$P(@CT,U,2,999)
  S CONTROL="" F  S CONTROL=$O(BUILD(CONTROL)) Q:CONTROL=""  D
  . K IEN,EIEN
  . ; *** Find the IEN for the CONTROL within the DATA or SHARED DATA entry
@@ -160,8 +161,8 @@ ELE(IEN,CONTROL) ; Set DSIO DDCS ELEMENT
  S:CCLASS FDA(19641.45,IEN_",",.02)=CCLASS   ; CLASS
  D UPDATE^DIE(,"FDA",$S(IEN'["+":"",1:"IEN")) K FDA
  S IEN=$S(IEN'["+":+IEN,$G(IEN(1)):IEN(1),1:"") Q:'IEN ""
- D WP^DIE(19641.45,IEN_",",1,"K","^TMP($J,""SETDATA1"",CONTROL)")
- K ^TMP($J,"SETDATA1",CONTROL)
+ D WP^DIE(19641.45,IEN_",",1,"K","^TMP($J,""DSIO6 SETDATA1"",CONTROL)")
+ K ^TMP($J,"DSIO6 SETDATA1",CONTROL)
  Q $G(IEN)
  ;
 END(IFORM,IDATA) ; SETDATA END
@@ -181,7 +182,7 @@ PUSH(DATA) ; PUSH Data out of DDCS
  ; *** PUSH START (It must have started and failed!)
  I $P($G(^DSIO(19641.41,DATA,0)),U,4)'="" S ^DSIO(19641.41,"ERROR")="" Q
  N DDCSC,DDCSR,SIEN,DDCSFLE,DFN,INFACE,DDCSFRM,FIEN,RPT,DDCSEN,EIEN
- N DDCSE,PRE,POST,FDA,DIE,DA,X,Y
+ N DDCSE,PRE,POST,FDA,DIE,DA,X,Y,DR
  S FDA(19641.41,DATA_",",.04)=$$NOW^XLFDT       ; *** If PUSH fails we shouldn't keep retrying!
  D FILE^DIE(,"FDA") K FDA
  S DDCSR=$P($G(^DSIO(19641.41,DATA,0)),U),SIEN=+DDCSR
@@ -304,7 +305,7 @@ ERROR ; Remove the Error Lock on 19641.41 and delete any PUSH START entries that
  ;
  N IEN,FDA
  K ^DSIO(19641.41,"ERROR")
- S IEN=0 F  S IEN=$O(^DSIO(19641.41,"PUSH",IEN)) Q:'IEN  D
+ S IEN=0 F  S IEN=$O(^DSIO(19641.41,"AP",IEN)) Q:'IEN  D
  . I $P($G(^DSIO(19641.41,IEN,0)),U,4)'="",$P($G(^DSIO(19641.41,IEN,0)),U,3)="" D
  . . W !!,"   RECORD UPDATED: ",IEN
  . . S FDA(19641.41,IEN_",",.04)="" D FILE^DIE(,"FDA") K FDA
@@ -315,7 +316,7 @@ ERROR ; Remove the Error Lock on 19641.41 and delete any PUSH START entries that
  ;
 TRIG ; Attempt to PUSH unPUSHed records
  N DDCSD,DDCSC
- S DDCSD=0 F  S DDCSD=$O(^DSIO(19641.41,"PUSH",DDCSD)) Q:'DDCSD  D
+ S DDCSD=0 F  S DDCSD=$O(^DSIO(19641.41,"AP",DDCSD)) Q:'DDCSD  D
  . S DDCSC=$P($G(^DSIO(19641.41,DDCSD,0)),U,2) Q:'DDCSC
  . D PUSH(DDCSD)
  Q

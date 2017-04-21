@@ -1,5 +1,5 @@
 DSIO67 ;DSS/TFF - DSIO DDCS ELEMENT OBSERVATIONS;08/26/2016 16:00
- ;;3.0;DSIO 3.0;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
  ;
  ;
  ;
@@ -100,7 +100,7 @@ LIMIT(BOOL,FLD,VAL) ; The CREATE ONLY IF field is set...
  ;                    - If we are not working with boolean values but the type of
  ;                      control is a boolean type (checkbox) then we do like the
  ;                      above condition
- N OUT,VCHK
+ N OUT,VCK
  I BOOL D
  . I FLD=1,VAL="True" S OUT=1
  . I FLD=0,VAL="False" S OUT=1
