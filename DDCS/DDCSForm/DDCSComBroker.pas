@@ -23,7 +23,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.msxml, Winapi.ActiveX, System.SysUtils,
-  System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Trpcb, DDCSFormBuilder_TLB;
+  System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Trpcb, DDCSCPRSChart_TLB;
 
 type
   TVistAUser = class(TObject)
