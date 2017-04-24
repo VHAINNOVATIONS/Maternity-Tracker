@@ -35,8 +35,10 @@ SAVE(RET,IEN,DFN,DATES,TYP,DIRECT,GUID,TITLE,FAC,REC,DOC,AB) ; RPC: DSIO SAVE IH
  S DIRECT=$$UP^XLFSTR($E($G(DIRECT),1)) S:"^I^O^"'[(U_DIRECT_U) DIRECT=""
  ; *** AB = Delete if Null unless set
  D:'$G(AB) AB^DSIO2("DTC,DTI,TYP,DIRECT,GUID,TITLE,FAC,REC")
- S IEN=$S($G(IEN):IEN,$L(GUID)&(GUID'="@"):$O(^DSIO(19641.6,"GUID",GUID,"")),1:"?+1")_","
- S:IEN["+" FDA(19641.6,IEN,.01)=$$NOW^XLFDT              ; DT OF ENTRY
+ S IEN=$S($G(IEN):IEN,$L(GUID)&(GUID'="@"):$O(^DSIO(19641.6,"GUID",GUID,"")),1:"")
+ I IEN="" S IEN="?+1" D
+ . S FDA(19641.6,IEN_",",.01)=$$NOW^XLFDT                ; DT OF ENTRY
+ S IEN=IEN_","
  I $G(DFN)'="",DFN'="@" S FDA(19641.6,IEN,.02)="`"_DFN   ; PATIENT
  S:$G(DTC)'="" FDA(19641.6,IEN,.03)=DTC                  ; DT CREATION
  S:$G(DTI)'="" FDA(19641.6,IEN,.04)=DTI                  ; DT IMPORT/EXPORT
