@@ -1,5 +1,7 @@
 DSIO63 ;DSS/TFF - DSIO DDCS CONFIGURE AND REPORT;08/26/2016 16:00
  ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
+ ;Originally Submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+ ;Authored by DSS, Inc. 2014-2017
  ;
  ;
  ;
