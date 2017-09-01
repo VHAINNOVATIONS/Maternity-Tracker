@@ -1,4 +1,4 @@
-unit frmSplash;
+unit DDCSSplash;
 
 {
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ uses
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage, JclFileUtils;
 
 type
-  TDDCSSplash = class(TForm)
+  TfSplash = class(TForm)
     pnlBody: TPanel;
     imgVA: TImage;
     lbLoading: TStaticText;
@@ -39,28 +39,28 @@ type
   end;
 
 var
-  DDCSSplash: TDDCSSplash;
+  fSplash: TfSplash;
 
 implementation
 
 uses
-  DateUtils;
+  System.DateUtils;
 
 {$R *.DFM}
 
-procedure TDDCSSplash.CreateParams(var Params: TCreateParams);
+procedure TfSplash.CreateParams(var Params: TCreateParams);
 begin
   inherited;
 
   Params.Style := WS_POPUP;
 end;
 
-procedure TDDCSSplash.FormCreate(Sender: TObject);
+procedure TfSplash.FormCreate(Sender: TObject);
 begin
   SetWindowLong(Handle, GWL_EXSTYLE, getWindowLong(Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
 end;
 
-procedure TDDCSSplash.FormShow(Sender: TObject);
+procedure TfSplash.FormShow(Sender: TObject);
 var
   vi: TJclFileVersionInfo;
 begin

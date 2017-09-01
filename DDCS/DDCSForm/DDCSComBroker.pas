@@ -22,8 +22,8 @@ unit DDCSComBroker;
 interface
 
 uses
-  Winapi.Windows, Winapi.msxml, Winapi.ActiveX, System.SysUtils,
-  System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Trpcb, DDCSCPRSChart_TLB;
+  Winapi.Windows, Winapi.msxml, Winapi.ActiveX, System.SysUtils, System.Classes,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Trpcb, ORFn, DDCSCPRSChart_TLB;
 
 type
   TVistAUser = class(TObject)
@@ -31,33 +31,152 @@ type
     FComCPRSState: IDDCSCPRSState;
     function GetDUZ: Integer;
     function GetName: string;
+    function GetLanguage: string;
+    function GetUserClass: Integer;
+    function GetCanSignOrders: Boolean;
+    function GetIsProvider: Boolean;
+    function GetOrderRole: Integer;
+    function GetNoOrdering: Boolean;
+    function GetEnableVerify: Boolean;
+    function GetDTIME: Integer;
+    function GetCountDown: Integer;
+    function GetPtMsgHang: Integer;
+    function GetService: Integer;
+    function GetAutoSave: Integer;
+    function GetInitialTab: Integer;
+    function GetUseLastTab: Boolean;
+    function GetWebAccess: Boolean;
+    function GetDisableHold: Boolean;
+    function GetIsRPL: string;
+    function GetRPLList: string;
+    function GetHasCorTabs: Boolean;
+    function GetHasRptTab: Boolean;
+    function GetIsReportsOnly: Boolean;
+    function GetToolsRptEdit: Boolean;
+    function GetCurrentPrinter: string;
+    function GetGECStatus: Boolean;
     function GetStationID: string;
+    function GetDivision: string;
+    function GetIsProductionAccount: Boolean;
+    function GetDsplyOPTPharmInstr: string;
   public
     constructor Create(iICPRSState: IDDCSCPRSState); overload;
     destructor Destroy; override;
+    procedure WrittenStatusNum(var WrittenStatusList: TStringList);
     property DUZ: Integer read GetDUZ;
     property Name: string read GetName;
+    property Language: string read GetLanguage;
+    property UserClass: Integer read GetUserClass;
+    property CanSignOrders: Boolean read GetCanSignOrders;
+    property IsProvider: Boolean read GetIsProvider;
+    property OrderRole: Integer read GetOrderRole;
+    property NoOrdering: Boolean read GetNoOrdering;
+    property EnableVerify: Boolean read GetEnableVerify;
+    property DTIME: Integer read GetDTIME;
+    property CountDown: Integer read GetCountDown;
+    property PtMsgHang: Integer read GetPtMsgHang;
+    property Service: Integer read GetService;
+    property AutoSave: Integer read GetAutoSave;
+    property InitialTab: Integer read GetInitialTab;
+    property UseLastTab: Boolean read GetUseLastTab;
+    property WebAccess: Boolean read GetWebAccess;
+    property DisableHold: Boolean read GetDisableHold;
+    property IsRPL: string read GetIsRPL;
+    property RPLList: string read GetRPLList;
+    property HasCorTabs: Boolean read GetHasCorTabs;
+    property HasRptTab: Boolean read GetHasRptTab;
+    property IsReportsOnly: Boolean read GetIsReportsOnly;
+    property ToolsRptEdit: Boolean read GetToolsRptEdit;
+    property CurrentPrinter: string read GetCurrentPrinter;
+    property GECStatus: Boolean read GetGECStatus;
     property StationID: string read GetStationID;
+    property Division: string read GetDivision;
+    property IsProductionAccount: Boolean read GetIsProductionAccount;
+    property DsplyOPTPharmInstr: string read GetDsplyOPTPharmInstr;
   end;
 
   TVistAPatient = class(TObject)
   private
     FComCPRSState: IDDCSCPRSState;
     function GetDFN: Integer;
+    function GetICN: string;
     function GetName: string;
-    function GetDOB: string;
     function GetSSN: string;
+    function GetDOB: string;
+    function GetAge: Integer;
+    function GetSex: string;
+    function GetCWAD: string;
+    function GetInpatient: Boolean;
+    function GetStatus: string;
     function GetLocationIEN: Integer;
     function GetLocationName: string;
+    function GetWardService: string;
+    function GetSpeciality: Integer;
+    function GetSpecialtySvc: string;
+    function GetAdmitTime: TFMDateTime;
+    function GetDateDied: TFMDateTime;
+    function GetPrimaryTeam: string;
+    function GetPrimaryProvider: string;
+    function GetAttending: string;
+    function GetAssociate: string;
+    function GetInProvider: string;
+    function GetMHTC: string;
+    function GetMRN: string;
   public
     constructor Create(iICPRSState: IDDCSCPRSState); overload;
     destructor Destroy; override;
     property DFN: Integer read GetDFN;
+    property ICN: string read GetICN;
     property Name: string read GetName;
-    property DOB: string read GetDOB;
     property SSN: string read GetSSN;
+    property DOB: string read GetDOB;
+    property Age: Integer read GetAge;
+    property Sex: string read GetSex;
+    property CWAD: string read GetCWAD;
+    property Inpatient: Boolean read GetInpatient;
+    property Status: string read GetStatus;
     property LocationIEN: Integer read GetLocationIEN;
     property LocationName: string read GetLocationName;
+    property WardService: string read GetWardService;
+    property Speciality: Integer read GetSpeciality;
+    property SpecialtySvc: string read GetSpecialtySvc;
+    property AdmitTime: TFMDateTime read GetAdmitTime;
+    property DateDied: TFMDateTime read GetDateDied;
+    property PrimaryTeam: string read GetPrimaryTeam;
+    property PrimaryProvider: string read GetPrimaryProvider;
+    property Attending: string read GetAttending;
+    property Associate: string read GetAssociate;
+    property InProvider: string read GetInProvider;
+    property MHTC: string read GetMHTC;
+    property MRN: string read GetMRN;
+  end;
+
+  TVistAEncounter = class(TObject)
+  private
+    FComCPRSState: IDDCSCPRSState;
+    function GetFDateTime: TFMDateTime;
+    function GetInpatient: Boolean;
+    function GetLocationIEN: Integer;
+    function GetLocationName: string;
+    function GetLocationText: string;
+    function GetProvider: Integer;
+    function GetProviderName: string;
+    function GetStandAlone: Boolean;
+    function GetVisitCategory: string;
+    function GetVisitStr: string;
+  public
+    constructor Create(iICPRSState: IDDCSCPRSState); overload;
+    destructor Destroy; override;
+    property DateTime: TFMDateTime read GetFDateTime;
+    property Inpatient: Boolean read GetInpatient;
+    property Location: Integer read GetLocationIEN;
+    property LocationName: string read GetLocationName;
+    property LocationText: string read GetLocationText;
+    property Provider: Integer read GetProvider;
+    property ProviderName: string read GetProviderName;
+    property StandAlone: Boolean read GetStandAlone;
+    property VisitCategory: string read GetVisitCategory;
+    property VisitStr: string read GetVisitStr;
   end;
 
   TVistANote = class(TObject)
@@ -76,15 +195,13 @@ type
   private
     FUser: TVistAUser;
     FPatient: TVistAPatient;
+    FEncounter: TVistAEncounter;
     FCPRSHandle: HWND;
     FNote: TVistANote;
     FComBroker: IDDCSCPRSBroker;
     FRemoteProcedure: string;
     FHost: Pointer;
     FHostEnabled: Boolean;
-    FControlObject: string;
-    FDDCSInterface: string;
-    FDDCSInterfacePages: TStringList;
   protected
     procedure SetClearParameters(Value: Boolean);
     procedure SetClearResults(Value: Boolean);
@@ -94,21 +211,20 @@ type
     procedure GetResults(var oText: TStringList);
     function GetConnected: Boolean;
   public
-    constructor Create(AOwner: TComponent; iBroker: IDDCSCPRSBroker); overload;
     constructor Create(AOwner: TComponent; iBroker: IDDCSCPRSBroker; iCPRSState: IDDCSCPRSState); overload;
+    constructor Create(iBroker: IDDCSCPRSBroker; iCPRSState: IDDCSCPRSState; sMenuContext: string); overload;
     destructor Destroy; override;
+    property ComBroker: IDDCSCPRSBroker read FComBroker;
     property ClearParameters: Boolean write SetClearParameters;
     property ClearResults: Boolean write SetClearResults;
     property User: TVistAUser read FUser;
     property Patient: TVistAPatient read FPatient;
+    property Encounter: TVistAEncounter read FEncounter;
     property TIUNote: TVistANote read FNote;
     property Connected: Boolean read GetConnected;
     property CPRSHandle: HWND read FCPRSHandle write FCPRSHandle;
     property Host: Pointer read FHost write FHost;
     property HostEnabled: Boolean read FHostEnabled write FHostEnabled;
-    property ControlObject: string read FControlObject write FControlObject;
-    property DDCSInterface: string read FDDCSInterface write FDDCSInterface;
-    property DDCSInterfacePages: TStringList read FDDCSInterfacePages write FDDCSInterfacePages;
   end;
   PCPRSComBroker = ^TCPRSComBroker;
 
@@ -126,9 +242,9 @@ var
 implementation
 
 uses
-  ORFn, ORNet;
+  ORNet;
 
-{$REGION 'Exposed Methods'}
+{$REGION 'External Methods'}
 
 procedure CallV(const RPCName: string; const AParam: array of const);
 var
@@ -278,6 +394,13 @@ begin
   inherited;
 end;
 
+procedure TVistAUser.WrittenStatusNum(var WrittenStatusList: TStringList);
+begin
+  WrittenStatusList.Clear;
+  if FComCPRSState <> nil then
+    WrittenStatusList.Text := FComCPRSState.usrWrittenStatusNum;
+end;
+
 function TVistAUser.GetDUZ: Integer;
 begin
   Result := 0;
@@ -291,10 +414,180 @@ begin
     Result := FComCPRSState.UserName;
 end;
 
+function TVistAUser.GetLanguage: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrLanguage;
+end;
+
+function TVistAUser.GetUserClass: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrUserClass;
+end;
+
+function TVistAUser.GetCanSignOrders: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrCanSignOrders;
+end;
+
+function TVistAUser.GetIsProvider: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrIsProvider;
+end;
+
+function TVistAUser.GetOrderRole: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrOrderRole;
+end;
+
+function TVistAUser.GetNoOrdering: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrNoOrdering;
+end;
+
+function TVistAUser.GetEnableVerify: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrEnableVerify;
+end;
+
+function TVistAUser.GetDTIME: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrDTIME;
+end;
+
+function TVistAUser.GetCountDown: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrCountDown;
+end;
+
+function TVistAUser.GetPtMsgHang: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrPtMsgHang;
+end;
+
+function TVistAUser.GetService: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrService;
+end;
+
+function TVistAUser.GetAutoSave: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrAutoSave;
+end;
+
+function TVistAUser.GetInitialTab: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrInitialTab;
+end;
+
+function TVistAUser.GetUseLastTab: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrUseLastTab;
+end;
+
+function TVistAUser.GetWebAccess: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrWebAccess;
+end;
+
+function TVistAUser.GetDisableHold: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrDisableHold;
+end;
+
+function TVistAUser.GetIsRPL: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrIsRPL;
+end;
+
+function TVistAUser.GetRPLList: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrRPLList;
+end;
+
+function TVistAUser.GetHasCorTabs: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrHasCorTabs;
+end;
+
+function TVistAUser.GetHasRptTab: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrHasRptTab;
+end;
+
+function TVistAUser.GetIsReportsOnly: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrIsReportsOnly;
+end;
+
+function TVistAUser.GetToolsRptEdit: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrToolsRptEdit;
+end;
+
+function TVistAUser.GetCurrentPrinter: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrCurrentPrinter;
+end;
+
+function TVistAUser.GetGECStatus: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrGECStatus;
+end;
+
 function TVistAUser.GetStationID: string;
 begin
   if FComCPRSState <> nil then
-    Result := FComCPRSState.StationID;
+    Result := FComCPRSState.usrStationID;
+end;
+
+function TVistAUser.GetDivision: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrDivision;
+end;
+
+function TVistAUser.GetIsProductionAccount: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrIsProductionAccount;
+end;
+
+function TVistAUser.GetDsplyOPTPharmInstr: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.usrDsplyOPTPharmInstr;
 end;
 
 {$ENDREGION}
@@ -322,10 +615,22 @@ begin
     Result := StrToIntDef(FComCPRSState.PatientDFN, 0);
 end;
 
+function TVistAPatient.GetICN: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patICN;
+end;
+
 function TVistAPatient.GetName: string;
 begin
   if FComCPRSState <> nil then
     Result := FComCPRSState.PatientName;
+end;
+
+function TVistAPatient.GetSSN: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.PatientSSN;
 end;
 
 function TVistAPatient.GetDOB: string;
@@ -334,10 +639,35 @@ begin
     Result := FComCPRSState.PatientDOB;
 end;
 
-function TVistAPatient.GetSSN: string;
+function TVistAPatient.GetAge: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patAge;
+end;
+
+function TVistAPatient.GetSex: string;
 begin
   if FComCPRSState <> nil then
-    Result := FComCPRSState.PatientSSN;
+    Result := FComCPRSState.patSex;
+end;
+
+function TVistAPatient.GetCWAD: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patCWAD;
+end;
+
+function TVistAPatient.GetInpatient: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patInpatient;
+end;
+
+function TVistAPatient.GetStatus: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patStatus;
 end;
 
 function TVistAPatient.GetLocationIEN: Integer;
@@ -353,11 +683,165 @@ begin
     Result := FComCPRSState.LocationName;
 end;
 
+function TVistAPatient.GetWardService: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patWardService;
+end;
+
+function TVistAPatient.GetSpeciality: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patSpeciality;
+end;
+
+function TVistAPatient.GetSpecialtySvc: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patSpecialitySvc;
+end;
+
+function TVistAPatient.GetAdmitTime: TFMDateTime;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result :=  FComCPRSState.patAdmitTime;
+end;
+
+function TVistAPatient.GetDateDied: TFMDateTime;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patDateDied;
+end;
+
+function TVistAPatient.GetPrimaryTeam: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patPrimaryTeam;
+end;
+
+function TVistAPatient.GetPrimaryProvider: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patPrimaryProvider;
+end;
+
+function TVistAPatient.GetAttending: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patAttending;
+end;
+
+function TVistAPatient.GetAssociate: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patAssociate;
+end;
+
+function TVistAPatient.GetInProvider: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patInProvider;
+end;
+
+function TVistAPatient.GetMHTC: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patMHTC;
+end;
+
+function TVistAPatient.GetMRN: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.patMRN;
+end;
+
+{$ENDREGION}
+
+{$REGION 'TVistAEncounter'}
+
+constructor TVistAEncounter.Create(iICPRSState: IDDCSCPRSState);
+begin
+  inherited Create;
+
+  FComCPRSState := iICPRSState;
+end;
+
+destructor TVistAEncounter.Destroy;
+begin
+  FComCPRSState := nil;
+
+  inherited;
+end;
+
+function TVistAEncounter.GetFDateTime: TFMDateTime;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encDateTime;
+end;
+
+function TVistAEncounter.GetInpatient: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encInpatient;
+end;
+
+function TVistAEncounter.GetLocationIEN: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encLocationIEN;
+end;
+
+function TVistAEncounter.GetLocationName: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encLocationName;
+end;
+
+function TVistAEncounter.GetLocationText: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encLocationText;
+end;
+
+function TVistAEncounter.GetProvider: Integer;
+begin
+  Result := 0;
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encProvider;
+end;
+
+function TVistAEncounter.GetProviderName: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encProviderName;
+end;
+
+function TVistAEncounter.GetStandAlone: Boolean;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encStandAlone;
+end;
+
+function TVistAEncounter.GetVisitCategory: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encVisitCategory;
+end;
+
+function TVistAEncounter.GetVisitStr: string;
+begin
+  if FComCPRSState <> nil then
+    Result := FComCPRSState.encVisitStr;
+end;
+
 {$ENDREGION}
 
 {$REGION 'TVistANote'}
-
-// Protected -------------------------------------------------------------------
 
 procedure TVistANote.ParseTIUXML(wValue: WideString);
 var
@@ -401,8 +885,6 @@ end;
 
 {$REGION 'TCPRSComBroker'}
 
-// Protected -------------------------------------------------------------------
-
 procedure TCPRSComBroker.SetClearParameters(Value: Boolean);
 begin
   if (FComBroker <> nil) and Value then
@@ -422,6 +904,7 @@ begin
   begin
     ClearParameters := True;
     ClearResults := True;
+    FCOMBroker.RPCVersion := '0';
   end;
 end;
 
@@ -574,34 +1057,39 @@ end;
 
 // Public ----------------------------------------------------------------------
 
-constructor TCPRSComBroker.Create(AOwner: TComponent; iBroker: IDDCSCPRSBroker);
-begin
-  inherited Create(AOwner);
-
-  RPCBrokerV := Self;
-  FComBroker := iBroker;
-
-  FUser := TVistAUser.Create;
-  FPatient := TVistAPatient.Create;
-
-  FNote := TVistANote.Create;
-  FDDCSInterfacePages := TStringList.Create;
-end;
-
 constructor TCPRSComBroker.Create(AOwner: TComponent; iBroker: IDDCSCPRSBroker;
-                                  iCPRSState: IDDCSCPRSState);
+  iCPRSState: IDDCSCPRSState);
 begin
   inherited Create(AOwner);
 
   RPCBrokerV := Self;
-  FComBroker := iBroker;
+  SetComBroker(iBroker);
 
   FUser := TVistAUser.Create(iCPRSState);
   FPatient := TVistAPatient.Create(iCPRSState);
+  FEncounter := TVistAEncounter.Create(iCPRSState);
   FCPRSHandle := Cardinal(iCPRSState.Handle);
 
   FNote := TVistANote.Create;
-  FDDCSInterfacePages := TStringList.Create;
+end;
+
+constructor TCPRSComBroker.Create(iBroker: IDDCSCPRSBroker; iCPRSState: IDDCSCPRSState;
+  sMenuContext: string);
+begin
+  inherited Create(nil);
+
+  RPCBrokerV := Self;
+  SetComBroker(iBroker);
+
+  FUser := TVistAUser.Create(iCPRSState);
+  FPatient := TVistAPatient.Create(iCPRSState);
+  FEncounter := TVistAEncounter.Create(iCPRSState);
+  FCPRSHandle := Cardinal(iCPRSState.Handle);
+
+  FNote := TVistANote.Create;
+
+  if sMenuContext <> '' then
+    UpdateContext(sMenuContext);
 end;
 
 destructor TCPRSComBroker.Destroy;
@@ -610,8 +1098,8 @@ begin
 
   FUser.Free;
   FPatient.Free;
+  FEncounter.Free;
   FNote.Free;
-  FDDCSInterfacePages.Free;
 
   inherited;
 end;

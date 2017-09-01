@@ -1,4 +1,4 @@
-unit frmConfiguration;
+unit DDCSConfiguration;
 
 {
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,10 +22,10 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Samples.Spin,
-  Vcl.CheckLst, ORCtrls, uBase;
+  Vcl.CheckLst, ORCtrls, DDCSForm;
 
 type
-  TDDCSFormConfig = class(TForm)
+  TfConfiguration = class(TForm)
     Tabs: TPageControl;
     tabDialog: TTabSheet;
     tabReport: TTabSheet;
@@ -125,12 +125,12 @@ type
   end;
 
 var
-  DDCSFormConfig: TDDCSFormConfig;
+  fConfiguration: TfConfiguration;
 
 implementation
 
 uses
-  frmVitals, uCommon, DDCSUtils, uReportItems, DDCSComBroker;
+  DDCSVitals, DDCSCommon, DDCSReportItems, DDCSUtils, DDCSComBroker;
 
 {$R *.dfm}
 
@@ -141,28 +141,29 @@ begin
     Result := 'True'
 end;
 
-// -----------------------------------------------------------------------------
-
 {$REGION 'ListView'}
 
-procedure TDDCSFormConfig.ListColumnClick(Sender: TObject; Column: TListColumn);
+procedure TfConfiguration.ListColumnClick(Sender: TObject; Column: TListColumn);
 begin
-  TListView(Sender).SortType := stNone;
+  (Sender as TListView).SortType := stNone;
   if Column.Index <> SortedColumn then
   begin
     SortedColumn := Column.Index;
     Descending := False;
-  end else Descending := not Descending;
+  end
+  else
+    Descending := not Descending;
 
-  TListView(Sender).SortType := stText;
+  (Sender as TListView).SortType := stText;
 end;
 
-procedure TDDCSFormConfig.ListCompare(Sender: TObject; Item1,
-  Item2: TListItem; Data: Integer; var Compare: Integer);
+procedure TfConfiguration.ListCompare(Sender: TObject; Item1, Item2: TListItem;
+  Data: Integer; var Compare: Integer);
 begin
   if SortedColumn = 0 then
     Compare := CompareText(Item1.Caption, Item2.Caption)
-  else if SortedColumn <> 0 then
+  else
+  if SortedColumn <> 0 then
     Compare := CompareText(Item1.SubItems[SortedColumn - 1], Item2.SubItems[SortedColumn - 1]);
 
   if Descending then
@@ -173,7 +174,7 @@ end;
 
 {$REGION 'Configuration and Report Items'}
 
-procedure TDDCSFormConfig.lvDDCSFormDblClick(Sender: TObject);
+procedure TfConfiguration.lvDDCSFormDblClick(Sender: TObject);
 var
   cControl: TComponent;
   nItem: TDDCSNoteItem;
@@ -221,14 +222,12 @@ begin
       cbDialogReturnCR.ItemIndex := cbDialogReturnCR.Items.IndexOf(nItem.DialogReturn.Name);
 
     if nItem.DialogReturn <> nil then
-    begin
       for I := 0 to nItem.Configuration.Count - 1 do
       begin
         J := cklConfigDialogsC.Items.IndexOf(Piece(nItem.Configuration[I],'|',3));
         if J <> -1 then
           cklConfigDialogsC.Checked[J] := True;
       end;
-    end;
   end;
 end;
 
@@ -236,7 +235,7 @@ end;
 
 {$REGION 'Dialogs'}
 
-procedure TDDCSFormConfig.lvDialogDblClick(Sender: TObject);
+procedure TfConfiguration.lvDialogDblClick(Sender: TObject);
 var
   sl: TStringList;
   wStr: WideString;
@@ -267,13 +266,13 @@ begin
   end;
 end;
 
-procedure TDDCSFormConfig.lvDialogComponentDblClick(Sender: TObject);
+procedure TfConfiguration.lvDialogComponentDblClick(Sender: TObject);
 begin
   if lvDialogComponent.ItemIndex < 0 then
     Exit;
 end;
 
-procedure TDDCSFormConfig.ReloadDialogs(Sender: TObject);
+procedure TfConfiguration.ReloadDialogs(Sender: TObject);
 var
   I: Integer;
   lvItem: TListItem;
@@ -292,7 +291,7 @@ begin
     end;
 end;
 
-procedure TDDCSFormConfig.btnDialogShowClick(Sender: TObject);
+procedure TfConfiguration.btnDialogShowClick(Sender: TObject);
 var
   wSave,wConfig,wText: WideString;
 begin
@@ -311,30 +310,31 @@ begin
         meDialogOutput.Lines.Text := wText;
       end;
     end;
+
+    lvDialog.Selected := lvDialog.Items[lvDialog.ItemIndex];
   except
     on E: Exception do
     ShowMsg(E.Message, smiError, smbOK);
   end;
-
-  lvDialog.Selected := lvDialog.Items[lvDialog.ItemIndex];
 end;
 
 {$ENDREGION}
 
 {$REGION 'Command'}
 
-procedure TDDCSFormConfig.btnSaveClick(Sender: TObject);
+procedure TfConfiguration.btnSaveClick(Sender: TObject);
 begin
   if Tabs.ActivePageIndex = 0 then
   begin
 
-  end else
+  end
+  else
   begin
 
   end;
 end;
 
-procedure TDDCSFormConfig.btnClearClick(Sender: TObject);
+procedure TfConfiguration.btnClearClick(Sender: TObject);
 begin
   if Tabs.ActivePageIndex = 0 then
     ClearReportItemInputCR
@@ -342,12 +342,12 @@ begin
     ClearReportItemInputD;
 end;
 
-procedure TDDCSFormConfig.btnDeleteClick(Sender: TObject);
+procedure TfConfiguration.btnDeleteClick(Sender: TObject);
 begin
 //
 end;
 
-procedure TDDCSFormConfig.btnUpdateClick(Sender: TObject);
+procedure TfConfiguration.btnUpdateClick(Sender: TObject);
 var
   sl: TStringList;
   wStr: WideString;
@@ -401,16 +401,20 @@ begin
           end;
         end;
 
-        if UpdateContext(MENU_CONTEXT) then
-          CallV('DSIO DDCS IMPORT FORM', [RPCBrokerV.DDCSInterface, sl]);
+        if DDCSObjects <> nil then
+        begin
+          UpdateContext(MENU_CONTEXT);
+          CallV('DSIO DDCS IMPORT FORM', [DDCSObjects.DDCSInterface, sl]);
+        end;
       except
-        On E: Exception do
+        on E: Exception do
         ShowMsg(E.Message, smiError, smbOK);
       end;
     finally
       sl.Free;
     end;
-  end else
+  end
+  else
   begin
     sl := TStringList.Create;
     try
@@ -429,9 +433,9 @@ begin
 
             if sl.Count > 0 then
             begin
-              if UpdateContext(MENU_CONTEXT) then
-                CallV('DSIO DDCS DIALOG IMPORT', [Piece(FDDCSForm.DLLDialogList[I],U,2),
-                      Piece(FDDCSForm.DLLDialogList[I],U,1), sl]);
+              UpdateContext(MENU_CONTEXT);
+              CallV('DSIO DDCS DIALOG IMPORT', [Piece(FDDCSForm.DLLDialogList[I],U,2),
+                    Piece(FDDCSForm.DLLDialogList[I],U,1), sl]);
             end;
           end;
         end;
@@ -445,16 +449,16 @@ begin
   end;
 end;
 
-procedure TDDCSFormConfig.btnCloseClick(Sender: TObject);
+procedure TfConfiguration.btnCloseClick(Sender: TObject);
 begin
   Close;
 end;
 
 {$ENDREGION}
 
-// Private ---------------------------------------------------------------------
+{$REGION 'TfConfiguration'}
 
-procedure TDDCSFormConfig.ClearReportItemEditor;
+procedure TfConfiguration.ClearReportItemEditor;
 begin
   lvDDCSForm.SortType := stNone;
   lvDDCSForm.Clear;
@@ -462,7 +466,7 @@ begin
   ClearReportItemInputCR;
 end;
 
-procedure TDDCSFormConfig.ClearReportItemInputCR;
+procedure TfConfiguration.ClearReportItemInputCR;
 var
   I: Integer;
 begin
@@ -485,7 +489,7 @@ begin
   cbDialogReturnCR.ItemIndex := -1;
 end;
 
-procedure TDDCSFormConfig.ClearDialogEditor;
+procedure TfConfiguration.ClearDialogEditor;
 var
   I: Integer;
 begin
@@ -500,7 +504,7 @@ begin
   ClearReportItemInputD;
 end;
 
-procedure TDDCSFormConfig.ClearReportItemInputD;
+procedure TfConfiguration.ClearReportItemInputD;
 begin
   spOrderD.Value := 0;
   edIdentifyingNameD.Clear;
@@ -516,9 +520,7 @@ begin
   meDialogOutput.Clear;
 end;
 
-// Public ----------------------------------------------------------------------
-
-constructor TDDCSFormConfig.Create(AOwner: TDDCSForm);
+constructor TfConfiguration.Create(AOwner: TDDCSForm);
 var
   I: Integer;
   lvItem: TListItem;
@@ -538,12 +540,12 @@ begin
     end;
 end;
 
-destructor TDDCSFormConfig.Destroy;
+destructor TfConfiguration.Destroy;
 begin
   inherited;
 end;
 
-procedure TDDCSFormConfig.FormShow(Sender: TObject);
+procedure TfConfiguration.FormShow(Sender: TObject);
 var
   I,J: Integer;
   lvItem: TListItem;
@@ -557,10 +559,10 @@ var
   begin
     if wControl.Name = '' then
       Exit;
-    if (not (allow) and (wControl is TStaticText)) then
+    if ((not allow) and (wControl is TStaticText)) then
       Exit;
 
-    if not (wControl is TDDCSVitals) and not (wControl is TStaticText) then
+    if ((not (wControl is TDDCSVitalsForm)) and (not (wControl is TStaticText))) then
       for I := 0 to wControl.ControlCount - 1 do
         if wControl.Controls[I] is TWinControl then
           ProcessControls(iPage, TWinControl(wControl.Controls[I]), allow);
@@ -576,7 +578,8 @@ var
     begin
       lvItem.SubItems.Add(BoolAsStr(nItem.Required));
       lvItem.SubItems.Add(IntToStr(nItem.Order));
-    end else
+    end
+    else
     begin
       lvItem.SubItems.Add('');
       lvItem.SubItems.Add('');
@@ -609,5 +612,7 @@ begin
       ProcessControls(IntToStr(nItem.Page.PageIndex + 1), nItem.OwningObject, True);
   end;
 end;
+
+{$ENDREGION}
 
 end.

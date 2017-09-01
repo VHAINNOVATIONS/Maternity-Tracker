@@ -1,4 +1,4 @@
-unit frmAbout;
+unit DDCSAbout;
 
 {
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ uses
   JvExExtCtrls, JvExtComponent, JvPanel;
 
 type
-  TDDCSAbout = class(TForm)
+  TfAbout = class(TForm)
     pnlInfo: TPanel;
     lbAppName: TStaticText;
     btnOk: TButton;
@@ -44,7 +44,7 @@ type
   end;
 
 var
-  DDCSAbout: TDDCSAbout;
+  fAbout: TfAbout;
 
 implementation
 
@@ -53,12 +53,12 @@ uses
 
 {$R *.DFM}
 
-procedure TDDCSAbout.FormCreate(Sender: TObject);
+procedure TfAbout.FormCreate(Sender: TObject);
 begin
   SetWindowLong(Handle, GWL_EXSTYLE, getWindowLong(Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
 end;
 
-procedure TDDCSAbout.FormShow(Sender: TObject);
+procedure TfAbout.FormShow(Sender: TObject);
 var
   vi: TJclFileVersionInfo;
 begin
@@ -85,7 +85,7 @@ begin
   end;
 end;
 
-procedure TDDCSAbout.HyperLinkClick(Sender: TObject);
+procedure TfAbout.HyperLinkClick(Sender: TObject);
 begin
   ShellExecute(Application.Handle, PChar('open'), PChar(TStaticText(Sender).Caption), nil, nil, SW_SHOWNORMAL);
 end;

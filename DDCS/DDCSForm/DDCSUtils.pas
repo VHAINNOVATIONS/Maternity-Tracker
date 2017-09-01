@@ -19,54 +19,70 @@ unit DDCSUtils;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, System.StrUtils, Vcl.Graphics, Vcl.Controls, Vcl.Forms,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.CheckLst, Vcl.Grids,
-  ORDtTm, ORCtrls;
+  Winapi.Windows, System.SysUtils, System.Classes, Vcl.Forms, ORFn;
 
 const
   U = '^';
 
 type
-  TShow508MessageIcon = (smiNone, smiInfo, smiWarning, smiError, smiQuestion);
+  TShow508MessageIcon = (smiNone, smiInfo, smiWarning, smiError, smiQuestion, smiConfirm);
   TShow508MessageButton = (smbOK, smbOKCancel, smbAbortRetryCancel, smbYesNoCancel, smbYesNo, smbRetryCancel);
   TShow508MessageResult = (smrOK, srmCancel, smrAbort, smrRetry, smrIgnore, smrYes, smrNo);
+
+  function ValidateDateTime(ADateTime: string; var fDateTime: TFMDateTime): Boolean;
 
   function ShowMsg(const Msg, Caption: string; Icon: TShow508MessageIcon = smiNone;
                    Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
   function ShowMsg(const Msg: string; Icon: TShow508MessageIcon = smiNone;
                    Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
-  function Piece(const S: string; Delim: char; PieceNum: Integer): string;
-  // Using VAUtils will return up to LastNum of delimiter even if the pieces didn't exist in the string
-  function Pieces(const S: string; Delim: char; FirstNum, LastNum: Integer): string;
+
   function SubCount(S: string; C: Char): Integer;
+  function Piece(const S: string; Delim: Char; PieceNum: Integer): string;
+  function Pieces(const S: string; Delim: Char; FirstNum,LastNum: Integer): string;
 
 implementation
 
-uses
-  VAUtils;
+function ValidateDateTime(ADateTime: string; var fDateTime: TFMDateTime): Boolean;
+begin
+  Result := False;
+  try
+    if ADateTime = '' then
+      Exit;
 
-// Replacement of and Redirection to VAUtils -----------------------------------
+    if IsFMDateTime(ADateTime) then
+    begin
+      fDateTime := StrToFloat(ADateTime);
+      Result := True;
+      Exit;
+    end;
+
+    fDateTime := DateTimeToFMDateTime(StrToDateTime(ADateTime));
+    Result := IsFMDateTime(FloatToStr(fDateTime));
+  except
+  end;
+end;
+
 function ShowMsg(const Msg, Caption: string; Icon: TShow508MessageIcon = smiNone;
-                 Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
+  Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
 var
-  Flags, Answer: Longint;
+  Flags,Answer: Longint;
   Title: string;
 begin
   Flags := MB_TOPMOST;
   case Icon of
-    smiInfo:      Flags := Flags OR MB_ICONINFORMATION;
-    smiWarning:   Flags := Flags OR MB_ICONWARNING;
-    smiError:     Flags := Flags OR MB_ICONERROR;
-    smiQuestion:  Flags := Flags OR MB_ICONQUESTION;
+    smiInfo: Flags := Flags or MB_ICONINFORMATION;
+    smiWarning: Flags := Flags or MB_ICONWARNING;
+    smiError: Flags := Flags or MB_ICONERROR;
+    smiQuestion: Flags := Flags or MB_ICONQUESTION;
+    smiConfirm: Flags := Flags or MB_ICONQUESTION;
   end;
   case Buttons of
-    smbOK:                Flags := Flags OR MB_OK;
-    smbOKCancel:          Flags := Flags OR MB_OKCANCEL;
-    smbAbortRetryCancel:  Flags := Flags OR MB_ABORTRETRYIGNORE;
-    smbYesNoCancel:       Flags := Flags OR MB_YESNOCANCEL;
-    smbYesNo:             Flags := Flags OR MB_YESNO;
-    smbRetryCancel:       Flags := Flags OR MB_RETRYCANCEL;
+    smbOK: Flags := Flags or MB_OK;
+    smbOKCancel: Flags := Flags or MB_OKCANCEL;
+    smbAbortRetryCancel: Flags := Flags or MB_ABORTRETRYIGNORE;
+    smbYesNoCancel: Flags := Flags or MB_YESNOCANCEL;
+    smbYesNo: Flags := Flags or MB_YESNO;
+    smbRetryCancel: Flags := Flags or MB_RETRYCANCEL;
   end;
   Title := Caption;
   if Title = '' then
@@ -74,65 +90,30 @@ begin
   Answer := Application.MessageBox(PChar(Msg), PChar(Title), Flags);
   case Answer of
     IDCANCEL: Result := srmCancel;
-    IDABORT:  Result := smrAbort;
-    IDRETRY:  Result := smrRetry;
+    IDABORT: Result := smrAbort;
+    IDRETRY: Result := smrRetry;
     IDIGNORE: Result := smrIgnore;
-    IDYES:    Result := smrYes;
-    IDNO:     Result := smrNo;
-    else      Result := smrOK; // IDOK
+    IDYES: Result := smrYes;
+    IDNO: Result := smrNo;
+    else
+      Result := smrOK; // IDOK
   end;
 end;
 
 function ShowMsg(const Msg: string; Icon: TShow508MessageIcon = smiNone;
-                 Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
+  Buttons: TShow508MessageButton = smbOK): TShow508MessageResult; overload;
 var
   Caption: string;
 begin
   Caption := '';
   case Icon of
-    smiWarning:   Caption := ' Warning';
-    smiError:     Caption := ' Error';
-    smiQuestion:  Caption := ' Inquiry';
+    smiWarning: Caption := ' Warning';
+    smiError: Caption := ' Error';
+    smiQuestion: Caption := ' Inquiry';
+    smiConfirm: Caption := ' Confirm';
   end;
   Caption := ExtractFileName(GetModuleName(HInstance)) + Caption;
   Result := ShowMsg(Msg, Caption, Icon, Buttons);
-end;
-
-function Piece(const S: string; Delim: char; PieceNum: Integer): string;
-begin
-  Result := VAUtils.Piece(S, Delim, PieceNum);
-end;
-
-function Pieces(const S: string; Delim: char; FirstNum, LastNum: Integer): string;
-{ returns several contiguous pieces without extra delimiters}
-var
-  sl: TStringList;
-  I: Integer;
-begin
-  Result := '';
-
-  sl := TStringList.Create;
-  try
-    sl.Delimiter := Delim;
-    sl.StrictDelimiter := True;
-    sl.DelimitedText := S;
-
-    if FirstNum > sl.Count then
-      Exit;
-
-    for I := FirstNum - 1 to sl.Count - 1 do
-    begin
-      Result := Result + U + sl[I];
-
-      if I = LastNum - 1 then
-        Break;
-    end;
-
-    if Length(Result) > 0 then
-      Delete(Result, 1, 1);
-  finally
-    sl.Free;
-  end;
 end;
 
 function SubCount(S: string; C: Char): Integer;
@@ -143,7 +124,52 @@ begin
 
   for I := 0 to Length(S) - 1 do
     if S[I] = C then
-      inc(Result);
+      Inc(Result);
+end;
+
+function Piece(const S: string; Delim: char; PieceNum: Integer): string;
+{ returns the Nth piece (PieceNum) of a string delimited by Delim }
+var
+  I: Integer;
+  Strt,Next: PChar;
+begin
+  I := 1;
+  Strt := PChar(S);
+  Next := StrScan(Strt, Delim);
+  while (I < PieceNum) and (Next <> nil) do
+  begin
+    Inc(I);
+    Strt := Next + 1;
+    Next := StrScan(Strt, Delim);
+  end;
+  if Next = nil then
+    Next := StrEnd(Strt);
+  if I < PieceNum then
+    Result := ''
+  else
+    SetString(Result, Strt, Next - Strt);
+end;
+
+function Pieces(const S: string; Delim: Char; FirstNum,LastNum: Integer): string;
+{ returns several contiguous pieces }
+var
+  iCount,iPieceNum,I: Integer;
+begin
+  Result := '';
+
+  iCount := FirstNum - 1;
+  iPieceNum := SubCount(S, Delim) + 1;
+  for I := FirstNum to LastNum do
+  begin
+    Inc(iCount);
+    if iCount > iPieceNum then
+      Break;
+
+    Result := Result + Piece(S,Delim,I) + Delim;
+  end;
+
+  if Length(Result) > 0 then
+    Delete(Result, Length(Result), 1);
 end;
 
 end.

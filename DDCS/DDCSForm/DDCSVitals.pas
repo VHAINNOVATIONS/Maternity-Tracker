@@ -1,4 +1,4 @@
-unit frmVitals;
+unit DDCSVitals;
 
 {
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +34,7 @@ type
 
   TEventType = (evLMP,evECD,evUlt,evEmT,evOth,evUkn);
 
-  TDDCSVitals = class(TFrame)
+  TDDCSVitalsForm = class(TFrame)
     fVitalsControl: TPageControl;
     PageMain: TTabSheet;
     PageEDD: TTabSheet;
@@ -203,13 +203,10 @@ implementation
 {$R *.dfm}
 
 uses
-  uBase, uCommon, DDCSUtils, DDCSComBroker;
+  DDCSForm, DDCSCommon, DDCSUtils, DDCSComBroker;
 
-const
-  FMT_DATETIME = 'mm/dd/yyyy';
-
-   // LMP ****
-procedure TDDCSVitals.dtLMPExit(Sender: TObject);
+// LMP ****
+procedure TDDCSVitalsForm.dtLMPExit(Sender: TObject);
 begin
   if AnsiCompareText(dtLMP.Text, 'Today') = 0 then
     dtLMP.Text := DateToStr(Today);
@@ -226,13 +223,14 @@ begin
   end;
 end;
 
-procedure TDDCSVitals.LMPChangeEvents(Switch: Boolean);
+procedure TDDCSVitalsForm.LMPChangeEvents(Switch: Boolean);
 begin
   if not Switch then
   begin
     dtLMP.OnExit := nil;
     edtLMP.OnExit := nil;
-  end else
+  end
+  else
   begin
     edtLMP.OnExit := edtLMPExit;
     dtLMP.OnExit := dtLMPExit;
@@ -240,7 +238,7 @@ begin
 end;
 
 // ECD ****
-procedure TDDCSVitals.dtECDExit(Sender: TObject);
+procedure TDDCSVitalsForm.dtECDExit(Sender: TObject);
 begin
   if AnsiCompareText(dtECD.Text, 'Today') = 0 then
     dtECD.Text := DateToStr(Today);
@@ -249,8 +247,8 @@ begin
   edtEDDECD.Text := CalEDD(evECD);
 end;
 
-   // Ultrasound ****
-procedure TDDCSVitals.dtUltraExit(Sender: TObject);
+// Ultrasound ****
+procedure TDDCSVitalsForm.dtUltraExit(Sender: TObject);
 begin
   if AnsiCompareText(dtUltra.Text, 'Today') = 0 then
     dtUltra.Text := DateToStr(Today);
@@ -259,7 +257,7 @@ begin
   edtEDDUltra.Text := CalEDD(evUlt);
 end;
 
-procedure TDDCSVitals.spnWeekUltraChange(Sender: TObject);
+procedure TDDCSVitalsForm.spnWeekUltraChange(Sender: TObject);
 begin
   ckFinalEDDUltra.Checked := False;
 
@@ -269,7 +267,7 @@ begin
   dtUltraExit(Sender);
 end;
 
-procedure TDDCSVitals.spnDayUltraChange(Sender: TObject);
+procedure TDDCSVitalsForm.spnDayUltraChange(Sender: TObject);
 begin
   ckFinalEDDUltra.Checked := False;
 
@@ -289,13 +287,13 @@ begin
   dtUltraExit(Sender);
 end;
 
-procedure TDDCSVitals.spnPrePregWtExit(Sender: TObject);
+procedure TDDCSVitalsForm.spnPrePregWtExit(Sender: TObject);
 begin
   spnPrePregWt.Value := StrToIntDef(spnPrePregWt.Text, 0);
 end;
 
 // Embryo Transfer ****
-procedure TDDCSVitals.dtEmbryoExit(Sender: TObject);
+procedure TDDCSVitalsForm.dtEmbryoExit(Sender: TObject);
 begin
   if AnsiCompareText(dtEmbryo.Text, 'Today') = 0 then
     dtEmbryo.Text := DateToStr(Today);
@@ -304,14 +302,14 @@ begin
   edtEDDEmbryo.Text := CalEDD(evEmT);
 end;
 
-procedure TDDCSVitals.spnTransferDayChange(Sender: TObject);
+procedure TDDCSVitalsForm.spnTransferDayChange(Sender: TObject);
 begin
   ckFinalEDDEmbryo.Checked := False;
   dtEmbryoExit(Sender);
 end;
 
-   // Other ****
-procedure TDDCSVitals.dtOtherExit(Sender: TObject);
+// Other ****
+procedure TDDCSVitalsForm.dtOtherExit(Sender: TObject);
 begin
   if AnsiCompareText(dtOther.Text, 'Today') = 0 then
     dtOther.Text := DateToStr(Today);
@@ -320,7 +318,7 @@ begin
   edtEDDOther.Text := CalEDD(evOth);
 end;
 
-procedure TDDCSVitals.spnWeekOtherChange(Sender: TObject);
+procedure TDDCSVitalsForm.spnWeekOtherChange(Sender: TObject);
 begin
   ckFinalEDDOther.Checked := False;
 
@@ -330,7 +328,7 @@ begin
   dtOtherExit(Sender);
 end;
 
-procedure TDDCSVitals.spnDayOtherChange(Sender: TObject);
+procedure TDDCSVitalsForm.spnDayOtherChange(Sender: TObject);
 begin
   ckFinalEDDOther.Checked := False;
 
@@ -350,12 +348,12 @@ begin
   dtOtherExit(Sender);
 end;
 
-procedure TDDCSVitals.lblOtherChange(Sender: TObject);
+procedure TDDCSVitalsForm.lblOtherChange(Sender: TObject);
 begin
   ckFinalEDDOther.Checked := False;
 end;
 
-procedure TDDCSVitals.lblOtherMouseEnter(Sender: TObject);
+procedure TDDCSVitalsForm.lblOtherMouseEnter(Sender: TObject);
 begin
   if lblOther.Text = 'Other Criteria' then
   begin
@@ -364,21 +362,19 @@ begin
   end;
 end;
 
-procedure TDDCSVitals.lblOtherExit(Sender: TObject);
+procedure TDDCSVitalsForm.lblOtherExit(Sender: TObject);
 begin
   if lblOther.Text = '' then
     lblOther.Text := 'Other Criteria';
 end;
 
-   // Unknown ****
-procedure TDDCSVitals.dtEDDUnknownExit(Sender: TObject);
+// Unknown ****
+procedure TDDCSVitalsForm.dtEDDUnknownExit(Sender: TObject);
 begin
   ckFinalEDDUnknown.Checked := False;
 end;
 
-   // Final --------------------------------------------------------------------
-
-procedure TDDCSVitals.IsFinalEDDClick(Sender: TObject);
+procedure TDDCSVitalsForm.IsFinalEDDClick(Sender: TObject);
 var
   ck: TCheckBox;
   GA,GAgeWeeks: Integer;
@@ -407,11 +403,11 @@ var
 
   procedure StartChecked;
   begin
-    ckFinalEDDLMP.OnClick     := IsFinalEDDClick;
-    ckFinalEDDECD.OnClick     := IsFinalEDDClick;
-    ckFinalEDDUltra.OnClick   := IsFinalEDDClick;
-    ckFinalEDDEmbryo.OnClick  := IsFinalEDDClick;
-    ckFinalEDDOther.OnClick   := IsFinalEDDClick;
+    ckFinalEDDLMP.OnClick := IsFinalEDDClick;
+    ckFinalEDDECD.OnClick := IsFinalEDDClick;
+    ckFinalEDDUltra.OnClick := IsFinalEDDClick;
+    ckFinalEDDEmbryo.OnClick := IsFinalEDDClick;
+    ckFinalEDDOther.OnClick := IsFinalEDDClick;
     ckFinalEDDUnknown.OnClick := IsFinalEDDClick;
   end;
 
@@ -439,9 +435,9 @@ begin
   if not ck.Checked then
     Exit;
 
-  edtFinalGA.Text    := '';
+  edtFinalGA.Text := '';
   edtCurrentEDD.Text := '';
-  edtEDDGA.Text      := '';
+  edtEDDGA.Text := '';
 
   StopChecked(ck);
   try
@@ -453,7 +449,7 @@ begin
            begin
              edtCurrentEDD.Text := edtEDDLMP.Text;
              UpdateGestation(evLMP, edtEDDLMP.FMDateTime, dtLMP.FMDateTime);
-             TCheckBox(Sender).Checked := True;
+             ck.Checked := True;
            end;
          end;
       2: begin                                                                  // ECD
@@ -463,7 +459,7 @@ begin
            begin
              edtCurrentEDD.Text := edtEDDECD.Text;
              UpdateGestation(evECD, edtEDDECD.FMDateTime, dtECD.FMDateTime);
-             TCheckBox(Sender).Checked := True;
+             ck.Checked := True;
            end;
          end;
       3: begin                                                                  // Ultrasound
@@ -473,8 +469,8 @@ begin
            begin
              edtCurrentEDD.Text := edtEDDUltra.Text;
              UpdateGestation(evUlt, edtEDDUltra.FMDateTime, FMDateTimeOffsetBy(dtUltra.FMDateTime,
-                                                            -((spnWeekUltra.Value * 7) + spnDayUltra.Value)));
-             TCheckBox(Sender).Checked := True;
+                             -((spnWeekUltra.Value * 7) + spnDayUltra.Value)));
+             ck.Checked := True;
            end;
          end;
       4: begin                                                                  // Embryo Transfer
@@ -484,7 +480,7 @@ begin
            begin
              edtCurrentEDD.Text := edtEDDEmbryo.Text;
              UpdateGestation(evEmT, edtEDDEmbryo.FMDateTime, dtEmbryo.FMDateTime);
-             TCheckBox(Sender).Checked := True;
+             ck.Checked := True;
            end;
          end;
       5: begin                                                                  // Other
@@ -494,12 +490,14 @@ begin
            begin
              ckFinalEDDOther.Checked := False;
              ShowMsg('"Other Criteria" must be defined.');
-           end else if edtEDDOther.IsValid then
+           end
+           else
+           if edtEDDOther.IsValid then
            begin
              edtCurrentEDD.Text := edtEDDOther.Text;
              UpdateGestation(evOth, edtEDDOther.FMDateTime, FMDateTimeOffsetBy(dtOther.FMDateTime,
-                                                            -((spnWeekOther.Value * 7) + spnDayOther.Value)));
-             TCheckBox(Sender).Checked := True;
+                             -((spnWeekOther.Value * 7) + spnDayOther.Value)));
+             ck.Checked := True;
            end;
          end;
       6: begin                                                                  // Unknown
@@ -513,9 +511,10 @@ begin
                edtEDDGA.Text := IntToStr(GAgeWeeks) + 'w ' + IntToStr(GA - Trunc(GAgeWeeks * 7)) + 'd';
                edtFinalGA.Text := edtEDDGA.Text;
              end;
-           end else
+           end
+           else
            begin
-             TCheckBox(Sender).Checked := False;
+             ck.Checked := False;
              ShowMsg('The estimated date of delivery must be defined.');
            end;
          end;
@@ -525,33 +524,31 @@ begin
   end;
 end;
 
-   // --------------------------------------------------------------------------
-
-procedure TDDCSVitals.PageEDDResize(Sender: TObject);
+procedure TDDCSVitalsForm.PageEDDResize(Sender: TObject);
 var
   I: Integer;
 begin
   I := lblOther.Left;
-  lblLMP.Left     := I;
-  lblECD.Left     := I;
-  lblUltra.Left   := I;
+  lblLMP.Left := I;
+  lblECD.Left := I;
+  lblUltra.Left := I;
   lblUnknown.Left := I;
 end;
 
-procedure TDDCSVitals.PageEDDShow(Sender: TObject);
+procedure TDDCSVitalsForm.PageEDDShow(Sender: TObject);
 begin
   PageEDDResize(Sender);
 end;
 
-   // Menstrual Page -----------------------------------------------------------
+// Menstrual Page --------------------------------------------------------------
 
-procedure TDDCSVitals.SpinCheck(Sender: TObject);
+procedure TDDCSVitalsForm.SpinCheck(Sender: TObject);
 begin
-  if TSpinEdit(Sender).Value < 0 then
-    TSpinEdit(Sender).Value := 0;
+  if (Sender as TSpinEdit).Value < 0 then
+    (Sender as TSpinEdit).Value := 0;
 end;
 
-procedure TDDCSVitals.edtLMPExit(Sender: TObject);
+procedure TDDCSVitalsForm.edtLMPExit(Sender: TObject);
 begin
   if ((edtLMP.IsValid) and (edtLMP.FMDateTime <> dtLMP.FMDateTime)) then
   begin
@@ -562,7 +559,7 @@ begin
   end;
 end;
 
-procedure TDDCSVitals.ToggleCheckBoxes(Sender: TObject);
+procedure TDDCSVitalsForm.ToggleCheckBoxes(Sender: TObject);
 
   Procedure ToggleCB(cb1:TCheckBox; cb2:TCheckBox);
   begin
@@ -571,7 +568,7 @@ procedure TDDCSVitals.ToggleCheckBoxes(Sender: TObject);
   end;
 
 begin
-  if (Sender is TCheckBox) and ((Sender as TCheckBox).Checked = True) then
+  if ((Sender is TCheckBox) and ((Sender as TCheckBox).Checked)) then
   case (Sender as TCheckBox).Tag of
      1: ToggleCB(ckMensesYes, ckMensesNo);
      2: ToggleCB(ckMensesNo, ckMensesYes);
@@ -588,9 +585,7 @@ begin
   end;
 end;
 
-// Private ---------------------------------------------------------------------
-
-procedure TDDCSVitals.UpdateLMP;
+procedure TDDCSVitalsForm.UpdateLMP;
 begin
   ckLMPQualifier.Checked := False;
   ckMensesYes.Checked := False;
@@ -612,8 +607,8 @@ begin
   memLMP.Clear;
 end;
 
-   // Calculate Estimated Delivery Date ----------------------------------------
-function TDDCSVitals.CalEDD(EventType: TEventType): string;
+// Calculate Estimated Delivery Date -------------------------------------------
+function TDDCSVitalsForm.CalEDD(EventType: TEventType): string;
    //   1. LMP
    //       EDD by LMP is calculated by adding 280 days (40 weeks) to the first day of
    //       the last menstrual period.
@@ -639,7 +634,8 @@ begin
     evEmT: begin
              if cbTransferDay.Text = '3' then
                Result := FormatFMDateTime('MM/DD/YYYY', FMDateTimeOffsetBy(dtEmbryo.FMDateTime, 263))
-             else if cbTransferDay.Text = '5' then
+             else
+             if cbTransferDay.Text = '5' then
                Result := FormatFMDateTime('MM/DD/YYYY', FMDateTimeOffsetBy(dtEmbryo.FMDateTime, 261))
              else
                Result := FormatFMDateTime('MM/DD/YYYY', FMDateTimeOffsetBy(dtEmbryo.FMDateTime, 262));
@@ -650,8 +646,8 @@ begin
   end;
 end;
 
-   // Gestational Age ----------------------------------------------------------// weeks^days
-function TDDCSVitals.CalGestationalAge(EventType: TEventType; FromDate,ToDate: TFMDateTime): string;
+// Gestational Age -------------------------------------------------- weeks^days
+function TDDCSVitalsForm.CalGestationalAge(EventType: TEventType; FromDate,ToDate: TFMDateTime): string;
 var
   GAgeDays,GAgeWeeks: Integer;
   tDate,fDate: TDateTime;
@@ -668,22 +664,22 @@ begin
     evEmT: begin
              if cbTransferDay.Text = '3' then
                GAgeDays := DaysBetween(tDate, fDate) + 17
-             else if cbTransferday.Text = '5' then
+             else
+             if cbTransferday.Text = '5' then
                GAgeDays := DaysBetween(tDate, fDate) + 19
              else
                GAgeDays := DaysBetween(tDate, fDate) + 18;
            end;
     evOth: GAgeDays := DaysBetween(tDate, fDate);
-    else GAgeDays := 0;
+    else
+      GAgeDays := 0;
   end;
 
   GAgeWeeks := Trunc(GAgeDays div 7);
   Result := IntToStr(GAgeWeeks) + U + IntToStr(GAgeDays - Trunc(GAgeWeeks * 7));
 end;
 
-// -----------------------------------------------------------------------------
-
-procedure TDDCSVitals.fVitalsControlChange(Sender: TObject);
+procedure TDDCSVitalsForm.fVitalsControlChange(Sender: TObject);
 var
   DDCSF: TDDCSForm;
 begin
@@ -703,9 +699,7 @@ begin
     end;
 end;
 
-// Public ----------------------------------------------------------------------
-
-procedure TDDCSVitals.BuildSayOnFocus(wControl: TWinControl; txt: string);
+procedure TDDCSVitalsForm.BuildSayOnFocus(wControl: TWinControl; txt: string);
 var
   rText: TSayOnFocus;
 begin
@@ -715,7 +709,7 @@ begin
   FocusControlText.Add(rText);
 end;
 
-constructor TDDCSVitals.Create(AOwner: TComponent);
+constructor TDDCSVitalsForm.Create(AOwner: TComponent);
 var
   sl: TStringList;
   I: Integer;
@@ -742,30 +736,32 @@ begin
   if csDesigning in ComponentState then
     Exit;
 
+  FocusControlText := TObjectList<TSayOnFocus>.Create(True);
+
   SetLength(TabSeen, fVitalsControl.PageCount);
 
   cbTransferDay.ItemIndex := 1;
 
-  edtCurrentEDD.Format  := FMT_DATETIME;
+  edtCurrentEDD.Format := DT_DATETIME;
   DisableButton(edtCurrentEDD);
-  dtLMP.Format          := FMT_DATETIME;
-  edtEDDLMP.Format      := FMT_DATETIME;
+  dtLMP.Format := DT_DATETIME;
+  edtEDDLMP.Format := DT_DATETIME;
   DisableButton(edtEDDLMP);
-  dtECD.Format          := FMT_DATETIME;
-  edtEDDECD.Format      := FMT_DATETIME;
+  dtECD.Format := DT_DATETIME;
+  edtEDDECD.Format := DT_DATETIME;
   DisableButton(edtEDDECD);
-  dtUltra.Format        := FMT_DATETIME;
-  edtEDDUltra.Format    := FMT_DATETIME;
+  dtUltra.Format := DT_DATETIME;
+  edtEDDUltra.Format := DT_DATETIME;
   DisableButton(edtEDDUltra);
-  dtEmbryo.Format       := FMT_DATETIME;
-  edtEDDEmbryo.Format   := FMT_DATETIME;
+  dtEmbryo.Format := DT_DATETIME;
+  edtEDDEmbryo.Format := DT_DATETIME;
   DisableButton(edtEDDEmbryo);
-  dtOther.Format        := FMT_DATETIME;
-  edtEDDOther.Format    := FMT_DATETIME;
+  dtOther.Format := DT_DATETIME;
+  edtEDDOther.Format := DT_DATETIME;
   DisableButton(edtEDDOther);
-  dtEDDUnknown.Format   := FMT_DATETIME;
-  edtLMP.Format         := FMT_DATETIME;
-  edthcg.Format         := FMT_DATETIME;
+  dtEDDUnknown.Format := DT_DATETIME;
+  edtLMP.Format := DT_DATETIME;
+  edthcg.Format := DT_DATETIME;
 
   sl := TStringList.Create;
   try
@@ -779,23 +775,26 @@ begin
         begin
           for I := 0 to sl.Count - 1 do
           begin
-            if Piece(sl[I],U,2) = 'T' then                                                          // Temperature
+            if Piece(sl[I],U,2) = 'T' then                                      // Temperature
             begin
               FTemps.Text := Piece(sl[I],U,3);
               FTempe.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), tuFahrenheit, tuCelsius));
               FTempdt.Caption := Piece(sl[I],U,4);
             end
-            else if Piece(sl[I],U,2) = 'P' then                                                     // Pulse
+            else
+            if Piece(sl[I],U,2) = 'P' then                                      // Pulse
             begin
               FPulses.Text := Piece(sl[I],U,3);
               FPulsedt.Caption := Piece(sl[I],U,4);
-            end                                                                                     // Respiration
-            else if Piece(sl[I],U,2) = 'R' then
+            end                                                                 // Respiration
+            else
+            if Piece(sl[I],U,2) = 'R' then
             begin
               FResps.Text := Piece(sl[I],U,3);
               FRespdt.Caption := Piece(sl[I],U,4);
             end
-            else if Piece(sl[I],U,2) = 'BP' then                                                    // Blood Pressure
+            else
+            if Piece(sl[I],U,2) = 'BP' then                                     // Blood Pressure
             begin
               // Populate Systolic (top) and Diastolic (bottom) from BP
               FSystolics.Text := Piece(Piece(sl[I],U,3),'/',1);
@@ -803,40 +802,50 @@ begin
               FSystolicdt.Caption := Piece(sl[I],U,4);
               FDiastolicdt.Caption := Piece(sl[I],U,4);
             end
-            else if Piece(sl[I],U,2) = 'HT' then                                                    // Height
+            else
+            if Piece(sl[I],U,2) = 'HT' then                                     // Height
             begin
               FHeights.Text := Piece(sl[I],U,3);
               FHeighte.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), duInches, duCentimeters));
               FHeightdt.Caption := Piece(sl[I],U,4);
             end
-            else if Piece(sl[I],U,2) = 'WT' then                                                    // Weight
+            else
+            if Piece(sl[I],U,2) = 'WT' then                                     // Weight
             begin
               FWeights.Text := Piece(sl[I],U,3);
               FWeighte.Text := FormatFloat('0.##', Convert(StrToFloat(Piece(sl[I],U,3)), muPounds, muKilograms));
               FWeightdt.Caption := Piece(sl[I],U,4);
             end
-            else if Piece(sl[I],U,2) = 'PN' then                                                    // Pain
+            else
+            if Piece(sl[I],U,2) = 'PN' then                                     // Pain
             begin
               FPains.Text := Piece(sl[I],U,3);
               FPaindt.Caption := Piece(sl[I],U,4);
             end
-            // if Piece(sl[I],U,2) = 'POX'                                                          // Pulse Oximetry
-            // if Piece(sl[I],U,2) = 'CVP' then                                                     // Central Venous Pressure
-            // if Piece(sl[I],U,2) = 'CG' then                                                      // Circumference/Girth
-            else if Piece(sl[I],U,2) = 'PREPREGWT' then                                             // Pre Pregnancy Weight
+            // if Piece(sl[I],U,2) = 'POX'                                      // Pulse Oximetry
+            // if Piece(sl[I],U,2) = 'CVP' then                                 // Central Venous Pressure
+            // if Piece(sl[I],U,2) = 'CG' then                                  // Circumference/Girth
+            else
+            if Piece(sl[I],U,2) = 'PREPREGWT' then                              // Pre Pregnancy Weight
               spnPrePregWt.Value := StrToIntDef(Piece(sl[I],U,3),0)
-            else if Piece(sl[I],U,2) = 'BMI' then                                                   // Body Mass Index
+            else
+            if Piece(sl[I],U,2) = 'BMI' then                                    // Body Mass Index
               FBMIValue.Caption := Piece(sl[I],U,3)
-            else if Piece(sl[I],U,2) = 'AGE' then                                                   // Age
+            else
+            if Piece(sl[I],U,2) = 'AGE' then                                    // Age
               FAgeValue.Caption := Piece(sl[I],U,3)
-            else if Piece(sl[I],U,2) = 'SEX' then                                                   // Sex
+            else
+            if Piece(sl[I],U,2) = 'SEX' then                                    // Sex
               FSexValue.Caption := Piece(sl[I],U,3);
           end;
 		    end;
 
       sl.Clear;
-      if UpdateContext(MENU_CONTEXT) then
-        tCallV(sl, 'DSIO DDCS VITALS LMP', [RPCBrokerV.Patient.DFN, RPCBrokerV.DDCSInterface]);
+      if DDCSObjects <> nil then
+      begin
+        UpdateContext(MENU_CONTEXT);
+        tCallV(sl, 'DSIO DDCS VITALS LMP', [RPCBrokerV.Patient.DFN, DDCSObjects.DDCSInterface]);
+      end;
 
       // (0)LMP^MENSES^FREQUENCY^MENARCHE^HCG^AMOUNT^DURATION^ON_CONTRACEPTION^QUALIFIER^
       //    MENSES_MONTHLY^BIRTH_PILLS_CONCEPTION
@@ -858,7 +867,8 @@ begin
         str := Piece(sl[0],U,2);
         if str = 'N' then
           ckMensesYes.Checked := True
-        else if str = 'A' then
+        else
+        if str = 'A' then
           ckMensesNo.Checked := True;
 
         // Frequency
@@ -876,21 +886,24 @@ begin
         str := Piece(sl[0],U,6);
         if str = 'N' then
           ckAmountYes.Checked := True
-        else if str = 'A' then
+        else
+        if str = 'A' then
           ckAmountNo.Checked := True;
 
         // Duration
         str := Piece(sl[0],U,7);
         if str = 'N' then
           ckDurationYes.Checked := True
-        else if str = 'A' then
+        else
+        if str = 'A' then
           ckDurationNo.Checked := True;
 
         // On Contraception
         str := Piece(sl[0],U,8);
         if str = 'Y' then
           ckContraceptionYes.Checked := True
-        else if str = 'N' then
+        else
+        if str = 'N' then
           ckContraceptionNo.Checked := True;
 
         // Qualifier
@@ -901,14 +914,16 @@ begin
         str := Piece(sl[0],U,10);
         if str = 'Y' then
           ckMonthlyYes.Checked := True
-        else if str = 'N' then
+        else
+        if str = 'N' then
           ckMonthlyNo.Checked := True;
 
         // On Birth Control Pills on Conception
         str := Piece(sl[0],U,11);
         if str = 'Y' then
           ckBirthPillsYes.Checked := True
-        else if str = 'N' then
+        else
+        if str = 'N' then
           ckBirthPillsNo.Checked := True;
 
         // Contraception Type
@@ -934,7 +949,6 @@ begin
     sl.Free;
 
     // 508 support -----------------------------------------------------------
-    FocusControlText := TObjectList<TSayOnFocus>.Create(True);
     BuildSayOnFocus(         FAgeValue, 'Patient age in years');
     BuildSayOnFocus(         FSexValue, 'Patient sex');
     BuildSayOnFocus(         FBMIValue, 'Patient B M I');
@@ -997,7 +1011,7 @@ begin
   fVitalsControl.ActivePageIndex := 0;
 end;
 
-destructor TDDCSVitals.Destroy;
+destructor TDDCSVitalsForm.Destroy;
 begin
   if Assigned(FocusControlText) then
     FocusControlText.Free;
@@ -1006,7 +1020,7 @@ begin
   inherited;
 end;
 
-procedure TDDCSVitals.Save;
+procedure TDDCSVitalsForm.Save;
 var
   sl: TStringList;
   qual: string;
@@ -1015,7 +1029,8 @@ var
   begin
     if cb1.Checked then
       Result := string(cb1.Caption).Chars[0]
-    else if cb2.Checked then
+    else
+    if cb2.Checked then
       Result := string(cb2.Caption).Chars[0]
     else
       Result := '';
@@ -1030,76 +1045,84 @@ var
   end;
 
 begin
-  sl := TStringList.Create;
   try
-    // VITALS
-    // VIT^PRE_PREGNANCY_WEIGHT
-
-    sl.Add('VIT^' + spnPrePregWt.Text);
-
-    // EDD^CRITERIA^EVENT_DATE^GESTATIONAL_AGE^EDD
-    // EDD^CRITERIA|OTHER-DISPLAY-NAME^EVENT_DATE^GESTATIONAL_AGE^EDD
-
-    if ckFinalEDDLMP.Checked then
-      sl.Add('EDD^LMP^' + FloatToStr(dtLMP.FMDateTime) + '^^' + edtCurrentEDD.Text)
-    else if ckFinalEDDECD.Checked then
-      sl.Add('EDD^ECD^' + FloatToStr(dtECD.FMDateTime) + '^^' + edtCurrentEDD.Text)
-    else if ckFinalEDDUltra.Checked then
-      sl.Add('EDD^ULT^' + FloatToStr(dtUltra.FMDateTime) + U + spnWeekUltra.Text
-             + 'w' + spnDayUltra.Text + 'd' + U + edtCurrentEDD.Text)
-    else if ckFinalEDDEmbryo.Checked then
-      sl.Add('EDD^EMB^' + FloatToStr(dtEmbryo.FMDateTime) + '^^' + edtCurrentEDD.Text)
-    else if ckFinalEDDOther.Checked then
-      sl.Add('EDD^OTH|' + lblOther.Text + U + FloatToStr(dtOther.FMDateTime)  + U
-             + spnWeekOther.Text + 'w' + spnDayOther.Text + 'd' + U + edtCurrentEDD.Text)
-    else if ckFinalEDDUnknown.Checked then
-      sl.Add('EDD^EDD^' + '^^' + edtCurrentEDD.Text);
-
-    // LMP
-    if ckLMPQualifier.Checked then
-      qual := 'A'
-    else
-      qual := '';
-
-    // LMP^MENSES^FREQUENCY^AMOUNT^DURATION^ON_CONTRACEPTION^RECENT_CONTRACEPTIVE^
-    // hCG+^MENARCHE^QUALIFIER^MENSES_MONTHLY^BIRTH_PILLS_CONCEPTION
-
-    sl.Add('LMP^' + edtLMP.Text + U + SetofCodes(ckMensesYes,ckMensesNo) + U + spnFreq.Text + U +
-           SetofCodes(ckAmountYes,ckAmountNo) + U + SetofCodes(ckDurationYes,ckDurationNo)  + U +
-           SetofCodes(ckContraceptionYes,ckContraceptionNo) + U + edtContraceptionType.Text + U +
-           edthcg.Text + U + spnMenarche.Text + U + qual +                                    U +
-           SetofCodes(ckMonthlyYes,ckMonthlyNo) + U + SetofCodes(ckBirthPillsYes,ckBirthPillsNo));
-
-    // COM^TEXT
-
-    if memLMP.Lines.Count > 0 then
-      sl.Add('COM^' + memLMP.Lines.Text);
-
+    sl := TStringList.Create;
     try
-      if UpdateContext(MENU_CONTEXT) then
-        sCallV('DSIO DDCS ORQQVI VITALS SAVE', [RPCBrokerV.ControlObject, RPCBrokerV.TIUNote.IEN, sl])
-    except
-    end;
-  finally
-    sl.Free;
-  end;
-end;
+      // VITALS
+      // VIT^PRE_PREGNANCY_WEIGHT
 
-// Array of vital ien^vital type^rate/value^date/time taken
-procedure TDDCSVitals.GetPatientVitals(var oText: TStringList);
-begin
-  oText.Clear;
-  try
-    if RPCBrokerV <> nil then
-    begin
-      if UpdateContext(MENU_CONTEXT) then
-        tCallV(oText, 'DSIO DDCS ORQQVI VITALS', [RPCBrokerV.Patient.DFN]);
+      sl.Add('VIT^' + spnPrePregWt.Text);
+
+      // EDD^CRITERIA^EVENT_DATE^GESTATIONAL_AGE^EDD
+      // EDD^CRITERIA|OTHER-DISPLAY-NAME^EVENT_DATE^GESTATIONAL_AGE^EDD
+
+      if ckFinalEDDLMP.Checked then
+        sl.Add('EDD^LMP^' + FloatToStr(dtLMP.FMDateTime) + '^^' + edtCurrentEDD.Text)
+      else
+      if ckFinalEDDECD.Checked then
+        sl.Add('EDD^ECD^' + FloatToStr(dtECD.FMDateTime) + '^^' + edtCurrentEDD.Text)
+      else
+      if ckFinalEDDUltra.Checked then
+        sl.Add('EDD^ULT^' + FloatToStr(dtUltra.FMDateTime) + U + spnWeekUltra.Text
+               + 'w' + spnDayUltra.Text + 'd' + U + edtCurrentEDD.Text)
+      else
+      if ckFinalEDDEmbryo.Checked then
+        sl.Add('EDD^EMB^' + FloatToStr(dtEmbryo.FMDateTime) + '^^' + edtCurrentEDD.Text)
+      else
+      if ckFinalEDDOther.Checked then
+        sl.Add('EDD^OTH|' + lblOther.Text + U + FloatToStr(dtOther.FMDateTime)  + U
+               + spnWeekOther.Text + 'w' + spnDayOther.Text + 'd' + U + edtCurrentEDD.Text)
+      else
+      if ckFinalEDDUnknown.Checked then
+        sl.Add('EDD^EDD^' + '^^' + edtCurrentEDD.Text);
+
+      // LMP
+      if ckLMPQualifier.Checked then
+        qual := 'A'
+      else
+        qual := '';
+
+      // LMP^MENSES^FREQUENCY^AMOUNT^DURATION^ON_CONTRACEPTION^RECENT_CONTRACEPTIVE^
+      // hCG+^MENARCHE^QUALIFIER^MENSES_MONTHLY^BIRTH_PILLS_CONCEPTION
+
+      sl.Add('LMP^' + edtLMP.Text + U + SetofCodes(ckMensesYes,ckMensesNo) + U + spnFreq.Text + U +
+             SetofCodes(ckAmountYes,ckAmountNo) + U + SetofCodes(ckDurationYes,ckDurationNo)  + U +
+             SetofCodes(ckContraceptionYes,ckContraceptionNo) + U + edtContraceptionType.Text + U +
+             edthcg.Text + U + spnMenarche.Text + U + qual +                                    U +
+             SetofCodes(ckMonthlyYes,ckMonthlyNo) + U + SetofCodes(ckBirthPillsYes,ckBirthPillsNo));
+
+      // COM^TEXT
+
+      if memLMP.Lines.Count > 0 then
+        sl.Add('COM^' + memLMP.Lines.Text);
+
+      if DDCSObjects <> nil then
+      begin
+        UpdateContext(MENU_CONTEXT);
+        sCallV('DSIO DDCS ORQQVI VITALS SAVE', [DDCSObjects.ControlObject, RPCBrokerV.TIUNote.IEN, sl]);
+      end;
+    finally
+      sl.Free;
     end;
   except
   end;
 end;
 
-procedure TDDCSVitals.GetVitalsNote(var oText: TStringList);
+// Array of vital ien^vital type^rate/value^date/time taken
+procedure TDDCSVitalsForm.GetPatientVitals(var oText: TStringList);
+begin
+  oText.Clear;
+  try
+    if RPCBrokerV <> nil then
+    begin
+      UpdateContext(MENU_CONTEXT);
+      tCallV(oText, 'DSIO DDCS ORQQVI VITALS', [RPCBrokerV.Patient.DFN]);
+    end;
+  except
+  end;
+end;
+
+procedure TDDCSVitalsForm.GetVitalsNote(var oText: TStringList);
 
   function strLengthen(str: string): string;
   begin
@@ -1141,7 +1164,7 @@ begin
   end;
 end;
 
-procedure TDDCSVitals.GetEDDNote(var oText: TStringList);
+procedure TDDCSVitalsForm.GetEDDNote(var oText: TStringList);
 begin
   oText.Clear;
 
@@ -1157,47 +1180,69 @@ begin
     oText.Add('   Gestational Age Today: ' + edtFinalGA.Text);
   if ckFinalEDDLMP.Checked then
     oText.Add('   The current calculation is based on  a Last Menstrual Period of ' + dtLMP.Text + '.')
-  else if ckFinalEDDECD.Checked then
+  else
+  if ckFinalEDDECD.Checked then
     oText.Add('   The current calculation is based on an Estimated Conception Date of ' + dtECD.Text + '.')
-  else if ckFinalEDDUltra.Checked then
+  else
+  if ckFinalEDDUltra.Checked then
     oText.Add('   The current calculation is based on an Ultrasound conducted on ' + dtUltra.Text +
               ' with an estimated gestational age of ' + IntToStr(spnWeekUltra.Value) + ' weeks and ' +
               IntToStr(spnDayUltra.Value) + ' days.')
-  else if ckFinalEDDEmbryo.Checked then
+  else
+  if ckFinalEDDEmbryo.Checked then
     oText.Add('   The current calculation is based on a ' + cbTransferDay.Text + '-day embryo transfer conducted on ' +
               dtEmbryo.Text + '.')
-  else if ckFinalEDDOther.Checked then
+  else
+  if ckFinalEDDOther.Checked then
     oText.Add('   The current calculation is based on an EDD Criteria of ' + lblOther.Text +
               ' with an estimated gestational age of ' + IntToStr(spnWeekOther.Value) + ' weeks and ' +
               IntToStr(spnDayOther.Value) + ' days.')
-  else if ckFinalEDDUnknown.Checked then
+  else
+  if ckFinalEDDUnknown.Checked then
     oText.Add('   The current methodology for calculation is unknown.');
 end;
 
-procedure TDDCSVitals.GetLMPNote(var oText: TStringList);
+procedure TDDCSVitalsForm.GetLMPNote(var oText: TStringList);
 var
   I: Integer;
 begin
   oText.Clear;
 
-  if edtLMP.Text <> ''                 then oText.Add('  LMP: ' + edtLMP.Text);
-  if ckLMPQualifier.Checked            then oText.Add('   *Approximate');
-  if ckMensesYes.Checked               then oText.Add('  Menses Regular: YES');
-  if ckMensesNo.Checked                then oText.Add('  Menses Regular: NO');
-  if ckMonthlyYes.Checked              then oText.Add('  Menses Monthly: YES');
-  if ckMonthlyNo.Checked               then oText.Add('  Menses Monthly: NO');
-  if ckAmountYes.Checked               then oText.Add('  Normal Amount: YES');
-  if ckAmountNo.Checked                then oText.Add('  Normal Amount: NO');
-  if ckDurationYes.Checked             then oText.Add('  Normal Duration: YES');
-  if ckDurationNo.Checked              then oText.Add('  Normal Duration: NO');
-  if spnFreq.Value > 0                 then oText.Add('  Duration of Flow Frequency: ' + spnFreq.Text + ' days');
-  if spnMenarche.Value > 0             then oText.Add('  Menarche: ' + spnMenarche.Text + ' years old');
-  if edthcg.Text <> ''                 then oText.Add('  hCG+: ' + edthcg.Text);
-  if ckContraceptionYes.Checked        then oText.Add('  On Contraception: YES');
-  if ckContraceptionNo.Checked         then oText.Add('  On Contraception: NO');
-  if ckBirthPillsYes.Checked           then oText.Add('  On Birth Control Pills on Conception: YES');
-  if ckBirthPillsNo.Checked            then oText.Add('  On Birth Control Pills on Conception: NO');
-  if edtContraceptionType.Text <> ''   then
+  if edtLMP.Text <> '' then
+    oText.Add('  LMP: ' + edtLMP.Text);
+  if ckLMPQualifier.Checked then
+    oText.Add('   *Approximate');
+  if ckMensesYes.Checked then
+    oText.Add('  Menses Regular: YES');
+  if ckMensesNo.Checked then
+    oText.Add('  Menses Regular: NO');
+  if ckMonthlyYes.Checked then
+    oText.Add('  Menses Monthly: YES');
+  if ckMonthlyNo.Checked then
+    oText.Add('  Menses Monthly: NO');
+  if ckAmountYes.Checked then
+    oText.Add('  Normal Amount: YES');
+  if ckAmountNo.Checked then
+    oText.Add('  Normal Amount: NO');
+  if ckDurationYes.Checked then
+    oText.Add('  Normal Duration: YES');
+  if ckDurationNo.Checked then
+    oText.Add('  Normal Duration: NO');
+  if spnFreq.Value > 0 then
+    oText.Add('  Duration of Flow Frequency: ' + spnFreq.Text + ' days');
+  if spnMenarche.Value > 0 then
+    oText.Add('  Menarche: ' + spnMenarche.Text + ' years old');
+  if edthcg.Text <> '' then
+    oText.Add('  hCG+: ' + edthcg.Text);
+  if ckContraceptionYes.Checked then
+    oText.Add('  On Contraception: YES');
+  if ckContraceptionNo.Checked then
+    oText.Add('  On Contraception: NO');
+  if ckBirthPillsYes.Checked then
+    oText.Add('  On Birth Control Pills on Conception: YES');
+  if ckBirthPillsNo.Checked then
+    oText.Add('  On Birth Control Pills on Conception: NO');
+  if edtContraceptionType.Text <> '' then
   begin
     oText.Add('  What type(s) of contraception were you using most recently?');
     oText.Add('  ' + edtContraceptionType.Text);
@@ -1214,7 +1259,7 @@ begin
     oText.Insert(0, 'MENSTRUAL HISTORY: ');
 end;
 
-procedure TDDCSVitals.GetCompleteNote(var oText: TStringList);
+procedure TDDCSVitalsForm.GetCompleteNote(var oText: TStringList);
 var
   sl: TStringList;
 begin
@@ -1248,14 +1293,14 @@ begin
   end;
 end;
 
-function TDDCSVitals.ValidateMsg: string;
+function TDDCSVitalsForm.ValidateMsg: string;
 begin
   if gbPreg.Visible then
     if spnPrePregWt.Value = 0 then
       Result := '    > Patient pre-pregnancy weight cannot be zero.';
 end;
 
-function TDDCSVitals.ValidationControl: TWinControl;
+function TDDCSVitalsForm.ValidationControl: TWinControl;
 begin
   Result := nil;
 
@@ -1264,11 +1309,14 @@ begin
     Result := spnPrePregWt;
 end;
 
-function TDDCSVitals.GetTextforFocus(Value: TWinControl): string;
+function TDDCSVitalsForm.GetTextforFocus(Value: TWinControl): string;
 var
   I: Integer;
 begin
   Result := '';
+
+  if FocusControlText = nil then
+    Exit;
 
   for I := 0 to FocusControlText.Count - 1 do
     if FocusControlText[I].FOwningObject = Value then

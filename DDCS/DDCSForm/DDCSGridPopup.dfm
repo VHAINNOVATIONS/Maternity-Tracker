@@ -1,0 +1,62 @@
+object fGridPopupEditor: TfGridPopupEditor
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'fGridPopupEditor'
+  ClientHeight = 229
+  ClientWidth = 366
+  Color = clWindow
+  Ctl3D = False
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlTop: TPanel
+    Left = 0
+    Top = 0
+    Width = 366
+    Height = 19
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 0
+    object BitBtn1: TBitBtn
+      Left = 291
+      Top = 0
+      Width = 75
+      Height = 19
+      Align = alRight
+      Caption = 'Accept'
+      TabOrder = 0
+      ExplicitLeft = 272
+      ExplicitTop = 10
+      ExplicitHeight = 25
+    end
+    object edFind: TEdit
+      Left = 0
+      Top = 0
+      Width = 291
+      Height = 19
+      Align = alClient
+      TabOrder = 1
+      ExplicitLeft = 1
+      ExplicitTop = 1
+      ExplicitWidth = 272
+      ExplicitHeight = 23
+    end
+  end
+  object ckList: TCheckListBox
+    Left = 0
+    Top = 19
+    Width = 366
+    Height = 210
+    Align = alClient
+    ItemHeight = 13
+    Sorted = True
+    TabOrder = 1
+    ExplicitTop = 25
+  end
+end

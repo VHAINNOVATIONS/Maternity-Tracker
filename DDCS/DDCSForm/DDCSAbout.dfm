@@ -1,4 +1,4 @@
-object DDCSAbout: TDDCSAbout
+object fAbout: TfAbout
   Left = 587
   Top = 334
   ActiveControl = btnOk

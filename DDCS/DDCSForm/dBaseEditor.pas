@@ -38,14 +38,14 @@ type
 implementation
 
 uses
-  TreeIntf, uBase, frmVitals;
+  TreeIntf, DDCSForm, DDCSVitals;
 
 procedure Register;
 begin
   RegisterComponentEditor(TDDCSForm, TDDCSPageEditor);
   RegisterComponentEditor(TTabSheet, TDDCSPageEditor);
-  RegisterNoIcon([TDDCSVitals]);
-  RegisterSprigType(TDDCSVitals, TComponentSprig);
+  RegisterNoIcon([TDDCSVitalsForm]);
+  RegisterSprigType(TDDCSVitalsForm, TComponentSprig);
 end;
 
 function TDDCSPageEditor.GetPageControl: TPageControl;

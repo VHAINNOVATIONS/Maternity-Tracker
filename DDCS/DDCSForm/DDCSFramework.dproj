@@ -153,16 +153,16 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <DCC_BplOutput>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_output\</DCC_BplOutput>
+        <VerInfo_Release>0</VerInfo_Release>
+        <VerInfo_Build>0</VerInfo_Build>
         <DCC_MapFile>3</DCC_MapFile>
         <DCC_DebugInformation>2</DCC_DebugInformation>
         <DCC_LocalDebugSymbols>true</DCC_LocalDebugSymbols>
-        <VerInfo_MinorVer>8</VerInfo_MinorVer>
         <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
         <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
-        <VerInfo_MajorVer>2</VerInfo_MajorVer>
+        <VerInfo_MajorVer>3</VerInfo_MajorVer>
         <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
-        <VerInfo_Keys>CompanyName=Veterans Health Administration;FileDescription=Delphi Form Component;FileVersion=2.8.2.4;InternalName=DSIO DDCS;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=DDCSFramework.bpl;ProductName=DSIO;ProductVersion=2.8.2.4;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=DSS, Inc.;FileDescription=Delphi Form Component;FileVersion=3.0.0.0;InternalName=DSIO DDCS;LegalCopyright=Licensed under the Apache License, Version 2.0;LegalTrademarks=;OriginalFilename=DDCSFramework.bpl;ProductName=DSIO;ProductVersion=3.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice32)'!=''">
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
@@ -171,15 +171,15 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <DCC_BplOutput>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_output\</DCC_BplOutput>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
-        <DCC_MapFile>3</DCC_MapFile>
+        <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+        <DCC_RemoteDebug>true</DCC_RemoteDebug>
         <DCC_Define>DDCS;$(DCC_Define)</DCC_Define>
-        <Debugger_RunParams>S=R90A61NE P=9000</Debugger_RunParams>
+        <Debugger_RunParams>s=DEVMIAVXDEV02 p=9998</Debugger_RunParams>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_Release>0</VerInfo_Release>
-        <Debugger_HostApplication>C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_lib\CPRSChart.exe</Debugger_HostApplication>
+        <Debugger_HostApplication>C:\Users\DSSDeveloper\Desktop\DLL Upgrade\vxCPRSChart.exe</Debugger_HostApplication>
         <VerInfo_Keys>CompanyName=Veterans Health Administration;FileDescription=;FileVersion=2.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=2.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
@@ -191,35 +191,40 @@
         <DCCReference Include="Jcl.dcp"/>
         <DCCReference Include="JvCore.dcp"/>
         <DCCReference Include="JvStdCtrls.dcp"/>
-        <DCCReference Include="frmAbout.pas">
-            <Form>DDCSAbout</Form>
+        <DCCReference Include="DDCSAbout.pas">
+            <Form>fAbout</Form>
         </DCCReference>
-        <DCCReference Include="frmSplash.pas">
-            <Form>DDCSSplash</Form>
+        <DCCReference Include="DDCSSplash.pas">
+            <Form>fSplash</Form>
         </DCCReference>
-        <DCCReference Include="DDCSComBroker.pas"/>
-        <DCCReference Include="frmConfiguration.pas">
-            <Form>DDCSConfiguration</Form>
+        <DCCReference Include="DDCSConfiguration.pas">
+            <Form>fConfiguration</Form>
         </DCCReference>
-        <DCCReference Include="uReportItems.pas"/>
-        <DCCReference Include="frmVitals.pas">
-            <Form>DDCSVitals</Form>
+        <DCCReference Include="DDCSReportItems.pas"/>
+        <DCCReference Include="DDCSVitals.pas">
+            <Form>DDCSVitalsForm</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="uCommon.pas"/>
+        <DCCReference Include="DDCSCommon.pas"/>
         <DCCReference Include="dBaseEditor.pas"/>
-        <DCCReference Include="uBase.pas"/>
-        <DCCReference Include="frmReview.pas">
-            <Form>DDCSReview</Form>
+        <DCCReference Include="DDCSForm.pas"/>
+        <DCCReference Include="DDCSReview.pas">
+            <Form>fReview</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="DDCSGrid.pas">
+            <Form>DDCSQuestionGrid</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="DDCSComBroker.pas"/>
         <DCCReference Include="DDCSUtils.pas"/>
-        <RcItem Include="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Styles\Windows10.vsf">
-            <ContainerId>ResourceItem</ContainerId>
-            <ResourceType>VCLSTYLE</ResourceType>
-            <ResourceId>Resource_1</ResourceId>
-        </RcItem>
+        <DCCReference Include="DDCSPatient.pas"/>
+        <DCCReference Include="DDCSUser.pas"/>
+        <DCCReference Include="DDCSGridPopup.pas">
+            <Form>fGridPopupEditor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -276,7 +281,6 @@
                 </VersionInfoKeys>
                 <Excluded_Packages>
                     <Excluded_Packages/>
-                    <Excluded_Packages Name="C:\Users\DSSDeveloper\Documents\GitHub\Maternity-Tracker\DDCS\_output\DDCSFramework.bpl">(untitled)</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
@@ -295,7 +299,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Bpl\DDCSFramework.bpl" Configuration="Release" Class="ProjectOutput">
+                <DeployFile LocalName="..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Bpl\DDCSFramework.bpl" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>DDCSFramework.bpl</RemoteName>
                         <Overwrite>true</Overwrite>

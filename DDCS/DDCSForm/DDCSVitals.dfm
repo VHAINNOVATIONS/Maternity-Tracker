@@ -1,9 +1,11 @@
-object DDCSVitals: TDDCSVitals
+object DDCSVitalsForm: TDDCSVitalsForm
   Left = 0
   Top = 0
   Width = 698
   Height = 334
   DoubleBuffered = False
+  Ctl3D = False
+  ParentCtl3D = False
   ParentDoubleBuffered = False
   TabOrder = 0
   object fVitalsControl: TPageControl
@@ -21,6 +23,10 @@ object DDCSVitals: TDDCSVitals
     OnChange = fVitalsControlChange
     object PageMain: TTabSheet
       Caption = 'Vitals'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         670
         326)
@@ -202,8 +208,10 @@ object DDCSVitals: TDDCSVitals
         Left = 92
         Top = 101
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 1
       end
@@ -211,8 +219,10 @@ object DDCSVitals: TDDCSVitals
         Left = 92
         Top = 148
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 3
       end
@@ -220,8 +230,10 @@ object DDCSVitals: TDDCSVitals
         Left = 92
         Top = 196
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 5
       end
@@ -229,8 +241,10 @@ object DDCSVitals: TDDCSVitals
         Left = 201
         Top = 101
         Width = 49
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 2
       end
@@ -238,8 +252,10 @@ object DDCSVitals: TDDCSVitals
         Left = 201
         Top = 148
         Width = 49
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 4
       end
@@ -247,8 +263,10 @@ object DDCSVitals: TDDCSVitals
         Left = 201
         Top = 196
         Width = 49
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 6
       end
@@ -256,8 +274,10 @@ object DDCSVitals: TDDCSVitals
         Left = 336
         Top = 101
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 7
       end
@@ -265,8 +285,10 @@ object DDCSVitals: TDDCSVitals
         Left = 336
         Top = 148
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 8
       end
@@ -274,8 +296,10 @@ object DDCSVitals: TDDCSVitals
         Left = 336
         Top = 196
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 9
       end
@@ -283,8 +307,10 @@ object DDCSVitals: TDDCSVitals
         Left = 506
         Top = 101
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 10
       end
@@ -292,8 +318,10 @@ object DDCSVitals: TDDCSVitals
         Left = 506
         Top = 148
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 11
       end
@@ -424,6 +452,7 @@ object DDCSVitals: TDDCSVitals
           Width = 66
           Height = 22
           Anchors = []
+          Ctl3D = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -431,6 +460,7 @@ object DDCSVitals: TDDCSVitals
           Font.Style = []
           MaxValue = 0
           MinValue = 0
+          ParentCtl3D = False
           ParentFont = False
           TabOrder = 0
           Value = 0
@@ -446,6 +476,10 @@ object DDCSVitals: TDDCSVitals
       ParentDoubleBuffered = False
       OnResize = PageEDDResize
       OnShow = PageEDDShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         670
         326)
@@ -603,8 +637,10 @@ object DDCSVitals: TDDCSVitals
         Left = 183
         Top = 92
         Width = 100
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         TabOrder = 2
         Text = 'Today'
         OnExit = dtLMPExit
@@ -616,9 +652,11 @@ object DDCSVitals: TDDCSVitals
         Left = 421
         Top = 92
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
         Color = clSilver
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 3
         DateOnly = True
@@ -629,8 +667,10 @@ object DDCSVitals: TDDCSVitals
         Left = 183
         Top = 128
         Width = 100
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         TabOrder = 5
         Text = 'Today'
         OnExit = dtECDExit
@@ -642,9 +682,11 @@ object DDCSVitals: TDDCSVitals
         Left = 421
         Top = 128
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
         Color = clSilver
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 6
         DateOnly = True
@@ -655,8 +697,10 @@ object DDCSVitals: TDDCSVitals
         Left = 183
         Top = 164
         Width = 100
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         TabOrder = 8
         Text = 'Today'
         OnExit = dtUltraExit
@@ -692,9 +736,11 @@ object DDCSVitals: TDDCSVitals
         Left = 421
         Top = 164
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
         Color = clSilver
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 11
         DateOnly = True
@@ -705,8 +751,10 @@ object DDCSVitals: TDDCSVitals
         Left = 183
         Top = 201
         Width = 100
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         TabOrder = 14
         Text = 'Today'
         OnExit = dtEmbryoExit
@@ -718,9 +766,11 @@ object DDCSVitals: TDDCSVitals
         Left = 421
         Top = 201
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
         Color = clSilver
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 15
         DateOnly = True
@@ -731,8 +781,10 @@ object DDCSVitals: TDDCSVitals
         Left = 183
         Top = 237
         Width = 100
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         TabOrder = 18
         Text = 'Today'
         OnExit = lblOtherExit
@@ -768,9 +820,11 @@ object DDCSVitals: TDDCSVitals
         Left = 421
         Top = 237
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
         Color = clSilver
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 21
         DateOnly = True
@@ -781,9 +835,11 @@ object DDCSVitals: TDDCSVitals
         Left = 18
         Top = 237
         Width = 149
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
         MaxLength = 75
+        ParentCtl3D = False
         TabOrder = 17
         Text = 'Other Criteria'
         OnChange = lblOtherChange
@@ -794,8 +850,10 @@ object DDCSVitals: TDDCSVitals
         Left = 421
         Top = 274
         Width = 103
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         TabOrder = 23
         OnExit = dtEDDUnknownExit
         DateOnly = True
@@ -843,8 +901,10 @@ object DDCSVitals: TDDCSVitals
         Left = 164
         Top = 13
         Width = 65
-        Height = 21
+        Height = 19
         Color = clSilver
+        Ctl3D = False
+        ParentCtl3D = False
         ReadOnly = True
         TabOrder = 0
       end
@@ -886,8 +946,10 @@ object DDCSVitals: TDDCSVitals
           Left = 113
           Top = 9
           Width = 103
-          Height = 21
+          Height = 19
           Color = clSilver
+          Ctl3D = False
+          ParentCtl3D = False
           ReadOnly = True
           TabOrder = 0
           DateOnly = True
@@ -898,7 +960,7 @@ object DDCSVitals: TDDCSVitals
           Left = 252
           Top = 9
           Width = 65
-          Height = 21
+          Height = 19
           Color = clSilver
           ReadOnly = True
           TabOrder = 1
@@ -974,6 +1036,10 @@ object DDCSVitals: TDDCSVitals
     object PageLMP: TTabSheet
       Caption = 'Menstrual History'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         670
         326)
@@ -1148,8 +1214,10 @@ object DDCSVitals: TDDCSVitals
         Left = 18
         Top = 30
         Width = 185
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
+        ParentCtl3D = False
         TabOrder = 0
         OnExit = edtLMPExit
         DateOnly = True
@@ -1442,13 +1510,15 @@ object DDCSVitals: TDDCSVitals
         Left = 463
         Top = 30
         Width = 185
-        Height = 21
+        Height = 19
         Anchors = []
+        Ctl3D = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
+        ParentCtl3D = False
         ParentFont = False
         TabOrder = 4
         DateOnly = True

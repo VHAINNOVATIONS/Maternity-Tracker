@@ -1,4 +1,4 @@
-object DDCSFormConfig: TDDCSFormConfig
+object fConfiguration: TfConfiguration
   Left = 0
   Top = 0
   Caption = 'Configuration and Report Item Editor'
@@ -48,7 +48,7 @@ object DDCSFormConfig: TDDCSFormConfig
     Top = 0
     Width = 891
     Height = 528
-    ActivePage = tabReport
+    ActivePage = tabDialog
     Align = alClient
     MultiLine = True
     Style = tsButtons
@@ -123,6 +123,8 @@ object DDCSFormConfig: TDDCSFormConfig
             Top = 28
             Width = 369
             Height = 185
+            Ctl3D = False
+            ParentCtl3D = False
             TabOrder = 1
             Caption = ''
           end
@@ -142,9 +144,11 @@ object DDCSFormConfig: TDDCSFormConfig
           end
           object edConfigRoutineC: TCaptionEdit
             Left = 16
-            Top = 245
+            Top = 243
             Width = 369
-            Height = 21
+            Height = 19
+            Ctl3D = False
+            ParentCtl3D = False
             TabOrder = 3
             Caption = ''
           end
@@ -178,10 +182,12 @@ object DDCSFormConfig: TDDCSFormConfig
           end
           object cklConfigDialogsC: TCaptionCheckListBox
             Left = 16
-            Top = 302
+            Top = 299
             Width = 369
             Height = 139
+            Ctl3D = False
             ItemHeight = 13
+            ParentCtl3D = False
             TabOrder = 5
             Caption = ''
           end
@@ -293,11 +299,13 @@ object DDCSFormConfig: TDDCSFormConfig
               TabOrder = 15
             end
             object ckHideFromNoteCR: TCheckBox
-              Left = 89
+              Left = 72
               Top = 269
               Width = 97
               Height = 17
               Caption = 'Hide from Note'
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 11
             end
             object ckRequiredCR: TCheckBox
@@ -306,23 +314,29 @@ object DDCSFormConfig: TDDCSFormConfig
               Width = 97
               Height = 17
               Caption = 'Required'
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 14
             end
             object ckDoNotSaveCR: TCheckBox
-              Left = 89
+              Left = 72
               Top = 292
               Width = 132
               Height = 17
               Caption = 'Do not Save'
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 12
             end
             object spOrderCR: TSpinEdit
-              Left = 89
+              Left = 72
               Top = 80
               Width = 64
-              Height = 22
+              Height = 19
+              Ctl3D = False
               MaxValue = 0
               MinValue = 0
+              ParentCtl3D = False
               TabOrder = 3
               Value = 0
             end
@@ -330,7 +344,9 @@ object DDCSFormConfig: TDDCSFormConfig
               Left = 72
               Top = 156
               Width = 313
-              Height = 21
+              Height = 19
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 5
               Caption = 'Title'
             end
@@ -338,7 +354,9 @@ object DDCSFormConfig: TDDCSFormConfig
               Left = 72
               Top = 183
               Width = 313
-              Height = 21
+              Height = 19
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 7
               Caption = 'Prefix'
             end
@@ -346,16 +364,20 @@ object DDCSFormConfig: TDDCSFormConfig
               Left = 72
               Top = 210
               Width = 313
-              Height = 21
+              Height = 19
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 9
               Caption = 'Suffix'
             end
             object ckDoNotSpaceCR: TCheckBox
-              Left = 89
+              Left = 72
               Top = 246
               Width = 97
               Height = 17
               Caption = 'Do not Space'
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 10
             end
             object cbDialogReturnCR: TCaptionComboBox
@@ -364,6 +386,8 @@ object DDCSFormConfig: TDDCSFormConfig
               Width = 271
               Height = 21
               Style = csDropDownList
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 16
               Caption = 'Dialog Return'
             end
@@ -373,6 +397,8 @@ object DDCSFormConfig: TDDCSFormConfig
               Width = 120
               Height = 17
               Caption = 'Do not Restore (V)'
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 13
             end
             object lbReportControlCR: TStaticText
@@ -396,7 +422,9 @@ object DDCSFormConfig: TDDCSFormConfig
               Left = 16
               Top = 129
               Width = 369
-              Height = 21
+              Height = 19
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 21
               Caption = 'Identifying Name'
             end
@@ -447,7 +475,7 @@ object DDCSFormConfig: TDDCSFormConfig
       object lvDialogComponent: TListView
         Left = 241
         Top = 3
-        Width = 224
+        Width = 223
         Height = 482
         Anchors = [akLeft, akTop, akRight, akBottom]
         Columns = <
@@ -619,11 +647,13 @@ object DDCSFormConfig: TDDCSFormConfig
               TabOrder = 15
             end
             object ckHideFromNoteD: TCheckBox
-              Left = 89
+              Left = 72
               Top = 269
               Width = 97
               Height = 17
               Caption = 'Hide from Note'
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 11
             end
             object ckRequiredD: TCheckBox
@@ -632,23 +662,29 @@ object DDCSFormConfig: TDDCSFormConfig
               Width = 97
               Height = 17
               Caption = 'Required'
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 14
             end
             object ckDoNotSaveD: TCheckBox
-              Left = 89
+              Left = 72
               Top = 292
               Width = 132
               Height = 17
               Caption = 'Do not Save'
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 12
             end
             object spOrderD: TSpinEdit
-              Left = 89
+              Left = 72
               Top = 80
               Width = 64
-              Height = 22
+              Height = 19
+              Ctl3D = False
               MaxValue = 0
               MinValue = 0
+              ParentCtl3D = False
               TabOrder = 3
               Value = 0
             end
@@ -656,7 +692,9 @@ object DDCSFormConfig: TDDCSFormConfig
               Left = 72
               Top = 156
               Width = 313
-              Height = 21
+              Height = 19
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 5
               Caption = 'Title'
             end
@@ -664,7 +702,9 @@ object DDCSFormConfig: TDDCSFormConfig
               Left = 72
               Top = 183
               Width = 313
-              Height = 21
+              Height = 19
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 7
               Caption = 'Prefix'
             end
@@ -672,12 +712,14 @@ object DDCSFormConfig: TDDCSFormConfig
               Left = 72
               Top = 210
               Width = 313
-              Height = 21
+              Height = 19
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 9
               Caption = 'Suffix'
             end
             object ckDoNotSpaceD: TCheckBox
-              Left = 89
+              Left = 72
               Top = 246
               Width = 97
               Height = 17
@@ -690,6 +732,8 @@ object DDCSFormConfig: TDDCSFormConfig
               Width = 271
               Height = 21
               Style = csDropDownList
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 16
               Caption = 'Dialog Return'
             end
@@ -699,6 +743,8 @@ object DDCSFormConfig: TDDCSFormConfig
               Width = 120
               Height = 17
               Caption = 'Do not Restore (V)'
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 13
             end
             object lbReportControlD: TStaticText
@@ -722,7 +768,9 @@ object DDCSFormConfig: TDDCSFormConfig
               Left = 16
               Top = 129
               Width = 369
-              Height = 21
+              Height = 19
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 21
               Caption = 'Identifying Name'
             end
@@ -755,6 +803,8 @@ object DDCSFormConfig: TDDCSFormConfig
             Width = 411
             Height = 460
             Align = alClient
+            Ctl3D = False
+            ParentCtl3D = False
             ScrollBars = ssBoth
             TabOrder = 0
           end
@@ -771,11 +821,13 @@ object DDCSFormConfig: TDDCSFormConfig
     BevelKind = bkFlat
     BevelOuter = bvNone
     BorderStyle = bsSingle
+    Ctl3D = False
+    ParentCtl3D = False
     TabOrder = 1
     object btnSave: TBitBtn
       Left = 0
       Top = 0
-      Width = 83
+      Width = 85
       Height = 25
       Align = alTop
       Caption = '&Save  '
@@ -803,7 +855,7 @@ object DDCSFormConfig: TDDCSFormConfig
     object btnDelete: TBitBtn
       Left = 0
       Top = 50
-      Width = 83
+      Width = 85
       Height = 25
       Align = alTop
       Caption = 'Delete'
@@ -832,7 +884,7 @@ object DDCSFormConfig: TDDCSFormConfig
     object btnClear: TBitBtn
       Left = 0
       Top = 25
-      Width = 83
+      Width = 85
       Height = 25
       Align = alTop
       Caption = 'Clear  '
@@ -859,8 +911,8 @@ object DDCSFormConfig: TDDCSFormConfig
     end
     object btnClose: TBitBtn
       Left = 0
-      Top = 495
-      Width = 83
+      Top = 497
+      Width = 85
       Height = 25
       Align = alBottom
       Cancel = True
@@ -889,7 +941,7 @@ object DDCSFormConfig: TDDCSFormConfig
     object btnUpdate: TBitBtn
       Left = 0
       Top = 240
-      Width = 83
+      Width = 85
       Height = 49
       Caption = 'Update All'
       NumGlyphs = 2

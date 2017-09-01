@@ -1,7 +1,6 @@
 package DDCSFramework;
 
 {$R *.res}
-{$R *.dres}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
@@ -16,7 +15,7 @@ package DDCSFramework;
 {$OPTIMIZATION ON}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
-{$REFERENCEINFO ON}
+{$REFERENCEINFO OFF}
 {$SAFEDIVIDE OFF}
 {$STACKFRAMES OFF}
 {$TYPEDADDRESS OFF}
@@ -25,6 +24,7 @@ package DDCSFramework;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DEFINE DDCS}
+{$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
 {$IMPLICITBUILD ON}
 
@@ -36,17 +36,21 @@ requires
   JvStdCtrls;
 
 contains
-  frmAbout in 'frmAbout.pas' {DDCSAbout},
-  frmSplash in 'frmSplash.pas' {DDCSSplash},
-  DDCSComBroker in 'DDCSComBroker.pas',
-  frmConfiguration in 'frmConfiguration.pas' {DDCSConfiguration},
-  uReportItems in 'uReportItems.pas',
-  frmVitals in 'frmVitals.pas' {DDCSVitals: TFrame},
-  uCommon in 'uCommon.pas',
+  DDCSAbout in 'DDCSAbout.pas' {fAbout},
+  DDCSSplash in 'DDCSSplash.pas' {fSplash},
+  DDCSConfiguration in 'DDCSConfiguration.pas' {fConfiguration},
+  DDCSReportItems in 'DDCSReportItems.pas',
+  DDCSVitals in 'DDCSVitals.pas' {DDCSVitalsForm: TFrame},
+  DDCSCommon in 'DDCSCommon.pas',
   dBaseEditor in 'dBaseEditor.pas',
-  uBase in 'uBase.pas',
-  frmReview in 'frmReview.pas' {DDCSReview},
-  DDCSUtils in 'DDCSUtils.pas';
+  DDCSForm in 'DDCSForm.pas',
+  DDCSReview in 'DDCSReview.pas' {fReview},
+  DDCSGrid in 'DDCSGrid.pas' {DDCSQuestionGrid},
+  DDCSComBroker in 'DDCSComBroker.pas',
+  DDCSUtils in 'DDCSUtils.pas',
+  DDCSPatient in 'DDCSPatient.pas',
+  DDCSUser in 'DDCSUser.pas',
+  DDCSGridPopup in 'DDCSGridPopup.pas' {fGridPopupEditor};
 
 end.
 

@@ -1,11 +1,12 @@
-object DDCSReview: TDDCSReview
+object fReview: TfReview
   Left = 0
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Review'
   ClientHeight = 393
   ClientWidth = 630
-  Color = clBtnFace
+  Color = clWindow
+  Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -74,11 +75,13 @@ object DDCSReview: TDDCSReview
     Width = 630
     Height = 363
     Align = alClient
+    Ctl3D = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Courier New'
     Font.Style = []
+    ParentCtl3D = False
     ParentFont = False
     ScrollBars = ssVertical
     TabOrder = 0
