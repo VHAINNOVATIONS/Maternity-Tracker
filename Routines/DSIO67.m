@@ -1,5 +1,7 @@
+Routine DSIO67 saved using VFDXTRS routine on Sep 06, 2017 12:35
+DSIO67^INT^64532,38031.360891^Sep 06, 2017@10:33
 DSIO67 ;DSS/TFF - DSIO DDCS ELEMENT OBSERVATIONS;08/26/2016 16:00
- ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;**1**;Feb 02, 2017;Build 1
  ;Originally Submitted to OSEHRA 2/21/2017 by DSS, Inc. 
  ;Authored by DSS, Inc. 2014-2017
  ;
@@ -92,7 +94,7 @@ OBG(IEN) ; Get Observation Configuration and create
  ;
 BOOL(VAL) ; Set value based on Boolean type and check type control
  Q:$G(DDCSEN)=""!($G(DDCSFRM)="") "False"
- I $$CHECK^DSIO62(DDCSFRM,DDCSEN) Q $S($$TGET1^DSIO62(DDCSEN):"True",1:"False")
+ I $$TYPE^DSIO62(DDCSFRM,DDCSEN,"CK") Q $S($$TGET1^DSIO62(DDCSEN):"True",1:"False")
  Q $S(VAL'="":"True",1:"False")
  ;
 LIMIT(BOOL,FLD,VAL) ; The CREATE ONLY IF field is set...
@@ -106,7 +108,7 @@ LIMIT(BOOL,FLD,VAL) ; The CREATE ONLY IF field is set...
  I BOOL D
  . I FLD=1,VAL="True" S OUT=1
  . I FLD=0,VAL="False" S OUT=1
- I 'BOOL,$$CHECK^DSIO62(DDCSFRM,DDCSEN) D
+ I 'BOOL,$$TYPE^DSIO62(DDCSFRM,DDCSEN,"CK") D
  . S VCK=$$TGET1^DSIO62(DDCSEN)
  . I FLD=1,VCK S OUT=$S(VAL'="":1,1:0)
  . I FLD=0,'VCK S OUT=$S(VAL="":1,1:0)

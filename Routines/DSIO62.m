@@ -1,5 +1,7 @@
+Routine DSIO62 saved using VFDXTRS routine on Sep 06, 2017 12:35
+DSIO62^INT^64532,38037.127761^Sep 06, 2017@10:33
 DSIO62 ;DSS/TFF - DSIO DDCS SPECIAL LOOKUP;08/26/2016 16:00
- ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;**1**;Feb 02, 2017;Build 1
  ;Originally Submitted to OSEHRA 2/21/2017 by DSS, Inc. 
  ;Authored by DSS, Inc. 2014-2017
  ;
@@ -69,14 +71,14 @@ GET1(IEN) ; Return single line of data
  N OUT,CLASS,CT
  S OUT=$G(^DSIO(19641.45,+$G(IEN),1,1,0)) Q:OUT="" OUT
  S CLASS=$$GET1^DIQ(19641.45,$G(IEN)_",",.03,"I") Q:'CLASS OUT
- Q:$$GET1^DIQ(19641.425,CLASS_",",.03,"I") $$LS
+ Q:$$GET1^DIQ(19641.425,CLASS_",",.04,"I")="LS" $$LS
  Q OUT
  ;
 EGET1(NAM) ; Element Value
- Q $P($$GET1^DSIO62($$IEN^DSIO62(NAM)),U,2)
+ Q $P($$GET1($$IEN(NAM)),U,2)
  ;
 TGET1(NAM) ; True/False Value
- Q $S($$UP^XLFSTR($P($$GET1^DSIO62($$IEN^DSIO62(NAM)),U))="TRUE":1,1:0)
+ Q $S($$UP^XLFSTR($P($$GET1($$IEN(NAM)),U))="TRUE":1,1:0)
  ;
 LS() ; Clean up List type elements
  N I,STR,OUT
@@ -121,12 +123,7 @@ CCLASS(FORM,NAM) ; Get the class of a Control
  . S CLASS=$P($G(^DSIO(19641.49,+FORM,1,ELE,0)),U,2)
  Q $S($G(CLASS):CLASS,1:0)
  ;
-LIST(FORM,NAM) ; Is a class marked as a list?
+TYPE(FORM,NAM,TYP) ; Class Type
  Q:'$G(FORM)!($G(NAM)="") 0
  N CLASS S CLASS=$$CCLASS(FORM,NAM) Q:'CLASS 0
- Q +$$GET1^DIQ(19641.425,CLASS_",",.03,"I")
- ;
-CHECK(FORM,NAM) ; Is a class marked as a Check
- Q:'$G(FORM)!($G(NAM)="") 0
- N CLASS S CLASS=$$CCLASS(FORM,NAM) Q:'CLASS 0
- Q +$$GET1^DIQ(19641.425,CLASS_",",.04,"I")
+ Q ($$GET1^DIQ(19641.425,CLASS_",",.04,"I")=$G(TYP))

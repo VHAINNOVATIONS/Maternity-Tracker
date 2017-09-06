@@ -1,5 +1,7 @@
+Routine DSIO6 saved using VFDXTRS routine on Sep 06, 2017 12:35
+DSIO6^INT^64532,38039.061675^Sep 06, 2017@10:33
 DSIO6 ;DSS/TFF - DSIO DISCREET DATA - DDCS;08/26/2016 16:00
- ;;3.0;MATERNITY TRACKER;;Feb 02, 2017;Build 1
+ ;;3.0;MATERNITY TRACKER;**1**;Feb 02, 2017;Build 1
  ;Originally Submitted to OSEHRA 2/21/2017 by DSS, Inc. 
  ;Authored by DSS, Inc. 2014-2017
  ;
@@ -91,6 +93,8 @@ SETDATA ; Save data as DISCREET ELEMENTS for a RECORD
  ; *** RECORD of DATA is like a Variable Pointer
  S FDA(19641.41,"?+1,",.01)=SIEN_";"_$TR(^DIC(DFLE,0,"GL"),U)
  S FDA(19641.41,"?+1,",.02)=CONTROL
+ S FDA(19641.41,"?+1,",.05)=$G(DUZ)
+ S FDA(19641.41,"?+1,",.06)=$G(DUZ(2))
  D UPDATE^DIE(,"FDA","DATA") K FDA Q:'$G(DATA(1))
  Q:'$$ACT(INFACE,"SAVE")
  S SHARE=$$SHARE^DSIO64(CONTROL,INFACE)

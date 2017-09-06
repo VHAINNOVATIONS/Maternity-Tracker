@@ -1,0 +1,3582 @@
+KIDS Distribution saved on Sep 06, 2017@12:33:39
+DSIO*3.0*1
+**KIDS**:DSIO*3.0*1^
+
+**INSTALL NAME**
+DSIO*3.0*1
+"BLD",9958,0)
+DSIO*3.0*1^MATERNITY TRACKER^0^3170906^n
+"BLD",9958,1,0)
+^^21^21^3170906^
+"BLD",9958,1,1,0)
+Functional Area:  Maternity Tracker
+"BLD",9958,1,2,0)
+Internal Reference #: 
+"BLD",9958,1,3,0)
+External Reference #: 
+"BLD",9958,1,4,0)
+Category: Enhancement
+"BLD",9958,1,5,0)
+Complexity: 1/0
+"BLD",9958,1,6,0)
+Reference Patch:  
+"BLD",9958,1,7,0)
+Description of Issue:
+"BLD",9958,1,8,0)
+The DSIOFramework package has been updated with a new sub component  
+"BLD",9958,1,9,0)
+TDDCSGrid.
+"BLD",9958,1,10,0)
+Resolution:
+"BLD",9958,1,11,0)
+There was a need to be able to build an open source clinical note 
+"BLD",9958,1,12,0)
+template at runtime. However, doing so with components such as 
+"BLD",9958,1,13,0)
+radiobuttons and comboboxes would have led to a configuration nightmare. 
+"BLD",9958,1,14,0)
+So a stringgrid was enhanced so it could easily be used to keep 
+"BLD",9958,1,15,0)
+everything organized into a question, response, qualifier format. Since 
+"BLD",9958,1,16,0)
+this new method creates the components are runtime and simply embeds them 
+"BLD",9958,1,17,0)
+into the form the validation and note generation is still used.
+"BLD",9958,1,18,0)
+Know Issues:
+"BLD",9958,1,19,0)
+None
+"BLD",9958,1,20,0)
+QA Notes:
+"BLD",9958,1,21,0)
+None
+"BLD",9958,4,0)
+^9.64PA^19641.4258^5
+"BLD",9958,4,19641.41,0)
+19641.41
+"BLD",9958,4,19641.41,222)
+y^y^f^^^^n
+"BLD",9958,4,19641.42,0)
+19641.42
+"BLD",9958,4,19641.42,222)
+y^y^f^^^^n
+"BLD",9958,4,19641.425,0)
+19641.425
+"BLD",9958,4,19641.425,222)
+y^y^f^^n^^y^o^n
+"BLD",9958,4,19641.4258,0)
+19641.4258
+"BLD",9958,4,19641.4258,222)
+y^y^f^^n^^y^o^n
+"BLD",9958,4,19641.492,0)
+19641.492
+"BLD",9958,4,19641.492,222)
+y^y^f^^^^n
+"BLD",9958,4,"B",19641.41,19641.41)
+
+"BLD",9958,4,"B",19641.42,19641.42)
+
+"BLD",9958,4,"B",19641.425,19641.425)
+
+"BLD",9958,4,"B",19641.4258,19641.4258)
+
+"BLD",9958,4,"B",19641.492,19641.492)
+
+"BLD",9958,6.3)
+1
+"BLD",9958,"ABPKG")
+n
+"BLD",9958,"KRN",0)
+^9.67PA^779.2^20
+"BLD",9958,"KRN",.4,0)
+.4
+"BLD",9958,"KRN",.401,0)
+.401
+"BLD",9958,"KRN",.402,0)
+.402
+"BLD",9958,"KRN",.403,0)
+.403
+"BLD",9958,"KRN",.5,0)
+.5
+"BLD",9958,"KRN",.84,0)
+.84
+"BLD",9958,"KRN",3.6,0)
+3.6
+"BLD",9958,"KRN",3.8,0)
+3.8
+"BLD",9958,"KRN",9.2,0)
+9.2
+"BLD",9958,"KRN",9.8,0)
+9.8
+"BLD",9958,"KRN",9.8,"NM",0)
+^9.68A^5^5
+"BLD",9958,"KRN",9.8,"NM",1,0)
+DSIO63^^0^B127113482
+"BLD",9958,"KRN",9.8,"NM",2,0)
+DSIO62^^0^B18640101
+"BLD",9958,"KRN",9.8,"NM",3,0)
+DSIO64^^0^B41193427
+"BLD",9958,"KRN",9.8,"NM",4,0)
+DSIO67^^0^B26672860
+"BLD",9958,"KRN",9.8,"NM",5,0)
+DSIO6^^0^B92749191
+"BLD",9958,"KRN",9.8,"NM","B","DSIO6",5)
+
+"BLD",9958,"KRN",9.8,"NM","B","DSIO62",2)
+
+"BLD",9958,"KRN",9.8,"NM","B","DSIO63",1)
+
+"BLD",9958,"KRN",9.8,"NM","B","DSIO64",3)
+
+"BLD",9958,"KRN",9.8,"NM","B","DSIO67",4)
+
+"BLD",9958,"KRN",19,0)
+19
+"BLD",9958,"KRN",19.1,0)
+19.1
+"BLD",9958,"KRN",101,0)
+101
+"BLD",9958,"KRN",409.61,0)
+409.61
+"BLD",9958,"KRN",771,0)
+771
+"BLD",9958,"KRN",779.2,0)
+779.2
+"BLD",9958,"KRN",870,0)
+870
+"BLD",9958,"KRN",8989.51,0)
+8989.51
+"BLD",9958,"KRN",8989.52,0)
+8989.52
+"BLD",9958,"KRN",8994,0)
+8994
+"BLD",9958,"KRN","B",.4,.4)
+
+"BLD",9958,"KRN","B",.401,.401)
+
+"BLD",9958,"KRN","B",.402,.402)
+
+"BLD",9958,"KRN","B",.403,.403)
+
+"BLD",9958,"KRN","B",.5,.5)
+
+"BLD",9958,"KRN","B",.84,.84)
+
+"BLD",9958,"KRN","B",3.6,3.6)
+
+"BLD",9958,"KRN","B",3.8,3.8)
+
+"BLD",9958,"KRN","B",9.2,9.2)
+
+"BLD",9958,"KRN","B",9.8,9.8)
+
+"BLD",9958,"KRN","B",19,19)
+
+"BLD",9958,"KRN","B",19.1,19.1)
+
+"BLD",9958,"KRN","B",101,101)
+
+"BLD",9958,"KRN","B",409.61,409.61)
+
+"BLD",9958,"KRN","B",771,771)
+
+"BLD",9958,"KRN","B",779.2,779.2)
+
+"BLD",9958,"KRN","B",870,870)
+
+"BLD",9958,"KRN","B",8989.51,8989.51)
+
+"BLD",9958,"KRN","B",8989.52,8989.52)
+
+"BLD",9958,"KRN","B",8994,8994)
+
+"BLD",9958,"QDEF")
+^^^^NO^^^^NO^^NO
+"BLD",9958,"QUES",0)
+^9.62^^
+"BLD",9958,"REQB",0)
+^9.611^^
+"DATA",19641.425,1,0)
+TEDIT^9^^ED
+"DATA",19641.425,2,0)
+TRICHEDIT^8^^WP
+"DATA",19641.425,3,0)
+TRADIOGROUP^^1^LS
+"DATA",19641.425,4,0)
+TMEMO^8^^WP
+"DATA",19641.425,5,0)
+TRADIOBUTTON^^^CK
+"DATA",19641.425,6,0)
+TLABELEDEDIT^9^^ED
+"DATA",19641.425,7,0)
+TCHECKBOX^^^CK
+"DATA",19641.425,8,0)
+TLISTBOX^^1^LS
+"DATA",19641.425,9,0)
+TCHECKLISTBOX^5^^LS
+"DATA",19641.425,10,0)
+TCOMBOBOX^9^1^LS
+"DATA",19641.425,11,0)
+TGROUPBOX
+"DATA",19641.425,12,0)
+TLABEL
+"DATA",19641.425,13,0)
+TBUTTON
+"DATA",19641.425,14,0)
+TLISTVIEW
+"DATA",19641.425,15,0)
+TJVSPINEDIT^^^NM
+"DATA",19641.425,16,0)
+TSPINEDIT^^^NM
+"DATA",19641.425,17,0)
+TDATETIMEPICKER^^^DT
+"DATA",19641.425,18,0)
+TCAPTIONMEMO^8^^WP
+"DATA",19641.425,19,0)
+TCAPTIONEDIT^^^ED
+"DATA",19641.425,20,0)
+TCAPTIONCOMBOBOX^9^1^LS
+"DATA",19641.425,21,0)
+TSTATICTEXT
+"DATA",19641.425,22,0)
+TCONFIGCOLLECTION
+"DATA",19641.425,23,0)
+TPANEL
+"DATA",19641.425,24,0)
+TBITBTN
+"DATA",19641.425,25,0)
+TORDATEBOX^9^^DT
+"DATA",19641.425,26,0)
+TPAGECONTROL
+"DATA",19641.425,27,0)
+TTABSHEET
+"DATA",19641.425,28,0)
+TACTIONLIST
+"DATA",19641.425,29,0)
+TSPEEDBUTTON
+"DATA",19641.425,30,0)
+TUPDOWN
+"DATA",19641.425,31,0)
+TJVSTRINGGRID
+"DATA",19641.425,32,0)
+TJVSPINBUTTON^^^NM
+"DATA",19641.425,33,0)
+TORCOMBOBOX^9^1^LS
+"DATA",19641.4258,1,0)
+LEFT
+"DATA",19641.4258,2,0)
+WIDTH
+"DATA",19641.4258,3,0)
+TOP
+"DATA",19641.4258,4,0)
+COLUMNS
+"DATA",19641.4258,5,0)
+ITEMS
+"DATA",19641.4258,6,0)
+CAPTION
+"DATA",19641.4258,7,0)
+HEIGHT
+"DATA",19641.4258,8,0)
+LINES
+"DATA",19641.4258,9,0)
+TEXT
+"DATA",19641.4258,10,0)
+PARENT
+"DATA",19641.4258,11,0)
+ALIGN
+"DATA",19641.4258,12,0)
+QUESTION
+"DATA",19641.4258,13,0)
+DECIMAL
+"DATA",19641.4258,14,0)
+VALUETYPE
+"FIA",19641.41)
+DSIO DDCS DATA
+"FIA",19641.41,0)
+^DSIO(19641.41,
+"FIA",19641.41,0,0)
+19641.41O
+"FIA",19641.41,0,1)
+y^y^f^^^^n
+"FIA",19641.41,0,10)
+
+"FIA",19641.41,0,11)
+
+"FIA",19641.41,0,"RLRO")
+
+"FIA",19641.41,0,"VR")
+3.0^DSIO
+"FIA",19641.41,19641.41)
+0
+"FIA",19641.41,19641.411)
+0
+"FIA",19641.41,19641.4111)
+0
+"FIA",19641.42)
+DSIO DDCS FORM CONFIGURATION
+"FIA",19641.42,0)
+^DSIO(19641.42,
+"FIA",19641.42,0,0)
+19641.42I
+"FIA",19641.42,0,1)
+y^y^f^^^^n
+"FIA",19641.42,0,10)
+
+"FIA",19641.42,0,11)
+
+"FIA",19641.42,0,"RLRO")
+
+"FIA",19641.42,0,"VR")
+3.0^DSIO
+"FIA",19641.42,19641.42)
+0
+"FIA",19641.42,19641.421)
+0
+"FIA",19641.42,19641.4211)
+0
+"FIA",19641.42,19641.42112)
+0
+"FIA",19641.42,19641.42113)
+0
+"FIA",19641.42,19641.42118)
+0
+"FIA",19641.42,19641.42119)
+0
+"FIA",19641.42,19641.422)
+0
+"FIA",19641.425)
+DSIO DDCS CONTROLS
+"FIA",19641.425,0)
+^DSIO(19641.425,
+"FIA",19641.425,0,0)
+19641.425
+"FIA",19641.425,0,1)
+y^y^f^^n^^y^o^n
+"FIA",19641.425,0,10)
+
+"FIA",19641.425,0,11)
+
+"FIA",19641.425,0,"RLRO")
+
+"FIA",19641.425,0,"VR")
+3.0^DSIO
+"FIA",19641.425,19641.425)
+0
+"FIA",19641.425,19641.4251)
+0
+"FIA",19641.4258)
+DSIO DDCS CONTROL PROPERTIES
+"FIA",19641.4258,0)
+^DSIO(19641.4258,
+"FIA",19641.4258,0,0)
+19641.4258
+"FIA",19641.4258,0,1)
+y^y^f^^n^^y^o^n
+"FIA",19641.4258,0,10)
+
+"FIA",19641.4258,0,11)
+
+"FIA",19641.4258,0,"RLRO")
+
+"FIA",19641.4258,0,"VR")
+3.0^DSIO
+"FIA",19641.4258,19641.4258)
+0
+"FIA",19641.492)
+DSIO DDCS PARAMETER
+"FIA",19641.492,0)
+^DSIO(19641.492,
+"FIA",19641.492,0,0)
+19641.492IP
+"FIA",19641.492,0,1)
+y^y^f^^^^n
+"FIA",19641.492,0,10)
+
+"FIA",19641.492,0,11)
+
+"FIA",19641.492,0,"RLRO")
+
+"FIA",19641.492,0,"VR")
+3.0^DSIO
+"FIA",19641.492,19641.492)
+0
+"IX",19641.41,19641.4111,"C",0)
+19641.4111^C^CONTROL NAME^R^^F^IR^I^19641.4111^^^^^LS
+"IX",19641.41,19641.4111,"C",1)
+S ^DSIO(19641.41,DA(2),1,DA(1),1,"C",X,DA)=""
+"IX",19641.41,19641.4111,"C",2)
+K ^DSIO(19641.41,DA(2),1,DA(1),1,"C",X,DA)
+"IX",19641.41,19641.4111,"C",2.5)
+K ^DSIO(19641.41,DA(2),1,DA(1),1,"C")
+"IX",19641.41,19641.4111,"C",11.1,0)
+^.114IA^1^1
+"IX",19641.41,19641.4111,"C",11.1,1,0)
+1^F^19641.4111^.01^^1^F
+"IX",19641.41,19641.4111,"C",11.1,1,2)
+S X=$$GET1^DIQ(19641.45,X_",",.01)
+"IX",19641.41,19641.4111,"C",11.1,1,3)
+
+"IX",19641.42,19641.42,"P",0)
+19641.42^P^If multi-interface page=interface^R^^F^IR^W^19641.421^^^^^LS
+"IX",19641.42,19641.42,"P",1)
+S ^DSIO(19641.42,"P",X(2),DA(1),DA)=""
+"IX",19641.42,19641.42,"P",1.4)
+I X(1)
+"IX",19641.42,19641.42,"P",2)
+K ^DSIO(19641.42,"P",X(2),DA(1),DA)
+"IX",19641.42,19641.42,"P",2.4)
+I 'X(1)
+"IX",19641.42,19641.42,"P",2.5)
+K ^DSIO(19641.42,"P")
+"IX",19641.42,19641.42,"P",11.1,0)
+^.114IA^2^2
+"IX",19641.42,19641.42,"P",11.1,1,0)
+1^C
+"IX",19641.42,19641.42,"P",11.1,1,1.5)
+S X=$P($G(^DSIO(19641.42,+$G(DA(1)),0)),U,7)
+"IX",19641.42,19641.42,"P",11.1,2,0)
+2^F^19641.421^.02^^1^F
+"MBREQ")
+0
+"PKG",229,-1)
+1^1
+"PKG",229,0)
+MATERNITY TRACKER^DSIO^Maternity Tracking
+"PKG",229,20,0)
+^9.402P^^
+"PKG",229,22,0)
+^9.49I^1^1
+"PKG",229,22,1,0)
+3.0^3170427^3170724^33
+"PKG",229,22,1,"PAH",1,0)
+1^3170906
+"PKG",229,22,1,"PAH",1,1,0)
+^^21^21^3170906
+"PKG",229,22,1,"PAH",1,1,1,0)
+Functional Area:  Maternity Tracker
+"PKG",229,22,1,"PAH",1,1,2,0)
+Internal Reference #: 
+"PKG",229,22,1,"PAH",1,1,3,0)
+External Reference #: 
+"PKG",229,22,1,"PAH",1,1,4,0)
+Category: Enhancement
+"PKG",229,22,1,"PAH",1,1,5,0)
+Complexity: 1/0
+"PKG",229,22,1,"PAH",1,1,6,0)
+Reference Patch:  
+"PKG",229,22,1,"PAH",1,1,7,0)
+Description of Issue:
+"PKG",229,22,1,"PAH",1,1,8,0)
+The DSIOFramework package has been updated with a new sub component  
+"PKG",229,22,1,"PAH",1,1,9,0)
+TDDCSGrid.
+"PKG",229,22,1,"PAH",1,1,10,0)
+Resolution:
+"PKG",229,22,1,"PAH",1,1,11,0)
+There was a need to be able to build an open source clinical note 
+"PKG",229,22,1,"PAH",1,1,12,0)
+template at runtime. However, doing so with components such as 
+"PKG",229,22,1,"PAH",1,1,13,0)
+radiobuttons and comboboxes would have led to a configuration nightmare. 
+"PKG",229,22,1,"PAH",1,1,14,0)
+So a stringgrid was enhanced so it could easily be used to keep 
+"PKG",229,22,1,"PAH",1,1,15,0)
+everything organized into a question, response, qualifier format. Since 
+"PKG",229,22,1,"PAH",1,1,16,0)
+this new method creates the components are runtime and simply embeds them 
+"PKG",229,22,1,"PAH",1,1,17,0)
+into the form the validation and note generation is still used.
+"PKG",229,22,1,"PAH",1,1,18,0)
+Know Issues:
+"PKG",229,22,1,"PAH",1,1,19,0)
+None
+"PKG",229,22,1,"PAH",1,1,20,0)
+QA Notes:
+"PKG",229,22,1,"PAH",1,1,21,0)
+None
+"QUES","XPF1",0)
+Y
+"QUES","XPF1","??")
+^D REP^XPDH
+"QUES","XPF1","A")
+Shall I write over your |FLAG| File
+"QUES","XPF1","B")
+YES
+"QUES","XPF1","M")
+D XPF1^XPDIQ
+"QUES","XPF2",0)
+Y
+"QUES","XPF2","??")
+^D DTA^XPDH
+"QUES","XPF2","A")
+Want my data |FLAG| yours
+"QUES","XPF2","B")
+YES
+"QUES","XPF2","M")
+D XPF2^XPDIQ
+"QUES","XPI1",0)
+YO
+"QUES","XPI1","??")
+^D INHIBIT^XPDH
+"QUES","XPI1","A")
+Want KIDS to INHIBIT LOGONs during the install
+"QUES","XPI1","B")
+NO
+"QUES","XPI1","M")
+D XPI1^XPDIQ
+"QUES","XPM1",0)
+PO^VA(200,:EM
+"QUES","XPM1","??")
+^D MG^XPDH
+"QUES","XPM1","A")
+Enter the Coordinator for Mail Group '|FLAG|'
+"QUES","XPM1","B")
+
+"QUES","XPM1","M")
+D XPM1^XPDIQ
+"QUES","XPO1",0)
+Y
+"QUES","XPO1","??")
+^D MENU^XPDH
+"QUES","XPO1","A")
+Want KIDS to Rebuild Menu Trees Upon Completion of Install
+"QUES","XPO1","B")
+NO
+"QUES","XPO1","M")
+D XPO1^XPDIQ
+"QUES","XPZ1",0)
+Y
+"QUES","XPZ1","??")
+^D OPT^XPDH
+"QUES","XPZ1","A")
+Want to DISABLE Scheduled Options, Menu Options, and Protocols
+"QUES","XPZ1","B")
+NO
+"QUES","XPZ1","M")
+D XPZ1^XPDIQ
+"QUES","XPZ2",0)
+Y
+"QUES","XPZ2","??")
+^D RTN^XPDH
+"QUES","XPZ2","A")
+Want to MOVE routines to other CPUs
+"QUES","XPZ2","B")
+NO
+"QUES","XPZ2","M")
+D XPZ2^XPDIQ
+"RTN")
+5
+"RTN","DSIO6")
+0^5^B92749191
+"RTN","DSIO6",1,0)
+DSIO6 ;DSS/TFF - DSIO DISCREET DATA - DDCS;08/26/2016 16:00
+"RTN","DSIO6",2,0)
+ ;;3.0;MATERNITY TRACKER;**1**;Feb 02, 2017;Build 1
+"RTN","DSIO6",3,0)
+ ;Originally Submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+"RTN","DSIO6",4,0)
+ ;Authored by DSS, Inc. 2014-2017
+"RTN","DSIO6",5,0)
+ ;
+"RTN","DSIO6",6,0)
+ ;
+"RTN","DSIO6",7,0)
+ ;
+"RTN","DSIO6",8,0)
+ ; ---------------------- DISCREET DATA CONTROL & STORAGE ---------------------
+"RTN","DSIO6",9,0)
+ ;
+"RTN","DSIO6",10,0)
+ ; DSIO6   -  DSIO DISCREET DATA
+"RTN","DSIO6",11,0)
+ ; DSIO61  -  DSIO DDCS SPECIAL LOOKUP
+"RTN","DSIO6",12,0)
+ ; DSIO62  -  DSIO DDCS SPECIAL LOOKUP
+"RTN","DSIO6",13,0)
+ ; DSIO63  -  DSIO DDCS CONFIGURE AND REPORT
+"RTN","DSIO6",14,0)
+ ; DSIO64  -  DSIO DDCS DATA RETURN
+"RTN","DSIO6",15,0)
+ ; DSIO65  -  DSIO DDCS FORM SUPPORT
+"RTN","DSIO6",16,0)
+ ; DSIO66  -  DSIO DDCS DIALOG SUPPORT
+"RTN","DSIO6",17,0)
+ ; DSIO67  -  DSIO DDCS ELEMENT OBSERVATIONS
+"RTN","DSIO6",18,0)
+ ;
+"RTN","DSIO6",19,0)
+ ;CONTROL & SAVE --------------------------------------------------------------
+"RTN","DSIO6",20,0)
+ ; 19641.4    (DSIO DDCS CONTROL)            - CONTROL, Validate to Continue
+"RTN","DSIO6",21,0)
+ ; 19641.41   (DSIO DDCS DATA)               - COLLECTION, of data elements for a control
+"RTN","DSIO6",22,0)
+ ; 19641.4941 (DSIO DDCS SHARED DATA)        - COLLECTION, of data elements for a control by DFN
+"RTN","DSIO6",23,0)
+ ; 19641.45   (DSIO DDCS ELEMENT)            - ELEMENT, the discreet data element
+"RTN","DSIO6",24,0)
+ ;
+"RTN","DSIO6",25,0)
+ ;CONFIGURE & REPORT ----------------------------------------------------------
+"RTN","DSIO6",26,0)
+ ; 19641.42   (DSIO DDCS FORM CONFIGURATION) - THE FORM TO BE RENDERED
+"RTN","DSIO6",27,0)
+ ; 19641.425  (DSIO DDCS CONTROLS)           - FORM CONTROLS
+"RTN","DSIO6",28,0)
+ ; 19641.4258 (DSIO DDCS CONTROL PROPERTIES) - FORM CONTROL PROPERTIES
+"RTN","DSIO6",29,0)
+ ; 19641.401  (DSIO DDCS REPORT ITEMS)       - PUSH ACTION FOR FORM CONTROLS
+"RTN","DSIO6",30,0)
+ ; 19641.49   (DSIO DDCS DIALOGS)            - DIALOG DLL
+"RTN","DSIO6",31,0)
+ ; 19641.492  (DSIO DDCS PARAMETER)          - NON SYSTEM LEVEL CONFIGURATION
+"RTN","DSIO6",32,0)
+ ;
+"RTN","DSIO6",33,0)
+ ;OBSERVATION -----------------------------------------------------------------
+"RTN","DSIO6",34,0)
+ ; 19641.122  (DSIO DDCS OBSERVATION CONFIG) - ALLOWS OBSERVATIONS FOR ELEMENTS CREATED DURING PUSH
+"RTN","DSIO6",35,0)
+ ; 19641.12   (DSIO OBSERVATIONS)
+"RTN","DSIO6",36,0)
+ ; 19641.123  (DSIO OBSERVATION PUSH)
+"RTN","DSIO6",37,0)
+ ;
+"RTN","DSIO6",38,0)
+ Q
+"RTN","DSIO6",39,0)
+ ;
+"RTN","DSIO6",40,0)
+STORED(RET,OBJECT,SIEN,INFACE,IDATA,ACT) ; RPC: DSIO DDCS STORE
+"RTN","DSIO6",41,0)
+ ;
+"RTN","DSIO6",42,0)
+ ; INPUT PARAMETERS:
+"RTN","DSIO6",43,0)
+ ; -----------------
+"RTN","DSIO6",44,0)
+ ; OBJECT = OBJECT of CONTROL
+"RTN","DSIO6",45,0)
+ ;          Example: 500000042;PXRMD(801.41,
+"RTN","DSIO6",46,0)
+ ;                   Which is the Reminder Dialog of IEN 500000042
+"RTN","DSIO6",47,0)
+ ;         = O=### (ORDER IEN)
+"RTN","DSIO6",48,0)
+ ;         = N=### ( NOTE IEN)
+"RTN","DSIO6",49,0)
+ ;
+"RTN","DSIO6",50,0)
+ ;   SIEN = Destination IEN - Record of Control
+"RTN","DSIO6",51,0)
+ ;
+"RTN","DSIO6",52,0)
+ ; INFACE = IEN;DSIO(19641.42, (or NAME)
+"RTN","DSIO6",53,0)
+ ;          or IEN;DSIO(19641.49,
+"RTN","DSIO6",54,0)
+ ;
+"RTN","DSIO6",55,0)
+ ;  IDATA = CONTROL^(INDEXED^VALUE)
+"RTN","DSIO6",56,0)
+ ;          (If a CONTROL is repeated then it will be considered multi-valued)
+"RTN","DSIO6",57,0)
+ ;
+"RTN","DSIO6",58,0)
+ ;    ACT = If 1 then Task
+"RTN","DSIO6",59,0)
+ ;
+"RTN","DSIO6",60,0)
+ S RET=-1 Q:$G(OBJECT)=""!'$G(SIEN)!('$D(IDATA))
+"RTN","DSIO6",61,0)
+ N CONTROL
+"RTN","DSIO6",62,0)
+ S INFACE=$$INFACE^DSIO65($G(INFACE),1)
+"RTN","DSIO6",63,0)
+ S CONTROL=$$OBJECT^DSIO65(OBJECT) Q:'CONTROL
+"RTN","DSIO6",64,0)
+ Q:$$GET1^DIQ(19641.4,CONTROL_",",.02,"I")  ; INACTIVE
+"RTN","DSIO6",65,0)
+ I $G(ACT)=1 S RET=$$TASK Q
+"RTN","DSIO6",66,0)
+ D SETDATA
+"RTN","DSIO6",67,0)
+ Q
+"RTN","DSIO6",68,0)
+ ;
+"RTN","DSIO6",69,0)
+TASK() ; TASK Discreet Data Storage
+"RTN","DSIO6",70,0)
+ ; SET AS A TASK AND RETURN THE TASK ID
+"RTN","DSIO6",71,0)
+ ;
+"RTN","DSIO6",72,0)
+ N ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTUCI,ZTCPU,ZTPRI,ZTSAVE,ZTKIL,ZTSYNC,ZTSK
+"RTN","DSIO6",73,0)
+ S ZTRTN="SETDATA^DSIO6",ZTDESC="DSIO DISCREET DATA STORAGE"
+"RTN","DSIO6",74,0)
+ S ZTDTH=$$FMTH^XLFDT($$NOW^XLFDT),ZTIO="DSIO DDCS",ZTPRI=10
+"RTN","DSIO6",75,0)
+ S ZTSAVE("CONTROL")="",ZTSAVE("SIEN")=""
+"RTN","DSIO6",76,0)
+ S ZTSAVE("INFACE")="",ZTSAVE("IDATA(")=""
+"RTN","DSIO6",77,0)
+ D ^%ZTLOAD
+"RTN","DSIO6",78,0)
+ Q $G(ZTSK,-1)
+"RTN","DSIO6",79,0)
+ ;
+"RTN","DSIO6",80,0)
+SETDATA ; Save data as DISCREET ELEMENTS for a RECORD
+"RTN","DSIO6",81,0)
+ ;
+"RTN","DSIO6",82,0)
+ ; INCOMING: OBJECT,SIEN,INFACE,IDATA
+"RTN","DSIO6",83,0)
+ ;
+"RTN","DSIO6",84,0)
+ S:$D(ZTQUEUED) ZTREQ="@"
+"RTN","DSIO6",85,0)
+ N DLAYGO,DFLE,DFN,SHARE,FDA,DATA,DIC,X,Y,FORM,SFORM
+"RTN","DSIO6",86,0)
+ S DLAYGO=19641.41
+"RTN","DSIO6",87,0)
+ ; *** DESTINATION FILE required to create RECORD
+"RTN","DSIO6",88,0)
+ S DFLE=$$GET1^DIQ(19641.4,CONTROL_",",.03,"I") Q:'DFLE
+"RTN","DSIO6",89,0)
+ ; *** DFN via CONTROL and DESTINATION IEN - SHARE only if DFN
+"RTN","DSIO6",90,0)
+ S DFN=$$DFN(CONTROL,SIEN)
+"RTN","DSIO6",91,0)
+ ; *** RECORD of DATA is like a Variable Pointer
+"RTN","DSIO6",92,0)
+ S FDA(19641.41,"?+1,",.01)=SIEN_";"_$TR(^DIC(DFLE,0,"GL"),U)
+"RTN","DSIO6",93,0)
+ S FDA(19641.41,"?+1,",.02)=CONTROL
+"RTN","DSIO6",94,0)
+ S FDA(19641.41,"?+1,",.05)=$G(DUZ)
+"RTN","DSIO6",95,0)
+ S FDA(19641.41,"?+1,",.06)=$G(DUZ(2))
+"RTN","DSIO6",96,0)
+ D UPDATE^DIE(,"FDA","DATA") K FDA Q:'$G(DATA(1))
+"RTN","DSIO6",97,0)
+ Q:'$$ACT(INFACE,"SAVE")
+"RTN","DSIO6",98,0)
+ S SHARE=$$SHARE^DSIO64(CONTROL,INFACE)
+"RTN","DSIO6",99,0)
+ ; *** Build the INTERFACE
+"RTN","DSIO6",100,0)
+ S FDA(19641.411,"?+1,"_DATA(1)_",",.01)=INFACE
+"RTN","DSIO6",101,0)
+ S FDA(19641.411,"?+1,"_DATA(1)_",",.02)=SHARE
+"RTN","DSIO6",102,0)
+ D UPDATE^DIE(,"FDA","FORM") K FDA Q:'$G(FORM(1))
+"RTN","DSIO6",103,0)
+ ; *** Populate the INTERFACE in DDCS DATA or DDCS SHARED
+"RTN","DSIO6",104,0)
+ I SHARE D
+"RTN","DSIO6",105,0)
+ . S DIC="^DSIO(19641.4941,",DIC(0)="XL",X="`"_DFN D ^DIC Q:+Y<1
+"RTN","DSIO6",106,0)
+ . S FDA(19641.49411,"?+1,"_DFN_",",.01)=INFACE
+"RTN","DSIO6",107,0)
+ . D UPDATE^DIE(,"FDA","SFORM") K FDA Q:'$G(SFORM(1))
+"RTN","DSIO6",108,0)
+ . ; *** DATA SHUFFLE
+"RTN","DSIO6",109,0)
+ . S ^DSIO(19641.4941,DFN,1,"S",INFACE,SFORM(1))=""
+"RTN","DSIO6",110,0)
+ . D SETDATA1(19641.494111,SFORM(1)_","_DFN_",",.IDATA)
+"RTN","DSIO6",111,0)
+ D SETDATA1(19641.4111,FORM(1)_","_DATA(1)_",",.IDATA)
+"RTN","DSIO6",112,0)
+ D END(FORM(1),DATA(1))
+"RTN","DSIO6",113,0)
+ Q
+"RTN","DSIO6",114,0)
+ ;
+"RTN","DSIO6",115,0)
+SETDATA1(FLE,IENS,DATA) ; Continue
+"RTN","DSIO6",116,0)
+ ;
+"RTN","DSIO6",117,0)
+ ; ARRAY OF DATA: CONTROL^(INDEXED^VALUE)
+"RTN","DSIO6",118,0)
+ ;           (If a CONTROL is repeated then it will be considered multi-valued)
+"RTN","DSIO6",119,0)
+ ;                CONTROL = The name of the control that was passed up from
+"RTN","DSIO6",120,0)
+ ;                          configuration
+"RTN","DSIO6",121,0)
+ ;                INDEXED = If it is multi-valued as items with those items as
+"RTN","DSIO6",122,0)
+ ;                          a list rather than word processing (stored within wp)
+"RTN","DSIO6",123,0)
+ ;                  VALUE = The user supplied value
+"RTN","DSIO6",124,0)
+ ;
+"RTN","DSIO6",125,0)
+ N SAVE,CT,CI,CONTROL,BUILD,FDA,IEN,EIEN
+"RTN","DSIO6",126,0)
+ S SAVE=$NA(^TMP($J,"DSIO6 SETDATA1")) K @SAVE
+"RTN","DSIO6",127,0)
+ I $G(ACT)="C" D
+"RTN","DSIO6",128,0)
+ . S CONTROL="##TCONFIGCOLLECTION##",BUILD(CONTROL)=""
+"RTN","DSIO6",129,0)
+ . S CI=1,CT=$NA(DATA) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO6",130,0)
+ . . S @SAVE@(CONTROL,CI)=@CT,CI=CI+1
+"RTN","DSIO6",131,0)
+ I '$D(ACT) D
+"RTN","DSIO6",132,0)
+ . S CT=$NA(DATA) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO6",133,0)
+ . . S CONTROL=$$UP^XLFSTR($P(@CT,U)) Q:CONTROL=""
+"RTN","DSIO6",134,0)
+ . . S BUILD(CONTROL)=""
+"RTN","DSIO6",135,0)
+ . . S @SAVE@(CONTROL,($O(@SAVE@(CONTROL,""),-1)+1))=$P(@CT,U,2,999)
+"RTN","DSIO6",136,0)
+ S CONTROL="" F  S CONTROL=$O(BUILD(CONTROL)) Q:CONTROL=""  D
+"RTN","DSIO6",137,0)
+ . K IEN,EIEN
+"RTN","DSIO6",138,0)
+ . ; *** Find the IEN for the CONTROL within the DATA or SHARED DATA entry
+"RTN","DSIO6",139,0)
+ . S IEN=$O(^DSIO($E(FLE,1,($L(FLE)-2)),$P(IENS,",",2),1,$P(IENS,","),1,"C",CONTROL,""))
+"RTN","DSIO6",140,0)
+ . ; *** If the control already exists within the captured data then
+"RTN","DSIO6",141,0)
+ . ;     get the DSIO DDCS ELEMENT IEN
+"RTN","DSIO6",142,0)
+ . I IEN S EIEN=^DSIO($E(FLE,1,($L(FLE)-2)),$P(IENS,",",2),1,$P(IENS,","),1,IEN,0)
+"RTN","DSIO6",143,0)
+ . ; *** If this DATA ELEMENT has already been collected  for this CONTROLled
+"RTN","DSIO6",144,0)
+ . ;     INTERFACE then overwrite the value, else create new
+"RTN","DSIO6",145,0)
+ . S EIEN=$$ELE($G(EIEN),CONTROL) Q:'$G(EIEN)
+"RTN","DSIO6",146,0)
+ . S FDA(FLE,$S($G(IEN):IEN,1:"+1")_","_IENS,.01)=EIEN
+"RTN","DSIO6",147,0)
+ . D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO6",148,0)
+ K @SAVE
+"RTN","DSIO6",149,0)
+ Q
+"RTN","DSIO6",150,0)
+ ;
+"RTN","DSIO6",151,0)
+ELE(IEN,CONTROL) ; Set DSIO DDCS ELEMENT
+"RTN","DSIO6",152,0)
+ ;
+"RTN","DSIO6",153,0)
+ ; *** The ELEMENT of form control may already exist but it is
+"RTN","DSIO6",154,0)
+ ;     only required to be unique among a single instance of an
+"RTN","DSIO6",155,0)
+ ;     INTERFACE so if it isn't we need to recreate it. This
+"RTN","DSIO6",156,0)
+ ;     determination happened before entering here.
+"RTN","DSIO6",157,0)
+ ;
+"RTN","DSIO6",158,0)
+ ;     IEN = Record of 19641.45
+"RTN","DSIO6",159,0)
+ ; CONTROL = Name of GUI Control
+"RTN","DSIO6",160,0)
+ ;
+"RTN","DSIO6",161,0)
+ N FDA,CCLASS
+"RTN","DSIO6",162,0)
+ S:'$G(IEN) IEN="+1"
+"RTN","DSIO6",163,0)
+ S FDA(19641.45,IEN_",",.01)=CONTROL         ; CONTROL
+"RTN","DSIO6",164,0)
+ S CCLASS=$$CCLASS^DSIO62(INFACE,CONTROL)
+"RTN","DSIO6",165,0)
+ S:CCLASS FDA(19641.45,IEN_",",.02)=CCLASS   ; CLASS
+"RTN","DSIO6",166,0)
+ D UPDATE^DIE(,"FDA",$S(IEN'["+":"",1:"IEN")) K FDA
+"RTN","DSIO6",167,0)
+ S IEN=$S(IEN'["+":+IEN,$G(IEN(1)):IEN(1),1:"") Q:'IEN ""
+"RTN","DSIO6",168,0)
+ D WP^DIE(19641.45,IEN_",",1,"K","^TMP($J,""DSIO6 SETDATA1"",CONTROL)")
+"RTN","DSIO6",169,0)
+ K ^TMP($J,"DSIO6 SETDATA1",CONTROL)
+"RTN","DSIO6",170,0)
+ Q $G(IEN)
+"RTN","DSIO6",171,0)
+ ;
+"RTN","DSIO6",172,0)
+END(IFORM,IDATA) ; SETDATA END
+"RTN","DSIO6",173,0)
+ I $$ACT(IFORM,"SUBMIT") D PUSH(IDATA) Q
+"RTN","DSIO6",174,0)
+ S RET=IDATA
+"RTN","DSIO6",175,0)
+ Q
+"RTN","DSIO6",176,0)
+ ;
+"RTN","DSIO6",177,0)
+PUSH(DATA) ; PUSH Data out of DDCS
+"RTN","DSIO6",178,0)
+ ;
+"RTN","DSIO6",179,0)
+ ; * CONTROL(DDCSC), RECORD(DDCSR), 
+"RTN","DSIO6",180,0)
+ ;   SIEN(DESTINATION IEN), DESTINATION FILE(DDCSFLE),
+"RTN","DSIO6",181,0)
+ ;   DFN, INTERFACE/FORM(DDCSFRM), ELEMENT IEN(DDCSE), ELEMENT NAME(DDCSEN)
+"RTN","DSIO6",182,0)
+ ;
+"RTN","DSIO6",183,0)
+ S DATA=+$G(DATA)
+"RTN","DSIO6",184,0)
+ Q:$P($G(^DSIO(19641.41,DATA,0)),U,3)'=""       ; *** ALREADY PUSHED
+"RTN","DSIO6",185,0)
+ Q:$D(^DSIO(19641.41,"ERROR"))                  ; *** PUSH has ERRORed - maybe in another entry
+"RTN","DSIO6",186,0)
+ ; *** PUSH START (It must have started and failed!)
+"RTN","DSIO6",187,0)
+ I $P($G(^DSIO(19641.41,DATA,0)),U,4)'="" S ^DSIO(19641.41,"ERROR")="" Q
+"RTN","DSIO6",188,0)
+ N DDCSC,DDCSR,SIEN,DDCSFLE,DFN,INFACE,DDCSFRM,FIEN,RPT,DDCSEN,EIEN
+"RTN","DSIO6",189,0)
+ N DDCSE,PRE,POST,FDA,DIE,DA,X,Y,DR
+"RTN","DSIO6",190,0)
+ S FDA(19641.41,DATA_",",.04)=$$NOW^XLFDT       ; *** If PUSH fails we shouldn't keep retrying!
+"RTN","DSIO6",191,0)
+ D FILE^DIE(,"FDA") K FDA
+"RTN","DSIO6",192,0)
+ S DDCSR=$P($G(^DSIO(19641.41,DATA,0)),U),SIEN=+DDCSR
+"RTN","DSIO6",193,0)
+ S DDCSC=$P($G(^DSIO(19641.41,DATA,0)),U,2) Q:'DDCSC
+"RTN","DSIO6",194,0)
+ S DDCSFLE=$P($G(^DSIO(19641.4,DDCSC,0)),U,3)
+"RTN","DSIO6",195,0)
+ S DFN=$$DFN(DDCSC,+DDCSR)
+"RTN","DSIO6",196,0)
+ I '$$TRIGGER(DDCSC) D  Q                       ; *** Not ready to PUSH
+"RTN","DSIO6",197,0)
+ . S FDA(19641.41,DATA_",",.03)=""
+"RTN","DSIO6",198,0)
+ . S FDA(19641.41,DATA_",",.04)=""
+"RTN","DSIO6",199,0)
+ . D FILE^DIE(,"FDA") K FDA
+"RTN","DSIO6",200,0)
+ S PRE=$G(^DSIO(19641.4,DDCSC,3)) X:PRE'="" PRE
+"RTN","DSIO6",201,0)
+ ; *** VITALS
+"RTN","DSIO6",202,0)
+ D VP^DSIO65(DFN,DDCSR)
+"RTN","DSIO6",203,0)
+ ; *** MULTIPLE INTERFACES/FORMS
+"RTN","DSIO6",204,0)
+ ;     - Push the whole form at once if the option exists, then traverse the elements and push
+"RTN","DSIO6",205,0)
+ ;       that way if you have to run a routine for some heavy lifting you can still take
+"RTN","DSIO6",206,0)
+ ;       advantage of the smaller configurable elements.
+"RTN","DSIO6",207,0)
+ S INFACE="" F  S INFACE=$O(^DSIO(19641.41,DATA,1,"B",INFACE)) Q:INFACE=""  D
+"RTN","DSIO6",208,0)
+ . S DDCSFRM=$$INFACE^DSIO65(INFACE)
+"RTN","DSIO6",209,0)
+ . S FIEN=$O(^DSIO(19641.41,DATA,1,"B",INFACE,""))
+"RTN","DSIO6",210,0)
+ . K RPT I DDCSFRM[";DSIO(19641.42," D
+"RTN","DSIO6",211,0)
+ . . ; *** PUSH the whole FORM at once
+"RTN","DSIO6",212,0)
+ . . S RPT=$P($G(^DSIO(19641.42,+DDCSFRM,0)),U,4) D:RPT REPORT(RPT)
+"RTN","DSIO6",213,0)
+ . K RPT I DDCSFRM[";DSIO(19641.49," D
+"RTN","DSIO6",214,0)
+ . . ; *** PUSH the whole FORM at once
+"RTN","DSIO6",215,0)
+ . . S RPT=$P($G(^DSIO(19641.49,+DDCSFRM,0)),U,6) D:RPT REPORT(RPT)
+"RTN","DSIO6",216,0)
+ . ; *** BY SAVED ELEMENTS
+"RTN","DSIO6",217,0)
+ . S DDCSEN="" F  S DDCSEN=$O(^DSIO(19641.41,DATA,1,FIEN,1,"C",DDCSEN)) Q:DDCSEN=""  D
+"RTN","DSIO6",218,0)
+ . . S EIEN=$O(^DSIO(19641.41,DATA,1,FIEN,1,"C",DDCSEN,""))
+"RTN","DSIO6",219,0)
+ . . S DDCSE=+$G(^DSIO(19641.41,DATA,1,FIEN,1,EIEN,0))
+"RTN","DSIO6",220,0)
+ . . I DDCSFRM[";DSIO(19641.42," D
+"RTN","DSIO6",221,0)
+ . . . S RPT=$$REPORT^DSIO65(+DDCSFRM,DDCSEN) D:RPT REPORT(RPT)
+"RTN","DSIO6",222,0)
+ . . . ; *** OBSERVATION
+"RTN","DSIO6",223,0)
+ . . . D OBF^DSIO67(+DDCSFRM,DDCSEN,DDCSE)
+"RTN","DSIO6",224,0)
+ . . I DDCSFRM[";DSIO(19641.49," D
+"RTN","DSIO6",225,0)
+ . . . S RPT=$$REPORT^DSIO66(+DDCSFRM,DDCSEN) D:RPT REPORT(RPT)
+"RTN","DSIO6",226,0)
+ . . . ; *** OBSERVATION
+"RTN","DSIO6",227,0)
+ . . . D OBD^DSIO67(+DDCSFRM,DDCSEN,DDCSE)
+"RTN","DSIO6",228,0)
+ S POST=$G(^DSIO(19641.4,DDCSC,4)) X:POST'="" POST
+"RTN","DSIO6",229,0)
+ S DIE="^DSIO(19641.41,",DA=DATA,DR=".03///"_$$NOW^XLFDT D ^DIE
+"RTN","DSIO6",230,0)
+ Q
+"RTN","DSIO6",231,0)
+ ;
+"RTN","DSIO6",232,0)
+REPORT(RPT) ; Run Report Item
+"RTN","DSIO6",233,0)
+ S RPT=+$G(RPT) Q:'RPT
+"RTN","DSIO6",234,0)
+ Q:$P($G(^DSIO(19641.401,RPT,0)),U,2)  ; INACTIVE
+"RTN","DSIO6",235,0)
+ N RTRF,RROU,HIS
+"RTN","DSIO6",236,0)
+ S RTRF=$G(^DSIO(19641.401,RPT,1)) X:RTRF'="" RTRF
+"RTN","DSIO6",237,0)
+ S RROU=$G(^DSIO(19641.401,RPT,2)) X:RROU'="" RROU
+"RTN","DSIO6",238,0)
+ S HIS=$$HISTORY($$GET1^DIQ(19641.4,DDCSC_",",.01),DDCSR_"|"_DDCSFRM,RROU)
+"RTN","DSIO6",239,0)
+ Q
+"RTN","DSIO6",240,0)
+ ;
+"RTN","DSIO6",241,0)
+HISTORY(TRIG,OBJ,ROU) ; HISTORY LOG
+"RTN","DSIO6",242,0)
+ ;
+"RTN","DSIO6",243,0)
+ ; TRIG = HISTORY LOG TRIGGER
+"RTN","DSIO6",244,0)
+ ;           OBSERVATIONS = Observation File
+"RTN","DSIO6",245,0)
+ ;                   DDCS = Control File
+"RTN","DSIO6",246,0)
+ ;  ROU = ROUTINE used to process report item
+"RTN","DSIO6",247,0)
+ ;
+"RTN","DSIO6",248,0)
+ N DLAYGO,IPT,IEN
+"RTN","DSIO6",249,0)
+ S DLAYGO=19641.124
+"RTN","DSIO6",250,0)
+ S IPT(19641.124,"+1,",.01)=$$NOW^XLFDT       ; DATE
+"RTN","DSIO6",251,0)
+ S IPT(19641.124,"+1,",.02)=TRIG              ; TRIGGER
+"RTN","DSIO6",252,0)
+ S IPT(19641.124,"+1,",.03)=DUZ               ; USER
+"RTN","DSIO6",253,0)
+ S IPT(19641.124,"+1,",.04)=$G(OBJ)           ; OBJECT
+"RTN","DSIO6",254,0)
+ S IPT(19641.124,"+1,",1)=$G(ROU)             ; CODE
+"RTN","DSIO6",255,0)
+ D UPDATE^DIE(,"IPT","IEN")
+"RTN","DSIO6",256,0)
+ Q $G(IEN(1))
+"RTN","DSIO6",257,0)
+ ;
+"RTN","DSIO6",258,0)
+ ; ---------------------------------- UTILITIES -------------------------------
+"RTN","DSIO6",259,0)
+ ;
+"RTN","DSIO6",260,0)
+DFN(CONTROL,SIEN) ; Get DFN from CONTROL File
+"RTN","DSIO6",261,0)
+ S CONTROL=+$G(CONTROL) Q:'CONTROL ""
+"RTN","DSIO6",262,0)
+ Q:'$P($G(^DSIO(19641.4,CONTROL,0)),U,4) ""
+"RTN","DSIO6",263,0)
+ N DDCSFLE,DDCSFLD,XDFN
+"RTN","DSIO6",264,0)
+ S DDCSFLE=$P($G(^DSIO(19641.4,CONTROL,0)),U,3)         ; DESTINATION FILE
+"RTN","DSIO6",265,0)
+ S DDCSFLD=$P($G(^DSIO(19641.4,CONTROL,0)),U,5)         ; PATIENT FIELD
+"RTN","DSIO6",266,0)
+ Q:DDCSFLD $$GET1^DIQ(DDCSFLE,$G(SIEN)_",",DDCSFLD,"I")
+"RTN","DSIO6",267,0)
+ S XDFN=$G(^DSIO(19641.4,CONTROL,1)) X:XDFN'="" XDFN    ; PATIENT LOOKUP CODE
+"RTN","DSIO6",268,0)
+ Q $G(DFN)
+"RTN","DSIO6",269,0)
+ ;
+"RTN","DSIO6",270,0)
+ACT(IEN,FUN) ; Determine if the INTERFACE is allowed to preform a function
+"RTN","DSIO6",271,0)
+ ;
+"RTN","DSIO6",272,0)
+ ; IEN = IEN;DSIO(19641.42, IEN;DSIO(19641.49, or OTHER
+"RTN","DSIO6",273,0)
+ ; FUN = RESTORE,SAVE,SUBMIT
+"RTN","DSIO6",274,0)
+ ;
+"RTN","DSIO6",275,0)
+ ; A = DO NOT RESTORE
+"RTN","DSIO6",276,0)
+ ; B = DO NOT SAVE
+"RTN","DSIO6",277,0)
+ ; C = DO NOT PUSH
+"RTN","DSIO6",278,0)
+ ; D = SUBMIT NOW (PUSH on SAVE rather than waiting for the trigger)
+"RTN","DSIO6",279,0)
+ ;
+"RTN","DSIO6",280,0)
+ N ACT,FLG,FLE
+"RTN","DSIO6",281,0)
+ ; *** OTHER - Can be saved but no record to PUSH
+"RTN","DSIO6",282,0)
+ I $G(IEN)="OTHER" S:FUN="SAVE" FLG=1 G A1
+"RTN","DSIO6",283,0)
+ Q:'$G(IEN) 0
+"RTN","DSIO6",284,0)
+ S FLE=$TR($P(IEN,"(",2),",")
+"RTN","DSIO6",285,0)
+ S ACT=$$GET1^DIQ(FLE,+$G(IEN)_",",$S(FLE[.42:.02,FLE[.49:.05,1:""))
+"RTN","DSIO6",286,0)
+ I FUN="SAVE" S:ACT'="B" FLG=1 G A1
+"RTN","DSIO6",287,0)
+ I FUN="RESTORE" S:ACT'="A" FLG=1 G A1
+"RTN","DSIO6",288,0)
+ I FUN="SUBMIT" S:ACT="D" FLG=1 G A1
+"RTN","DSIO6",289,0)
+ Q 0
+"RTN","DSIO6",290,0)
+ ;
+"RTN","DSIO6",291,0)
+A1 ; Continue
+"RTN","DSIO6",292,0)
+ Q +$G(FLG)
+"RTN","DSIO6",293,0)
+ ;
+"RTN","DSIO6",294,0)
+TRIGGER(IEN) ; Check the Trigger logic from the Controlled Object to
+"RTN","DSIO6",295,0)
+ ;             determine PUSH
+"RTN","DSIO6",296,0)
+ ;
+"RTN","DSIO6",297,0)
+ ; *Expected Variables: DFLE,SIEN
+"RTN","DSIO6",298,0)
+ ;  C = DO NOT PUSH
+"RTN","DSIO6",299,0)
+ ;
+"RTN","DSIO6",300,0)
+ N FORM,TRIG
+"RTN","DSIO6",301,0)
+ S FORM=$P($G(^DSIO(19641.4,IEN,0)),U,7) Q:'FORM 0
+"RTN","DSIO6",302,0)
+ Q:$P($G(^DSIO(19641.42,FORM,0)),U,2)["C" 0
+"RTN","DSIO6",303,0)
+ S TRIG=$G(^DSIO(19641.4,IEN,2)) Q:TRIG="" 1
+"RTN","DSIO6",304,0)
+ I 1 X TRIG Q:'$T 0
+"RTN","DSIO6",305,0)
+ Q 1
+"RTN","DSIO6",306,0)
+ ;
+"RTN","DSIO6",307,0)
+ERROR ; Remove the Error Lock on 19641.41 and delete any PUSH START entries that
+"RTN","DSIO6",308,0)
+ ;      do not have a PUSHED entry
+"RTN","DSIO6",309,0)
+ ;
+"RTN","DSIO6",310,0)
+ N IEN,FDA
+"RTN","DSIO6",311,0)
+ K ^DSIO(19641.41,"ERROR")
+"RTN","DSIO6",312,0)
+ S IEN=0 F  S IEN=$O(^DSIO(19641.41,"AP",IEN)) Q:'IEN  D
+"RTN","DSIO6",313,0)
+ . I $P($G(^DSIO(19641.41,IEN,0)),U,4)'="",$P($G(^DSIO(19641.41,IEN,0)),U,3)="" D
+"RTN","DSIO6",314,0)
+ . . W !!,"   RECORD UPDATED: ",IEN
+"RTN","DSIO6",315,0)
+ . . S FDA(19641.41,IEN_",",.04)="" D FILE^DIE(,"FDA") K FDA
+"RTN","DSIO6",316,0)
+ W !!,$$CJ^XLFSTR(" FINISHED CLEAN UP ",79,"*"),!
+"RTN","DSIO6",317,0)
+ Q
+"RTN","DSIO6",318,0)
+ ;
+"RTN","DSIO6",319,0)
+ ; --------------------------------- TRIGGER ----------------------------------
+"RTN","DSIO6",320,0)
+ ;
+"RTN","DSIO6",321,0)
+TRIG ; Attempt to PUSH unPUSHed records
+"RTN","DSIO6",322,0)
+ N DDCSD,DDCSC
+"RTN","DSIO6",323,0)
+ S DDCSD=0 F  S DDCSD=$O(^DSIO(19641.41,"AP",DDCSD)) Q:'DDCSD  D
+"RTN","DSIO6",324,0)
+ . S DDCSC=$P($G(^DSIO(19641.41,DDCSD,0)),U,2) Q:'DDCSC
+"RTN","DSIO6",325,0)
+ . D PUSH(DDCSD)
+"RTN","DSIO6",326,0)
+ Q
+"RTN","DSIO62")
+0^2^B18640101
+"RTN","DSIO62",1,0)
+DSIO62 ;DSS/TFF - DSIO DDCS SPECIAL LOOKUP;08/26/2016 16:00
+"RTN","DSIO62",2,0)
+ ;;3.0;MATERNITY TRACKER;**1**;Feb 02, 2017;Build 1
+"RTN","DSIO62",3,0)
+ ;Originally Submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+"RTN","DSIO62",4,0)
+ ;Authored by DSS, Inc. 2014-2017
+"RTN","DSIO62",5,0)
+ ;
+"RTN","DSIO62",6,0)
+ ; External References      DBIA#
+"RTN","DSIO62",7,0)
+ ; -------------------      -----
+"RTN","DSIO62",8,0)
+ ; $$GOON^VALM1
+"RTN","DSIO62",9,0)
+ ;
+"RTN","DSIO62",10,0)
+ ; *** VIEW OPTION FOR DSIO DDCS DATA ***
+"RTN","DSIO62",11,0)
+ ; *** VIEW OPTION FOR DSIO DDCS SHARED DATA ***
+"RTN","DSIO62",12,0)
+ ; *** VIEW OPTION FOR DSIO DDCS ELEMENT ***
+"RTN","DSIO62",13,0)
+ ;
+"RTN","DSIO62",14,0)
+VIEW ; Display Selection Only
+"RTN","DSIO62",15,0)
+ N SCR,RECORD,IEN,OUT,CONTROL,DFLD,DFN,CT,TYPE,FLD,DATA,LINE,GOON
+"RTN","DSIO62",16,0)
+ S SCR="I $D(^DSIO(19641.4,""D"",Y))"
+"RTN","DSIO62",17,0)
+ S RECORD=$$RECORD^DSIO61("Select DESTINATION FILE",SCR) Q:RECORD=""
+"RTN","DSIO62",18,0)
+ S IEN=$O(^DSIO(19641.41,"B",RECORD,"")) Q:'IEN
+"RTN","DSIO62",19,0)
+ W !,$$REPEAT^XLFSTR("=",79)
+"RTN","DSIO62",20,0)
+ S CONTROL=$$GET1^DIQ(19641.41,IEN_",",.02)
+"RTN","DSIO62",21,0)
+ ; *** Get DFN for SHARED DATA Collection
+"RTN","DSIO62",22,0)
+ S DFN=$$DFN^DSIO6(CONTROL,+RECORD)
+"RTN","DSIO62",23,0)
+ W !," CONTROLLED BY: ",CONTROL,!
+"RTN","DSIO62",24,0)
+ W "        PUSHED: ",$$FMTE^XLFDT($$GET1^DIQ(19641.41,IEN_",",.03),"5Z"),!
+"RTN","DSIO62",25,0)
+ S LINE=3 D GETS^DIQ(19641.41,IEN_",","1*","I","OUT")
+"RTN","DSIO62",26,0)
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO62",27,0)
+ . S TYPE=$S($L($QS(CT,1))=10:"D",1:"I")
+"RTN","DSIO62",28,0)
+ . I TYPE="D" D  Q
+"RTN","DSIO62",29,0)
+ . . S FLD(TYPE,$P($QS(CT,2),",",2),$O(FLD(TYPE,$P($QS(CT,2),",",2),""),-1)+1)=@CT
+"RTN","DSIO62",30,0)
+ . S FLD(TYPE,+$QS(CT,2),$O(FLD(TYPE,+$QS(CT,2),""),-1)+1)=@CT
+"RTN","DSIO62",31,0)
+ S CT=0 F  S CT=$O(FLD("I",CT)) Q:'CT  D  Q:$D(GOON)
+"RTN","DSIO62",32,0)
+ . W !," INTERFACE: ",FLD("I",CT,1) Q:$$GOON
+"RTN","DSIO62",33,0)
+ . W !,"    SHARED: ",$S(FLD("I",CT,2)=1:"YES",1:"NO"),!! Q:$$GOON
+"RTN","DSIO62",34,0)
+ . W " DATA -----------------------------------------",! Q:$$GOON
+"RTN","DSIO62",35,0)
+ . S DATA=0 F  S DATA=$O(FLD("D",CT,DATA)) Q:'DATA  D  Q:$D(GOON)
+"RTN","DSIO62",36,0)
+ . . D DATA(FLD("D",CT,DATA))
+"RTN","DSIO62",37,0)
+ . ; *** DATA is within the DSIO DDCS SHARED DATA File
+"RTN","DSIO62",38,0)
+ . ;     However, this file is by Interface by DFN and not by Record
+"RTN","DSIO62",39,0)
+ . D SHARE(DFN,FLD("I",CT,1))
+"RTN","DSIO62",40,0)
+ Q
+"RTN","DSIO62",41,0)
+ ;
+"RTN","DSIO62",42,0)
+GOON() ; Check LINE count and add page break, quit if the user wishes to do so
+"RTN","DSIO62",43,0)
+ S LINE=LINE+1
+"RTN","DSIO62",44,0)
+ I '(LINE#17),'$$GOON^VALM1 S GOON=1
+"RTN","DSIO62",45,0)
+ Q $S($D(GOON):1,1:0)
+"RTN","DSIO62",46,0)
+ ;
+"RTN","DSIO62",47,0)
+SHARE(DFN,INFACE) ; Get SHARED DATA via DFN and INTERFACE
+"RTN","DSIO62",48,0)
+ Q:'$G(DFN)!($G(INFACE)="")
+"RTN","DSIO62",49,0)
+ N IEN,OUT,CT
+"RTN","DSIO62",50,0)
+ S IEN=$O(^DSIO(19641.4941,DFN,1,"B",INFACE,"")) Q:'IEN
+"RTN","DSIO62",51,0)
+ D GETS^DIQ(19641.49411,IEN_","_DFN_",","1*","I","OUT")
+"RTN","DSIO62",52,0)
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D DATA(@CT)
+"RTN","DSIO62",53,0)
+ Q
+"RTN","DSIO62",54,0)
+ ;
+"RTN","DSIO62",55,0)
+DATA(IEN) ; DSIO DDCS ELEMENT (19641.45)
+"RTN","DSIO62",56,0)
+ N OUT,CT,FLD
+"RTN","DSIO62",57,0)
+ D GETS^DIQ(19641.45,IEN_",","**","E","OUT")
+"RTN","DSIO62",58,0)
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  S FLD($QS(CT,3))=@CT
+"RTN","DSIO62",59,0)
+ W !," -- CONTROL: ",FLD(.01),! Q:$$GOON
+"RTN","DSIO62",60,0)
+ W "      CLASS: ",FLD(.02),! Q:$$GOON
+"RTN","DSIO62",61,0)
+ W "    VALUE -------------------------------------",! Q:$$GOON
+"RTN","DSIO62",62,0)
+ S CT=0 F  S CT=$O(^DSIO(19641.45,IEN,1,CT)) Q:'CT  D  Q:$D(GOON)
+"RTN","DSIO62",63,0)
+ . W "          ",^DSIO(19641.45,IEN,1,CT,0),! Q:$$GOON
+"RTN","DSIO62",64,0)
+ Q
+"RTN","DSIO62",65,0)
+ ;
+"RTN","DSIO62",66,0)
+ ; --------------------------------- UTILITIES --------------------------------
+"RTN","DSIO62",67,0)
+ ;
+"RTN","DSIO62",68,0)
+GET1(IEN) ; Return single line of data
+"RTN","DSIO62",69,0)
+ N OUT,CLASS,CT
+"RTN","DSIO62",70,0)
+ S OUT=$G(^DSIO(19641.45,+$G(IEN),1,1,0)) Q:OUT="" OUT
+"RTN","DSIO62",71,0)
+ S CLASS=$$GET1^DIQ(19641.45,$G(IEN)_",",.03,"I") Q:'CLASS OUT
+"RTN","DSIO62",72,0)
+ Q:$$GET1^DIQ(19641.425,CLASS_",",.04,"I")="LS" $$LS
+"RTN","DSIO62",73,0)
+ Q OUT
+"RTN","DSIO62",74,0)
+ ;
+"RTN","DSIO62",75,0)
+EGET1(NAM) ; Element Value
+"RTN","DSIO62",76,0)
+ Q $P($$GET1($$IEN(NAM)),U,2)
+"RTN","DSIO62",77,0)
+ ;
+"RTN","DSIO62",78,0)
+TGET1(NAM) ; True/False Value
+"RTN","DSIO62",79,0)
+ Q $S($$UP^XLFSTR($P($$GET1($$IEN(NAM)),U))="TRUE":1,1:0)
+"RTN","DSIO62",80,0)
+ ;
+"RTN","DSIO62",81,0)
+LS() ; Clean up List type elements
+"RTN","DSIO62",82,0)
+ N I,STR,OUT
+"RTN","DSIO62",83,0)
+ S I=0 F  S I=$O(^DSIO(19641.45,+$G(IEN),1,I)) Q:'I  D  Q:$D(OUT)
+"RTN","DSIO62",84,0)
+ . S STR=$G(^DSIO(19641.45,+$G(IEN),1,I,0)) Q:STR=""
+"RTN","DSIO62",85,0)
+ . I $P(STR,U)["TRUE" S OUT=$P(STR,U,2)
+"RTN","DSIO62",86,0)
+ Q $G(OUT)
+"RTN","DSIO62",87,0)
+ ;
+"RTN","DSIO62",88,0)
+TXT(RET,IEN) ; Return array of data without the leading caret
+"RTN","DSIO62",89,0)
+ N CT,STR
+"RTN","DSIO62",90,0)
+ S CT=0 F  S CT=$O(^DSIO(19641.45,+$G(IEN),1,CT)) Q:'CT  D
+"RTN","DSIO62",91,0)
+ . S STR=^DSIO(19641.45,IEN,1,CT,0) S:$E(STR,1)=U STR=$E(STR,2,$L(STR))
+"RTN","DSIO62",92,0)
+ . S RET(CT)=STR
+"RTN","DSIO62",93,0)
+ Q
+"RTN","DSIO62",94,0)
+ ;
+"RTN","DSIO62",95,0)
+GETS(RET,IEN) ; Return array of data
+"RTN","DSIO62",96,0)
+ N CT
+"RTN","DSIO62",97,0)
+ S CT=0 F  S CT=$O(^DSIO(19641.45,+$G(IEN),1,CT)) Q:'CT  D
+"RTN","DSIO62",98,0)
+ . S RET(CT)=^DSIO(19641.45,IEN,1,CT,0)
+"RTN","DSIO62",99,0)
+ Q
+"RTN","DSIO62",100,0)
+ ;
+"RTN","DSIO62",101,0)
+WGETS(RET,IEN) ; Return array of data without leading carets
+"RTN","DSIO62",102,0)
+ N CT
+"RTN","DSIO62",103,0)
+ S CT=0 F  S CT=$O(^DSIO(19641.45,+$G(IEN),1,CT)) Q:'CT  D
+"RTN","DSIO62",104,0)
+ . S RET(CT)=$P(^DSIO(19641.45,IEN,1,CT,0),U,2,999)
+"RTN","DSIO62",105,0)
+ Q
+"RTN","DSIO62",106,0)
+ ;
+"RTN","DSIO62",107,0)
+IEN(NAM) ; Get a Control IEN for 19641.45
+"RTN","DSIO62",108,0)
+ N TMP
+"RTN","DSIO62",109,0)
+ S TMP=$O(^DSIO(19641.41,+$G(DATA),1,+$G(FIEN),1,"C",NAM,"")) Q:'TMP 0
+"RTN","DSIO62",110,0)
+ Q +$G(^DSIO(19641.41,+$G(DATA),1,+$G(FIEN),1,TMP,0))
+"RTN","DSIO62",111,0)
+ ;
+"RTN","DSIO62",112,0)
+CCLASS(FORM,NAM) ; Get the class of a Control
+"RTN","DSIO62",113,0)
+ Q:'$G(FORM)!($G(NAM)="") 0
+"RTN","DSIO62",114,0)
+ N PG,IEN,CLASS
+"RTN","DSIO62",115,0)
+ I FORM[";DSIO(19641.42," D
+"RTN","DSIO62",116,0)
+ . S PG=$O(^DSIO(19641.42,+FORM,1,"CONTROL",NAM,"")) Q:'PG
+"RTN","DSIO62",117,0)
+ . S ELE=$O(^DSIO(19641.42,+FORM,1,"CONTROL",NAM,PG,"")) Q:'ELE
+"RTN","DSIO62",118,0)
+ . S CLASS=$P($G(^DSIO(19641.42,+FORM,1,PG,1,ELE,0)),U,2)
+"RTN","DSIO62",119,0)
+ I FORM[";DSIO(19641.49," D
+"RTN","DSIO62",120,0)
+ . S ELE=$O(^DSIO(19641.49,+FORM,1,"B",NAM,"")) Q:'ELE
+"RTN","DSIO62",121,0)
+ . S CLASS=$P($G(^DSIO(19641.49,+FORM,1,ELE,0)),U,2)
+"RTN","DSIO62",122,0)
+ Q $S($G(CLASS):CLASS,1:0)
+"RTN","DSIO62",123,0)
+ ;
+"RTN","DSIO62",124,0)
+TYPE(FORM,NAM,TYP) ; Class Type
+"RTN","DSIO62",125,0)
+ Q:'$G(FORM)!($G(NAM)="") 0
+"RTN","DSIO62",126,0)
+ N CLASS S CLASS=$$CCLASS(FORM,NAM) Q:'CLASS 0
+"RTN","DSIO62",127,0)
+ Q ($$GET1^DIQ(19641.425,CLASS_",",.04,"I")=$G(TYP))
+"RTN","DSIO63")
+0^1^B127113482
+"RTN","DSIO63",1,0)
+DSIO63 ;DSS/TFF - DSIO DDCS CONFIGURE AND REPORT;08/26/2016 16:00
+"RTN","DSIO63",2,0)
+ ;;3.0;MATERNITY TRACKER;**1**;Feb 02, 2017;Build 1
+"RTN","DSIO63",3,0)
+ ;Originally Submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+"RTN","DSIO63",4,0)
+ ;Authored by DSS, Inc. 2014-2017
+"RTN","DSIO63",5,0)
+ ;
+"RTN","DSIO63",6,0)
+ ;
+"RTN","DSIO63",7,0)
+ ;
+"RTN","DSIO63",8,0)
+ ; 19641.42   (DSIO DDCS FORM CONFIGURATION) - THE FORM TO BE RENDERED
+"RTN","DSIO63",9,0)
+ ; 19641.425  (DSIO DDCS CONTROLS)           - FORM CONTROLS
+"RTN","DSIO63",10,0)
+ ; 19641.4258 (DSIO DDCS CONTROL PROPERTIES) - FORM CONTROL PROPERTIES
+"RTN","DSIO63",11,0)
+ ; 19641.401  (DSIO DDCS REPORT ITEMS)       - PUSH ACTION FOR FORM CONTROLS
+"RTN","DSIO63",12,0)
+ ; 19641.492  (DSIO DDCS ACTION)             - EXTENDED ACTIONS FOR FORMS
+"RTN","DSIO63",13,0)
+ ; 19641.122  (DSIO DDCS OBSERVATION CONFIG) - ALLOWS OBSERVATIONS FOR ELEMENTS CREATED DURING PUSH
+"RTN","DSIO63",14,0)
+ ;
+"RTN","DSIO63",15,0)
+SET ; Editor for 19641.42
+"RTN","DSIO63",16,0)
+ N DIC,X,Y,DIRUT,IEN,DA,DR,DIE
+"RTN","DSIO63",17,0)
+ W !!,"This information is collected and passed to a caller of the DDCS CONFIGURATION",!
+"RTN","DSIO63",18,0)
+ W "RPC which is used to build the DDCS form.",!
+"RTN","DSIO63",19,0)
+ S DIC("A")="Select the NAME of the INTERFACE: "
+"RTN","DSIO63",20,0)
+ S DIC(0)="AEQL",DIC=19641.42 D ^DIC Q:Y<1!($D(DIRUT))
+"RTN","DSIO63",21,0)
+ ; *** Set Form properties but we only want one instance of the multiple
+"RTN","DSIO63",22,0)
+ S IEN=+Y D S1($P(Y,U,2),IEN)
+"RTN","DSIO63",23,0)
+ ; *** Edit Entry
+"RTN","DSIO63",24,0)
+ W !!,"ACTION is a special action applied to the whole interface.",!
+"RTN","DSIO63",25,0)
+ W "Add each letter of each action you will to apply to your interface.",!
+"RTN","DSIO63",26,0)
+ W " A = DO NOT RESTORE",!
+"RTN","DSIO63",27,0)
+ W " B = DO NOT SAVE",!
+"RTN","DSIO63",28,0)
+ W " C = DO NOT PUSH",!
+"RTN","DSIO63",29,0)
+ W " D = SUBMIT NOW (PUSH on SAVE rather than waiting for the trigger)",!
+"RTN","DSIO63",30,0)
+ S DA=IEN,DIE="^DSIO(19641.42,",DR=".02" D ^DIE
+"RTN","DSIO63",31,0)
+ I $$GET1^DIQ(19641.42,IEN_",",.06)'["A" S DR=.06 D ^DIE
+"RTN","DSIO63",32,0)
+ ; *** SHARED, PUSH (AS A WHOLE), FILENAME
+"RTN","DSIO63",33,0)
+ W ! S DR=".03;.04;.05" D ^DIE
+"RTN","DSIO63",34,0)
+ ; *** MULTI-INTERFACE
+"RTN","DSIO63",35,0)
+ W !,"When set to Multi-Interface pages will be treated as interfaces (single paged)."
+"RTN","DSIO63",36,0)
+ W !,"The hiding of these pages will be controlled by the RPC: DSIO DDCS BUILD FORM"
+"RTN","DSIO63",37,0)
+ W !,"All pages not included in the array that are part of this record will be hidden.",!
+"RTN","DSIO63",38,0)
+ S DR=.07 D ^DIE
+"RTN","DSIO63",39,0)
+ W !!,"A DDCS can have up to 30 pages which will appear as tabs within the",!
+"RTN","DSIO63",40,0)
+ W "GUI form. You can press '+' to add the next page or a number to jump.",!
+"RTN","DSIO63",41,0)
+ W "You will not be allowed to create a higher numbered page until you create",!
+"RTN","DSIO63",42,0)
+ W "the lower ordered page."
+"RTN","DSIO63",43,0)
+ F  W ! Q:'$$S0
+"RTN","DSIO63",44,0)
+ Q
+"RTN","DSIO63",45,0)
+ ;
+"RTN","DSIO63",46,0)
+S0() ; Pages
+"RTN","DSIO63",47,0)
+ N DIR,DIRUT,DA,X,Y,PAGE,DIC,DIE,DR
+"RTN","DSIO63",48,0)
+ S DIR("A")="Enter a number (1-30)"
+"RTN","DSIO63",49,0)
+ S DIR("?")="Enter a number between 1-30 or '+'."
+"RTN","DSIO63",50,0)
+ S DIR(0)="F^1:2^K:'$$PAGE^DSIO63 X" D ^DIR Q:$D(DIRUT) 0
+"RTN","DSIO63",51,0)
+ S PAGE=Y S:PAGE="+" PAGE=$O(^DSIO(19641.42,IEN,1,""),-1)+1
+"RTN","DSIO63",52,0)
+ S DA=PAGE,DA(1)=IEN,(DIC,DIE)="^DSIO(19641.42,"_DA(1)_",1,"
+"RTN","DSIO63",53,0)
+ S DIC(0)="XL",X=PAGE D ^DIC
+"RTN","DSIO63",54,0)
+ ; *** Naming the Page and adding controls
+"RTN","DSIO63",55,0)
+ S DR=".02;.03" D ^DIE
+"RTN","DSIO63",56,0)
+ W !!,"If this is set to TRUE then this page will be populated with the Vitals "
+"RTN","DSIO63",57,0)
+ W "component and nothing more. Vitals will pull the current information for "
+"RTN","DSIO63",58,0)
+ W "the patient. You will only be able to configure the listing of contraception.",!
+"RTN","DSIO63",59,0)
+ S DR=".04" D ^DIE
+"RTN","DSIO63",60,0)
+ I $$GET1^DIQ(19641.421,PAGE_","_IEN_",",.04,"I") D VITALS(IEN,PAGE) Q 1
+"RTN","DSIO63",61,0)
+ F  Q:'$$CONTROL(IEN,PAGE)
+"RTN","DSIO63",62,0)
+ Q 1
+"RTN","DSIO63",63,0)
+ ;
+"RTN","DSIO63",64,0)
+VITALS(FORM,PAGE) ; Allow only the Contraception list to be set
+"RTN","DSIO63",65,0)
+ N FDA,CIEN,DA,DIE,DR
+"RTN","DSIO63",66,0)
+ S FDA(19641.4211,"?+1,"_PAGE_","_FORM_",",.01)="EDTCONTRACEPTIONTYPE"
+"RTN","DSIO63",67,0)
+ D UPDATE^DIE(,"FDA","CIEN")
+"RTN","DSIO63",68,0)
+ I '$G(CIEN(1)) W "*** Failed to create CONTROL.",! Q
+"RTN","DSIO63",69,0)
+ S DA(2)=FORM,DA(1)=PAGE,DA=CIEN(1)
+"RTN","DSIO63",70,0)
+ S DIE="^DSIO(19641.42,"_DA(2)_",1,"_DA(1)_",1,",DR=2 D ^DIE
+"RTN","DSIO63",71,0)
+ Q
+"RTN","DSIO63",72,0)
+ ;
+"RTN","DSIO63",73,0)
+S1(NAM,FORM) ; Property Multiple
+"RTN","DSIO63",74,0)
+ N DIR,PROP,IEN,X,Y,DIRUT
+"RTN","DSIO63",75,0)
+ W !!,"The following properties will be applied to the form.",!
+"RTN","DSIO63",76,0)
+ S DIR(0)="F^1:245"
+"RTN","DSIO63",77,0)
+ S PROP="" F  S PROP=$O(^DSIO(19641.42,FORM,2,"B",PROP)) Q:PROP=""  D
+"RTN","DSIO63",78,0)
+ . S IEN=$O(^DSIO(19641.42,FORM,2,"B",PROP,""))
+"RTN","DSIO63",79,0)
+ . S DIR("A")=PROP,DIR("B")=$G(^DSIO(19641.42,FORM,2,IEN,1)) D ^DIR
+"RTN","DSIO63",80,0)
+ . Q:$D(DIRUT)
+"RTN","DSIO63",81,0)
+ . S FDA(19641.422,IEN_","_FORM_",",.01)=PROP
+"RTN","DSIO63",82,0)
+ . S FDA(19641.422,IEN_","_FORM_",",1)=Y
+"RTN","DSIO63",83,0)
+ . D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO63",84,0)
+ F  Q:'$$S2(FORM)
+"RTN","DSIO63",85,0)
+ Q
+"RTN","DSIO63",86,0)
+ ;
+"RTN","DSIO63",87,0)
+S2(FORM) ; Set new PROPERTIES
+"RTN","DSIO63",88,0)
+ N DIR,X,Y,DIRUT,PROP,FDA
+"RTN","DSIO63",89,0)
+ S DIR(0)="F^1:245"
+"RTN","DSIO63",90,0)
+ S DIR("A")="Set new PROPERTY" D ^DIR Q:$D(DIRUT) 0
+"RTN","DSIO63",91,0)
+ S PROP=Y
+"RTN","DSIO63",92,0)
+ K X,Y S DIR("A")="Set '"_PROP_"' VALUE" D ^DIR Q:$D(DIRUT) 0
+"RTN","DSIO63",93,0)
+ S FDA(19641.422,"?+1,"_FORM_",",.01)=PROP
+"RTN","DSIO63",94,0)
+ S FDA(19641.422,"?+1,"_FORM_",",1)=Y
+"RTN","DSIO63",95,0)
+ D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO63",96,0)
+ Q 1
+"RTN","DSIO63",97,0)
+ ;
+"RTN","DSIO63",98,0)
+PAGE() ; Did the user indicate a correct page
+"RTN","DSIO63",99,0)
+ I X<1!(X>30)&(X'="+") Q 0
+"RTN","DSIO63",100,0)
+ N CT,FLG
+"RTN","DSIO63",101,0)
+ I X>1 F CT=1:1:(X-1) I '$D(^DSIO(19641.42,IEN,1,CT)) S FLG=1 Q
+"RTN","DSIO63",102,0)
+ Q:$D(FLG) 0
+"RTN","DSIO63",103,0)
+ I X="+",($O(^DSIO(19641.42,IEN,1,""),-1)+1)>30 Q 0
+"RTN","DSIO63",104,0)
+ Q 1
+"RTN","DSIO63",105,0)
+ ;
+"RTN","DSIO63",106,0)
+CONTROL(FORM,PAGE) ; Add a Control to a Page
+"RTN","DSIO63",107,0)
+ N DA,DIC,X,Y,DIRUT,CONTROL,CIEN,DIE,DR,OB
+"RTN","DSIO63",108,0)
+ S DA(2)=FORM,DA(1)=PAGE
+"RTN","DSIO63",109,0)
+ S DIC("W")="W ?40,$P(^(0),U,4)"
+"RTN","DSIO63",110,0)
+ S DIC="^DSIO(19641.42,"_DA(2)_",1,"_DA(1)_",1,",DIC(0)="AEQL"
+"RTN","DSIO63",111,0)
+ W ! D ^DIC Q:+Y<1!($D(DIRUT)) 0
+"RTN","DSIO63",112,0)
+ S CONTROL=$P(Y,U,2),CIEN=+Y W !!," CONTROL: ",CONTROL,!
+"RTN","DSIO63",113,0)
+ ; *** Allow CONTROL to be renamed or deleted
+"RTN","DSIO63",114,0)
+ K X,Y S DA(2)=FORM,DA(1)=PAGE,DA=CIEN
+"RTN","DSIO63",115,0)
+ S DIE="^DSIO(19641.42,"_DA(2)_",1,"_DA(1)_",1,",DR=".01" D ^DIE Q:'$D(DA)!($D(DIRUT)) 1
+"RTN","DSIO63",116,0)
+ S DR=".02;.03;.04" D ^DIE Q:$D(DIRUT) 1
+"RTN","DSIO63",117,0)
+ ; *** CONFIGURATION
+"RTN","DSIO63",118,0)
+ W !!,"A CONTROL can be configured with free text values (these entries must start"
+"RTN","DSIO63",119,0)
+ W " with a caret as the first piece of each free text value is the index). Other "
+"RTN","DSIO63",120,0)
+ W "options include a listing of dialogs (or a single dialog for a button). When "
+"RTN","DSIO63",121,0)
+ W "using this type be sure to define the Dialog Return which is a control that "
+"RTN","DSIO63",122,0)
+ W "the calling program will use to return the dialog's responses. The third option "
+"RTN","DSIO63",123,0)
+ W "would be to run a routine. The routine must set @RET@(#) with text as it would "
+"RTN","DSIO63",124,0)
+ W "have been in the word processing field (so each line must start with a caret)."
+"RTN","DSIO63",125,0)
+ W !!,"Only one form can be used so the order of priority is:"
+"RTN","DSIO63",126,0)
+ W !,"  1. RUN ROUTINE"
+"RTN","DSIO63",127,0)
+ W !,"  2. DIALOGS"
+"RTN","DSIO63",128,0)
+ W !,"  3. WORD PROCESSING",!
+"RTN","DSIO63",129,0)
+ K X,Y S DR="4;3;2" D ^DIE Q:$D(DIRUT) 1
+"RTN","DSIO63",130,0)
+ W !!,"CONTROL REPORT ITEM **These values will override the GUI defaults**",!
+"RTN","DSIO63",131,0)
+ K X,Y S DR=9 D ^DIE Q:$D(DIRUT) 1
+"RTN","DSIO63",132,0)
+ ; *** OBSERVATION
+"RTN","DSIO63",133,0)
+ W !!,"Should this CONTROL create an observation on PUSH? If so, then you will be",!
+"RTN","DSIO63",134,0)
+ W "asked to complete the configuration here or identify an existing one in order ",!
+"RTN","DSIO63",135,0)
+ W "to link it.",!
+"RTN","DSIO63",136,0)
+ S OB=$$SET^DSIO67(CIEN,PAGE,FORM) I OB K X,Y S DR=".05////"_OB D ^DIE
+"RTN","DSIO63",137,0)
+ Q 1
+"RTN","DSIO63",138,0)
+ ;
+"RTN","DSIO63",139,0)
+ ; -------------------------------- EXTERNAL ----------------------------------
+"RTN","DSIO63",140,0)
+ ;
+"RTN","DSIO63",141,0)
+CONFIG(RET,INFACE,OBJECT,SIEN,CITEM) ; RPC: DSIO DDCS BUILD FORM
+"RTN","DSIO63",142,0)
+ ;
+"RTN","DSIO63",143,0)
+ ; INPUT PARAMETERS:
+"RTN","DSIO63",144,0)
+ ; -----------------
+"RTN","DSIO63",145,0)
+ ; INFACE = ARRAY of...
+"RTN","DSIO63",146,0)
+ ;           IEN;DSIO(19641.42, (or NAME)
+"RTN","DSIO63",147,0)
+ ;           or IEN;DSIO(19641.49,
+"RTN","DSIO63",148,0)
+ ;           *Dialogs must exist as a single entry
+"RTN","DSIO63",149,0)
+ ;
+"RTN","DSIO63",150,0)
+ ; OBJECT = OBJECT of CONTROL
+"RTN","DSIO63",151,0)
+ ;          Example: 500000042;PXRMD(801.41,
+"RTN","DSIO63",152,0)
+ ;                   Which is the Reminder Dialog of IEN 500000042
+"RTN","DSIO63",153,0)
+ ;         = O=### (ORDER IEN)
+"RTN","DSIO63",154,0)
+ ;         = N=### ( NOTE IEN)
+"RTN","DSIO63",155,0)
+ ;
+"RTN","DSIO63",156,0)
+ ;   SIEN = Destination IEN - Record of Control
+"RTN","DSIO63",157,0)
+ ;
+"RTN","DSIO63",158,0)
+ ;  CITEM = If set then run the interface's configuration routine
+"RTN","DSIO63",159,0)
+ ;
+"RTN","DSIO63",160,0)
+ ; RETURN:
+"RTN","DSIO63",161,0)
+ ;   INTERFACE:  I^PROPERTY|VALUE
+"RTN","DSIO63",162,0)
+ ;        PAGE:  P^NUMBER^CAPTION^HIDE
+"RTN","DSIO63",163,0)
+ ;     CONTROL: CR^NAME^CLASS^PG#^VALIDATE^PROPERITES
+"RTN","DSIO63",164,0)
+ ;     CONTROL: CI^NAME^IDENTIFIER^QUESTION^ASSOCIATED_CONTROL
+"RTN","DSIO63",165,0)
+ ;     CONTROL: CC^NAME^COLLECTION_NAME|VALUE
+"RTN","DSIO63",166,0)
+ ;     CONTROL: CV^NAME^(D,F)^(INDEX^VALUE)
+"RTN","DSIO63",167,0)
+ ;
+"RTN","DSIO63",168,0)
+ ; -----------------------------------
+"RTN","DSIO63",169,0)
+ D:'$D(CITEM) TRIG^DSIO6  ; *** PUSH |
+"RTN","DSIO63",170,0)
+ ; -----------------------------------
+"RTN","DSIO63",171,0)
+ S RET=$NA(^TMP($J,"DSIO63")) Q:$$CONT  K @RET S @RET@(0)=""
+"RTN","DSIO63",172,0)
+ N CONTROL,DFN,I,CT,TMP,IEN,FLG,IGRP,DFLG
+"RTN","DSIO63",173,0)
+ S CONTROL=$$OBJECT^DSIO65($G(OBJECT)),DFN=$$DFN^DSIO6(CONTROL,$G(SIEN))
+"RTN","DSIO63",174,0)
+ S I=0,CT="" F  S CT=$O(INFACE(CT)) Q:CT=""  S I=I+1 D
+"RTN","DSIO63",175,0)
+ . S TMP=$$INFACE^DSIO65(INFACE(CT))
+"RTN","DSIO63",176,0)
+ . I TMP[";DSIO(19641.42," D  Q
+"RTN","DSIO63",177,0)
+ . . I $D(IEN),+TMP'=IEN S FLG=1 Q
+"RTN","DSIO63",178,0)
+ . . S IEN=+TMP I $O(^DSIO(19641.42,"P",INFACE(CT),"")) S IGRP(INFACE(CT))=""
+"RTN","DSIO63",179,0)
+ . I TMP[";DSIO(19641.49," S DFLG=TMP
+"RTN","DSIO63",180,0)
+ ; *** A Dialog must be presented by itself
+"RTN","DSIO63",181,0)
+ I $D(DFLG) Q:I>1  D  D CONT Q
+"RTN","DSIO63",182,0)
+ . I $D(CITEM) D DCITEM^DSIO66(+DFLG,$G(OBJECT),$G(SIEN)) Q
+"RTN","DSIO63",183,0)
+ . D DIALOG^DSIO66(+DFLG,$G(OBJECT),$G(SIEN))
+"RTN","DSIO63",184,0)
+ I $G(IEN) D
+"RTN","DSIO63",185,0)
+ . I $D(CITEM) D CITEM(IEN,$G(OBJECT),$G(SIEN)) Q
+"RTN","DSIO63",186,0)
+ . D CG(IEN,$P($G(^DSIO(19641.42,IEN,0)),U,7),.IGRP)
+"RTN","DSIO63",187,0)
+ D CONT
+"RTN","DSIO63",188,0)
+ Q
+"RTN","DSIO63",189,0)
+ ;
+"RTN","DSIO63",190,0)
+CONT() ; Continue Cummulative Return
+"RTN","DSIO63",191,0)
+ N CONT,STRT,END,I,CT,FLG
+"RTN","DSIO63",192,0)
+ S CONT=$NA(^TMP($J,"DSIO63 CONT")) K @CONT
+"RTN","DSIO63",193,0)
+ S STRT=$G(@RET@("##CONT##")),END=$G(@RET@("##CONT##"))+500
+"RTN","DSIO63",194,0)
+ S CT=RET F I=1:1 S CT=$Q(@CT) Q:CT=""  Q:$QS(CT,1)'=$J!($QS(CT,2)'="DSIO63")  D  Q:$D(FLG)
+"RTN","DSIO63",195,0)
+ . Q:I<STRT
+"RTN","DSIO63",196,0)
+ . S @CONT@(I)=@CT
+"RTN","DSIO63",197,0)
+ . I I=END S @CONT@(0)="##CONT##",FLG=1
+"RTN","DSIO63",198,0)
+ I $D(FLG) S @RET@("##CONT##")=$G(@RET@("##CONT##"))+501,RET=CONT Q 1
+"RTN","DSIO63",199,0)
+ K @RET I '$D(@CONT) Q 0
+"RTN","DSIO63",200,0)
+ S RET=CONT
+"RTN","DSIO63",201,0)
+ Q 1
+"RTN","DSIO63",202,0)
+ ;
+"RTN","DSIO63",203,0)
+CITEM(IEN,OBJECT,SIEN) ; Return data for the configuration collection
+"RTN","DSIO63",204,0)
+ ;
+"RTN","DSIO63",205,0)
+ ; *This will happen after all the interface's controls are populated
+"RTN","DSIO63",206,0)
+ ;  with configuration and/or restored data.
+"RTN","DSIO63",207,0)
+ ;
+"RTN","DSIO63",208,0)
+ Q:$P($G(^DSIO(19641.42,+$G(IEN),3)),U,3)=""
+"RTN","DSIO63",209,0)
+ N TMP,ROU,DDCSCT
+"RTN","DSIO63",210,0)
+ S TMP=^DSIO(19641.42,+IEN,3),ROU=$TR($P(TMP,U,3),"|",U)
+"RTN","DSIO63",211,0)
+ I $L($T(@ROU)) D
+"RTN","DSIO63",212,0)
+ . S @RET@(0)=$P(TMP,U)_":"_$$D^DSIO66($P(TMP,U,2)),DDCSCT=1 D @ROU
+"RTN","DSIO63",213,0)
+ D:$G(SIEN) RESTF^DSIO64(.RET,1,,,"##TCONFIGCOLLECTION##",OBJECT,IEN_";DSIO(19641.42,",SIEN,1)
+"RTN","DSIO63",214,0)
+ Q
+"RTN","DSIO63",215,0)
+ ;
+"RTN","DSIO63",216,0)
+CG(IEN,TYP,PAGES) ; Continue with 19641.42
+"RTN","DSIO63",217,0)
+ N CT,SI,SN,SINFACE,PG,NAM,HIDE,CON,CIEN
+"RTN","DSIO63",218,0)
+ ; *** INTERFACE: I^PROPERTY|VALUE
+"RTN","DSIO63",219,0)
+ S @RET@(0)="I" D
+"RTN","DSIO63",220,0)
+ . S CT=0 F  S CT=$O(^DSIO(19641.42,IEN,2,CT)) Q:'CT  D
+"RTN","DSIO63",221,0)
+ . . S @RET@(0)=@RET@(0)_U_$G(^DSIO(19641.42,IEN,2,CT,0))_"|"_$G(^DSIO(19641.42,IEN,2,CT,1))
+"RTN","DSIO63",222,0)
+ ; *** DATA SHUFFLE
+"RTN","DSIO63",223,0)
+ S SI=$P($G(^DSIO(19641.42,IEN,0)),U,6) I SI D
+"RTN","DSIO63",224,0)
+ . S SN=SI_";DSIO(19641.42,"
+"RTN","DSIO63",225,0)
+ . S DFN=$$DFN^DSIO6($$OBJECT^DSIO65($G(OBJECT)),$G(SIEN))
+"RTN","DSIO63",226,0)
+ . I DFN,$O(^DSIO(19641.4941,DFN,1,"S",SN,"")) S SINFACE=SN
+"RTN","DSIO63",227,0)
+ S PG=0 F  S PG=$O(^DSIO(19641.42,IEN,1,PG)) Q:'PG  D
+"RTN","DSIO63",228,0)
+ . ; *** PAGE: P^NUMBER^CAPTION^HIDE
+"RTN","DSIO63",229,0)
+ . S NAM=$P($G(^DSIO(19641.42,IEN,1,PG,0)),U,2)
+"RTN","DSIO63",230,0)
+ . I $L(NAM),'$D(PAGES(NAM)) Q
+"RTN","DSIO63",231,0)
+ . S HIDE=$$HIDE
+"RTN","DSIO63",232,0)
+ . S @RET@(PG)="P^"_PG_U_NAM_U_HIDE Q:HIDE
+"RTN","DSIO63",233,0)
+ . S CON="" F  S CON=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CON)) Q:CON=""  D
+"RTN","DSIO63",234,0)
+ . . S CIEN=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CON,""))
+"RTN","DSIO63",235,0)
+ . . D CR(CIEN,PG,IEN,CON)
+"RTN","DSIO63",236,0)
+ . . D CI(CIEN,PG,IEN,CON)
+"RTN","DSIO63",237,0)
+ . . D CC(CIEN,PG,IEN,CON)
+"RTN","DSIO63",238,0)
+ . . D CV(CIEN,PG,IEN,CON,$G(SIEN))
+"RTN","DSIO63",239,0)
+ K:$D(SINFACE) ^DSIO(19641.4941,DFN,1,"S",SINFACE)
+"RTN","DSIO63",240,0)
+ Q
+"RTN","DSIO63",241,0)
+ ;
+"RTN","DSIO63",242,0)
+HIDE() ; Page Hide (TabVisible)
+"RTN","DSIO63",243,0)
+ I TYP,NAM'="",'$D(PAGES(NAM)) Q "TRUE"
+"RTN","DSIO63",244,0)
+ I TYP Q "FALSE"
+"RTN","DSIO63",245,0)
+ Q $S($P($G(^DSIO(19641.42,IEN,1,PG,0)),U,3):"TRUE",1:"FALSE")
+"RTN","DSIO63",246,0)
+ ;
+"RTN","DSIO63",247,0)
+CR(IEN,PG,FORM,CON) ; CONTROL
+"RTN","DSIO63",248,0)
+ ; *** CONTROL: CR^NAME^CLASS^PG#^VALIDATE^PROPERITES
+"RTN","DSIO63",249,0)
+ N ND S ND=$G(^DSIO(19641.42,FORM,1,PG,1,IEN,0))
+"RTN","DSIO63",250,0)
+ S @RET@(PG,IEN,-2)="CR^"_CON_U_$$GET1^DIQ(19641.425,$P(ND,U,2)_",",.01)_U_PG_U_$P(ND,U,6)
+"RTN","DSIO63",251,0)
+ ; CONTROL PROPERIES
+"RTN","DSIO63",252,0)
+ S @RET@(PG,IEN,-2)=@RET@(PG,IEN,-2)_U_$$CRLIST(IEN,PG,FORM)
+"RTN","DSIO63",253,0)
+ Q
+"RTN","DSIO63",254,0)
+ ;
+"RTN","DSIO63",255,0)
+CI(IEN,PG,FORM,CON) ; CONTROL for Grid Item
+"RTN","DSIO63",256,0)
+ ; *** CONTROL: CI^NAME^IDENTIFIER^QUESTION^ASSOCIATED_CONTROL
+"RTN","DSIO63",257,0)
+ N ND S ND=$G(^DSIO(19641.42,FORM,1,PG,1,IEN,0))
+"RTN","DSIO63",258,0)
+ S @RET@(PG,IEN,-1)="CI^"_CON_U_$P(ND,U,4)_U_$$CIQUEST(IEN,PG,FORM)_U_$P(ND,U,7)
+"RTN","DSIO63",259,0)
+ Q
+"RTN","DSIO63",260,0)
+ ;
+"RTN","DSIO63",261,0)
+CRLIST(IEN,PG,FORM) ; CONTROL PROPERTIES
+"RTN","DSIO63",262,0)
+ ; *** GUI_PROPERTY|VALUE
+"RTN","DSIO63",263,0)
+ N STR,CT,PRP,VAL
+"RTN","DSIO63",264,0)
+ S STR="",CT=0 F  S CT=$O(^DSIO(19641.42,FORM,1,PG,1,IEN,8,CT)) Q:'CT  D
+"RTN","DSIO63",265,0)
+ . S PRP=$$GET1^DIQ(19641.4258,$G(^DSIO(19641.42,FORM,1,PG,1,IEN,8,CT,0))_",",.01)
+"RTN","DSIO63",266,0)
+ . S VAL=$G(^DSIO(19641.42,FORM,1,PG,1,IEN,8,CT,1))
+"RTN","DSIO63",267,0)
+ . S:VAL'="" STR=STR_PRP_"|"_VAL_U
+"RTN","DSIO63",268,0)
+ Q $G(STR)
+"RTN","DSIO63",269,0)
+ ;
+"RTN","DSIO63",270,0)
+CIQUEST(IEN,PG,FORM) ; CONTROL QUESTION
+"RTN","DSIO63",271,0)
+ N CT,PRP,VAL
+"RTN","DSIO63",272,0)
+ S CT=0 F  S CT=$O(^DSIO(19641.42,FORM,1,PG,1,IEN,8,CT)) Q:'CT  D  Q:$D(VAL)
+"RTN","DSIO63",273,0)
+ . S PRP=$$GET1^DIQ(19641.4258,$G(^DSIO(19641.42,FORM,1,PG,1,IEN,8,CT,0))_",",.01)
+"RTN","DSIO63",274,0)
+ . Q:PRP'="QUESTION"
+"RTN","DSIO63",275,0)
+ . S VAL=$G(^DSIO(19641.42,FORM,1,PG,1,IEN,8,CT,1))
+"RTN","DSIO63",276,0)
+ Q $G(VAL)
+"RTN","DSIO63",277,0)
+ ;
+"RTN","DSIO63",278,0)
+CC(IEN,PG,FORM,CON) ; CONTROL Collection
+"RTN","DSIO63",279,0)
+ ; *** CONTROL: CC^NAME^COLLECTION_NAME|VALUE
+"RTN","DSIO63",280,0)
+ N STR,CT,PRP,VAL
+"RTN","DSIO63",281,0)
+ S STR="",CT=0 F  S CT=$O(^DSIO(19641.42,FORM,1,PG,1,IEN,9,CT)) Q:'CT  D
+"RTN","DSIO63",282,0)
+ . S PRP=$G(^DSIO(19641.42,FORM,1,PG,1,IEN,9,CT,0))
+"RTN","DSIO63",283,0)
+ . S VAL=$G(^DSIO(19641.42,FORM,1,PG,1,IEN,9,CT,1))
+"RTN","DSIO63",284,0)
+ . S:VAL'="" STR=STR_PRP_"|"_VAL_U
+"RTN","DSIO63",285,0)
+ S @RET@(PG,IEN,"CC")="CC^"_CON_U_STR
+"RTN","DSIO63",286,0)
+ Q
+"RTN","DSIO63",287,0)
+ ;
+"RTN","DSIO63",288,0)
+CV(DDCSCI,DDCSPG,FORM,DDCSCON,SIEN) ; CONTROL Configuration Value
+"RTN","DSIO63",289,0)
+ N DDCSCT,FLG,IENS,LOG,LN S DDCSCT=1
+"RTN","DSIO63",290,0)
+ ; *** RUN ROUTINE
+"RTN","DSIO63",291,0)
+ ;     Needs to build either of the two formats
+"RTN","DSIO63",292,0)
+ ;     S @RET@(PG,IEN,CT)="CV^"_CON_U_(D,F)_U
+"RTN","DSIO63",293,0)
+ I $G(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,4))'="" S FLG=1 D
+"RTN","DSIO63",294,0)
+ . X ^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,4)
+"RTN","DSIO63",295,0)
+ ; *** DIALOGS
+"RTN","DSIO63",296,0)
+ ;     CV^NAME^D^IEN|NAME|CLASS
+"RTN","DSIO63",297,0)
+ I '$D(FLG),$P($G(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,3,0)),U,4)>0 S FLG=2 D
+"RTN","DSIO63",298,0)
+ . S IENS=0 F  S IENS=$O(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,3,IENS)) Q:'IENS  D
+"RTN","DSIO63",299,0)
+ . . S LOG=^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,3,IENS,0)
+"RTN","DSIO63",300,0)
+ . . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^D^"_LOG_"|"_$P($G(^DSIO(19641.49,LOG,0)),U)_"|"_$P($G(^DSIO(19641.49,LOG,0)),U,3)
+"RTN","DSIO63",301,0)
+ . . S DDCSCT=DDCSCT+1
+"RTN","DSIO63",302,0)
+ ; *** FREE TEXT
+"RTN","DSIO63",303,0)
+ ;     CV^NAME^F^(INDEX^VALUE)
+"RTN","DSIO63",304,0)
+ I '$D(FLG),$P($G(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,2,0)),U,4)>0 D
+"RTN","DSIO63",305,0)
+ . S IENS=0 F  S IENS=$O(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,2,IENS)) Q:'IENS  D
+"RTN","DSIO63",306,0)
+ . . S LN=^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,2,IENS,0)
+"RTN","DSIO63",307,0)
+ . . ;I LN'[U!(($P(LN,U)'?.N)&($P(LN,U)'["TRUE")) I $D(@RET@(DDCSCT-1)) D  Q
+"RTN","DSIO63",308,0)
+ . . ;. S @RET@(DDCSCT-1)=@RET@(DDCSCT-1)_LN
+"RTN","DSIO63",309,0)
+ . . S @RET@(DDCSPG,DDCSCI,DDCSCT)="CV^"_DDCSCON_"^F^"_LN,DDCSCT=DDCSCT+1
+"RTN","DSIO63",310,0)
+ ; *** RESTORE
+"RTN","DSIO63",311,0)
+ Q:$P($G(^DSIO(19641.42,FORM,0)),U,2)["A"                    ; DO NOT RESTORE (FORM)
+"RTN","DSIO63",312,0)
+ Q:$$UP^XLFSTR($$RITEM(FORM,IEN,"DONOTRESTORE"))="TRUE"      ; DO NOT RESTORE (CONTROL)
+"RTN","DSIO63",313,0)
+ ;     DATA SHUFFLE
+"RTN","DSIO63",314,0)
+ I $G(SI) Q:'$$DSCON(SI,DDCSCON)
+"RTN","DSIO63",315,0)
+ D:$G(SIEN)&($G(FLG)'=2) RESTF^DSIO64(.RET,1,DDCSCI,DDCSPG,DDCSCON,OBJECT,FORM_";DSIO(19641.42,",SIEN)
+"RTN","DSIO63",316,0)
+ Q
+"RTN","DSIO63",317,0)
+ ;
+"RTN","DSIO63",318,0)
+RITEM(FORM,CON,PROP) ; Get the Report Item Value for a Control
+"RTN","DSIO63",319,0)
+ N IEN
+"RTN","DSIO63",320,0)
+ S PROP=$$UP^XLFSTR($G(PROP)) Q:PROP="" -1
+"RTN","DSIO63",321,0)
+ S IEN=$O(^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,9,"B",PROP,"")) Q:'IEN -1
+"RTN","DSIO63",322,0)
+ Q ^DSIO(19641.42,FORM,1,DDCSPG,1,DDCSCI,9,IEN,1)
+"RTN","DSIO63",323,0)
+ ;
+"RTN","DSIO63",324,0)
+DSCON(IEN,CON) ; Determine if a "restore as" form should use a control
+"RTN","DSIO63",325,0)
+ I '$D(^DSIO(19641.42,IEN,1,"CONTROL",CON)) Q 0
+"RTN","DSIO63",326,0)
+ N PG S PG=$O(^DSIO(19641.42,IEN,1,"CONTROL",CON,""))
+"RTN","DSIO63",327,0)
+ Q $S($P($G(^DSIO(19641.42,IEN,1,PG,0)),U,3):0,1:1)
+"RTN","DSIO64")
+0^3^B41193427
+"RTN","DSIO64",1,0)
+DSIO64 ;DSS/TFF - DSIO DDCS DATA RETURN;08/26/2016 16:00
+"RTN","DSIO64",2,0)
+ ;;3.0;MATERNITY TRACKER;**1**;Feb 02, 2017;Build 1
+"RTN","DSIO64",3,0)
+ ;Originally Submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+"RTN","DSIO64",4,0)
+ ;Authored by DSS, Inc. 2014-2017
+"RTN","DSIO64",5,0)
+ ;
+"RTN","DSIO64",6,0)
+ ;
+"RTN","DSIO64",7,0)
+ ;
+"RTN","DSIO64",8,0)
+ Q
+"RTN","DSIO64",9,0)
+ ;
+"RTN","DSIO64",10,0)
+ELE(RET,OBJECT,INFACE,SIEN,ELE) ; RPC: DSIO DDCS GET CONTROL VALUE
+"RTN","DSIO64",11,0)
+ ;
+"RTN","DSIO64",12,0)
+ ; INPUT PARAMETERS:
+"RTN","DSIO64",13,0)
+ ; -----------------
+"RTN","DSIO64",14,0)
+ ;  OBJECT = OBJECT of CONTROL
+"RTN","DSIO64",15,0)
+ ;           Example: 500000042;PXRMD(801.41,
+"RTN","DSIO64",16,0)
+ ;                    Which is the Reminder Dialog of IEN 500000042
+"RTN","DSIO64",17,0)
+ ;         = O=### (ORDER IEN)
+"RTN","DSIO64",18,0)
+ ;         = N=### ( NOTE IEN)
+"RTN","DSIO64",19,0)
+ ;
+"RTN","DSIO64",20,0)
+ ; INFACE = IEN;DSIO(19641.42, (or NAME) 
+"RTN","DSIO64",21,0)
+ ;          or IEN;DSIO(19641.49,
+"RTN","DSIO64",22,0)
+ ;
+"RTN","DSIO64",23,0)
+ ;    SIEN = Destination IEN - Record of Control
+"RTN","DSIO64",24,0)
+ ;
+"RTN","DSIO64",25,0)
+ ;     ELE = Full Name of ELEMENT
+"RTN","DSIO64",26,0)
+ ;
+"RTN","DSIO64",27,0)
+ ; RETURN: 0^MESSAGE
+"RTN","DSIO64",28,0)
+ ;         Example:
+"RTN","DSIO64",29,0)
+ ;           RET(#)="101;VFD(21661,^MO_CLINICALCOMMENTS^03          ^       ^THESE ARE VALUES."
+"RTN","DSIO64",30,0)
+ ;           RET(#)=INTERFACE      ^ CONTROL NAME      ^ CONTROL ID ^ INDEX ^ VALUE
+"RTN","DSIO64",31,0)
+ ;
+"RTN","DSIO64",32,0)
+ S RET(0)="0^Nothing found."
+"RTN","DSIO64",33,0)
+ N NUM,CONTROL,DFLE,DFN,SHARE,DATA S NUM=1
+"RTN","DSIO64",34,0)
+ Q:$G(OBJECT)=""  S:OBJECT["=" SIEN=$P(OBJECT,"=",2)
+"RTN","DSIO64",35,0)
+ S CONTROL=$$OBJECT^DSIO65(OBJECT) Q:'CONTROL
+"RTN","DSIO64",36,0)
+ I $G(SIEN) D
+"RTN","DSIO64",37,0)
+ . S DFLE=$$GET1^DIQ(19641.4,CONTROL_",",.03,"I") Q:'DFLE
+"RTN","DSIO64",38,0)
+ . S DFN=$$DFN^DSIO6(CONTROL,SIEN)
+"RTN","DSIO64",39,0)
+ I $G(INFACE)'="" D  K:$G(RET(1))'="" RET(0) Q
+"RTN","DSIO64",40,0)
+ . S INFACE=$$INFACE^DSIO65($G(INFACE)),SHARE=$$SHARE(CONTROL,INFACE)
+"RTN","DSIO64",41,0)
+ . D D1
+"RTN","DSIO64",42,0)
+ Q:'$G(SIEN)&('$G(DFLE))
+"RTN","DSIO64",43,0)
+ S DATA=$O(^DSIO(19641.41,"B",SIEN_";"_$TR(^DIC(DFLE,0,"GL"),U),"")) Q:'DATA
+"RTN","DSIO64",44,0)
+ S INFACE="" F  S INFACE=$O(^DSIO(19641.41,DATA,1,"B",INFACE)) Q:INFACE=""  D
+"RTN","DSIO64",45,0)
+ . S SHARE=$$SHARE(CONTROL,INFACE)
+"RTN","DSIO64",46,0)
+ . D D1
+"RTN","DSIO64",47,0)
+ K:$G(RET(1))'="" RET(0)
+"RTN","DSIO64",48,0)
+ Q
+"RTN","DSIO64",49,0)
+ ;
+"RTN","DSIO64",50,0)
+D1 ; Continue
+"RTN","DSIO64",51,0)
+ N IEN
+"RTN","DSIO64",52,0)
+ I $G(SHARE),$G(DFN) D  Q
+"RTN","DSIO64",53,0)
+ . S IEN=$O(^DSIO(19641.4941,DFN,1,"B",INFACE,"")) Q:'IEN
+"RTN","DSIO64",54,0)
+ . I $G(ELE)'="" D D2(19641.4941) Q
+"RTN","DSIO64",55,0)
+ . S ELE="" F  S ELE=$O(^DSIO(19641.4941,DFN,1,IEN,1,"C",ELE)) Q:ELE=""  D
+"RTN","DSIO64",56,0)
+ . . D D2(19641.4941)
+"RTN","DSIO64",57,0)
+ Q:'$G(SIEN)&('$G(DFLE))
+"RTN","DSIO64",58,0)
+ S:'$D(DATA) DATA=$O(^DSIO(19641.41,"B",SIEN_";"_$TR(^DIC(DFLE,0,"GL"),U),"")) Q:'DATA
+"RTN","DSIO64",59,0)
+ S IEN=$O(^DSIO(19641.41,DATA,1,"B",INFACE,"")) Q:'IEN
+"RTN","DSIO64",60,0)
+ I $G(ELE)'="" D D2(19641.41) Q
+"RTN","DSIO64",61,0)
+ S ELE="" F  S ELE=$O(^DSIO(19641.41,DATA,1,IEN,1,"C",ELE)) Q:ELE=""  D
+"RTN","DSIO64",62,0)
+ . D D2(19641.41)
+"RTN","DSIO64",63,0)
+ Q
+"RTN","DSIO64",64,0)
+ ;
+"RTN","DSIO64",65,0)
+D2(FLE) ; Continue
+"RTN","DSIO64",66,0)
+ N IENS,IELE
+"RTN","DSIO64",67,0)
+ I FLE=19641.41 D
+"RTN","DSIO64",68,0)
+ . S IENS=$O(^DSIO(19641.41,DATA,1,IEN,1,"C",ELE,"")) Q:'IENS
+"RTN","DSIO64",69,0)
+ . S IELE=^DSIO(19641.41,DATA,1,IEN,1,IENS,0)
+"RTN","DSIO64",70,0)
+ I FLE=19641.4941 Q:'$G(DFN)  D
+"RTN","DSIO64",71,0)
+ . S IENS=$O(^DSIO(19641.4941,DFN,1,IEN,1,"C",ELE,"")) Q:'IENS
+"RTN","DSIO64",72,0)
+ . S IELE=^DSIO(19641.4941,DFN,1,IEN,1,IENS,0)
+"RTN","DSIO64",73,0)
+ Q:'$G(IELE)
+"RTN","DSIO64",74,0)
+ D VAL(IELE,INFACE_U_ELE_U_$$ID(ELE,INFACE))
+"RTN","DSIO64",75,0)
+ Q
+"RTN","DSIO64",76,0)
+ ;
+"RTN","DSIO64",77,0)
+VAL(IEN,ID) ; Get Value
+"RTN","DSIO64",78,0)
+ ;
+"RTN","DSIO64",79,0)
+ ; There's an extra caret in the value wp for the storage of the index value
+"RTN","DSIO64",80,0)
+ ;
+"RTN","DSIO64",81,0)
+ N CT S CT=0 F  S CT=$O(^DSIO(19641.45,IEN,1,CT)) Q:'CT  D
+"RTN","DSIO64",82,0)
+ . S RET(NUM)=ID_U_^DSIO(19641.45,IEN,1,CT,0),NUM=NUM+1
+"RTN","DSIO64",83,0)
+ Q
+"RTN","DSIO64",84,0)
+ ;
+"RTN","DSIO64",85,0)
+SHARE(CONTROL,INFACE) ; Determine if the INTERFACE/FORM should be SHARED
+"RTN","DSIO64",86,0)
+ N SHARE
+"RTN","DSIO64",87,0)
+ S SHARE=$$GET1^DIQ(19641.4,$G(CONTROL)_",",.06,"I")
+"RTN","DSIO64",88,0)
+ ; *** LIMITED or not set - Allow the INTERFACE/FORM decide
+"RTN","DSIO64",89,0)
+ I $G(INFACE)'=""&(SHARE=2!(SHARE="")) Q $$SE
+"RTN","DSIO64",90,0)
+ Q $S(SHARE:1,1:0)
+"RTN","DSIO64",91,0)
+ ;
+"RTN","DSIO64",92,0)
+SE() ; Continue
+"RTN","DSIO64",93,0)
+ Q:$G(INFACE)[";DSIO(19641.49," $S($$GET1^DIQ(19641.49,+INFACE_",",.04,"I"):1,1:0)
+"RTN","DSIO64",94,0)
+ Q $S($$GET1^DIQ(19641.42,+INFACE_",",.03,"I"):1,1:0)
+"RTN","DSIO64",95,0)
+ ;
+"RTN","DSIO64",96,0)
+ID(CONTROL,INFACE) ; Get assigned ID
+"RTN","DSIO64",97,0)
+ N IEN,PG,IENS
+"RTN","DSIO64",98,0)
+ Q:$G(CONTROL)=""!($G(INFACE)="") ""
+"RTN","DSIO64",99,0)
+ S IEN="" I INFACE[";DSIO(19641.42," S IEN=+INFACE
+"RTN","DSIO64",100,0)
+ S:'IEN IEN=$O(^DSIO(19641.42,"B",INFACE,""))
+"RTN","DSIO64",101,0)
+ S:'IEN IEN=$O(^DSIO(19641.42,"P",INFACE,"")) Q:'IEN ""
+"RTN","DSIO64",102,0)
+ S PG=$O(^DSIO(19641.42,IEN,1,"CONTROL",CONTROL,"")) Q:'PG ""
+"RTN","DSIO64",103,0)
+ S IENS=$O(^DSIO(19641.42,IEN,1,"CONTROL",CONTROL,PG,"")) Q:'IENS ""
+"RTN","DSIO64",104,0)
+ Q $P(^DSIO(19641.42,IEN,1,PG,1,IENS,0),U,4)
+"RTN","DSIO64",105,0)
+ ;
+"RTN","DSIO64",106,0)
+IMPORT(RET,INFACE,CON) ; RPC: DSIO DDCS IMPORT FORM
+"RTN","DSIO64",107,0)
+ ;
+"RTN","DSIO64",108,0)
+ ; INFACE = IEN;DSIO(19641.42, (or NAME)
+"RTN","DSIO64",109,0)
+ ;          or IEN;DSIO(19641.49,
+"RTN","DSIO64",110,0)
+ ;
+"RTN","DSIO64",111,0)
+ ; CON(TROLS):
+"RTN","DSIO64",112,0)
+ ;   (H) - CONTROL       ^ PAGE# ^ CONTROL_NAME ^ CONTROL_CLASS ^ PUSH ^ ID ^ OBSERVATION
+"RTN","DSIO64",113,0)
+ ;   (C) - CONFIGURATION ^ PAGE# ^ CONTROL_NAME ^ VALUE
+"RTN","DSIO64",114,0)
+ ;   (R) - REPORT ITEM   ^ PAGE# ^ CONTROL_NAME ^ NAME | VALUE
+"RTN","DSIO64",115,0)
+ ;
+"RTN","DSIO64",116,0)
+ N IEN,CT,CTRN,SAVE,IPT,PG,CTRI,DIK,DA S RET=0
+"RTN","DSIO64",117,0)
+ S INFACE=$$INFACE^DSIO65($G(INFACE)) Q:INFACE'[";DSIO(19641.42,"
+"RTN","DSIO64",118,0)
+ S IEN=+INFACE,CT=$NA(CON) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","DSIO64",119,0)
+ . Q:'$P(@CT,U,2)
+"RTN","DSIO64",120,0)
+ . S CTRN=$$UP^XLFSTR($P(@CT,U,3)) S:CTRN'="" SAVE(CTRN)=""
+"RTN","DSIO64",121,0)
+ . S IPT(19641.421,"?+1,"_IEN_",",.01)=+$P(@CT,U,2)
+"RTN","DSIO64",122,0)
+ . K PG D UPDATE^DIE("E","IPT","PG") K IPT Q:'$G(PG(1))
+"RTN","DSIO64",123,0)
+ . S IPT(19641.4211,"?+1,"_PG(1)_","_IEN_",",.01)=CTRN
+"RTN","DSIO64",124,0)
+ . K CTRI D UPDATE^DIE("E","IPT","CTRI") K IPT Q:'$G(CTRI(1))
+"RTN","DSIO64",125,0)
+ . I $P(@CT,U)="H" D  Q
+"RTN","DSIO64",126,0)
+ . . S IPT(19641.4211,CTRI(1)_","_PG(1)_","_IEN_",",.02)=$P(@CT,U,4)
+"RTN","DSIO64",127,0)
+ . . D UPDATE^DIE("E","IPT") K IPT
+"RTN","DSIO64",128,0)
+ . I $P(@CT,U)="C" D CCTR(IEN,PG(1),CTRI(1),$P(@CT,U,4)) Q
+"RTN","DSIO64",129,0)
+ . I $P(@CT,U)="R" D RCTR(IEN,PG(1),CTRI(1),$P(@CT,U,4,999))
+"RTN","DSIO64",130,0)
+ ; *** Delete controls no longer used
+"RTN","DSIO64",131,0)
+ S RET=1 Q:'$D(SAVE)
+"RTN","DSIO64",132,0)
+ K PG S PG=0 F  S PG=$O(^DSIO(19641.42,IEN,1,PG)) Q:'PG  D
+"RTN","DSIO64",133,0)
+ . S DIK="^DSIO(19641.42,"_IEN_",1,"_PG_",1,",DA(1)=PG,DA(2)=IEN
+"RTN","DSIO64",134,0)
+ . S CTRN="" F  S CTRN=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CTRN)) Q:CTRN=""  D
+"RTN","DSIO64",135,0)
+ . . Q:$D(SAVE(CTRN))
+"RTN","DSIO64",136,0)
+ . . S DA=$O(^DSIO(19641.42,IEN,1,PG,1,"B",CTRN,"")) D ^DIK
+"RTN","DSIO64",137,0)
+ Q
+"RTN","DSIO64",138,0)
+ ;
+"RTN","DSIO64",139,0)
+CCTR(IEN,PG,CTRI,VAL) ; CONFIGURATION (WP)
+"RTN","DSIO64",140,0)
+ K ^TMP($J,"DSIO64-CCTR")
+"RTN","DSIO64",141,0)
+ S ^TMP($J,"DSIO64-CCTR",1)=U_VAL
+"RTN","DSIO64",142,0)
+ D WP^DIE(19641.4211,CTRI_","_PG_","_IEN_",",2,"A","^TMP($J,""DSIO64-CCTR"")")
+"RTN","DSIO64",143,0)
+ K ^TMP($J,"DSIO64-CCTR")
+"RTN","DSIO64",144,0)
+ Q
+"RTN","DSIO64",145,0)
+ ;
+"RTN","DSIO64",146,0)
+RCTR(IEN,PG,CTRI,ITEM) ; REPORT ITEM
+"RTN","DSIO64",147,0)
+ N PC,STR,IPT
+"RTN","DSIO64",148,0)
+ F PC=1:1:$L(ITEM,U) D
+"RTN","DSIO64",149,0)
+ . S STR=$P(ITEM,U,PC) Q:$P(STR,"|")=""!($P(STR,"|",2)="")
+"RTN","DSIO64",150,0)
+ . S IPT(19641.42119,"?+1,"_CTRI_","_PG_","_IEN_",",.01)=$P(STR,"|")
+"RTN","DSIO64",151,0)
+ . S IPT(19641.42119,"?+1,"_CTRI_","_PG_","_IEN_",",1)=$P(STR,"|",2)
+"RTN","DSIO64",152,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","DSIO64",153,0)
+ Q
+"RTN","DSIO64",154,0)
+ ;
+"RTN","DSIO64",155,0)
+ ; ----------------------------------------------------------------------------
+"RTN","DSIO64",156,0)
+ ;
+"RTN","DSIO64",157,0)
+ ;   STRT = The node of the return array that the control data begins
+"RTN","DSIO64",158,0)
+ ;
+"RTN","DSIO64",159,0)
+ ;    CON = The name of the CONTROL ELEMENT
+"RTN","DSIO64",160,0)
+ ;
+"RTN","DSIO64",161,0)
+ ; OBJECT = OBJECT of CONTROL
+"RTN","DSIO64",162,0)
+ ;          Example: 500000042;PXRMD(801.41,
+"RTN","DSIO64",163,0)
+ ;                   Which is the Reminder Dialog of IEN 500000042
+"RTN","DSIO64",164,0)
+ ;         = O=### (ORDER IEN)
+"RTN","DSIO64",165,0)
+ ;         = N=### ( NOTE IEN)
+"RTN","DSIO64",166,0)
+ ;
+"RTN","DSIO64",167,0)
+ ; INFACE = IEN;DSIO(19641.42, (or NAME)
+"RTN","DSIO64",168,0)
+ ;          or IEN;DSIO(19641.49,
+"RTN","DSIO64",169,0)
+ ;
+"RTN","DSIO64",170,0)
+ ;   SIEN = Destination IEN - Record of Control
+"RTN","DSIO64",171,0)
+ ;
+"RTN","DSIO64",172,0)
+ ; RETURN
+"RTN","DSIO64",173,0)
+ ;     CONTROL: CV^NAME^F^(INDEXED^VALUE)
+"RTN","DSIO64",174,0)
+ ;
+"RTN","DSIO64",175,0)
+RESTF(RET,STRT,IEN,PG,CON,OBJECT,INFACE,SIEN,CITEM) ; Restore Saved Data (FORMS)
+"RTN","DSIO64",176,0)
+ N OUT,VAL,I,CT
+"RTN","DSIO64",177,0)
+ ; RET(#)=INTERFACE ^ CONTROL NAME ^ CONTROL ID ^ INDEX ^ VALUE
+"RTN","DSIO64",178,0)
+ D ELE(.OUT,OBJECT,$S($D(SINFACE):SINFACE,1:INFACE),SIEN,CON) Q:$D(OUT(0))
+"RTN","DSIO64",179,0)
+ S VAL=$S($O(OUT(""),-1)=1:$P(OUT(1),U,4,999),1:"")
+"RTN","DSIO64",180,0)
+ I $$TYPE^DSIO62(INFACE,CON,"LS") D  Q
+"RTN","DSIO64",181,0)
+ . F I=STRT:1:$O(@RET@(""),-1) D:$D(@RET@(I))
+"RTN","DSIO64",182,0)
+ . . I $P(@RET@(I),U,5,999)=$P(VAL,U,2,999) S $P(@RET@(I),U,4)="TRUE"
+"RTN","DSIO64",183,0)
+ F I=STRT:1:$O(@RET@(PG,IEN,0),-1) K @RET@(PG,IEN,I)
+"RTN","DSIO64",184,0)
+ S DDCSCT=STRT,CT="" F  S CT=$O(OUT(CT)) Q:CT=""  D
+"RTN","DSIO64",185,0)
+ . I $G(CITEM) S @RET@(DDCSCT)=$P(OUT(CT),U,4,999),DDCSCT=DDCSCT+1 Q
+"RTN","DSIO64",186,0)
+ . S @RET@(PG,IEN,"CV",DDCSCT)="CV^"_CON_"^F^"_$P(OUT(CT),U,4,999),DDCSCT=DDCSCT+1
+"RTN","DSIO64",187,0)
+ Q
+"RTN","DSIO64",188,0)
+ ;
+"RTN","DSIO64",189,0)
+RESTD(RET,STRT,CON,OBJECT,INFACE,SIEN,CITEM) ; Restore Saved Data (DIALOGS)
+"RTN","DSIO64",190,0)
+ N OUT,VAL,I,CT
+"RTN","DSIO64",191,0)
+ ; RET(#)=INTERFACE ^ CONTROL NAME ^ CONTROL ID ^ INDEX ^ VALUE
+"RTN","DSIO64",192,0)
+ D ELE(.OUT,OBJECT,INFACE,SIEN,CON) Q:$D(OUT(0))
+"RTN","DSIO64",193,0)
+ S VAL=$S($O(OUT(""),-1)=1:$P(OUT(1),U,4,999),1:"")
+"RTN","DSIO64",194,0)
+ I $$TYPE^DSIO62(INFACE,CON,"LS") D  Q
+"RTN","DSIO64",195,0)
+ . F I=STRT:1:$O(@RET@(""),-1) D
+"RTN","DSIO64",196,0)
+ . . I $P(@RET@(I),U,5,999)=$P(VAL,U,2,999) S $P(@RET@(I),U,4)="TRUE"
+"RTN","DSIO64",197,0)
+ F I=STRT:1:$O(@RET@(""),-1) K @RET@(I)
+"RTN","DSIO64",198,0)
+ S DDCSCT=STRT,CT="" F  S CT=$O(OUT(CT)) Q:CT=""  D
+"RTN","DSIO64",199,0)
+ . I $G(CITEM) S @RET@(DDCSCT)=$P(OUT(CT),U,4,999),DDCSCT=DDCSCT+1 Q
+"RTN","DSIO64",200,0)
+ . S @RET@(DDCSCT)="CV^"_CON_"^F^"_$P(OUT(CT),U,4,999),DDCSCT=DDCSCT+1
+"RTN","DSIO64",201,0)
+ Q
+"RTN","DSIO67")
+0^4^B26672860
+"RTN","DSIO67",1,0)
+DSIO67 ;DSS/TFF - DSIO DDCS ELEMENT OBSERVATIONS;08/26/2016 16:00
+"RTN","DSIO67",2,0)
+ ;;3.0;MATERNITY TRACKER;**1**;Feb 02, 2017;Build 1
+"RTN","DSIO67",3,0)
+ ;Originally Submitted to OSEHRA 2/21/2017 by DSS, Inc. 
+"RTN","DSIO67",4,0)
+ ;Authored by DSS, Inc. 2014-2017
+"RTN","DSIO67",5,0)
+ ;
+"RTN","DSIO67",6,0)
+ ;
+"RTN","DSIO67",7,0)
+ ;
+"RTN","DSIO67",8,0)
+ Q
+"RTN","DSIO67",9,0)
+ ;
+"RTN","DSIO67",10,0)
+ ; ELEMENT LEVEL --------------------------------------------------------------
+"RTN","DSIO67",11,0)
+ ;
+"RTN","DSIO67",12,0)
+OBF(FORM,CON,EIEN) ; Create the Observation for a Control for an Interface/Form - INTERFACE
+"RTN","DSIO67",13,0)
+ N PG,IEN,OBS,VAL
+"RTN","DSIO67",14,0)
+ S PG=$O(^DSIO(19641.42,FORM,1,"CONTROL",CON,"")) Q:'PG
+"RTN","DSIO67",15,0)
+ S IEN=$O(^DSIO(19641.42,FORM,1,"CONTROL",CON,PG,""))
+"RTN","DSIO67",16,0)
+ S OBS=$P($G(^DSIO(19641.42,FORM,1,PG,1,IEN,0)),U,5) Q:'OBS
+"RTN","DSIO67",17,0)
+ S $P(VAL,U,3)=$$VALUE(EIEN)
+"RTN","DSIO67",18,0)
+ D OBG(OBS)
+"RTN","DSIO67",19,0)
+ Q
+"RTN","DSIO67",20,0)
+ ;
+"RTN","DSIO67",21,0)
+OBD(FORM,CON,EIEN) ; Create the Observation for a Control for an Interface/Form - DIALOG
+"RTN","DSIO67",22,0)
+ N IEN,OBS,VAL
+"RTN","DSIO67",23,0)
+ S IEN=$O(^DSIO(19641.49,FORM,1,"B",CON,"")) Q:'IEN
+"RTN","DSIO67",24,0)
+ S OBS=$P($G(^DSIO(19641.49,FORM,1,IEN,0)),U,5) Q:'OBS
+"RTN","DSIO67",25,0)
+ S $P(VAL,U,3)=$$VALUE(EIEN)
+"RTN","DSIO67",26,0)
+ D OBG(OBS)
+"RTN","DSIO67",27,0)
+ Q
+"RTN","DSIO67",28,0)
+ ;
+"RTN","DSIO67",29,0)
+ ; INTERFACE LEVEL ------------------------------------------------------------
+"RTN","DSIO67",30,0)
+ ;
+"RTN","DSIO67",31,0)
+OBI ; Create the Observation for a Control for an Interface/Form
+"RTN","DSIO67",32,0)
+ S DDCSEN="" F  S DDCSEN=$O(^DSIO(19641.41,DATA,1,FIEN,1,"C",DDCSEN)) Q:DDCSEN=""  D
+"RTN","DSIO67",33,0)
+ . S EIEN=$O(^DSIO(19641.41,DATA,1,FIEN,1,"C",DDCSEN,""))
+"RTN","DSIO67",34,0)
+ . S DDCSE=+$G(^DSIO(19641.41,DATA,1,FIEN,1,EIEN,0))
+"RTN","DSIO67",35,0)
+ . I DDCSFRM[";DSIO(19641.42," D
+"RTN","DSIO67",36,0)
+ . . D OBF(+DDCSFRM,DDCSEN,DDCSE)
+"RTN","DSIO67",37,0)
+ . I DDCSFRM[";DSIO(19641.49," D
+"RTN","DSIO67",38,0)
+ . . D OBD(+DDCSFRM,DDCSEN,DDCSE)
+"RTN","DSIO67",39,0)
+ Q
+"RTN","DSIO67",40,0)
+ ;
+"RTN","DSIO67",41,0)
+VALUE(IEN) ; Return element value as a string
+"RTN","DSIO67",42,0)
+ N OUT,CT,STR
+"RTN","DSIO67",43,0)
+ D GETS^DSIO62(.OUT,IEN) Q:'$D(OUT) ""
+"RTN","DSIO67",44,0)
+ S CT=0 F  S CT=$O(OUT(CT)) Q:'CT  S STR=$S($D(STR):STR_" ",1:"")_$P(OUT(CT),U,2,999)
+"RTN","DSIO67",45,0)
+ Q $E($G(STR),1,200)
+"RTN","DSIO67",46,0)
+ ;
+"RTN","DSIO67",47,0)
+ ; COMMON ---------------------------------------------------------------------
+"RTN","DSIO67",48,0)
+ ;
+"RTN","DSIO67",49,0)
+OBG(IEN) ; Get Observation Configuration and create
+"RTN","DSIO67",50,0)
+ ;
+"RTN","DSIO67",51,0)
+ ;    OBJ = OBJECTS OF OBSERVATION (ARRAY)
+"RTN","DSIO67",52,0)
+ ;          PG = CURRENT PREGNANCY ($$PG^DSIO4(DFN))
+"RTN","DSIO67",53,0)
+ ;    REL = RELATIONSHIP
+"RTN","DSIO67",54,0)
+ ;    CAT = CATEGORY
+"RTN","DSIO67",55,0)
+ ;   CODE = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+"RTN","DSIO67",56,0)
+ ;    VAL = TYPE^UNIT^VALUE
+"RTN","DSIO67",57,0)
+ ;  VALCD = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+"RTN","DSIO67",58,0)
+ ;    NEG = NEGATION (T/F)
+"RTN","DSIO67",59,0)
+ ;   BOOL = BOOLEAN VALUE (T/F)
+"RTN","DSIO67",60,0)
+ ;   QUAL = QUALIFIERS (ARRAY OF QUALIFIER^VALUE)
+"RTN","DSIO67",61,0)
+ ;    NAR = NARRATIVE (ARRAY OF TEXT)
+"RTN","DSIO67",62,0)
+ ;  LIMIT = CREATE ONLY IF (the boolean value matches)
+"RTN","DSIO67",63,0)
+ ;  **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+"RTN","DSIO67",64,0)
+ ;
+"RTN","DSIO67",65,0)
+ N OUT,REF,LN,CAT,REL,NEG,BOOL,NAR,CT,OBJ,CODE,VALCD,QUAL,OB,FLG
+"RTN","DSIO67",66,0)
+ I DDCSFLE=8925 S REF(1)="TIU."_+DDCSR                ; OBJECTS OF REFERENCE
+"RTN","DSIO67",67,0)
+ D GETS^DIQ(19641.122,IEN_",","**","I","OUT") Q:'$D(OUT)
+"RTN","DSIO67",68,0)
+ S LN=$NA(OUT) F  S LN=$Q(@LN) Q:LN=""  D  Q:$D(FLG)
+"RTN","DSIO67",69,0)
+ . I $QS(LN,1)=19641.122 D  Q
+"RTN","DSIO67",70,0)
+ . . I $QS(LN,3)=.03 S CAT=@LN Q                      ; CATEGORY
+"RTN","DSIO67",71,0)
+ . . I $QS(LN,3)=.04 S REL=@LN Q                      ; RELATIONSHIP
+"RTN","DSIO67",72,0)
+ . . I $QS(LN,3)=4.1 S $P(VAL,U)=@LN Q                ; VALUE TYPE
+"RTN","DSIO67",73,0)
+ . . I $QS(LN,3)=4.3 S $P(VAL,U,2)=@LN Q              ; VALUE UNIT
+"RTN","DSIO67",74,0)
+ . . I $QS(LN,3)=4.4 S NEG=@LN Q                      ; NEGATION
+"RTN","DSIO67",75,0)
+ . . I $QS(LN,3)=4.5 I @LN S BOOL=1,$P(VAL,U,3)=$$BOOL($P(VAL,U,3)) Q  ; BOOLEAN VALUE
+"RTN","DSIO67",76,0)
+ . . I $QS(LN,3)=4.6 I @LN D  Q
+"RTN","DSIO67",77,0)
+ . . . S CT=0 F  S CT=$O(^DSIO(19641.45,+$G(DDCSE),1,CT)) Q:'CT  D
+"RTN","DSIO67",78,0)
+ . . . . S NAR(CT)=$P($G(^DSIO(19641.45,DDCSE,1,CT,0)),U,2,999)
+"RTN","DSIO67",79,0)
+ . . I $QS(LN,3)=4.7 I @LN'="",'$$LIMIT($D(BOOL),@LN,$P(VAL,U,3)) S FLG=1 Q
+"RTN","DSIO67",80,0)
+ . I $QS(LN,1)=19641.1221 D  Q                        ; OBJECTS OF OBSERVATION
+"RTN","DSIO67",81,0)
+ . . I @LN="PG" S OBJ(1)="PG."_$$PG^DSIO4($G(DFN))      ; CURRENT PREGNANCY FLAG
+"RTN","DSIO67",82,0)
+ . I $QS(LN,1)=19641.1223,$QS(LN,3)=.01 D  Q
+"RTN","DSIO67",83,0)
+ . . I @LN="C" D  Q                                   ; CODE
+"RTN","DSIO67",84,0)
+ . . . S CODE=$$ND(3)_U_$$ND(4)_U_$$ND(1)_U_$$ND(2)
+"RTN","DSIO67",85,0)
+ . . I @LN="V" D                                      ; VALUE CODE
+"RTN","DSIO67",86,0)
+ . . . S VALCD=$$ND(3)_U_$$ND(4)_U_$$ND(1)_U_$$ND(2)
+"RTN","DSIO67",87,0)
+ . I $QS(LN,1)=19641.1225 D                           ; QUALIFIERS
+"RTN","DSIO67",88,0)
+ . . I $QS(LN,3)=.01 S $P(QUAL(+$QS(LN,2)),U)=@LN Q     ; QUALIFIER
+"RTN","DSIO67",89,0)
+ . . I $QS(LN,3)=.02 S $P(QUAL(+$QS(LN,2)),U,2)=@LN     ; VALUE
+"RTN","DSIO67",90,0)
+ D:'$D(FLG) OBS^DSIO10(.OB,,$G(DFN),,.OBJ,.REF,$G(REL),$G(CAT),$G(CODE),$S('$D(NAR):$G(VAL),1:""),$G(VALCD),$G(NEG),.QUAL,.NAR,1)
+"RTN","DSIO67",91,0)
+ Q
+"RTN","DSIO67",92,0)
+ ;
+"RTN","DSIO67",93,0)
+BOOL(VAL) ; Set value based on Boolean type and check type control
+"RTN","DSIO67",94,0)
+ Q:$G(DDCSEN)=""!($G(DDCSFRM)="") "False"
+"RTN","DSIO67",95,0)
+ I $$TYPE^DSIO62(DDCSFRM,DDCSEN,"CK") Q $S($$TGET1^DSIO62(DDCSEN):"True",1:"False")
+"RTN","DSIO67",96,0)
+ Q $S(VAL'="":"True",1:"False")
+"RTN","DSIO67",97,0)
+ ;
+"RTN","DSIO67",98,0)
+LIMIT(BOOL,FLD,VAL) ; The CREATE ONLY IF field is set...
+"RTN","DSIO67",99,0)
+ ;                    - If we are working with boolean values and the value matches
+"RTN","DSIO67",100,0)
+ ;                      this field's value - so create only if the value is True
+"RTN","DSIO67",101,0)
+ ;                      or create only if the value is False
+"RTN","DSIO67",102,0)
+ ;                    - If we are not working with boolean values but the type of
+"RTN","DSIO67",103,0)
+ ;                      control is a boolean type (checkbox) then we do like the
+"RTN","DSIO67",104,0)
+ ;                      above condition
+"RTN","DSIO67",105,0)
+ N OUT,VCK
+"RTN","DSIO67",106,0)
+ I BOOL D
+"RTN","DSIO67",107,0)
+ . I FLD=1,VAL="True" S OUT=1
+"RTN","DSIO67",108,0)
+ . I FLD=0,VAL="False" S OUT=1
+"RTN","DSIO67",109,0)
+ I 'BOOL,$$TYPE^DSIO62(DDCSFRM,DDCSEN,"CK") D
+"RTN","DSIO67",110,0)
+ . S VCK=$$TGET1^DSIO62(DDCSEN)
+"RTN","DSIO67",111,0)
+ . I FLD=1,VCK S OUT=$S(VAL'="":1,1:0)
+"RTN","DSIO67",112,0)
+ . I FLD=0,'VCK S OUT=$S(VAL="":1,1:0)
+"RTN","DSIO67",113,0)
+ Q +$G(OUT)
+"RTN","DSIO67",114,0)
+ ;
+"RTN","DSIO67",115,0)
+ND(Q) ; Return node value for CODES
+"RTN","DSIO67",116,0)
+ Q OUT($QS(LN,1),$QS(LN,2),Q,"I")
+"RTN","DSIO67",117,0)
+ ;
+"RTN","DSIO67",118,0)
+ ; CONFIGURATION --------------------------------------------------------------
+"RTN","DSIO67",119,0)
+ ;
+"RTN","DSIO67",120,0)
+SET(CIEN,PAGE,FORM) ; DSIO63 configuration entry point
+"RTN","DSIO67",121,0)
+ N DIC,X,Y,DIRUT,IEN,DA,DR,DIE,DIR,FDA
+"RTN","DSIO67",122,0)
+ S DIC="^DSIO(19641.122,",DIC(0)="AEQL"
+"RTN","DSIO67",123,0)
+ S DIC("A")="Select the NAME of the OBSERVATION: "
+"RTN","DSIO67",124,0)
+ S DIC("B")=$P($G(^DSIO(19641.42,FORM,1,PAGE,1,CIEN,0)),U,5)
+"RTN","DSIO67",125,0)
+ D ^DIC Q:Y<1!($D(DIRUT)) ""
+"RTN","DSIO67",126,0)
+ S IEN=+Y,DA=IEN,DIE="^DSIO(19641.122,",DR=".03;.04;4.1;4.3;4.4;5;6" D ^DIE
+"RTN","DSIO67",127,0)
+ W !,"Will this observation be for the current pregnancy? "
+"RTN","DSIO67",128,0)
+ W "If so, then this data must be PUSHed before the pregnancy is closed out.",!!
+"RTN","DSIO67",129,0)
+ K X,Y S DIR("A")="Link to CURRENT PREGNANCY",DIR(0)="Y",DIR("B")="YES" D ^DIR I Y D
+"RTN","DSIO67",130,0)
+ . S FDA(19641.1221,"?+1,"_IEN_",",.01)="PG" D UPDATE^DIE(,"FDA") K FDA
+"RTN","DSIO67",131,0)
+ W !!,"Identify the CODE.",! D CODE("C")
+"RTN","DSIO67",132,0)
+ W !!,"Identify the VALUE CODE.",! D CODE("V")
+"RTN","DSIO67",133,0)
+ Q IEN
+"RTN","DSIO67",134,0)
+ ;
+"RTN","DSIO67",135,0)
+CODE(TYP) ; Build the code array
+"RTN","DSIO67",136,0)
+ N IENS,DIE,DIC,DA,DR,X,Y
+"RTN","DSIO67",137,0)
+ S IENS=$O(^DSIO(19641.122,IEN,3,"B",TYP,"")),DA(1)=IEN
+"RTN","DSIO67",138,0)
+ I IENS S DA=IENS,DIE="^DSIO(19641.122,"_DA(1)_",3,",DR="1;2;3;4" D ^DIE Q
+"RTN","DSIO67",139,0)
+ S X=TYP,DIC="^DSIO(19641.122,"_DA(1)_",3,",DIC(0)="AEQL"
+"RTN","DSIO67",140,0)
+ S DIC("DR")="1;2;3;4" D FILE^DICN
+"RTN","DSIO67",141,0)
+ Q
+"SEC","^DIC",19641.42,19641.42,0,"AUDIT")
+@
+"SEC","^DIC",19641.42,19641.42,0,"DD")
+@
+"SEC","^DIC",19641.42,19641.42,0,"DEL")
+
+"SEC","^DIC",19641.42,19641.42,0,"LAYGO")
+
+"SEC","^DIC",19641.42,19641.42,0,"RD")
+
+"SEC","^DIC",19641.42,19641.42,0,"WR")
+
+"SEC","^DIC",19641.425,19641.425,0,"AUDIT")
+@
+"SEC","^DIC",19641.425,19641.425,0,"DD")
+@
+"SEC","^DIC",19641.4258,19641.4258,0,"AUDIT")
+@
+"SEC","^DIC",19641.4258,19641.4258,0,"DD")
+@
+"SEC","^DIC",19641.492,19641.492,0,"AUDIT")
+@
+"SEC","^DIC",19641.492,19641.492,0,"DD")
+@
+"VER")
+8.0^22.0
+"^DD",19641.41,19641.41,0)
+FIELD^^.06^7
+"^DD",19641.41,19641.41,0,"DDA")
+N
+"^DD",19641.41,19641.41,0,"DT")
+3170728
+"^DD",19641.41,19641.41,0,"IX","AP",19641.41,.01)
+
+"^DD",19641.41,19641.41,0,"IX","AP1",19641.41,.03)
+
+"^DD",19641.41,19641.41,0,"IX","B",19641.41,.01)
+
+"^DD",19641.41,19641.41,0,"NM","DSIO DDCS DATA")
+
+"^DD",19641.41,19641.41,0,"VRPK")
+MATERNITY TRACKER
+"^DD",19641.41,19641.41,.01,0)
+RECORD^RF^^0;1^K:$L(X)>150!($L(X)<1) X
+"^DD",19641.41,19641.41,.01,1,0)
+^.1
+"^DD",19641.41,19641.41,.01,1,1,0)
+19641.41^B
+"^DD",19641.41,19641.41,.01,1,1,1)
+S ^DSIO(19641.41,"B",X,DA)=""
+"^DD",19641.41,19641.41,.01,1,1,2)
+K ^DSIO(19641.41,"B",X,DA)
+"^DD",19641.41,19641.41,.01,1,2,0)
+19641.41^AP^MUMPS
+"^DD",19641.41,19641.41,.01,1,2,1)
+S ^DSIO(19641.41,"AP",DA)=""
+"^DD",19641.41,19641.41,.01,1,2,2)
+K ^DSIO(19641.41,"AP",DA)
+"^DD",19641.41,19641.41,.01,1,2,3)
+DO NOT DELETE
+"^DD",19641.41,19641.41,.01,1,2,"%D",0)
+^.101^3^3^3170403^^
+"^DD",19641.41,19641.41,.01,1,2,"%D",1,0)
+If this cross reference exists then it is to say that the data it 
+"^DD",19641.41,19641.41,.01,1,2,"%D",2,0)
+represents has not yet been pushed. When it is pushed its cross reference 
+"^DD",19641.41,19641.41,.01,1,2,"%D",3,0)
+value will be deleted.
+"^DD",19641.41,19641.41,.01,1,2,"DT")
+3170403
+"^DD",19641.41,19641.41,.01,1,2,"NOREINDEX")
+1
+"^DD",19641.41,19641.41,.01,3)
+Answer must be 1-150 characters in length.
+"^DD",19641.41,19641.41,.01,"DT")
+3170403
+"^DD",19641.41,19641.41,.02,0)
+CONTROL^P19641.4'^DSIO(19641.4,^0;2^Q
+"^DD",19641.41,19641.41,.02,"DT")
+3150504
+"^DD",19641.41,19641.41,.03,0)
+PUSHED^D^^0;3^S %DT="ESTX" D ^%DT S X=Y K:Y<1 X
+"^DD",19641.41,19641.41,.03,1,0)
+^.1
+"^DD",19641.41,19641.41,.03,1,1,0)
+19641.41^AP1^MUMPS
+"^DD",19641.41,19641.41,.03,1,1,1)
+K:X'="" ^DSIO(19641.41,"AP",DA)
+"^DD",19641.41,19641.41,.03,1,1,2)
+Q
+"^DD",19641.41,19641.41,.03,1,1,3)
+DO NOT DELETE
+"^DD",19641.41,19641.41,.03,1,1,"%D",0)
+^^3^3^3170403^
+"^DD",19641.41,19641.41,.03,1,1,"%D",1,0)
+This index works with the "AP" index on the .01 field. Once a record is 
+"^DD",19641.41,19641.41,.03,1,1,"%D",2,0)
+marked as pushed then this cross reference is deleted so that it is not 
+"^DD",19641.41,19641.41,.03,1,1,"%D",3,0)
+pushed again.
+"^DD",19641.41,19641.41,.03,1,1,"DT")
+3170403
+"^DD",19641.41,19641.41,.03,"DT")
+3170403
+"^DD",19641.41,19641.41,.04,0)
+PUSH START^D^^0;4^S %DT="ESTXR" D ^%DT S X=Y K:Y<1 X
+"^DD",19641.41,19641.41,.04,"DT")
+3160715
+"^DD",19641.41,19641.41,.05,0)
+USER^P200'^VA(200,^0;5^Q
+"^DD",19641.41,19641.41,.05,"DT")
+3170728
+"^DD",19641.41,19641.41,.06,0)
+DIVISION^P4'^DIC(4,^0;6^Q
+"^DD",19641.41,19641.41,.06,"DT")
+3170728
+"^DD",19641.41,19641.41,1,0)
+INTERFACE^19641.411^^1;0
+"^DD",19641.41,19641.411,0)
+INTERFACE SUB-FIELD^^1^3
+"^DD",19641.41,19641.411,0,"DT")
+3150504
+"^DD",19641.41,19641.411,0,"IX","B",19641.411,.01)
+
+"^DD",19641.41,19641.411,0,"NM","INTERFACE")
+
+"^DD",19641.41,19641.411,0,"UP")
+19641.41
+"^DD",19641.41,19641.411,.01,0)
+INTERFACE^MF^^0;1^K:$L(X)>150!($L(X)<1) X
+"^DD",19641.41,19641.411,.01,1,0)
+^.1
+"^DD",19641.41,19641.411,.01,1,1,0)
+19641.411^B
+"^DD",19641.41,19641.411,.01,1,1,1)
+S ^DSIO(19641.41,DA(1),1,"B",$E(X,1,30),DA)=""
+"^DD",19641.41,19641.411,.01,1,1,2)
+K ^DSIO(19641.41,DA(1),1,"B",$E(X,1,30),DA)
+"^DD",19641.41,19641.411,.01,3)
+Answer must be 1-150 characters in length.
+"^DD",19641.41,19641.411,.01,"DT")
+3150504
+"^DD",19641.41,19641.411,.02,0)
+SHARED^S^0:NO;1:YES;^0;2^Q
+"^DD",19641.41,19641.411,.02,"DT")
+3150504
+"^DD",19641.41,19641.411,1,0)
+DATA^19641.4111P^^1;0
+"^DD",19641.41,19641.4111,0)
+DATA SUB-FIELD^^.01^1
+"^DD",19641.41,19641.4111,0,"DT")
+3150504
+"^DD",19641.41,19641.4111,0,"IX","B",19641.4111,.01)
+
+"^DD",19641.41,19641.4111,0,"NM","DATA")
+
+"^DD",19641.41,19641.4111,0,"UP")
+19641.411
+"^DD",19641.41,19641.4111,.01,0)
+DATA^MP19641.45^DSIO(19641.45,^0;1^Q
+"^DD",19641.41,19641.4111,.01,1,0)
+^.1
+"^DD",19641.41,19641.4111,.01,1,1,0)
+19641.4111^B
+"^DD",19641.41,19641.4111,.01,1,1,1)
+S ^DSIO(19641.41,DA(2),1,DA(1),1,"B",$E(X,1,30),DA)=""
+"^DD",19641.41,19641.4111,.01,1,1,2)
+K ^DSIO(19641.41,DA(2),1,DA(1),1,"B",$E(X,1,30),DA)
+"^DD",19641.41,19641.4111,.01,"DT")
+3150505
+"^DD",19641.42,19641.42,0)
+FIELD^^3.3^13
+"^DD",19641.42,19641.42,0,"DDA")
+N
+"^DD",19641.42,19641.42,0,"DT")
+3170802
+"^DD",19641.42,19641.42,0,"ID",99.1)
+S %I=Y,Y=$S('$D(^(99)):"",$D(^DIC(9.4,+$P(^(99),U,1),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(9.4,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
+"^DD",19641.42,19641.42,0,"IX","B",19641.42,.01)
+
+"^DD",19641.42,19641.42,0,"NM","DSIO DDCS FORM CONFIGURATION")
+
+"^DD",19641.42,19641.42,0,"PT",19641.4,.07)
+
+"^DD",19641.42,19641.42,0,"PT",19641.42,.06)
+
+"^DD",19641.42,19641.42,0,"PT",19641.492,.01)
+
+"^DD",19641.42,19641.42,0,"VRPK")
+MATERNITY TRACKER
+"^DD",19641.42,19641.42,.01,0)
+INTERFACE^RF^^0;1^K:$L(X)>50!($L(X)<1) X
+"^DD",19641.42,19641.42,.01,1,0)
+^.1
+"^DD",19641.42,19641.42,.01,1,1,0)
+19641.42^B
+"^DD",19641.42,19641.42,.01,1,1,1)
+S ^DSIO(19641.42,"B",X,DA)=""
+"^DD",19641.42,19641.42,.01,1,1,2)
+K ^DSIO(19641.42,"B",X,DA)
+"^DD",19641.42,19641.42,.01,3)
+Answer must be 1-50 characters in length.
+"^DD",19641.42,19641.42,.01,"DT")
+3150819
+"^DD",19641.42,19641.42,.02,0)
+ACTION^F^^0;2^K:$L(X)>10!($L(X)<1) X
+"^DD",19641.42,19641.42,.02,3)
+Answer must be 1-10 characters in length.
+"^DD",19641.42,19641.42,.02,21,0)
+^^9^9^3150816^
+"^DD",19641.42,19641.42,.02,21,1,0)
+Enter each letter of each action you wish your interface to be restricted 
+"^DD",19641.42,19641.42,.02,21,2,0)
+to. For example A = DO NOT RESTORE and B = DO NOT SAVE to use both you 
+"^DD",19641.42,19641.42,.02,21,3,0)
+would have an action status of AB (but if you don't save then there is 
+"^DD",19641.42,19641.42,.02,21,4,0)
+nothing to restore).
+"^DD",19641.42,19641.42,.02,21,5,0)
+ 
+"^DD",19641.42,19641.42,.02,21,6,0)
+A = DO NOT RESTORE
+"^DD",19641.42,19641.42,.02,21,7,0)
+B = DO NOT SAVE
+"^DD",19641.42,19641.42,.02,21,8,0)
+C = DO NOT PUSH
+"^DD",19641.42,19641.42,.02,21,9,0)
+D = SUBMIT NOW (PUSH on SAVE rather than waiting for the trigger)
+"^DD",19641.42,19641.42,.02,"DT")
+3150816
+"^DD",19641.42,19641.42,.03,0)
+SHARED^S^0:NO;1:YES;^0;3^Q
+"^DD",19641.42,19641.42,.03,"DT")
+3150512
+"^DD",19641.42,19641.42,.04,0)
+PUSH (AS A WHOLE)^P19641.401'^DSIO(19641.401,^0;4^Q
+"^DD",19641.42,19641.42,.04,3)
+
+"^DD",19641.42,19641.42,.04,"DT")
+3150610
+"^DD",19641.42,19641.42,.05,0)
+FILENAME^F^^0;5^K:$L(X)>50!($L(X)<1) X
+"^DD",19641.42,19641.42,.05,3)
+Answer must be 1-50 characters in length.
+"^DD",19641.42,19641.42,.05,21,0)
+^^3^3^3150819^
+"^DD",19641.42,19641.42,.05,21,1,0)
+If FILENAME is set then the build type of this form will be treated as 
+"^DD",19641.42,19641.42,.05,21,2,0)
+prebuilt meaning that this filename should be an existing dll; otherwise, 
+"^DD",19641.42,19641.42,.05,21,3,0)
+it will be treated as a runtime built form.
+"^DD",19641.42,19641.42,.05,"DT")
+3150819
+"^DD",19641.42,19641.42,.06,0)
+RESTORE AS^P19641.42'^DSIO(19641.42,^0;6^Q
+"^DD",19641.42,19641.42,.06,"DT")
+3150821
+"^DD",19641.42,19641.42,.07,0)
+MULTI-INTERFACE^S^1:TRUE;0:FALSE;^0;7^Q
+"^DD",19641.42,19641.42,.07,"DT")
+3150826
+"^DD",19641.42,19641.42,1,0)
+PAGES^19641.421^^1;0
+"^DD",19641.42,19641.42,2,0)
+PROPERTIES^19641.422^^2;0
+"^DD",19641.42,19641.42,3.1,0)
+CONFIG ID PIECES^F^^3;1^K:$L(X)>20!($L(X)<1) X
+"^DD",19641.42,19641.42,3.1,3)
+Answer must be 1-20 characters in length.
+"^DD",19641.42,19641.42,3.1,"DT")
+3160810
+"^DD",19641.42,19641.42,3.2,0)
+CONFIG DELIMITER^S^C:CARRET;M:COMMA;H:HYPHEN;P:PIPE;S:SEMICOLON;^3;2^Q
+"^DD",19641.42,19641.42,3.2,"DT")
+3160810
+"^DD",19641.42,19641.42,3.3,0)
+CONFIG ROUTINE^F^^3;3^K:$L(X)>20!($L(X)<3) X
+"^DD",19641.42,19641.42,3.3,3)
+Answer must be 3-20 characters in length.
+"^DD",19641.42,19641.42,3.3,"DT")
+3160810
+"^DD",19641.42,19641.42,99.1,0)
+PACKAGE^P9.4'^DIC(9.4,^99;1^Q
+"^DD",19641.42,19641.42,99.1,"DT")
+3150811
+"^DD",19641.42,19641.421,0)
+PAGES SUB-FIELD^^.04^5
+"^DD",19641.42,19641.421,0,"DT")
+3170802
+"^DD",19641.42,19641.421,0,"IX","CONTROL",19641.4211,.01)
+
+"^DD",19641.42,19641.421,0,"IX","V",19641.421,.04)
+
+"^DD",19641.42,19641.421,0,"NM","PAGES")
+
+"^DD",19641.42,19641.421,0,"UP")
+19641.42
+"^DD",19641.42,19641.421,.01,0)
+PAGE^MNJ2,0X^^0;1^K:+X'=X!(X>20)!(X<1)!(X?.E1"."1N.N) X S:$D(X) DINUM=X
+"^DD",19641.42,19641.421,.01,1,0)
+^.1^^0
+"^DD",19641.42,19641.421,.01,3)
+Type a number between 1 and 20, 0 decimal digits.
+"^DD",19641.42,19641.421,.01,"DT")
+3170727
+"^DD",19641.42,19641.421,.02,0)
+PAGE NAME^RF^^0;2^K:$L(X)>100!($L(X)<1) X
+"^DD",19641.42,19641.421,.02,1,0)
+^.1^^0
+"^DD",19641.42,19641.421,.02,3)
+Answer must be 1-100 characters in length.
+"^DD",19641.42,19641.421,.02,"DT")
+3170802
+"^DD",19641.42,19641.421,.03,0)
+HIDE^S^0:FALSE;1:TRUE;^0;3^Q
+"^DD",19641.42,19641.421,.03,"DT")
+3150819
+"^DD",19641.42,19641.421,.04,0)
+VITALS^SX^1:TRUE;^0;4^K:$D(^DSIO(19641.42,DA(1),1,"V")) X
+"^DD",19641.42,19641.421,.04,1,0)
+^.1
+"^DD",19641.42,19641.421,.04,1,1,0)
+19641.421^V
+"^DD",19641.42,19641.421,.04,1,1,1)
+S ^DSIO(19641.42,DA(1),1,"V",$E(X,1,30),DA)=""
+"^DD",19641.42,19641.421,.04,1,1,2)
+K ^DSIO(19641.42,DA(1),1,"V",$E(X,1,30),DA)
+"^DD",19641.42,19641.421,.04,1,1,"DT")
+3150820
+"^DD",19641.42,19641.421,.04,3)
+Only one page can be a VITALS page.
+"^DD",19641.42,19641.421,.04,21,0)
+^^4^4^3150820^
+"^DD",19641.42,19641.421,.04,21,1,0)
+If this is set to TRUE then this page will be populated with the Vitals 
+"^DD",19641.42,19641.421,.04,21,2,0)
+component and nothing more. Vitals will pull the current information for 
+"^DD",19641.42,19641.421,.04,21,3,0)
+the patient. You will only be able to configure the listing of 
+"^DD",19641.42,19641.421,.04,21,4,0)
+contraception.
+"^DD",19641.42,19641.421,.04,"DT")
+3150820
+"^DD",19641.42,19641.421,1,0)
+CONTROLS^19641.4211I^^1;0
+"^DD",19641.42,19641.4211,0)
+CONTROLS SUB-FIELD^^.07^12
+"^DD",19641.42,19641.4211,0,"DT")
+3170802
+"^DD",19641.42,19641.4211,0,"ID",.02)
+S %I=Y,Y=$S('$D(^(0)):"",$D(^DSIO(19641.425,+$P(^(0),U,2),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(19641.425,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
+"^DD",19641.42,19641.4211,0,"ID",.04)
+W "   ",$P(^(0),U,4)
+"^DD",19641.42,19641.4211,0,"IX","B",19641.4211,.01)
+
+"^DD",19641.42,19641.4211,0,"NM","CONTROLS")
+
+"^DD",19641.42,19641.4211,0,"UP")
+19641.421
+"^DD",19641.42,19641.4211,.01,0)
+CONTROL^MFX^^0;1^K:$L(X)>100!($L(X)<1)!(X'?.A) X S:$D(X) X=$$UP^XLFSTR(X) I $L($G(X)) K:$D(^DSIO(19641.42,DA(2),1,"CONTROL",X)) X
+"^DD",19641.42,19641.4211,.01,1,0)
+^.1
+"^DD",19641.42,19641.4211,.01,1,1,0)
+19641.4211^B
+"^DD",19641.42,19641.4211,.01,1,1,1)
+S ^DSIO(19641.42,DA(2),1,DA(1),1,"B",X,DA)=""
+"^DD",19641.42,19641.4211,.01,1,1,2)
+K ^DSIO(19641.42,DA(2),1,DA(1),1,"B",X,DA)
+"^DD",19641.42,19641.4211,.01,1,2,0)
+19641.421^CONTROL
+"^DD",19641.42,19641.4211,.01,1,2,1)
+S ^DSIO(19641.42,DA(2),1,"CONTROL",X,DA(1),DA)=""
+"^DD",19641.42,19641.4211,.01,1,2,2)
+K ^DSIO(19641.42,DA(2),1,"CONTROL",X,DA(1),DA)
+"^DD",19641.42,19641.4211,.01,1,2,"DT")
+3150622
+"^DD",19641.42,19641.4211,.01,3)
+Answer must be alpha and 1-100 characters in length.
+"^DD",19641.42,19641.4211,.01,"DT")
+3170728
+"^DD",19641.42,19641.4211,.02,0)
+CLASS^P19641.425^DSIO(19641.425,^0;2^Q
+"^DD",19641.42,19641.4211,.02,"DT")
+3160513
+"^DD",19641.42,19641.4211,.03,0)
+PUSH^P19641.401'^DSIO(19641.401,^0;3^Q
+"^DD",19641.42,19641.4211,.03,"DT")
+3150508
+"^DD",19641.42,19641.4211,.04,0)
+IDENTIFIER^F^^0;4^K:$L(X)>10!($L(X)<1) X
+"^DD",19641.42,19641.4211,.04,3)
+Answer must be 1-10 characters in length.
+"^DD",19641.42,19641.4211,.04,"DT")
+3150609
+"^DD",19641.42,19641.4211,.05,0)
+OBSERVATION^P19641.122'^DSIO(19641.122,^0;5^Q
+"^DD",19641.42,19641.4211,.05,"DT")
+3151019
+"^DD",19641.42,19641.4211,.06,0)
+VALIDATE^S^0:FALSE;1:TRUE;^0;6^Q
+"^DD",19641.42,19641.4211,.06,"DT")
+3170728
+"^DD",19641.42,19641.4211,.07,0)
+ASSOCIATED CONTROL^F^^0;7^K:$L(X)>100!($L(X)<1) X
+"^DD",19641.42,19641.4211,.07,3)
+Answer must be 1-100 characters in length.
+"^DD",19641.42,19641.4211,.07,"DT")
+3170802
+"^DD",19641.42,19641.4211,2,0)
+CONFIGURATION VALUE(S)^19641.42112^^2;0
+"^DD",19641.42,19641.4211,2,"DT")
+3150511
+"^DD",19641.42,19641.4211,3,0)
+DIALOGS^19641.42113P^^3;0
+"^DD",19641.42,19641.4211,4,0)
+RUN ROUTINE^K^^4;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+"^DD",19641.42,19641.4211,4,3)
+This is Standard MUMPS code.
+"^DD",19641.42,19641.4211,4,9)
+@
+"^DD",19641.42,19641.4211,4,"DT")
+3150819
+"^DD",19641.42,19641.4211,8,0)
+GUI PROPERTIES^19641.42118P^^8;0
+"^DD",19641.42,19641.4211,9,0)
+REPORT ITEM^19641.42119^^9;0
+"^DD",19641.42,19641.42112,0)
+CONFIGURATION VALUE(S) SUB-FIELD^^.01^1
+"^DD",19641.42,19641.42112,0,"DT")
+3150508
+"^DD",19641.42,19641.42112,0,"NM","CONFIGURATION VALUE(S)")
+
+"^DD",19641.42,19641.42112,0,"UP")
+19641.4211
+"^DD",19641.42,19641.42112,.01,0)
+VALUE^Wx^^0;1^Q
+"^DD",19641.42,19641.42112,.01,"DT")
+3150508
+"^DD",19641.42,19641.42113,0)
+DIALOGS SUB-FIELD^^.01^1
+"^DD",19641.42,19641.42113,0,"DT")
+3150819
+"^DD",19641.42,19641.42113,0,"IX","B",19641.42113,.01)
+
+"^DD",19641.42,19641.42113,0,"NM","DIALOGS")
+
+"^DD",19641.42,19641.42113,0,"UP")
+19641.4211
+"^DD",19641.42,19641.42113,.01,0)
+DIALOGS^MP19641.49'^DSIO(19641.49,^0;1^Q
+"^DD",19641.42,19641.42113,.01,1,0)
+^.1
+"^DD",19641.42,19641.42113,.01,1,1,0)
+19641.42113^B
+"^DD",19641.42,19641.42113,.01,1,1,1)
+S ^DSIO(19641.42,DA(3),1,DA(2),1,DA(1),3,"B",$E(X,1,30),DA)=""
+"^DD",19641.42,19641.42113,.01,1,1,2)
+K ^DSIO(19641.42,DA(3),1,DA(2),1,DA(1),3,"B",$E(X,1,30),DA)
+"^DD",19641.42,19641.42113,.01,"DT")
+3150819
+"^DD",19641.42,19641.42118,0)
+GUI PROPERTIES SUB-FIELD^^1^2
+"^DD",19641.42,19641.42118,0,"DT")
+3170614
+"^DD",19641.42,19641.42118,0,"IX","B",19641.42118,.01)
+
+"^DD",19641.42,19641.42118,0,"NM","GUI PROPERTIES")
+
+"^DD",19641.42,19641.42118,0,"UP")
+19641.4211
+"^DD",19641.42,19641.42118,.01,0)
+GUI PROPERTY^MP19641.4258^DSIO(19641.4258,^0;1^Q
+"^DD",19641.42,19641.42118,.01,1,0)
+^.1
+"^DD",19641.42,19641.42118,.01,1,1,0)
+19641.42118^B
+"^DD",19641.42,19641.42118,.01,1,1,1)
+S ^DSIO(19641.42,DA(3),1,DA(2),1,DA(1),8,"B",$E(X,1,30),DA)=""
+"^DD",19641.42,19641.42118,.01,1,1,2)
+K ^DSIO(19641.42,DA(3),1,DA(2),1,DA(1),8,"B",$E(X,1,30),DA)
+"^DD",19641.42,19641.42118,.01,"DT")
+3170614
+"^DD",19641.42,19641.42118,1,0)
+VALUE^F^^1;1^K:$L(X)>245!($L(X)<1) X
+"^DD",19641.42,19641.42118,1,3)
+Answer must be 1-245 characters in length.
+"^DD",19641.42,19641.42118,1,"DT")
+3170614
+"^DD",19641.42,19641.42119,0)
+REPORT ITEM SUB-FIELD^^1^2
+"^DD",19641.42,19641.42119,0,"DT")
+3170614
+"^DD",19641.42,19641.42119,0,"IX","B",19641.42119,.01)
+
+"^DD",19641.42,19641.42119,0,"NM","REPORT ITEM")
+
+"^DD",19641.42,19641.42119,0,"UP")
+19641.4211
+"^DD",19641.42,19641.42119,.01,0)
+REPORT PROPERTY^MFX^^0;1^K:$L(X)>50!($L(X)<1) X S:$D(X) X=$$UP^XLFSTR(X)
+"^DD",19641.42,19641.42119,.01,1,0)
+^.1
+"^DD",19641.42,19641.42119,.01,1,1,0)
+19641.42119^B
+"^DD",19641.42,19641.42119,.01,1,1,1)
+S ^DSIO(19641.42,DA(3),1,DA(2),1,DA(1),9,"B",$E(X,1,30),DA)=""
+"^DD",19641.42,19641.42119,.01,1,1,2)
+K ^DSIO(19641.42,DA(3),1,DA(2),1,DA(1),9,"B",$E(X,1,30),DA)
+"^DD",19641.42,19641.42119,.01,3)
+Answer must be 1-50 characters in length.
+"^DD",19641.42,19641.42119,.01,"DT")
+3170614
+"^DD",19641.42,19641.42119,1,0)
+VALUE^F^^1;1^K:$L(X)>245!($L(X)<1) X
+"^DD",19641.42,19641.42119,1,3)
+Answer must be 1-245 characters in length.
+"^DD",19641.42,19641.42119,1,"DT")
+3160513
+"^DD",19641.42,19641.422,0)
+PROPERTIES SUB-FIELD^^1^2
+"^DD",19641.42,19641.422,0,"DT")
+3150511
+"^DD",19641.42,19641.422,0,"IX","B",19641.422,.01)
+
+"^DD",19641.42,19641.422,0,"NM","PROPERTIES")
+
+"^DD",19641.42,19641.422,0,"UP")
+19641.42
+"^DD",19641.42,19641.422,.01,0)
+PROPERTY^MFX^^0;1^K:$L(X)>245!($L(X)<1) X S:$D(X) X=$$UP^XLFSTR(X)
+"^DD",19641.42,19641.422,.01,1,0)
+^.1
+"^DD",19641.42,19641.422,.01,1,1,0)
+19641.422^B
+"^DD",19641.42,19641.422,.01,1,1,1)
+S ^DSIO(19641.42,DA(1),2,"B",$E(X,1,30),DA)=""
+"^DD",19641.42,19641.422,.01,1,1,2)
+K ^DSIO(19641.42,DA(1),2,"B",$E(X,1,30),DA)
+"^DD",19641.42,19641.422,.01,3)
+Answer must be 1-245 characters in length.
+"^DD",19641.42,19641.422,.01,"DT")
+3160513
+"^DD",19641.42,19641.422,1,0)
+VALUE^F^^1;1^K:$L(X)>245!($L(X)<1) X
+"^DD",19641.42,19641.422,1,3)
+Answer must be 1-245 characters in length.
+"^DD",19641.42,19641.422,1,"DT")
+3150511
+"^DD",19641.425,19641.425,0)
+FIELD^^.04^5
+"^DD",19641.425,19641.425,0,"DDA")
+N
+"^DD",19641.425,19641.425,0,"DT")
+3170728
+"^DD",19641.425,19641.425,0,"IX","B",19641.425,.01)
+
+"^DD",19641.425,19641.425,0,"NM","DSIO DDCS CONTROLS")
+
+"^DD",19641.425,19641.425,0,"PT",19641.4211,.02)
+
+"^DD",19641.425,19641.425,0,"PT",19641.45,.02)
+
+"^DD",19641.425,19641.425,0,"PT",19641.491,.02)
+
+"^DD",19641.425,19641.425,0,"VRPK")
+MATERNITY TRACKER
+"^DD",19641.425,19641.425,.01,0)
+CLASS^RFX^^0;1^K:$L(X)>50!($L(X)<1) X S:$D(X) X=$$UP^XLFSTR(X)
+"^DD",19641.425,19641.425,.01,1,0)
+^.1
+"^DD",19641.425,19641.425,.01,1,1,0)
+19641.425^B
+"^DD",19641.425,19641.425,.01,1,1,1)
+S ^DSIO(19641.425,"B",$E(X,1,30),DA)=""
+"^DD",19641.425,19641.425,.01,1,1,2)
+K ^DSIO(19641.425,"B",$E(X,1,30),DA)
+"^DD",19641.425,19641.425,.01,3)
+Answer must be 1-50 characters in length.
+"^DD",19641.425,19641.425,.01,"DT")
+3150819
+"^DD",19641.425,19641.425,.02,0)
+VALUE PROPERTY^P19641.4258^DSIO(19641.4258,^0;2^Q
+"^DD",19641.425,19641.425,.02,"DT")
+3150610
+"^DD",19641.425,19641.425,.03,0)
+RETURN 1 FROM LIST^S^0:FALSE;1:TRUE;^0;3^Q
+"^DD",19641.425,19641.425,.03,21,0)
+^^3^3^3160513^
+"^DD",19641.425,19641.425,.03,21,1,0)
+This needs to be true if the control class will be used as a list where 
+"^DD",19641.425,19641.425,.03,21,2,0)
+one entry is selected to allow GET1^DSIO62 to return that single selected 
+"^DD",19641.425,19641.425,.03,21,3,0)
+entry.
+"^DD",19641.425,19641.425,.03,"DT")
+3160513
+"^DD",19641.425,19641.425,.04,0)
+TYPE^S^CK:CHECK;LS:LIST;WP:WORD PROCESSING;DT:DATE/TIME;ED:STRING;NM:NUMBER;^0;4^Q
+"^DD",19641.425,19641.425,.04,"DT")
+3170728
+"^DD",19641.425,19641.425,1,0)
+PROPERTIES^19641.4251P^^1;0
+"^DD",19641.425,19641.4251,0)
+PROPERTIES SUB-FIELD^^.01^1
+"^DD",19641.425,19641.4251,0,"DT")
+3150508
+"^DD",19641.425,19641.4251,0,"IX","B",19641.4251,.01)
+
+"^DD",19641.425,19641.4251,0,"NM","PROPERTIES")
+
+"^DD",19641.425,19641.4251,0,"UP")
+19641.425
+"^DD",19641.425,19641.4251,.01,0)
+PROPERTY^MP19641.4258^DSIO(19641.4258,^0;1^Q
+"^DD",19641.425,19641.4251,.01,1,0)
+^.1
+"^DD",19641.425,19641.4251,.01,1,1,0)
+19641.4251^B
+"^DD",19641.425,19641.4251,.01,1,1,1)
+S ^DSIO(19641.425,DA(1),1,"B",$E(X,1,30),DA)=""
+"^DD",19641.425,19641.4251,.01,1,1,2)
+K ^DSIO(19641.425,DA(1),1,"B",$E(X,1,30),DA)
+"^DD",19641.425,19641.4251,.01,"DT")
+3150508
+"^DD",19641.4258,19641.4258,0)
+FIELD^^.01^1
+"^DD",19641.4258,19641.4258,0,"DDA")
+N
+"^DD",19641.4258,19641.4258,0,"DT")
+3150508
+"^DD",19641.4258,19641.4258,0,"IX","B",19641.4258,.01)
+
+"^DD",19641.4258,19641.4258,0,"NM","DSIO DDCS CONTROL PROPERTIES")
+
+"^DD",19641.4258,19641.4258,0,"PT",19641.42118,.01)
+
+"^DD",19641.4258,19641.4258,0,"PT",19641.425,.02)
+
+"^DD",19641.4258,19641.4258,0,"PT",19641.4251,.01)
+
+"^DD",19641.4258,19641.4258,0,"VRPK")
+MATERNITY TRACKER
+"^DD",19641.4258,19641.4258,.01,0)
+PROPERTY^RF^^0;1^K:$L(X)>245!($L(X)<1) X
+"^DD",19641.4258,19641.4258,.01,1,0)
+^.1
+"^DD",19641.4258,19641.4258,.01,1,1,0)
+19641.4258^B
+"^DD",19641.4258,19641.4258,.01,1,1,1)
+S ^DSIO(19641.4258,"B",$E(X,1,30),DA)=""
+"^DD",19641.4258,19641.4258,.01,1,1,2)
+K ^DSIO(19641.4258,"B",$E(X,1,30),DA)
+"^DD",19641.4258,19641.4258,.01,3)
+Answer must be 1-245 characters in length.
+"^DD",19641.4258,19641.4258,.01,"DT")
+3150508
+"^DD",19641.492,19641.492,0)
+FIELD^^1.07^9
+"^DD",19641.492,19641.492,0,"DDA")
+N
+"^DD",19641.492,19641.492,0,"DT")
+3170809
+"^DD",19641.492,19641.492,0,"IX","B",19641.492,.01)
+
+"^DD",19641.492,19641.492,0,"NM","DSIO DDCS PARAMETER")
+
+"^DD",19641.492,19641.492,0,"VRPK")
+MATERNITY TRACKER
+"^DD",19641.492,19641.492,.01,0)
+FORM^RP19641.42'X^DSIO(19641.42,^0;1^S:$D(X) DINUM=X
+"^DD",19641.492,19641.492,.01,1,0)
+^.1
+"^DD",19641.492,19641.492,.01,1,1,0)
+19641.492^B
+"^DD",19641.492,19641.492,.01,1,1,1)
+S ^DSIO(19641.492,"B",$E(X,1,30),DA)=""
+"^DD",19641.492,19641.492,.01,1,1,2)
+K ^DSIO(19641.492,"B",$E(X,1,30),DA)
+"^DD",19641.492,19641.492,.01,3)
+
+"^DD",19641.492,19641.492,.01,"DT")
+3150816
+"^DD",19641.492,19641.492,1.01,0)
+SHOW SPLASH^S^0:FALSE;1:TRUE;^1;1^Q
+"^DD",19641.492,19641.492,1.01,"DT")
+3150816
+"^DD",19641.492,19641.492,1.02,0)
+HOLD ON SHOW^S^0:FALSE;1:TRUE;^1;2^Q
+"^DD",19641.492,19641.492,1.02,"DT")
+3150917
+"^DD",19641.492,19641.492,1.03,0)
+PREVIEW TITLE^F^^1;3^K:$L(X)>30!($L(X)<1) X
+"^DD",19641.492,19641.492,1.03,3)
+Answer must be 1-30 characters in length.
+"^DD",19641.492,19641.492,1.03,"DT")
+3150917
+"^DD",19641.492,19641.492,1.04,0)
+DIALOGS REQUIRED^S^0:FALSE;1:TRUE;^1;4^Q
+"^DD",19641.492,19641.492,1.04,"DT")
+3150917
+"^DD",19641.492,19641.492,1.05,0)
+PREVIEW READONLY^S^0:FALSE;1:TRUE;^1;5^Q
+"^DD",19641.492,19641.492,1.05,"DT")
+3150917
+"^DD",19641.492,19641.492,1.06,0)
+DIALOGS DISABLED^S^1:TRUE;0:FALSE;^1;6^Q
+"^DD",19641.492,19641.492,1.06,"DT")
+3170614
+"^DD",19641.492,19641.492,1.07,0)
+FINISH READONLY^S^0:FALSE;1:TRUE;^1;7^Q
+"^DD",19641.492,19641.492,1.07,"DT")
+3170809
+"^DD",19641.492,19641.492,2,0)
+WARNING MESSAGE^F^^2;1^K:$L(X)>245!($L(X)<1) X
+"^DD",19641.492,19641.492,2,3)
+Answer must be 1-245 characters in length.
+"^DD",19641.492,19641.492,2,"DT")
+3150917
+"^DIC",19641.41,19641.41,0)
+DSIO DDCS DATA^19641.41
+"^DIC",19641.41,19641.41,0,"GL")
+^DSIO(19641.41,
+"^DIC",19641.41,"B","DSIO DDCS DATA",19641.41)
+
+"^DIC",19641.42,19641.42,0)
+DSIO DDCS FORM CONFIGURATION^19641.42
+"^DIC",19641.42,19641.42,0,"GL")
+^DSIO(19641.42,
+"^DIC",19641.42,19641.42,"%",0)
+^1.005^^0
+"^DIC",19641.42,"B","DSIO DDCS FORM CONFIGURATION",19641.42)
+
+"^DIC",19641.425,19641.425,0)
+DSIO DDCS CONTROLS^19641.425
+"^DIC",19641.425,19641.425,0,"GL")
+^DSIO(19641.425,
+"^DIC",19641.425,"B","DSIO DDCS CONTROLS",19641.425)
+
+"^DIC",19641.4258,19641.4258,0)
+DSIO DDCS CONTROL PROPERTIES^19641.4258
+"^DIC",19641.4258,19641.4258,0,"GL")
+^DSIO(19641.4258,
+"^DIC",19641.4258,"B","DSIO DDCS CONTROL PROPERTIES",19641.4258)
+
+"^DIC",19641.492,19641.492,0)
+DSIO DDCS PARAMETER^19641.492
+"^DIC",19641.492,19641.492,0,"GL")
+^DSIO(19641.492,
+"^DIC",19641.492,19641.492,"%D",0)
+^1.001^2^2^3150816^^
+"^DIC",19641.492,19641.492,"%D",1,0)
+Non system level configuration, system level configuration is handled by 
+"^DIC",19641.492,19641.492,"%D",2,0)
+DSIO DDCS CONFIGURATION (parameter).
+"^DIC",19641.492,"B","DSIO DDCS PARAMETER",19641.492)
+
+**END**
+**END**
