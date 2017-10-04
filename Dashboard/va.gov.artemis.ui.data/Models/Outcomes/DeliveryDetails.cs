@@ -27,7 +27,6 @@ namespace VA.Gov.Artemis.UI.Data.Models.Outcomes
         private const string forcep = "Forcep or Vacuum Delivery";
         private const string failedForcep = "Failed Forcep or Vacuum Delivery";
         private const string cesarean = "Cesarean Delivery";
-        private const string vaginal = "Vaginal Delivery";
         private const string other = "Other";
 
         private int gestationalAgeWeeks;
@@ -82,7 +81,6 @@ namespace VA.Gov.Artemis.UI.Data.Models.Outcomes
         public bool ForcepVacuumDelivery { get; set; }
         public bool FailedForcepVacuumDelivery { get; set; }
         public bool CesareanDelivery { get; set; }
-        public bool VaginalDelivery { get; set; }
         public bool OtherDelivery { get; set; }
 
         [IsNarrative]
@@ -135,9 +133,6 @@ namespace VA.Gov.Artemis.UI.Data.Models.Outcomes
             if (this.CesareanDelivery)
                 returnList.Add(cesarean);
 
-            if (this.VaginalDelivery)
-                returnList.Add(vaginal);
-
             if (this.OtherDelivery)
                 returnList.Add(other);
 
@@ -161,9 +156,6 @@ namespace VA.Gov.Artemis.UI.Data.Models.Outcomes
                     break;
                 case "CesareanDelivery":
                     returnVal = cesarean; 
-                    break;
-                case "VaginalDelivery":
-                    returnVal = vaginal;
                     break;
                 case "OtherDelivery":
                     returnVal = other; 

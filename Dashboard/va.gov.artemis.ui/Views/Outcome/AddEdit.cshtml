@@ -69,14 +69,10 @@
                     <tr class="delivery-outcome">
                         <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.CesareanDelivery, "Cesarean Delivery:")</th>
                         <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.CesareanDelivery)</td>
-                    </tr>                    
+                    </tr>
                     <tr class="delivery-outcome">
                         <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.CesareanIncisionType, "Cesarean Incision Type:")</th>
                         <td colspan="2" class="centered-txt">@Html.TextBoxFor(m => m.OutcomeDetails.DeliveryDetails.CesareanIncisionType, new { @class = "form-control has-placeholder", @placeholder = "Enter cesarean incision type" })</td>
-                    </tr>
-                    <tr class="delivery-outcome">
-                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.VaginalDelivery, "Vaginal Delivery:")</th>
-                        <td colspan="2" class="centered-txt">@Html.CheckBoxFor(m => m.OutcomeDetails.DeliveryDetails.VaginalDelivery)</td>
                     </tr>
                     <tr class="delivery-outcome">
                         <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDetails.DeliveryDetails.OtherDelivery, "Other Delivery:")</th>

@@ -1328,7 +1328,6 @@ namespace VA.Gov.Artemis.UI.Controllers
                                                 case "ForcepVacuumDelivery":
                                                 case "FailedForcepVacuumDelivery":
                                                 case "CesareanDelivery":
-                                                case "VaginalDelivery":
                                                 case "OtherDelivery":
                                                     bool deliveryVal = false;
                                                     if (bool.TryParse(obs.Value, out deliveryVal))

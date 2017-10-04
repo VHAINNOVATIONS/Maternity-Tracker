@@ -66,10 +66,6 @@
                         <td colspan="2">@Model.Outcome.DeliveryDetails.CesareanIncisionType</td>
                     </tr>
                     <tr class="delivery-outcome">
-                        <th scope="row">Vaginal Delivery:</th>
-                        <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.DeliveryDetails.VaginalDelivery)</td>
-                    </tr>
-                    <tr class="delivery-outcome">
                         <th scope="row">Other Delivery:</th>
                         <td colspan="2" class="centered-txt">@Html.Partial("~/Views/Shared/_BoolCheck.cshtml", @Model.Outcome.DeliveryDetails.OtherDelivery)</td>
                     </tr>
