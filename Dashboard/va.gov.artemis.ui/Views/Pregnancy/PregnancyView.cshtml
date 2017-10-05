@@ -27,7 +27,7 @@
                         <td colspan="3" class="centered-txt"><strong>Pregnancy Details</strong><a href="@Url.Action("AddEdit", "Outcome", new { @dfn = Model.Patient.Dfn, @pregIen = Model.Pregnancy.Ien })" class="pull-right">Edit</a></td>
                     </tr>
                     <tr class="centered-txt" id="outcome-row">
-                        <th scope="row">Outcome:</th>
+                        <th scope="row">Type of Pregnancy Outcome:</th>
                         <td colspan="2">@PregnancyOutcomeUtility.GetDescription(Model.Outcome.OutcomeType)</td>
                     </tr>
                     <tr class="centered-txt" id="outcome-date-row">
