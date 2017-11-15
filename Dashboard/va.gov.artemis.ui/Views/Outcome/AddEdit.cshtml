@@ -26,8 +26,11 @@
         <div class="col-md-6">
             <table class="table table-bordered table-db table-horizontal">
                 <tbody>
+                    <tr class="info">
+                        <td colspan="3" class="centered-txt"><strong>Pregnancy Details</strong></td>
+                    </tr>
                     <tr class="centered-txt" id="outcome-row">
-                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m=>m.OutcomeDetails.OutcomeType, "Outcome:")</th>
+                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m=>m.OutcomeDetails.OutcomeType, "Type of Pregnancy Outcome:")</th>
                         <td colspan="2">@Html.DropDownListFor(m => m.OutcomeDetails.OutcomeType, new SelectList(Model.OutcomeList, "Key", "Value", ""), new { @class = "form-control" })</td>
                     </tr>
                     <tr class="centered-txt" id="outcome-date-row">
