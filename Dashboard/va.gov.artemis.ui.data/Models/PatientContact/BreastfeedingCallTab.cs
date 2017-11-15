@@ -257,7 +257,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                     sb.AppendLine("Assessed for difficulties with breastfeeding, answered questions, referred to pediatrician as needed");
 
                 if (this.BreastfeedingLactation)
-                    sb.AppendLine("Patient is having difficulties with lactation");
+                    sb.AppendLine("Assessed for difficulties with lactation");
 
                 if (this.SuppliesUse)
                     sb.AppendLine("If received breast pump/supplies, assessed for difficulties with use, answered questions, and provided support");
