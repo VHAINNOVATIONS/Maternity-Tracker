@@ -86,6 +86,7 @@
                 @if (!Model.IsLast)
                 {
                     <button type="button" id="next-btn" class="btn btn-primary btn-submit" data-nav="@Model.NextTabIndex">Next&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+                    <button type="button" id="end-btn" class="btn btn-primary btn-submit" data-nav="@Model.LastTabIndex">End&nbsp;&nbsp;<span class="glyphicon glyphicon-fast-forward"></span></button>
                     <button type="button" class="btn btn-success btn-submit" data-nav="@Model.TabCount" ><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Preview/Finish</button>
                 }
                 else
