@@ -86,7 +86,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
         {
             bool val;
             key = key.ToUpper();
-            YesNoMaybe YesNoMabyVal;
+            YesNoMaybe YesNoMaybeVal;
 
             switch (key)
             {
@@ -107,16 +107,16 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                         this.Supplies = val;
                     break;
                 case PatientInterestInBrestfeedKey:
-                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMabyVal))
-                        this.PatientInterestedInBreastfeeding = YesNoMabyVal;
+                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMaybeVal))
+                        this.PatientInterestedInBreastfeeding = YesNoMaybeVal;
                     break;
                 case PatientInterestInMoreInfoKey:
-                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMabyVal))
-                        this.PatientInterestedInMoreInformation = YesNoMabyVal;
+                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMaybeVal))
+                        this.PatientInterestedInMoreInformation = YesNoMaybeVal;
                     break;
                 case PatientInterestInSuppliesKey:
-                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMabyVal))
-                        this.PatientInterestedInSupplies = YesNoMabyVal;
+                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMaybeVal))
+                        this.PatientInterestedInSupplies = YesNoMaybeVal;
                     break;
                 //case PatientIntendsToBreastfeedKey:
                 //    if (bool.TryParse(value, out val))
@@ -159,8 +159,8 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                         this.BreastfeedingAssessment = val;
                     break;
                 case BreastfeedingLactationKey:
-                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMabyVal))
-                        this.LactationDifficulty = YesNoMabyVal;
+                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMaybeVal))
+                        this.LactationDifficulty = YesNoMaybeVal;
                     break;
                 case SuppliesUseKey:
                     if (bool.TryParse(value, out val))
