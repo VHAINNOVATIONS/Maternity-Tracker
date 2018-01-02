@@ -78,7 +78,34 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
 
         public bool BreastfeedingAssessment { get; set; }
 
-        public bool BreastfeedingLactation { get; set; }
+        public YesNoMaybe LactationDifficulty { get; set; }
+
+        public string BreastfeedingLactation
+        {
+            get
+            {
+                return this.LactationDifficulty.ToString();
+            }
+            set {
+                if (value == YesNoMaybe.Yes.ToString()) { 
+                    this.LactationDifficulty = YesNoMaybe.Yes;
+                }
+                if (value == YesNoMaybe.No.ToString())
+                {
+                    this.LactationDifficulty = YesNoMaybe.No;
+                }
+                if (value == YesNoMaybe.Maybe.ToString())
+                {
+                    this.LactationDifficulty = YesNoMaybe.Maybe;
+                }
+                if (value == YesNoMaybe.Unknown.ToString())
+                {
+                    this.LactationDifficulty = YesNoMaybe.Unknown;
+                }
+            }
+        }
+
+
 
         public bool SuppliesUse { get; set; }
 
@@ -159,8 +186,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                         this.BreastfeedingAssessment = val;
                     break;
                 case BreastfeedingLactationKey:
-                    if (bool.TryParse(value, out val))
-                        this.BreastfeedingLactation = val;
+                        this.BreastfeedingLactation = value;
                     break;
                 case SuppliesUseKey:
                     if (bool.TryParse(value, out val))
@@ -256,8 +282,18 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                 if (this.BreastfeedingAssessment)
                     sb.AppendLine("Assessed for difficulties with breastfeeding, answered questions, referred to pediatrician as needed");
 
-                if (this.BreastfeedingLactation)
-                    sb.AppendLine("Assessed for difficulties with lactation");
+                if (this.BreastfeedingLactation == YesNoMaybe.Yes.ToString())
+                {
+                    sb.AppendLine("Patient is having difficulty lactating");
+                }
+                if (this.BreastfeedingLactation == YesNoMaybe.No.ToString())
+                {
+                    sb.AppendLine("Patient is not having difficulty lactating");
+                }
+                if (this.BreastfeedingLactation == YesNoMaybe.Maybe.ToString())
+                {
+                    sb.AppendLine("Patient might be having difficulty lactating");
+                }
 
                 if (this.SuppliesUse)
                     sb.AppendLine("If received breast pump/supplies, assessed for difficulties with use, answered questions, and provided support");
@@ -283,7 +319,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                 this.AdviseToCall ||
                 this.ConfirmReceipt ||
                 this.BreastfeedingAssessment ||
-                this.BreastfeedingLactation ||
+                this.BreastfeedingLactation != YesNoMaybe.Unknown.ToString() ||
                 this.SuppliesUse)
                 returnVal = true;
 
