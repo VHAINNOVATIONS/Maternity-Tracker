@@ -19,7 +19,6 @@
     <li><a id="nav-pat-notes" class="list-group-item" href="@Url.Action("Index", "Notes", new { dfn = @Model.Dfn, filter= PregnancyUtilities.PregnancyFilterCurrent })">Notes</a></li>
     <li><a id="nav-pat-t4b" class="list-group-item text4baby" href="@Url.Action("Index", "Text4Baby", new { dfn = @Model.Dfn })">text4baby</a></li>
     <li><a id="nav-pat-labs" class="list-group-item" href="@Url.Action("Index", "Labs", new { dfn = @Model.Dfn, labType = LabResultType.Any, pregFilter="True", page = "1"})">Labs</a></li>
-    <li><a id="nav-pat-cda" class="list-group-item" href="@Url.Action("Index", "Cda", new { dfn = @Model.Dfn, page = "1" })">Clinical Exchange Documents</a></li>
     <li><a id="nav-pat-orders" class="list-group-item" href="@Url.Action("Index", "Orders", new { dfn = @Model.Dfn, page = "1" })">Orders</a></li>
     <li><a id="nav-pat-remind" class="list-group-item" href="@Url.Action("Index", "Reminders", new { dfn = @Model.Dfn, page = "1" })">Reminders</a></li>
     <li><a id="nav-pat-consult" class="list-group-item" href="@Url.Action("Index", "Consults", new { dfn = @Model.Dfn, page = "1" })">Consults</a></li>
