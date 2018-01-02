@@ -39,6 +39,9 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
         //public int NextTabIndex { get { return ((this.TabIndex + 1) < this.TabCount) ? this.TabIndex + 1 : -1; } }
         public int NextTabIndex { get { return this.TabIndex + 1; } }
 
+        // *** Return the index of the "last" tab ***
+        public int LastTabIndex { get { return this.TabCount - 1; } }
+
         // *** Return the index of the "previous" tab ***
         public int PrevTabIndex { get { return (this.TabIndex > 0) ? this.TabIndex -1 : -1; } }
 

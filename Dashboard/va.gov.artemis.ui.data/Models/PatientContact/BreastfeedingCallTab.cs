@@ -32,6 +32,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
         private const string BreastfeedingCommentKey = "BREAST.COMMENT";
         private const string ConfirmReceiptKey = "BREAST.COMFIRMRECEIPT";
         private const string BreastfeedingAssessmentKey = "BREAST.ASSESSMENT";
+        private const string BreastfeedingLactationKey = "BREAST.LACTATION";
         private const string SuppliesUseKey = "BREAST.SUPPLIESUSE";
 
 
@@ -76,6 +77,8 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
         public bool ConfirmReceipt { get; set; }
 
         public bool BreastfeedingAssessment { get; set; }
+
+        public bool BreastfeedingLactation { get; set; }
 
         public bool SuppliesUse { get; set; }
 
@@ -155,6 +158,10 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                     if (bool.TryParse(value, out val))
                         this.BreastfeedingAssessment = val;
                     break;
+                case BreastfeedingLactationKey:
+                    if (bool.TryParse(value, out val))
+                        this.BreastfeedingLactation = val;
+                    break;
                 case SuppliesUseKey:
                     if (bool.TryParse(value, out val))
                         this.SuppliesUse = val;
@@ -183,6 +190,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
             returnDictionary.Add(BreastfeedingCommentKey, this.BreastfeedingComment);
             returnDictionary.Add(ConfirmReceiptKey, this.ConfirmReceipt.ToString());
             returnDictionary.Add(BreastfeedingAssessmentKey, this.BreastfeedingAssessment.ToString());
+            returnDictionary.Add(BreastfeedingLactationKey, this.BreastfeedingLactation.ToString());
             returnDictionary.Add(SuppliesUseKey, this.SuppliesUse.ToString());
             
             return returnDictionary; 
@@ -248,6 +256,9 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                 if (this.BreastfeedingAssessment)
                     sb.AppendLine("Assessed for difficulties with breastfeeding, answered questions, referred to pediatrician as needed");
 
+                if (this.BreastfeedingLactation)
+                    sb.AppendLine("Assessed for difficulties with lactation");
+
                 if (this.SuppliesUse)
                     sb.AppendLine("If received breast pump/supplies, assessed for difficulties with use, answered questions, and provided support");
 
@@ -272,6 +283,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                 this.AdviseToCall ||
                 this.ConfirmReceipt ||
                 this.BreastfeedingAssessment ||
+                this.BreastfeedingLactation ||
                 this.SuppliesUse)
                 returnVal = true;
 
