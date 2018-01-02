@@ -80,33 +80,6 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
 
         public YesNoMaybe LactationDifficulty { get; set; }
 
-        public string BreastfeedingLactation
-        {
-            get
-            {
-                return this.LactationDifficulty.ToString();
-            }
-            set {
-                if (value == YesNoMaybe.Yes.ToString()) { 
-                    this.LactationDifficulty = YesNoMaybe.Yes;
-                }
-                if (value == YesNoMaybe.No.ToString())
-                {
-                    this.LactationDifficulty = YesNoMaybe.No;
-                }
-                if (value == YesNoMaybe.Maybe.ToString())
-                {
-                    this.LactationDifficulty = YesNoMaybe.Maybe;
-                }
-                if (value == YesNoMaybe.Unknown.ToString())
-                {
-                    this.LactationDifficulty = YesNoMaybe.Unknown;
-                }
-            }
-        }
-
-
-
         public bool SuppliesUse { get; set; }
 
         public override void AddDataElement(string key, string value)
@@ -186,7 +159,8 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                         this.BreastfeedingAssessment = val;
                     break;
                 case BreastfeedingLactationKey:
-                        this.BreastfeedingLactation = value;
+                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMabyVal))
+                        this.LactationDifficulty = YesNoMabyVal;
                     break;
                 case SuppliesUseKey:
                     if (bool.TryParse(value, out val))
@@ -216,7 +190,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
             returnDictionary.Add(BreastfeedingCommentKey, this.BreastfeedingComment);
             returnDictionary.Add(ConfirmReceiptKey, this.ConfirmReceipt.ToString());
             returnDictionary.Add(BreastfeedingAssessmentKey, this.BreastfeedingAssessment.ToString());
-            returnDictionary.Add(BreastfeedingLactationKey, this.BreastfeedingLactation.ToString());
+            returnDictionary.Add(BreastfeedingLactationKey, this.LactationDifficulty.ToString());
             returnDictionary.Add(SuppliesUseKey, this.SuppliesUse.ToString());
             
             return returnDictionary; 
@@ -282,15 +256,15 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                 if (this.BreastfeedingAssessment)
                     sb.AppendLine("Assessed for difficulties with breastfeeding, answered questions, referred to pediatrician as needed");
 
-                if (this.BreastfeedingLactation == YesNoMaybe.Yes.ToString())
+                if (this.LactationDifficulty == YesNoMaybe.Yes)
                 {
                     sb.AppendLine("Patient is having difficulty lactating");
                 }
-                if (this.BreastfeedingLactation == YesNoMaybe.No.ToString())
+                if (this.LactationDifficulty == YesNoMaybe.No)
                 {
                     sb.AppendLine("Patient is not having difficulty lactating");
                 }
-                if (this.BreastfeedingLactation == YesNoMaybe.Maybe.ToString())
+                if (this.LactationDifficulty == YesNoMaybe.Maybe)
                 {
                     sb.AppendLine("Patient might be having difficulty lactating");
                 }
@@ -319,7 +293,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                 this.AdviseToCall ||
                 this.ConfirmReceipt ||
                 this.BreastfeedingAssessment ||
-                this.BreastfeedingLactation != YesNoMaybe.Unknown.ToString() ||
+                this.LactationDifficulty != YesNoMaybe.Unknown ||
                 this.SuppliesUse)
                 returnVal = true;
 
