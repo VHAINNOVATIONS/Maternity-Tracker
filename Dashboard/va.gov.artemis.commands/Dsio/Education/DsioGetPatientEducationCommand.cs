@@ -36,7 +36,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
             //•	ToDate – DateTime – A date representing the newest item to return – Not Required
             //•	Type – List of types (Discussion, Printed, Link, etc.) – Not Required
 
-            this.CommandArgs = new object[] { dfn, ien, itemsPerPage.ToString(), page.ToString(), fromDate, toDate, itemType };
+            this.CommandArgs = new object[] { dfn, ien, page.ToString(), itemsPerPage.ToString(), fromDate, toDate, itemType };
         }
 
         protected override void ProcessLine(string line)
