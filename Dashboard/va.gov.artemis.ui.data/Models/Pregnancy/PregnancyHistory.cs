@@ -141,20 +141,28 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
                 string term = (this.TermBirths.HasValue) ? this.TermBirths.ToString() : "?";
                 string preterm = (this.PretermBirths.HasValue) ? this.PretermBirths.ToString() : "?";
 
+                //compute element 3 of the Gravida/Para Summary
                 int element3 = 0;
-
-                if (this.SpontaneousAbortions.HasValue)
+                Boolean element3Known = false;
+                if (this.SpontaneousAbortions.HasValue) {
                     element3 = this.SpontaneousAbortions.Value;
-
+                    element3Known = true;
+                }
                 if (this.PregnancyTerminations.HasValue)
+                {
                     element3 += this.PregnancyTerminations.Value;
-
+                    element3Known = true;
+                }
                 if (this.EctopicPregnancies.HasValue)
+                {
                     element3 += this.EctopicPregnancies.Value;
+                    element3Known = true;
+                }
+                string element3ForDisplay = element3Known ? element3.ToString() : "?";
 
                 string living = (this.LivingChildren.HasValue) ? this.LivingChildren.ToString() : "?";
 
-                returnVal = string.Format("P{0}{1}{2}{3}", term, preterm, element3, living); 
+                returnVal = string.Format("P{0}{1}{2}{3}", term, preterm, element3ForDisplay, living); 
 
                 return returnVal;
             }
