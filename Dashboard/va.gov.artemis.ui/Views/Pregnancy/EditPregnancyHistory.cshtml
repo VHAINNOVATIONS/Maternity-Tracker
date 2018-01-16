@@ -119,20 +119,33 @@
         });
 
         $('.gp').change(function () {
-            var result = 'G' + $('#History_TotalPregnancies').val();
-            result += ' P' + $('#History_TermBirths').val();
-            result += $('#History_PretermBirths').val();
-            
-            var a = +$('#History_SpontaneousAbortions').val();
-            var b = +$('#History_PregnancyTerminations').val();
-            var c = +$('#History_EctopicPregnancies').val();
 
-            var sum = a + b + c;
+            var totalPregnancies = $('#History_TotalPregnancies').val() ? $('#History_TotalPregnancies').val() : '?';
+            var termBirths = $('#History_TermBirths').val() ? $('#History_TermBirths').val() : '?';
+            var pretermBirths = $('#History_PretermBirths').val() ? $('#History_PretermBirths').val() : '?';
+            var livingChildren = $('#History_LivingChildren').val() ? $('#History_LivingChildren').val() : '?';
 
-            result += sum.toString();
+            //compute element 3 of parity
+            var element3 = 0;
+            var spontaneousAbortions = $('#History_SpontaneousAbortions').val();
+            if (spontaneousAbortions) {
+                element3 = +spontaneousAbortions;
+            }
+            var pregnancyTerminations = $('#History_PregnancyTerminations').val();
+            if (pregnancyTerminations) {
+                element3 += +pregnancyTerminations;
+            }
+            var ectopicPregnancies = $('#History_EctopicPregnancies').val();
+            if (ectopicPregnancies) {
+                element3 += +ectopicPregnancies;
+            }
+            if (!spontaneousAbortions && !pregnancyTerminations && !ectopicPregnancies) {
+                element3 = '?';
+            }
 
-            result += $('#History_LivingChildren').val();
-
+            var gravidity = 'G' + totalPregnancies;
+            var parity = 'P' + termBirths + pretermBirths + element3 + livingChildren;
+            var result = gravidity + ' ' + parity;     
             $('#History_GravidaPara').text(result);
         });
 
