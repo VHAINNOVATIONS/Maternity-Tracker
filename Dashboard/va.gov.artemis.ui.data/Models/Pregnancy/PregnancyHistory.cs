@@ -162,7 +162,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
 
                 string living = (this.LivingChildren.HasValue) ? this.LivingChildren.ToString() : "?";
 
-                returnVal = string.Format("P{0}{1}{2}{3}", term, preterm, element3ForDisplay, living); 
+                returnVal = string.Format("P{0}-{1}-{2}-{3}", term, preterm, element3ForDisplay, living); 
 
                 return returnVal;
             }

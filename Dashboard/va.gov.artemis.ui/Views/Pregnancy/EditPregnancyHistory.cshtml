@@ -125,21 +125,29 @@
 
         $('.gp').change(function () {
             var alert = false;
+            var message = "";
 
-            function isInt(value) {
-                return !isNaN(value) && (function (x) { return (x | 0) === x; })(parseFloat(value))
+            function isPositiveInt(value) {
+                if (isNaN(value)) {
+                    return false;
+                }
+                var x = parseFloat(value);
+                if (x < 0) {
+                    return false;
+                }
+                return (x | 0) === x;
             }
 
             function intValue(value) {
-                return isInt(value) ? +value : 0;
+                return isPositiveInt(value) ? +value : 0;
             }
 
             function computeValueForGPSummary(n, fieldName) {
                 if (n) {
-                    if (!isInt(n)) {
+                    if (!isPositiveInt(n)) {
                         alert = true;
                         n = "?";
-                        var message = "Please enter a valid integer number in the " + fieldName + " field.";
+                        message = message + "Please enter a valid number in the " + fieldName + " field. ";
                         $("#alertId").attr("class", "bg-warning");
                         $("#alertId").removeAttr("hidden");
                         $("#alertId").text(message);
@@ -171,7 +179,7 @@
             }
 
             var gravidity = 'G' + totalPregnancies;
-            var parity = 'P' + termBirths + pretermBirths + element3 + livingChildren;
+            var parity = 'P' + termBirths + '-' + pretermBirths + '-' + element3 + '-' + livingChildren;
             var result = gravidity + ' ' + parity;
 
             if (!alert){
