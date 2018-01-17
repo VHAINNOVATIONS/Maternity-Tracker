@@ -23,10 +23,15 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-@*    <div class="row">
+    @*
+    <div class="row">
         <div class="col-md-6 text-center"><label class="label-success">@Model.History.Gravidity</label></div>
         <div class="col-md-6 text-center"><label class="label-success">@Model.History.Parity</label></div>
-    </div>*@
+    </div>
+   *@
+
+    <p class="bg-warning" id="alertId" hidden="hidden" style="padding: 16px; margin-bottom: 20px"></p>
+
     <br />
     <div class="row">
         <div class="col-md-1"></div>
@@ -54,7 +59,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.History.StillBirths)
-                @Html.TextBoxFor(model => model.History.StillBirths, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.History.StillBirths, new { @class = "form-control gp" })
                 @Html.ValidationMessageFor(model => model.History.StillBirths)
             </div>
 
@@ -119,33 +124,68 @@
         });
 
         $('.gp').change(function () {
+            var alert = false;
+            var message = "";
 
-            var totalPregnancies = $('#History_TotalPregnancies').val() ? $('#History_TotalPregnancies').val() : '?';
-            var termBirths = $('#History_TermBirths').val() ? $('#History_TermBirths').val() : '?';
-            var pretermBirths = $('#History_PretermBirths').val() ? $('#History_PretermBirths').val() : '?';
-            var livingChildren = $('#History_LivingChildren').val() ? $('#History_LivingChildren').val() : '?';
+            function isPositiveInt(value) {
+                if (isNaN(value)) {
+                    return false;
+                }
+                var x = parseFloat(value);
+                if (x < 0) {
+                    return false;
+                }
+                return (x | 0) === x;
+            }
+
+            function intValue(value) {
+                return isPositiveInt(value) ? +value : 0;
+            }
+
+            function computeValueForGPSummary(n, fieldName) {
+                if (n) {
+                    if (!isPositiveInt(n)) {
+                        alert = true;
+                        n = "?";
+                        message = message + "Please enter a valid number in the " + fieldName + " field. ";
+                        $("#alertId").attr("class", "bg-warning");
+                        $("#alertId").removeAttr("hidden");
+                        $("#alertId").text(message);
+                    }                    
+                }
+                else {
+                    n = "?";
+                }
+
+                return n;
+            }
+
+            var totalPregnancies = computeValueForGPSummary($('#History_TotalPregnancies').val(), "Total Pregnancies");
+            var termBirths = computeValueForGPSummary($('#History_TermBirths').val(), "Term Births");
+            var pretermBirths = computeValueForGPSummary($('#History_PretermBirths').val(), "Preterm Births");
+            var stillBirths = computeValueForGPSummary($('#History_StillBirths').val(), "Stillbirths");
+            var spontaneousAbortions = computeValueForGPSummary($('#History_SpontaneousAbortions').val(), "Spontaneous Abortions");
+            var pregnancyTerminations = computeValueForGPSummary($('#History_PregnancyTerminations').val(), "Pregnancy Terminations");
+            var ectopicPregnancies = computeValueForGPSummary($('#History_EctopicPregnancies').val(), "Ectopic Pregnancies");
+            var livingChildren = computeValueForGPSummary($('#History_LivingChildren').val(), "Living Children");
 
             //compute element 3 of parity
             var element3 = 0;
-            var spontaneousAbortions = $('#History_SpontaneousAbortions').val();
-            if (spontaneousAbortions) {
-                element3 = +spontaneousAbortions;
-            }
-            var pregnancyTerminations = $('#History_PregnancyTerminations').val();
-            if (pregnancyTerminations) {
-                element3 += +pregnancyTerminations;
-            }
-            var ectopicPregnancies = $('#History_EctopicPregnancies').val();
-            if (ectopicPregnancies) {
-                element3 += +ectopicPregnancies;
-            }
-            if (!spontaneousAbortions && !pregnancyTerminations && !ectopicPregnancies) {
+            if (spontaneousAbortions === '?' && pregnancyTerminations === '?' && ectopicPregnancies === '?') {
                 element3 = '?';
+            }
+            else {
+                element3 = intValue(spontaneousAbortions) + intValue(pregnancyTerminations) + intValue(ectopicPregnancies);
             }
 
             var gravidity = 'G' + totalPregnancies;
-            var parity = 'P' + termBirths + pretermBirths + element3 + livingChildren;
-            var result = gravidity + ' ' + parity;     
+            var parity = 'P' + termBirths + '-' + pretermBirths + '-' + element3 + '-' + livingChildren;
+            var result = gravidity + ' ' + parity;
+
+            if (!alert){
+                $("#alertId").attr("hidden", "hidden");
+                $("#alertId").text("");
+            }
             $('#History_GravidaPara').text(result);
         });
 

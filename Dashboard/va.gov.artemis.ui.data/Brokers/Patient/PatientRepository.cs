@@ -379,7 +379,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
 
                 // *** Gravida Para ***
                 if (string.IsNullOrWhiteSpace(command.Patient.GravidaPara))
-                    result.Patient.GravidaPara = "G? P????";
+                    result.Patient.GravidaPara = "G? P?-?-?-?";
                 else
                     result.Patient.GravidaPara = command.Patient.GravidaPara;
 
