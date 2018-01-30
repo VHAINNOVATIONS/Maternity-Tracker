@@ -481,7 +481,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             {
                 //The fields need to be saved even if they have empty values.
                 //If the user decides that a previously saved field has erroneous data
-                //and the new value is unknown, then this should be relflected as such.
+                //and the new value is unknown, then this should be reflected as such.
                 if (newObservation.Value != null)
                 {
                     // *** If we have previous entries ***
