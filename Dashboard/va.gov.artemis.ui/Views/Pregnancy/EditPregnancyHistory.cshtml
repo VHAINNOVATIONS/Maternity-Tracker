@@ -107,7 +107,7 @@
         <div class="col-md-10 col-offset-2">
             <div class="pull-right">
                 <button type="button" class="btn btn-default" onclick="location.href='@Model.ReturnUrl'">Cancel</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary" id="saveBtn">Save</button>
             </div>
         </div>
     </div>
@@ -185,6 +185,10 @@
             if (!alert){
                 $("#alertId").attr("hidden", "hidden");
                 $("#alertId").text("");
+                $("#saveBtn").removeAttr("disabled");
+            }
+            else {
+                $("#saveBtn").attr("disabled", "disabled");
             }
             $('#History_GravidaPara').text(result);
         });

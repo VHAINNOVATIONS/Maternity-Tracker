@@ -479,13 +479,15 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             // *** Loop through all the observations ***
             foreach (Observation newObservation in pregnancyHistory.Observations.Values)
             {
-                if (!string.IsNullOrWhiteSpace(newObservation.Value)) // *** Add if there's something there
+                //The fields need to be saved even if they have empty values.
+                //If the user decides that a previously saved field has erroneous data
+                //and the new value is unknown, then this should be reflected as such.
+                if (newObservation.Value != null)
                 {
                     // *** If we have previous entries ***
                     if (origHist != null)
                     {
                         // *** Compare current with previous and only save if different ***
-
                         string origVal = origHist.GetValue(newObservation.Code);
 
                         if (origVal == null)
