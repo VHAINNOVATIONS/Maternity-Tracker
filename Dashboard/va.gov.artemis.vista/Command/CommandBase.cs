@@ -195,13 +195,14 @@ namespace VA.Gov.Artemis.Vista.Commands
                                 this.Response.Status = RpcResponseStatus.Success;
                                 this.Response.InformationalMessage = piece2;
 
-                                //It's been noticed that the returned response for Clinical Reminders, even though it contains data,
-                                //has its the first line stating otherwise: "0^Entry not found.", meaning that actually there is no
-                                //data in the response. For this particular error case, in order to adjust around the misleading response,
-                                //when we actually do have data, we are removing the first line of the response: "0^Entry not found."
-                                //In order to correct the response in the back-end, the FMTOUT() routine of PXRMFMTO.int file should be
-                                //modified, by overwriting line 0 of the output, otherwise it remains "0^Entry not found." as 
-                                //stated in DSIO12.int, DETAIL() routine.                                
+                                //It's been noticed that the returned response for Clinical Reminders, even though it 
+                                //contains data, has its the first line stating otherwise: "0^Entry not found.", 
+                                //meaning that actually there is no data in the response. For this particular error 
+                                //case, in order to adjust around the misleading response, when we actually do have data,
+                                //we are removing the first line of the response: "0^Entry not found."
+                                //In order to correct the response in the back-end, the FMTOUT() routine of 
+                                //PXRMFMTO.int file should be modified, by overwriting line 0 of the output, otherwise
+                                //it remains unchanged "0^Entry not found.", as stated in DSIO12.int, DETAIL() routine.                                
                                 if (this.Response.Lines.Length > 1)
                                 {
                                     this.Response.InformationalMessage = "Data found.";
