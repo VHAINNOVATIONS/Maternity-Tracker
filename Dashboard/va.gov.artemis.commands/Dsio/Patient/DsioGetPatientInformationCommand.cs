@@ -47,7 +47,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Patient
         /// </summary>
         public override string RpcName
         {
-            get { return "DSIO GET PATIENT INFORMATION"; }
+            get { return "MTD GET PATIENT INFORMATION"; }
         }
 
         protected override void ProcessResponse()

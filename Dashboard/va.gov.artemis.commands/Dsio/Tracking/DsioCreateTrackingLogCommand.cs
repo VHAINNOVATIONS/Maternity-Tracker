@@ -22,7 +22,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Tracking
 
         public override string RpcName
         {
-            get { return "DSIO CREATE TRACKING LOG"; }
+            get { return "MTD CREATE TRACKING LOG"; }
         }
 
         protected override void ProcessResponse()

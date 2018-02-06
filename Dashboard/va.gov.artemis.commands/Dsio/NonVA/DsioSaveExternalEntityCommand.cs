@@ -28,7 +28,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.NonVA
 
         public override string RpcName
         {
-            get { return "DSIO SAVE EXTERNAL ENTITY"; }
+            get { return "MTD SAVE EXTERNAL ENTITY"; }
         }
 
         public void AddCommandArguments(DsioNonVAItem item)

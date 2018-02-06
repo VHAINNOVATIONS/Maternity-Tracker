@@ -51,7 +51,7 @@ namespace VA.Gov.Artemis.Commands.tests.mock
         {
             IRpcBroker broker = MockRpcBrokerFactory.GetOrwuHasKeyBroker(true);
 
-            bool result = TestHasSecurityKeyCommand(broker, "DSIO ADMIN");
+            bool result = TestHasSecurityKeyCommand(broker, "MTD ADMIN");
 
             Assert.IsTrue(result);
         }
@@ -61,7 +61,7 @@ namespace VA.Gov.Artemis.Commands.tests.mock
         {
             IRpcBroker broker = MockRpcBrokerFactory.GetOrwuHasKeyBroker(false);
 
-            bool result = TestHasSecurityKeyCommand(broker, "DSIO ADMIN");
+            bool result = TestHasSecurityKeyCommand(broker, "MTD ADMIN");
 
             Assert.IsFalse(result);
         }
@@ -72,7 +72,7 @@ namespace VA.Gov.Artemis.Commands.tests.mock
 
             OrwuHasKeyCommand command = new OrwuHasKeyCommand(broker);
 
-            command.AddCommandArguments("DSIO ADMIN"); 
+            command.AddCommandArguments("MTD ADMIN"); 
 
             RpcResponse response = command.Execute();
 

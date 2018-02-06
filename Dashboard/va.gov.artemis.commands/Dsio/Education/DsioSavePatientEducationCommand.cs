@@ -22,7 +22,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
 
         public override string RpcName
         {
-            get { return "DSIO SAVE PATIENT EDUCATION"; }
+            get { return "MTD SAVE PATIENT EDUCATION"; }
         }
 
         public void AddCommandArguments(DsioPatientEducationItem item)

@@ -26,7 +26,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Tracking
 
         public override string RpcName
         {
-            get { return "DSIO SELECT LIST"; }
+            get { return "MTD SELECT LIST"; }
         }
 
         private enum CommandOperation { GetList, AddToList }

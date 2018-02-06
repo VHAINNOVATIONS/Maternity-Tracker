@@ -25,7 +25,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
 
         public override string RpcName
         {
-            get { return "DSIO MAKE ADDENDUM"; }
+            get { return "MTD MAKE ADDENDUM"; }
         }
 
         public void AddCommandArguments(string ien, string noteText, string subject, Dictionary<string, string> noteData)

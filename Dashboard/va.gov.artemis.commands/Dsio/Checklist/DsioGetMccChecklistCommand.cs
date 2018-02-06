@@ -22,7 +22,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Checklist
 
         public override string RpcName
         {
-            get { return "DSIO GET MCC CHECKLIST"; }
+            get { return "MTD GET MCC CHECKLIST"; }
         }
 
         public void AddCommandArguments(string ien, int page, int itemsPerPage)

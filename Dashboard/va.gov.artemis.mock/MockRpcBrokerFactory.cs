@@ -280,7 +280,7 @@ namespace VA.Gov.Artemis.UI.Mock
 
             OrwuHasKeyCommand command = new OrwuHasKeyCommand(broker); 
 
-            command.AddCommandArguments("DSIO ADMIN"); 
+            command.AddCommandArguments("MTD ADMIN"); 
 
             AddResponse(broker, data, command);
 

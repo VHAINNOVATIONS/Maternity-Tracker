@@ -27,7 +27,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
 
         public override string RpcName
         {
-            get { return "DSIO GET TIU NOTES"; }
+            get { return "MTD GET TIU NOTES"; }
         }
 
         public void AddCommandArguments(string dfn, string[] noteTitles, string fromDate, string toDate, int page, int itemsPerPage, bool newestToOldest, string ien, string pregIen) 

@@ -94,7 +94,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Observation
         /// </summary>
         public override string RpcName
         {
-            get { return "DSIO GET OBSERVATIONS"; }
+            get { return "MTD GET OBSERVATIONS"; }
         }
 
         //// *** Processes the response data ***

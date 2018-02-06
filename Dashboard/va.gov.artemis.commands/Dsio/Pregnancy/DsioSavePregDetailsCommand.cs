@@ -30,7 +30,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         /// </summary>
         public override string RpcName
         {
-            get { return "DSIO SAVE PREG DETAILS"; }
+            get { return "MTD SAVE PREG DETAILS"; }
         }
 
 //;    DFN = PATIENT IEN

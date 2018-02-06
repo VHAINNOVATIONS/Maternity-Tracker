@@ -24,7 +24,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Checklist
 
         public override string RpcName
         {
-            get { return "DSIO DELETE MCC CHECKLIST"; }
+            get { return "MTD DELETE MCC CHECKLIST"; }
         }
 
         protected override void ProcessResponse()

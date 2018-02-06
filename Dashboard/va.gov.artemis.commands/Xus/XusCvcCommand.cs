@@ -27,7 +27,7 @@ namespace VA.Gov.Artemis.Commands.Xus
         /// <param name="newBroker">An object which allows communication with VistA and implements IRpcBroker</param>
         public XusCvcCommand(IRpcBroker newBroker) : base(newBroker)
         {
-            this.Context = "DSIO GUI CONTEXT";
+            this.Context = "MTD GUI CONTEXT";
         }
 
         public override string RpcName { get { return "XUS CVC";}}

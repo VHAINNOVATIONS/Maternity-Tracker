@@ -76,7 +76,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
 
         public override string RpcName
         {
-            get { return "DSIO GET EDUCATION ITEMS"; }
+            get { return "MTD GET EDUCATION ITEMS"; }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
 
         public override string RpcName
         {
-            get { return "DSIO DDCS GET CONTROL VALUE"; }
+            get { return "MTD DDCS GET CONTROL VALUE"; }
         }
 
         public void AddCommandArguments(string noteIen)

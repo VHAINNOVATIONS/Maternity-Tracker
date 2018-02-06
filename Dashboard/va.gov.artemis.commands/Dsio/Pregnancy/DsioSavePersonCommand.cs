@@ -34,7 +34,7 @@ namespace VA.Gov.Artemis.Commands.Dsio
 
         public override string RpcName
         {
-            get { return "DSIO SAVE PERSON"; }
+            get { return "MTD SAVE PERSON"; }
         }
 
         /// <summary>
