@@ -15,7 +15,7 @@ This project handles most of the processing of CDA (Clinical Document Architectu
 
 --va.gov.artemis.commands 
 
-This project contains commands for interacting with VistA data. Note that installation of a KID file (DSIO) is required. 
+This project contains commands for interacting with VistA data. Note that installation of a KID file (MTD) is required. 
 
 --va.gov.artemis.command.tests 
 

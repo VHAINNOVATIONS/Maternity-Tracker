@@ -7,7 +7,7 @@ using System.Reflection;
 
 // *** Summary of changes ***
 
-// *** 07/03/2016 2.0.0 This release is dependent upon DSIO_1_P5_T9.KID
+// *** 07/03/2016 2.0.0 This release is dependent upon MTD_1_P5_T9.KID
 // ***                   Reorganize IHE documents and sections into folders 
 // ***                   Add values to allergy hl7 intolerance mapping 
 // ***                   Fix typo on OB H&P note selection label 

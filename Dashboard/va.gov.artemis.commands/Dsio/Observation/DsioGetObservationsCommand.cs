@@ -161,9 +161,9 @@ namespace VA.Gov.Artemis.Commands.Dsio.Observation
                     string key = Util.Piece(pc1, ".", 1);
                     string ien = Util.Piece(pc1, ".", 2); 
 
-                    //if (key == "DSIO(19641.112,")
+                    //if (key == "MTD(19641.112,")
                     //    observation.BabyIen = val;
-                    //else if (key == "DSIO(19641.13,")
+                    //else if (key == "MTD(19641.13,")
                     //    observation.PregnancyIen = val;
                     if (key == "PG")
                         this.workingObservation.PregnancyIen = ien;
@@ -187,7 +187,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Observation
 
                     //if (key == "TIU(8925,")
                     //    this.workingObservation.NoteIen = val;
-                    //else if (key == "DSIO(19641.6,")
+                    //else if (key == "MTD(19641.6,")
                     //    this.workingObservation.ExchangeDocumentIen = val;
 
                     string key = Util.Piece(item, ".", 1);

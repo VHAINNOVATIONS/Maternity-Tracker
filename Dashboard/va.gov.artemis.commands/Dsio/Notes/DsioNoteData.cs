@@ -59,7 +59,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
             //foreach (string key in this.Keys)
             //    returnList.Add(string.Format("{0}^{1}^{2}^{3}^{4}", "S", key.ToUpper(), key.ToUpper(),"", this[key]));
 
-            // *** Changes for DSIO_DDCS_2_T1.KID
+            // *** Changes for MTD_DDCS_2_T1.KID
             //CONTROL^(INDEXED^VALUE)
 
             foreach (string key in this.Keys)

@@ -202,7 +202,7 @@ namespace VA.Gov.Artemis.Vista.Commands
                                 //we are removing the first line of the response: "0^Entry not found."
                                 //In order to correct the response in the back-end, the FMTOUT() routine of 
                                 //PXRMFMTO.int file should be modified, by overwriting line 0 of the output, otherwise
-                                //it remains unchanged "0^Entry not found.", as stated in DSIO12.int, DETAIL() routine.                                
+                                //it remains unchanged "0^Entry not found.", as stated in MTD12.int, DETAIL() routine.                                
                                 if (this.Response.Lines.Length > 1)
                                 {
                                     this.Response.InformationalMessage = "Data found.";
