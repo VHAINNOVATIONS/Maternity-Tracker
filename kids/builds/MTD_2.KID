@@ -36365,7 +36365,7 @@ MTD TRIGGER CONSULTS^19641.35
 "^DIC",19641.35,19641.35,"%D",0)
 ^1.001^2^2^3160803^^^^
 "^DIC",19641.35,19641.35,"%D",1,0)
-In order to have MTD trigger off of a consult then that consult must be 
+In order to have MTD TRIGGER off of a consult then that consult must be 
 "^DIC",19641.35,19641.35,"%D",2,0)
 entered here.
 "^DIC",19641.35,"B","MTD TRIGGER CONSULTS",19641.35)

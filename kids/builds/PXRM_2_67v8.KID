@@ -1263,7 +1263,7 @@ PPC(DFN,TEST,DATE,DATA,TEXT)  ;Computed findings for Period of Purple Crying cou
 "RTN","PXRMCWH",166,0)
  ;Using existing code to return Estimated Delivery date
 "RTN","PXRMCWH",167,0)
- ;PREGG^DSIO10(.RET,DFN,IEN) returns EDD in 8th piece
+ ;PREGG^MTD10(.RET,DFN,IEN) returns EDD in 8th piece
 "RTN","PXRMCWH",168,0)
  ;
 "RTN","PXRMCWH",169,0)
@@ -1271,7 +1271,7 @@ PPC(DFN,TEST,DATE,DATA,TEXT)  ;Computed findings for Period of Purple Crying cou
 "RTN","PXRMCWH",170,0)
  S RET="",NFOUND="",TEXT="",TEST=0,IEN="C",PREGNANT=1
 "RTN","PXRMCWH",171,0)
- D PREGG^DSIO15(.RET,IEN,DFN)
+ D PREGG^MTD15(.RET,IEN,DFN)
 "RTN","PXRMCWH",172,0)
  I @RET@(0)="0^Nothing found." S TEST=0,NFOUND="PATIENT IS NOT PREGNANT",PREGNANT=0 Q
 "RTN","PXRMCWH",173,0)
