@@ -144,7 +144,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
                    Assert.AreEqual(RpcResponseStatus.Success, response.Status);
 
-                   Debug.WriteLine("Return from DSIO GET NOTE ELEMENT...");
+                   Debug.WriteLine("Return from MTD GET NOTE ELEMENT...");
                    Debug.WriteLine(response.Data); 
 
                    string val = "";

@@ -35,7 +35,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.NonVA
         {
 
             // Input Parameter are now IEN, NAME, TYP, ACT, PCON, ADDR, and PHONE where ADDR and PHONE 
-            //are lists used like DSIO SAVE PERSON with the exception of FAX as the fourth entry for PHONE.
+            //are lists used like MTD SAVE PERSON with the exception of FAX as the fourth entry for PHONE.
 
 //IEN,NAME,TYP,ACT,PCON,ADDR,PHONE
 //;  ADDR = ARRAY OF LABELS: 1,2,3,CITY,STATE,ZIP

@@ -12,7 +12,7 @@ using VA.Gov.Artemis.Vista.Utility;
 namespace VA.Gov.Artemis.Commands.Dsio.Notes
 {
     /// <summary>
-    /// Command to interact with DSIO DDCS GET CONTROL VALUE RPC
+    /// Command to interact with MTD DDCS GET CONTROL VALUE RPC
     /// </summary>
     public class DsioDdcsGetControlValue: DsioCommand
     {

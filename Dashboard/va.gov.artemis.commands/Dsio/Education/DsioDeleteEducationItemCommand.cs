@@ -42,8 +42,8 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
                 if (piece1 == "-1")
                     switch (piece2)
                     {
-                        case "CANNOT DELETE THIS ITEM SINCE IT IS LINKED TO THE DSIO MCC PATIENT CHECKLIST":
-                        case "CANNOT DELETE THIS ITEM SINCE IT IS LINKED TO THE DSIO MCC CHECKLIST":
+                        case "CANNOT DELETE THIS ITEM SINCE IT IS LINKED TO THE MTD MCC PATIENT CHECKLIST":
+                        case "CANNOT DELETE THIS ITEM SINCE IT IS LINKED TO THE MTD MCC CHECKLIST":
                             this.Response.InformationalMessage = "This item cannot be deleted because it is in use";
                             break;
                     }

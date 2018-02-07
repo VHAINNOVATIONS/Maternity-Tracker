@@ -39,7 +39,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
         }
 
         /// <summary>
-        /// Gets the parameter as expected by DSIO RPC's
+        /// Gets the parameter as expected by MTD RPC's
         /// </summary>
         /// <returns>A string array which can be passed to VistA RPC's</returns>
         public string[] ToParameter()

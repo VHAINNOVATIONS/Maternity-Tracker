@@ -63,7 +63,7 @@ This project contains tests for the VistA project
 
 ## Dependencies 
 
-The dashboard's primary dependency is on the DSIO routines found in the KID files. 
+The dashboard's primary dependency is on the MTD routines found in the KID files. 
 
 ## Configuration 
 

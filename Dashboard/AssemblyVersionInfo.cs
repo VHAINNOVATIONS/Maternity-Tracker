@@ -25,7 +25,7 @@ using System.Reflection;
 // ***                   Create unknown medications item if no medications found in VPR result for IHE documents 
 // ***                   XDR-I: Allow user to create an XDR-I document per IHE specifications 
 // ***                   Modify cda.cs to ensure that mediaType is present for XDR-I document 
-// *** 07/11/2016 2.0.1  This release is dependent upon KID build DSIO P5 T11
+// *** 07/11/2016 2.0.1  This release is dependent upon KID build MTD P5 T11
 // ***                   IHE: Correct error message if intended recipient data is not entered
 // ***                   PPVS: Add Labor & Delivery Events section
 // ***                   IHE: Allow Cda Observations to be created from POCD observations for data import 
@@ -42,11 +42,11 @@ using System.Reflection;
 // ***                   APS: Add effective time to EDD observations 
 // ***                   Make sure IHE exchange document IEN is saved with the observations 
 // ***                   PPVS: Add LOINC code to Delivery Details Provider (Attending Physician) 
-// *** 07/19/2016 2.0.2  This release is dependent upon KID build DSIO P5 T12                   
+// *** 07/19/2016 2.0.2  This release is dependent upon KID build MTD P5 T12                   
 // ***                   Display outcomes pie chart on dashboard page
 // ***                   Allow date range for outcomes pie chart to be set by the user 
 // ***                   Allow fileman date hours value to be 24 and bump day accordingly 
-// *** 07/22/2016 2.0.3  This release is dependent upon KID build DSIO P5 T15
+// *** 07/22/2016 2.0.3  This release is dependent upon KID build MTD P5 T15
 // ***                   Correct Date/Time not appearing in APS Allergies if the allergy is active 
 // ***                   Correct an error which occurred when importing an item that has no discrete data elements to import 
 // ***                   Correct the observation code for anesthesia consult planned and type of anesthesia 
@@ -55,7 +55,7 @@ using System.Reflection;
 // ***                   Correct "Social History" narrative observation translation 
 // ***                   Modify pregnancy outcome translation from preg history RPC
 // ***                   Modify start date from preg history RPC to use 1/1/1900 when getting all data 
-// *** 07/25/2016 2.0.4  This release is dependent upon KID build DSIO P5 T16
+// *** 07/25/2016 2.0.4  This release is dependent upon KID build MTD P5 T16
 // ***                   Change CdaCode SNOMED-CT description 
 // ***                   Set CdaCode.DisplayName to "" to avoid null references 
 // ***                   Allow SNOMED CT to be parsed by CdaUtility to determine coding system 
@@ -64,7 +64,7 @@ using System.Reflection;
 // ***                   Make sure latex allergy appears on APHP document 
 // ***                   Use "low" date for latex allergy observation since it is active 
 // ***                   Set latex allergy negation properly in history of past illness section 
-// *** 07/27/2016 2.0.5  This release is dependent upon KID build DSIO P5 T16
+// *** 07/27/2016 2.0.5  This release is dependent upon KID build MTD P5 T16
 // ***                   PPVS: Make sure that Newborn Delivery Info section is always included 
 // ***                   IHE: Make sure physical exam subsection observations are always included (data) 
 // ***                   NDS: Correct Newborn Delivery Info discrete data import 
@@ -74,7 +74,7 @@ using System.Reflection;
 // ***                   XDR-I: Don't crash if two different reports have the exact same date/time. Use date/time + procedure as "key"
 // ***                   IHE: Correct social history section observations to always have "code" 
 // ***                   APS: Make sure that the antepartum visit summary flow sheet always has the proper value 
-// *** 07/29/2016 2.0.6  This release is dependent upon KID build DSIO P5 T18
+// *** 07/29/2016 2.0.6  This release is dependent upon KID build MTD P5 T18
 // ***                   PPVS: Make sure the Postpartum Hospitalization Treatment section appears
 // ***                   PPVS: Make sure the postpartum complications are shown in the L&D events section 
 // ***                   PPVS: Make sure discharge diet appears in the Postpartum Hospitalization Treatment section 
@@ -84,19 +84,19 @@ using System.Reflection;
 // ***                   PPVS: Make sure the Mother Discharge Date appears in the L&D events section properly
 // ***                   PPVS: Make sure the Pediatrician Name appears in the Newborn Care Plan section  
 // ***                   IHE: Check that observations are created properly before adding them to the document to prevent null reference errors
-// *** 08/18/2016 2.0.7  This release is dependent upon KID build DSIO P8 T1
+// *** 08/18/2016 2.0.7  This release is dependent upon KID build MTD P8 T1
 // ***                   Do not show an error if the imported IHE document contains more than 100 rows of data
 // ***                   Correct the code for the GA observation to 11884-4
 // ***                   Make sure all pages have a title 
-// ***                   Rename Date to ExamDate in DSIO OBSERVATION
-// ***                   Rename LastModified to EntryDate in DSIO OBSERVATION
+// ***                   Rename Date to ExamDate in MTD OBSERVATION
+// ***                   Rename LastModified to EntryDate in MTD OBSERVATION
 // ***                   Rename ObservationDate to ExamDate in OBSERVATION
 // ***                   Add EntryDate to OBSERVATION 
 // ***                   Use EntryDate, which maps to Last Modified in Vista, for observations in IHE documents
 // ***                   Use ExamDate, which maps to Date in Vista, for flowsheet observations in APS
 // ***                   Make sure APS flowsheet observations are sorted by exam date
 // ***                   Correct import of EDD observations from APS document 
-// *** 09/14/2016 2.0.8  This release is dependent upon KID build DSIO 2
+// *** 09/14/2016 2.0.8  This release is dependent upon KID build MTD 2
 // ***                   Mods for making public + adding to GitHub
 // ***                   Solution moved to VS 2015
 // ***                   Show friendly message if an individual line within a note has more than 999 characters. 
@@ -109,22 +109,22 @@ using System.Reflection;
 // ***                   Update Text4Baby API passwords
 // ***                   Remove unneeded references to Microsoft.Web.MVC
 // ***                   Ensure patient's date of birth uses a nullFlavor of "UNK" in the IHE documents
-// *** 11/11/2016 2.0.9  This release is dependent upon KID build DSIO 2
+// *** 11/11/2016 2.0.9  This release is dependent upon KID build MTD 2
 // ***                   Add "hard" word wrap to note entry box such that CRLFs are added automatically when wrapping text.  This prevents 999 chars from appearing on one line
 // ***                   Correct MDS document template ID 
 // ***                   Correct MDS data extraction to use section LOINC code instead of template id 
 // ***                   Load pregnancies if an error occurs in note save so that pregnancies selection still works 
 // ***                   Add label to outcomes bar chart tooltips
-// *** 12/27/2016 2.0.10 This release is dependent upon KID build DSIO 2 P5 T1
+// *** 12/27/2016 2.0.10 This release is dependent upon KID build MTD 2 P5 T1
 // ***                   Only complete checklist item for contact notes for the specific pregnancy associated with the note. 
 // ***                   Exclude private files from project 
 // ***                   Correct issue when retrieving pregnancy history observation data 
 // ***                   Refactor tests to make configurable 
-// *** 01/06/2017 2.0.11 This release is dependent upon KID build DSIO 2 P6 T1
+// *** 01/06/2017 2.0.11 This release is dependent upon KID build MTD 2 P6 T1
 // ***                   Use Station Number to properly select division
-// *** 02/02/2017 3.0.0  This release is dependent upon KID build DSIO 3
+// *** 02/02/2017 3.0.0  This release is dependent upon KID build MTD 3
 // ***                   Update version to 3.0.0.0
-// *** 04/21/2017 3.0.1  This release is dependent upon KID build DSIO 3
+// *** 04/21/2017 3.0.1  This release is dependent upon KID build MTD 3
 // ***                   Add code attribution headers for OSEHRA Technical Journal submission
 
 [assembly: AssemblyFileVersion("3.0.1.0")]

@@ -100,7 +100,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
         private DsioLinkedPerson GetDsioPerson(string patientDfn, Person person)
         {
-            // *** Gets DSIO person from FOF ***
+            // *** Gets MTD person from FOF ***
 
             DsioLinkedPerson dsioFof = new DsioLinkedPerson();
 
