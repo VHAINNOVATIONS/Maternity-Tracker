@@ -723,7 +723,9 @@ namespace VA.Gov.Artemis.UI.Controllers
                         PregnancyResult pregResult = this.DashboardRepository.Pregnancy.GetCurrentPregnancy(model.Patient.Dfn);
 
                         if (!pregResult.Success)
+                        {
                             this.Error(pregResult.Message);
+                        }
                         else
                         {
                             PregnancyDetails updatedPreg = pregResult.Pregnancy;
@@ -731,7 +733,9 @@ namespace VA.Gov.Artemis.UI.Controllers
                             model.OutcomeDate = VistaDates.StandardizeDateFormat(model.OutcomeDate);
 
                             if (string.IsNullOrWhiteSpace(model.OutcomeDate))
+                            {
                                 this.Error("Please enter a valid outcome date");
+                            }
                             else
                             {
                                 // *** Update end date ***
@@ -740,7 +744,9 @@ namespace VA.Gov.Artemis.UI.Controllers
                                 BrokerOperationResult saveResult = this.DashboardRepository.Pregnancy.SavePregnancy(updatedPreg);
 
                                 if (!saveResult.Success)
+                                {
                                     this.Error(saveResult.Message);
+                                }
                                 else
                                 {
                                     //List<DsioObservation> outcomeList = ObservationsFactory.CreateOutcomeObservations(model.Patient.Dfn, model.OutcomeType, model.OutcomeDate, updatedPreg.Ien);
@@ -751,8 +757,18 @@ namespace VA.Gov.Artemis.UI.Controllers
                                     //    this.Error(saveResult.Message);
                                     //else
                                     goToOutcome = true;
-                                    pregIen = updatedPreg.Ien; 
+                                    pregIen = updatedPreg.Ien;
                                     success = true;
+
+                                    bool pregnancyValue = model.NewPregnancyStatusVal.Value;
+                                    string patientDfn = model.Patient.Dfn;
+
+                                    BrokerOperationResult saveResult2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(updatedPreg, patientDfn, pregnancyValue, "0", new DateTime());
+
+                                    if (!saveResult2.Success)
+                                    {
+                                        this.Error(saveResult2.Message);
+                                    }
                                 }
                             }
                         }
@@ -770,13 +786,38 @@ namespace VA.Gov.Artemis.UI.Controllers
                             this.Error(result.Message);
                         else
                         {
-                            success = true;
+                            success = true;                           
 
                             // *** Update next checklist due ***
                             BrokerOperationResult nextResult = this.DashboardRepository.Patients.SaveNextChecklistDue(model.Patient.Dfn, DateTime.MinValue);
 
+                            PregnancyResult pregResult2 = this.DashboardRepository.Pregnancy.GetCurrentPregnancy(model.Patient.Dfn);
+                            if (!pregResult2.Success)
+                            {
+                                this.Error(pregResult2.Message);
+                            }
+                            else
+                            {
+                                PregnancyDetails updatedPreg = pregResult2.Pregnancy;
+                                bool pregnancyValue = model.NewPregnancyStatusVal.Value;
+                                string patientDfn = model.Patient.Dfn;
+                                string LMP = "0";
+                                if (newPreg.Lmp != null)
+                                {
+                                    newPreg.Lmp = newPreg.Lmp;
+                                }                                
+                                DateTime EDD = newPreg.EDD;
+                                BrokerOperationResult result2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(updatedPreg, patientDfn, pregnancyValue, LMP, EDD);
+                                if (!result2.Success)
+                                {
+                                    this.Error(result2.Message);
+                                }
+                            }
+
                             if (!result.Success)
+                            {
                                 this.Error("Could not update next checklist due date");
+                            }                                
                         }
                     }
                 }

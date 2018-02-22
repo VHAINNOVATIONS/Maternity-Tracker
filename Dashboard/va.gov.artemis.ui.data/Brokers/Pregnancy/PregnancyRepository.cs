@@ -145,7 +145,6 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
         public IenResult SavePregnancy(PregnancyDetails pregnancy)
         {
             // *** Saves pregnancy data ***
-
             IenResult result = new IenResult();
 
             // *** Create the dsio pregnancy string data ***
@@ -153,20 +152,44 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
             // *** Create RPC command ***
             DsioSavePregDetailsCommand command = new DsioSavePregDetailsCommand(this.broker);
-
             // *** Add command arguments ***
             command.AddCommandArguments(dsioPregnancy, false);
-
             // *** Execute the command ***
             RpcResponse response = command.Execute();
-
             // *** Add response data to result ***
             result.SetResult(response.Status == RpcResponseStatus.Success, response.InformationalMessage);
 
             if (result.Success)
-                result.Ien = command.Ien; 
+            {
+                result.Ien = command.Ien;
+            }
 
             return result; 
+        }
+
+        public IenResult SavePregnancyToDifferentNamespace(PregnancyDetails pregnancy, string patientDfn, bool pregnancyValue, string LMP, DateTime EDD)
+        {
+            // *** Saves pregnancy data ***
+            IenResult result2 = new IenResult();
+
+            // *** Create the dsio pregnancy string data ***
+            DsioPregnancy dsioPregnancy = CreateDsioPregnancy(pregnancy);
+
+            // *** Create RPC command ***
+            DsioSavePregDetailsToOtherNamespaceCommand commandToDifferentNamespace = new DsioSavePregDetailsToOtherNamespaceCommand(this.broker);
+            // *** Add command arguments ***
+            commandToDifferentNamespace.AddCommandArguments(dsioPregnancy, patientDfn, pregnancyValue, LMP, EDD);
+            // *** Execute the command ***
+            RpcResponse response2 = commandToDifferentNamespace.Execute();
+            // *** Add response data to result ***
+            result2.SetResult(response2.Status == RpcResponseStatus.Success, response2.InformationalMessage);
+
+            if (result2.Success)
+            {
+                result2.Ien = commandToDifferentNamespace.Ien;
+            }
+
+            return result2;
         }
 
         /// <summary>
@@ -558,7 +581,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             dsioPregnancy.Anesthesia = pregnancy.Anesthesia;
             dsioPregnancy.PretermDelivery = pregnancy.PretermDelivery;
             dsioPregnancy.Outcome = pregnancy.Outcome;
-            dsioPregnancy.Comment = pregnancy.Comment; 
+            dsioPregnancy.Comment = pregnancy.Comment;
 
             return dsioPregnancy;
         }
@@ -763,11 +786,12 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
                         if (okToAdd) 
                         {
-                            // *** Create the save command ***
-                            DsioSavePregDetailsCommand saveCommand = new DsioSavePregDetailsCommand(this.broker);
+                        // *** Create the save command ***
+                        DsioSavePregDetailsCommand saveCommand = new DsioSavePregDetailsCommand(this.broker);
+                        //DsioSavePregDetailsToOtherNamespaceCommand saveCommand = new DsioSavePregDetailsToOtherNamespaceCommand(this.broker);
 
-                            // *** Create the dsio pregnancy ***
-                            DsioPregnancy dsioPreg = CreateDsioPregnancy(pregDetail);
+                        // *** Create the dsio pregnancy ***
+                        DsioPregnancy dsioPreg = CreateDsioPregnancy(pregDetail);
 
                             // *** Add the command arguments, addBaby = true ***
                             saveCommand.AddCommandArguments(dsioPreg, true);
