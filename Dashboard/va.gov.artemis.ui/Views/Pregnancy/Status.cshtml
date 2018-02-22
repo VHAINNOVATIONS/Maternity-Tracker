@@ -28,7 +28,7 @@
                 <tbody>
                     <tr class="centered-txt">
                         <th  scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OriginalPregnancyStatusDescription, "Current Pregnancy Status:")</th>
-                        <td style="vertical-align: middle">@Model.OriginalPregnancyStatusDescription</td>
+                        <td id="pregStat" style="vertical-align: middle">@Model.OriginalPregnancyStatusDescription</td>
                     </tr>
                     <tr class="centered-txt">
                         <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.NewPregnancyStatus, "Today's Pregnancy Status:")</th>
@@ -37,9 +37,21 @@
 
                     @if (Model.Patient.Pregnant)
                     {
-                        <tr class="centered-txt" id="outcome-date-row" style="display: none">
+                        <tr class="centered-txt" id="outcome-row" style="display: none">
                             <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDate, "Outcome/Delivery Date:")</th>
-                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.OutcomeDate, new { @class = "form-control" })</td>
+                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.OutcomeDate, new { @class = "form-control", id = "outcome-date" })</td>
+                        </tr>
+                    }
+
+                    @if (!Model.Patient.Pregnant)
+                    {
+                        <tr class="centered-txt" id="EDD-row" style="display: none">
+                            <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.EDD, "Estimated Delivery Date:")</th>
+                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.EDD, new { @class = "form-control", id = "EDD-date" })</td>
+                        </tr>
+                        <tr class="centered-txt" id="LMP-row" style="display: none">
+                            <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.LMP, "Last Menstrual Period:")</th>
+                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.LMP, new { @class = "form-control", id = "LMP-date" })</td>
                         </tr>
                     }
                 </tbody>
@@ -47,7 +59,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="pull-right">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" id="save-button" class="btn btn-primary" disabled="disabled">Save</button>
                         @{string returnUrl = (string.IsNullOrWhiteSpace(Model.ReturnUrl)) ? Url.Action("Summary", "Patient", new { @dfn = Model.Patient.Dfn }) : Model.ReturnUrl;}
                         <button type="button" class="btn btn-default" onclick="location.href='@returnUrl'">Cancel</button>
                     </div>
@@ -69,18 +81,63 @@
                 updateVisibility();
             });
 
+            $("#EDD-date").change(function () {
+                updateSaveButton();
+            });
+
+            $("#LMP-date").change(function () {
+                updateSaveButton();
+            });
+
+            $("#outcome-date").change(function () {
+                updateSaveButton();
+            });
+
             function updateVisibility() {
                 var sel = $("#NewPregnancyStatus").val();
                 if ((sel == "False") && ($("#Patient_Pregnant").val() == "True")) {
                     $("#outcome-row").show();
-                    $("#outcome-date-row").show();
                 }
                 else {
                     $("#outcome-row").hide();
-                    $("#outcome-date-row").hide();
+                }
+
+                if ((sel == "True") && ($("#Patient_Pregnant").val() == "False")) {
+                    $("#EDD-row").show();
+                    $("#LMP-row").show();
+                }
+                else {
+                    $("#EDD-row").hide();
+                    $("#LMP-row").hide();
                 }
             };
 
+            function validFields() {
+                var valid = true;
+
+                var validOutcome = true;
+                var validEDD = true;
+                var validLMP = true;               
+
+                if ($("#Patient_Pregnant").val() == "True"){
+                    validOutcome = $("#outcome-date").val() != "";
+                }
+                else {
+                    validEDD = $("#EDD-date").val() != "";
+                    validLMP = $("#LMP-date").val() != "";
+                }
+                
+                return validOutcome && validEDD && validLMP;
+            };
+
+            function updateSaveButton() {
+                if (validFields()) {
+                    $("#save-button").removeAttr("disabled");
+                }
+                else {
+                    $("#save-button").attr("disabled", "disabled");
+                }
+            };
         });
     </script>
 }
