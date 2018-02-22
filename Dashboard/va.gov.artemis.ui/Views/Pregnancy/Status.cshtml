@@ -20,8 +20,10 @@
     @Html.HiddenFor(m => m.Patient.Dfn);
     @Html.HiddenFor(m => m.Patient.Pregnant);
 
-    string newStatus = (Model.Patient.Pregnant) ? "Not Pregnant" : "Pregnant"; 
-    
+    string newStatus = (Model.Patient.Pregnant) ? "Not Pregnant" : "Pregnant";
+
+    <p class="bg-warning" id="alertId" hidden="hidden" style="padding: 16px; margin-bottom: 20px"></p>
+
     <div class="row">
         <div class="col-md-6">
             <table class="table table-bordered table-expanded table-horizontal">
@@ -114,25 +116,56 @@
 
             function validFields() {
                 var valid = true;
-
-                var validOutcome = true;
-                var validEDD = true;
-                var validLMP = true;               
-
                 if ($("#Patient_Pregnant").val() == "True"){
-                    validOutcome = $("#outcome-date").val() != "";
+                    valid = validateOutcomeDate();
                 }
                 else {
-                    validEDD = $("#EDD-date").val() != "";
-                    validLMP = $("#LMP-date").val() != "";
+                    valid = validateLMPEDD();
                 }
                 
-                return validOutcome && validEDD && validLMP;
+                return valid;
+            };
+
+            function validateOutcomeDate() {
+                var validOutcome = $("#outcome-date").val() != "";
+
+                var message = "";
+                if (!validOutcome) {
+                    message = "Please enter value in Outcome/Delivery Date field. ";
+                    $("#alertId").attr("class", "bg-warning");
+                    $("#alertId").removeAttr("hidden");
+                    $("#alertId").text(message);
+                }
+
+                return validOutcome;
+            };
+
+            function validateLMPEDD() {
+                var validEDD = $("#EDD-date").val() != "";
+                var validLMP = $("#LMP-date").val() != "";
+
+                var message = "";
+                if (!validEDD){
+                    message = message + "Please enter value in EDD field. ";
+                }
+                if (!validLMP) {
+                    message = message + "Please enter value in LMP field. ";
+                }
+
+                if (!(validEDD && validLMP)) {
+                    $("#alertId").attr("class", "bg-warning");
+                    $("#alertId").removeAttr("hidden");
+                    $("#alertId").text(message);
+                }
+
+                return validEDD && validLMP;
             };
 
             function updateSaveButton() {
                 if (validFields()) {
                     $("#save-button").removeAttr("disabled");
+                    $("#alertId").attr("hidden", "hidden");
+                    $("#alertId").text("");
                 }
                 else {
                     $("#save-button").attr("disabled", "disabled");
