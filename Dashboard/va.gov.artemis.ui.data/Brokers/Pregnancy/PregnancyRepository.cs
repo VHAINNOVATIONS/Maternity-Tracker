@@ -167,7 +167,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             return result; 
         }
 
-        public IenResult SavePregnancyToDifferentNamespace(PregnancyDetails pregnancy, string patientDfn, bool pregnancyValue, string LMP, DateTime EDD)
+        public IenResult SavePregnancyToDifferentNamespace(PregnancyDetails pregnancy, string patientDfn, bool pregnancyValue)
         {
             // *** Saves pregnancy data ***
             IenResult result2 = new IenResult();
@@ -178,7 +178,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             // *** Create RPC command ***
             DsioSavePregDetailsToOtherNamespaceCommand commandToDifferentNamespace = new DsioSavePregDetailsToOtherNamespaceCommand(this.broker);
             // *** Add command arguments ***
-            commandToDifferentNamespace.AddCommandArguments(dsioPregnancy, patientDfn, pregnancyValue, LMP, EDD);
+            commandToDifferentNamespace.AddCommandArguments(dsioPregnancy, patientDfn, pregnancyValue);
             // *** Execute the command ***
             RpcResponse response2 = commandToDifferentNamespace.Execute();
             // *** Add response data to result ***
@@ -582,6 +582,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             dsioPregnancy.PretermDelivery = pregnancy.PretermDelivery;
             dsioPregnancy.Outcome = pregnancy.Outcome;
             dsioPregnancy.Comment = pregnancy.Comment;
+            dsioPregnancy.Lmp = pregnancy.Lmp;
 
             return dsioPregnancy;
         }

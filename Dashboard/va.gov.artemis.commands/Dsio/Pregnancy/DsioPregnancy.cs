@@ -35,8 +35,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         public string HighRiskDetails { get; set; }
 
         // TODO: Add to repository/UI if needed...
-        public string Comment { get; set; }
-
+        public string Comment { get; set; }        
         public List<DsioBaby> Babies { get; set; }
 
         public DsioPregnancy()
@@ -52,5 +51,6 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         public string Anesthesia { get; set; }
         public string PretermDelivery { get; set; }
         public string Outcome { get; set; }
+        public string Lmp { get; set; }
     }
 }

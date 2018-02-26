@@ -37,7 +37,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         /// Call prior to calling "Execute"
         /// </summary>
         /// <param name="pregnancy"></param>
-        public void AddCommandArguments(DsioPregnancy pregnancy, string patientDfn, bool isPatientPregnant, string LMPvalue, DateTime EDDvalue)
+        public void AddCommandArguments(DsioPregnancy pregnancy, string patientDfn, bool isPatientPregnant)
         {
             //(1) = PATIENT = 3
             //(2) = ABLE TO CONCEIVE = Yes
@@ -64,16 +64,12 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
             termsList.Add(pregnant);
             if (isPatientPregnant)
             {
-                if (LMPvalue == null)
-                {
-                    LMPvalue = "0";
-                }
-                var LMP = "LAST MENSTRUAL PERIOD DATE=";
-                LMP = LMP + LMPvalue;
+                string LMPvalue = pregnancy.Lmp;      
+                var LMP = "LAST MENSTRUAL PERIOD DATE=" + VistaDates.CenturyDateFormat(LMPvalue);
                 termsList.Add(LMP);
 
-                var EDD = "EXPECTED DUE DATE=";
-                EDD = EDD + EDDvalue.Ticks;
+                string EDDvalue = pregnancy.EDD;
+                var EDD = "EXPECTED DUE DATE=" + VistaDates.CenturyDateFormat(EDDvalue);
                 termsList.Add(EDD);
             }
 

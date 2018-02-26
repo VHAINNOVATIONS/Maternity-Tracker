@@ -762,8 +762,10 @@ namespace VA.Gov.Artemis.UI.Controllers
 
                                     bool pregnancyValue = model.NewPregnancyStatusVal.Value;
                                     string patientDfn = model.Patient.Dfn;
+                                    string LMP = model.LMP;
+                                    string EDD = model.EDD;
 
-                                    BrokerOperationResult saveResult2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(updatedPreg, patientDfn, pregnancyValue, "0", new DateTime());
+                                    BrokerOperationResult saveResult2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(updatedPreg, patientDfn, pregnancyValue);
 
                                     if (!saveResult2.Success)
                                     {
@@ -778,6 +780,8 @@ namespace VA.Gov.Artemis.UI.Controllers
                     {
                         PregnancyDetails newPreg = new PregnancyDetails();
                         newPreg.PatientDfn = model.Patient.Dfn;
+                        newPreg.EDD = DateTime.Parse(model.EDD);
+                        newPreg.Lmp = model.LMP;
                         newPreg.RecordType = PregnancyRecordType.Current;
 
                         BrokerOperationResult result = this.DashboardRepository.Pregnancy.SavePregnancy(newPreg);
@@ -791,27 +795,12 @@ namespace VA.Gov.Artemis.UI.Controllers
                             // *** Update next checklist due ***
                             BrokerOperationResult nextResult = this.DashboardRepository.Patients.SaveNextChecklistDue(model.Patient.Dfn, DateTime.MinValue);
 
-                            PregnancyResult pregResult2 = this.DashboardRepository.Pregnancy.GetCurrentPregnancy(model.Patient.Dfn);
-                            if (!pregResult2.Success)
+                            bool pregnancyValue = model.NewPregnancyStatusVal.Value;
+                            string patientDfn = model.Patient.Dfn;                                
+                            BrokerOperationResult result2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(newPreg, patientDfn, pregnancyValue);
+                            if (!result2.Success)
                             {
-                                this.Error(pregResult2.Message);
-                            }
-                            else
-                            {
-                                PregnancyDetails updatedPreg = pregResult2.Pregnancy;
-                                bool pregnancyValue = model.NewPregnancyStatusVal.Value;
-                                string patientDfn = model.Patient.Dfn;
-                                string LMP = "0";
-                                if (newPreg.Lmp != null)
-                                {
-                                    newPreg.Lmp = newPreg.Lmp;
-                                }                                
-                                DateTime EDD = newPreg.EDD;
-                                BrokerOperationResult result2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(updatedPreg, patientDfn, pregnancyValue, LMP, EDD);
-                                if (!result2.Success)
-                                {
-                                    this.Error(result2.Message);
-                                }
+                                this.Error(result2.Message);
                             }
 
                             if (!result.Success)
