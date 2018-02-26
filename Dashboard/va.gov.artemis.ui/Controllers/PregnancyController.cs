@@ -6,11 +6,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
-using VA.Gov.Artemis.Commands.Dsio.Observation;
 using VA.Gov.Artemis.Core;
-using VA.Gov.Artemis.UI.Data.Brokers;
 using VA.Gov.Artemis.UI.Data.Brokers.Common;
 using VA.Gov.Artemis.UI.Data.Brokers.NonVACare;
 using VA.Gov.Artemis.UI.Data.Brokers.Observations;
@@ -20,7 +17,6 @@ using VA.Gov.Artemis.UI.Data.Models.Edd;
 using VA.Gov.Artemis.UI.Data.Models.NonVACare;
 using VA.Gov.Artemis.UI.Data.Models.Observations;
 using VA.Gov.Artemis.UI.Data.Models.Outcomes;
-using VA.Gov.Artemis.UI.Data.Models.Patient;
 using VA.Gov.Artemis.UI.Data.Models.Pregnancy;
 using VA.Gov.Artemis.UI.Filters;
 using VA.Gov.Artemis.Vista.Utility;
@@ -38,7 +34,7 @@ namespace VA.Gov.Artemis.UI.Controllers
         [HttpGet]
         public ActionResult Index(string dfn)
         {
-            PregnancyIndex model = GetPregnancyIndexModel(dfn); 
+            PregnancyIndex model = GetPregnancyIndexModel(dfn);
 
             model.Patient = this.CurrentPatient;
 
@@ -50,7 +46,7 @@ namespace VA.Gov.Artemis.UI.Controllers
         [HttpGet]
         public ActionResult PregnancyView(string dfn, string pregIen)
         {
-            ActionResult returnResult; 
+            ActionResult returnResult;
 
             PregnancyView model = new PregnancyView();
 
@@ -90,7 +86,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                 returnResult = View(model);
             }
 
-            return returnResult; 
+            return returnResult;
         }
 
         [HttpGet]
@@ -103,7 +99,7 @@ namespace VA.Gov.Artemis.UI.Controllers
             if (!string.IsNullOrWhiteSpace(pregIen))
             {
                 //PregnancyListResult result = this.DashboardRepository.Pregnancy.GetPregnancies(dfn, pregIen);
-                model.Item = PregnancyUtilities.GetPregnancy(this.DashboardRepository, dfn, pregIen); 
+                model.Item = PregnancyUtilities.GetPregnancy(this.DashboardRepository, dfn, pregIen);
 
                 //if (!result.Success)
                 //    this.Error(result.Message);
@@ -130,14 +126,14 @@ namespace VA.Gov.Artemis.UI.Controllers
 
                     // *** Keep track of original values ***
                     model.OriginalLmp = model.Item.Lmp;
-                    model.OriginalFetusBabyCount = model.Item.FetusBabyCount; 
+                    model.OriginalFetusBabyCount = model.Item.FetusBabyCount;
                 }
             }
             else
             {
                 // *** Creating new historical pregnancy ***
                 model.Item.RecordType = PregnancyRecordType.Historical;
-                model.Item.PatientDfn = dfn;                 
+                model.Item.PatientDfn = dfn;
             }
 
             NonVACareItemsResult nonVAResult = this.DashboardRepository.NonVACare.GetList(NonVACareItemType.Provider, 1, 1000, false);
@@ -162,13 +158,13 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             model.FofList = this.GetFofChoices(dfn);
 
-            TempData[ReturnUrl] = Url.Action("PregnancyView", new { @dfn = dfn, @pregIen = pregIen }); 
+            TempData[ReturnUrl] = Url.Action("PregnancyView", new { @dfn = dfn, @pregIen = pregIen });
 
-            model.ReturnUrl = TempData[ReturnUrl].ToString(); 
+            model.ReturnUrl = TempData[ReturnUrl].ToString();
 
-            TempData[FinishedUrl] = Url.Action("AddEdit", "Pregnancy", new { @dfn = dfn, @pregIen = pregIen }); 
+            TempData[FinishedUrl] = Url.Action("AddEdit", "Pregnancy", new { @dfn = dfn, @pregIen = pregIen });
 
-            return View(model); 
+            return View(model);
         }
 
         [HttpPost]
@@ -182,10 +178,10 @@ namespace VA.Gov.Artemis.UI.Controllers
             bool addingNew = string.IsNullOrWhiteSpace(model.Item.Ien);
 
             // *** Validate ***
-            
+
             // *** Update estimated "start" of pregnancy ***
             if (model.Item.EDD != DateTime.MinValue)
-                model.Item.StartDate = model.Item.EDD.Subtract(new TimeSpan(280, 0, 0, 0)); 
+                model.Item.StartDate = model.Item.EDD.Subtract(new TimeSpan(280, 0, 0, 0));
             else if (model.Item.LmpDateType != ClinicalDateType.Unknown)
                 if (!string.IsNullOrWhiteSpace(model.Item.Lmp))
                 {
@@ -194,12 +190,12 @@ namespace VA.Gov.Artemis.UI.Controllers
                     if (!string.IsNullOrWhiteSpace(tempDate))
                         model.Item.StartDate = VistaDates.ParseDateString(tempDate, VistaDates.VistADateOnlyFormat);
                 }
-            
+
             IenResult saveResult = this.DashboardRepository.Pregnancy.SavePregnancy(model.Item);
 
             if (saveResult.Success)
             {
-                model.Item.Ien = saveResult.Ien; 
+                model.Item.Ien = saveResult.Ien;
 
                 // *** Create observations for LMP and Fetus/Baby Count ***
                 List<Observation> obsList = this.CreatePregnancyObservations(model);
@@ -215,7 +211,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                         this.Error(obsResult.Message);
                 }
                 else
-                    ok = true; 
+                    ok = true;
 
                 // *** When creating a new current pregnancy, the checklist becomes inaccessible ***
                 // *** Clear the next checklist due ***
@@ -231,13 +227,13 @@ namespace VA.Gov.Artemis.UI.Controllers
                 }
             }
             else
-                this.Error(saveResult.Message); 
+                this.Error(saveResult.Message);
 
-            if (ok) 
-                returnResult = RedirectToAction("PregnancyView", new { dfn = model.Patient.Dfn, pregIen = saveResult.Ien }); 
-            else 
+            if (ok)
+                returnResult = RedirectToAction("PregnancyView", new { dfn = model.Patient.Dfn, pregIen = saveResult.Ien });
+            else
             {
-                this.Error(saveResult.Message); 
+                this.Error(saveResult.Message);
 
                 this.CurrentPatientDfn = model.Patient.Dfn;
                 model.Patient = this.CurrentPatient;
@@ -245,13 +241,13 @@ namespace VA.Gov.Artemis.UI.Controllers
                 returnResult = View(model);
             }
 
-            return returnResult; 
+            return returnResult;
         }
 
         [HttpGet]
         public ActionResult SelectNonVACare(string dfn, string pien, string itemType, string page)
         {
-            SelectNonVACareModel model = new SelectNonVACareModel(); 
+            SelectNonVACareModel model = new SelectNonVACareModel();
 
             // *** Make sure patient is updated ***
             model.Patient = this.CurrentPatient;
@@ -266,11 +262,11 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             //NonVACareItemType nonVaType = (itemType == "P") ? NonVACareItemType.Provider : NonVACareItemType.Facility;
 
-            NonVACareItemType nonVaType = NonVACareItemType.Provider; 
+            NonVACareItemType nonVaType = NonVACareItemType.Provider;
 
             int itemTypeVal = -1;
             if (int.TryParse(itemType, out itemTypeVal))
-                nonVaType = (NonVACareItemType)itemTypeVal;             
+                nonVaType = (NonVACareItemType)itemTypeVal;
 
             // *** Set current FOF from pregnancy info ***
             if (ok)
@@ -283,11 +279,11 @@ namespace VA.Gov.Artemis.UI.Controllers
                             model.CurrentSelectionIen = pregResult.Pregnancies[0].ObstetricianIen;
                     }
 
-            model.ItemType = nonVaType; 
+            model.ItemType = nonVaType;
 
-            int pageVal = GetPage(page); 
+            int pageVal = GetPage(page);
 
-            NonVACareItemsResult listResult = this.DashboardRepository.NonVACare.GetList(nonVaType, pageVal , SelectNonVACarePageSize, false);
+            NonVACareItemsResult listResult = this.DashboardRepository.NonVACare.GetList(nonVaType, pageVal, SelectNonVACarePageSize, false);
 
             if (listResult.Success)
             {
@@ -302,7 +298,7 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             TempData[FinishedUrl] = Url.Action("SelectNonVACare", "Pregnancy", new { @dfn = dfn, @pien = pien, @itemType = itemType });
 
-            return View(model); 
+            return View(model);
         }
 
         [HttpPost]
@@ -311,7 +307,7 @@ namespace VA.Gov.Artemis.UI.Controllers
         {
             ActionResult returnResult = null;
 
-            this.CurrentPatientDfn = model.Patient.Dfn;            
+            this.CurrentPatientDfn = model.Patient.Dfn;
 
             PregnancyDetails preg = GetPregnancy(model.PregnancyIen);
 
@@ -319,8 +315,8 @@ namespace VA.Gov.Artemis.UI.Controllers
             {
                 // *** Update the IEN ***
                 if (model.ItemType == NonVACareItemType.Facility)
-                    preg.PlannedLaborDeliveryFacilityIen = model.CurrentSelectionIen; 
-                else 
+                    preg.PlannedLaborDeliveryFacilityIen = model.CurrentSelectionIen;
+                else
                     preg.ObstetricianIen = model.CurrentSelectionIen;
 
                 // *** Save updated pregnancy ***
@@ -366,7 +362,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                     if (pregResult.Pregnancies.Count == 1)
                         model.CurrentSelection = pregResult.Pregnancies[0].FatherOfFetusIen;
 
-            model.Choices = GetFofChoices(dfn); 
+            model.Choices = GetFofChoices(dfn);
 
             if (string.IsNullOrWhiteSpace(model.CurrentSelection))
                 model.CurrentSelection = "U";
@@ -374,17 +370,17 @@ namespace VA.Gov.Artemis.UI.Controllers
             if (string.IsNullOrWhiteSpace(model.PregnancyIen))
                 model.PregnancyIen = "-1";
 
-            returnResult = View(model); 
+            returnResult = View(model);
 
-            return returnResult; 
+            return returnResult;
         }
 
         private Dictionary<string, string> GetFofChoices(string dfn)
         {
-            Dictionary<string, string> returnList = new Dictionary<string, string>(); 
+            Dictionary<string, string> returnList = new Dictionary<string, string>();
 
             PersonListResult personResult = this.DashboardRepository.Pregnancy.GetPersons(dfn, "");
-            
+
             returnList.Add("U", "Unknown/Unspecified");
 
             if (personResult.Success)
@@ -399,18 +395,18 @@ namespace VA.Gov.Artemis.UI.Controllers
                             returnList.Add(person.Ien, tempName);
                         }
 
-            return returnList; 
+            return returnList;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SelectFather(SelectFatherModel model)
         {
-            ActionResult returnResult = null; 
+            ActionResult returnResult = null;
 
             this.CurrentPatientDfn = model.Patient.Dfn;
 
-            PregnancyDetails preg = GetPregnancy(model.PregnancyIen); 
+            PregnancyDetails preg = GetPregnancy(model.PregnancyIen);
 
             if (preg != null)
             {
@@ -428,7 +424,7 @@ namespace VA.Gov.Artemis.UI.Controllers
             }
 
             if (returnResult == null)
-                returnResult = View(model); 
+                returnResult = View(model);
 
             return returnResult;
         }
@@ -478,14 +474,14 @@ namespace VA.Gov.Artemis.UI.Controllers
             model.Patient = this.CurrentPatient;
             model.PregnancyIen = pien;
 
-            int fatherIen=-1;
+            int fatherIen = -1;
             int.TryParse(fien, out fatherIen);
 
-            model.Fof = GetFof(dfn, fatherIen); 
+            model.Fof = GetFof(dfn, fatherIen);
 
             returnResult = View(model);
 
-            return returnResult; 
+            return returnResult;
         }
 
         [HttpPost]
@@ -498,7 +494,7 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             // *** Set the patient ***
             this.CurrentPatientDfn = model.Patient.Dfn;
-            model.Patient = this.CurrentPatient; 
+            model.Patient = this.CurrentPatient;
 
             // *** Save ***
             BrokerOperationResult saveResult = this.DashboardRepository.Pregnancy.SavePerson(model.Patient.Dfn, model.Fof);
@@ -519,7 +515,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                 returnResult = View(model);
             }
 
-            return returnResult; 
+            return returnResult;
         }
 
         private Person GetFof(string patientDfn, int fatherIen)
@@ -562,10 +558,10 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             // *** Make sure there is a pregnancy history ***
             if (model.History == null)
-                model.History = new PregnancyHistory(); 
+                model.History = new PregnancyHistory();
 
             // *** Set return url ***
-            model.ReturnUrl = Url.Action("Summary", "Patient", new { @dfn = dfn }); 
+            model.ReturnUrl = Url.Action("Summary", "Patient", new { @dfn = dfn });
 
             return View(model);
         }
@@ -576,33 +572,33 @@ namespace VA.Gov.Artemis.UI.Controllers
         {
             ActionResult returnResult = null;
 
-            this.CurrentPatientDfn = model.Patient.Dfn; 
+            this.CurrentPatientDfn = model.Patient.Dfn;
 
             BrokerOperationResult result = this.DashboardRepository.Pregnancy.SavePregnancyHistory(model.Patient.Dfn, model.History);
 
             if (!result.Success)
-                this.Error(result.Message); 
+                this.Error(result.Message);
             else
                 returnResult = RedirectToAction("Summary", "Patient", new { @dfn = this.CurrentPatientDfn });
 
             if (returnResult == null)
             {
-                model.Patient = this.CurrentPatient; 
+                model.Patient = this.CurrentPatient;
                 returnResult = View(model);
             }
 
-            return returnResult; 
+            return returnResult;
         }
 
         [HttpGet]
         public ActionResult EddHistory(string dfn, string pregIen, string page)
         {
-            ActionResult returnResult; 
+            ActionResult returnResult;
 
             EddHistoryModel model = new EddHistoryModel();
 
             model.Patient = this.CurrentPatient;
-            model.PregnancyIen = pregIen; 
+            model.PregnancyIen = pregIen;
 
             int pageVal = this.GetPage(page);
 
@@ -630,11 +626,11 @@ namespace VA.Gov.Artemis.UI.Controllers
                             model.History.Add(eddItem);
                         }
                 }
-                returnResult = View(model); 
+                returnResult = View(model);
             }
-            return returnResult; 
+            return returnResult;
         }
-        
+
         //[HttpGet]
         //public ActionResult AddEditEdd(string dfn, string pregIen, string obsIen)
         //{
@@ -711,17 +707,15 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             bool success = false;
             bool goToOutcome = false;
-            string pregIen = ""; 
+            string pregIen = "";
 
             if (model.NewPregnancyStatusVal.HasValue)
             {
                 if (model.Patient.Pregnant != model.NewPregnancyStatusVal.Value)
                 {
-
                     if (model.Patient.Pregnant)
                     {
                         PregnancyResult pregResult = this.DashboardRepository.Pregnancy.GetCurrentPregnancy(model.Patient.Dfn);
-
                         if (!pregResult.Success)
                         {
                             this.Error(pregResult.Message);
@@ -729,8 +723,11 @@ namespace VA.Gov.Artemis.UI.Controllers
                         else
                         {
                             PregnancyDetails updatedPreg = pregResult.Pregnancy;
-
+                            // *** Update end date ***
                             model.OutcomeDate = VistaDates.StandardizeDateFormat(model.OutcomeDate);
+                            updatedPreg.EndDate = VistaDates.ParseDateString(model.OutcomeDate, VistaDates.VistADateOnlyFormat);
+                            bool pregnancyValue = model.NewPregnancyStatusVal.Value;
+                            string patientDfn = model.Patient.Dfn;
 
                             if (string.IsNullOrWhiteSpace(model.OutcomeDate))
                             {
@@ -738,43 +735,24 @@ namespace VA.Gov.Artemis.UI.Controllers
                             }
                             else
                             {
-                                // *** Update end date ***
-                                updatedPreg.EndDate = VistaDates.ParseDateString(model.OutcomeDate, VistaDates.VistADateOnlyFormat);
-
-                                BrokerOperationResult saveResult = this.DashboardRepository.Pregnancy.SavePregnancy(updatedPreg);
-
-                                if (!saveResult.Success)
+                                goToOutcome = true;
+                                pregIen = updatedPreg.Ien;
+                                success = true;
+                                BrokerOperationResult saveResult2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(updatedPreg, patientDfn, pregnancyValue);
+                                if (!saveResult2.Success)
                                 {
-                                    this.Error(saveResult.Message);
+                                    this.Error(saveResult2.Message);
                                 }
                                 else
                                 {
-                                    //List<DsioObservation> outcomeList = ObservationsFactory.CreateOutcomeObservations(model.Patient.Dfn, model.OutcomeType, model.OutcomeDate, updatedPreg.Ien);
-
-                                    //saveResult = this.DashboardRepository.Observations.SaveSingletonObservations(outcomeList);
-
-                                    //if (!saveResult.Success)
-                                    //    this.Error(saveResult.Message);
-                                    //else
-                                    goToOutcome = true;
-                                    pregIen = updatedPreg.Ien;
-                                    success = true;
-
-                                    bool pregnancyValue = model.NewPregnancyStatusVal.Value;
-                                    string patientDfn = model.Patient.Dfn;
-                                    string LMP = model.LMP;
-                                    string EDD = model.EDD;
-
-                                    BrokerOperationResult saveResult2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(updatedPreg, patientDfn, pregnancyValue);
-
-                                    if (!saveResult2.Success)
+                                    BrokerOperationResult saveResult = this.DashboardRepository.Pregnancy.SavePregnancy(updatedPreg);
+                                    if (!saveResult.Success)
                                     {
-                                        this.Error(saveResult2.Message);
+                                        this.Error(saveResult.Message);
                                     }
                                 }
                             }
                         }
-
                     }
                     else
                     {
@@ -783,38 +761,44 @@ namespace VA.Gov.Artemis.UI.Controllers
                         newPreg.EDD = DateTime.Parse(model.EDD);
                         newPreg.Lmp = model.LMP;
                         newPreg.RecordType = PregnancyRecordType.Current;
-
-                        BrokerOperationResult result = this.DashboardRepository.Pregnancy.SavePregnancy(newPreg);
-
-                        if (!result.Success)
-                            this.Error(result.Message);
+                        bool pregnancyValue = model.NewPregnancyStatusVal.Value;
+                        string patientDfn = model.Patient.Dfn;
+                        BrokerOperationResult result2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(newPreg, patientDfn, pregnancyValue);
+                        if (!result2.Success)
+                        {
+                            this.Error(result2.Message);
+                        }
                         else
                         {
-                            success = true;                           
-
-                            // *** Update next checklist due ***
-                            BrokerOperationResult nextResult = this.DashboardRepository.Patients.SaveNextChecklistDue(model.Patient.Dfn, DateTime.MinValue);
-
-                            bool pregnancyValue = model.NewPregnancyStatusVal.Value;
-                            string patientDfn = model.Patient.Dfn;                                
-                            BrokerOperationResult result2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(newPreg, patientDfn, pregnancyValue);
-                            if (!result2.Success)
-                            {
-                                this.Error(result2.Message);
-                            }
-
+                            BrokerOperationResult result = this.DashboardRepository.Pregnancy.SavePregnancy(newPreg);
                             if (!result.Success)
                             {
-                                this.Error("Could not update next checklist due date");
-                            }                                
+                                this.Error(result.Message);
+                            }
+                            else
+                            {
+                                success = true;
+
+                                // *** Update next checklist due ***
+                                BrokerOperationResult nextResult = this.DashboardRepository.Patients.SaveNextChecklistDue(model.Patient.Dfn, DateTime.MinValue);
+                                if (!result.Success)
+                                {
+                                    this.Error("Could not update next checklist due date");
+                                }
+                            }
                         }
                     }
                 }
                 else
-                    success = true; 
+                {
+                    success = true;
+                }
+
             }
             else
+            {
                 success = true;
+            }
 
             if (!success)
             {
@@ -825,17 +809,21 @@ namespace VA.Gov.Artemis.UI.Controllers
             else
             {
                 if (goToOutcome)
+                {
                     returnResult = RedirectToAction("AddEdit", "Outcome", new { @dfn = model.Patient.Dfn, @pregIen = pregIen });
-                else 
+                }
+                else
+                {
                     returnResult = RedirectToAction("Summary", "Patient", new { @dfn = model.Patient.Dfn });
+                }
             }
-            return returnResult; 
+            return returnResult;
         }
 
         [HttpGet]
         public ActionResult EddCalculator(string dfn, string pregIen)
         {
-            ActionResult returnResult; 
+            ActionResult returnResult;
 
             EddCalculatorModel model = new EddCalculatorModel();
 
@@ -851,14 +839,18 @@ namespace VA.Gov.Artemis.UI.Controllers
 
                 // *** Set return url ***
                 if (TempData.ContainsKey(ReturnUrl))
+                {
                     model.ReturnUrl = TempData.Peek(ReturnUrl).ToString();
+                }
                 else
+                {
                     model.ReturnUrl = Url.Action("EddHistory", "Pregnancy", new { dfn = dfn, @pregIen = pregIen });
+                }
 
                 returnResult = View(model);
             }
 
-            return returnResult; 
+            return returnResult;
         }
 
         [HttpPost]
@@ -870,8 +862,10 @@ namespace VA.Gov.Artemis.UI.Controllers
             bool okToContinue = model.IsValid();
 
             if (!okToContinue)
-                this.Error(model.ValidationMessage); 
-            else 
+            {
+                this.Error(model.ValidationMessage);
+            }
+            else
             {
                 List<Observation> observationList = this.GetEddObservations(model);
 
@@ -895,11 +889,10 @@ namespace VA.Gov.Artemis.UI.Controllers
                     else
                     {
                         PregnancyDetails currentPregnancy = pregListResult.Pregnancies[0];
-
                         currentPregnancy.EDD = VistaDates.ParseDateString(model.FinalEdd, VistaDates.VistADateOnlyFormat);
 
                         // *** Update estimated "start" of pregnancy ***
-                        currentPregnancy.StartDate = currentPregnancy.EDD.Subtract(new TimeSpan(280, 0, 0, 0)); 
+                        currentPregnancy.StartDate = currentPregnancy.EDD.Subtract(new TimeSpan(280, 0, 0, 0));
 
                         BrokerOperationResult savePregResult = this.DashboardRepository.Pregnancy.SavePregnancy(currentPregnancy);
 
@@ -909,8 +902,9 @@ namespace VA.Gov.Artemis.UI.Controllers
                             this.Error(savePregResult.Message);
                         }
                         else
+                        {
                             this.Information("Estimated delivery date information saved successfully");
-
+                        }
                     }
                 }
             }
@@ -924,9 +918,13 @@ namespace VA.Gov.Artemis.UI.Controllers
             else
             {
                 if (TempData.ContainsKey(ReturnUrl))
+                {
                     returnResult = Redirect(TempData[ReturnUrl].ToString());
-                else 
+                }
+                else
+                {
                     returnResult = RedirectToAction("EddHistory", new { @dfn = model.Patient.Dfn, @pregIen = model.PregnancyIen });
+                }
             }
 
             return returnResult;
@@ -935,7 +933,7 @@ namespace VA.Gov.Artemis.UI.Controllers
         [HttpGet]
         public ActionResult BabyAddEdit(string dfn, string pregIen, string babyIen)
         {
-            BabyAddEdit model = this.GetBabyAddEditModel(dfn, pregIen, babyIen); 
+            BabyAddEdit model = this.GetBabyAddEditModel(dfn, pregIen, babyIen);
 
             //model.Patient = this.CurrentPatient;
             //model.PregnancyIen = pregIen; 
@@ -972,7 +970,7 @@ namespace VA.Gov.Artemis.UI.Controllers
             //            model.Details.BabyNum = newBabyNum.ToString();
             //        else
             //            this.Error("This pregnancy already has 9 babies.  You cannot add more than 9 babies to a pregnancy."); 
-                    
+
             //    }
             //    else // BabyNum passed in...
             //    {
@@ -994,17 +992,17 @@ namespace VA.Gov.Artemis.UI.Controllers
             //else
             //    this.Error(obsResult.Message);
 
-            return View(model); 
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BabyAddEdit(BabyAddEdit model)
         {
-            ActionResult returnResult; 
+            ActionResult returnResult;
 
             bool ok = true;
-            string errorMessage = ""; 
+            string errorMessage = "";
 
             // *** Validate model data ***
             if (model.IsValid())
@@ -1022,7 +1020,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                         ok = false;
                     }
                     else
-                        {
+                    {
                         // *** Add numbers to model details ***
                         model.Details.Ien = addResult.NewBabyIen;
                         model.Details.BabyNum = addResult.NewBabyNumber;
@@ -1043,27 +1041,29 @@ namespace VA.Gov.Artemis.UI.Controllers
                     {
                         errorMessage = obsResult.Message;
                         ok = false;
-                    }            
+                    }
                 }
             }
-            else 
+            else
             {
                 errorMessage = model.ValidationMessage;
-                ok = false; 
+                ok = false;
             }
 
             // *** Check if ok to prepare return ***
             if (!ok)
             {
-                this.CurrentPatientDfn = model.Patient.Dfn; 
+                this.CurrentPatientDfn = model.Patient.Dfn;
                 model.Patient = this.CurrentPatient;
-                this.Error(errorMessage); 
-                returnResult = View(model); 
+                this.Error(errorMessage);
+                returnResult = View(model);
             }
             else
-                returnResult = RedirectToAction("PregnancyView", new { dfn = model.Patient.Dfn, pregIen = model.PregnancyIen });    
+            {
+                returnResult = RedirectToAction("PregnancyView", new { dfn = model.Patient.Dfn, pregIen = model.PregnancyIen });
+            }
 
-            return returnResult; 
+            return returnResult;
         }
 
         [HttpGet]
@@ -1090,9 +1090,9 @@ namespace VA.Gov.Artemis.UI.Controllers
             {
                 this.Error("Invalid Pregnancy IEN");
                 returnResult = RedirectToAction("AddEdit", "Pregnancy", new { @dfn = dfn, @pregIen = pregIen });
-            }            
+            }
 
-            return returnResult; 
+            return returnResult;
         }
 
         private List<Observation> GetEddObservations(EddCalculatorModel model)
@@ -1106,7 +1106,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                 if (item.HasValue)
                 {
                     if (item.ItemType == model.FinalBasedOn)
-                        item.IsFinal = true; 
+                        item.IsFinal = true;
 
                     Observation dsioObs = EddUtility.GetDsioObservation(model.Patient.Dfn, model.PregnancyIen, item);
 
@@ -1118,12 +1118,12 @@ namespace VA.Gov.Artemis.UI.Controllers
                     {
                         dsioObs = ObservationsFactory.CreateLmpObservation(model.Patient.Dfn, model.PregnancyIen, item.EventDate, false);
                         returnList.Add(dsioObs);
+                    }
+
                 }
-
-            }
             }
 
-            return returnList; 
+            return returnList;
         }
 
         private List<Observation> CreatePregnancyObservations(PregnancyAddEdit model)
@@ -1154,9 +1154,9 @@ namespace VA.Gov.Artemis.UI.Controllers
                     returnList.Add(tempObs);
             }
 
-            return returnList; 
+            return returnList;
         }
-                
+
         private PregnancyOutcomeType GetPregnancyOutcome(string patientDfn, string pregIen)
         {
             PregnancyOutcomeType returnVal = PregnancyOutcomeType.Unknown;
@@ -1173,14 +1173,14 @@ namespace VA.Gov.Artemis.UI.Controllers
                                 returnVal = outType;
                         }
 
-            return returnVal; 
+            return returnVal;
         }
 
         private List<BabyDetails> GetBabyDetails(string dfn, string pregIen)
         {
             List<BabyDetails> returnList = new List<BabyDetails>();
 
-            Dictionary<string, List<Observation>> observationsByNum = new Dictionary<string,List<Observation>>();
+            Dictionary<string, List<Observation>> observationsByNum = new Dictionary<string, List<Observation>>();
 
             // *** Get the observation category ***
             string cat = new BabyDetails().ObservationCategory;
@@ -1210,33 +1210,33 @@ namespace VA.Gov.Artemis.UI.Controllers
             foreach (string key in observationsByNum.Keys)
             {
                 foreach (var temp in observationsByNum[key])
-                    Debug.WriteLine("Observation {0} {1} {2}", temp.EntryDate, temp.Code, temp.Narrative); 
+                    Debug.WriteLine("Observation {0} {1} {2}", temp.EntryDate, temp.Code, temp.Narrative);
 
                 // *** Create a baby details ***
                 BabyDetails tempDetails = new BabyDetails(observationsByNum[key]);
 
                 // *** Add to return ***
-                returnList.Add(tempDetails); 
+                returnList.Add(tempDetails);
             }
 
-            returnList.Sort(delegate(BabyDetails x, BabyDetails y)
+            returnList.Sort(delegate (BabyDetails x, BabyDetails y)
             {
                 return x.BabyNum.CompareTo(y.BabyNum);
             });
 
-            return returnList; 
+            return returnList;
         }
 
         private PregnancyIndex GetPregnancyIndexModel(string dfn)
         {
             // *** Create the model for showing a list of pregnancies ***
 
-            PregnancyIndex model = new PregnancyIndex(); 
+            PregnancyIndex model = new PregnancyIndex();
 
             // *** First, get a list of pregnancies ***
             PregnancyListResult result = this.DashboardRepository.Pregnancy.GetPregnancies(dfn, "");
 
-            if (!result.Success)                
+            if (!result.Success)
                 this.Error(result.Message);
             else
             {
@@ -1249,7 +1249,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                     foreach (var preg in result.Pregnancies)
                     {
                         // *** Check type of prgnancy ***
-                        
+
                         if (preg.RecordType == PregnancyRecordType.Current)
                             model.CurrentPregnancy = preg;
                         else if (preg.RecordType == PregnancyRecordType.Historical)
@@ -1271,7 +1271,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                             pastPreg.HighRisk = preg.HighRisk;
                             pastPreg.HighRiskDetails = preg.HighRiskDetails;
 
-                            pastPreg.Created = preg.Created; 
+                            pastPreg.Created = preg.Created;
 
                             // *** Add it to dictionary ***
                             pastPregnancies.Add(preg.Ien, pastPreg);
@@ -1291,20 +1291,20 @@ namespace VA.Gov.Artemis.UI.Controllers
 
                             pi = typeof(BabyDetails).GetProperty("Gender");
                             codingInfo = pi.GetCustomAttribute<CdaCodingInfo>();
-                            string genderCode = codingInfo.Code; 
+                            string genderCode = codingInfo.Code;
 
-                            pi = typeof(DeliveryDetails).GetProperty("GestationalAge"); 
-                            codingInfo = pi.GetCustomAttribute<CdaCodingInfo>(); 
-                            string gaCode = codingInfo.Code; 
+                            pi = typeof(DeliveryDetails).GetProperty("GestationalAge");
+                            codingInfo = pi.GetCustomAttribute<CdaCodingInfo>();
+                            string gaCode = codingInfo.Code;
 
-                            pi = typeof(DeliveryDetails).GetProperty("DeliveryHospital"); 
-                            codingInfo = pi.GetCustomAttribute<CdaCodingInfo>(); 
-                            string place = codingInfo.Code; 
+                            pi = typeof(DeliveryDetails).GetProperty("DeliveryHospital");
+                            codingInfo = pi.GetCustomAttribute<CdaCodingInfo>();
+                            string place = codingInfo.Code;
 
                             // *** Sort Observations ***
                             patientObservations.Observations = patientObservations.Observations
                                 .OrderBy(o => o.EntryDate)
-                                .ToList(); 
+                                .ToList();
 
                             foreach (var obs in patientObservations.Observations)
                             {
@@ -1340,7 +1340,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                                     {
                                         if (string.Equals(obs.Category, bd.ObservationCategory, StringComparison.OrdinalIgnoreCase))
                                         {
-                                            
+
                                             // *** BirthWeight - Array ***
                                             // *** Sex - Array ***
                                             if (obs.Code == birthWeightCode)
@@ -1369,14 +1369,14 @@ namespace VA.Gov.Artemis.UI.Controllers
                                                     break;
 
                                             }
-                                           
+
                                             // *** Overwrite gestational age if entered ***
                                             if (obs.Code == gaCode)
                                                 pastPregnancies[obs.PregnancyIen].GestationalAge = EddUtility.GetShortGestationalAge(obs.Value);
                                             else if (obs.Code == place)
                                                 if (!string.IsNullOrWhiteSpace(obs.Value))
-                                                    pastPregnancies[obs.PregnancyIen].PlaceOfDelivery = obs.Value; 
-                                                
+                                                    pastPregnancies[obs.PregnancyIen].PlaceOfDelivery = obs.Value;
+
                                         }
                                         else if (string.Equals(ObservationsFactory.OutcomeCategory, obs.Category, StringComparison.OrdinalIgnoreCase))
                                         {
@@ -1397,7 +1397,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                     model.PastPregnancies.AddRange(pastPregnancies.Values);
 
                     // *** Sort ***
-                    model.PastPregnancies.Sort(delegate(PastPregnancy x, PastPregnancy y)
+                    model.PastPregnancies.Sort(delegate (PastPregnancy x, PastPregnancy y)
                     {
                         return y.PregnancyDate.CompareTo(x.PregnancyDate);
                     });
@@ -1405,7 +1405,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                 }
             }
 
-            return model; 
+            return model;
         }
 
         //private BabyAddEdit GetBabyAddEditModel(string dfn, string pregIen, string babyNum)
@@ -1477,7 +1477,7 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             model.Patient = this.CurrentPatient;
             model.PregnancyIen = pregIen;
-            
+
             // *** Get the observation category ***
             string cat = new BabyDetails().ObservationCategory;
 
@@ -1516,20 +1516,20 @@ namespace VA.Gov.Artemis.UI.Controllers
                     //babyObservations.Sort((a, b) => string.Compare(a.ObservationDate, b.ObservationDate)); 
 
                     foreach (var temp in babyObservations)
-                        Debug.WriteLine("Observation {0} {1} {2}", temp.EntryDate, temp.Code, temp.Narrative); 
+                        Debug.WriteLine("Observation {0} {1} {2}", temp.EntryDate, temp.Code, temp.Narrative);
 
                     // *** Construct baby details ***
                     model.Details = new BabyDetails(babyObservations);
 
                     // *** If no observations, make sure ien is set ***
                     if (string.IsNullOrWhiteSpace(model.Details.Ien))
-                        model.Details.Ien = babyIen; 
+                        model.Details.Ien = babyIen;
                 }
             }
             else
                 this.Error(obsResult.Message);
 
-            return model; 
-        }                
+            return model;
+        }
     }
 }

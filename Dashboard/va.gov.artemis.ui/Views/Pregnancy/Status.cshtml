@@ -47,13 +47,13 @@
 
                     @if (!Model.Patient.Pregnant)
                     {
-                        <tr class="centered-txt" id="EDD-row" style="display: none">
-                            <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.EDD, "Estimated Delivery Date:")</th>
-                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.EDD, new { @class = "form-control", id = "EDD-date" })</td>
-                        </tr>
                         <tr class="centered-txt" id="LMP-row" style="display: none">
                             <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.LMP, "Last Menstrual Period:")</th>
                             <td style="vertical-align: middle">@Html.TextBoxFor(m => m.LMP, new { @class = "form-control", id = "LMP-date" })</td>
+                        </tr>
+                        <tr class="centered-txt" id="EDD-row" style="display: none">
+                            <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.EDD, "Estimated Delivery Date:")</th>
+                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.EDD, new { @class = "form-control", id = "EDD-date" })</td>
                         </tr>
                     }
                 </tbody>
@@ -83,11 +83,13 @@
                 updateVisibility();
             });
 
-            $("#EDD-date").change(function () {
+            $("#LMP-date").change(function () {
+                var processedDate = processEventDate(this, 280);
+                updateEDD(processedDate);
                 updateSaveButton();
             });
 
-            $("#LMP-date").change(function () {
+            $("#EDD-date").change(function () {
                 updateSaveButton();
             });
 
@@ -171,6 +173,39 @@
                     $("#save-button").attr("disabled", "disabled");
                 }
             };
+
+            function processEventDate(element, daysToAdd) {
+                var newProcessedDate;
+                var jsDate = getJSDate($(element).val());
+                if (jsDate != undefined) {
+                    newProcessedDate = addDays(jsDate, daysToAdd);
+                    $(element).val(getFormattedDate(jsDate));
+                 }
+                else {
+                    if ($(element).val() != "") {
+                        var fieldName = "";
+                        if (element == "#LMP-date") {
+                            fieldName = "LMP";
+                        }
+                        if (element == "#EDD-date") {
+                            fieldName = "EDD"
+                        }
+                        alert("Please enter a valid date for " + fieldName + " in the format MM/DD/YYYY or M/D/YY");
+                    }
+                        
+                    $(element).val("");
+                }
+                return newProcessedDate;
+            };
+
+            function addDays(d, days) {
+                return new Date(d.getFullYear(), d.getMonth(), d.getDate() + days);
+            };
+
+            function updateEDD(newEdd) {
+                $("#EDD-date").val(getFormattedDate(newEdd));
+            };
+            
         });
     </script>
 }
