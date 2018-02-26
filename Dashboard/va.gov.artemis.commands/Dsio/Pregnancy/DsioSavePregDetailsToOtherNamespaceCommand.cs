@@ -1,7 +1,6 @@
 ﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
 // Authored by DSS, Inc. 2014-2017
 
-using System;
 using System.Collections.Generic;
 using VA.Gov.Artemis.Vista.Broker;
 using VA.Gov.Artemis.Vista.Utility;
@@ -11,13 +10,13 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
     /// <summary>
     /// A command to save pregnancy details to a different namespace in VistA
     /// </summary>
-    public class DsioSavePregDetailsToOtherNamespaceCommand: DsioCommand 
+    public class DsioSavePregDetailsToOtherNamespaceCommand : DsioCommand
     {
         /// <summary>
         /// Creates the command
         /// </summary>
         /// <param name="newBroker">An object which allows communication with VistA and implements IRpcBroker</param>
-        public DsioSavePregDetailsToOtherNamespaceCommand(IRpcBroker newBroker): base(newBroker){}
+        public DsioSavePregDetailsToOtherNamespaceCommand(IRpcBroker newBroker) : base(newBroker) { }
 
         /// <summary>
         /// The Ien of the person, either created or updated
@@ -39,6 +38,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         /// <param name="pregnancy"></param>
         public void AddCommandArguments(DsioPregnancy pregnancy, string patientDfn, bool isPatientPregnant)
         {
+            //Example of RPC call in CPRS
             //(1) = PATIENT = 3
             //(2) = ABLE TO CONCEIVE = Yes
             //(3) = PREGNANCY STATUS = Yes
@@ -49,10 +49,8 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
             var patient = "PATIENT=";
             var ableToConceive = "ABLE TO CONCEIVE=";
             var pregnant = "PREGNANCY STATUS=";
-            //var lactating = "LACTATION STATUS=";
-            //var lactatingValue = "Yes";
 
-            var ableToConceiveValue = "Yes";            
+            var ableToConceiveValue = "Yes";
             var pregnancyValue = isPatientPregnant ? "Yes" : "No";
 
             List<string> termsList = new List<string>();
@@ -64,7 +62,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
             termsList.Add(pregnant);
             if (isPatientPregnant)
             {
-                string LMPvalue = pregnancy.Lmp;      
+                string LMPvalue = pregnancy.Lmp;
                 var LMP = "LAST MENSTRUAL PERIOD DATE=" + VistaDates.CenturyDateFormat(LMPvalue);
                 termsList.Add(LMP);
 
@@ -85,6 +83,5 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
                 this.Response.Status = RpcResponseStatus.Success;
             }
         }
-
     }
 }

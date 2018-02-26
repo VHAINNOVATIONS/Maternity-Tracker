@@ -3,12 +3,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VA.Gov.Artemis.Commands.Dsio.Observation;
 using VA.Gov.Artemis.UI.Data.Brokers.Common;
-using VA.Gov.Artemis.UI.Data.Models.Observations; 
+using VA.Gov.Artemis.UI.Data.Models.Observations;
 
 namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
 {
@@ -21,11 +17,11 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
         BrokerOperationResult SaveObservations(List<Observation> observationList);
 
         IenResult AddLactationObservation(string patientDfn, bool currentlyLactating);
+        IenResult AddLactationObservationToDifferentNamespace(string patientDfn, bool currentlyLactating);
 
         BrokerOperationResult UpdateNextContactDue(string patientDfn, DateTime nextContactDue);
 
         BrokerOperationResult UpdateLastContactDate(string patientDfn, DateTime lastContactDate);
-
         BrokerOperationResult UpdateNextChecklistDue(string patientDfn, DateTime nextChecklistDue);
 
         IenResult SaveSingletonObservation(Observation observation);

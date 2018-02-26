@@ -3,10 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VA.Gov.Artemis.CDA.Common;
 using VA.Gov.Artemis.Commands.Dsio.Observation;
 using VA.Gov.Artemis.UI.Data.Brokers.Common;
 using VA.Gov.Artemis.UI.Data.Models.Observations;
@@ -15,7 +11,7 @@ using VA.Gov.Artemis.Vista.Utility;
 
 namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
 {
-    public class ObservationsRepository:  RepositoryBase, IObservationsRepository
+    public class ObservationsRepository : RepositoryBase, IObservationsRepository
     {
         public ObservationsRepository(IRpcBroker newBroker)
             : base(newBroker)
@@ -55,7 +51,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
                         Observation obs = ObservationUtility.GetObservation(dsioObs);
 
                         if (obs != null)
-                            result.Observations.Add(obs); 
+                            result.Observations.Add(obs);
                     }
 
                     // *** Default sort oldest to newest ***
@@ -68,7 +64,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
                     //});
 
                     result.Observations.Sort((x, y) => DateTime.Compare(x.EntryDate, y.EntryDate));
-                }             
+                }
             }
 
             return result;
@@ -76,12 +72,12 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
 
         public IenResult SaveObservation(Observation observation)
         {
-            DsioObservation dsioObs = ObservationUtility.GetDsioObservation(observation); 
+            DsioObservation dsioObs = ObservationUtility.GetDsioObservation(observation);
 
-            return SaveDsioObservation(dsioObs); 
+            return SaveDsioObservation(dsioObs);
         }
 
-        private IenResult SaveDsioObservation(DsioObservation observation) 
+        private IenResult SaveDsioObservation(DsioObservation observation)
         {
             IenResult result = new IenResult();
 
@@ -89,7 +85,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
 
             // *** Add entry date if new ***
             if (string.IsNullOrWhiteSpace(observation.Ien))
-                observation.ExamDate = DateTime.Now.ToString(VistaDates.VistADateFormatFour); 
+                observation.ExamDate = DateTime.Now.ToString(VistaDates.VistADateFormatFour);
 
             command.AddCommandArguments(observation);
 
@@ -99,9 +95,31 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
             result.Message = response.InformationalMessage;
 
             if (result.Success)
-                result.Ien = command.Ien; 
+                result.Ien = command.Ien;
 
-            return result; 
+            return result;
+        }
+
+        public IenResult AddLactationObservationToDifferentNamespace(string patientDfn, bool currentlyLactating)
+        {
+            IenResult result = new IenResult();
+
+            // *** Create RPC command ***
+            DsioSaveObservationToDifferentNamespaceCommand commandToDifferentNamespace = new DsioSaveObservationToDifferentNamespaceCommand(this.broker);
+            // *** Add command arguments ***
+            commandToDifferentNamespace.AddCommandArguments(patientDfn, currentlyLactating);
+            // *** Execute the command ***
+            RpcResponse response = commandToDifferentNamespace.Execute();
+
+            result.Success = response.Status == RpcResponseStatus.Success;
+            result.Message = response.InformationalMessage;
+
+            if (result.Success)
+            {
+                result.Ien = commandToDifferentNamespace.Ien;
+            }
+
+            return result;
         }
 
         public BrokerOperationResult SaveObservations(List<Observation> observationList)
@@ -138,7 +156,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
                 i++;
             }
 
-            return result; 
+            return result;
         }
 
         public IenResult AddLactationObservation(string patientDfn, bool currentlyLactating)
@@ -156,16 +174,16 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
             obs.BabyIen = "";
             obs.Category = "Postpartum";
             obs.Code.CodeSystem = DsioObservation.OtherCodeSystem;
-            obs.Code.Code = "Lactating";                
+            obs.Code.Code = "Lactating";
             obs.Code.DisplayName = "The patient is currently lactating";
             obs.Value = currentlyLactating.ToString();
 
             // *** Save it ***
-            result = this.SaveDsioObservation(obs); 
-            
+            result = this.SaveDsioObservation(obs);
+
             return result;
         }
-                      
+
         public BrokerOperationResult UpdateNextContactDue(string patientDfn, DateTime nextContactDue)
         {
             // *** Add a next contact date observation to the patient ***
@@ -211,12 +229,12 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
 
             return result;
         }
-            
+
         public IenResult SaveSingletonObservation(Observation observation)
         {
             // *** Singleton observation: only one should exist, retrieve it and update if it does ***
 
-            IenResult returnResult = new IenResult(); 
+            IenResult returnResult = new IenResult();
 
             // *** If we already have an ien, use it ***
             if (!string.IsNullOrWhiteSpace(observation.Ien))
@@ -226,18 +244,18 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
                 ObservationListResult listResult = this.GetObservations(observation.PatientDfn, observation.PregnancyIen, observation.BabyIen, "", "", "", observation.Category, 0, 0);
 
                 if (listResult.Success)
-                    if (listResult.Observations != null) 
+                    if (listResult.Observations != null)
                         foreach (Observation tempObs in listResult.Observations)
                             if (tempObs.Code == observation.Code)
                             {
-                                observation.Ien = tempObs.Ien; 
+                                observation.Ien = tempObs.Ien;
                                 break;
                             }
 
                 returnResult = this.SaveObservation(observation);
             }
 
-            return returnResult; 
+            return returnResult;
         }
 
         public BrokerOperationResult SaveSingletonObservations(List<Observation> observationList)
@@ -246,7 +264,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
 
             BrokerOperationResult returnResult = new BrokerOperationResult();
 
-            int i = 0; 
+            int i = 0;
             bool okToContinue = true;
 
             // *** Loop through the observations ***
@@ -263,8 +281,8 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
                 // *** Set index to next ***
                 i++;
             }
-            
-            return returnResult; 
+
+            return returnResult;
         }
 
         public ObservationListResult GetObservationListByCategory(string patientDfn, string pregIen, string category)
@@ -296,11 +314,11 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
                 if (observationList.Count > 0)
                 {
                     // *** Use first item to find all that match ***
-                    ObservationListResult listResult = GetObservationListByCategory(observationList[0].PatientDfn, observationList[0].PregnancyIen, observationList[0].Category); 
+                    ObservationListResult listResult = GetObservationListByCategory(observationList[0].PatientDfn, observationList[0].PregnancyIen, observationList[0].Category);
 
                     // *** Get the list or empty ***
                     List<Observation> existingList = (listResult.Success) ? listResult.Observations : new List<Observation>();
-                    
+
                     // *** For all new obs ***
                     foreach (Observation newObs in observationList)
                     {
@@ -314,11 +332,11 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
 
                         // *** Abort if problem ***
                         if (!returnResult.Success)
-                            break; 
+                            break;
                     }
                 }
 
-            return returnResult; 
+            return returnResult;
         }
 
 
