@@ -14,6 +14,8 @@
 
 <h1 class="h3 page-header">@Model.PageTitle</h1>
 
+<p class="bg-warning" id="alertId" hidden="hidden" style="padding: 16px; margin-bottom: 20px"></p>
+
 <div class="row">
     <div class="col-md-4">
 
@@ -22,7 +24,7 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
 
-            <p>@Model.PageMessage</p>            
+            <p>@Model.PageMessage</p>
             <br />
 
             @Html.HiddenFor(model => model.TrackingEntry.PatientDfn)
@@ -37,38 +39,54 @@
 
             if (Model.TrackingEntry == null)
             {
-            <button type="button" class="btn btn-default" onclick="location.href='@Model.ReturnUrl'">Return to List</button>       
+                <button type="button" class="btn btn-default" onclick="location.href='@Model.ReturnUrl'">Return to List</button>
             }
             else
             {
                 if (@Model.TrackingEntry.EntryType == TrackingEntryType.Start)
                 {
-            <div class="form-group">
-                <label for="TrackingEntry_Reason">@Model.ReasonText</label>
-                @Html.DropDownListFor(model => model.TrackingEntry.Reason, new SelectList(@Model.Reasons), "(Select)", new { @class = "form-control" })
-            </div>
-            
-            <div class="checkbox">
-                <label>
-                    @Html.CheckBoxFor(m => m.UpdatePregnancyStatus) Update Pregnancy Status
-                </label>
-            </div>
-            
-                }
-            
-            <div class="form-group">
-                @Html.LabelFor(model => model.TrackingEntry.Comment)
-                @Html.TextAreaFor(model => model.TrackingEntry.Comment, new { rows = "4", @class = "form-control" })
-            </div>
+                    <div class="form-group">
+                        <label for="TrackingEntry_Reason">@Model.ReasonText</label>
+                        @Html.DropDownListFor(model => model.TrackingEntry.Reason, new SelectList(@Model.Reasons), "(Select)", new { @class = "form-control" })
+                    </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-default" onclick="location.href='@Model.ReturnUrl'">Back</button>
-                        <input type="submit" class="btn btn-primary" value="@Model.ButtonText" />
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.UpdatePregnancyStatus) Update Pregnancy Status
+                        </label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered table-expanded table-horizontal">
+                                <tbody>
+                                    <tr class="centered-txt" id="LMP-row" style="display: none">
+                                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.LMP, "Last Menstrual Period:")</th>
+                                        <td style="vertical-align: middle">@Html.TextBoxFor(m => m.LMP, new { @class = "form-control", id = "LMP-date" })</td>
+                                    </tr>
+                                    <tr class="centered-txt" id="EDD-row" style="display: none">
+                                        <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.EDD, "Estimated Delivery Date:")</th>
+                                        <td style="vertical-align: middle">@Html.TextBoxFor(m => m.EDD, new { @class = "form-control", id = "EDD-date" })</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TrackingEntry.Comment)
+                    @Html.TextAreaFor(model => model.TrackingEntry.Comment, new { rows = "4", @class = "form-control" })
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default" onclick="location.href='@Model.ReturnUrl'">Back</button>
+                            <input type="submit" id="start-tracking-btn" class="btn btn-primary" value="@Model.ButtonText" />
+                        </div>
                     </div>
                 </div>
-            </div>
             }
         }
     </div>
@@ -92,13 +110,114 @@
                 if ($(this).val() == "Pregnant" && $('#Patient_Pregnant').val() == "False") {
                     $('#UpdatePregnancyStatus').removeAttr("disabled");
                     $('#UpdatePregnancyStatus').prop("checked", true);
+                    $("#EDD-row").show();
+                    $("#LMP-row").show();
+                    $("#start-tracking-btn").attr("disabled", "disabled");
                 }
                 else {
                     $('#UpdatePregnancyStatus').attr("disabled", "disabled");
                     $('#UpdatePregnancyStatus').prop("checked", false);
+                    $("#EDD-row").hide();
+                    $("#LMP-row").hide();
+                    $("#EDD-date").val("");
+                    $("#LMP-date").val("");
+                    $("#start-tracking-btn").removeAttr("disabled");
+                }
+            });
+            
+            $("#UpdatePregnancyStatus").change(function () {
+                if ($("#UpdatePregnancyStatus").prop("checked") == true) {
+                    $("#EDD-row").show();
+                    $("#LMP-row").show();
+                    $("#start-tracking-btn").attr("disabled", "disabled");
+                }
+                else {
+                    $("#EDD-row").hide();
+                    $("#LMP-row").hide();
+                    $("#EDD-date").val("");
+                    $("#LMP-date").val("");
+                    $("#start-tracking-btn").removeAttr("disabled");
                 }
             });
 
+            $("#LMP-date").change(function () {
+                var processedDate = processEventDate(this, 280);
+                updateEDD(processedDate);
+                updateStartTrackingButton();
+            });
+
+            $("#EDD-date").change(function () {
+                updateStartTrackingButton();
+            });
+
+            function processEventDate(element, daysToAdd) {
+                var newProcessedDate;
+                var jsDate = getJSDate($(element).val());
+                if (jsDate != undefined) {
+                    newProcessedDate = addDays(jsDate, daysToAdd);
+                    $(element).val(getFormattedDate(jsDate));
+                }
+                else {
+                    if ($(element).val() != "") {
+                        var fieldName = "";
+                        if (element == "#LMP-date") {
+                            fieldName = "LMP";
+                        }
+                        if (element == "#EDD-date") {
+                            fieldName = "EDD"
+                        }
+                        alert("Please enter a valid date for " + fieldName + " in the format MM/DD/YYYY or M/D/YY");
+                    }
+
+                    $(element).val("");
+                }
+                return newProcessedDate;
+            };
+
+            function addDays(d, days) {
+                return new Date(d.getFullYear(), d.getMonth(), d.getDate() + days);
+            };
+
+            function updateEDD(newEdd) {
+                if (newEdd != null) {
+                    $("#EDD-date").val(getFormattedDate(newEdd));
+                }            
+                else {
+                    $("#EDD-date").val("");
+                }
+            };
+
+            function updateStartTrackingButton() {
+                if (validateLMPEDD()) {
+                    $("#start-tracking-btn").removeAttr("disabled");
+                    $("#alertId").attr("hidden", "hidden");
+                    $("#alertId").text("");
+                }
+                else {
+                    $("#start-tracking-btn").attr("disabled", "disabled");
+                }
+            };
+
+            function validateLMPEDD() {
+                var validEDD = $("#EDD-date").val() != "";
+                var validLMP = $("#LMP-date").val() != "";
+
+                var message = "";
+                if (!validEDD) {
+                    message = message + "Please enter value in EDD field. ";
+                }
+                if (!validLMP) {
+                    message = message + "Please enter value in LMP field. ";
+                }
+
+                if (!(validEDD && validLMP)) {
+                    $("#alertId").attr("class", "bg-warning");
+                    $("#alertId").removeAttr("hidden");
+                    $("#alertId").text(message);
+                }
+
+                return validEDD && validLMP;
+            };
         });
     </script>
 }
