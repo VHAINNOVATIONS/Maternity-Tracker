@@ -100,23 +100,23 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
             return result;
         }
 
-        public IenResult AddLactationObservationToDifferentNamespace(string patientDfn, bool currentlyLactating)
+        public IenResult AddWvrpcorLactationObservation(string patientDfn, bool currentlyLactating)
         {
             IenResult result = new IenResult();
 
             // *** Create RPC command ***
-            DsioSaveObservationToDifferentNamespaceCommand commandToDifferentNamespace = new DsioSaveObservationToDifferentNamespaceCommand(this.broker);
+            WvrpcorSaveObservationCommand saveWvrpcorObservationCommand = new WvrpcorSaveObservationCommand(this.broker);
             // *** Add command arguments ***
-            commandToDifferentNamespace.AddCommandArguments(patientDfn, currentlyLactating);
+            saveWvrpcorObservationCommand.AddCommandArguments(patientDfn, currentlyLactating);
             // *** Execute the command ***
-            RpcResponse response = commandToDifferentNamespace.Execute();
+            RpcResponse response = saveWvrpcorObservationCommand.Execute();
 
             result.Success = response.Status == RpcResponseStatus.Success;
             result.Message = response.InformationalMessage;
 
             if (result.Success)
             {
-                result.Ien = commandToDifferentNamespace.Ien;
+                result.Ien = saveWvrpcorObservationCommand.Ien;
             }
 
             return result;

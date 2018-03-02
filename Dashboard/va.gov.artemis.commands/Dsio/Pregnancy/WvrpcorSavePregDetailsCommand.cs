@@ -7,13 +7,13 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
     /// <summary>
     /// A command to save pregnancy details to a different namespace in VistA
     /// </summary>
-    public class DsioSavePregDetailsToOtherNamespaceCommand : DsioCommand
+    public class WvrpcorSavePregDetailsCommand : DsioCommand
     {
         /// <summary>
         /// Creates the command
         /// </summary>
         /// <param name="newBroker">An object which allows communication with VistA and implements IRpcBroker</param>
-        public DsioSavePregDetailsToOtherNamespaceCommand(IRpcBroker newBroker) : base(newBroker) { }
+        public WvrpcorSavePregDetailsCommand(IRpcBroker newBroker) : base(newBroker) { }
 
         /// <summary>
         /// The Ien of the person, either created or updated
@@ -41,12 +41,10 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
             //(3) = PREGNANCY STATUS = Yes
             //(4) = LAST MENSTRUAL PERIOD DATE = 3171101
             //(5) = EXPECTED DUE DATE = 3180808
-            //(6) = LACTATION STATUS = Yes
 
             var patient = "PATIENT=";
             var ableToConceive = "ABLE TO CONCEIVE=";
             var pregnant = "PREGNANCY STATUS=";
-
             var ableToConceiveValue = "Yes";
             var pregnancyValue = isPatientPregnant ? "Yes" : "No";
 

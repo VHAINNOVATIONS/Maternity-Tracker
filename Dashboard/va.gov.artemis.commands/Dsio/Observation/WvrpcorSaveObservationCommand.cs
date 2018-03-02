@@ -7,13 +7,13 @@ namespace VA.Gov.Artemis.Commands.Dsio.Observation
     /// <summary>
     /// A command used to save an observation to VistA using an RPC  
     /// </summary>
-    public class DsioSaveObservationToDifferentNamespaceCommand : DsioCommand
+    public class WvrpcorSaveObservationCommand : DsioCommand
     {
         /// <summary>
         /// Creates the command
         /// </summary>
         /// <param name="newBroker">A broker which allows communication with VistA and implements the IRpcBroker interface</param>
-        public DsioSaveObservationToDifferentNamespaceCommand(IRpcBroker newBroker) : base(newBroker) { }
+        public WvrpcorSaveObservationCommand(IRpcBroker newBroker) : base(newBroker) { }
 
         /// <summary>
         /// The IEN of the observation

@@ -738,10 +738,10 @@ namespace VA.Gov.Artemis.UI.Controllers
                                 goToOutcome = true;
                                 pregIen = updatedPreg.Ien;
                                 success = true;
-                                BrokerOperationResult saveResult2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(updatedPreg, patientDfn, pregnancyValue);
-                                if (!saveResult2.Success)
+                                BrokerOperationResult wvrpcorResult = this.DashboardRepository.Pregnancy.SaveWvrpcorPregnancy(updatedPreg, patientDfn, pregnancyValue);
+                                if (!wvrpcorResult.Success)
                                 {
-                                    this.Error(saveResult2.Message);
+                                    this.Error(wvrpcorResult.Message);
                                 }
                                 else
                                 {
@@ -763,10 +763,10 @@ namespace VA.Gov.Artemis.UI.Controllers
                         newPreg.RecordType = PregnancyRecordType.Current;
                         bool pregnancyValue = model.NewPregnancyStatusVal.Value;
                         string patientDfn = model.Patient.Dfn;
-                        BrokerOperationResult result2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(newPreg, patientDfn, pregnancyValue);
-                        if (!result2.Success)
+                        BrokerOperationResult wvrpcorResult = this.DashboardRepository.Pregnancy.SaveWvrpcorPregnancy(newPreg, patientDfn, pregnancyValue);
+                        if (!wvrpcorResult.Success)
                         {
-                            this.Error(result2.Message);
+                            this.Error(wvrpcorResult.Message);
                         }
                         else
                         {

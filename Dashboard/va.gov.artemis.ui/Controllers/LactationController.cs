@@ -35,10 +35,10 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             if (model.NewStatus.HasValue)
             {
-                IenResult result2 = this.DashboardRepository.Observations.AddLactationObservationToDifferentNamespace(model.Patient.Dfn, model.NewStatus.Value);
-                if (!result2.Success)
+                IenResult wvrpcorResult = this.DashboardRepository.Observations.AddWvrpcorLactationObservation(model.Patient.Dfn, model.NewStatus.Value);
+                if (!wvrpcorResult.Success)
                 {
-                    this.Error(result2.Message);
+                    this.Error(wvrpcorResult.Message);
                 }
                 else
                 {

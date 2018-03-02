@@ -17,7 +17,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Observations
         BrokerOperationResult SaveObservations(List<Observation> observationList);
 
         IenResult AddLactationObservation(string patientDfn, bool currentlyLactating);
-        IenResult AddLactationObservationToDifferentNamespace(string patientDfn, bool currentlyLactating);
+        IenResult AddWvrpcorLactationObservation(string patientDfn, bool currentlyLactating);
 
         BrokerOperationResult UpdateNextContactDue(string patientDfn, DateTime nextContactDue);
 

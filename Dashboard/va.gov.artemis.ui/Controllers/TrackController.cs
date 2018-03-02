@@ -280,10 +280,10 @@ namespace VA.Gov.Artemis.UI.Controllers
                 newPreg.Lmp = newTrackingEntry.LMP;
                 newPreg.EDD = VistaDates.ParseDateString(newTrackingEntry.EDD, VistaDates.VistADateOnlyFormat);
 
-                BrokerOperationResult result2 = this.DashboardRepository.Pregnancy.SavePregnancyToDifferentNamespace(newPreg, newPreg.PatientDfn, pregnancyValue);
-                if (!result2.Success)
+                BrokerOperationResult wvrpcorResult = this.DashboardRepository.Pregnancy.SaveWvrpcorPregnancy(newPreg, newPreg.PatientDfn, pregnancyValue);
+                if (!wvrpcorResult.Success)
                 {
-                    this.Error(result2.Message);
+                    this.Error(wvrpcorResult.Message);
                 }
                 else
                 {
