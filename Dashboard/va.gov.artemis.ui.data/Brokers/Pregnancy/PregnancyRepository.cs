@@ -17,9 +17,9 @@ using VA.Gov.Artemis.Vista.Utility;
 
 namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 {
-    public class PregnancyRepository: RepositoryBase, IPregnancyRepository
+    public class PregnancyRepository : RepositoryBase, IPregnancyRepository
     {
-        public PregnancyRepository(IRpcBroker newBroker): base(newBroker)
+        public PregnancyRepository(IRpcBroker newBroker) : base(newBroker)
         {
 
         }
@@ -50,10 +50,10 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                 result.Message = response.InformationalMessage;
 
                 if (result.Success)
-                    result.Ien = command.Ien; 
+                    result.Ien = command.Ien;
             }
 
-            return result; 
+            return result;
         }
 
         public PersonListResult GetPersons(string patientDfn, string personIen)
@@ -95,7 +95,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                 }
             }
 
-            return result; 
+            return result;
         }
 
         private DsioLinkedPerson GetDsioPerson(string patientDfn, Person person)
@@ -139,34 +139,57 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             if (!string.IsNullOrWhiteSpace(person.MobilePhone))
                 dsioFof.TelephoneList.Add(new DsioTelephone() { Number = person.MobilePhone, Usage = DsioTelephone.MobilePhoneUsage });
 
-            return dsioFof; 
+            return dsioFof;
         }
 
         public IenResult SavePregnancy(PregnancyDetails pregnancy)
         {
             // *** Saves pregnancy data ***
-
             IenResult result = new IenResult();
 
             // *** Create the dsio pregnancy string data ***
-            DsioPregnancy dsioPregnancy = CreateDsioPregnancy(pregnancy); 
+            DsioPregnancy dsioPregnancy = CreateDsioPregnancy(pregnancy);
 
             // *** Create RPC command ***
             DsioSavePregDetailsCommand command = new DsioSavePregDetailsCommand(this.broker);
-
             // *** Add command arguments ***
             command.AddCommandArguments(dsioPregnancy, false);
-
             // *** Execute the command ***
             RpcResponse response = command.Execute();
-
             // *** Add response data to result ***
             result.SetResult(response.Status == RpcResponseStatus.Success, response.InformationalMessage);
 
             if (result.Success)
-                result.Ien = command.Ien; 
+            {
+                result.Ien = command.Ien;
+            }
 
-            return result; 
+            return result;
+        }
+
+        public IenResult SaveWvrpcorPregnancy(PregnancyDetails pregnancy, string patientDfn, bool pregnancyValue)
+        {
+            // *** Saves pregnancy data ***
+            IenResult wvrpcorResult = new IenResult();
+
+            // *** Create the dsio pregnancy string data ***
+            DsioPregnancy dsioPregnancy = CreateDsioPregnancy(pregnancy);
+
+            // *** Create RPC command ***
+            WvrpcorSavePregDetailsCommand saveWvrpcorPregDetailsCommand = new WvrpcorSavePregDetailsCommand(this.broker);
+            // *** Add command arguments ***
+            saveWvrpcorPregDetailsCommand.AddCommandArguments(dsioPregnancy, patientDfn, pregnancyValue);
+            // *** Execute the command ***
+            RpcResponse response2 = saveWvrpcorPregDetailsCommand.Execute();
+            // *** Add response data to result ***
+            wvrpcorResult.SetResult(response2.Status == RpcResponseStatus.Success, response2.InformationalMessage);
+
+            if (wvrpcorResult.Success)
+            {
+                wvrpcorResult.Ien = saveWvrpcorPregDetailsCommand.Ien;
+            }
+
+            return wvrpcorResult;
         }
 
         /// <summary>
@@ -190,17 +213,17 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             {
                 // *** If we have pregnancies, look for a current ***
                 if (listResult.Pregnancies != null)
-                    if (listResult.Pregnancies.Count > 0) 
+                    if (listResult.Pregnancies.Count > 0)
                         foreach (PregnancyDetails preg in listResult.Pregnancies)
                             if (preg.RecordType == PregnancyRecordType.Current)
-                                result.Pregnancy = preg; 
+                                result.Pregnancy = preg;
 
                 // *** Add result/message if no current ***
                 if (result.Pregnancy == null)
-                    result.SetResult(true, "No Current Pregnancy Data Found"); 
+                    result.SetResult(true, "No Current Pregnancy Data Found");
             }
 
-            return result; 
+            return result;
         }
 
         public PregnancyResult GetCurrentOrMostRecentPregnancy(string patientDfn)
@@ -230,12 +253,12 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                             if (mostRecent == null)
                                 mostRecent = preg;
                             else if (mostRecent.EndDate < preg.EndDate)
-                                mostRecent = preg; 
+                                mostRecent = preg;
                         }
 
                         if (result.Pregnancy == null)
                             if (mostRecent != null)
-                                result.Pregnancy = mostRecent; 
+                                result.Pregnancy = mostRecent;
                     }
 
                 // *** Add result/message if no current ***
@@ -243,7 +266,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                     result.SetResult(true, "No Pregnancy Data Found");
             }
 
-            return result; 
+            return result;
         }
 
         public PregnancyListResult GetPregnancies(string patientDfn, string pregnancyIen)
@@ -270,7 +293,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                     foreach (DsioPregnancy dsioPreg in command.PregnancyList)
                     {
                         if (result.Pregnancies == null)
-                            result.Pregnancies = new List<PregnancyDetails>(); 
+                            result.Pregnancies = new List<PregnancyDetails>();
 
                         PregnancyDetails tempPregnancy = CreatePregnancy(dsioPreg);
 
@@ -313,7 +336,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                     if (command.ObservationsList.Count > 0)
                     {
                         // *** Create a dictionary to hold only most recent ***
-                        Dictionary<string, DsioObservation> mostRecentList = new Dictionary<string,DsioObservation>();
+                        Dictionary<string, DsioObservation> mostRecentList = new Dictionary<string, DsioObservation>();
 
                         // *** Loop through the list, if it does not exist add it, or if it is newer, replace ***
                         foreach (DsioObservation dsioObservation in command.ObservationsList)
@@ -327,21 +350,21 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
                                 // *** If newer replace ***
                                 if (newDate > existingDate)
-                                    mostRecentList[dsioObservation.Code.Code] = dsioObservation; 
+                                    mostRecentList[dsioObservation.Code.Code] = dsioObservation;
                             }
 
                         // *** Loop through most recent and add to pregnancy history ***
                         foreach (DsioObservation dsioObservation in mostRecentList.Values)
                             if (!string.IsNullOrWhiteSpace(dsioObservation.Code.Code))
                             {
-                                Observation tempObs = ObservationUtility.GetObservation(dsioObservation); 
+                                Observation tempObs = ObservationUtility.GetObservation(dsioObservation);
                                 result.PregnancyHistory.Observations[dsioObservation.Code.Code] = tempObs;
                                 //result.PregnancyHistory.SetValue(dsioObservation.Code, dsioObservation.Value);
                             }
                     }
             }
 
-            return result; 
+            return result;
         }
 
         public BrokerOperationResult SavePregnancyHistory(string patientDfn, PregnancyHistory pregnancyHistory)
@@ -350,7 +373,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
             BrokerOperationResult result = new BrokerOperationResult();
 
-            List<DsioObservation> observationsToSave = GetObservationsToSave(patientDfn, pregnancyHistory); 
+            List<DsioObservation> observationsToSave = GetObservationsToSave(patientDfn, pregnancyHistory);
 
             // *** If there's something to save ***
             if (observationsToSave.Count > 0)
@@ -374,7 +397,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                     observation.PatientDfn = patientDfn;
 
                     // *** Set the date/time ***
-                    observation.ExamDate = DateTime.Now.ToString(VistaDates.VistADateFormatFour); 
+                    observation.ExamDate = DateTime.Now.ToString(VistaDates.VistADateFormatFour);
 
                     // *** Add the command arguments ***
                     command.AddCommandArguments(observation);
@@ -409,7 +432,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                     observation.ExamDate = DateTime.Now.ToString(VistaDates.VistADateFormatFour);
 
                     // *** Add the value ***
-                    observation.Value = pregnancyHistory.GravidaPara; 
+                    observation.Value = pregnancyHistory.GravidaPara;
 
                     // *** Add the command arguments ***
                     command.AddCommandArguments(observation);
@@ -432,7 +455,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                 result.Message = "Nothing to save";
             }
 
-            return result; 
+            return result;
         }
 
         //public PregnancyResult GetMostRecentPregnancy(string patientDfn)
@@ -507,7 +530,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                 }
             }
 
-            return observationsToSave; 
+            return observationsToSave;
         }
 
         private DsioPregnancy CreateDsioPregnancy(PregnancyDetails pregnancy)
@@ -542,7 +565,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
             // *** Set record type ***
             //dsioPregnancy.RecordType = (pregnancy.RecordType == PregnancyRecordType.Current) ? DsioPregnancy.CurrentPregnancyType : DsioPregnancy.HistoricalPregnancyType;
-            dsioPregnancy.RecordType = (pregnancy.RecordType == PregnancyRecordType.Current) ? DsioPregnancy.CurrentPregnancyType.Substring(0,1) : DsioPregnancy.HistoricalPregnancyType.Substring(0,1);
+            dsioPregnancy.RecordType = (pregnancy.RecordType == PregnancyRecordType.Current) ? DsioPregnancy.CurrentPregnancyType.Substring(0, 1) : DsioPregnancy.HistoricalPregnancyType.Substring(0, 1);
 
             // *** Set start date ***
             if (pregnancy.StartDate != DateTime.MinValue)
@@ -558,7 +581,8 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             dsioPregnancy.Anesthesia = pregnancy.Anesthesia;
             dsioPregnancy.PretermDelivery = pregnancy.PretermDelivery;
             dsioPregnancy.Outcome = pregnancy.Outcome;
-            dsioPregnancy.Comment = pregnancy.Comment; 
+            dsioPregnancy.Comment = pregnancy.Comment;
+            dsioPregnancy.Lmp = pregnancy.Lmp;
 
             return dsioPregnancy;
         }
@@ -577,23 +601,23 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             //returnVal.EDD = VistaDates.ParseDateString(dsioPregnancy.EDD, VistaDates.VistADateFormatSix);
 
             // *** Set FOF and IEN ***
-            returnVal.FatherOfFetusIen = dsioPregnancy.FatherOfFetusIen; 
+            returnVal.FatherOfFetusIen = dsioPregnancy.FatherOfFetusIen;
             if (!string.IsNullOrWhiteSpace(dsioPregnancy.FatherOfFetus))
                 returnVal.FatherOfFetus = dsioPregnancy.FatherOfFetus;
-                
+
             // *** Set pregnancy IEN ***
             returnVal.Ien = dsioPregnancy.Ien;
 
             // *** Set OB and IEN ***
-            returnVal.ObstetricianIen = dsioPregnancy.ObstetricianIen; 
+            returnVal.ObstetricianIen = dsioPregnancy.ObstetricianIen;
             if (!string.IsNullOrWhiteSpace(dsioPregnancy.Obstetrician))
                 returnVal.Obstetrician = dsioPregnancy.Obstetrician;
-            
+
             // *** Set patient DFN ***
             returnVal.PatientDfn = dsioPregnancy.PatientDfn;
 
             // *** Set L&D and IEN ***
-            returnVal.PlannedLaborDeliveryFacilityIen = dsioPregnancy.LDFacilityIen; 
+            returnVal.PlannedLaborDeliveryFacilityIen = dsioPregnancy.LDFacilityIen;
             if (!string.IsNullOrWhiteSpace(dsioPregnancy.LDFacility))
                 returnVal.PlannedLaborDeliveryFacility = dsioPregnancy.LDFacility;
 
@@ -607,7 +631,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             else if (dsioPregnancy.RecordType == DsioPregnancy.HistoricalPregnancyType)
                 returnVal.RecordType = PregnancyRecordType.Historical;
             else if (dsioPregnancy.RecordType == DsioPregnancy.HistoricalPregnancyType.Substring(0, 1))
-                returnVal.RecordType = PregnancyRecordType.Historical; 
+                returnVal.RecordType = PregnancyRecordType.Historical;
 
             // *** Parse start date ***
             returnVal.StartDate = VistaDates.ParseDateString(dsioPregnancy.StartDate, VistaDates.VistADateOnlyFormat);
@@ -617,15 +641,15 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             {
                 int babyNum = -1;
                 int.TryParse(dsioBaby.Number, out babyNum);
-                   
+
                 Baby baby = new Baby() { Ien = dsioBaby.Ien, BabyNum = babyNum };
 
-                returnVal.Babies.Add(baby); 
+                returnVal.Babies.Add(baby);
             }
 
             // *** High Risk ***
             returnVal.HighRisk = (dsioPregnancy.HighRisk == "1");
-            returnVal.HighRiskDetails = dsioPregnancy.HighRiskDetails; 
+            returnVal.HighRiskDetails = dsioPregnancy.HighRiskDetails;
 
             // *** Created ***
             returnVal.Created = VistaDates.ParseDateString(dsioPregnancy.Created, VistaDates.VistADateFormatFour);
@@ -636,64 +660,64 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             returnVal.Anesthesia = dsioPregnancy.Anesthesia;
             returnVal.PretermDelivery = dsioPregnancy.PretermDelivery;
             returnVal.Outcome = dsioPregnancy.Outcome;
-            returnVal.Comment = dsioPregnancy.Comment; 
+            returnVal.Comment = dsioPregnancy.Comment;
 
-            return returnVal; 
+            return returnVal;
         }
 
-        private Person GetPerson(DsioLinkedPerson dsioPerson) 
+        private Person GetPerson(DsioLinkedPerson dsioPerson)
         {
             // *** Translates a dsio person to a strongly typed Person ***
 
             Person newPerson = new Person();
-            
+
             // ** Parse the name ***
-            newPerson.LastName = Util.Piece(dsioPerson.Name, ",", 1); 
+            newPerson.LastName = Util.Piece(dsioPerson.Name, ",", 1);
             newPerson.FirstName = Util.Piece(dsioPerson.Name, ",", 2);
 
             // *** Ien ***
-            newPerson.Ien = dsioPerson.Ien; 
+            newPerson.Ien = dsioPerson.Ien;
 
             // *** Spouse ***
             if (dsioPerson.Ien == "S")
-                newPerson.Spouse = true; 
+                newPerson.Spouse = true;
 
             // *** Use standard DOB format ***
             DateTime tempDate = VistaDates.ParseDateString(dsioPerson.DOB, VistaDates.VistADateOnlyFormat);
             if (tempDate != DateTime.MinValue)
-                newPerson.DOB = tempDate; 
+                newPerson.DOB = tempDate;
 
             // *** Years school ***
             int yrs = -1;
             if (int.TryParse(dsioPerson.YearsSchool, out yrs))
-                newPerson.YearsSchool = yrs; 
+                newPerson.YearsSchool = yrs;
 
             // *** Address ***
             newPerson.Address = new Address();
-            newPerson.Address.StreetAddress1 = dsioPerson.Address.StreetLine1; 
-            newPerson.Address.StreetAddress2 = dsioPerson.Address.StreetLine2; 
-            newPerson.Address.City = dsioPerson.Address.City; 
-            newPerson.Address.State = dsioPerson.Address.State; 
-            newPerson.Address.ZipCode = dsioPerson.Address.ZipCode; 
-                    
+            newPerson.Address.StreetAddress1 = dsioPerson.Address.StreetLine1;
+            newPerson.Address.StreetAddress2 = dsioPerson.Address.StreetLine2;
+            newPerson.Address.City = dsioPerson.Address.City;
+            newPerson.Address.State = dsioPerson.Address.State;
+            newPerson.Address.ZipCode = dsioPerson.Address.ZipCode;
+
             // *** Loop through telephone numbers and add ***
-            foreach (DsioTelephone tel in dsioPerson.TelephoneList) 
+            foreach (DsioTelephone tel in dsioPerson.TelephoneList)
             {
                 switch (tel.Usage)
                 {
                     case DsioTelephone.HomePhoneUsage:
-                        newPerson.HomePhone = tel.Number; 
-                        break; 
+                        newPerson.HomePhone = tel.Number;
+                        break;
                     case DsioTelephone.WorkPhoneUsage:
-                        newPerson.WorkPhone = tel.Number; 
-                        break; 
+                        newPerson.WorkPhone = tel.Number;
+                        break;
                     case DsioTelephone.MobilePhoneUsage:
-                        newPerson.MobilePhone = tel.Number; 
-                        break; 
+                        newPerson.MobilePhone = tel.Number;
+                        break;
                 }
             }
 
-            return newPerson; 
+            return newPerson;
         }
 
         public ObservationListResult GetObservations(string patientDfn, string pregnancyIen, string babyIen, string fromDate, string toDate, string category, int page, int itemsPerPage)
@@ -718,7 +742,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             // *** Add observations ***
             if (result.Success)
             {
-                result.TotalResults = command.TotalResults; 
+                result.TotalResults = command.TotalResults;
 
                 if (command.ObservationsList != null)
                     if (command.ObservationsList.Count > 0)
@@ -730,73 +754,74 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                             Observation obs = ObservationUtility.GetObservation(dsioObs);
 
                             if (obs != null)
-                                result.Observations.Add(obs); 
+                                result.Observations.Add(obs);
                         }
                     }
             }
 
             return result;
         }
-        
+
         public AddBabyResult AddBabyToPregnancy(string patientDfn, string pregnancyIen)
         {
-            AddBabyResult returnResult = new AddBabyResult(); 
+            AddBabyResult returnResult = new AddBabyResult();
 
             PregnancyListResult pregResult = this.GetPregnancies(patientDfn, pregnancyIen);
-                       
-            if (!pregResult.Success) 
-                returnResult.SetResult(pregResult.Success, pregResult.Message); 
+
+            if (!pregResult.Success)
+                returnResult.SetResult(pregResult.Success, pregResult.Message);
             else if (pregResult.Pregnancies != null)
-                    if (pregResult.Pregnancies.Count == 1)
-                    {
-                        PregnancyDetails pregDetail = pregResult.Pregnancies[0];
+                if (pregResult.Pregnancies.Count == 1)
+                {
+                    PregnancyDetails pregDetail = pregResult.Pregnancies[0];
 
-                        bool okToAdd = true; 
+                    bool okToAdd = true;
 
-                        // *** Do we have a babies object ? ***
-                        if (pregDetail.Babies != null)
-                            if (pregDetail.Babies.Count >= 9)
-                            {
-                                returnResult.SetResult(false, "This pregnancy already has 9 babies.  You cannot add more than 9 babies to a pregnancy.");
-                                okToAdd = false;
-                            }
-
-                        if (okToAdd) 
+                    // *** Do we have a babies object ? ***
+                    if (pregDetail.Babies != null)
+                        if (pregDetail.Babies.Count >= 9)
                         {
-                            // *** Create the save command ***
-                            DsioSavePregDetailsCommand saveCommand = new DsioSavePregDetailsCommand(this.broker);
+                            returnResult.SetResult(false, "This pregnancy already has 9 babies.  You cannot add more than 9 babies to a pregnancy.");
+                            okToAdd = false;
+                        }
 
-                            // *** Create the dsio pregnancy ***
-                            DsioPregnancy dsioPreg = CreateDsioPregnancy(pregDetail);
+                    if (okToAdd)
+                    {
+                        // *** Create the save command ***
+                        DsioSavePregDetailsCommand saveCommand = new DsioSavePregDetailsCommand(this.broker);
+                        //DsioSavePregDetailsToOtherNamespaceCommand saveCommand = new DsioSavePregDetailsToOtherNamespaceCommand(this.broker);
 
-                            // *** Add the command arguments, addBaby = true ***
-                            saveCommand.AddCommandArguments(dsioPreg, true);
+                        // *** Create the dsio pregnancy ***
+                        DsioPregnancy dsioPreg = CreateDsioPregnancy(pregDetail);
 
-                            // *** Execute the command ***
-                            RpcResponse response = saveCommand.Execute();
+                        // *** Add the command arguments, addBaby = true ***
+                        saveCommand.AddCommandArguments(dsioPreg, true);
 
-                            returnResult.SetResult(pregResult.Success, pregResult.Message);
+                        // *** Execute the command ***
+                        RpcResponse response = saveCommand.Execute();
 
-                            // *** Check the status ***
-                            if (response.Status == RpcResponseStatus.Success)
-                            {
-                                //int newBabyNum = -1;
-                                //int.TryParse(saveCommand.BabyNumber, out newBabyNum);
-                                //pregDetail.Babies.Add(new Baby() { BabyNum = newBabyNum, Ien = saveCommand.BabyIen });
-                                returnResult.NewBabyIen = saveCommand.BabyIen;
-                                returnResult.NewBabyNumber = saveCommand.BabyNumber;
-                            }
+                        returnResult.SetResult(pregResult.Success, pregResult.Message);
+
+                        // *** Check the status ***
+                        if (response.Status == RpcResponseStatus.Success)
+                        {
+                            //int newBabyNum = -1;
+                            //int.TryParse(saveCommand.BabyNumber, out newBabyNum);
+                            //pregDetail.Babies.Add(new Baby() { BabyNum = newBabyNum, Ien = saveCommand.BabyIen });
+                            returnResult.NewBabyIen = saveCommand.BabyIen;
+                            returnResult.NewBabyNumber = saveCommand.BabyNumber;
                         }
                     }
+                }
 
-            return returnResult; 
+            return returnResult;
         }
 
         public BrokerOperationResult Delete(string pregIen)
         {
             BrokerOperationResult returnResult = new BrokerOperationResult();
 
-            DsioDeletePregnancyCommand command = new DsioDeletePregnancyCommand(this.broker); 
+            DsioDeletePregnancyCommand command = new DsioDeletePregnancyCommand(this.broker);
 
             command.AddCommandArguments(pregIen);
 
@@ -805,9 +830,9 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             if (response.Status == RpcResponseStatus.Success)
                 returnResult.Success = true;
             else
-                returnResult.Message = response.InformationalMessage; 
+                returnResult.Message = response.InformationalMessage;
 
-            return returnResult; 
+            return returnResult;
         }
 
 
@@ -821,7 +846,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
             RpcResponse response = command.Execute();
 
-            returnResult.Success = response.Status == RpcResponseStatus.Success; 
+            returnResult.Success = response.Status == RpcResponseStatus.Success;
 
             if (response.Status != RpcResponseStatus.Success)
                 returnResult.Message = response.InformationalMessage;
@@ -836,7 +861,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                     PregnancyOutcomeType tempType;
 
                     if (Enum.TryParse<PregnancyOutcomeType>(item.OutcomeType, out tempType))
-                        pregOutcome.OutcomeType = tempType; 
+                        pregOutcome.OutcomeType = tempType;
 
                     //switch (item.OutcomeType)
                     //{
@@ -863,7 +888,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                     //        break;
                     //}
 
-                    returnResult.PregnancyOutcomes.Add(pregOutcome); 
+                    returnResult.PregnancyOutcomes.Add(pregOutcome);
                 }
             }
 

@@ -3,21 +3,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using VA.Gov.Artemis.UI.Data.Brokers.Common;
-using VA.Gov.Artemis.UI.Data.Brokers.SelectList;
-using VA.Gov.Artemis.UI.Data.Brokers.Observations;
-using VA.Gov.Artemis.UI.Data.Models;
-using VA.Gov.Artemis.UI.Data.Models.Common;
-using VA.Gov.Artemis.UI.Data.Models.Track;
-using VA.Gov.Artemis.UI.Data.Models.Pregnancy;
-using VA.Gov.Artemis.UI.Filters;
 using VA.Gov.Artemis.UI.Data.Brokers.Pregnancy;
+using VA.Gov.Artemis.UI.Data.Brokers.SelectList;
+using VA.Gov.Artemis.UI.Data.Models.Common;
+using VA.Gov.Artemis.UI.Data.Models.Pregnancy;
+using VA.Gov.Artemis.UI.Data.Models.Track;
+using VA.Gov.Artemis.UI.Filters;
+using VA.Gov.Artemis.Vista.Utility;
 
 namespace VA.Gov.Artemis.UI.Controllers
-{    
+{
     [Authorize]
     [VerifySession]
     [DisableLocalCache]
@@ -38,7 +35,7 @@ namespace VA.Gov.Artemis.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Stop(string dfn) 
+        public ActionResult Stop(string dfn)
         {
             // *** Show stop tracking page ***
 
@@ -46,7 +43,7 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             CreateTrackingEntry model = GetNewModel(TrackingEntryType.Stop, dfn);
 
-           // model.Pregnancy = PregnancyUtilities.GetPregnancy(this.DashboardRepository, dfn, pregIen);
+            // model.Pregnancy = PregnancyUtilities.GetPregnancy(this.DashboardRepository, dfn, pregIen);
 
             PregnancyResult results = this.DashboardRepository.Pregnancy.GetCurrentOrMostRecentPregnancy(dfn);
 
@@ -54,20 +51,20 @@ namespace VA.Gov.Artemis.UI.Controllers
             {
                 if (results.Pregnancy != null)
                 {
-                   string pregIen = results.Pregnancy.Ien;
+                    string pregIen = results.Pregnancy.Ien;
 
-                   // *** Get the outcome type ***
-                   PregnancyOutcomeType outcomeType = PregnancyUtilities.GetPregnancyOutcome(this.DashboardRepository, dfn, pregIen);
+                    // *** Get the outcome type ***
+                    PregnancyOutcomeType outcomeType = PregnancyUtilities.GetPregnancyOutcome(this.DashboardRepository, dfn, pregIen);
 
-                   model.Outcome = PregnancyUtilities.GetOutcomeDetails(this.DashboardRepository, dfn, pregIen, outcomeType);
+                    model.Outcome = PregnancyUtilities.GetOutcomeDetails(this.DashboardRepository, dfn, pregIen, outcomeType);
 
-                   model.Outcome.OutcomeType = outcomeType;
+                    model.Outcome.OutcomeType = outcomeType;
 
-                   model.Outcome.OutcomeDate = results.Pregnancy.DisplayEndDate;
+                    model.Outcome.OutcomeDate = results.Pregnancy.DisplayEndDate;
                 }
             }
 
-            
+
 
             returnResult = View("~/Views/Track/Stop.cshtml", model);
             //returnResult = View(model);
@@ -76,7 +73,7 @@ namespace VA.Gov.Artemis.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Accept(string dfn) 
+        public ActionResult Accept(string dfn)
         {
             // *** Show accept tracking page ***
 
@@ -84,13 +81,13 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             CreateTrackingEntry model = GetNewModel(TrackingEntryType.Accept, dfn);
 
-           returnResult = View("~/Views/Track/Create.cshtml", model);
+            returnResult = View("~/Views/Track/Create.cshtml", model);
 
             return returnResult;
         }
 
         [HttpGet]
-        public ActionResult Reject(string dfn) 
+        public ActionResult Reject(string dfn)
         {
             // *** Show reject tracking page ***
 
@@ -99,7 +96,7 @@ namespace VA.Gov.Artemis.UI.Controllers
             CreateTrackingEntry model = GetNewModel(TrackingEntryType.Reject, dfn);
 
             returnResult = View("~/Views/Track/Create.cshtml", model);
- 
+
             return returnResult;
         }
 
@@ -127,7 +124,7 @@ namespace VA.Gov.Artemis.UI.Controllers
 
                 if (eventType == TrackingEntryType.Stop)
                     if (newTrackingEntry.TrackingEntry.Reason == "Other")
-                        newTrackingEntry.TrackingEntry.Reason = newTrackingEntry.ReasonDetail; 
+                        newTrackingEntry.TrackingEntry.Reason = newTrackingEntry.ReasonDetail;
 
                 // *** Check if a determination's been made yet ***
                 if (!success.HasValue)
@@ -149,7 +146,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                         // *** Update pregnancy status ***
                         if (newTrackingEntry.TrackingEntry.EntryType == TrackingEntryType.Start)
                             if (newTrackingEntry.UpdatePregnancyStatus)
-                                UpdatePregnancyStatus(dfn); 
+                                UpdatePregnancyStatus(dfn, newTrackingEntry);
 
                         if (newTrackingEntry.TrackingEntry.EntryType == TrackingEntryType.Stop)
                             this.Information("The patient is no longer being tracked.");
@@ -158,9 +155,9 @@ namespace VA.Gov.Artemis.UI.Controllers
                     }
                     else
                         if (string.IsNullOrWhiteSpace(result.Message))
-                            this.Error("Could not add tracking history entry");
-                        else
-                            this.Error(result.Message);
+                        this.Error("Could not add tracking history entry");
+                    else
+                        this.Error(result.Message);
                 }
             }
             catch (Exception genericException)
@@ -173,8 +170,8 @@ namespace VA.Gov.Artemis.UI.Controllers
             {
                 if ((newTrackingEntry.TrackingEntry.EntryType == TrackingEntryType.Accept) ||
                     (newTrackingEntry.TrackingEntry.EntryType == TrackingEntryType.Reject))
-                    returnResult = RedirectToAction("Index", "FlaggedPatients"); 
-                else 
+                    returnResult = RedirectToAction("Index", "FlaggedPatients");
+                else
                     returnResult = RedirectToAction("Overview", "PatientList");
             }
             else
@@ -186,7 +183,7 @@ namespace VA.Gov.Artemis.UI.Controllers
             }
 
             return returnResult;
-        }       
+        }
 
         private CreateTrackingEntry GetNewModel(TrackingEntryType entryType, string dfn)
         {
@@ -216,11 +213,11 @@ namespace VA.Gov.Artemis.UI.Controllers
                     returnModel.ReasonText = "Stop Tracking Reason";
                     List<string> stopTrackingReasonList = new List<string>()
                     {
-                        "First trimester pregnancy failure or loss", 
-                        "Second trimester pregnancy failure or loss", 
-                        "Term or pre-term delivery, completed 8 weeks of postpartum care", 
-                        "Transfer of care", 
-                        "Moved out of area", 
+                        "First trimester pregnancy failure or loss",
+                        "Second trimester pregnancy failure or loss",
+                        "Term or pre-term delivery, completed 8 weeks of postpartum care",
+                        "Transfer of care",
+                        "Moved out of area",
                         "Other"
                     };
                     returnModel.Reasons = stopTrackingReasonList;
@@ -245,8 +242,8 @@ namespace VA.Gov.Artemis.UI.Controllers
             }
 
             // *** Get patient demographics ***
-            this.CurrentPatientDfn = dfn; 
-            BasePatient currentPatient = this.CurrentPatient; 
+            this.CurrentPatientDfn = dfn;
+            BasePatient currentPatient = this.CurrentPatient;
 
             if (!currentPatient.NotFound)
             {
@@ -261,32 +258,49 @@ namespace VA.Gov.Artemis.UI.Controllers
                 returnModel.Patient = currentPatient;
             }
 
-            return returnModel; 
+            return returnModel;
         }
 
-        private bool UpdatePregnancyStatus(string dfn)
+        private bool UpdatePregnancyStatus(string dfn, CreateTrackingEntry newTrackingEntry)
         {
             bool returnVal = false;
 
             PregnancyResult pregResult = this.DashboardRepository.Pregnancy.GetCurrentPregnancy(dfn);
 
             if (!pregResult.Success)
+            {
                 this.Error(pregResult.Message);
+            }
             else if (pregResult.Pregnancy == null)
             {
                 PregnancyDetails newPreg = new PregnancyDetails();
                 newPreg.PatientDfn = dfn;
                 newPreg.RecordType = PregnancyRecordType.Current;
+                bool pregnancyValue = true;
+                newPreg.Lmp = newTrackingEntry.LMP;
+                newPreg.EDD = VistaDates.ParseDateString(newTrackingEntry.EDD, VistaDates.VistADateOnlyFormat);
 
-                BrokerOperationResult result = this.DashboardRepository.Pregnancy.SavePregnancy(newPreg);
-
-                if (!result.Success)
-                    this.Error(result.Message);
+                BrokerOperationResult wvrpcorResult = this.DashboardRepository.Pregnancy.SaveWvrpcorPregnancy(newPreg, newPreg.PatientDfn, pregnancyValue);
+                if (!wvrpcorResult.Success)
+                {
+                    this.Error(wvrpcorResult.Message);
+                }
                 else
-                    returnVal = true;
+                {
+                    BrokerOperationResult result = this.DashboardRepository.Pregnancy.SavePregnancy(newPreg);
+
+                    if (!result.Success)
+                    {
+                        this.Error(result.Message);
+                    }
+                    else
+                    {
+                        returnVal = true;
+                    }
+                }
             }
 
-            return returnVal; 
+            return returnVal;
         }
     }
 }

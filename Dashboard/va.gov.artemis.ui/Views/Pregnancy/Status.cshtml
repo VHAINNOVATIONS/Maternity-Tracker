@@ -20,15 +20,17 @@
     @Html.HiddenFor(m => m.Patient.Dfn);
     @Html.HiddenFor(m => m.Patient.Pregnant);
 
-    string newStatus = (Model.Patient.Pregnant) ? "Not Pregnant" : "Pregnant"; 
-    
+    string newStatus = (Model.Patient.Pregnant) ? "Not Pregnant" : "Pregnant";
+
+    <p class="bg-warning" id="alertId" hidden="hidden" style="padding: 16px; margin-bottom: 20px"></p>
+
     <div class="row">
         <div class="col-md-6">
             <table class="table table-bordered table-expanded table-horizontal">
                 <tbody>
                     <tr class="centered-txt">
                         <th  scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OriginalPregnancyStatusDescription, "Current Pregnancy Status:")</th>
-                        <td style="vertical-align: middle">@Model.OriginalPregnancyStatusDescription</td>
+                        <td id="pregStat" style="vertical-align: middle">@Model.OriginalPregnancyStatusDescription</td>
                     </tr>
                     <tr class="centered-txt">
                         <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.NewPregnancyStatus, "Today's Pregnancy Status:")</th>
@@ -37,9 +39,21 @@
 
                     @if (Model.Patient.Pregnant)
                     {
-                        <tr class="centered-txt" id="outcome-date-row" style="display: none">
+                        <tr class="centered-txt" id="outcome-row" style="display: none">
                             <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.OutcomeDate, "Outcome/Delivery Date:")</th>
-                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.OutcomeDate, new { @class = "form-control" })</td>
+                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.OutcomeDate, new { @class = "form-control", id = "outcome-date" })</td>
+                        </tr>
+                    }
+
+                    @if (!Model.Patient.Pregnant)
+                    {
+                        <tr class="centered-txt" id="LMP-row" style="display: none">
+                            <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.LMP, "Last Menstrual Period:")</th>
+                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.LMP, new { @class = "form-control", id = "LMP-date" })</td>
+                        </tr>
+                        <tr class="centered-txt" id="EDD-row" style="display: none">
+                            <th scope="row" style="vertical-align: middle">@Html.LabelFor(m => m.EDD, "Estimated Delivery Date:")</th>
+                            <td style="vertical-align: middle">@Html.TextBoxFor(m => m.EDD, new { @class = "form-control", id = "EDD-date" })</td>
                         </tr>
                     }
                 </tbody>
@@ -47,7 +61,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="pull-right">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" id="save-button" class="btn btn-primary" disabled="disabled">Save</button>
                         @{string returnUrl = (string.IsNullOrWhiteSpace(Model.ReturnUrl)) ? Url.Action("Summary", "Patient", new { @dfn = Model.Patient.Dfn }) : Model.ReturnUrl;}
                         <button type="button" class="btn btn-default" onclick="location.href='@returnUrl'">Cancel</button>
                     </div>
@@ -69,18 +83,129 @@
                 updateVisibility();
             });
 
+            $("#LMP-date").change(function () {
+                var processedDate = processEventDate(this, 280);
+                updateEDD(processedDate);
+                updateSaveButton();
+            });
+
+            $("#EDD-date").change(function () {
+                updateSaveButton();
+            });
+
+            $("#outcome-date").change(function () {
+                updateSaveButton();
+            });
+
             function updateVisibility() {
                 var sel = $("#NewPregnancyStatus").val();
                 if ((sel == "False") && ($("#Patient_Pregnant").val() == "True")) {
                     $("#outcome-row").show();
-                    $("#outcome-date-row").show();
                 }
                 else {
                     $("#outcome-row").hide();
-                    $("#outcome-date-row").hide();
+                }
+
+                if ((sel == "True") && ($("#Patient_Pregnant").val() == "False")) {
+                    $("#EDD-row").show();
+                    $("#LMP-row").show();
+                }
+                else {
+                    $("#EDD-row").hide();
+                    $("#LMP-row").hide();
                 }
             };
 
+            function validFields() {
+                var valid = true;
+                if ($("#Patient_Pregnant").val() == "True"){
+                    valid = validateOutcomeDate();
+                }
+                else {
+                    valid = validateLMPEDD();
+                }
+                
+                return valid;
+            };
+
+            function validateOutcomeDate() {
+                var validOutcome = $("#outcome-date").val() != "";
+
+                var message = "";
+                if (!validOutcome) {
+                    message = "Please enter value in Outcome/Delivery Date field. ";
+                    $("#alertId").attr("class", "bg-warning");
+                    $("#alertId").removeAttr("hidden");
+                    $("#alertId").text(message);
+                }
+
+                return validOutcome;
+            };
+
+            function validateLMPEDD() {
+                var validEDD = $("#EDD-date").val() != "";
+                var validLMP = $("#LMP-date").val() != "";
+
+                var message = "";
+                if (!validEDD){
+                    message = message + "Please enter value in EDD field. ";
+                }
+                if (!validLMP) {
+                    message = message + "Please enter value in LMP field. ";
+                }
+
+                if (!(validEDD && validLMP)) {
+                    $("#alertId").attr("class", "bg-warning");
+                    $("#alertId").removeAttr("hidden");
+                    $("#alertId").text(message);
+                }
+
+                return validEDD && validLMP;
+            };
+
+            function updateSaveButton() {
+                if (validFields()) {
+                    $("#save-button").removeAttr("disabled");
+                    $("#alertId").attr("hidden", "hidden");
+                    $("#alertId").text("");
+                }
+                else {
+                    $("#save-button").attr("disabled", "disabled");
+                }
+            };
+
+            function processEventDate(element, daysToAdd) {
+                var newProcessedDate;
+                var jsDate = getJSDate($(element).val());
+                if (jsDate != undefined) {
+                    newProcessedDate = addDays(jsDate, daysToAdd);
+                    $(element).val(getFormattedDate(jsDate));
+                 }
+                else {
+                    if ($(element).val() != "") {
+                        var fieldName = "";
+                        if (element == "#LMP-date") {
+                            fieldName = "LMP";
+                        }
+                        if (element == "#EDD-date") {
+                            fieldName = "EDD"
+                        }
+                        alert("Please enter a valid date for " + fieldName + " in the format MM/DD/YYYY or M/D/YY");
+                    }
+                        
+                    $(element).val("");
+                }
+                return newProcessedDate;
+            };
+
+            function addDays(d, days) {
+                return new Date(d.getFullYear(), d.getMonth(), d.getDate() + days);
+            };
+
+            function updateEDD(newEdd) {
+                $("#EDD-date").val(getFormattedDate(newEdd));
+            };
+            
         });
     </script>
 }

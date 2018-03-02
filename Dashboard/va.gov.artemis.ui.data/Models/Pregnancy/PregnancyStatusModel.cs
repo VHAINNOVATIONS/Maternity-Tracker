@@ -80,5 +80,9 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
         }
 
         public string ReturnUrl { get; set; }
+
+        public string LMP { get; set; }
+
+        public string EDD { get; set; }
     }   
 }

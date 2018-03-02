@@ -62,6 +62,25 @@ namespace VA.Gov.Artemis.Vista.Utility
             return returnVal;
         }
 
+        public static string CenturyDateFormat(string originalDate)
+        {
+            string returnVal = "";
+
+            DateTime tempDate;
+
+            if (DateTime.TryParse(originalDate, out tempDate))
+            {
+                string yyMMdd = tempDate.ToString("yyMMdd");
+                string yyyyMMdd = tempDate.ToString("yyyyMMdd");
+                string firstTwoDigits = yyyyMMdd.Substring(0, 2);
+                //compute how many centuries have past since 1700
+                int century = Convert.ToInt32(firstTwoDigits) - 17;
+                returnVal = century + yyMMdd;
+            }                
+
+            return returnVal;
+        }
+
         public static DateTime FlexParse(string originalDate)
         {
             DateTime returnVal = DateTime.MinValue;

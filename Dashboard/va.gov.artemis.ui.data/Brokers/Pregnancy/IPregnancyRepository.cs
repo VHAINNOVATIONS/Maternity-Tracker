@@ -22,6 +22,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
         PersonListResult GetPersons(string patientDfn, string personIen); 
 
         IenResult SavePregnancy(PregnancyDetails pregnancy);
+        IenResult SaveWvrpcorPregnancy(PregnancyDetails pregnancy, string patientDfn, bool pregnancyValue);
 
         PregnancyResult GetCurrentPregnancy(string patientDfn);
 
