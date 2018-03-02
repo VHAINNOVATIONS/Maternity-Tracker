@@ -5,7 +5,7 @@ using VA.Gov.Artemis.Vista.Utility;
 namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
 {
     /// <summary>
-    /// A command to save pregnancy details to a different namespace in VistA
+    /// A command to save pregnancy details to a WVRPCOR namespace in VistA
     /// </summary>
     public class WvrpcorSavePregDetailsCommand : DsioCommand
     {

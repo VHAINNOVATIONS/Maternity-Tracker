@@ -1,29 +1,28 @@
 ﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
 // Authored by DSS, Inc. 2014-2017
 
-using VA.Gov.Artemis.Vista.Broker;
 using System;
 using System.Collections.Generic;
-using VA.Gov.Artemis.UI.Data.Models;
 using VA.Gov.Artemis.Commands.Dsio;
-using VA.Gov.Artemis.Vista.Utility;
-using System.Text.RegularExpressions;
-using VA.Gov.Artemis.Commands.Dsio.Tracking;
 using VA.Gov.Artemis.Commands.Dsio.Patient;
-using VA.Gov.Artemis.UI.Data.Models.PatientList;
-using VA.Gov.Artemis.UI.Data.Models.FlaggedPatients;
-using VA.Gov.Artemis.UI.Data.Models.PatientSearch;
-using VA.Gov.Artemis.UI.Data.Models.Common;
-using VA.Gov.Artemis.UI.Data.Models.Patient;
-using VA.Gov.Artemis.UI.Data.Brokers.Common;
 using VA.Gov.Artemis.Commands.Dsio.PatientSearch;
-using VA.Gov.Artemis.UI.Data.Models.Text4Baby;  
+using VA.Gov.Artemis.Commands.Dsio.Pregnancy;
+using VA.Gov.Artemis.Commands.Dsio.Tracking;
+using VA.Gov.Artemis.UI.Data.Brokers.Common;
+using VA.Gov.Artemis.UI.Data.Models.Common;
+using VA.Gov.Artemis.UI.Data.Models.FlaggedPatients;
+using VA.Gov.Artemis.UI.Data.Models.Patient;
+using VA.Gov.Artemis.UI.Data.Models.PatientList;
+using VA.Gov.Artemis.UI.Data.Models.PatientSearch;
+using VA.Gov.Artemis.UI.Data.Models.Text4Baby;
+using VA.Gov.Artemis.Vista.Broker;
+using VA.Gov.Artemis.Vista.Utility;
 
 namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
 {
-    public class PatientRepository: RepositoryBase, IPatientRepository
+    public class PatientRepository : RepositoryBase, IPatientRepository
     {
-        public PatientRepository(IRpcBroker newBroker): base(newBroker) {}
+        public PatientRepository(IRpcBroker newBroker) : base(newBroker) { }
 
         public PatientSearchResult Search(string searchParam, int page, int itemsPerPage)
         {
@@ -61,11 +60,11 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
 
             patSearchCommand.AddCommandArguments(searchParam, page, itemsPerPage);
 
-            RpcResponse response = patSearchCommand.Execute(); 
+            RpcResponse response = patSearchCommand.Execute();
 
             // *** Set return values ***
             result.Success = (response.Status == RpcResponseStatus.Success);
-            result.Message = response.InformationalMessage; 
+            result.Message = response.InformationalMessage;
 
             // *** If we have patients, then add them to return ***
             if (response.Status == RpcResponseStatus.Success)
@@ -82,7 +81,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                 result.TotalResults = patSearchCommand.TotalResults;
             }
 
-            return result; 
+            return result;
         }
 
         public PatientSearchResult ProgressiveSearch(string lastName, string firstName, int page, int itemsPerPage)
@@ -101,7 +100,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                 string.Format("{0}", lastName)
                 };
 
-            bool keepLooking = true; 
+            bool keepLooking = true;
             int idx = 0;
 
             while ((keepLooking) && (idx < searchVals.Length))
@@ -112,11 +111,11 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                     if (result.Patients != null)
                         if (result.Patients.Count > 0)
                             keepLooking = false;
-                
-                idx += 1; 
+
+                idx += 1;
             }
-             
-            return result; 
+
+            return result;
         }
 
         private SearchPatient GetSearchPatient(DsioSearchPatient commandPatient)
@@ -125,7 +124,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
 
             // *** Get the tracking status ***
             CurrentTrackingStatus trackStat = GetTrackingStatus(commandPatient.TrackingStatus);
-         
+
             // *** Create the new patient ***
             SearchPatient uiPatient = new SearchPatient()
             {
@@ -138,7 +137,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                 CurrentlyTracking = trackStat
             };
 
-            uiPatient.Sensitive = (commandPatient.Sensitive == "1") ? true : false; 
+            uiPatient.Sensitive = (commandPatient.Sensitive == "1") ? true : false;
 
             //// *** Determine if sensitive ***
             //if (commandPatient.Last4.Contains("SENSITIVE"))
@@ -169,7 +168,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
 
             }
 
-            return uiPatient; 
+            return uiPatient;
         }
 
         private CurrentTrackingStatus GetTrackingStatus(string trackingStatus)
@@ -185,7 +184,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                     returnVal = CurrentTrackingStatus.Flagged;
                     break;
                 case "0":
-                default:                
+                default:
                     returnVal = CurrentTrackingStatus.No;
                     break;
             }
@@ -197,7 +196,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
         {
             // *** Gets a list of flagged patients ***
 
-            FlaggedPatientsResult result = new FlaggedPatientsResult(); 
+            FlaggedPatientsResult result = new FlaggedPatientsResult();
 
             // *** Create the command ***
             DsioGetTrackingCommand command = new DsioGetTrackingCommand(this.broker);
@@ -209,20 +208,20 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
             RpcResponse response = command.Execute();
 
             result.Success = (response.Status == RpcResponseStatus.Success);
-            result.Message = response.InformationalMessage; 
+            result.Message = response.InformationalMessage;
 
             // *** Check for success and results ***
             if (result.Success)
-                if (command.FlaggedPatientResult != null) 
+                if (command.FlaggedPatientResult != null)
                     if (command.FlaggedPatientResult.FlaggedPatients != null)
                         if (command.FlaggedPatientResult.FlaggedPatients.Count > 0)
                         {
                             result.Patients = ProcessDsioFlaggedPatients(command.FlaggedPatientResult.FlaggedPatients);
 
-                            result.TotalResults = command.TotalResults; 
+                            result.TotalResults = command.TotalResults;
                         }
 
-            return result; 
+            return result;
         }
 
         private List<FlaggedPatient> ProcessDsioFlaggedPatients(Dictionary<string, DsioFlaggedPatient> dsioFlaggedPatients)
@@ -238,7 +237,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
 
                 DsioGetTrackingCommand command = new DsioGetTrackingCommand(broker);
 
-                command.AddPatientLogsParameter(dsioPatient.Dfn); 
+                command.AddPatientLogsParameter(dsioPatient.Dfn);
 
                 RpcResponse response = command.Execute();
 
@@ -251,7 +250,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
 
                 returnList.Add(patient);
             }
-            return returnList; 
+            return returnList;
         }
 
         private FlaggedPatient GetFlaggedPatient(DsioFlaggedPatient dsioPatient)
@@ -294,7 +293,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
             patient.FlagSummary = dsioPatient.FlagSummary;
             patient.FlaggedOn = dsioPatient.FlaggedOn;
 
-            return patient; 
+            return patient;
         }
 
         //public PatientDemographicsResult GetPatientDemographicsX(string dfn)
@@ -333,7 +332,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
         //        else if (length == 10)
         //            if (result.Patient.FullSSN.EndsWith("P"))
         //                result.Patient.Last4 = result.Patient.FullSSN.Substring(5, 4);
-                
+
         //    }
 
         //    return result;
@@ -342,11 +341,30 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
         public PatientDemographicsResult GetPatientDemographics(string dfn)
         {
             PatientDemographicsResult result = new PatientDemographicsResult();
+            string pregnant = "";
+            string lactating = "";
 
-            DsioGetPatientInformationCommand command = new DsioGetPatientInformationCommand(this.broker); 
+            //RPC call in CPRS to get Women's Heath data: WVRPCOR COVER
+            // *** Create RPC command ***
+            WvrpcorGetWomensHealthDataCommand getWvrpcorWomensHealthDataCommand = new WvrpcorGetWomensHealthDataCommand(this.broker);
+            // *** Add command arguments ***
+            var pregnancyValue = "";
+            getWvrpcorWomensHealthDataCommand.AddCommandArguments(dfn, pregnancyValue);
+            // *** Execute the command ***
+            RpcResponse wvrpcorResponse = getWvrpcorWomensHealthDataCommand.Execute();
+            // *** Add response data to result ***
+            result.SetResult(wvrpcorResponse.Status == RpcResponseStatus.Success, wvrpcorResponse.InformationalMessage);
 
-            command.AddCommandArguments(dfn); 
+            if (result.Success)
+            {
+                pregnant = getWvrpcorWomensHealthDataCommand.Pregnant;
+                lactating = getWvrpcorWomensHealthDataCommand.Lactating;
+            }
 
+            //TO BE CONTINUED
+
+            DsioGetPatientInformationCommand command = new DsioGetPatientInformationCommand(this.broker);
+            command.AddCommandArguments(dfn);
             RpcResponse response = command.Execute();
 
             result.Success = (response.Status == RpcResponseStatus.Success);
@@ -362,7 +380,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                 // *** Name ***
                 result.Patient.LastName = Util.Piece(command.Patient.PatientName, ",", 1);
                 result.Patient.FirstName = Util.Piece(command.Patient.PatientName, ",", 2);
-                
+
                 // *** SSN ***
                 result.Patient.FullSSN = command.Patient.SSN;
 
@@ -375,7 +393,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                         result.Patient.Last4 = result.Patient.FullSSN.Substring(5, 4);
 
                 // *** DOB ***
-                result.Patient.DateOfBirth = VistaDates.ParseDateString(command.Patient.DOB, VistaDates.VistADateOnlyFormat); 
+                result.Patient.DateOfBirth = VistaDates.ParseDateString(command.Patient.DOB, VistaDates.VistADateOnlyFormat);
 
                 // *** Gravida Para ***
                 if (string.IsNullOrWhiteSpace(command.Patient.GravidaPara))
@@ -383,11 +401,11 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                 else
                     result.Patient.GravidaPara = command.Patient.GravidaPara;
 
-                result.Patient.Pregnant = (command.Patient.Pregnant == "YES") ? true : false; 
+                result.Patient.Pregnant = (command.Patient.Pregnant == "YES") ? true : false;
 
                 // *** Last Live Birth ***
                 if (!string.IsNullOrWhiteSpace(command.Patient.LastLiveBirth))
-                    result.Patient.LastLiveBirth = VistaDates.ParseDateString(command.Patient.LastLiveBirth, VistaDates.VistADateOnlyFormat); 
+                    result.Patient.LastLiveBirth = VistaDates.ParseDateString(command.Patient.LastLiveBirth, VistaDates.VistADateOnlyFormat);
 
                 // *** Lactating ***
                 result.Patient.Lactating = (command.Patient.Lactating == "YES") ? true : false;
@@ -395,18 +413,18 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                 // *** Add phone numbers ***
                 result.Patient.HomePhone = command.Patient.HomePhone;
                 result.Patient.WorkPhone = command.Patient.WorkPhone;
-                result.Patient.MobilePhone = command.Patient.MobilePhone; 
+                result.Patient.MobilePhone = command.Patient.MobilePhone;
 
                 // *** Contact dates ***
                 // TODO: Should last contact have time?
                 result.Patient.LastContactDate = VistaDates.ParseDateString(command.Patient.LastContactDate, VistaDates.VistADateOnlyFormat);
-                result.Patient.NextContactDue = VistaDates.ParseDateString(command.Patient.NextContactDue, VistaDates.VistADateOnlyFormat); 
+                result.Patient.NextContactDue = VistaDates.ParseDateString(command.Patient.NextContactDue, VistaDates.VistADateOnlyFormat);
 
                 // *** Checklist Date ***
-                result.Patient.NextChecklistDue = VistaDates.ParseDateString(command.Patient.NextChecklistDue, VistaDates.VistADateOnlyFormat); 
+                result.Patient.NextChecklistDue = VistaDates.ParseDateString(command.Patient.NextChecklistDue, VistaDates.VistADateOnlyFormat);
 
                 // *** LMP ***
-                result.Patient.Lmp = VistaDates.ParseDateString(command.Patient.Lmp, VistaDates.VistADateOnlyFormat); 
+                result.Patient.Lmp = VistaDates.ParseDateString(command.Patient.Lmp, VistaDates.VistADateOnlyFormat);
 
                 // *** Current Pregnancy High Risk ***
                 result.Patient.CurrentPregnancyHighRisk = (command.Patient.CurrentPregnancyHighRisk == "TRUE");
@@ -414,15 +432,15 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
 
                 // *** Zip, Email ***
                 result.Patient.ZipCode = command.Patient.ZipCode;
-                result.Patient.Email = command.Patient.Email; 
+                result.Patient.Email = command.Patient.Email;
 
                 // *** Text4Baby ***
-                if (command.Patient.Text4BabyStatus.Equals("enrolled", StringComparison.CurrentCultureIgnoreCase)) 
-                    result.Patient.Text4BabyStatus = Text4BabyStatus.Enrolled; 
-                else if (command.Patient.Text4BabyStatus.Equals("not interested", StringComparison.CurrentCultureIgnoreCase)) 
-                    result.Patient.Text4BabyStatus = Text4BabyStatus.NotInterested; 
-                                
-                result.Patient.Text4BabyStatusUpdatedOn = VistaDates.FlexParse(command.Patient.Text4BabyDate); 
+                if (command.Patient.Text4BabyStatus.Equals("enrolled", StringComparison.CurrentCultureIgnoreCase))
+                    result.Patient.Text4BabyStatus = Text4BabyStatus.Enrolled;
+                else if (command.Patient.Text4BabyStatus.Equals("not interested", StringComparison.CurrentCultureIgnoreCase))
+                    result.Patient.Text4BabyStatus = Text4BabyStatus.NotInterested;
+
+                result.Patient.Text4BabyStatusUpdatedOn = VistaDates.FlexParse(command.Patient.Text4BabyDate);
             }
 
             return result;
@@ -444,7 +462,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
             RpcResponse response = command.Execute();
 
             // *** Add response to return result ***
-            result.Success = (response.Status == RpcResponseStatus.Success); 
+            result.Success = (response.Status == RpcResponseStatus.Success);
 
             // *** Check for success ***
             if (result.Success)
@@ -468,9 +486,9 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                 result.TotalResults = command.TotalResults;
             }
             else
-                result.Message = response.InformationalMessage; 
+                result.Message = response.InformationalMessage;
 
-            return result; 
+            return result;
         }
 
         public TrackedPatient GetTrackedPatient(DsioTrackedPatient dsioPatient)
@@ -487,10 +505,10 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
             if (dsioPatient.Last4.Length > 4)
                 if (dsioPatient.Last4.ToUpper().Contains("SENSITIVE"))
                     returnPatient.Last4 = "XXXX";
-                else 
+                else
                     returnPatient.Last4 = dsioPatient.Last4.Substring(5, 4);
-            else  
-                returnPatient.Last4 = dsioPatient.Last4; 
+            else
+                returnPatient.Last4 = dsioPatient.Last4;
 
             // *** Process/Parse dob ***
             DateTime dob;
@@ -502,14 +520,14 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
             returnPatient.HomePhone = dsioPatient.HomePhone;
 
             returnPatient.NonVaObstetrician = dsioPatient.Obstetrician;
-            returnPatient.PlannedDeliveryFacility = dsioPatient.LDFacility; 
+            returnPatient.PlannedDeliveryFacility = dsioPatient.LDFacility;
 
             // *** Process/Parse EDD ***
             returnPatient.EDD = VistaDates.ParseDateString(dsioPatient.EDD, VistaDates.VistADateOnlyFormat);
 
             returnPatient.Pregnant = (dsioPatient.Pregnant == "YES") ? true : false;
 
-            returnPatient.Lactating = (dsioPatient.Lactating == "YES") ? true : false; 
+            returnPatient.Lactating = (dsioPatient.Lactating == "YES") ? true : false;
 
             // *** Add dates ***
             //returnPatient.NextChecklistDue = VistaDates.ParseDateString(dsioPatient.NextChecklistDue, VistaDates.VistADateFormatSix);
@@ -527,7 +545,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
             if (dsioPatient.Text4BabyStatus.Equals("enrolled", StringComparison.CurrentCultureIgnoreCase))
                 returnPatient.Text4BabyStatus = Text4BabyStatus.Enrolled;
             else if (dsioPatient.Text4BabyStatus.Equals("not interested", StringComparison.CurrentCultureIgnoreCase))
-                returnPatient.Text4BabyStatus = Text4BabyStatus.NotInterested; 
+                returnPatient.Text4BabyStatus = Text4BabyStatus.NotInterested;
 
             return returnPatient;
         }
@@ -536,15 +554,15 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
         {
             BrokerOperationResult returnResult = new BrokerOperationResult();
 
-            Dictionary<string, string> newValues = new Dictionary<string,string>(); 
-            
+            Dictionary<string, string> newValues = new Dictionary<string, string>();
+
             newValues[DsioPatientInformationFields.T4BStatusKey] = ((int)t4bStat).ToString();
             newValues[DsioPatientInformationFields.T4BDateKey] = DateTime.Now.ToString(VistaDates.VistADateFormatFour);
             newValues[DsioPatientInformationFields.T4BIdKey] = participantId;
 
-            returnResult = CallSaveRpc(dfn, newValues); 
+            returnResult = CallSaveRpc(dfn, newValues);
 
-            return returnResult; 
+            return returnResult;
         }
 
         public BrokerOperationResult SaveText4BabyInfo(string dfn, Text4BabyStatus t4bStat)
@@ -558,7 +576,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
 
             returnResult = CallSaveRpc(dfn, newValues);
 
-            return returnResult;             
+            return returnResult;
         }
 
         public BrokerOperationResult SaveNextChecklistDue(string dfn, DateTime nextChecklistDue)
@@ -570,7 +588,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
             string val = (nextChecklistDue == DateTime.MinValue) ? "" : nextChecklistDue.ToString(VistaDates.VistADateFormatFour);
 
             newValues[DsioPatientInformationFields.NextChecklistDueKey] = val;
- 
+
             returnResult = CallSaveRpc(dfn, newValues);
 
             return returnResult;
@@ -594,7 +612,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
                     break;
             }
 
-            return returnResult; 
+            return returnResult;
         }
     }
 }

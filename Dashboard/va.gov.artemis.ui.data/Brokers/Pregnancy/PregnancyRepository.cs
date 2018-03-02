@@ -180,9 +180,9 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             // *** Add command arguments ***
             saveWvrpcorPregDetailsCommand.AddCommandArguments(dsioPregnancy, patientDfn, pregnancyValue);
             // *** Execute the command ***
-            RpcResponse response2 = saveWvrpcorPregDetailsCommand.Execute();
+            RpcResponse wvrpcorResponse = saveWvrpcorPregDetailsCommand.Execute();
             // *** Add response data to result ***
-            wvrpcorResult.SetResult(response2.Status == RpcResponseStatus.Success, response2.InformationalMessage);
+            wvrpcorResult.SetResult(wvrpcorResponse.Status == RpcResponseStatus.Success, wvrpcorResponse.InformationalMessage);
 
             if (wvrpcorResult.Success)
             {
