@@ -1,33 +1,34 @@
 ﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
 // Authored by DSS, Inc. 2014-2017
 
-using VA.Gov.Artemis.Vista.Broker;
-using VA.Gov.Artemis.UI.Data.Brokers;
-using VA.Gov.Artemis.Core;
-using System.Reflection;
 using System.Diagnostics;
-using VA.Gov.Artemis.UI.Data.Models;
-using VA.Gov.Artemis.UI.Data.Models.Patient;
-using VA.Gov.Artemis.UI.Data.Models.Common;
+using System.Reflection;
+using VA.Gov.Artemis.Core;
+using VA.Gov.Artemis.UI.Data.Brokers;
+using VA.Gov.Artemis.UI.Data.Brokers.Cda;
 using VA.Gov.Artemis.UI.Data.Brokers.Common;
 using VA.Gov.Artemis.UI.Data.Brokers.Patient;
+using VA.Gov.Artemis.UI.Data.Brokers.Pregnancy;
 using VA.Gov.Artemis.UI.Data.Brokers.Settings;
-using VA.Gov.Artemis.UI.Data.Brokers.Cda;
+using VA.Gov.Artemis.UI.Data.Models.Common;
+using VA.Gov.Artemis.UI.Data.Models.Patient;
+using VA.Gov.Artemis.UI.Data.Models.Pregnancy;
+using VA.Gov.Artemis.Vista.Broker;
 
 namespace VA.Gov.Artemis.UI.Controllers
 {
     // *** Base class for all dashboard controllers ***
 
-    public abstract class DashboardController: BootstrapBaseController 
+    public abstract class DashboardController : BootstrapBaseController
     {
         // *** Constants for TempData ***
         public const string DivisionDataKey = "DivisionData";
         //public const string SearchPatientsKey = "SearchPatients";
         public const string ReturnUrl = "ReturnUrl";
         public const string LastPatientListUrl = "LastPatientListUrl";
-        
+
         // *** URL for multi-step process if ReturnUrl is not enough
-        public const string FinishedUrl = "FinishedUrl"; 
+        public const string FinishedUrl = "FinishedUrl";
 
         // *** Repository for accessing VistA data ***
         protected IDashboardRepository DashboardRepository { get; set; }
@@ -35,19 +36,19 @@ namespace VA.Gov.Artemis.UI.Controllers
         // *** Rpc Broker to access Vista data ***
         private IRpcBroker rpcBroker { get; set; }
 
-        public const int DefaultResultsPerPage = 10; 
+        public const int DefaultResultsPerPage = 10;
 
         // *** Default constructor ***
         public DashboardController()
         {
-            this.DashboardRepository = new DashboardRepository(); 
+            this.DashboardRepository = new DashboardRepository();
         }
 
         // *** Constructor where broker can be specified prior (used by unit tests) ***
         public DashboardController(IRpcBroker broker)
         {
             this.DashboardRepository = new DashboardRepository();
-            this.DashboardRepository.SetRpcBroker(broker); 
+            this.DashboardRepository.SetRpcBroker(broker);
             rpcBroker = broker;
         }
 
@@ -80,27 +81,27 @@ namespace VA.Gov.Artemis.UI.Controllers
                 }
             }
             else // *** We already have a broker ***
-                returnVal = true; 
+                returnVal = true;
 
             // *** Add Prenatal Lab File Name to repository ***
             this.DashboardRepository.PrenatalLabFileName = this.Request.MapPath("~/Content/PrenatalLabs.csv");
-            
+
             // *** Add Content Path to Checklist Repository ***
             if (this.DashboardRepository.Checklist != null)
-                this.DashboardRepository.Checklist.ContentPath = this.Request.MapPath("~/Content/"); 
+                this.DashboardRepository.Checklist.ContentPath = this.Request.MapPath("~/Content/");
 
             // *** Add broker to DashboardBroker ***
             if (this.rpcBroker != null)
                 this.DashboardRepository.SetRpcBroker(this.rpcBroker);
 
-            return returnVal; 
+            return returnVal;
         }
 
         protected bool CloseBroker()
         {
             // *** Close and cleanup an rpc broker ***
 
-            bool returnVal = false; 
+            bool returnVal = false;
 
             // *** First get it from the store ***
             GetBrokerFromStore();
@@ -118,21 +119,21 @@ namespace VA.Gov.Artemis.UI.Controllers
                 this.rpcBroker = null;
 
                 // *** Indicate success ***
-                returnVal = true; 
+                returnVal = true;
             }
 
             // *** Remove unneeded key name ***
-            if (Session != null) 
-                Session[RpcBrokerUtility.BrokerKeyName] = ""; 
+            if (Session != null)
+                Session[RpcBrokerUtility.BrokerKeyName] = "";
 
-            return returnVal; 
+            return returnVal;
         }
 
         protected override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
             // *** Before all actions, get the active rpc broker (if there is one), and pass to "Broker" ***
 
-            GetBrokerFromStore();            
+            GetBrokerFromStore();
 
             // *** Check if broker was found ***
             if (this.rpcBroker != null)
@@ -142,8 +143,8 @@ namespace VA.Gov.Artemis.UI.Controllers
             this.DashboardRepository.PrenatalLabFileName = this.Request.MapPath("~/Content/PrenatalLabs.csv");
 
             // *** Add Content Path to Checklist Repository ***
-            if (this.DashboardRepository.Checklist != null) 
-                this.DashboardRepository.Checklist.ContentPath = this.Request.MapPath("~/Content/"); 
+            if (this.DashboardRepository.Checklist != null)
+                this.DashboardRepository.Checklist.ContentPath = this.Request.MapPath("~/Content/");
 
             // *** Trace all actions ***
             TraceAction(filterContext.ActionDescriptor.ActionName,
@@ -156,21 +157,21 @@ namespace VA.Gov.Artemis.UI.Controllers
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(location);
 
             // *** Place printable version in view bag ***
-            ViewBag.AppVersion = fvi.FileVersion;  
-            
+            ViewBag.AppVersion = fvi.FileVersion;
+
             // *** Store patient dfn ***
             // TODO: Think about moving this to an action filter to limit when it's called
-            StorePatientDfn(filterContext); 
-            
+            StorePatientDfn(filterContext);
+
             // *** Add CDA Export folder to session ***
             CdaSettingsResult result = this.DashboardRepository.Settings.GetCdaSettings();
 
             // *** Allow timeout by default ***
-            ViewBag.NoTimeout = false; 
+            ViewBag.NoTimeout = false;
 
             if (result.Success)
                 Session["CdaExportFolder"] = result.CdaExportFolder;
-            
+
         }
 
         protected int GetPage(string page)
@@ -180,14 +181,48 @@ namespace VA.Gov.Artemis.UI.Controllers
             if (!int.TryParse(page, out pageVal))
                 pageVal = 1;
 
-            return pageVal; 
+            return pageVal;
         }
 
         protected BasePatient CurrentPatient
         {
             get
             {
-                BasePatient returnVal = null; 
+                BasePatient returnVal = null;
+
+                PregnancyDetails currentPregnancyDsio;
+                PregnancyDetails currentPregnancyWvrpcor;
+
+                //Get DSIO current pregnancy
+                PregnancyResult pregResultDsio = this.DashboardRepository.Pregnancy.GetCurrentPregnancy(this.CurrentPatientDfn);
+                if (!pregResultDsio.Success)
+                {
+                    this.Error(pregResultDsio.Message);
+                }
+                else
+                {
+                    currentPregnancyDsio = pregResultDsio.Pregnancy;
+                }
+                //Get Wvrpcor current pregnancy
+                PregnancyResult pregResultWvrpcor = this.DashboardRepository.Pregnancy.GetCurrentWvrpcorPregnancy(this.CurrentPatientDfn);
+                if (!pregResultWvrpcor.Success)
+                {
+                    this.Error(pregResultWvrpcor.Message);
+                }
+                else
+                {
+                    currentPregnancyWvrpcor = pregResultWvrpcor.Pregnancy;
+                }
+
+                //If the curent pregnancy in the DSIO namespace is different than the one in CPRS,
+                //update it with the pregnancy data from CPRS
+
+                //Change current DSIO pregnancy data here
+
+                //BrokerOperationResult savePregResult = this.DashboardRepository.Pregnancy.SavePregnancy(currentPregnancy);
+                //result.Success = (savePregResult.Status == RpcResponseStatus.Success);
+                //result.Message = savePregResult.InformationalMessage;
+
 
                 PatientDemographicsResult result = this.DashboardRepository.Patients.GetPatientDemographics(this.CurrentPatientDfn);
 
@@ -199,7 +234,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                     this.Error(result.Message);
                 }
 
-                return returnVal; 
+                return returnVal;
             }
         }
 
@@ -212,18 +247,18 @@ namespace VA.Gov.Artemis.UI.Controllers
                 this.rpcBroker = BrokerStore.Get(this.BrokerKey);
         }
 
-        private string BrokerKey 
+        private string BrokerKey
         {
-            get 
+            get
             {
-                string returnVal = ""; 
+                string returnVal = "";
 
                 // *** Get broker key from session ***
 
                 if (this.Session != null)
                     returnVal = (string)Session[RpcBrokerUtility.BrokerKeyName];
 
-                return returnVal; 
+                return returnVal;
             }
             set
             {
@@ -255,10 +290,10 @@ namespace VA.Gov.Artemis.UI.Controllers
                     {
                         PatientRelatedModel patDetail = (PatientRelatedModel)o;
 
-                        this.CurrentPatientDfn = patDetail.Patient.Dfn; 
+                        this.CurrentPatientDfn = patDetail.Patient.Dfn;
                     }
             }
         }
-        
+
     }
 }

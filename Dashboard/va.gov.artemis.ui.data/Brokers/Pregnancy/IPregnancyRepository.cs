@@ -40,6 +40,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
         BrokerOperationResult Delete(string pregIen);
 
-        PregnancyOutcomeResult GetPregnancyOutcomes(DateTime fromDate, DateTime toDate, int page, int itemsPerPage); 
+        PregnancyOutcomeResult GetPregnancyOutcomes(DateTime fromDate, DateTime toDate, int page, int itemsPerPage);
+        PregnancyResult GetCurrentWvrpcorPregnancy(string currentPatientDfn);
     }
 }

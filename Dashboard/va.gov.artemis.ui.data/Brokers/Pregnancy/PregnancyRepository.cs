@@ -226,6 +226,53 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             return result;
         }
 
+        /// <summary>
+        /// Retrieves data about the current pregnancy
+        /// </summary>
+        /// <param name="patientDfn">Patient's unique identifier</param>
+        /// <returns></returns>
+        public PregnancyResult GetCurrentWvrpcorPregnancy(string patientDfn)
+        {
+            PregnancyResult result = new PregnancyResult();
+            PregnancyDetails currentWvrpcorPregnancy = new PregnancyDetails();
+
+            //Find the pregnancy and lactating status in CPRS
+            //RPC call in CPRS to get Women's Heath data: WVRPCOR COVER
+            WvrpcorGetWomensHealthDataCommand getWvrpcorWomensHealthDataCommand = new WvrpcorGetWomensHealthDataCommand(this.broker);
+            var secondArg = "";
+            getWvrpcorWomensHealthDataCommand.AddCommandArguments(patientDfn, secondArg);
+            RpcResponse wvrpcorResponse = getWvrpcorWomensHealthDataCommand.Execute();
+            result.SetResult(wvrpcorResponse.Status == RpcResponseStatus.Success, wvrpcorResponse.InformationalMessage);
+
+            if (result.Success)
+            {
+                currentWvrpcorPregnancy.Ien = getWvrpcorWomensHealthDataCommand.PregnancyIen;
+                currentWvrpcorPregnancy.PregnantCPRS = getWvrpcorWomensHealthDataCommand.Pregnant;
+                currentWvrpcorPregnancy.LactatingCPRS = getWvrpcorWomensHealthDataCommand.Lactating;
+
+                WvrpcorGetPregDetailsCommand getWvrpcorPregDetailsCommand = new WvrpcorGetPregDetailsCommand(this.broker);
+                var secondArgument = "0";
+                getWvrpcorPregDetailsCommand.AddCommandArguments(getWvrpcorWomensHealthDataCommand.PregnancyData, secondArgument, currentWvrpcorPregnancy.PregnantCPRS);
+                RpcResponse wvrpcorPregDetailsResponse = getWvrpcorPregDetailsCommand.Execute();
+                result.SetResult(wvrpcorPregDetailsResponse.Status == RpcResponseStatus.Success, wvrpcorPregDetailsResponse.InformationalMessage);
+
+                if (result.Success)
+                {
+                    currentWvrpcorPregnancy.Created = getWvrpcorPregDetailsCommand.Created;
+
+                    //If the patient is pregnant in CPRS, get the EDD and LMP
+                    if (getWvrpcorWomensHealthDataCommand.Pregnant == "Yes")
+                    {
+                        currentWvrpcorPregnancy.Lmp = getWvrpcorPregDetailsCommand.LMP;
+                        currentWvrpcorPregnancy.EDD = VistaDates.FlexParse(getWvrpcorPregDetailsCommand.EDD);
+                    }
+                }
+            }
+
+            result.Pregnancy = currentWvrpcorPregnancy;
+            return result;
+        }
+
         public PregnancyResult GetCurrentOrMostRecentPregnancy(string patientDfn)
         {
             // *** Returns the current pregnancy information ***

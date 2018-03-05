@@ -14,7 +14,9 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         /// <param name="newBroker">An object which allows communication with VistA and implements IRpcBroker</param>
         public WvrpcorGetWomensHealthDataCommand(IRpcBroker newBroker) : base(newBroker) { }
 
-        public string Ien { get; set; }
+        public string PregnancyData { get; set; }
+        public string PatientDfn { get; set; }
+        public string PregnancyIen { get; set; }
         public string Pregnant { get; set; }
         public string Lactating { get; set; }
 
@@ -40,9 +42,9 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
             //literal 1
             //Results---------------------------------------------------------------- -
             //1 ^
-            //4; 12,2,^ Pregnant:^ Yes
-            //5; 11,2,^ Lactating:^ Yes
-
+            //4;12,2,^ Pregnant:^ Yes
+            //5;11,2,^ Lactating:^ Yes
+            this.PatientDfn = patientDfn;
             this.CommandArgs = new object[] { patientDfn, pregnancyIen };
         }
 
@@ -50,7 +52,10 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         {
             if (this.ProcessSaveResponse())
             {
-                this.Ien = Util.Piece(this.Response.Lines[0], Caret, 1);
+                //var firstArgument = Util.Piece(this.Response.Lines[0], Caret, 1);
+                this.PregnancyData = Util.Piece(this.Response.Lines[1], Caret, 1);
+                var remainder = Util.Piece(PregnancyData, ";", 2);
+                this.PregnancyIen = Util.Piece(remainder, ",", 1);
                 this.Pregnant = Util.Piece(this.Response.Lines[1], Caret, 3);
                 this.Lactating = Util.Piece(this.Response.Lines[2], Caret, 3);
                 this.Response.Status = RpcResponseStatus.Success;

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using VA.Gov.Artemis.Commands.Dsio;
 using VA.Gov.Artemis.Commands.Dsio.Patient;
 using VA.Gov.Artemis.Commands.Dsio.PatientSearch;
-using VA.Gov.Artemis.Commands.Dsio.Pregnancy;
 using VA.Gov.Artemis.Commands.Dsio.Tracking;
 using VA.Gov.Artemis.UI.Data.Brokers.Common;
 using VA.Gov.Artemis.UI.Data.Models.Common;
@@ -332,7 +331,6 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
         //        else if (length == 10)
         //            if (result.Patient.FullSSN.EndsWith("P"))
         //                result.Patient.Last4 = result.Patient.FullSSN.Substring(5, 4);
-
         //    }
 
         //    return result;
@@ -341,28 +339,8 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
         public PatientDemographicsResult GetPatientDemographics(string dfn)
         {
             PatientDemographicsResult result = new PatientDemographicsResult();
-            string pregnant = "";
-            string lactating = "";
 
-            //RPC call in CPRS to get Women's Heath data: WVRPCOR COVER
-            // *** Create RPC command ***
-            WvrpcorGetWomensHealthDataCommand getWvrpcorWomensHealthDataCommand = new WvrpcorGetWomensHealthDataCommand(this.broker);
-            // *** Add command arguments ***
-            var pregnancyValue = "";
-            getWvrpcorWomensHealthDataCommand.AddCommandArguments(dfn, pregnancyValue);
-            // *** Execute the command ***
-            RpcResponse wvrpcorResponse = getWvrpcorWomensHealthDataCommand.Execute();
-            // *** Add response data to result ***
-            result.SetResult(wvrpcorResponse.Status == RpcResponseStatus.Success, wvrpcorResponse.InformationalMessage);
-
-            if (result.Success)
-            {
-                pregnant = getWvrpcorWomensHealthDataCommand.Pregnant;
-                lactating = getWvrpcorWomensHealthDataCommand.Lactating;
-            }
-
-            //TO BE CONTINUED
-
+            //get the pregnancy detatils from the DSIO namespace
             DsioGetPatientInformationCommand command = new DsioGetPatientInformationCommand(this.broker);
             command.AddCommandArguments(dfn);
             RpcResponse response = command.Execute();
