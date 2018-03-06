@@ -29,7 +29,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
         PregnancyResult GetCurrentOrMostRecentPregnancy(string patientDfn); 
 
         PregnancyListResult GetPregnancies(string patientDfn, string pregnancyIen);
-
+        PregnancyResult UpdateCurrentPregnancyWithCPRSData(string dfn);
         PregnancyHistoryResult GetPregnancyHistory(string patientDfn);
 
         BrokerOperationResult SavePregnancyHistory(string patientDfn, PregnancyHistory pregnancyHistory);

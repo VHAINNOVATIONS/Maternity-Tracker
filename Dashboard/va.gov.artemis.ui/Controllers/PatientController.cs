@@ -1,15 +1,10 @@
 ﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
 // Authored by DSS, Inc. 2014-2017
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using VA.Gov.Artemis.Commands.Dsio.Checklist;
 using VA.Gov.Artemis.UI.Data.Brokers.Checklist;
 using VA.Gov.Artemis.UI.Data.Brokers.Pregnancy;
-using VA.Gov.Artemis.UI.Data.Models;
 using VA.Gov.Artemis.UI.Data.Models.Checklist;
 using VA.Gov.Artemis.UI.Data.Models.Patient;
 using VA.Gov.Artemis.UI.Data.Models.Pregnancy;
@@ -27,6 +22,7 @@ namespace VA.Gov.Artemis.UI.Controllers
         {
             // *** Create new model ***
             PatientSummary model = new PatientSummary();
+            string errorMessage = "";
 
             // *** Get patient demographics ***
             model.Patient = this.CurrentPatient;
@@ -34,6 +30,13 @@ namespace VA.Gov.Artemis.UI.Controllers
             // *** Check for success ***
             if (!model.Patient.NotFound)
             {
+                PregnancyResult updatedPregResult = this.DashboardRepository.Pregnancy.UpdateCurrentPregnancyWithCPRSData(dfn);
+                if (!updatedPregResult.Success)
+                {
+                    errorMessage = errorMessage + updatedPregResult.Message;
+                    this.Error(errorMessage);
+                }
+
                 PregnancyResult pregResult = this.DashboardRepository.Pregnancy.GetCurrentOrMostRecentPregnancy(dfn);
 
                 if (pregResult.Success)
@@ -42,7 +45,16 @@ namespace VA.Gov.Artemis.UI.Controllers
                     {
                         if (pregResult.Pregnancy.RecordType == PregnancyRecordType.Current)
                         {
+                            model.Patient.Pregnant = true;
+                        }
+                        else
+                        {
+                            model.Patient.Pregnant = false;
+                        }
+                        if (pregResult.Pregnancy.RecordType == PregnancyRecordType.Current)
+                        {
                             model.CurrentPregnancy = pregResult.Pregnancy;
+                            //model.Patient.StatusMessage
 
                             PregnancyDetails tempDetails = PregnancyUtilities.GetPregnancyObservationData(this.DashboardRepository, dfn, model.CurrentPregnancy.Ien);
 
@@ -50,7 +62,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                             model.CurrentPregnancy.FetusBabyCount = tempDetails.FetusBabyCount;
 
                             model.CurrentPregnancy.EddBasis = tempDetails.EddBasis;
-                            model.CurrentPregnancy.EddIsFinal = tempDetails.EddIsFinal; 
+                            model.CurrentPregnancy.EddIsFinal = tempDetails.EddIsFinal;
                         }
                         else
                         {
@@ -58,20 +70,28 @@ namespace VA.Gov.Artemis.UI.Controllers
                         }
 
                         // *** Get pregnancy checklist ***
-                        UpdateChecklistSummary(model, dfn, pregResult); 
+                        UpdateChecklistSummary(model, dfn, pregResult);
                     }
+                }
+                else
+                {
+                    errorMessage = errorMessage + pregResult.Message;
+                    this.Error(errorMessage);
                 }
 
                 // *** Get Pregnancy History ***
                 PregnancyHistoryResult histResult = this.DashboardRepository.Pregnancy.GetPregnancyHistory(dfn);
 
                 if (histResult.Success)
+                {
                     model.PregnancyHistory = histResult.PregnancyHistory;
+                }
                 else
                 {
                     model.PregnancyHistory = new PregnancyHistory();
-                    this.Error(histResult.Message); 
-                }                
+                    errorMessage = errorMessage + histResult.Message;
+                    this.Error(errorMessage);
+                }
             }
 
             // *** Set return url ***
@@ -85,7 +105,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                 TempData[ReturnUrl] = Url.Action("Summary", "Patient", new { dfn = dfn });
             }
 
-            return View("Summary2", model);  
+            return View("Summary2", model);
         }
 
         //[HttpGet]
@@ -99,7 +119,7 @@ namespace VA.Gov.Artemis.UI.Controllers
 
         private void UpdateChecklistSummary(PatientSummary model, string dfn, PregnancyResult pregResult)
         {
-            const int itemCount = 4; 
+            const int itemCount = 4;
 
             PregnancyChecklistItemsResult checklistResult = this.DashboardRepository.Checklist.GetPregnancyItems(dfn, pregResult.Pregnancy.Ien, "", DsioChecklistCompletionStatus.NotComplete);
 
@@ -113,7 +133,7 @@ namespace VA.Gov.Artemis.UI.Controllers
 
                     tempList.AddPregnancyDates(pregResult.Pregnancy.EDD, pregResult.Pregnancy.EndDate);
 
-                    tempList.Sort(delegate(PregnancyChecklistItem x, PregnancyChecklistItem y)
+                    tempList.Sort(delegate (PregnancyChecklistItem x, PregnancyChecklistItem y)
                     {
                         return x.DueDate.CompareTo(y.DueDate);
                     });

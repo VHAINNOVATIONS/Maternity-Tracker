@@ -239,14 +239,16 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             //Find the pregnancy and lactating status in CPRS
             //RPC call in CPRS to get Women's Heath data: WVRPCOR COVER
             WvrpcorGetWomensHealthDataCommand getWvrpcorWomensHealthDataCommand = new WvrpcorGetWomensHealthDataCommand(this.broker);
-            var secondArg = "";
+            var secondArg = "1";
             getWvrpcorWomensHealthDataCommand.AddCommandArguments(patientDfn, secondArg);
             RpcResponse wvrpcorResponse = getWvrpcorWomensHealthDataCommand.Execute();
             result.SetResult(wvrpcorResponse.Status == RpcResponseStatus.Success, wvrpcorResponse.InformationalMessage);
 
             if (result.Success)
             {
-                currentWvrpcorPregnancy.Ien = getWvrpcorWomensHealthDataCommand.PregnancyIen;
+                currentWvrpcorPregnancy.PatientDfn = getWvrpcorWomensHealthDataCommand.PatientDfn;
+                currentWvrpcorPregnancy.RecordType = PregnancyRecordType.Current;
+                //currentWvrpcorPregnancy.Ien = getWvrpcorWomensHealthDataCommand.PregnancyIen;
                 currentWvrpcorPregnancy.PregnantCPRS = getWvrpcorWomensHealthDataCommand.Pregnant;
                 currentWvrpcorPregnancy.LactatingCPRS = getWvrpcorWomensHealthDataCommand.Lactating;
 
@@ -272,6 +274,91 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             result.Pregnancy = currentWvrpcorPregnancy;
             return result;
         }
+
+        public PregnancyResult UpdateCurrentPregnancyWithCPRSData(string dfn)
+        {
+            PregnancyResult result = new PregnancyResult();
+            PregnancyDetails currentPregnancyDsio;
+            PregnancyDetails currentPregnancyWvrpcor;
+
+            //Get DSIO current pregnancy
+            PregnancyResult pregResultDsio = this.GetCurrentPregnancy(dfn);
+            if (!pregResultDsio.Success)
+            {
+                pregResultDsio.Message = "Unable to get patient's current DSIO pregnancy: " + pregResultDsio.Message;
+            }
+            result.SetResult(pregResultDsio.Success, pregResultDsio.Message);
+            if (pregResultDsio.Success)
+            {
+                currentPregnancyDsio = pregResultDsio.Pregnancy;
+
+                //Get Wvrpcor current pregnancy
+                PregnancyResult pregResultWvrpcor = this.GetCurrentWvrpcorPregnancy(dfn);
+                if (!pregResultWvrpcor.Success)
+                {
+                    pregResultWvrpcor.Message = "Unable to get patient's current CPRS pregnancy: " + pregResultWvrpcor.Message;
+                }
+                result.SetResult(pregResultWvrpcor.Success, pregResultWvrpcor.Message);
+                if (pregResultWvrpcor.Success)
+                {
+                    currentPregnancyWvrpcor = pregResultWvrpcor.Pregnancy;
+
+                    //If the current pregnancy in the DSIO namespace is different than the one in CPRS,
+                    //update it with the pregnancy data from CPRS                
+                    if (currentPregnancyWvrpcor != null)
+                    {
+                        if (currentPregnancyDsio != null)
+                        {
+                            if (currentPregnancyWvrpcor.PregnantCPRS == "Yes")
+                            {
+                                DateTime eddDsio = currentPregnancyDsio.EDD;
+                                DateTime eddWvrpcor = currentPregnancyWvrpcor.EDD;
+                                string lmpDsio = currentPregnancyDsio.Lmp;
+                                string lmpWvrpcor = currentPregnancyWvrpcor.Lmp;
+                                if (eddDsio != eddWvrpcor || lmpDsio != lmpWvrpcor)
+                                {
+                                    //currentPregnancyDsio.Ien = ienWvrpcor;
+                                    currentPregnancyDsio.EDD = eddWvrpcor;
+                                    currentPregnancyDsio.Lmp = lmpWvrpcor;
+                                    currentPregnancyDsio.Created = currentPregnancyWvrpcor.Created;
+
+                                    BrokerOperationResult savePregResult = this.SavePregnancy(currentPregnancyDsio);
+                                    if (!savePregResult.Success)
+                                    {
+                                        savePregResult.Message = "Unable to update patient's current pregnancy with pregnancy data from CPRS: " + savePregResult.Message;
+                                    }
+                                    result.SetResult(savePregResult.Success, savePregResult.Message);
+                                }
+                            }
+                            else
+                            {
+                                currentPregnancyDsio.RecordType = PregnancyRecordType.Historical;
+                                currentPregnancyDsio.EndDate = currentPregnancyWvrpcor.Created;
+                            }
+                        }
+                        else if (currentPregnancyDsio == null)
+                        {
+                            if (currentPregnancyWvrpcor.PregnantCPRS == "Yes")
+                            {
+                                BrokerOperationResult savePregResult = this.SavePregnancy(currentPregnancyWvrpcor);
+                                if (!savePregResult.Success)
+                                {
+                                    savePregResult.Message = "Unable to create patient's new current pregnancy with the pregnancy data from CPRS: " + savePregResult.Message;
+                                }
+                                else
+                                {
+                                    savePregResult.Message = "Patient's new current pregnancy was updated with the pregnancy data from CPRS: " + savePregResult.Message;
+                                }
+                                result.SetResult(savePregResult.Success, savePregResult.Message);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
 
         public PregnancyResult GetCurrentOrMostRecentPregnancy(string patientDfn)
         {

@@ -8,11 +8,9 @@ using VA.Gov.Artemis.UI.Data.Brokers;
 using VA.Gov.Artemis.UI.Data.Brokers.Cda;
 using VA.Gov.Artemis.UI.Data.Brokers.Common;
 using VA.Gov.Artemis.UI.Data.Brokers.Patient;
-using VA.Gov.Artemis.UI.Data.Brokers.Pregnancy;
 using VA.Gov.Artemis.UI.Data.Brokers.Settings;
 using VA.Gov.Artemis.UI.Data.Models.Common;
 using VA.Gov.Artemis.UI.Data.Models.Patient;
-using VA.Gov.Artemis.UI.Data.Models.Pregnancy;
 using VA.Gov.Artemis.Vista.Broker;
 
 namespace VA.Gov.Artemis.UI.Controllers
@@ -184,48 +182,74 @@ namespace VA.Gov.Artemis.UI.Controllers
             return pageVal;
         }
 
+        //public void UpdateCurrentPregnancy()
+        //{
+        //    PregnancyDetails currentPregnancyDsio;
+        //    PregnancyDetails currentPregnancyWvrpcor;
+
+        //    //Get DSIO current pregnancy
+        //    PregnancyResult pregResultDsio = this.DashboardRepository.Pregnancy.GetCurrentPregnancy(this.CurrentPatientDfn);
+        //    if (!pregResultDsio.Success)
+        //    {
+        //        this.Error(pregResultDsio.Message);
+        //    }
+        //    else
+        //    {
+        //        currentPregnancyDsio = pregResultDsio.Pregnancy;
+
+        //        //Get Wvrpcor current pregnancy
+        //        PregnancyResult pregResultWvrpcor = this.DashboardRepository.Pregnancy.GetCurrentWvrpcorPregnancy(this.CurrentPatientDfn);
+        //        if (!pregResultWvrpcor.Success)
+        //        {
+        //            this.Error(pregResultWvrpcor.Message);
+        //        }
+        //        else
+        //        {
+        //            currentPregnancyWvrpcor = pregResultWvrpcor.Pregnancy;
+
+        //            //If the current pregnancy in the DSIO namespace is different than the one in CPRS,
+        //            //update it with the pregnancy data from CPRS                
+        //            //string ienDsio = pregDsio.Ien;
+        //            //string ienWvrpcor = pregWvrpcor.Ien;
+        //            if (currentPregnancyDsio != null && currentPregnancyWvrpcor != null)
+        //            {
+        //                DateTime eddDsio = currentPregnancyDsio.EDD;
+        //                DateTime eddWvrpcor = currentPregnancyWvrpcor.EDD;
+        //                string lmpDsio = currentPregnancyDsio.Lmp;
+        //                string lmpWvrpcor = currentPregnancyWvrpcor.Lmp;
+        //                if (eddDsio != eddWvrpcor || lmpDsio != lmpWvrpcor)
+        //                {
+        //                    //pregDsio.Ien = ienWvrpcor;
+        //                    currentPregnancyDsio.EDD = eddWvrpcor;
+        //                    currentPregnancyDsio.Lmp = lmpWvrpcor;
+        //                    currentPregnancyDsio.Created = currentPregnancyWvrpcor.Created;
+
+        //                    BrokerOperationResult savePregResult = this.DashboardRepository.Pregnancy.SavePregnancy(currentPregnancyDsio);
+        //                    if (!savePregResult.Success)
+        //                    {
+        //                        this.Error(savePregResult.Message);
+        //                    }
+        //                }
+        //            }
+        //            else if (currentPregnancyDsio == null && currentPregnancyWvrpcor != null)
+        //            {
+        //                BrokerOperationResult savePregResult = this.DashboardRepository.Pregnancy.SavePregnancy(currentPregnancyWvrpcor);
+        //                if (!savePregResult.Success)
+        //                {
+        //                    this.Error("Unable to update patient's current pregnancy with the pregnancy from CPRS: " + savePregResult.Message);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
         protected BasePatient CurrentPatient
         {
             get
             {
                 BasePatient returnVal = null;
 
-                PregnancyDetails currentPregnancyDsio;
-                PregnancyDetails currentPregnancyWvrpcor;
-
-                //Get DSIO current pregnancy
-                PregnancyResult pregResultDsio = this.DashboardRepository.Pregnancy.GetCurrentPregnancy(this.CurrentPatientDfn);
-                if (!pregResultDsio.Success)
-                {
-                    this.Error(pregResultDsio.Message);
-                }
-                else
-                {
-                    currentPregnancyDsio = pregResultDsio.Pregnancy;
-                }
-                //Get Wvrpcor current pregnancy
-                PregnancyResult pregResultWvrpcor = this.DashboardRepository.Pregnancy.GetCurrentWvrpcorPregnancy(this.CurrentPatientDfn);
-                if (!pregResultWvrpcor.Success)
-                {
-                    this.Error(pregResultWvrpcor.Message);
-                }
-                else
-                {
-                    currentPregnancyWvrpcor = pregResultWvrpcor.Pregnancy;
-                }
-
-                //If the curent pregnancy in the DSIO namespace is different than the one in CPRS,
-                //update it with the pregnancy data from CPRS
-
-                //Change current DSIO pregnancy data here
-
-                //BrokerOperationResult savePregResult = this.DashboardRepository.Pregnancy.SavePregnancy(currentPregnancy);
-                //result.Success = (savePregResult.Status == RpcResponseStatus.Success);
-                //result.Message = savePregResult.InformationalMessage;
-
-
                 PatientDemographicsResult result = this.DashboardRepository.Patients.GetPatientDemographics(this.CurrentPatientDfn);
-
                 if (result.Success)
                     returnVal = result.Patient;
                 else
