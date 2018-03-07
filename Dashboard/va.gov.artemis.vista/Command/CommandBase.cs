@@ -171,7 +171,7 @@ namespace VA.Gov.Artemis.Vista.Commands
                 char[] chars = piece1.ToCharArray();
 
                 //When checking for pregnancy data from CPRS, when the patient is not pregnant, 
-                //the first line it totally empty, hence the check for this.Response.Lines[0] != "
+                //the first line is totally empty, hence the check for this.Response.Lines[0] != ""
                 if (this.Response.Lines[0] != "" && (int)chars[0] == 24)
                 {
                     this.Response.Status = RpcResponseStatus.Fail;

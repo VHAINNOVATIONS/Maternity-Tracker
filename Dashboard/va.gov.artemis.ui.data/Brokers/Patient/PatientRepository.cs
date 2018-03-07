@@ -336,11 +336,12 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Patient
         //    return result;
         //}
 
+
+        //get the patient detatils from the Maternity Tracker namespace, including pregnancy and lactation status
         public PatientDemographicsResult GetPatientDemographics(string dfn)
         {
             PatientDemographicsResult result = new PatientDemographicsResult();
 
-            //get the pregnancy detatils from the DSIO namespace
             DsioGetPatientInformationCommand command = new DsioGetPatientInformationCommand(this.broker);
             command.AddCommandArguments(dfn);
             RpcResponse response = command.Execute();

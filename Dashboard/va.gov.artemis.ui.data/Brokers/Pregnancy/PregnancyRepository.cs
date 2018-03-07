@@ -289,11 +289,11 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             }
             result.SetResult(pregResultWvrpcor.Success, pregResultWvrpcor.Message);
 
-            //If error retrieving data, nothing changes
+            //If there is error retrieving pregnancy data from CPRS, nothing changes in Maternity Tracker
+            //Otherwise, update the pregnancy datat in Maternity Tracker with the data from CPRS
             if (pregResultWvrpcor.Success)
             {
                 currentPregnancyWvrpcor = pregResultWvrpcor.Pregnancy;
-
 
                 //If there is no pregnancy data in CPRS, nothing changes
                 if (currentPregnancyWvrpcor != null)
@@ -337,7 +337,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                 string lmpDsio = currentPregnancyDsio.Lmp;
                                 string lmpWvrpcor = currentPregnancyWvrpcor.Lmp;
 
-                                // If the current pregnancy in the DSIO namespace is different than the one in CPRS,
+                                //If the current pregnancy in the DSIO namespace is different than the one in CPRS,
                                 //update it with the pregnancy data from CPRS     
                                 if (eddDsio != eddWvrpcor || lmpDsio != lmpWvrpcor)
                                 {
