@@ -24,6 +24,7 @@ namespace VA.Gov.Artemis.UI.Controllers
             // *** Create new model ***
             PatientSummary model = new PatientSummary();
             string errorMessage = "";
+            string attentionMessage = "";
 
             // *** Get patient demographics ***
             model.Patient = this.CurrentPatient;
@@ -37,6 +38,14 @@ namespace VA.Gov.Artemis.UI.Controllers
                 {
                     errorMessage = errorMessage + updatedPregResult.Message;
                     this.Error(errorMessage);
+                }
+                else
+                {
+                    attentionMessage = attentionMessage + updatedPregResult.Message;
+                    if (!string.IsNullOrWhiteSpace(attentionMessage))
+                    {
+                        this.Attention(attentionMessage);
+                    }
                 }
 
                 PregnancyResult pregResult = this.DashboardRepository.Pregnancy.GetCurrentOrMostRecentPregnancy(dfn);

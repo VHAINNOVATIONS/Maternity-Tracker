@@ -220,7 +220,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
 
                 // *** Add result/message if no current ***
                 if (result.Pregnancy == null)
-                    result.SetResult(true, "No Current Pregnancy Data Found");
+                    result.SetResult(true, "No Maternity Tracker Current Pregnancy Data Found. ");
             }
 
             return result;
@@ -280,6 +280,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             PregnancyResult result = new PregnancyResult();
             PregnancyDetails currentPregnancyDsio;
             PregnancyDetails currentPregnancyWvrpcor;
+            string resultMessage = "";
 
             //Get Wvrpcor current pregnancy
             PregnancyResult pregResultWvrpcor = this.GetCurrentWvrpcorPregnancy(dfn);
@@ -305,24 +306,35 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                     //----------------------------------------------------------------------------------
                     string currentLactationWvrpcor = pregResultWvrpcor.Pregnancy.LactatingCPRS;
                     bool lactating = currentLactationWvrpcor == "Yes" ? true : false;
-                    IenResult lactatingResult = observations.AddLactationObservation(dfn, lactating);
-                    result.SetResult(lactatingResult.Success, lactatingResult.Message);
-                    if (lactatingResult.Success)
+                    //Update the Lactation status in Maternity Tracker only if different than the on in CPRS
+                    if (patient.Lactating != lactating)
                     {
-                        patient.Lactating = lactating;
+                        IenResult lactatingResult = observations.AddLactationObservation(dfn, lactating);
+                        if (lactatingResult.Success)
+                        {
+                            patient.Lactating = lactating;
+                            lactatingResult.Message = "Patient's Lactation was updated with the Lactation data from CPRS. " + lactatingResult.Message;
+                        }
+                        else
+                        {
+                            lactatingResult.Message = "Unable to update patient's Lactation with Lactatin data from CPRS. " + lactatingResult.Message;
+                        }
+                        resultMessage = resultMessage + lactatingResult.Message;
+                        result.SetResult(lactatingResult.Success, resultMessage);
                     }
 
                     //----------------------------------------------------------------------------------
                     //Update Pregnancy data with CPRS data
                     //----------------------------------------------------------------------------------
 
-                    //Get DSIO current pregnancy
+                    //Get Maternity Tracker current pregnancy
                     PregnancyResult pregResultDsio = this.GetCurrentPregnancy(dfn);
                     if (!pregResultDsio.Success)
                     {
-                        pregResultDsio.Message = "Unable to get patient's current DSIO pregnancy: " + pregResultDsio.Message;
+                        pregResultDsio.Message = "Unable to get patient's current Maternity Tracker pregnancy. " + pregResultDsio.Message;
+                        resultMessage = resultMessage + pregResultDsio.Message;
                     }
-                    result.SetResult(pregResultDsio.Success, pregResultDsio.Message);
+                    result.SetResult(pregResultDsio.Success, resultMessage);
 
                     if (pregResultDsio.Success)
                     {
@@ -337,7 +349,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                 string lmpDsio = currentPregnancyDsio.Lmp;
                                 string lmpWvrpcor = currentPregnancyWvrpcor.Lmp;
 
-                                //If the current pregnancy in the DSIO namespace is different than the one in CPRS,
+                                //If the current pregnancy in Maternity Tracker is different than the one in CPRS,
                                 //update it with the pregnancy data from CPRS     
                                 if (eddDsio != eddWvrpcor || lmpDsio != lmpWvrpcor)
                                 {
@@ -349,9 +361,14 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                     BrokerOperationResult savePregResult = this.SavePregnancy(currentPregnancyDsio);
                                     if (!savePregResult.Success)
                                     {
-                                        savePregResult.Message = "Unable to update patient's current pregnancy with pregnancy data from CPRS: " + savePregResult.Message;
+                                        savePregResult.Message = "Unable to update patient's Current Pregnancy with pregnancy data from CPRS. " + savePregResult.Message;
                                     }
-                                    result.SetResult(savePregResult.Success, savePregResult.Message);
+                                    else
+                                    {
+                                        savePregResult.Message = "Patient's Current Pregnancy was updated with the pregnancy data from CPRS. " + savePregResult.Message;
+                                    }
+                                    resultMessage = resultMessage + savePregResult.Message;
+                                    result.SetResult(savePregResult.Success, resultMessage);
                                     result.Pregnancy = currentPregnancyDsio;
                                 }
                             }
@@ -363,9 +380,14 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                 BrokerOperationResult savePregResult = this.SavePregnancy(currentPregnancyDsio);
                                 if (!savePregResult.Success)
                                 {
-                                    savePregResult.Message = "Unable to update patient's current pregnancy with pregnancy data from CPRS: " + savePregResult.Message;
+                                    savePregResult.Message = "Unable to update patient's Current Pregnancy with pregnancy data from CPRS. " + savePregResult.Message;
                                 }
-                                result.SetResult(savePregResult.Success, savePregResult.Message);
+                                else
+                                {
+                                    savePregResult.Message = "Patient's Current Pregnancy was updated with the pregnancy data from CPRS. " + savePregResult.Message;
+                                }
+                                resultMessage = resultMessage + savePregResult.Message;
+                                result.SetResult(savePregResult.Success, resultMessage);
                                 result.Pregnancy = currentPregnancyDsio;
                             }
                         }
@@ -376,13 +398,14 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                 BrokerOperationResult savePregResult = this.SavePregnancy(currentPregnancyWvrpcor);
                                 if (!savePregResult.Success)
                                 {
-                                    savePregResult.Message = "Unable to create patient's new current pregnancy with the pregnancy data from CPRS: " + savePregResult.Message;
+                                    savePregResult.Message = "Unable to create patient's new Current Pregnancy with the pregnancy data from CPRS. " + savePregResult.Message;
                                 }
                                 else
                                 {
-                                    savePregResult.Message = "Patient's new current pregnancy was updated with the pregnancy data from CPRS: " + savePregResult.Message;
+                                    savePregResult.Message = "Patient's new Current Pregnancy was created with the pregnancy data from CPRS. " + savePregResult.Message;
                                 }
-                                result.SetResult(savePregResult.Success, savePregResult.Message);
+                                resultMessage = resultMessage + savePregResult.Message;
+                                result.SetResult(savePregResult.Success, resultMessage);
                                 result.Pregnancy = currentPregnancyWvrpcor;
                             }
                         }
