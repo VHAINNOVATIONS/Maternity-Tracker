@@ -248,7 +248,6 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             {
                 currentWvrpcorPregnancy.PatientDfn = getWvrpcorWomensHealthDataCommand.PatientDfn;
                 currentWvrpcorPregnancy.RecordType = PregnancyRecordType.Current;
-                //currentWvrpcorPregnancy.Ien = getWvrpcorWomensHealthDataCommand.PregnancyIen;
                 currentWvrpcorPregnancy.PregnantCPRS = getWvrpcorWomensHealthDataCommand.Pregnant;
                 currentWvrpcorPregnancy.LactatingCPRS = getWvrpcorWomensHealthDataCommand.Lactating;
 
@@ -353,7 +352,6 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                 //update it with the pregnancy data from CPRS     
                                 if (eddDsio != eddWvrpcor || lmpDsio != lmpWvrpcor)
                                 {
-                                    //currentPregnancyDsio.Ien = ienWvrpcor;
                                     currentPregnancyDsio.EDD = eddWvrpcor;
                                     currentPregnancyDsio.Lmp = lmpWvrpcor;
                                     currentPregnancyDsio.Created = currentPregnancyWvrpcor.Created;

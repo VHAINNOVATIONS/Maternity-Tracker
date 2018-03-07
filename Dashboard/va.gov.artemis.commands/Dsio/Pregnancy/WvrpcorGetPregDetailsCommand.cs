@@ -70,8 +70,11 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
                 }
                 else
                 {
-                    this.EnteredBy = Util.Piece(this.Response.Lines[1], "Entered by: ", 2);
-                    enteredOn = Util.Piece(this.Response.Lines[2], "Entered on: ", 2);
+                    if (this.Response.Lines[0] != "No data on file.")
+                    {
+                        this.EnteredBy = Util.Piece(this.Response.Lines[1], "Entered by: ", 2);
+                        enteredOn = Util.Piece(this.Response.Lines[2], "Entered on: ", 2);
+                    }
                 }
 
                 this.Created = VistaDates.ParseDateString(enteredOn, VistaDates.VistADateFormatSeven);
