@@ -181,68 +181,6 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             return pageVal;
         }
-
-        //public void UpdateCurrentPregnancy()
-        //{
-        //    PregnancyDetails currentPregnancyDsio;
-        //    PregnancyDetails currentPregnancyWvrpcor;
-
-        //    //Get DSIO current pregnancy
-        //    PregnancyResult pregResultDsio = this.DashboardRepository.Pregnancy.GetCurrentPregnancy(this.CurrentPatientDfn);
-        //    if (!pregResultDsio.Success)
-        //    {
-        //        this.Error(pregResultDsio.Message);
-        //    }
-        //    else
-        //    {
-        //        currentPregnancyDsio = pregResultDsio.Pregnancy;
-
-        //        //Get Wvrpcor current pregnancy
-        //        PregnancyResult pregResultWvrpcor = this.DashboardRepository.Pregnancy.GetCurrentWvrpcorPregnancy(this.CurrentPatientDfn);
-        //        if (!pregResultWvrpcor.Success)
-        //        {
-        //            this.Error(pregResultWvrpcor.Message);
-        //        }
-        //        else
-        //        {
-        //            currentPregnancyWvrpcor = pregResultWvrpcor.Pregnancy;
-
-        //            //If the current pregnancy in the DSIO namespace is different than the one in CPRS,
-        //            //update it with the pregnancy data from CPRS                
-        //            //string ienDsio = pregDsio.Ien;
-        //            //string ienWvrpcor = pregWvrpcor.Ien;
-        //            if (currentPregnancyDsio != null && currentPregnancyWvrpcor != null)
-        //            {
-        //                DateTime eddDsio = currentPregnancyDsio.EDD;
-        //                DateTime eddWvrpcor = currentPregnancyWvrpcor.EDD;
-        //                string lmpDsio = currentPregnancyDsio.Lmp;
-        //                string lmpWvrpcor = currentPregnancyWvrpcor.Lmp;
-        //                if (eddDsio != eddWvrpcor || lmpDsio != lmpWvrpcor)
-        //                {
-        //                    //pregDsio.Ien = ienWvrpcor;
-        //                    currentPregnancyDsio.EDD = eddWvrpcor;
-        //                    currentPregnancyDsio.Lmp = lmpWvrpcor;
-        //                    currentPregnancyDsio.Created = currentPregnancyWvrpcor.Created;
-
-        //                    BrokerOperationResult savePregResult = this.DashboardRepository.Pregnancy.SavePregnancy(currentPregnancyDsio);
-        //                    if (!savePregResult.Success)
-        //                    {
-        //                        this.Error(savePregResult.Message);
-        //                    }
-        //                }
-        //            }
-        //            else if (currentPregnancyDsio == null && currentPregnancyWvrpcor != null)
-        //            {
-        //                BrokerOperationResult savePregResult = this.DashboardRepository.Pregnancy.SavePregnancy(currentPregnancyWvrpcor);
-        //                if (!savePregResult.Success)
-        //                {
-        //                    this.Error("Unable to update patient's current pregnancy with the pregnancy from CPRS: " + savePregResult.Message);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
         protected BasePatient CurrentPatient
         {
             get

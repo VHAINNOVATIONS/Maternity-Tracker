@@ -275,46 +275,70 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
             return result;
         }
 
-        public PregnancyResult UpdateCurrentPregnancyWithCPRSData(string dfn)
+        public PregnancyResult UpdateCurrentPregnancyLactationWithCPRSData(string dfn, IObservationsRepository observations, BasePatient patient)
         {
             PregnancyResult result = new PregnancyResult();
             PregnancyDetails currentPregnancyDsio;
             PregnancyDetails currentPregnancyWvrpcor;
 
-            //Get DSIO current pregnancy
-            PregnancyResult pregResultDsio = this.GetCurrentPregnancy(dfn);
-            if (!pregResultDsio.Success)
+            //Get Wvrpcor current pregnancy
+            PregnancyResult pregResultWvrpcor = this.GetCurrentWvrpcorPregnancy(dfn);
+            if (!pregResultWvrpcor.Success)
             {
-                pregResultDsio.Message = "Unable to get patient's current DSIO pregnancy: " + pregResultDsio.Message;
+                pregResultWvrpcor.Message = "Unable to get patient's current CPRS pregnancy: " + pregResultWvrpcor.Message;
             }
-            result.SetResult(pregResultDsio.Success, pregResultDsio.Message);
-            if (pregResultDsio.Success)
+            result.SetResult(pregResultWvrpcor.Success, pregResultWvrpcor.Message);
+
+            //If error retrieving data, nothing changes
+            if (pregResultWvrpcor.Success)
             {
-                currentPregnancyDsio = pregResultDsio.Pregnancy;
+                currentPregnancyWvrpcor = pregResultWvrpcor.Pregnancy;
 
-                //Get Wvrpcor current pregnancy
-                PregnancyResult pregResultWvrpcor = this.GetCurrentWvrpcorPregnancy(dfn);
-                if (!pregResultWvrpcor.Success)
-                {
-                    pregResultWvrpcor.Message = "Unable to get patient's current CPRS pregnancy: " + pregResultWvrpcor.Message;
-                }
-                result.SetResult(pregResultWvrpcor.Success, pregResultWvrpcor.Message);
-                if (pregResultWvrpcor.Success)
-                {
-                    currentPregnancyWvrpcor = pregResultWvrpcor.Pregnancy;
 
-                    //If the current pregnancy in the DSIO namespace is different than the one in CPRS,
-                    //update it with the pregnancy data from CPRS                
-                    if (currentPregnancyWvrpcor != null)
+                //If there is no pregnancy data in CPRS, nothing changes
+                if (currentPregnancyWvrpcor != null)
+                {
+                    result.Pregnancy = currentPregnancyWvrpcor;
+
+                    //----------------------------------------------------------------------------------
+                    //Update Lactation data with CPRS data
+                    //----------------------------------------------------------------------------------
+                    string currentLactationWvrpcor = pregResultWvrpcor.Pregnancy.LactatingCPRS;
+                    bool lactating = currentLactationWvrpcor == "Yes" ? true : false;
+                    IenResult lactatingResult = observations.AddLactationObservation(dfn, lactating);
+                    result.SetResult(lactatingResult.Success, lactatingResult.Message);
+                    if (lactatingResult.Success)
                     {
+                        patient.Lactating = lactating;
+                    }
+
+                    //----------------------------------------------------------------------------------
+                    //Update Pregnancy data with CPRS data
+                    //----------------------------------------------------------------------------------
+
+                    //Get DSIO current pregnancy
+                    PregnancyResult pregResultDsio = this.GetCurrentPregnancy(dfn);
+                    if (!pregResultDsio.Success)
+                    {
+                        pregResultDsio.Message = "Unable to get patient's current DSIO pregnancy: " + pregResultDsio.Message;
+                    }
+                    result.SetResult(pregResultDsio.Success, pregResultDsio.Message);
+
+                    if (pregResultDsio.Success)
+                    {
+                        currentPregnancyDsio = pregResultDsio.Pregnancy;
                         if (currentPregnancyDsio != null)
                         {
+                            //If the patient is pregnant in CPRS, update the current DSIO pregnancy with the one frm CPRS
                             if (currentPregnancyWvrpcor.PregnantCPRS == "Yes")
                             {
                                 DateTime eddDsio = currentPregnancyDsio.EDD;
                                 DateTime eddWvrpcor = currentPregnancyWvrpcor.EDD;
                                 string lmpDsio = currentPregnancyDsio.Lmp;
                                 string lmpWvrpcor = currentPregnancyWvrpcor.Lmp;
+
+                                // If the current pregnancy in the DSIO namespace is different than the one in CPRS,
+                                //update it with the pregnancy data from CPRS     
                                 if (eddDsio != eddWvrpcor || lmpDsio != lmpWvrpcor)
                                 {
                                     //currentPregnancyDsio.Ien = ienWvrpcor;
@@ -331,6 +355,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                     result.Pregnancy = currentPregnancyDsio;
                                 }
                             }
+                            //If the patient is not pregnant in CPRS, update the current DSIO pregnancy to past pregnancy
                             else
                             {
                                 currentPregnancyDsio.RecordType = PregnancyRecordType.Historical;
@@ -343,9 +368,8 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                 result.SetResult(savePregResult.Success, savePregResult.Message);
                                 result.Pregnancy = currentPregnancyDsio;
                             }
-
                         }
-                        else if (currentPregnancyDsio == null)
+                        else
                         {
                             if (currentPregnancyWvrpcor.PregnantCPRS == "Yes")
                             {

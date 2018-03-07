@@ -4,6 +4,7 @@
 using System.Web.Mvc;
 using VA.Gov.Artemis.Commands.Dsio.Checklist;
 using VA.Gov.Artemis.UI.Data.Brokers.Checklist;
+using VA.Gov.Artemis.UI.Data.Brokers.Observations;
 using VA.Gov.Artemis.UI.Data.Brokers.Pregnancy;
 using VA.Gov.Artemis.UI.Data.Models.Checklist;
 using VA.Gov.Artemis.UI.Data.Models.Patient;
@@ -30,7 +31,8 @@ namespace VA.Gov.Artemis.UI.Controllers
             // *** Check for success ***
             if (!model.Patient.NotFound)
             {
-                PregnancyResult updatedPregResult = this.DashboardRepository.Pregnancy.UpdateCurrentPregnancyWithCPRSData(dfn);
+                IObservationsRepository observations = this.DashboardRepository.Observations;
+                PregnancyResult updatedPregResult = this.DashboardRepository.Pregnancy.UpdateCurrentPregnancyLactationWithCPRSData(dfn, observations, model.Patient);
                 if (!updatedPregResult.Success)
                 {
                     errorMessage = errorMessage + updatedPregResult.Message;
@@ -38,7 +40,6 @@ namespace VA.Gov.Artemis.UI.Controllers
                 }
 
                 PregnancyResult pregResult = this.DashboardRepository.Pregnancy.GetCurrentOrMostRecentPregnancy(dfn);
-
                 if (pregResult.Success)
                 {
                     if (pregResult.Pregnancy != null)
@@ -54,13 +55,11 @@ namespace VA.Gov.Artemis.UI.Controllers
                         if (pregResult.Pregnancy.RecordType == PregnancyRecordType.Current)
                         {
                             model.CurrentPregnancy = pregResult.Pregnancy;
-                            //model.Patient.StatusMessage
 
                             PregnancyDetails tempDetails = PregnancyUtilities.GetPregnancyObservationData(this.DashboardRepository, dfn, model.CurrentPregnancy.Ien);
 
                             model.CurrentPregnancy.Lmp = tempDetails.Lmp;
                             model.CurrentPregnancy.FetusBabyCount = tempDetails.FetusBabyCount;
-
                             model.CurrentPregnancy.EddBasis = tempDetails.EddBasis;
                             model.CurrentPregnancy.EddIsFinal = tempDetails.EddIsFinal;
                         }
