@@ -328,13 +328,22 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                         savePregResult.Message = "Unable to update patient's current pregnancy with pregnancy data from CPRS: " + savePregResult.Message;
                                     }
                                     result.SetResult(savePregResult.Success, savePregResult.Message);
+                                    result.Pregnancy = currentPregnancyDsio;
                                 }
                             }
                             else
                             {
                                 currentPregnancyDsio.RecordType = PregnancyRecordType.Historical;
                                 currentPregnancyDsio.EndDate = currentPregnancyWvrpcor.Created;
+                                BrokerOperationResult savePregResult = this.SavePregnancy(currentPregnancyDsio);
+                                if (!savePregResult.Success)
+                                {
+                                    savePregResult.Message = "Unable to update patient's current pregnancy with pregnancy data from CPRS: " + savePregResult.Message;
+                                }
+                                result.SetResult(savePregResult.Success, savePregResult.Message);
+                                result.Pregnancy = currentPregnancyDsio;
                             }
+
                         }
                         else if (currentPregnancyDsio == null)
                         {
@@ -350,6 +359,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Pregnancy
                                     savePregResult.Message = "Patient's new current pregnancy was updated with the pregnancy data from CPRS: " + savePregResult.Message;
                                 }
                                 result.SetResult(savePregResult.Success, savePregResult.Message);
+                                result.Pregnancy = currentPregnancyWvrpcor;
                             }
                         }
                     }
