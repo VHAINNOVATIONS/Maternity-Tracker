@@ -2,11 +2,7 @@
 // Authored by DSS, Inc. 2014-2017
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VA.Gov.Artemis.Vista.Utility
 {
@@ -22,7 +18,7 @@ namespace VA.Gov.Artemis.Vista.Utility
         public const string VistADateFormatEight = "MM/dd/yyyy@HH:mm";
 
         //SEP 01, 2014@08:59:07
-        public const string VistADateFormatOne = "MMM dd, yyyy@HH:mm:ss"; 
+        public const string VistADateFormatOne = "MMM dd, yyyy@HH:mm:ss";
 
         public const string VistADateOnlyFormat = "MM/dd/yyyy";
 
@@ -49,7 +45,7 @@ namespace VA.Gov.Artemis.Vista.Utility
         }
 
         public static string StandardizeDateFormat(string originalDate)
-        {            
+        {
             string returnVal = "";
 
             DateTime tempDate;
@@ -76,7 +72,7 @@ namespace VA.Gov.Artemis.Vista.Utility
                 //compute how many centuries have past since 1700
                 int century = Convert.ToInt32(firstTwoDigits) - 17;
                 returnVal = century + yyMMdd;
-            }                
+            }
 
             return returnVal;
         }
@@ -93,10 +89,10 @@ namespace VA.Gov.Artemis.Vista.Utility
                 CultureInfo enUS = new CultureInfo("en-US");
 
                 if (DateTime.TryParseExact(originalDate, format, enUS, DateTimeStyles.None, out returnVal))
-                    break; 
+                    break;
             }
 
-            return returnVal; 
+            return returnVal;
         }
     }
 }

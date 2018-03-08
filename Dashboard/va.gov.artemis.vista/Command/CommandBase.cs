@@ -1,22 +1,17 @@
 ﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
 // Authored by DSS, Inc. 2014-2017
 
-using VA.Gov.Artemis.Vista.Broker;
-using VA.Gov.Artemis.Vista.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using VA.Gov.Artemis.Core;
+using VA.Gov.Artemis.Vista.Broker;
 using VA.Gov.Artemis.Vista.Utility;
 
 namespace VA.Gov.Artemis.Vista.Commands
 {
     public abstract class CommandBase
     {
-        protected const string Caret = "^"; 
+        protected const string Caret = "^";
 
         protected IRpcBroker broker { get; set; }
         protected object[] CommandArgs { get; set; }
@@ -28,22 +23,22 @@ namespace VA.Gov.Artemis.Vista.Commands
         public RpcResponse Response { get; set; }
 
         public abstract string RpcName { get; }
-        public abstract string Version { get; }        
+        public abstract string Version { get; }
 
         public CommandBase(IRpcBroker newBroker)
         {
             this.broker = newBroker;
 
-            this.Context = string.Empty; 
+            this.Context = string.Empty;
         }
 
         public virtual RpcResponse Execute()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(string.Format("Calling RPC, {0}, with Arguments:", this.RpcName));
-            
+
             if (this.CommandArgs != null)
-            {            
+            {
                 int count = 1;
                 foreach (var arg in this.CommandArgs)
                     if (arg != null)
@@ -74,7 +69,7 @@ namespace VA.Gov.Artemis.Vista.Commands
                             sb.AppendLine(string.Format("{0}: {1}", count++, noCommas));
                         }
                     else
-                        sb.AppendLine(string.Format("{0}: {1}", count++, "")); 
+                        sb.AppendLine(string.Format("{0}: {1}", count++, ""));
             }
             else
                 sb.AppendLine("None");
@@ -84,12 +79,12 @@ namespace VA.Gov.Artemis.Vista.Commands
             this.Response = this.broker.CallRpc(this.Context, this.RpcName, this.Version, this.CommandArgs);
 
             // TODO: Remove this tracing...?
-            TraceLogger.Log(string.Format("Result from '{0}':\n\r{1}", this.RpcName, this.Response.Data)); 
-     
+            TraceLogger.Log(string.Format("Result from '{0}':\n\r{1}", this.RpcName, this.Response.Data));
+
             if (this.Response.Status != RpcResponseStatus.Fail)
                 this.ProcessResponse();
 
-            LogIt(); 
+            LogIt();
 
             return this.Response;
         }
@@ -100,7 +95,7 @@ namespace VA.Gov.Artemis.Vista.Commands
 
             foreach (char c in orig)
                 if (c.ToString() != ",")
-                    returnVal += c; 
+                    returnVal += c;
 
             return returnVal;
         }
@@ -110,8 +105,8 @@ namespace VA.Gov.Artemis.Vista.Commands
         public string GetXmlDescription()
         {
             StringBuilder sb = new StringBuilder();
-            
-            XmlWriterSettings settings = new XmlWriterSettings() { Indent = true, OmitXmlDeclaration=true };
+
+            XmlWriterSettings settings = new XmlWriterSettings() { Indent = true, OmitXmlDeclaration = true };
 
             using (XmlWriter writer = XmlTextWriter.Create(sb, settings))
             {
@@ -121,25 +116,25 @@ namespace VA.Gov.Artemis.Vista.Commands
                 writer.WriteElementString("Version", this.Version);
                 //if (this.request != null)
                 //{
-                    writer.WriteStartElement("Request");
+                writer.WriteStartElement("Request");
 
-                    writer.WriteElementString("Context", this.Context);
+                writer.WriteElementString("Context", this.Context);
 
-                    if (this.CommandArgs == null)
-                        writer.WriteElementString("Args", "");
-                    else if (this.CommandArgs.Length == 0)
-                        writer.WriteElementString("Args", "");
-                    else
+                if (this.CommandArgs == null)
+                    writer.WriteElementString("Args", "");
+                else if (this.CommandArgs.Length == 0)
+                    writer.WriteElementString("Args", "");
+                else
+                {
+                    writer.WriteStartElement("Args");
+                    for (int i = 0; i < this.CommandArgs.Length; i++)
                     {
-                        writer.WriteStartElement("Args");
-                        for (int i = 0; i < this.CommandArgs.Length; i++)
-                        {
-                            string elName = string.Format("Args{0}", i);
+                        string elName = string.Format("Args{0}", i);
 
-                            writer.WriteElementString(elName, this.CommandArgs[i].ToString());
-                        }
-                        writer.WriteEndElement();
+                        writer.WriteElementString(elName, this.CommandArgs[i].ToString());
                     }
+                    writer.WriteEndElement();
+                }
                 //}
 
                 writer.WriteEndElement();
@@ -175,11 +170,13 @@ namespace VA.Gov.Artemis.Vista.Commands
 
                 char[] chars = piece1.ToCharArray();
 
-                if ((int)chars[0] == 24)
+                //When checking for pregnancy data from CPRS, when the patient is not pregnant, 
+                //the first line is totally empty, hence the check for this.Response.Lines[0] != ""
+                if (this.Response.Lines[0] != "" && (int)chars[0] == 24)
                 {
                     this.Response.Status = RpcResponseStatus.Fail;
                     this.Response.InformationalMessage = "An internal error has occurred";
-                    ErrorLogger.Log(string.Format("M Error Calling RPC '{0}': {1}", this.RpcName, this.Response.Data)); 
+                    ErrorLogger.Log(string.Format("M Error Calling RPC '{0}': {1}", this.RpcName, this.Response.Data));
                 }
                 else
                 {
@@ -221,7 +218,7 @@ namespace VA.Gov.Artemis.Vista.Commands
                         case "reject":
                             this.Response.Status = RpcResponseStatus.Fail;
                             this.Response.InformationalMessage = "An internal error has occurred communicating with VistA (reject)";
-                            break; 
+                            break;
                         default:
                             returnVal = true;
                             break;
@@ -246,9 +243,9 @@ namespace VA.Gov.Artemis.Vista.Commands
         {
             object[] logArgs = (this.Sensitive) ? null : this.CommandArgs;
 
-            if (this.Response != null) 
+            if (this.Response != null)
                 VistaLogger.Log(this.RpcName, this.Response.ExecutionTime, this.Response.Size, logArgs, this.Response.Status.ToString());
-            else 
+            else
                 VistaLogger.Log(this.RpcName, "-1", -1, logArgs, RpcResponseStatus.Unknown.ToString());
         }
 
