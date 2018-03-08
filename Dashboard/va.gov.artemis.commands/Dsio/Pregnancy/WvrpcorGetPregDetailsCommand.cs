@@ -56,28 +56,63 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
 
         protected override void ProcessResponse()
         {
-            var enteredOn = "";
+            string lmpText = "LMP: ";
+            string eddText = "EDD: ";
+            string enteredByText = "Entered by: ";
+            string enteredOnText = "Entered on: ";
+
             if (this.ProcessSaveResponse())
             {
-                if (this.pregnant)
+                //----------------------------------------------------------------
+                //Returned message when the Pregnancy status is "Yes"
+                //               LMP: Oct 10, 2017
+                //               EDD: Jul 17, 2018
+                //
+                //Entered by: FREY,ALINA
+                //Entered on: Mar 05, 2018@10:06
+
+                //----------------------------------------------------------------
+                //Returned message when the Pregnancy status is "No"
+                //<empty line>
+                //Entered by: FREY,ALINA (Physician)
+                //Entered on: Mar 08, 2018@15:17
+
+                //----------------------------------------------------------------
+                //Returned messages when the the pregnancy status is "Not Applicable"
+                //Case 1: "The patient's age is outside of the age range 10 to 52 years old."
+                //Case 2: "No data on file." - That seems to be the case when the patient was never pregnant
+                //Case 3: The case when the patient is not able to conceive: The returned message is a string containing
+                //any combination of the following: Hysterectomy, menopause, permanent female sterilization and 
+                //other comments, then the Entered by and Entered on lines.
+                if (this.Response.Lines != null)
                 {
-                    var lmpDate = Util.Piece(this.Response.Lines[0], "LMP: ", 2);
-                    var eddDate = Util.Piece(this.Response.Lines[1], "EDD: ", 2);
-                    this.EnteredBy = Util.Piece(this.Response.Lines[3], "Entered by: ", 2);
-                    enteredOn = Util.Piece(this.Response.Lines[4], "Entered on: ", 2);
-                    this.EDD = VistaDates.StandardizeDateFormat(eddDate);
-                    this.LMP = VistaDates.StandardizeDateFormat(lmpDate);
-                }
-                else
-                {
-                    if (this.Response.Lines[0] != "No data on file.")
+                    foreach (string line in this.Response.Lines)
                     {
-                        this.EnteredBy = Util.Piece(this.Response.Lines[1], "Entered by: ", 2);
-                        enteredOn = Util.Piece(this.Response.Lines[2], "Entered on: ", 2);
+                        if (!string.IsNullOrWhiteSpace(line))
+                        {
+                            if (line.IndexOf(lmpText) > -1)
+                            {
+                                string lmpDate = Util.Piece(line, lmpText, 2);
+                                this.LMP = VistaDates.StandardizeDateFormat(lmpDate);
+                            }
+                            if (line.IndexOf(eddText) > -1)
+                            {
+                                string eddDate = Util.Piece(line, eddText, 2);
+                                this.EDD = VistaDates.StandardizeDateFormat(eddDate);
+                            }
+                            if (line.IndexOf(enteredByText) > -1)
+                            {
+                                this.EnteredBy = Util.Piece(line, enteredByText, 2);
+                            }
+                            if (line.IndexOf(enteredOnText) > -1)
+                            {
+                                string enteredOn = Util.Piece(line, enteredOnText, 2);
+                                this.Created = VistaDates.ParseDateString(enteredOn, VistaDates.VistADateFormatSeven);
+                            }
+                        }
                     }
                 }
 
-                this.Created = VistaDates.ParseDateString(enteredOn, VistaDates.VistADateFormatSeven);
                 this.Response.Status = RpcResponseStatus.Success;
             }
         }
