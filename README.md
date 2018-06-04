@@ -14,13 +14,13 @@ Folder Structure
 
 	ReminderDialogs - Reminder dialogs for use with CPRS
 
-	Routines - Source code for DSIO routines
+	Routines - Source code for WEBM routines
 
-	kids - KID builds used to install routines and VistA components for the DSIO namespace
+	kids - KID builds used to install routines and VistA components for the WEBM namespace
 
 
 
- Namespace   | DSIO
+ Namespace   | WEBM
  ----------- | ----
  Numberspace | 19641
 
@@ -29,14 +29,14 @@ Installation Instructions
 #### Pre-Installation
 Move/copy the [TITLES](/kids/TITLES) folder with containing text files to somewhere where you VistA database has read access. If you don’t know, you can find the information in the KERNEL SYSTEM PARAMERTS file under record IEN 1 as the PRIMARY HFS DIRECTORY field. During installation you will be prompted with “Enter directory name or path” with it defaulted to your PRIMARY HFS DIRECTORY this is asking where your extracted XML title documents are. 
 
-During installation you will also be asked for the hospital location you wish to use for the Dashboard – if a selection is not made during this step then the Dashboard will not be able to create any TIU notes. This selection can be changed after installation through FileMan via the Enter/Edit option selecting the file DSIO TITLE CONFIGURATION.
+During installation you will also be asked for the hospital location you wish to use for the Dashboard – if a selection is not made during this step then the Dashboard will not be able to create any TIU notes. This selection can be changed after installation through FileMan via the Enter/Edit option selecting the file WEBM TITLE CONFIGURATION.
 
 #### Installation
 Normal KIDS install through Kernel Installation & Distribution System.
 
 During installation you will see…
 
-          Running Post-Install Routine: POST^DSIO0P.
+          Running Post-Install Routine: POST^WEBM0P.
           
           ******************************************************************************
           Set the path where the TIU TITLE import files are located.
@@ -54,16 +54,16 @@ During installation you will see…
           Select HOSPITAL LOCATION: Select the Dashboard Hospital Location
 
 
-*This is required for configuring the dashboard to use maternity related TIU notes, if not completed the dashboard will be unable to save a note and will have to be configured manually. Otherwise, the location can be changed after installation. In either case, the edits can be accomplished through FileMan via the DSIO TITLE CONFIGURATION file. To run post installation again you can “D ^DSIO99” at programmer prompt (without quotes).*
+*This is required for configuring the dashboard to use maternity related TIU notes, if not completed the dashboard will be unable to save a note and will have to be configured manually. Otherwise, the location can be changed after installation. In either case, the edits can be accomplished through FileMan via the WEBM TITLE CONFIGURATION file. To run post installation again you can “D ^WEBM99” at programmer prompt (without quotes).*
 
 #### Post Installation
 *DDCSFramework.bpl* is a Delphi package used for created new DDCS Forms. If you are not a developer and don’t plan on creating new DDCS Forms then you don’t need this file.
 
 User Setup
 ----------
-- Assign the Menu Context DSIO DDCS CONTEXT to users needing access to the DDCS Form Templates (DDCS Forms).
-- Assign the Menu Context DSIO GUI CONTEXT to users needing access to the MCC Dashboard.
-- Assign the Menu Context DSIO MAIN to users needing access to the VistA side configuration options.
+- Assign the Menu Context WEBM DDCS CONTEXT to users needing access to the DDCS Form Templates (DDCS Forms).
+- Assign the Menu Context WEBM GUI CONTEXT to users needing access to the MCC Dashboard.
+- Assign the Menu Context WEBM MAIN to users needing access to the VistA side configuration options.
 
 *From the “Systems Manager Menu” option...*
 
@@ -109,7 +109,7 @@ User Setup
 
 ![](/Documentation/readme_images/Register_Secondary_Option.png?raw=true)
 
-##### Assign the Security Key DSIO CONFIG to users needing access to the GUI side configuration form.
+##### Assign the Security Key WEBM CONFIG to users needing access to the GUI side configuration form.
 
 *From the “Key Management” option...*
 
@@ -128,7 +128,7 @@ User Setup
           
           Select Key Management Option: ALLOCATION of Security Keys
           
-          Allocate key: DSIO DDCS CONFIG
+          Allocate key: WEBM DDCS CONFIG
           
           Another key: 
           
@@ -138,7 +138,7 @@ User Setup
           
           You've selected the following keys: 
           
-          DSIO DDCS CONFIG
+          WEBM DDCS CONFIG
           
           You've selected the following holders: 
           
@@ -146,7 +146,7 @@ User Setup
           
           You are allocating keys.  Do you wish to proceed? YES//
           
-          DSIO DDCS CONFIG being assigned to:
+          WEBM DDCS CONFIG being assigned to:
           Entered Name Would Appear Here
 
 
@@ -155,21 +155,21 @@ Set the following parameters to “YES” if the site wishes to flag patients fo
 
  Parameters             | Options
  ---------------------- | ------------------
- DSIO EVAL CONSULTS NOW | DSIO EVAL CONSULTS
- DSIO EVAL LABS NOW	    | DSIO EVAL LABS
- DSIO EVAL PROBLEMS NOW | DSIO EVAL PROBLEMS
+ WEBM EVAL CONSULTS NOW | WEBM EVAL CONSULTS
+ WEBM EVAL LABS NOW	    | WEBM EVAL LABS
+ WEBM EVAL PROBLEMS NOW | WEBM EVAL PROBLEMS
 
  
 Create OE/RR ENTRY
 ------------------
-This file is accessed by CPRS to use COM. There are only two fields required to use DSIO DDCS and that’s the NAME and OBJECT GUID fields. The GUID must look EXACTLY as seen below (with braces {}) but the name can be determined by the site.
+This file is accessed by CPRS to use COM. There are only two fields required to use WEBM DDCS and that’s the NAME and OBJECT GUID fields. The GUID must look EXACTLY as seen below (with braces {}) but the name can be determined by the site.
 
 *For file OE/RR COM OBJECTS create the following entry...*
 
 
 INPUT TO WHAT FILE: OE/RR COM OBJECTS// 
 
-          NAME: DSIO DDCS FORM BUILDER
+          NAME: WEBM DDCS FORM BUILDER
           OBJECT GUID: {F4401FE9-4F5C-4633-B409-E7CEC0CE863F}
           INACTIVE: 
           PARAM1: 
@@ -183,7 +183,7 @@ Link TIU Titles in CPRS
 -----------------------
 The title must have be edited through the EDIT SHARED TEMPLATE option in CPRS with the title and COM entry.
 
-In CPRS select a patient and navigate to the “Notes” tab and select the “Edit Templates” option under the “Options” menu. Select Document Titles and add a new template. This template must be a “Template Type” of “COM Object” with the “Associated Title” linked to the TIU Note Title you wish to have access this program with the “COM Object” field linked to the DSIO DDCS COM entry you created in the OE/RR COM Objects file.
+In CPRS select a patient and navigate to the “Notes” tab and select the “Edit Templates” option under the “Options” menu. Select Document Titles and add a new template. This template must be a “Template Type” of “COM Object” with the “Associated Title” linked to the TIU Note Title you wish to have access this program with the “COM Object” field linked to the WEBM DDCS COM entry you created in the OE/RR COM Objects file.
 
 ![Image](/Documentation/readme_images/CPRS_Title_Link.png)
 
@@ -193,7 +193,7 @@ http://www.va.gov/vdl/application.asp?appid=61).
 
 Schedule the Task to PUSH Discreet Data
 ---------------------------------------
-You may schedule the option DSIO DDCS CHECK STATUS to meet your needs. This option will look for captured data in the DSIO DDCS DATA file and in there are new records that have not been PUSHed it will check the DSIO DDCS CONTROL file if the TRIGGER event is acceptable and if so it will PUSH the data based on the linked DSIO DDCS REPORT ITEMS.
+You may schedule the option WEBM DDCS CHECK STATUS to meet your needs. This option will look for captured data in the WEBM DDCS DATA file and in there are new records that have not been PUSHed it will check the WEBM DDCS CONTROL file if the TRIGGER event is acceptable and if so it will PUSH the data based on the linked WEBM DDCS REPORT ITEMS.
 
 In the “Taskman Management” option…
 
@@ -210,8 +210,8 @@ In the “Taskman Management” option…
           
           Select Taskman Management Option: SCHEDULRE/Unschedule Options
           
-          Select OPTION to schedule or reschedule: DSIO DDCS CHECK STATUS       Run DDCS Control Triggers for PUSH
-            Are you adding 'DSIO DDCS CHECK STATUS' as a new OPTION SCHEDULING (the 143RD)? No// Y  (Yes)
+          Select OPTION to schedule or reschedule: WEBM DDCS CHECK STATUS       Run DDCS Control Triggers for PUSH
+            Are you adding 'WEBM DDCS CHECK STATUS' as a new OPTION SCHEDULING (the 143RD)? No// Y  (Yes)
 
 
 ![Image](/Documentation/readme_images/Option_Schedule.png)
@@ -238,7 +238,7 @@ This parameter is required as it and the configuration file needs to be able to 
 
 *Set the LOCATION parameter to the location of the dlls.*
 
-          Select PARAMETER DEFINITION NAME: DSIO DDCS LOCATION     DSIO DDCS LOCATION
+          Select PARAMETER DEFINITION NAME: WEBM DDCS LOCATION     WEBM DDCS LOCATION
           
-          ------ Setting DSIO DDCS LOCATION for System: ... ------
+          ------ Setting WEBM DDCS LOCATION for System: ... ------
           LOCATION: C:\Users\USERNAME\Desktop\DDCS\_output\
