@@ -32,7 +32,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Cda
 
         public override string RpcName
         {
-            get { return "DSIO GET IHE DOCS"; }
+            get { return "WEBM GET IHE DOCS"; }
         }
 
         protected override void ProcessLine(string line)

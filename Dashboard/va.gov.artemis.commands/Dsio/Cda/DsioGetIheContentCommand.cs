@@ -17,7 +17,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Cda
 
         public override string RpcName
         {
-            get { return "DSIO GET IHE CONTENT"; }
+            get { return "WEBM GET IHE CONTENT"; }
         }
 
         public DsioGetIheContentCommand(IRpcBroker newBroker): base(newBroker)

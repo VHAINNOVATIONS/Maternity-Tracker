@@ -1,11 +1,11 @@
 KIDS Distribution saved on Mar 22, 2016@12:12:56
-DSIO*1.0*3
-**KIDS**:DSIO*1.0*3^
+WEBM*1.0*3
+**KIDS**:WEBM*1.0*3^
 
 **INSTALL NAME**
-DSIO*1.0*3
+WEBM*1.0*3
 "BLD",9897,0)
-DSIO*1.0*3^^0^3160322^n
+WEBM*1.0*3^^0^3160322^n
 "BLD",9897,4,0)
 ^9.64PA^^0
 "BLD",9897,6.3)
@@ -35,8 +35,8 @@ DSIO*1.0*3^^0^3160322^n
 "BLD",9897,"KRN",9.8,"NM",0)
 ^9.68A^1^1
 "BLD",9897,"KRN",9.8,"NM",1,0)
-DSIO2^^0^B48819553
-"BLD",9897,"KRN",9.8,"NM","B","DSIO2",1)
+WEBM2^^0^B48819553
+"BLD",9897,"KRN",9.8,"NM","B","WEBM2",1)
 
 "BLD",9897,"KRN",19,0)
 19
@@ -178,497 +178,497 @@ NO
 D XPZ2^XPDIQ
 "RTN")
 1
-"RTN","DSIO2")
+"RTN","WEBM2")
 0^1^B48819553
-"RTN","DSIO2",1,0)
-DSIO2 ;DSS/TFF - DSIO X-REFERENCES AND UTILITIES;06/28/2013 15:19
-"RTN","DSIO2",2,0)
- ;;1.0;DSIO 1.0;**1,2,3**;Feb 06, 2015;Build 2
-"RTN","DSIO2",3,0)
+"RTN","WEBM2",1,0)
+WEBM2 ;DSS/TFF - WEBM X-REFERENCES AND UTILITIES;06/28/2013 15:19
+"RTN","WEBM2",2,0)
+ ;;1.0;WEBM 1.0;**1,2,3**;Feb 06, 2015;Build 2
+"RTN","WEBM2",3,0)
  ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
-"RTN","DSIO2",4,0)
+"RTN","WEBM2",4,0)
  ;
-"RTN","DSIO2",5,0)
+"RTN","WEBM2",5,0)
  ; External References      DBIA#
-"RTN","DSIO2",6,0)
+"RTN","WEBM2",6,0)
  ; -------------------      -----
-"RTN","DSIO2",7,0)
+"RTN","WEBM2",7,0)
  ;
-"RTN","DSIO2",8,0)
+"RTN","WEBM2",8,0)
  ;
-"RTN","DSIO2",9,0)
+"RTN","WEBM2",9,0)
  ;
-"RTN","DSIO2",10,0)
+"RTN","WEBM2",10,0)
  Q
-"RTN","DSIO2",11,0)
+"RTN","WEBM2",11,0)
  ;
-"RTN","DSIO2",12,0)
+"RTN","WEBM2",12,0)
  ; --------------------------------- CODING -----------------------------------
-"RTN","DSIO2",13,0)
+"RTN","WEBM2",13,0)
  ;
-"RTN","DSIO2",14,0)
+"RTN","WEBM2",14,0)
 ICODE(SYS,CD) ; Transform and lookup code (internal)
-"RTN","DSIO2",15,0)
+"RTN","WEBM2",15,0)
  Q:CD="@" CD
-"RTN","DSIO2",16,0)
+"RTN","WEBM2",16,0)
  N IEN,CODE,CK
-"RTN","DSIO2",17,0)
+"RTN","WEBM2",17,0)
  I SYS="LNC" D
-"RTN","DSIO2",18,0)
+"RTN","WEBM2",18,0)
  . S IEN=+CD,CK=$P(CD,"-",2)
-"RTN","DSIO2",19,0)
+"RTN","WEBM2",19,0)
  . I $$FIND1^DIC(95.3,,"A",IEN)&($$GET1^DIQ(95.3,IEN_",",15)=CK) D
-"RTN","DSIO2",20,0)
+"RTN","WEBM2",20,0)
  . . S CODE=IEN_";LAB(95.3,"
-"RTN","DSIO2",21,0)
+"RTN","WEBM2",21,0)
  I SYS="SCT" D
-"RTN","DSIO2",22,0)
+"RTN","WEBM2",22,0)
  . S IEN=$$FIND1^DIC(757.02,,"O",CD,"CODE") Q:'IEN
-"RTN","DSIO2",23,0)
+"RTN","WEBM2",23,0)
  . I $$GET1^DIQ(757.02,IEN_",",1)=CD D
-"RTN","DSIO2",24,0)
+"RTN","WEBM2",24,0)
  . . S CODE=IEN_";LEX(757.02,"
-"RTN","DSIO2",25,0)
+"RTN","WEBM2",25,0)
  Q $G(CODE)
-"RTN","DSIO2",26,0)
+"RTN","WEBM2",26,0)
  ;
-"RTN","DSIO2",27,0)
+"RTN","WEBM2",27,0)
 DCODE(Y) ; Display Code
-"RTN","DSIO2",28,0)
+"RTN","WEBM2",28,0)
  N FLE S FLE=$TR($P(Y,"(",2),",","")
-"RTN","DSIO2",29,0)
+"RTN","WEBM2",29,0)
  I $P(Y,";",2)="LAB(95.3," S Y=$$GET1^DIQ(FLE,+Y_",",.01)
-"RTN","DSIO2",30,0)
+"RTN","WEBM2",30,0)
  E  I $P(Y,";",2)="LEX(757.02," S Y=$$GET1^DIQ(FLE,+Y_",",1)
-"RTN","DSIO2",31,0)
+"RTN","WEBM2",31,0)
  Q Y
-"RTN","DSIO2",32,0)
+"RTN","WEBM2",32,0)
  ;
-"RTN","DSIO2",33,0)
+"RTN","WEBM2",33,0)
 SCODE(VP,IEN,FLE) ; Set the Code Type
-"RTN","DSIO2",34,0)
+"RTN","WEBM2",34,0)
  N TYP,IPT
-"RTN","DSIO2",35,0)
+"RTN","WEBM2",35,0)
  S TYP=$S($P(VP,";",2)="LAB(95.3,":"LNC",$P(VP,";",2)="LEX(757.02,":"SCT",1:"OTHER")
-"RTN","DSIO2",36,0)
- S IPT(FLE,IEN_",",$S(FLE=19641.123:.03,FLE=19641.12:.07,1:""))=TYP
-"RTN","DSIO2",37,0)
+"RTN","WEBM2",36,0)
+ S IPT(FLE,IEN_",",$S(FLE=1031.123:.03,FLE=1031.12:.07,1:""))=TYP
+"RTN","WEBM2",37,0)
  D UPDATE^DIE(,"IPT")
-"RTN","DSIO2",38,0)
+"RTN","WEBM2",38,0)
  Q
-"RTN","DSIO2",39,0)
+"RTN","WEBM2",39,0)
  ;
-"RTN","DSIO2",40,0)
-LCODE(CODE,TYP,SOR) ; Log codes that are not found in DSIO CODES (19641.99)
-"RTN","DSIO2",41,0)
- ; *** USED BY DSIO OBSERVATION
-"RTN","DSIO2",42,0)
+"RTN","WEBM2",40,0)
+LCODE(CODE,TYP,SOR) ; Log codes that are not found in WEBM CODES (1031.99)
+"RTN","WEBM2",41,0)
+ ; *** USED BY WEBM OBSERVATION
+"RTN","WEBM2",42,0)
  N IPT,REASON,DLAYGO
-"RTN","DSIO2",43,0)
- S DLAYGO=19641.99
-"RTN","DSIO2",44,0)
- S IPT(19641.99,"+1,",.01)=$$NOW^XLFDT
-"RTN","DSIO2",45,0)
- S IPT(19641.99,"+1,",.02)=CODE
-"RTN","DSIO2",46,0)
- S IPT(19641.99,"+1,",.03)=TYP
-"RTN","DSIO2",47,0)
- S IPT(19641.99,"+1,",.04)=DUZ
-"RTN","DSIO2",48,0)
- S IPT(19641.99,"+1,",.05)=SOR
-"RTN","DSIO2",49,0)
+"RTN","WEBM2",43,0)
+ S DLAYGO=1031.99
+"RTN","WEBM2",44,0)
+ S IPT(1031.99,"+1,",.01)=$$NOW^XLFDT
+"RTN","WEBM2",45,0)
+ S IPT(1031.99,"+1,",.02)=CODE
+"RTN","WEBM2",46,0)
+ S IPT(1031.99,"+1,",.03)=TYP
+"RTN","WEBM2",47,0)
+ S IPT(1031.99,"+1,",.04)=DUZ
+"RTN","WEBM2",48,0)
+ S IPT(1031.99,"+1,",.05)=SOR
+"RTN","WEBM2",49,0)
  S REASON=$S(TYP'="LNC"&(TYP'="SCT"):"Type is not LOINC or SNOMED CT.",1:"Unable to find code as "_TYP_".")
-"RTN","DSIO2",50,0)
- S IPT(19641.99,"+1,",.06)=REASON
-"RTN","DSIO2",51,0)
+"RTN","WEBM2",50,0)
+ S IPT(1031.99,"+1,",.06)=REASON
+"RTN","WEBM2",51,0)
  D UPDATE^DIE(,"IPT")
-"RTN","DSIO2",52,0)
+"RTN","WEBM2",52,0)
  Q
-"RTN","DSIO2",53,0)
+"RTN","WEBM2",53,0)
  ;
-"RTN","DSIO2",54,0)
+"RTN","WEBM2",54,0)
  ; --------------------------------- UTILITIES --------------------------------
-"RTN","DSIO2",55,0)
+"RTN","WEBM2",55,0)
  ;
-"RTN","DSIO2",56,0)
+"RTN","WEBM2",56,0)
 WITHIN(SUB,WOLE,DL) ; Is a string within another
-"RTN","DSIO2",57,0)
+"RTN","WEBM2",57,0)
  ; WOLE IS DELIMITED BY CARET
-"RTN","DSIO2",58,0)
+"RTN","WEBM2",58,0)
  N CT,FLG S:'$D(DL) DL=U
-"RTN","DSIO2",59,0)
+"RTN","WEBM2",59,0)
  F CT=1:1:$L(WOLE,DL) I $P(WOLE,DL,CT)=SUB S FLG=1
-"RTN","DSIO2",60,0)
+"RTN","WEBM2",60,0)
  Q +$G(FLG)
-"RTN","DSIO2",61,0)
+"RTN","WEBM2",61,0)
  ;
-"RTN","DSIO2",62,0)
+"RTN","WEBM2",62,0)
 FORMAT(X) ; -- enforce (xxx)xxx-xxxx phone format
-"RTN","DSIO2",63,0)
+"RTN","WEBM2",63,0)
  S X=$G(X) I X?1"("3N1")"3N1"-"4N.E Q X
-"RTN","DSIO2",64,0)
+"RTN","WEBM2",64,0)
  N P,N,I,Y S P=""
-"RTN","DSIO2",65,0)
+"RTN","WEBM2",65,0)
  F I=1:1:$L(X) S N=$E(X,I) I N=+N S P=P_N
-"RTN","DSIO2",66,0)
+"RTN","WEBM2",66,0)
  S:$L(P)<10 P=$E("0000000000",1,10-$L(P))_P
-"RTN","DSIO2",67,0)
+"RTN","WEBM2",67,0)
  S Y=$S(P:"("_$E(P,1,3)_")"_$E(P,4,6)_"-"_$E(P,7,10),1:"")
-"RTN","DSIO2",68,0)
+"RTN","WEBM2",68,0)
  Q Y
-"RTN","DSIO2",69,0)
+"RTN","WEBM2",69,0)
  ;
-"RTN","DSIO2",70,0)
+"RTN","WEBM2",70,0)
 AB(LIST) ; Change null to @ for null means delete
-"RTN","DSIO2",71,0)
+"RTN","WEBM2",71,0)
  ;
-"RTN","DSIO2",72,0)
+"RTN","WEBM2",72,0)
  ; This API turns non-existing or existing but equal to null variables
-"RTN","DSIO2",73,0)
- ; into the @. Originally, most DSIO RPCS were set up to ignore null
-"RTN","DSIO2",74,0)
+"RTN","WEBM2",73,0)
+ ; into the @. Originally, most WEBM RPCS were set up to ignore null
+"RTN","WEBM2",74,0)
  ; and use @ as the user's confirmation that they wish to delete data
-"RTN","DSIO2",75,0)
+"RTN","WEBM2",75,0)
  ; before using FileMan API's.
-"RTN","DSIO2",76,0)
+"RTN","WEBM2",76,0)
  ;
-"RTN","DSIO2",77,0)
- ; The implementation of this API means that before calling any DSIO
-"RTN","DSIO2",78,0)
+"RTN","WEBM2",77,0)
+ ; The implementation of this API means that before calling any WEBM
+"RTN","WEBM2",78,0)
  ; add or update action all values expressing the current state of the
-"RTN","DSIO2",79,0)
+"RTN","WEBM2",79,0)
  ; record must be passed - thus a get function may need to be called first
-"RTN","DSIO2",80,0)
+"RTN","WEBM2",80,0)
  ; Some methods will include the AB input variable and if set to 1 will
-"RTN","DSIO2",81,0)
+"RTN","WEBM2",81,0)
  ; bypass the use of this method.
-"RTN","DSIO2",82,0)
+"RTN","WEBM2",82,0)
  ;
-"RTN","DSIO2",83,0)
+"RTN","WEBM2",83,0)
  ; THE MCCDASHBOARD expects that by sending a null the user wishes to
-"RTN","DSIO2",84,0)
+"RTN","WEBM2",84,0)
  ; delete that associated data element.
-"RTN","DSIO2",85,0)
+"RTN","WEBM2",85,0)
  ;
-"RTN","DSIO2",86,0)
+"RTN","WEBM2",86,0)
  ; Array inputs are expected to be IDENTIFIER^VALUE PAIRS
-"RTN","DSIO2",87,0)
+"RTN","WEBM2",87,0)
  ; EXAMPLE: ARRAY(<SUBSCRIPT>)="ZIP<^ - THE LAST PIECE IS THE VALUE>66666"
-"RTN","DSIO2",88,0)
+"RTN","WEBM2",88,0)
  ;
-"RTN","DSIO2",89,0)
+"RTN","WEBM2",89,0)
  N I,VAR,CT
-"RTN","DSIO2",90,0)
+"RTN","WEBM2",90,0)
  F I=1:1:$L(LIST,",") S VAR=$P(LIST,",",I) D
-"RTN","DSIO2",91,0)
+"RTN","WEBM2",91,0)
  . I '$D(@VAR) S @VAR="@"
-"RTN","DSIO2",92,0)
+"RTN","WEBM2",92,0)
  . E  I $D(@VAR)=10 S CT=$NA(@VAR) F  S CT=$Q(@CT) Q:CT=""  D
-"RTN","DSIO2",93,0)
+"RTN","WEBM2",93,0)
  . . I $P(@CT,U,$L(@CT,U))="" S $P(@CT,U,$L(@CT,U))="@"
-"RTN","DSIO2",94,0)
+"RTN","WEBM2",94,0)
  . E  I $D(@VAR)=1&(@VAR="") S @VAR="@"
-"RTN","DSIO2",95,0)
+"RTN","WEBM2",95,0)
  Q
-"RTN","DSIO2",96,0)
+"RTN","WEBM2",96,0)
  ;
-"RTN","DSIO2",97,0)
+"RTN","WEBM2",97,0)
 STORE ; Save FileMan variables for restoration
-"RTN","DSIO2",98,0)
+"RTN","WEBM2",98,0)
  M:$D(DO) VFDDO=DO
-"RTN","DSIO2",99,0)
+"RTN","WEBM2",99,0)
  M:$D(DI) VFDDI=DI
-"RTN","DSIO2",100,0)
+"RTN","WEBM2",100,0)
  M:$D(DQ) VFDDQ=DQ
-"RTN","DSIO2",101,0)
+"RTN","WEBM2",101,0)
  M:$D(DC) VFDDC=DC
-"RTN","DSIO2",102,0)
+"RTN","WEBM2",102,0)
  M:$D(DM) VFDDM=DM
-"RTN","DSIO2",103,0)
+"RTN","WEBM2",103,0)
  M:$D(DK) VFDDK=DK
-"RTN","DSIO2",104,0)
+"RTN","WEBM2",104,0)
  M:$D(DP) VFDDP=DP
-"RTN","DSIO2",105,0)
+"RTN","WEBM2",105,0)
  M:$D(DL) VFDDL=DL
-"RTN","DSIO2",106,0)
+"RTN","WEBM2",106,0)
  M:$D(DV) VFDDV=DV
-"RTN","DSIO2",107,0)
+"RTN","WEBM2",107,0)
  M:$D(DIU) VFDDIU=DIU
-"RTN","DSIO2",108,0)
+"RTN","WEBM2",108,0)
  Q
-"RTN","DSIO2",109,0)
+"RTN","WEBM2",109,0)
  ;
-"RTN","DSIO2",110,0)
+"RTN","WEBM2",110,0)
 GETVAR ; Restore FileMan variables
-"RTN","DSIO2",111,0)
+"RTN","WEBM2",111,0)
  M:$D(VFDDO) DO=VFDDO
-"RTN","DSIO2",112,0)
+"RTN","WEBM2",112,0)
  M:$D(VFDDI) DI=VFDDI
-"RTN","DSIO2",113,0)
+"RTN","WEBM2",113,0)
  M:$D(VFDDQ) DQ=VFDDQ
-"RTN","DSIO2",114,0)
+"RTN","WEBM2",114,0)
  M:$D(VFDDC) DC=VFDDC
-"RTN","DSIO2",115,0)
+"RTN","WEBM2",115,0)
  M:$D(VFDDM) DM=VFDDM
-"RTN","DSIO2",116,0)
+"RTN","WEBM2",116,0)
  M:$D(VFDDK) DK=VFDDK
-"RTN","DSIO2",117,0)
+"RTN","WEBM2",117,0)
  M:$D(VFDDP) DP=VFDDP
-"RTN","DSIO2",118,0)
+"RTN","WEBM2",118,0)
  M:$D(VFDDL) DL=VFDDL
-"RTN","DSIO2",119,0)
+"RTN","WEBM2",119,0)
  M:$D(VFDDV) DV=VFDDV
-"RTN","DSIO2",120,0)
+"RTN","WEBM2",120,0)
  M:$D(VFDDIU) DIU=VFDDIU
-"RTN","DSIO2",121,0)
+"RTN","WEBM2",121,0)
  Q
-"RTN","DSIO2",122,0)
+"RTN","WEBM2",122,0)
  ;
-"RTN","DSIO2",123,0)
-CHECK(DFN) ; Check for patient in DSIO PATIENT
-"RTN","DSIO2",124,0)
+"RTN","WEBM2",123,0)
+CHECK(DFN) ; Check for patient in WEBM PATIENT
+"RTN","WEBM2",124,0)
  N VFDDO,VFDDI,VFDDQ,VFDDC,VFDDM,VFDDK,VFDDP,VFDDL,VFDDV,VFDDIU
-"RTN","DSIO2",125,0)
+"RTN","WEBM2",125,0)
  D STORE
-"RTN","DSIO2",126,0)
- N DIC,DA,X,Y,DLAYGO S DLAYGO=19641
-"RTN","DSIO2",127,0)
- S DIC="^DSIO(19641,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
-"RTN","DSIO2",128,0)
+"RTN","WEBM2",126,0)
+ N DIC,DA,X,Y,DLAYGO S DLAYGO=1031
+"RTN","WEBM2",127,0)
+ S DIC="^WEBM(1031,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
+"RTN","WEBM2",128,0)
  ; *** ADD PATIENT TO WV PATIENT (790)
-"RTN","DSIO2",129,0)
+"RTN","WEBM2",129,0)
  N DIC,DA,X,Y,DLAYGO S DLAYGO=790
-"RTN","DSIO2",130,0)
+"RTN","WEBM2",130,0)
  S DIC="^WV(790,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
-"RTN","DSIO2",131,0)
+"RTN","WEBM2",131,0)
  D GETVAR
-"RTN","DSIO2",132,0)
+"RTN","WEBM2",132,0)
  Q 1
-"RTN","DSIO2",133,0)
+"RTN","WEBM2",133,0)
  ;
-"RTN","DSIO2",134,0)
+"RTN","WEBM2",134,0)
 NAME(NAM) ; Transform NAME,NAME to title case thats Name,Name
-"RTN","DSIO2",135,0)
+"RTN","WEBM2",135,0)
  I NAM["," S NAM=$$TITLE^XLFSTR($P(NAM,","))_","_$$TITLE^XLFSTR($P(NAM,",",2))
-"RTN","DSIO2",136,0)
+"RTN","WEBM2",136,0)
  E  S NAM=$$TITLE^XLFSTR(NAM)
-"RTN","DSIO2",137,0)
+"RTN","WEBM2",137,0)
  Q NAM
-"RTN","DSIO2",138,0)
+"RTN","WEBM2",138,0)
  ;
-"RTN","DSIO2",139,0)
+"RTN","WEBM2",139,0)
 VALID(FLE,FLD,IENS,VAL) ; Check if a value is valid
-"RTN","DSIO2",140,0)
+"RTN","WEBM2",140,0)
  N VALID,ERR
-"RTN","DSIO2",141,0)
+"RTN","WEBM2",141,0)
  D VAL^DIE($G(FLE),$G(IENS),$G(FLD),,$G(VAL),.VALID,,"ERR")
-"RTN","DSIO2",142,0)
+"RTN","WEBM2",142,0)
  I VALID["^"!($D(ERR)) Q 0
-"RTN","DSIO2",143,0)
+"RTN","WEBM2",143,0)
  Q 1
-"RTN","DSIO2",144,0)
+"RTN","WEBM2",144,0)
  ;
-"RTN","DSIO2",145,0)
+"RTN","WEBM2",145,0)
 DT(X) ; Validate and attempt to return a valid date
-"RTN","DSIO2",146,0)
+"RTN","WEBM2",146,0)
  N %DT S %DT="ST" D ^%DT
-"RTN","DSIO2",147,0)
+"RTN","WEBM2",147,0)
  I +Y<1 S X=$$DT1(X) I +X<1 S X=$P(X,U,2) S %DT="STX" D ^%DT
-"RTN","DSIO2",148,0)
+"RTN","WEBM2",148,0)
  Q $S(Y'<1:Y,1:"")
-"RTN","DSIO2",149,0)
+"RTN","WEBM2",149,0)
  ;
-"RTN","DSIO2",150,0)
+"RTN","WEBM2",150,0)
 DT1(VAL) ; Translate external date time to FM date time
-"RTN","DSIO2",151,0)
+"RTN","WEBM2",151,0)
  ;
-"RTN","DSIO2",152,0)
+"RTN","WEBM2",152,0)
  ; Converts these 9/23/2004 10:53:25 AM
-"RTN","DSIO2",153,0)
+"RTN","WEBM2",153,0)
  ;                09/03/2014 21:00:00
-"RTN","DSIO2",154,0)
+"RTN","WEBM2",154,0)
  ;                2009-10-22 05:00:00.0
-"RTN","DSIO2",155,0)
+"RTN","WEBM2",155,0)
  ;                10-22-2009 05:00:00.0
-"RTN","DSIO2",156,0)
+"RTN","WEBM2",156,0)
  ;                OCT 12,(, )2012 12:10 AM
-"RTN","DSIO2",157,0)
+"RTN","WEBM2",157,0)
  ;                OCT 12,(, )2012 13:00
-"RTN","DSIO2",158,0)
+"RTN","WEBM2",158,0)
  ;                July 26, 2014 @ 10
-"RTN","DSIO2",159,0)
+"RTN","WEBM2",159,0)
  ;                02-OCT-2014 13.29.28
-"RTN","DSIO2",160,0)
+"RTN","WEBM2",160,0)
  ;
-"RTN","DSIO2",161,0)
+"RTN","WEBM2",161,0)
  ; The FM call below does not work with the time portions
-"RTN","DSIO2",162,0)
+"RTN","WEBM2",162,0)
  ; of the above format
-"RTN","DSIO2",163,0)
+"RTN","WEBM2",163,0)
  ; ------------------------------------------------------
-"RTN","DSIO2",164,0)
+"RTN","WEBM2",164,0)
  ; D DT^DILF("E","DEC 12,2014",.RESULT)
-"RTN","DSIO2",165,0)
+"RTN","WEBM2",165,0)
  ; RESULT=3141212
-"RTN","DSIO2",166,0)
+"RTN","WEBM2",166,0)
  ; RESULT(0)="DEC 12, 2014"
-"RTN","DSIO2",167,0)
+"RTN","WEBM2",167,0)
  ;
-"RTN","DSIO2",168,0)
+"RTN","WEBM2",168,0)
  Q:VAL="" ""
-"RTN","DSIO2",169,0)
+"RTN","WEBM2",169,0)
  I $$FMTH^XLFDT(VAL)'=-1 Q VAL
-"RTN","DSIO2",170,0)
+"RTN","WEBM2",170,0)
  N DATE,FLG,TIME S DATE=-1,FLG=0
-"RTN","DSIO2",171,0)
+"RTN","WEBM2",171,0)
  I $P(VAL," ",2)?.2N.1":".2N.1":".2N S FLG=1
-"RTN","DSIO2",172,0)
+"RTN","WEBM2",172,0)
  I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1" ".2A S FLG=1
-"RTN","DSIO2",173,0)
+"RTN","WEBM2",173,0)
  I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1".".2N S FLG=1
-"RTN","DSIO2",174,0)
+"RTN","WEBM2",174,0)
  I VAL?3A1" "1.2N1","4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=2
-"RTN","DSIO2",175,0)
+"RTN","WEBM2",175,0)
  I VAL?3A1" "1.2N1","1" "4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=3
-"RTN","DSIO2",176,0)
+"RTN","WEBM2",176,0)
  I VAL?1.A1" "1.2N1","1" "4N.1" ".1"@".1" ".2N.1":".2N S FLG=4
-"RTN","DSIO2",177,0)
+"RTN","WEBM2",177,0)
  I VAL?2N1"-"3A1"-"4N.1" ".2N.1".".2N.1".".2N S FLG=5
-"RTN","DSIO2",178,0)
+"RTN","WEBM2",178,0)
  I FLG=0 D DT^DILF("E",VAL,.DATE)
-"RTN","DSIO2",179,0)
+"RTN","WEBM2",179,0)
  I FLG=1 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($P(VAL," ",2,99))
-"RTN","DSIO2",180,0)
+"RTN","WEBM2",180,0)
  I FLG=2 D DT^DILF("E",$P(VAL," ",1,2),.DATE) S TIME=$$DT2($P(VAL," ",3,99))
-"RTN","DSIO2",181,0)
+"RTN","WEBM2",181,0)
  I FLG=3 D DT^DILF("E",$P(VAL," ",1,3),.DATE) S TIME=$$DT2($P(VAL," ",4,99))
-"RTN","DSIO2",182,0)
+"RTN","WEBM2",182,0)
  I FLG=4 D DT^DILF("E",$$TRIM^XLFSTR($P(VAL,"@")),.DATE) D
-"RTN","DSIO2",183,0)
+"RTN","WEBM2",183,0)
  . S TIME=$$DT2($$TRIM^XLFSTR($P(VAL,"@",2)))
-"RTN","DSIO2",184,0)
+"RTN","WEBM2",184,0)
  I FLG=5 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($TR($P(VAL," ",2,99),".",":"))
-"RTN","DSIO2",185,0)
+"RTN","WEBM2",185,0)
  I DATE=-1 Q -1_U_VAL
-"RTN","DSIO2",186,0)
+"RTN","WEBM2",186,0)
  Q DATE_$S($G(TIME)'="":"."_TIME,1:"")
-"RTN","DSIO2",187,0)
+"RTN","WEBM2",187,0)
  ;
-"RTN","DSIO2",188,0)
+"RTN","WEBM2",188,0)
 DT2(TM) ; Convert Time
-"RTN","DSIO2",189,0)
+"RTN","WEBM2",189,0)
  N SEC,MIN,HR S TM=$$TRIM^XLFSTR($$UP^XLFSTR(TM))
-"RTN","DSIO2",190,0)
+"RTN","WEBM2",190,0)
  I TM'[":",TM?.N D  Q $G(TM)
-"RTN","DSIO2",191,0)
+"RTN","WEBM2",191,0)
  . F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
-"RTN","DSIO2",192,0)
+"RTN","WEBM2",192,0)
  Q:TM'[":" ""
-"RTN","DSIO2",193,0)
+"RTN","WEBM2",193,0)
  S SEC=$S(TM[" ":$P($P(TM,":",3)," "),TM[".":$P($P(TM,":",3),"."),1:$P(TM,":",3))
-"RTN","DSIO2",194,0)
+"RTN","WEBM2",194,0)
  S SEC=$$DT3(SEC) S:$L(SEC)=1 SEC=0_SEC
-"RTN","DSIO2",195,0)
+"RTN","WEBM2",195,0)
  S MIN=$P($P(TM,":",2)," "),MIN=$$DT3(MIN) S:$L(MIN)=1 MIN=0_MIN
-"RTN","DSIO2",196,0)
+"RTN","WEBM2",196,0)
  S HR=$P($P(TM,":")," "),HR=$$DT3(HR) S:$L(HR)=1 HR=0_HR
-"RTN","DSIO2",197,0)
+"RTN","WEBM2",197,0)
  I HR=12&((TM["AM")!($E(TM,$L(TM)-1,$L(TM))="AM")) S HR="00"
-"RTN","DSIO2",198,0)
+"RTN","WEBM2",198,0)
  I HR<12&((TM["PM")!($E(TM,$L(TM)-1,$L(TM))="PM")) S HR=HR+12
-"RTN","DSIO2",199,0)
+"RTN","WEBM2",199,0)
  S TM=HR_MIN_SEC
-"RTN","DSIO2",200,0)
+"RTN","WEBM2",200,0)
  F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
-"RTN","DSIO2",201,0)
+"RTN","WEBM2",201,0)
  Q $S($G(TM)'="":TM,1:"")
-"RTN","DSIO2",202,0)
+"RTN","WEBM2",202,0)
  ;
-"RTN","DSIO2",203,0)
+"RTN","WEBM2",203,0)
 DT3(SEG) ; Only Numbers
-"RTN","DSIO2",204,0)
+"RTN","WEBM2",204,0)
  Q $$TRIM^XLFSTR($TR($$UP^XLFSTR(SEG),"ABCDEFGHIJKLMNOPQRSTUVWXYZ",""))
-"RTN","DSIO2",205,0)
+"RTN","WEBM2",205,0)
  ;
-"RTN","DSIO2",206,0)
+"RTN","WEBM2",206,0)
 M(VAL) ; Minus One
-"RTN","DSIO2",207,0)
+"RTN","WEBM2",207,0)
  I VAL?.N S VAL=VAL-1 Q VAL
-"RTN","DSIO2",208,0)
+"RTN","WEBM2",208,0)
  I VAL?.A Q $$ALPHA(VAL)
-"RTN","DSIO2",209,0)
+"RTN","WEBM2",209,0)
  Q VAL
-"RTN","DSIO2",210,0)
+"RTN","WEBM2",210,0)
  ;
-"RTN","DSIO2",211,0)
+"RTN","WEBM2",211,0)
 ALPHA(AL) ; Return the Prior Alpha
-"RTN","DSIO2",212,0)
+"RTN","WEBM2",212,0)
  N VAL,I,X
-"RTN","DSIO2",213,0)
+"RTN","WEBM2",213,0)
  S VAL="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-"RTN","DSIO2",214,0)
+"RTN","WEBM2",214,0)
  F I=1:1:26 I $E(VAL,I)=AL S X=I-1 Q
-"RTN","DSIO2",215,0)
+"RTN","WEBM2",215,0)
  Q $E(VAL,$G(X))
-"RTN","DSIO2",216,0)
+"RTN","WEBM2",216,0)
  ;
-"RTN","DSIO2",217,0)
+"RTN","WEBM2",217,0)
 KEY(VAL,KEY) ; Value to Key
-"RTN","DSIO2",218,0)
+"RTN","WEBM2",218,0)
  I KEY="" Q 0
-"RTN","DSIO2",219,0)
+"RTN","WEBM2",219,0)
  I $E(VAL,1,$L(KEY))'=KEY Q 1
-"RTN","DSIO2",220,0)
+"RTN","WEBM2",220,0)
  Q 0
-"RTN","DSIO2",221,0)
+"RTN","WEBM2",221,0)
  ;
-"RTN","DSIO2",222,0)
+"RTN","WEBM2",222,0)
 PAR ; Check Parameters
-"RTN","DSIO2",223,0)
- D:$$GET^XPAR("SYS","DSIO EVAL LABS NOW") TASK("LAB^DSIO5")
-"RTN","DSIO2",224,0)
- D:$$GET^XPAR("SYS","DSIO EVAL PROBLEMS NOW") TASK("PROBLEM^DSIO5")
-"RTN","DSIO2",225,0)
- D:$$GET^XPAR("SYS","DSIO EVAL CONSULTS NOW") TASK("CONSULT^DSIO5")
-"RTN","DSIO2",226,0)
+"RTN","WEBM2",223,0)
+ D:$$GET^XPAR("SYS","WEBM EVAL LABS NOW") TASK("LAB^WEBM5")
+"RTN","WEBM2",224,0)
+ D:$$GET^XPAR("SYS","WEBM EVAL PROBLEMS NOW") TASK("PROBLEM^WEBM5")
+"RTN","WEBM2",225,0)
+ D:$$GET^XPAR("SYS","WEBM EVAL CONSULTS NOW") TASK("CONSULT^WEBM5")
+"RTN","WEBM2",226,0)
  Q
-"RTN","DSIO2",227,0)
+"RTN","WEBM2",227,0)
  ;
-"RTN","DSIO2",228,0)
+"RTN","WEBM2",228,0)
 TASK(ZTRTN) ; TaskMan
-"RTN","DSIO2",229,0)
+"RTN","WEBM2",229,0)
  N ZTDESC,ZTDTH,ZTIO,ZTUCI,ZTCPU,ZTPRI,ZTSAVE,ZTKIL,ZTSYNC,ZTSK
-"RTN","DSIO2",230,0)
- S ZTDESC="DSIO (MATERNITY TRACKER) Trigger on "_$P(ZTRTN,U)
-"RTN","DSIO2",231,0)
+"RTN","WEBM2",230,0)
+ S ZTDESC="WEBM (MATERNITY TRACKER) Trigger on "_$P(ZTRTN,U)
+"RTN","WEBM2",231,0)
  S ZTDTH=$$FMTH^XLFDT($$NOW^XLFDT),ZTIO="NULL",ZTPRI=10
-"RTN","DSIO2",232,0)
+"RTN","WEBM2",232,0)
  D ^%ZTLOAD
-"RTN","DSIO2",233,0)
+"RTN","WEBM2",233,0)
  Q
-"RTN","DSIO2",234,0)
+"RTN","WEBM2",234,0)
  ;
-"RTN","DSIO2",235,0)
+"RTN","WEBM2",235,0)
  ; --------------------------------- SORTING ----------------------------------
-"RTN","DSIO2",236,0)
+"RTN","WEBM2",236,0)
  ;
-"RTN","DSIO2",237,0)
+"RTN","WEBM2",237,0)
 FN(P,C) ; Get the next record by dashboard page and count forward
-"RTN","DSIO2",238,0)
+"RTN","WEBM2",238,0)
  Q:P<2 0
-"RTN","DSIO2",239,0)
+"RTN","WEBM2",239,0)
  Q C*(P-1)
-"RTN","DSIO2",240,0)
+"RTN","WEBM2",240,0)
  ;
-"RTN","DSIO2",241,0)
+"RTN","WEBM2",241,0)
 S(SORT) ; Set Start and End
-"RTN","DSIO2",242,0)
+"RTN","WEBM2",242,0)
  S:$G(SORT)="" STRT="",END=""
-"RTN","DSIO2",243,0)
+"RTN","WEBM2",243,0)
  I SORT?.N1",".N D
-"RTN","DSIO2",244,0)
+"RTN","WEBM2",244,0)
  . S STRT=$$FN($P(SORT,","),$P(SORT,",",2)),END=$P(SORT,",",2)
-"RTN","DSIO2",245,0)
+"RTN","WEBM2",245,0)
  Q
 "VER")
 8.0^22.0

@@ -31,7 +31,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Vpr
         {
         }
 
-        public override string RpcName {get { return "DSIO VPR GET PATIENT DATA"; }}
+        public override string RpcName {get { return "WEBM VPR GET PATIENT DATA"; }}
 
         public override string Version {get { return "0"; }}
 

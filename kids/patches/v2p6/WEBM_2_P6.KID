@@ -1,0 +1,3168 @@
+KIDS Distribution saved on Jan 10, 2017@09:10:24
+WEBM*2.0*6
+**KIDS**:WEBM*2.0*6^
+
+**INSTALL NAME**
+WEBM*2.0*6
+"BLD",9908,0)
+WEBM*2.0*6^^0^3170110^n
+"BLD",9908,4,0)
+^9.64PA^^
+"BLD",9908,6.3)
+2
+"BLD",9908,"KRN",0)
+^9.67PA^779.2^20
+"BLD",9908,"KRN",.4,0)
+.4
+"BLD",9908,"KRN",.401,0)
+.401
+"BLD",9908,"KRN",.402,0)
+.402
+"BLD",9908,"KRN",.403,0)
+.403
+"BLD",9908,"KRN",.5,0)
+.5
+"BLD",9908,"KRN",.84,0)
+.84
+"BLD",9908,"KRN",3.6,0)
+3.6
+"BLD",9908,"KRN",3.8,0)
+3.8
+"BLD",9908,"KRN",9.2,0)
+9.2
+"BLD",9908,"KRN",9.8,0)
+9.8
+"BLD",9908,"KRN",9.8,"NM",0)
+^9.68A^5^5
+"BLD",9908,"KRN",9.8,"NM",1,0)
+WEBM15^^0^B104007914
+"BLD",9908,"KRN",9.8,"NM",2,0)
+WEBM14^^0^B22789803
+"BLD",9908,"KRN",9.8,"NM",3,0)
+WEBM10^^0^B122639729
+"BLD",9908,"KRN",9.8,"NM",4,0)
+WEBM1^^0^B233309882
+"BLD",9908,"KRN",9.8,"NM",5,0)
+WEBM2^^0^B48511547
+"BLD",9908,"KRN",9.8,"NM","B","WEBM1",4)
+
+"BLD",9908,"KRN",9.8,"NM","B","WEBM10",3)
+
+"BLD",9908,"KRN",9.8,"NM","B","WEBM14",2)
+
+"BLD",9908,"KRN",9.8,"NM","B","WEBM15",1)
+
+"BLD",9908,"KRN",9.8,"NM","B","WEBM2",5)
+
+"BLD",9908,"KRN",19,0)
+19
+"BLD",9908,"KRN",19.1,0)
+19.1
+"BLD",9908,"KRN",101,0)
+101
+"BLD",9908,"KRN",409.61,0)
+409.61
+"BLD",9908,"KRN",771,0)
+771
+"BLD",9908,"KRN",779.2,0)
+779.2
+"BLD",9908,"KRN",870,0)
+870
+"BLD",9908,"KRN",8989.51,0)
+8989.51
+"BLD",9908,"KRN",8989.52,0)
+8989.52
+"BLD",9908,"KRN",8994,0)
+8994
+"BLD",9908,"KRN","B",.4,.4)
+
+"BLD",9908,"KRN","B",.401,.401)
+
+"BLD",9908,"KRN","B",.402,.402)
+
+"BLD",9908,"KRN","B",.403,.403)
+
+"BLD",9908,"KRN","B",.5,.5)
+
+"BLD",9908,"KRN","B",.84,.84)
+
+"BLD",9908,"KRN","B",3.6,3.6)
+
+"BLD",9908,"KRN","B",3.8,3.8)
+
+"BLD",9908,"KRN","B",9.2,9.2)
+
+"BLD",9908,"KRN","B",9.8,9.8)
+
+"BLD",9908,"KRN","B",19,19)
+
+"BLD",9908,"KRN","B",19.1,19.1)
+
+"BLD",9908,"KRN","B",101,101)
+
+"BLD",9908,"KRN","B",409.61,409.61)
+
+"BLD",9908,"KRN","B",771,771)
+
+"BLD",9908,"KRN","B",779.2,779.2)
+
+"BLD",9908,"KRN","B",870,870)
+
+"BLD",9908,"KRN","B",8989.51,8989.51)
+
+"BLD",9908,"KRN","B",8989.52,8989.52)
+
+"BLD",9908,"KRN","B",8994,8994)
+
+"MBREQ")
+0
+"QUES","XPF1",0)
+Y
+"QUES","XPF1","??")
+^D REP^XPDH
+"QUES","XPF1","A")
+Shall I write over your |FLAG| File
+"QUES","XPF1","B")
+YES
+"QUES","XPF1","M")
+D XPF1^XPDIQ
+"QUES","XPF2",0)
+Y
+"QUES","XPF2","??")
+^D DTA^XPDH
+"QUES","XPF2","A")
+Want my data |FLAG| yours
+"QUES","XPF2","B")
+YES
+"QUES","XPF2","M")
+D XPF2^XPDIQ
+"QUES","XPI1",0)
+YO
+"QUES","XPI1","??")
+^D INHIBIT^XPDH
+"QUES","XPI1","A")
+Want KIDS to INHIBIT LOGONs during the install
+"QUES","XPI1","B")
+NO
+"QUES","XPI1","M")
+D XPI1^XPDIQ
+"QUES","XPM1",0)
+PO^VA(200,:EM
+"QUES","XPM1","??")
+^D MG^XPDH
+"QUES","XPM1","A")
+Enter the Coordinator for Mail Group '|FLAG|'
+"QUES","XPM1","B")
+
+"QUES","XPM1","M")
+D XPM1^XPDIQ
+"QUES","XPO1",0)
+Y
+"QUES","XPO1","??")
+^D MENU^XPDH
+"QUES","XPO1","A")
+Want KIDS to Rebuild Menu Trees Upon Completion of Install
+"QUES","XPO1","B")
+NO
+"QUES","XPO1","M")
+D XPO1^XPDIQ
+"QUES","XPZ1",0)
+Y
+"QUES","XPZ1","??")
+^D OPT^XPDH
+"QUES","XPZ1","A")
+Want to DISABLE Scheduled Options, Menu Options, and Protocols
+"QUES","XPZ1","B")
+NO
+"QUES","XPZ1","M")
+D XPZ1^XPDIQ
+"QUES","XPZ2",0)
+Y
+"QUES","XPZ2","??")
+^D RTN^XPDH
+"QUES","XPZ2","A")
+Want to MOVE routines to other CPUs
+"QUES","XPZ2","B")
+NO
+"QUES","XPZ2","M")
+D XPZ2^XPDIQ
+"RTN")
+5
+"RTN","WEBM1")
+0^4^B233309882
+"RTN","WEBM1",1,0)
+WEBM1 ;DSS/TFF - WEBM GENERAL RPCS;08/26/2016 16:00
+"RTN","WEBM1",2,0)
+ ;;2.0;WEBM 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","WEBM1",3,0)
+ ;
+"RTN","WEBM1",4,0)
+ ; External References      DBIA#
+"RTN","WEBM1",5,0)
+ ; -------------------      -----
+"RTN","WEBM1",6,0)
+ ; $$DOB^DPTLK1
+"RTN","WEBM1",7,0)
+ ; $$SCREEN^DPTLK1
+"RTN","WEBM1",8,0)
+ ; $$SSN^DPTLK1
+"RTN","WEBM1",9,0)
+ ;
+"RTN","WEBM1",10,0)
+ Q
+"RTN","WEBM1",11,0)
+ ;
+"RTN","WEBM1",12,0)
+ ; ------------------------------ PATIENT SEARCH ------------------------------
+"RTN","WEBM1",13,0)
+ ;
+"RTN","WEBM1",14,0)
+PATIENT(RET,KEY,SORT) ; RPC: WEBM PATIENT LIST
+"RTN","WEBM1",15,0)
+ ;
+"RTN","WEBM1",16,0)
+ ;  KEY  SSN: SSN
+"RTN","WEBM1",17,0)
+ ;        BS: LAST 4
+"RTN","WEBM1",18,0)
+ ;       BS5: FIRST LETTER OF LAST NAME + LAST 4 OF SSN
+"RTN","WEBM1",19,0)
+ ;         B: PARTIAL NAME - TO - FULL NAME
+"RTN","WEBM1",20,0)
+ ; SORT     : PAGE#,CT
+"RTN","WEBM1",21,0)
+ ;
+"RTN","WEBM1",22,0)
+ ; RETURN FORMAT:
+"RTN","WEBM1",23,0)
+ ;  DFN^LASTNAME,FIRSTNAME^SSN(LAST 4)^DATE OF BIRTH^VETERAN STATUS^
+"RTN","WEBM1",24,0)
+ ;  LOCATION(WARD)^ROOM/BED^SERVICE CONNECTED^CURRENTLY TRACKING^
+"RTN","WEBM1",25,0)
+ ;  SSN^CITY^STATE^ZIP^SENSITIVE STATUS (1,0)
+"RTN","WEBM1",26,0)
+ ;
+"RTN","WEBM1",27,0)
+ ;  CURRENTLY TRACKING: 0:NO,1:YES,2:FLAG
+"RTN","WEBM1",28,0)
+ ; IF NOTHING IS FOUND: RET(0)="0^Patient(s) not found."
+"RTN","WEBM1",29,0)
+ ;
+"RTN","WEBM1",30,0)
+ S RET=$NA(^TMP($J,"WEBM PATIENT")) K @RET S @RET@(0)="0^Patient(s) not found."
+"RTN","WEBM1",31,0)
+ S KEY=$G(KEY) D PAR^WEBM2
+"RTN","WEBM1",32,0)
+ ; *** LIST BY FULL SSN
+"RTN","WEBM1",33,0)
+ I KEY?9N!(KEY?3N1"-"2N1"-"4N) D LIST($TR(KEY,"-",""),"SSN") Q
+"RTN","WEBM1",34,0)
+ ; *** LIST BY LAST 4
+"RTN","WEBM1",35,0)
+ I KEY?4N D LIST(KEY,"BS") Q
+"RTN","WEBM1",36,0)
+ ; *** LIST BY FIRST LETTER OF LAST NAME + LAST 4 OF SSN
+"RTN","WEBM1",37,0)
+ I KEY?1A4N D LIST(KEY,"BS5") Q
+"RTN","WEBM1",38,0)
+ ; *** ALL PATIENTS, ASSUME NAME OR PARTIAL NAME
+"RTN","WEBM1",39,0)
+ D LIST(KEY,"B")
+"RTN","WEBM1",40,0)
+ Q
+"RTN","WEBM1",41,0)
+ ;
+"RTN","WEBM1",42,0)
+LIST(KEY,IX) ; Get Patient List
+"RTN","WEBM1",43,0)
+ N RCT,TS,KCT,CT,DFN,STRT,END D S^WEBM2($G(SORT))
+"RTN","WEBM1",44,0)
+ S (RCT,TS)=0
+"RTN","WEBM1",45,0)
+ S (KCT,CT)=$E(KEY,1,($L(KEY)-1))_$$M^WEBM2($E(KEY,$L(KEY)))
+"RTN","WEBM1",46,0)
+ F  S CT=$O(^DPT(IX,CT)) Q:CT=""  Q:$L(KCT)>1&($$KEY^WEBM2(CT,KEY))  D
+"RTN","WEBM1",47,0)
+ . Q:$$KEY^WEBM2(CT,KEY)
+"RTN","WEBM1",48,0)
+ . S DFN=0 F  S DFN=$O(^DPT(IX,CT,DFN)) Q:'DFN  D
+"RTN","WEBM1",49,0)
+ . . Q:$$GET1^DIQ(2,DFN_",",.02,"I")'="F"
+"RTN","WEBM1",50,0)
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","WEBM1",51,0)
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","WEBM1",52,0)
+ . . S @RET@(RCT)=$$FLDS(DFN)
+"RTN","WEBM1",53,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","WEBM1",54,0)
+ Q
+"RTN","WEBM1",55,0)
+ ;
+"RTN","WEBM1",56,0)
+FLDS(DFN) ; Return Transformed Fields
+"RTN","WEBM1",57,0)
+ ;
+"RTN","WEBM1",58,0)
+ ; DFN^LASTNAME,FIRSTNAME^SSN(LAST 4)^DATE OF BIRTH^VETERAN STATUS^
+"RTN","WEBM1",59,0)
+ ; LOCATION(WARD)^ROOM/BED^SERVICE CONNECTED^CURRENTLY TRACKING^
+"RTN","WEBM1",60,0)
+ ; SSN^CITY^STATE^ZIP^SENSITIVE STATUS(1,0)
+"RTN","WEBM1",61,0)
+ ;
+"RTN","WEBM1",62,0)
+ N OUT,LINE,FLD,SSN,STR
+"RTN","WEBM1",63,0)
+ D GETS^DIQ(2,DFN_",",".01;1901;.1;.101;.301;.09;.114;.115;.116","IE","OUT")
+"RTN","WEBM1",64,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","WEBM1",65,0)
+ S SSN=$$SSN^DPTLK1(DFN)
+"RTN","WEBM1",66,0)
+ S STR=DFN_U
+"RTN","WEBM1",67,0)
+ S STR=STR_$$NAME^WEBM2(FLD(.01,"E"))_U                ; NAME
+"RTN","WEBM1",68,0)
+ S STR=STR_$S(SSN?.N:$E(SSN,6,9),1:SSN)_U              ; LAST FOUR
+"RTN","WEBM1",69,0)
+ S STR=STR_$$FMTE^XLFDT($$DT^WEBM2($$DOB^DPTLK1(DFN,0)),"5Z")_U   ; DATE OF BIRTH
+"RTN","WEBM1",70,0)
+ S STR=STR_FLD(1901,"E")_U                             ; VETERAN STATUS
+"RTN","WEBM1",71,0)
+ S STR=STR_FLD(.1,"I")_U                               ; WARD LOCATOIN
+"RTN","WEBM1",72,0)
+ S STR=STR_FLD(.101,"I")_U                             ; ROOM-BED
+"RTN","WEBM1",73,0)
+ S STR=STR_FLD(.301,"E")_U                             ; SERVICE CONNECTED?
+"RTN","WEBM1",74,0)
+ S STR=STR_$$TRACK^WEBM4(DFN,1)_U                      ; TRACKING STATUS
+"RTN","WEBM1",75,0)
+ S STR=STR_FLD(.09,"I")_U                              ; SOCIAL SECURITY NUMBER
+"RTN","WEBM1",76,0)
+ S STR=STR_FLD(.114,"I")_U                             ; CITY
+"RTN","WEBM1",77,0)
+ S STR=STR_$$GET1^DIQ(5,FLD(.115,"I")_",",1)_U         ; STATE
+"RTN","WEBM1",78,0)
+ S STR=STR_FLD(.116,"I")_U                             ; ZIP CODE
+"RTN","WEBM1",79,0)
+ S STR=STR_$$SCREEN^DPTLK1(DFN)                        ; SENSITIVE STATUS
+"RTN","WEBM1",80,0)
+ Q STR
+"RTN","WEBM1",81,0)
+ ;
+"RTN","WEBM1",82,0)
+ ; ------------------------------ PATIENT FIELDS ------------------------------
+"RTN","WEBM1",83,0)
+ ;
+"RTN","WEBM1",84,0)
+INFO(RET,DFN) ; RPC: WEBM GET PATIENT INFORMATION
+"RTN","WEBM1",85,0)
+ ;
+"RTN","WEBM1",86,0)
+ ; RETURN:
+"RTN","WEBM1",87,0)
+ ;   FIELD NUMBER^VALUE (*** HIGH RISK = Field#^(TRUE,FALSE)^COMMENTS)
+"RTN","WEBM1",88,0)
+ ;   0^MESSAGE
+"RTN","WEBM1",89,0)
+ ;
+"RTN","WEBM1",90,0)
+ N OUT,LINE
+"RTN","WEBM1",91,0)
+ I '$$CHECK^WEBM2($G(DFN)) S RET(0)="0^Patient entry not found." Q
+"RTN","WEBM1",92,0)
+ D GETS^DIQ(1031,DFN_",",".01:999999","E","OUT")
+"RTN","WEBM1",93,0)
+ I '$D(OUT) S RET(0)="0^Nothing found." Q
+"RTN","WEBM1",94,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  D
+"RTN","WEBM1",95,0)
+ . S RET($QS(LINE,3))=$QS(LINE,3)_U_@LINE
+"RTN","WEBM1",96,0)
+ S RET(3)="3^"_$$FMTE^XLFDT($P($G(^WEBM(1031,DFN,3,+$$LACE^WEBM4(DFN),0)),U),"5ZS")
+"RTN","WEBM1",97,0)
+ I $P($G(RET(999.15)),U,2)="TRUE" S $P(RET(999.15),U,3)=$$HR^WEBM4($$PG^WEBM4(DFN))
+"RTN","WEBM1",98,0)
+ Q
+"RTN","WEBM1",99,0)
+ ;
+"RTN","WEBM1",100,0)
+PATSET(RET,DFN,FLD,VAL) ; RPC: WEBM SET PATIENT INFORMATION
+"RTN","WEBM1",101,0)
+ S RET=0 I '$$CHECK^WEBM2($G(DFN)) S RET="-1^Patient entry not found." Q
+"RTN","WEBM1",102,0)
+ N TRVAL,OUT,IPT,ERR
+"RTN","WEBM1",103,0)
+ I $G(FLD)=.01 S RET="-1^You cannot change the PATIENT NAME." Q
+"RTN","WEBM1",104,0)
+ I '$$VFIELD^DILFD(1031,$G(FLD)) S RET="-1^Not a valid field." Q
+"RTN","WEBM1",105,0)
+ I $G(FLD)=999.22 D EMAIL Q
+"RTN","WEBM1",106,0)
+ I $$GET1^DID(1031,FLD,,"TYPE")="COMPUTED" S RET="-1^You cannot set a computed field." Q
+"RTN","WEBM1",107,0)
+ I "^.04^1.2^"[(U_FLD_U) S RET="-1^This field cannot be set directly." Q
+"RTN","WEBM1",108,0)
+ S TRVAL=$S($$GET1^DID(1031,FLD,,"TYPE")="DATE/TIME":$$DT^WEBM2($G(VAL)),1:$G(VAL))
+"RTN","WEBM1",109,0)
+ D VAL^DIE(1031,DFN,FLD,,TRVAL,.OUT) I TRVAL'=OUT S RET="-1^The value is not valid." Q
+"RTN","WEBM1",110,0)
+ S IPT(1031,DFN_",",FLD)=TRVAL
+"RTN","WEBM1",111,0)
+ D FILE^DIE("E","IPT","ERR") I '$D(ERR) S RET=1
+"RTN","WEBM1",112,0)
+ Q
+"RTN","WEBM1",113,0)
+ ;
+"RTN","WEBM1",114,0)
+EMAIL ; Update the patient's email address
+"RTN","WEBM1",115,0)
+ I $G(VAL)="" S RET="-1^Cannot leave the patient's email address blank." Q
+"RTN","WEBM1",116,0)
+ D VAL^DIE(2,DFN,.133,,VAL,.OUT) I VAL'=OUT S RET="-1^The value is not valid." Q
+"RTN","WEBM1",117,0)
+ S IPT(2,DFN_",",.133)=VAL
+"RTN","WEBM1",118,0)
+ D FILE^DIE("E","IPT","ERR") I '$D(ERR) S RET=1
+"RTN","WEBM1",119,0)
+ Q
+"RTN","WEBM1",120,0)
+ ;
+"RTN","WEBM1",121,0)
+ ; ----------------------------- PATIENT TRACKING -----------------------------
+"RTN","WEBM1",122,0)
+ ;
+"RTN","WEBM1",123,0)
+TRCLIST(RET,TYP,SORT) ; RPC: WEBM GET TRACKING
+"RTN","WEBM1",124,0)
+ ;
+"RTN","WEBM1",125,0)
+ ; RETURN MATERNITY TRACKING LISTS
+"RTN","WEBM1",126,0)
+ ;
+"RTN","WEBM1",127,0)
+ ;   TYP "": ALL LOGS
+"RTN","WEBM1",128,0)
+ ;        T: ALL CURRENTLY TRACKED PATIENTS
+"RTN","WEBM1",129,0)
+ ;        F: ALL CURRENTLY FLAGGED PATIENTS
+"RTN","WEBM1",130,0)
+ ;      DFN: ALL LOGS FOR A PATIENT
+"RTN","WEBM1",131,0)
+ ;       F#: ALL CURRENTLY FLAGGED LOGS FOR A PATIENT
+"RTN","WEBM1",132,0)
+ ;  SORT   : PAGE#,CT
+"RTN","WEBM1",133,0)
+ ;
+"RTN","WEBM1",134,0)
+ S RET=$NA(^TMP($J,"WEBM TRCLIST")) K @RET S @RET@(0)="0^No entries found."
+"RTN","WEBM1",135,0)
+ D PAR^WEBM2 S TYP=$G(TYP)
+"RTN","WEBM1",136,0)
+ ;
+"RTN","WEBM1",137,0)
+ ; *** GET ALL CURRENTLY TRACKED PATIENTS
+"RTN","WEBM1",138,0)
+ ;     P^DFN^LASTNAME,FIRSTNAME^LAST 4^DOB^PHONE^EDD^OB^PLANNED DELV LOC^
+"RTN","WEBM1",139,0)
+ ;     CURRENTLY PREGNANT^CURRENTLY LACATING^LAST CONTACT DATE^
+"RTN","WEBM1",140,0)
+ ;     NEXT CONTACT DATE^NEXT CHECKLIST DATE^HIGH RISK FLAG^HIGH RISK DETAILS^T4BSTAT
+"RTN","WEBM1",141,0)
+ ;     ^WEBM(1031.2,"TRACKING",PATIENT NAME,DFN,DA)=""
+"RTN","WEBM1",142,0)
+ I TYP="T" D T1("TRACKING",4) Q
+"RTN","WEBM1",143,0)
+ ;
+"RTN","WEBM1",144,0)
+ ; *** GET ALL CURRENTLY FLAGGED PATIENTS
+"RTN","WEBM1",145,0)
+ ;     P^DFN^LASTNAME,FIRSTNAME^LAST 4^DOB^PHONE^REASON
+"RTN","WEBM1",146,0)
+ ;     ^WEBM(1031.2,"FLAGGED",PATIENT NAME,DFN,DA)=""
+"RTN","WEBM1",147,0)
+ I TYP="F" D T1("FLAGGED",5) Q
+"RTN","WEBM1",148,0)
+ ;
+"RTN","WEBM1",149,0)
+ ; *** GET ALL LOGS FOR A PATIENT
+"RTN","WEBM1",150,0)
+ ;     L^IEN^TRACKING DT(E)^DFN^LASTNAME,FIRSTNAME^USER^ACTION^SOURCE^REASON|REASON
+"RTN","WEBM1",151,0)
+ ;     C^IEN^COMMENT
+"RTN","WEBM1",152,0)
+ ;     ^WEBM(1031.2,DFN,1,"B",LOG DATE,DA)=""
+"RTN","WEBM1",153,0)
+ I TYP D T1("B",2,+TYP) Q
+"RTN","WEBM1",154,0)
+ ;
+"RTN","WEBM1",155,0)
+ ; *** GET CURRENTLY FLAGGED ENTRIES FOR A PATIENT
+"RTN","WEBM1",156,0)
+ ;     ^WEBM(1031.2,DFN,1,"FLAG",LOG DATE,DA)
+"RTN","WEBM1",157,0)
+ I TYP?1"F".N D T1("FLAG",3,$E(TYP,2,$L(TYP))) Q
+"RTN","WEBM1",158,0)
+ ;
+"RTN","WEBM1",159,0)
+ ; *** GET ALL LOGS
+"RTN","WEBM1",160,0)
+ ;     ^WEBM(1031.2,"C",LOG DATE,DFN,DA)=""
+"RTN","WEBM1",161,0)
+ I TYP="" D T1("C",1)
+"RTN","WEBM1",162,0)
+ Q
+"RTN","WEBM1",163,0)
+ ;
+"RTN","WEBM1",164,0)
+T1(IX,FLG,KEY) ; Get Tracking List
+"RTN","WEBM1",165,0)
+ N RCT,TS,NAME,DATE,DFN,IEN,STRT,END D S^WEBM2($G(SORT))
+"RTN","WEBM1",166,0)
+ S (RCT,TS)=0
+"RTN","WEBM1",167,0)
+ I FLG=1 D
+"RTN","WEBM1",168,0)
+ . ; IX: C                   ^WEBM(1031.2,"C",DATE,DFN,DA)=""
+"RTN","WEBM1",169,0)
+ . S DATE="" F  S DATE=$O(^WEBM(1031.2,"C",DATE),-1) Q:DATE=""  D
+"RTN","WEBM1",170,0)
+ . . S DFN=0 F  S DFN=$O(^WEBM(1031.2,"C",DATE,DFN)) Q:'DFN  D
+"RTN","WEBM1",171,0)
+ . . . S IEN="" F  S IEN=$O(^WEBM(1031.2,"C",DATE,DFN,IEN),-1) Q:IEN=""  D T2
+"RTN","WEBM1",172,0)
+ I FLG=2!(FLG=3) S DFN=$$M^WEBM2(KEY) D
+"RTN","WEBM1",173,0)
+ . ; IX: B, FLAG             ^WEBM(1031.2,DFN,1,IX,DATE,DA)=""
+"RTN","WEBM1",174,0)
+ . F  S DFN=$O(^WEBM(1031.2,DFN)) Q:DFN'=KEY  D
+"RTN","WEBM1",175,0)
+ . . S DATE="" F  S DATE=$O(^WEBM(1031.2,DFN,1,IX,DATE),-1) Q:DATE=""  D
+"RTN","WEBM1",176,0)
+ . . . S IEN="" F  S IEN=$O(^WEBM(1031.2,DFN,1,IX,DATE,IEN),-1) Q:IEN=""  D T2
+"RTN","WEBM1",177,0)
+ I FLG=4!(FLG=5) D
+"RTN","WEBM1",178,0)
+ . ; IX: TRACKING, FLAGGED   ^WEBM(1031.2,IX,PATIENT-NAME,DFN,DA)=""
+"RTN","WEBM1",179,0)
+ . S NAME="" F  S NAME=$O(^WEBM(1031.2,IX,NAME)) Q:NAME=""  D
+"RTN","WEBM1",180,0)
+ . . S DFN=0 F  S DFN=$O(^WEBM(1031.2,IX,NAME,DFN)) Q:'DFN  D
+"RTN","WEBM1",181,0)
+ . . . S IEN="" F  S IEN=$O(^WEBM(1031.2,IX,NAME,DFN,IEN),-1) Q:IEN=""  D T2
+"RTN","WEBM1",182,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","WEBM1",183,0)
+ Q
+"RTN","WEBM1",184,0)
+ ;
+"RTN","WEBM1",185,0)
+T2 ; Continue
+"RTN","WEBM1",186,0)
+ S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","WEBM1",187,0)
+ S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","WEBM1",188,0)
+ D TGET(FLG)
+"RTN","WEBM1",189,0)
+ Q
+"RTN","WEBM1",190,0)
+ ;
+"RTN","WEBM1",191,0)
+TGET(F) ; Return Unique String of Data
+"RTN","WEBM1",192,0)
+ N OUT,LINE,FLD
+"RTN","WEBM1",193,0)
+ D GETS^DIQ(1031.24,IEN_","_DFN_",",".01;.02;.03;.04","IE","OUT")
+"RTN","WEBM1",194,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","WEBM1",195,0)
+ ;
+"RTN","WEBM1",196,0)
+ ; L^IEN^TRACKING DT(E)^DFN^LASTNAME,FIRSTNAME^USER^ACTION^SOURCE^REASON|REASON
+"RTN","WEBM1",197,0)
+ ; C^IEN^COMMENT
+"RTN","WEBM1",198,0)
+ I F=1 D TG0    ; ALL
+"RTN","WEBM1",199,0)
+ I F=2 D TG0    ; ALL LOGS FOR A PATIENT
+"RTN","WEBM1",200,0)
+ I F=3 D TG0    ; ALL FLAGGED LOGS FOR A PATIENT
+"RTN","WEBM1",201,0)
+ ;
+"RTN","WEBM1",202,0)
+ ; P^DFN^LASTNAME,FIRSTNAME^LAST 4^DOB^PHONE^EDD^OB^PLANNED DELV LOC^
+"RTN","WEBM1",203,0)
+ ; CURRENTLY PREGNANT^CURRENTLY LACATING^LAST CONTACT DATE^
+"RTN","WEBM1",204,0)
+ ; NEXT CONTACT DATE^NEXT CHECKLIST DATE^HIGH RISK FLAG^HIGH RISK DETAILS^T4BSTAT
+"RTN","WEBM1",205,0)
+ I F=4 D TG4    ; TRACKING
+"RTN","WEBM1",206,0)
+ ;
+"RTN","WEBM1",207,0)
+ ; P^DFN^LASTNAME,FIRSTNAME^LAST 4^DOB^PHONE^REASON
+"RTN","WEBM1",208,0)
+ I F=5 D TG5    ; FLAGGED
+"RTN","WEBM1",209,0)
+ Q
+"RTN","WEBM1",210,0)
+ ;
+"RTN","WEBM1",211,0)
+TG0 ; 1,2,3
+"RTN","WEBM1",212,0)
+ N STR
+"RTN","WEBM1",213,0)
+ S STR="L^"_IEN_U
+"RTN","WEBM1",214,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.01,"I"),"5ZS")_U          ; TRACKING DATE
+"RTN","WEBM1",215,0)
+ S STR=STR_DFN_U                                       ; DFN
+"RTN","WEBM1",216,0)
+ S STR=STR_$$NAME^WEBM2($$GET1^DIQ(2,DFN,.01))_U       ; PATIENT
+"RTN","WEBM1",217,0)
+ S STR=STR_$$NAME^WEBM2(FLD(.03,"E"))_U                ; USER
+"RTN","WEBM1",218,0)
+ S STR=STR_FLD(.02,"I")_U                              ; ACTION
+"RTN","WEBM1",219,0)
+ S STR=STR_FLD(.04,"I")_U                              ; SOURCE
+"RTN","WEBM1",220,0)
+ S STR=STR_$$RES                                       ; REASON
+"RTN","WEBM1",221,0)
+ S @RET@(RCT,0)=STR D COM                              ; COMMENTS
+"RTN","WEBM1",222,0)
+ Q
+"RTN","WEBM1",223,0)
+TG4 ; 4
+"RTN","WEBM1",224,0)
+ N SSN,DOB,PHONE,EDD,OB,LOC,PREG,LAC,STR
+"RTN","WEBM1",225,0)
+ D TGV
+"RTN","WEBM1",226,0)
+ S STR="P^"_DFN_U
+"RTN","WEBM1",227,0)
+ S STR=STR_$$NAME^WEBM2($$GET1^DIQ(2,DFN,.01))_U       ; PATIENT
+"RTN","WEBM1",228,0)
+ S STR=STR_SSN_U                                       ; LAST FOUR
+"RTN","WEBM1",229,0)
+ S STR=STR_DOB_U                                       ; BIRTH DATE
+"RTN","WEBM1",230,0)
+ S STR=STR_PHONE_U                                     ; PHONE
+"RTN","WEBM1",231,0)
+ S STR=STR_EDD_U                                       ; ESTIMATED DATE OF DELIVERY
+"RTN","WEBM1",232,0)
+ S STR=STR_OB_U                                        ; OB
+"RTN","WEBM1",233,0)
+ S STR=STR_LOC_U                                       ; PLANNED DELIVERY LOCATION
+"RTN","WEBM1",234,0)
+ S STR=STR_PREG_U                                      ; CURRENTLY PREGNANT
+"RTN","WEBM1",235,0)
+ S STR=STR_LAC_U                                       ; CURRENTLY LACTATING
+"RTN","WEBM1",236,0)
+ S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(1031,DFN_",",.05,"I"),"5ZS")_U    ; LAST CONTACT DATE
+"RTN","WEBM1",237,0)
+ S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(1031,DFN_",",.03,"I"),"5ZS")_U    ; NEXT CONTACT DATE
+"RTN","WEBM1",238,0)
+ S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(1031,DFN_",",.06,"I"),"5ZS")_U    ; NEXT CHECKLIST DATE
+"RTN","WEBM1",239,0)
+ S STR=STR_$$GET1^DIQ(1031,DFN_",",999.15)_U          ; HIGH RISK FLAG
+"RTN","WEBM1",240,0)
+ S STR=STR_$$HR^WEBM4($$PG^WEBM4(DFN))_U               ; HIGH RISK DESCRIPTION
+"RTN","WEBM1",241,0)
+ S STR=STR_$$GET1^DIQ(1031,DFN_",",4.1)               ; T4BSTAT
+"RTN","WEBM1",242,0)
+ S @RET@(RCT)=STR
+"RTN","WEBM1",243,0)
+ Q
+"RTN","WEBM1",244,0)
+TG5 ; 5
+"RTN","WEBM1",245,0)
+ N SSN,DOB,PHONE,EDD,OB,LOC,PREG,LAC,STR
+"RTN","WEBM1",246,0)
+ D TGV
+"RTN","WEBM1",247,0)
+ S STR="P^"_DFN_U
+"RTN","WEBM1",248,0)
+ S STR=STR_$$NAME^WEBM2($$GET1^DIQ(2,DFN,.01))_U       ; PATIENT
+"RTN","WEBM1",249,0)
+ S STR=STR_SSN_U                                       ; LAST FOUR
+"RTN","WEBM1",250,0)
+ S STR=STR_DOB_U                                       ; BIRTH DATE
+"RTN","WEBM1",251,0)
+ S STR=STR_PHONE_U                                     ; PHONE
+"RTN","WEBM1",252,0)
+ S STR=STR_$$RES                                       ; REASON
+"RTN","WEBM1",253,0)
+ S @RET@(RCT)=STR
+"RTN","WEBM1",254,0)
+ Q
+"RTN","WEBM1",255,0)
+ ;
+"RTN","WEBM1",256,0)
+TGV ; Get Common Variables
+"RTN","WEBM1",257,0)
+ S SSN=$$SSN^DPTLK1(DFN) I SSN?.N S SSN=$E(SSN,6,9)
+"RTN","WEBM1",258,0)
+ S DOB=$$FMTE^XLFDT($$DT^WEBM2($$DOB^DPTLK1(DFN,0)),"5Z")
+"RTN","WEBM1",259,0)
+ S PHONE=$$GET1^DIQ(2,DFN,.131)
+"RTN","WEBM1",260,0)
+ S EDD=$$FMTE^XLFDT($$GET1^DIQ(1031.03,$$GET1^DIQ(1031.13,$$PG^WEBM4(DFN)_",",.06,"I")_",",.01,"I"),"5Z")
+"RTN","WEBM1",261,0)
+ S OB=$$TITLE^XLFSTR($$GET1^DIQ(1031.13,$$PG^WEBM4(DFN)_",",.08))
+"RTN","WEBM1",262,0)
+ S LOC=$$TITLE^XLFSTR($$GET1^DIQ(1031.13,$$PG^WEBM4(DFN)_",",.09))
+"RTN","WEBM1",263,0)
+ S PREG=$$PSTAT^WEBM4(DFN),LAC=$$LACT^WEBM4(DFN)
+"RTN","WEBM1",264,0)
+ Q
+"RTN","WEBM1",265,0)
+ ;
+"RTN","WEBM1",266,0)
+RES() ; Reason Multiple
+"RTN","WEBM1",267,0)
+ N RES,R,STR
+"RTN","WEBM1",268,0)
+ D GETS^DIQ(1031.24,IEN_","_DFN_",","1*","I","RES")
+"RTN","WEBM1",269,0)
+ S R=$NA(RES) F  S R=$Q(@R) Q:R=""  D
+"RTN","WEBM1",270,0)
+ . S STR=$G(STR)_$$TITLE^XLFSTR(@R)_"|"
+"RTN","WEBM1",271,0)
+ Q $E($G(STR),1,($L($G(STR))-1))
+"RTN","WEBM1",272,0)
+ ;
+"RTN","WEBM1",273,0)
+COM ; Comment Multiple
+"RTN","WEBM1",274,0)
+ N COM,C,CT
+"RTN","WEBM1",275,0)
+ D GETS^DIQ(1031.24,IEN_","_DFN_",",2,,"COM")
+"RTN","WEBM1",276,0)
+ S CT=1,C=$NA(COM) F  S C=$Q(@C) Q:C=""  D
+"RTN","WEBM1",277,0)
+ . Q:$QL(C)<4
+"RTN","WEBM1",278,0)
+ . S @RET@(RCT,CT)="C^"_IEN_U_@C,CT=CT+1
+"RTN","WEBM1",279,0)
+ Q
+"RTN","WEBM1",280,0)
+ ;
+"RTN","WEBM1",281,0)
+REC(RET,DFN,ACT,RES,COM,SOR) ; RPC: WEBM CREATE TRACKING LOG
+"RTN","WEBM1",282,0)
+ ;
+"RTN","WEBM1",283,0)
+ ; MCC DASHBOARD PURPOSE -  TO CHANGE THE TRACKING STATUS OF A PATIENT
+"RTN","WEBM1",284,0)
+ ;
+"RTN","WEBM1",285,0)
+ ;  INPUT PARAMETER:
+"RTN","WEBM1",286,0)
+ ;         DFN : PATIENT NUMBER
+"RTN","WEBM1",287,0)
+ ;         ACT : ACTION 
+"RTN","WEBM1",288,0)
+ ;                0: STOP
+"RTN","WEBM1",289,0)
+ ;                1: START
+"RTN","WEBM1",290,0)
+ ;                2: FLAG
+"RTN","WEBM1",291,0)
+ ;                3: REJECT
+"RTN","WEBM1",292,0)
+ ;                4: ACCEPT
+"RTN","WEBM1",293,0)
+ ;         RES : REASON  - #^#^#
+"RTN","WEBM1",294,0)
+ ;         COM : COMMENT - ARRAY
+"RTN","WEBM1",295,0)
+ ;         SOR : SOURCE  - DEFAULT IS DASHBOARD
+"RTN","WEBM1",296,0)
+ ;
+"RTN","WEBM1",297,0)
+ ; RETURN: -1^ERROR OR IEN
+"RTN","WEBM1",298,0)
+ ;
+"RTN","WEBM1",299,0)
+ N WEBMSILENT,DIC,DA,X,Y,DLAYGO,IPT,IEN,I
+"RTN","WEBM1",300,0)
+ S WEBMSILENT=1,RET=-1
+"RTN","WEBM1",301,0)
+ I '$$CHECK^WEBM2($G(DFN)) S RET="-1^Patient entry not found." Q
+"RTN","WEBM1",302,0)
+ S DLAYGO=1031.2,DIC="^WEBM(1031.2,",DIC(0)="XL",X="`"_DFN
+"RTN","WEBM1",303,0)
+ D ^DIC I +Y<1 S RET="-1^Failed to create log." Q
+"RTN","WEBM1",304,0)
+ ; *** TRACKING STATUS/EVENT
+"RTN","WEBM1",305,0)
+ S ACT=$E($G(ACT),1) S ACT=$S(ACT?1N:ACT,1:"")
+"RTN","WEBM1",306,0)
+ I ACT="" S RET="-1^EVENT TYPE could not be identified." Q
+"RTN","WEBM1",307,0)
+ I ACT<0!(ACT>4) S RET="-1^EVENT TYPE reference number is invalid." Q
+"RTN","WEBM1",308,0)
+ I $$TRACK^WEBM4(DFN,1)=1,ACT'=0 S RET="-1^EVENT TYPE can only be to STOP an already TRACKED patient." Q
+"RTN","WEBM1",309,0)
+ S SOR=$$UP^XLFSTR($G(SOR,"DASHBOARD"))
+"RTN","WEBM1",310,0)
+ S IPT(1031.22,"?+1,",.01)=SOR
+"RTN","WEBM1",311,0)
+ S:SOR="DASHBOARD"!(SOR="FILEMAN") IPT(1031.22,"?+1,",.02)=1
+"RTN","WEBM1",312,0)
+ S DLAYGO=1031.22 D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM1",313,0)
+ S IPT(1031.24,"+1,"_DFN_",",.01)=$$NOW^XLFDT
+"RTN","WEBM1",314,0)
+ S IPT(1031.24,"+1,"_DFN_",",.02)=ACT
+"RTN","WEBM1",315,0)
+ S IPT(1031.24,"+1,"_DFN_",",.03)=DUZ
+"RTN","WEBM1",316,0)
+ S IPT(1031.24,"+1,"_DFN_",",.04)=SOR
+"RTN","WEBM1",317,0)
+ S DLAYGO=1031.24 D UPDATE^DIE(,"IPT","IEN") K IPT
+"RTN","WEBM1",318,0)
+ I '$G(IEN(1)) S RET="-1^Failed to create log." Q
+"RTN","WEBM1",319,0)
+ ; *** UPDATE THE WEBM PATIENT FILE
+"RTN","WEBM1",320,0)
+ S IPT(1031,DFN_",",.02)=$S(ACT=3:0,ACT=4:1,1:ACT)
+"RTN","WEBM1",321,0)
+ D FILE^DIE(,"IPT") K IPT
+"RTN","WEBM1",322,0)
+ ; *** BUILD THE REASON MULTIPLE
+"RTN","WEBM1",323,0)
+ S RES=$G(RES) F I=1:1:$L(RES,U) D
+"RTN","WEBM1",324,0)
+ . S IPT(1031.241,"?+1,"_IEN(1)_","_DFN_",",.01)=$P(RES,U,I)
+"RTN","WEBM1",325,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM1",326,0)
+ ; *** SET THE COMMENT WORD PROCESSING FIELD
+"RTN","WEBM1",327,0)
+ ;     WE CAN'T PROCESS THE ZERO NODE WITH WP^DIE
+"RTN","WEBM1",328,0)
+ I $D(COM)>9 K ^TMP($J,"WEBM REC") D
+"RTN","WEBM1",329,0)
+ . D XY^WEBM2(.COM,$NA(^TMP($J,"WEBM REC")))
+"RTN","WEBM1",330,0)
+ . D WP^DIE(1031.24,IEN(1)_","_DFN_",",2,"K","^TMP($J,""WEBM REC"")")
+"RTN","WEBM1",331,0)
+ . K ^TMP($J,"WEBM REC")
+"RTN","WEBM1",332,0)
+ S RET=$S(SOR="DASHBOARD":1,1:IEN(1))
+"RTN","WEBM1",333,0)
+ Q
+"RTN","WEBM1",334,0)
+ ;
+"RTN","WEBM1",335,0)
+ ; -------------------------------- SELECTION ---------------------------------
+"RTN","WEBM1",336,0)
+ ;
+"RTN","WEBM1",337,0)
+SELECT(RET,TYP) ; RPC: WEBM SELECT LIST
+"RTN","WEBM1",338,0)
+ ;
+"RTN","WEBM1",339,0)
+ ; RETURN DROP DOWN LIST
+"RTN","WEBM1",340,0)
+ ;
+"RTN","WEBM1",341,0)
+ ;  TYP : 'S' FOR FILE 1031.22
+"RTN","WEBM1",342,0)
+ ;  TYP : 'R' FOR FILE 1031.23
+"RTN","WEBM1",343,0)
+ ;
+"RTN","WEBM1",344,0)
+ ;  LETTER^ENTRY^A : ADD AN ENTRY TO ONE OF THE ABOVE FILES
+"RTN","WEBM1",345,0)
+ ;  LETTER^ENTRY^D : DELETE AN ENTRY FROM ONE OF THE ABOVE FILES
+"RTN","WEBM1",346,0)
+ ;
+"RTN","WEBM1",347,0)
+ ;  RETURN LIST FOR SUCCESS OR RET(0)="-1^MESSAGE" FOR FAILURE
+"RTN","WEBM1",348,0)
+ ;
+"RTN","WEBM1",349,0)
+ N FILE,FLD,DIK,DA,X,Y,IPT,I,CT
+"RTN","WEBM1",350,0)
+ S RET(0)="0^No entries found.",TYP=$$UP^XLFSTR($G(TYP)) Q:TYP=""
+"RTN","WEBM1",351,0)
+ S FILE=$S($P(TYP,U)="S":1031.22,$P(TYP,U)="R":1031.23,1:"") Q:FILE=""
+"RTN","WEBM1",352,0)
+ S FLD=$S(FILE=1031.22:"@;.01;.02I",1:"@;.01")
+"RTN","WEBM1",353,0)
+ I $P(TYP,U,3)="D" D
+"RTN","WEBM1",354,0)
+ . S DIK="^WEBM("_FILE_","
+"RTN","WEBM1",355,0)
+ . S DA=$$FIND1^DIC(FILE,,"X",$$UP^XLFSTR($P(TYP,U,2))) D:DA ^DIK
+"RTN","WEBM1",356,0)
+ I $P(TYP,U,3)="A" D
+"RTN","WEBM1",357,0)
+ . S IPT(FILE,"?+1,",.01)=$$UP^XLFSTR($P(TYP,U,2))
+"RTN","WEBM1",358,0)
+ . D UPDATE^DIE(,"IPT")
+"RTN","WEBM1",359,0)
+ S I=0,CT="" F  S CT=$O(^WEBM(FILE,"B",CT)) Q:CT=""  D
+"RTN","WEBM1",360,0)
+ . Q:$$GET1^DIQ(FILE,$O(^WEBM(FILE,"B",CT,""))_",",.02,"I")
+"RTN","WEBM1",361,0)
+ . S RET(I)=$$TITLE^XLFSTR(CT),I=I+1
+"RTN","WEBM1",362,0)
+ Q
+"RTN","WEBM1",363,0)
+ ;
+"RTN","WEBM1",364,0)
+ ; ----------------------------- EXTERNAL ENTITY ------------------------------
+"RTN","WEBM1",365,0)
+ ;
+"RTN","WEBM1",366,0)
+SENT(RET,IEN,NAME,TYP,ACT,PCON,ADDR,PHONE,AB) ; RPC: WEBM SAVE EXTERNAL ENTITY
+"RTN","WEBM1",367,0)
+ ;
+"RTN","WEBM1",368,0)
+ ;  ADDR = ARRAY OF LABELS: 1,2,3,CITY,STATE,ZIP
+"RTN","WEBM1",369,0)
+ ; PHONE = ARRAY OF LABLES: H,MC,WP,FAX
+"RTN","WEBM1",370,0)
+ ;
+"RTN","WEBM1",371,0)
+ ; RETURN: IEN OR -1^MESSAGE
+"RTN","WEBM1",372,0)
+ ;
+"RTN","WEBM1",373,0)
+ D:'$G(AB) AB^WEBM2("NAME,TYP,ACT,PCON,ADDR,PHONE")
+"RTN","WEBM1",374,0)
+ N IPT,CT,LOC,VAL,ZFLG,DIK,DA,X,Y,PFLG,FLG
+"RTN","WEBM1",375,0)
+ S RET=-1,IEN=$S($G(IEN):IEN,1:"?+1")
+"RTN","WEBM1",376,0)
+ S NAME=$$UP^XLFSTR($G(NAME))
+"RTN","WEBM1",377,0)
+ I IEN,NAME'="",NAME'="@" D  Q:$P(RET,U,2)'=""
+"RTN","WEBM1",378,0)
+ . Q:'$D(^WEBM(1031.1,"B",NAME))
+"RTN","WEBM1",379,0)
+ . Q:$O(^WEBM(1031.1,"B",NAME,""))=IEN
+"RTN","WEBM1",380,0)
+ . S RET="-1^Duplicate name not allowed."
+"RTN","WEBM1",381,0)
+ I IEN,NAME="@" D  Q
+"RTN","WEBM1",382,0)
+ . S DA=IEN,DIK="^WEBM(1031.1," D ^DIK I '$D(^WEBM(1031.1,IEN)) S RET=0
+"RTN","WEBM1",383,0)
+ S:NAME'=""&(NAME'="@") IPT(1031.1,IEN_",",.01)=NAME         ; NAME
+"RTN","WEBM1",384,0)
+ S:$G(TYP)'=""&($G(TYP)'="@") IPT(1031.1,IEN_",",.02)=TYP    ; TYPE
+"RTN","WEBM1",385,0)
+ S:$G(ACT)'="" IPT(1031.1,IEN_",",.03)=ACT                   ; INACTIVE
+"RTN","WEBM1",386,0)
+ S:$G(PCON)'="" IPT(1031.1,IEN_",",.04)=PCON                 ; PRIMARY CONTACT
+"RTN","WEBM1",387,0)
+ I $D(ADDR) D                                           ; ADDRESS
+"RTN","WEBM1",388,0)
+ . S CT=$NA(ADDR) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","WEBM1",389,0)
+ . . S LOC=$$UP^XLFSTR($P(@CT,U)),VAL=$P(@CT,U,2)
+"RTN","WEBM1",390,0)
+ . . I LOC[1 S IPT(1031.1,IEN_",",1.1)=VAL Q                 ; STREET ADDRESS 1
+"RTN","WEBM1",391,0)
+ . . I LOC[2 S IPT(1031.1,IEN_",",1.2)=VAL Q                 ; STREET ADDRESS 2
+"RTN","WEBM1",392,0)
+ . . I LOC[3 S IPT(1031.1,IEN_",",1.3)=VAL Q                 ; STREET ADDRESS 3
+"RTN","WEBM1",393,0)
+ . . I LOC="CITY" S IPT(1031.1,IEN_",",1.4)=VAL Q            ; CITY
+"RTN","WEBM1",394,0)
+ . . I LOC="STATE",$$FIND1^DIC(5,,"XM",VAL) D
+"RTN","WEBM1",395,0)
+ . . . S IPT(1031.1,IEN_",",1.5)=$$FIND1^DIC(5,,"XM",VAL) Q  ; STATE
+"RTN","WEBM1",396,0)
+ . . I LOC="ZIP" S ZFLG=0 D                                   ; ZIP CODE
+"RTN","WEBM1",397,0)
+ . . . S VAL=$TR(VAL,"-") Q:VAL'?.N
+"RTN","WEBM1",398,0)
+ . . . S ZFLG=1,IPT(1031.1,IEN_",",1.6)=VAL
+"RTN","WEBM1",399,0)
+ D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
+"RTN","WEBM1",400,0)
+ S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
+"RTN","WEBM1",401,0)
+ I $D(PHONE) D                                          ; PHONE
+"RTN","WEBM1",402,0)
+ . S CT=$NA(PHONE) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","WEBM1",403,0)
+ . . S LOC=$$UP^XLFSTR($P(@CT,U)) Q:"^H^MC^WP^FAX^O^"'[(U_LOC_U)
+"RTN","WEBM1",404,0)
+ . . S PFLG=0
+"RTN","WEBM1",405,0)
+ . . S VAL=$TR($P(@CT,U,2),"()- ") Q:VAL=""!(VAL'?.N)
+"RTN","WEBM1",406,0)
+ . . S IPT(1031.15,"?+1,"_IEN_",",.01)=LOC                   ; PHONE TYPE
+"RTN","WEBM1",407,0)
+ . . S IPT(1031.15,"?+1,"_IEN_",",.02)=VAL                   ; NUMBER
+"RTN","WEBM1",408,0)
+ . . S PFLG=1 D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM1",409,0)
+ I $D(PFLG),'PFLG S FLG=1
+"RTN","WEBM1",410,0)
+ I $D(ZFLG),'ZFLG S FLG=$G(FLG)_2
+"RTN","WEBM1",411,0)
+ Q:'$D(FLG)
+"RTN","WEBM1",412,0)
+ S RET=RET_"^Record saved but "_$S(FLG=1:"phone number(s)",FLG=2:"ZIP code",1:"phone number(s) and ZIP code")_" not updated."
+"RTN","WEBM1",413,0)
+ Q
+"RTN","WEBM1",414,0)
+ ;
+"RTN","WEBM1",415,0)
+RENT(RET,TYP,SORT) ; RPC: WEBM GET EXTERNAL ENTITY
+"RTN","WEBM1",416,0)
+ ;
+"RTN","WEBM1",417,0)
+ ; TYP - F        (FACILITIES)
+"RTN","WEBM1",418,0)
+ ;       P        (PROVIDERS)
+"RTN","WEBM1",419,0)
+ ;       NULL     (ALL ENTITIES)
+"RTN","WEBM1",420,0)
+ ;       IEN/NAME (SINGLE ENTITY)
+"RTN","WEBM1",421,0)
+ ;
+"RTN","WEBM1",422,0)
+ ; IEN^NAME^TYPE^INACTIVE^PRIMARY PROVIDER NAME^STREET ADDRESS 1
+"RTN","WEBM1",423,0)
+ ; ^STREET ADDRESS 2^STREET ADDRESS 3^CITY^STATE^ZIP CODE
+"RTN","WEBM1",424,0)
+ ; ^PHONE NUMBER (HOME)^PHONE NUMBER (OFFICE)^PHONE NUMBER (CELL)^FAX NUMBER
+"RTN","WEBM1",425,0)
+ ;
+"RTN","WEBM1",426,0)
+ S RET=$NA(^TMP($J,"WEBM RENT")) K @RET S @RET@(0)="0^No entries found."
+"RTN","WEBM1",427,0)
+ S TYP=$$UP^XLFSTR($G(TYP))
+"RTN","WEBM1",428,0)
+ ; *** SINGLE (IEN)
+"RTN","WEBM1",429,0)
+ I TYP,$D(^WEBM(1031.1,TYP)) D R1("B",TYP) Q
+"RTN","WEBM1",430,0)
+ ; *** FACILITIES/PROVIDERS
+"RTN","WEBM1",431,0)
+ I "^F^P^"[(U_TYP_U) D R1(TYP) Q
+"RTN","WEBM1",432,0)
+ ; *** SINGLE (NAME)
+"RTN","WEBM1",433,0)
+ I TYP'="",$D(^WEBM(1031.1,"B",TYP)) D R1("B",$O(^WEBM(1031.1,"B",TYP,""))) Q
+"RTN","WEBM1",434,0)
+ ; *** ALL
+"RTN","WEBM1",435,0)
+ I TYP="" D R1("B")
+"RTN","WEBM1",436,0)
+ Q
+"RTN","WEBM1",437,0)
+ ;
+"RTN","WEBM1",438,0)
+R1(IX,KEY) ; Get Entity List
+"RTN","WEBM1",439,0)
+ N RCT,TS,CT,IEN,STRT,END D S^WEBM2($G(SORT))
+"RTN","WEBM1",440,0)
+ S KEY=$$GET1^DIQ(1031.1,$G(KEY)_",",.01)
+"RTN","WEBM1",441,0)
+ S (RCT,TS)=0,CT=$E(KEY,1,($L(KEY)-1))_$$M^WEBM2($E(KEY,$L(KEY)))
+"RTN","WEBM1",442,0)
+ F  S CT=$O(^WEBM(1031.1,IX,CT)) Q:CT=""  Q:$$KEY^WEBM2(CT,KEY)  D
+"RTN","WEBM1",443,0)
+ . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","WEBM1",444,0)
+ . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","WEBM1",445,0)
+ . S IEN=$O(^WEBM(1031.1,IX,CT,""))
+"RTN","WEBM1",446,0)
+ . S @RET@(RCT)=$$RFLDS(IEN)
+"RTN","WEBM1",447,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","WEBM1",448,0)
+ Q
+"RTN","WEBM1",449,0)
+ ;
+"RTN","WEBM1",450,0)
+RFLDS(IEN) ; Return Transformed Fields
+"RTN","WEBM1",451,0)
+ N OUT,LINE,FLD,STR
+"RTN","WEBM1",452,0)
+ D GETS^DIQ(1031.1,IEN_",","*","IE","OUT")
+"RTN","WEBM1",453,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","WEBM1",454,0)
+ S STR=IEN_U
+"RTN","WEBM1",455,0)
+ S STR=STR_$$NAME^WEBM2(FLD(.01,"E"))_U          ; NAME
+"RTN","WEBM1",456,0)
+ S STR=STR_FLD(.02,"I")_U                        ; TYPE
+"RTN","WEBM1",457,0)
+ S STR=STR_+FLD(.03,"I")_U                       ; INACTIVE
+"RTN","WEBM1",458,0)
+ S STR=STR_$$NAME^WEBM2(FLD(.04,"E"))_U          ; PRIMARY CONTACT
+"RTN","WEBM1",459,0)
+ S STR=STR_FLD(1.1,"I")_U                        ; STREET 1
+"RTN","WEBM1",460,0)
+ S STR=STR_FLD(1.2,"I")_U                        ; STREET 2
+"RTN","WEBM1",461,0)
+ S STR=STR_FLD(1.3,"I")_U                        ; STREET 3
+"RTN","WEBM1",462,0)
+ S STR=STR_FLD(1.4,"I")_U                        ; CITY
+"RTN","WEBM1",463,0)
+ S STR=STR_$$GET1^DIQ(5,FLD(1.5,"I")_",",1)_U    ; STATE
+"RTN","WEBM1",464,0)
+ S STR=STR_FLD(1.6,"I")_U                        ; ZIP CODE
+"RTN","WEBM1",465,0)
+ S STR=STR_$$PHONE(1031.1,IEN)                  ; PHONE NUMBERS
+"RTN","WEBM1",466,0)
+ Q STR
+"RTN","WEBM1",467,0)
+ ;
+"RTN","WEBM1",468,0)
+PHONE(FLE,IEN) ; Return Phone List
+"RTN","WEBM1",469,0)
+ ;               H ^ WP ^ MC ^ FAX
+"RTN","WEBM1",470,0)
+ N STR,OUT,CT,F,P
+"RTN","WEBM1",471,0)
+ S STR="^^^" D GETS^DIQ(FLE,IEN_",","2*","I","OUT")
+"RTN","WEBM1",472,0)
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","WEBM1",473,0)
+ . I $QS(CT,3)=.01 S F=@CT Q
+"RTN","WEBM1",474,0)
+ . I $D(F) D
+"RTN","WEBM1",475,0)
+ . . S P=$S(F="H":1,F="WP":2,F="MC":3,F="FAX":4,1:"") K F
+"RTN","WEBM1",476,0)
+ . . S:P $P(STR,U,P)=$$FORMAT^WEBM2($TR(@CT,"()- "))
+"RTN","WEBM1",477,0)
+ Q STR
+"RTN","WEBM10")
+0^3^B122639729
+"RTN","WEBM10",1,0)
+WEBM10 ;DSS/TFF - WEBM OBSERVATION;08/26/2016 16:00
+"RTN","WEBM10",2,0)
+ ;;2.0;WEBM 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","WEBM10",3,0)
+ ;
+"RTN","WEBM10",4,0)
+ ;
+"RTN","WEBM10",5,0)
+ ;
+"RTN","WEBM10",6,0)
+ Q
+"RTN","WEBM10",7,0)
+ ;
+"RTN","WEBM10",8,0)
+OBS(RET,IEN,DFN,DATES,OBJECT,REF,REL,CAT,CODE,VAL,VALCD,NEG,QUAL,NAR,AB) ; RPC: WEBM SAVE OBSERVATION
+"RTN","WEBM10",9,0)
+ ;
+"RTN","WEBM10",10,0)
+ ;    IEN = IF NOT NULL THEN EDIT
+"RTN","WEBM10",11,0)
+ ;    DFN = PATIENT
+"RTN","WEBM10",12,0)
+ ;  DATES = OBSERVATION^START^END
+"RTN","WEBM10",13,0)
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+"RTN","WEBM10",14,0)
+ ;          FB.IEN (FETUS/BABY)
+"RTN","WEBM10",15,0)
+ ;          PG.IEN (PREGNANCY)
+"RTN","WEBM10",16,0)
+ ;    REF = OBJECTS OF REFERENCE (ARRAY)
+"RTN","WEBM10",17,0)
+ ;         TIU.IEN (NOTE)
+"RTN","WEBM10",18,0)
+ ;         IHE.IEN (IHE DOCUMENT)
+"RTN","WEBM10",19,0)
+ ;    REL = RELATIONSHIP
+"RTN","WEBM10",20,0)
+ ;    CAT = CATEGORY
+"RTN","WEBM10",21,0)
+ ;   CODE = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+"RTN","WEBM10",22,0)
+ ;    VAL = TYPE^UNIT^VALUE
+"RTN","WEBM10",23,0)
+ ;  VALCD = SYS NAME^SYS VALUE^CODE^DISPLAY NAME
+"RTN","WEBM10",24,0)
+ ;    NEG = NEGATION (T/F)
+"RTN","WEBM10",25,0)
+ ;   QUAL = QUALIFIERS (ARRAY OF QUALIFIER^VALUE)
+"RTN","WEBM10",26,0)
+ ;    NAR = NARRATIVE (ARRAY OF TEXT)
+"RTN","WEBM10",27,0)
+ ;  **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+"RTN","WEBM10",28,0)
+ ;
+"RTN","WEBM10",29,0)
+ ; RETURN: IEN OR -1^MESSAGE
+"RTN","WEBM10",30,0)
+ ;
+"RTN","WEBM10",31,0)
+ N OBSD,STRT,END,VTYP,VUNT,SYS,CDSV,CDIS,VALCDS,VALCDSV,VALCDIS,IENS,DIK
+"RTN","WEBM10",32,0)
+ N DA,X,Y,IPT,CT,OIEN
+"RTN","WEBM10",33,0)
+ S DATES=$G(DATES),OBSD=$P(DATES,U),STRT=$P(DATES,U,2),END=$P(DATES,U,3)
+"RTN","WEBM10",34,0)
+ S VAL=$G(VAL)
+"RTN","WEBM10",35,0)
+ S VTYP=$P(VAL,U)                                          ; VALUE TYPE
+"RTN","WEBM10",36,0)
+ S VUNT=$P(VAL,U,2)                                        ; VALUE UNIT
+"RTN","WEBM10",37,0)
+ S VAL=$P(VAL,U,3)                                         ; VALUE
+"RTN","WEBM10",38,0)
+ S NEG=$$UP^XLFSTR($E($G(NEG),1)),NEG=$S(NEG="Y"!(NEG="T")!(NEG=1):1,1:0)  ; NEGATION
+"RTN","WEBM10",39,0)
+ D:'$G(AB) AB^WEBM2("OBSD,STRT,END,REL,CAT,VAL,VTYP,VUNT")
+"RTN","WEBM10",40,0)
+ S:$G(OBSD)'="@" OBSD=$$DT^WEBM2($G(OBSD))                 ; OBSERVATION DATE
+"RTN","WEBM10",41,0)
+ S:$G(STRT)'="@" STRT=$$DT^WEBM2($G(STRT))                 ; START
+"RTN","WEBM10",42,0)
+ S:$G(END)'="@" END=$$DT^WEBM2($G(END))                    ; END
+"RTN","WEBM10",43,0)
+ ; *** CODE (SYS^SYSVAL^CODE^DISPLAY NAME)
+"RTN","WEBM10",44,0)
+ S CODE=$G(CODE)
+"RTN","WEBM10",45,0)
+ S SYS=$$UP^XLFSTR($P(CODE,U))                             ; SYSTEM NAME
+"RTN","WEBM10",46,0)
+ S SYS=$S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+"RTN","WEBM10",47,0)
+ S CDSV=$P(CODE,U,2)                                       ; SYSTEM VALUE
+"RTN","WEBM10",48,0)
+ S CDIS=$P(CODE,U,4)                                       ; DISPLAY NAME
+"RTN","WEBM10",49,0)
+ S CODE=$P(CODE,U,3)                                       ; CODE
+"RTN","WEBM10",50,0)
+ D:'$G(AB) AB^WEBM2("CODE,SYS,CDSV,CDIS")
+"RTN","WEBM10",51,0)
+ I CODE="@"!($G(AB)&('$G(IEN))&(CODE="")) S RET="-1^Code is required" Q
+"RTN","WEBM10",52,0)
+ ; *** VALUE CODE (SYS^SYSVAL^CODE^DISPLAY NAME)
+"RTN","WEBM10",53,0)
+ S VALCD=$G(VALCD)
+"RTN","WEBM10",54,0)
+ S VALCDS=$$UP^XLFSTR($P(VALCD,U))                         ; CODING SYSTEM
+"RTN","WEBM10",55,0)
+ S VALCDS=$S(VALCDS="LNC":"LOINC",VALCDS="SCT":"SNOMED-CT",1:VALCDS)
+"RTN","WEBM10",56,0)
+ S VALCDSV=$P(VALCD,U,2)                                   ; SYSTEM VALUE
+"RTN","WEBM10",57,0)
+ S VALCDIS=$P(VALCD,U,4)                                   ; DISPLAY NAME
+"RTN","WEBM10",58,0)
+ S VALCD=$P(VALCD,U,3)                                     ; CODE
+"RTN","WEBM10",59,0)
+ D:'$G(AB) AB^WEBM2("VALCD,VALCDS,VALCDSV,VALCDIS")
+"RTN","WEBM10",60,0)
+ ; *** Determine to Update or Create New
+"RTN","WEBM10",61,0)
+ S IEN=$G(IEN)
+"RTN","WEBM10",62,0)
+ I 'IEN S IEN=$$OIEN I IEN=-1 S RET="-1^Failed to update observation."  Q
+"RTN","WEBM10",63,0)
+ I 'IEN,'$D(^DPT(+$G(DFN))) S RET="-1^Patient entry not found." Q
+"RTN","WEBM10",64,0)
+ I IEN,OBSD="@" D  Q:$D(RET)
+"RTN","WEBM10",65,0)
+ . I $$GET1^DIQ(1031.12,IEN_",",.09,"I")'="" D  Q
+"RTN","WEBM10",66,0)
+ . . S RET="-1^Observation has already been PUSHed, so it cannot be deleted."
+"RTN","WEBM10",67,0)
+ . S DIK="^WEBM(1031.12,",DA=IEN D ^DIK S RET=1
+"RTN","WEBM10",68,0)
+ S IENS=$S(IEN:IEN_",",1:"+1,") I IENS["+",OBSD="" S OBSD=$$NOW^XLFDT
+"RTN","WEBM10",69,0)
+ S:$G(OBSD)'="" IPT(1031.12,IENS,.01)=OBSD                ; DATE OF OBSERVATION
+"RTN","WEBM10",70,0)
+ S:$G(DFN) IPT(1031.12,IENS,.02)=DFN                      ; PATIENT
+"RTN","WEBM10",71,0)
+ S:$G(CAT)'="" IPT(1031.12,IENS,.03)=CAT                  ; CATEGORY
+"RTN","WEBM10",72,0)
+ S:$G(REL)'="" IPT(1031.12,IENS,.04)=REL                  ; RELATIONSHIP
+"RTN","WEBM10",73,0)
+ S:STRT'="" IPT(1031.12,IENS,.05)=STRT                    ; START
+"RTN","WEBM10",74,0)
+ S:END'="" IPT(1031.12,IENS,.06)=END                      ; END
+"RTN","WEBM10",75,0)
+ S IPT(1031.12,IENS,.07)=DUZ                              ; UPDATED BY
+"RTN","WEBM10",76,0)
+ S IPT(1031.12,IENS,.08)=$$NOW^XLFDT                      ; MODIFIED
+"RTN","WEBM10",77,0)
+ S:VTYP'="" IPT(1031.12,IENS,4.1)=VTYP                    ; VALUE TYPE
+"RTN","WEBM10",78,0)
+ S:VAL'="" IPT(1031.12,IENS,4.2)=VAL                      ; VALUE
+"RTN","WEBM10",79,0)
+ S:VUNT'="" IPT(1031.12,IENS,4.3)=VUNT                    ; VALUE UNIT
+"RTN","WEBM10",80,0)
+ S IPT(1031.12,IENS,4.4)=NEG                              ; NEGATION
+"RTN","WEBM10",81,0)
+ D UPDATE^DIE(,"IPT","IEN") K IPT
+"RTN","WEBM10",82,0)
+ S (RET,IEN)=$S(IEN:IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to build observation." Q
+"RTN","WEBM10",83,0)
+ I SYS'="LOINC",SYS'="SNOMED-CT" D LCODE^WEBM2(CODE,SYS,IEN_";WEBM(1031.12,")
+"RTN","WEBM10",84,0)
+ ; *** OBJECTS OF OBSERVATION/OBJECTS OF REFERENCE
+"RTN","WEBM10",85,0)
+ D TOBJ(IEN,.OBJECT,.REF)
+"RTN","WEBM10",86,0)
+ ; *** SAVE CODE AND VALUE CODE
+"RTN","WEBM10",87,0)
+ S IPT(1031.17,"?+1,"_IEN_",",.01)="C"                    ; CODE TYPE
+"RTN","WEBM10",88,0)
+ S:CODE'="" IPT(1031.17,"?+1,"_IEN_",",1)=CODE            ; CODE
+"RTN","WEBM10",89,0)
+ S:CDIS'="" IPT(1031.17,"?+1,"_IEN_",",2)=CDIS            ; DISPLAY NAME
+"RTN","WEBM10",90,0)
+ S:SYS'="" IPT(1031.17,"?+1,"_IEN_",",3)=SYS              ; SYSTEM NAME
+"RTN","WEBM10",91,0)
+ S:CDSV'="" IPT(1031.17,"?+1,"_IEN_",",4)=CDSV            ; SYSTEM VALUE
+"RTN","WEBM10",92,0)
+ D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM10",93,0)
+ S IPT(1031.17,"?+1,"_IEN_",",.01)="V"                    ; CODE TYPE
+"RTN","WEBM10",94,0)
+ S:VALCD'="" IPT(1031.17,"?+1,"_IEN_",",1)=VALCD          ; CODE
+"RTN","WEBM10",95,0)
+ S:VALCDIS'="" IPT(1031.17,"?+1,"_IEN_",",2)=VALCDIS      ; DISPLAY NAME
+"RTN","WEBM10",96,0)
+ S:VALCDS'="" IPT(1031.17,"?+1,"_IEN_",",3)=VALCDS        ; SYSTEM NAME
+"RTN","WEBM10",97,0)
+ S:VALCDSV'="" IPT(1031.17,"?+1,"_IEN_",",4)=VALCDSV      ; SYSTEM VALUE
+"RTN","WEBM10",98,0)
+ D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM10",99,0)
+ ; *** QUALIFIERS
+"RTN","WEBM10",100,0)
+ S CT=$NA(QUAL) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","WEBM10",101,0)
+ . S IPT(1031.125,"?+1,"_IEN_",",.01)=$P(@CT,U)
+"RTN","WEBM10",102,0)
+ . S IPT(1031.125,"?+1,"_IEN_",",.02)=$P(@CT,U,2)
+"RTN","WEBM10",103,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM10",104,0)
+ ; *** NARRATIVE
+"RTN","WEBM10",105,0)
+ I $D(NAR)>9 K ^TMP($J,"WEBM OBS") D
+"RTN","WEBM10",106,0)
+ . D XY^WEBM2(.NAR,$NA(^TMP($J,"WEBM OBS")))
+"RTN","WEBM10",107,0)
+ . D WP^DIE(1031.12,IEN_",",6,"K","^TMP($J,""WEBM OBS"")")
+"RTN","WEBM10",108,0)
+ . K ^TMP($J,"WEBM OBS")
+"RTN","WEBM10",109,0)
+ D OPUSH(DFN,IEN)
+"RTN","WEBM10",110,0)
+ Q
+"RTN","WEBM10",111,0)
+ ;
+"RTN","WEBM10",112,0)
+OIEN() ; Find the Observation Push configuration record
+"RTN","WEBM10",113,0)
+ ;       Is this Observation required to be updated?
+"RTN","WEBM10",114,0)
+ ;       If it is then return the IEN of the last observation using the data supplied.
+"RTN","WEBM10",115,0)
+ ;
+"RTN","WEBM10",116,0)
+ ; NULL = Not configurated, not enough information, carry on
+"RTN","WEBM10",117,0)
+ ;   -1 = Not allowed to continue
+"RTN","WEBM10",118,0)
+ ;
+"RTN","WEBM10",119,0)
+ N CD,DF,PUSH,CT,I,OBJ,OUT,OIEN,DATE,FDA,MSG
+"RTN","WEBM10",120,0)
+ S CD=$G(CODE),DF=$G(DFN)
+"RTN","WEBM10",121,0)
+ I CD=""&($G(IEN)) S CD=$$GETCODE(IEN,"C",1)
+"RTN","WEBM10",122,0)
+ I DF=""&($G(IEN)) S DF=$$GET1^DIQ(1031.12,IEN_",",.02,"I")
+"RTN","WEBM10",123,0)
+ I CD=""!(DF="") Q ""
+"RTN","WEBM10",124,0)
+ S PUSH=$O(^WEBM(1031.123,"C",CODE,"")) Q:'PUSH ""           ; Not Configured
+"RTN","WEBM10",125,0)
+ Q:'$P($G(^WEBM(1031.123,PUSH,0)),U,5) ""                    ; Update is NOT True
+"RTN","WEBM10",126,0)
+ S CT=$NA(OBJECT) F I=0:1 S CT=$Q(@CT) Q:CT=""  S OBJ(I)=$$OBJECT(@CT)
+"RTN","WEBM10",127,0)
+ D OBG(.OUT,,DF,.OBJ,$G(REF),,,$G(REL),$G(CAT),SYS,CD,"1,1") Q:+$G(@OUT@(0))=0 ""
+"RTN","WEBM10",128,0)
+ S OIEN=$P($G(@OUT@(1,0)),U,2) K @OUT Q:'OIEN "-1"
+"RTN","WEBM10",129,0)
+ I '$G(AB),OBSD="" S OBSD=$$NOW^XLFDT
+"RTN","WEBM10",130,0)
+ S DATE=$$GET1^DIQ(1031.12,OIEN_",",.09,"I") I DATE'="" D  Q:$D(MSG) -1
+"RTN","WEBM10",131,0)
+ . S FDA(1031.127,"?+1,"_OIEN_",",.01)=DATE
+"RTN","WEBM10",132,0)
+ . D UPDATE^DIE(,"FDA",,"MSG") K FDA Q:$D(MSG)
+"RTN","WEBM10",133,0)
+ . S FDA(1031.12,OIEN_",",.09)=""
+"RTN","WEBM10",134,0)
+ . D UPDATE^DIE(,"FDA",,"MSG")
+"RTN","WEBM10",135,0)
+ Q OIEN
+"RTN","WEBM10",136,0)
+ ;       
+"RTN","WEBM10",137,0)
+ ;
+"RTN","WEBM10",138,0)
+TOBJ(IEN,OBJECT,REF) ; Transform Objects of Observation and Reference and Save
+"RTN","WEBM10",139,0)
+ ;
+"RTN","WEBM10",140,0)
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+"RTN","WEBM10",141,0)
+ ;          FB.IEN (FETUS/BABY)
+"RTN","WEBM10",142,0)
+ ;          PG.IEN (PREGNANCY)
+"RTN","WEBM10",143,0)
+ ;    REF = OBJECTS OF REFERENCE (ARRAY)
+"RTN","WEBM10",144,0)
+ ;         TIU.IEN (NOTE)
+"RTN","WEBM10",145,0)
+ ;         IHE.IEN (IHE DOCUMENT)
+"RTN","WEBM10",146,0)
+ ;
+"RTN","WEBM10",147,0)
+ N CT,IPT
+"RTN","WEBM10",148,0)
+ ; *** SET UP OBJECTS OF OBSERVATION
+"RTN","WEBM10",149,0)
+ S CT=$NA(OBJECT) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","WEBM10",150,0)
+ . S IPT(1031.121,"?+1,"_IEN_",",.01)=$$OBJECT(@CT)
+"RTN","WEBM10",151,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM10",152,0)
+ ; *** SAVE OBJECTS OF REFERENCE
+"RTN","WEBM10",153,0)
+ S CT=$NA(REF) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","WEBM10",154,0)
+ . S IPT(1031.16,"?+1,"_IEN_",",.01)=$$OBJECT(@CT)
+"RTN","WEBM10",155,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM10",156,0)
+ Q
+"RTN","WEBM10",157,0)
+ ;
+"RTN","WEBM10",158,0)
+OBJECT(OBJECT) ; Transform External Object to Internal/ Validate Internal
+"RTN","WEBM10",159,0)
+ N OBJ,IEN,GL
+"RTN","WEBM10",160,0)
+ S (OBJ,IEN)=""
+"RTN","WEBM10",161,0)
+ I $G(OBJECT)?.A1".".N D
+"RTN","WEBM10",162,0)
+ . S OBJ=$P(OBJECT,"."),IEN=$P(OBJECT,".",2)
+"RTN","WEBM10",163,0)
+ . S OBJ=$S(OBJ="FB":"WEBM(1031.112,",OBJ="PG":"WEBM(1031.13,",OBJ="TIU":"TIU(8925,",OBJ="IHE":"WEBM(1031.6,",1:"")
+"RTN","WEBM10",164,0)
+ S:OBJ=""&($G(OBJECT)[";") OBJ=$P(OBJECT,";",2),IEN=+OBJECT
+"RTN","WEBM10",165,0)
+ Q:OBJ=""!('IEN) ""
+"RTN","WEBM10",166,0)
+ S GL=U_OBJ_+IEN_")" Q:$D(@GL) +IEN_";"_OBJ
+"RTN","WEBM10",167,0)
+ Q ""
+"RTN","WEBM10",168,0)
+ ;
+"RTN","WEBM10",169,0)
+OPUSH(DFN,OIEN) ; Push Observation
+"RTN","WEBM10",170,0)
+ N CODE,X,VAL,IEN,INPUT,ROU,RET,IPT
+"RTN","WEBM10",171,0)
+ S CODE=$$GETCODE(OIEN,"C",1) Q:CODE=""
+"RTN","WEBM10",172,0)
+ S (X,VAL)=$$UP^XLFSTR($$GET1^DIQ(1031.12,OIEN_",",4.2))
+"RTN","WEBM10",173,0)
+ Q:$$GET1^DIQ(1031.12,OIEN_",",.09,"I")'=""      ; *** ALREADY PUSHED
+"RTN","WEBM10",174,0)
+ S IEN=$O(^WEBM(1031.123,"C",CODE,"")) Q:IEN=""
+"RTN","WEBM10",175,0)
+ S INPUT=$$GET1^DIQ(1031.123,IEN_",",1)
+"RTN","WEBM10",176,0)
+ S ROU=$$GET1^DIQ(1031.123,IEN_",",2) Q:ROU=""
+"RTN","WEBM10",177,0)
+ S TMP=$NA(^TMP($J,"SETDATA VALUE")) K @TMP
+"RTN","WEBM10",178,0)
+ X:INPUT'="" INPUT X:ROU'="" ROU
+"RTN","WEBM10",179,0)
+ S RET=$$HISTORY^WEBM6(IEN_";WEBM(1031.123,",DFN_";DPT(",ROU)
+"RTN","WEBM10",180,0)
+ I RET D
+"RTN","WEBM10",181,0)
+ . S IPT(1031.12,OIEN_",",.09)=$$GET1^DIQ(1031.124,RET_",",.01,"I")
+"RTN","WEBM10",182,0)
+ . D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM10",183,0)
+ D OPDEL(IEN,OIEN,RET)
+"RTN","WEBM10",184,0)
+ Q
+"RTN","WEBM10",185,0)
+ ;
+"RTN","WEBM10",186,0)
+GETCODE(IEN,IX,PC) ; Get Observation Code from Codes Multiple
+"RTN","WEBM10",187,0)
+ N IENS
+"RTN","WEBM10",188,0)
+ S PC=+$G(PC)
+"RTN","WEBM10",189,0)
+ S IENS=$O(^WEBM(1031.12,IEN,3,"B",IX,"")) Q:IENS="" ""
+"RTN","WEBM10",190,0)
+ Q $G(^WEBM(1031.12,IEN,3,IENS,PC))
+"RTN","WEBM10",191,0)
+ ;
+"RTN","WEBM10",192,0)
+OPDEL(PUSH,OIEN,HIS) ; Delete Actions
+"RTN","WEBM10",193,0)
+ ;
+"RTN","WEBM10",194,0)
+ ; Some observations may be non-clinical in nature and be set to be deleted
+"RTN","WEBM10",195,0)
+ ; after the data is pushed.
+"RTN","WEBM10",196,0)
+ ;   1 TRUE = DELETE THE OBSERVATION
+"RTN","WEBM10",197,0)
+ ;   2 BOTH = DELETE THE OBSERVATION AND HISTORY
+"RTN","WEBM10",198,0)
+ ;
+"RTN","WEBM10",199,0)
+ N DEL,DIK,DA,X,Y
+"RTN","WEBM10",200,0)
+ S DEL=$$GET1^DIQ(1031.123,PUSH_",",.04,"I") Q:'DEL
+"RTN","WEBM10",201,0)
+ S DIK="^WEBM(1031.12,",DA=OIEN D ^DIK
+"RTN","WEBM10",202,0)
+ I DEL=2 K DIK,DA,X,Y S DIK="^WEBM(1031.124,",DA=HIS D ^DIK
+"RTN","WEBM10",203,0)
+ Q
+"RTN","WEBM10",204,0)
+ ;
+"RTN","WEBM10",205,0)
+OBG(RET,IEN,DFN,OBJECT,REF,FDT,TDT,REL,CAT,SYS,CODE,SORT) ; RPC: WEBM GET OBSERVATIONS
+"RTN","WEBM10",206,0)
+ ;
+"RTN","WEBM10",207,0)
+ ;    IEN = IF NOT NULL THEN RETURN ONLY
+"RTN","WEBM10",208,0)
+ ; OBJECT = OBJECTS OF OBSERVATION (ARRAY)
+"RTN","WEBM10",209,0)
+ ;          FB.IEN (FETUS/BABY)
+"RTN","WEBM10",210,0)
+ ;          PG.IEN (PREGNANCY)
+"RTN","WEBM10",211,0)
+ ;    REF = OBJECTS OF REFERENCE (ARRAY)
+"RTN","WEBM10",212,0)
+ ;         TIU.IEN (NOTE)
+"RTN","WEBM10",213,0)
+ ;         IHE.IEN (IHE DOCUMENT)
+"RTN","WEBM10",214,0)
+ ; *** OBJECT AND REF - The entry must have at least the provided values
+"RTN","WEBM10",215,0)
+ ;    FDT = FROM DATE
+"RTN","WEBM10",216,0)
+ ;    TDT = TO DATE
+"RTN","WEBM10",217,0)
+ ;    REL = RELATIONSHIP
+"RTN","WEBM10",218,0)
+ ;    CAT = CATEGORY
+"RTN","WEBM10",219,0)
+ ;    SYS = CODING SYSTEM
+"RTN","WEBM10",220,0)
+ ;          **SYS = $S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+"RTN","WEBM10",221,0)
+ ;
+"RTN","WEBM10",222,0)
+ ; RETURN:
+"RTN","WEBM10",223,0)
+ ;  L^IEN^DFN^DATE^OBJ OF OBS;EXTERNAL VALUE|...^OBJ OF REF;EXTERNAL VALUE|...^
+"RTN","WEBM10",224,0)
+ ;    REL^CAT^START^END^PUSHED^CODE^SYS^SYS VALUE^DISPLAY NAME^VALUE CODE^
+"RTN","WEBM10",225,0)
+ ;    VALUE SYS^VALUE SYS VALUE^VALUE DISPLAY NAME^VALUE TYPE^VALUE^VALUE UNIT^
+"RTN","WEBM10",226,0)
+ ;    NEGATION^UPDATED BY^MODIFIED DATE^QUALIFIERS(NAME;VALUE)|...
+"RTN","WEBM10",227,0)
+ ;  C^IEN^NARRATIVE
+"RTN","WEBM10",228,0)
+ ;
+"RTN","WEBM10",229,0)
+ N RCT,TS,DATE,STRT,END
+"RTN","WEBM10",230,0)
+ S RET=$NA(^TMP($J,"WEBM OBG")) K @RET S @RET@(0)="0^Nothing found."
+"RTN","WEBM10",231,0)
+ I $G(IEN) D FLDS(IEN,1) S:$D(@RET@(1)) @RET@(0)=1 Q
+"RTN","WEBM10",232,0)
+ I '$D(^DPT(+$G(DFN))) S @RET@(0)="-1^Patient entry not found." Q
+"RTN","WEBM10",233,0)
+ D OBJL(.OBJECT),OBJL(.REF),SORT($G(SORT))
+"RTN","WEBM10",234,0)
+ ; *** RANGE
+"RTN","WEBM10",235,0)
+ S FDT=$S($G(FDT)'="":$$FMADD^XLFDT($$DT^WEBM2(FDT),,,,-1),1:"")
+"RTN","WEBM10",236,0)
+ S TDT=$$DT^WEBM2($G(TDT)) S:TDT="" TDT=$$NOW^XLFDT
+"RTN","WEBM10",237,0)
+ ; *** FILTERS
+"RTN","WEBM10",238,0)
+ S REL=$$UP^XLFSTR($G(REL)),CAT=$$UP^XLFSTR($G(CAT))
+"RTN","WEBM10",239,0)
+ S SYS=$$UP^XLFSTR($G(SYS)),CODE=$G(CODE)
+"RTN","WEBM10",240,0)
+ S SYS=$S(SYS="LNC":"LOINC",SYS="SCT":"SNOMED-CT",1:SYS)
+"RTN","WEBM10",241,0)
+ S (RCT,TS)=0,DATE=FDT
+"RTN","WEBM10",242,0)
+ F  S DATE=$O(^WEBM(1031.12,"P",DFN,DATE)) Q:DATE=""  Q:DATE>TDT  D
+"RTN","WEBM10",243,0)
+ . S IEN="" F  S IEN=$O(^WEBM(1031.12,"P",DFN,DATE,IEN)) Q:IEN=""  D
+"RTN","WEBM10",244,0)
+ . . ; *** OBJECT AND REF - The entry must have at least the provided values
+"RTN","WEBM10",245,0)
+ . . I $D(OBJECT) Q:$$CONTAIN(IEN,.OBJECT,1)
+"RTN","WEBM10",246,0)
+ . . I $D(REF) Q:$$CONTAIN(IEN,.REF,2)
+"RTN","WEBM10",247,0)
+ . . I CODE'="",$$GETCODE(IEN,"C",1)'=CODE Q
+"RTN","WEBM10",248,0)
+ . . I SYS'="",$$GETCODE(IEN,"C",3)'=SYS Q
+"RTN","WEBM10",249,0)
+ . . I REL'="",$$UP^XLFSTR($$GET1^DIQ(1031.12,IEN_",",.04))'=REL Q
+"RTN","WEBM10",250,0)
+ . . I CAT'="",$$UP^XLFSTR($$GET1^DIQ(1031.12,IEN_",",.03))'=CAT Q
+"RTN","WEBM10",251,0)
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","WEBM10",252,0)
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","WEBM10",253,0)
+ . . D FLDS(IEN,RCT)
+"RTN","WEBM10",254,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","WEBM10",255,0)
+ Q
+"RTN","WEBM10",256,0)
+ ;
+"RTN","WEBM10",257,0)
+CONTAIN(IEN,VALS,ND) ; Does the entry contain all objects?
+"RTN","WEBM10",258,0)
+ N CT,FLG
+"RTN","WEBM10",259,0)
+ S CT="" F  S CT=$O(VALS(CT)) Q:CT=""  D  Q:$D(FLG)
+"RTN","WEBM10",260,0)
+ . I '$D(^WEBM(1031.12,IEN,ND,"B",CT)) S FLG=1
+"RTN","WEBM10",261,0)
+ Q $D(FLG)
+"RTN","WEBM10",262,0)
+ ;
+"RTN","WEBM10",263,0)
+OBJL(ARY) ; Prep Object List
+"RTN","WEBM10",264,0)
+ N CT,OUT,NEW
+"RTN","WEBM10",265,0)
+ S CT=$NA(ARY) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","WEBM10",266,0)
+ . S OUT=$$OBJECT(@CT) I OUT'="" S NEW(OUT)=""
+"RTN","WEBM10",267,0)
+ K ARY I $D(NEW) M ARY=NEW
+"RTN","WEBM10",268,0)
+ Q
+"RTN","WEBM10",269,0)
+ ;
+"RTN","WEBM10",270,0)
+FLDS(IEN,ND) ; Continue
+"RTN","WEBM10",271,0)
+ N OUT,LINE,FLD,STR
+"RTN","WEBM10",272,0)
+ D GETS^DIQ(1031.12,IEN_",","*","IE","OUT") Q:'$D(OUT)
+"RTN","WEBM10",273,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","WEBM10",274,0)
+ S STR="L^"_IEN_U
+"RTN","WEBM10",275,0)
+ S STR=STR_FLD(.02,"I")_U                               ; DFN
+"RTN","WEBM10",276,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U            ; DATE OF OBSERVATION
+"RTN","WEBM10",277,0)
+ S STR=STR_$$OBJ(IEN,1)_U                               ; OBJECTS OF OBSERVATION
+"RTN","WEBM10",278,0)
+ S STR=STR_$$OBJ(IEN,2)_U                               ; OBJECTS OF REFERENCE
+"RTN","WEBM10",279,0)
+ S STR=STR_FLD(.04,"I")_U                               ; RELATIONSHIP
+"RTN","WEBM10",280,0)
+ S STR=STR_FLD(.03,"I")_U                               ; CATEGORY
+"RTN","WEBM10",281,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.05,"I"),"5Z")_U            ; START
+"RTN","WEBM10",282,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.06,"I"),"5Z")_U            ; END
+"RTN","WEBM10",283,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.09,"I"),"5Z")_U            ; PUSHED
+"RTN","WEBM10",284,0)
+ S STR=STR_$$GETCODE(IEN,"C",1)_U                       ; CODE
+"RTN","WEBM10",285,0)
+ S STR=STR_$$GETCODE(IEN,"C",3)_U                       ; CODE SYSTEM NAME
+"RTN","WEBM10",286,0)
+ S STR=STR_$$GETCODE(IEN,"C",4)_U                       ; CODE SYSTEM VALUE
+"RTN","WEBM10",287,0)
+ S STR=STR_$$GETCODE(IEN,"C",2)_U                       ; CODE DISPLAY NAME
+"RTN","WEBM10",288,0)
+ S STR=STR_$$GETCODE(IEN,"V",1)_U                       ; VALUE CODE
+"RTN","WEBM10",289,0)
+ S STR=STR_$$GETCODE(IEN,"V",3)_U                       ; VALUE SYSTEM NAME
+"RTN","WEBM10",290,0)
+ S STR=STR_$$GETCODE(IEN,"V",4)_U                       ; VALUE SYSTEM VALUE
+"RTN","WEBM10",291,0)
+ S STR=STR_$$GETCODE(IEN,"V",2)_U                       ; VALUE DISPLAY NAME
+"RTN","WEBM10",292,0)
+ S STR=STR_FLD(4.1,"I")_U                               ; VALUE TYPE
+"RTN","WEBM10",293,0)
+ S STR=STR_FLD(4.2,"I")_U                               ; VALUE
+"RTN","WEBM10",294,0)
+ S STR=STR_FLD(4.3,"I")_U                               ; VALUE UNIT
+"RTN","WEBM10",295,0)
+ S STR=STR_FLD(4.4,"E")_U                               ; NEGATION
+"RTN","WEBM10",296,0)
+ S STR=STR_$$NAME^WEBM2(FLD(.07,"E"))_U                 ; UPDATED BY
+"RTN","WEBM10",297,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.08,"I"),"5Z")_U            ; MODIFIED DATE
+"RTN","WEBM10",298,0)
+ S STR=STR_$$QUAL(IEN)                                  ; QUALIFIERS
+"RTN","WEBM10",299,0)
+ S @RET@(ND,0)=STR
+"RTN","WEBM10",300,0)
+ S LINE=0 F  S LINE=$O(FLD(6,LINE)) Q:'LINE  S @RET@(ND,LINE)="C^"_IEN_U_FLD(6,LINE)
+"RTN","WEBM10",301,0)
+ Q
+"RTN","WEBM10",302,0)
+ ;
+"RTN","WEBM10",303,0)
+OBJ(IEN,ND) ; OBJECTS
+"RTN","WEBM10",304,0)
+ N OBJ,Q,STR
+"RTN","WEBM10",305,0)
+ D GETS^DIQ(1031.12,IEN_",",ND_"*","I","OBJ")
+"RTN","WEBM10",306,0)
+ S Q=$NA(OBJ) F  S Q=$Q(@Q) Q:Q=""  D
+"RTN","WEBM10",307,0)
+ . S STR=$G(STR)_$$EOBJ(@Q)_"|"
+"RTN","WEBM10",308,0)
+ Q $E($G(STR),1,($L($G(STR))-1))
+"RTN","WEBM10",309,0)
+ ;
+"RTN","WEBM10",310,0)
+EOBJ(OBJ) ; Transform to External Form
+"RTN","WEBM10",311,0)
+ N STR
+"RTN","WEBM10",312,0)
+ S STR=$S(OBJ[8925:"TIU."_+OBJ,OBJ[1031.6:"IHE."_+OBJ,OBJ[1031.13:"PG."_+OBJ,OBJ[1031.112:"FB."_+OBJ,1:"")
+"RTN","WEBM10",313,0)
+ S:STR'="" STR=STR_";"_$$GET1^DIQ($TR($P(OBJ,"(",2),","),+OBJ_",",.01)
+"RTN","WEBM10",314,0)
+ Q STR
+"RTN","WEBM10",315,0)
+ ;
+"RTN","WEBM10",316,0)
+QUAL(IEN) ; QUALIFIERS
+"RTN","WEBM10",317,0)
+ N QUAL,Q,STR
+"RTN","WEBM10",318,0)
+ D GETS^DIQ(1031.12,IEN_",","5*","I","QUAL")
+"RTN","WEBM10",319,0)
+ S Q=$NA(QUAL) F  S Q=$Q(@Q) Q:Q=""  D
+"RTN","WEBM10",320,0)
+ . S STR=$G(STR)_$$TITLE^XLFSTR(@Q)
+"RTN","WEBM10",321,0)
+ . I $QS(Q,3)=".01" S STR=STR_";"
+"RTN","WEBM10",322,0)
+ . I $QS(Q,3)=".02" S STR=STR_"|"
+"RTN","WEBM10",323,0)
+ Q $E($G(STR),1,($L($G(STR))-1))
+"RTN","WEBM10",324,0)
+ ;
+"RTN","WEBM10",325,0)
+ ; ---------------------------------- COMMON ----------------------------------
+"RTN","WEBM10",326,0)
+ ;
+"RTN","WEBM10",327,0)
+SORT(SORT) ; Set Start and End
+"RTN","WEBM10",328,0)
+ D S^WEBM2(SORT)
+"RTN","WEBM10",329,0)
+ Q
+"RTN","WEBM14")
+0^2^B22789803
+"RTN","WEBM14",1,0)
+WEBM14 ;DSS/TFF - WEBM IHE;08/26/2016 16:00
+"RTN","WEBM14",2,0)
+ ;;2.0;WEBM 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","WEBM14",3,0)
+ ;
+"RTN","WEBM14",4,0)
+ ;
+"RTN","WEBM14",5,0)
+ ;
+"RTN","WEBM14",6,0)
+ Q
+"RTN","WEBM14",7,0)
+ ;
+"RTN","WEBM14",8,0)
+SAVE(RET,IEN,DFN,DATES,TYP,DIRECT,GUID,TITLE,FAC,REC,DOC,AB) ; RPC: WEBM SAVE IHE DOC
+"RTN","WEBM14",9,0)
+ ;
+"RTN","WEBM14",10,0)
+ ;    IEN = IF NULL THEN NEW
+"RTN","WEBM14",11,0)
+ ;    DFN = PATIENT IEN
+"RTN","WEBM14",12,0)
+ ;  DATES = DT CREATION^DT IMPORT/EXPORT
+"RTN","WEBM14",13,0)
+ ;    TYP = DOCUMENT TYPE
+"RTN","WEBM14",14,0)
+ ; DIRECT = DIRECTION
+"RTN","WEBM14",15,0)
+ ;   GUID = GUID
+"RTN","WEBM14",16,0)
+ ;  TITLE = DOCUMENT TITLE
+"RTN","WEBM14",17,0)
+ ;    FAC = SENDING FACILITY/PROVIDER
+"RTN","WEBM14",18,0)
+ ;    REC = INTENDED RECIPIENT
+"RTN","WEBM14",19,0)
+ ;    DOC = ARRAY OF TEXT
+"RTN","WEBM14",20,0)
+ ;
+"RTN","WEBM14",21,0)
+ ; RETURN: IEN OR -1^MESSAGE
+"RTN","WEBM14",22,0)
+ ; 
+"RTN","WEBM14",23,0)
+ N DTC,DTI,IPT
+"RTN","WEBM14",24,0)
+ I '$G(IEN),'$$CHECK^WEBM2($G(DFN)) S RET="-1^Patient entry not found." Q
+"RTN","WEBM14",25,0)
+ S DTC=$P(DATES,U),DTI=$P(DATES,U,2)
+"RTN","WEBM14",26,0)
+ S DIRECT=$$UP^XLFSTR($E($G(DIRECT),1)) S:"^I^O^"'[(U_DIRECT_U) DIRECT=""
+"RTN","WEBM14",27,0)
+ D:'$G(AB) AB^WEBM2("DFN,DTC,DTI,TYP,DIRECT,GUID,TITLE,FAC,REC")
+"RTN","WEBM14",28,0)
+ S:$G(DTC)'="@" DTC=$$DT^WEBM2($G(DTC))
+"RTN","WEBM14",29,0)
+ S:$G(DTI)'="@" DTI=$$DT^WEBM2($G(DTI))
+"RTN","WEBM14",30,0)
+ S IEN=$S($G(IEN):IEN,GUID'="":$O(^WEBM(1031.6,"GUID",GUID,"")),1:"")
+"RTN","WEBM14",31,0)
+ S:IEN="" IEN="?+1"
+"RTN","WEBM14",32,0)
+ S:IEN["+" IPT(1031.6,IEN_",",.01)=$$NOW^XLFDT            ; DT OF ENTRY
+"RTN","WEBM14",33,0)
+ S IPT(1031.6,IEN_",",.02)=DFN                            ; PATIENT
+"RTN","WEBM14",34,0)
+ S:$G(DTC)'="" IPT(1031.6,IEN_",",.03)=DTC                ; DT CREATION
+"RTN","WEBM14",35,0)
+ S:$G(DTI)'="" IPT(1031.6,IEN_",",.04)=DTI                ; DT IMPORT/EXPORT
+"RTN","WEBM14",36,0)
+ S:$G(TYP)'="" IPT(1031.6,IEN_",",.05)=$$TYP(TYP)         ; DOCUMENT TYPE
+"RTN","WEBM14",37,0)
+ S:$G(DIRECT)'="" IPT(1031.6,IEN_",",.06)=DIRECT          ; DIRECTION
+"RTN","WEBM14",38,0)
+ ;S IPT(1031.6,IEN_",",.07)=$$GUID($S(IEN["+":"",1:IEN),$G(GUID))
+"RTN","WEBM14",39,0)
+ S:$G(GUID)'="" IPT(1031.6,IEN_",",.07)=GUID              ; GUID/ID
+"RTN","WEBM14",40,0)
+ S:$G(TITLE)'="" IPT(1031.6,IEN_",",1.1)=TITLE            ; DOCUMENT TITLE
+"RTN","WEBM14",41,0)
+ S:$G(FAC)'="" IPT(1031.6,IEN_",",1.2)=FAC                ; SENDING FACILITY/PROVIDER
+"RTN","WEBM14",42,0)
+ S:$G(REC)'="" IPT(1031.6,IEN_",",1.3)=REC                ; INTENDED RECIPIENT
+"RTN","WEBM14",43,0)
+ D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
+"RTN","WEBM14",44,0)
+ S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
+"RTN","WEBM14",45,0)
+ ; *** DOCUMENT CONTENT
+"RTN","WEBM14",46,0)
+ I $D(DOC)>9 K ^TMP($J,"WEBM14 SAVE") D
+"RTN","WEBM14",47,0)
+ . D XY^WEBM2(.DOC,$NA(^TMP($J,"WEBM14 SAVE")))
+"RTN","WEBM14",48,0)
+ . D WP^DIE(1031.6,IEN_",",2,"K","^TMP($J,""WEBM14 SAVE"")")
+"RTN","WEBM14",49,0)
+ . K ^TMP($J,"WEBM14 SAVE")
+"RTN","WEBM14",50,0)
+ Q
+"RTN","WEBM14",51,0)
+ ;
+"RTN","WEBM14",52,0)
+TYP(TYP) ; Create the Document Type and return the IEN
+"RTN","WEBM14",53,0)
+ Q:$G(TYP)="" ""
+"RTN","WEBM14",54,0)
+ N DLAYGO,DIC,DA,X,Y
+"RTN","WEBM14",55,0)
+ S DLAYGO=1031.61,DIC="^WEBM(1031.61,",DIC(0)="XL",X=TYP D ^DIC
+"RTN","WEBM14",56,0)
+ Q $S(Y:+Y,1:"")
+"RTN","WEBM14",57,0)
+ ;
+"RTN","WEBM14",58,0)
+GUID(IEN,GUID) ; Find or Generate a GUID
+"RTN","WEBM14",59,0)
+ I IEN,GUID'="",$O(^WEBM(1031.6,"GUID",GUID,""))=IEN Q GUID
+"RTN","WEBM14",60,0)
+ I 'IEN,GUID'="",'$O(^WEBM(1031.6,"GUID",GUID,"")),GUID?8E1"-"4E1"-"4E1"-"4E1"-"12E Q GUID
+"RTN","WEBM14",61,0)
+ F  Q:$$GEN(.GUID)
+"RTN","WEBM14",62,0)
+ Q GUID
+"RTN","WEBM14",63,0)
+ ;
+"RTN","WEBM14",64,0)
+GEN(GUID) ; Generate and Determine that GUID is unique
+"RTN","WEBM14",65,0)
+ N TST S TST=$$G I '$O(^WEBM(1031.6,"GUID",TST,"")) S GUID=TST Q 1
+"RTN","WEBM14",66,0)
+ Q 0
+"RTN","WEBM14",67,0)
+ ;
+"RTN","WEBM14",68,0)
+G() ; Generate GUID
+"RTN","WEBM14",69,0)
+ ; 21EC2020-3AEA-4069-A2DD-08002B30309D
+"RTN","WEBM14",70,0)
+ N G1,G2,G3,G4,G5 S (G1,G2,G3,G4,G5)=""
+"RTN","WEBM14",71,0)
+ F V="8^G1","4^G2","4^G3","4^G4","12^G5" S @$P(V,U,2)=$$GP(+V,@$P(V,U,2))
+"RTN","WEBM14",72,0)
+ Q G1_"-"_G2_"-"_G3_"-"_G4_"-"_G5
+"RTN","WEBM14",73,0)
+ ;
+"RTN","WEBM14",74,0)
+GP(NUM,VAR) ; Generate GUID Segment
+"RTN","WEBM14",75,0)
+ N I F I=1:1:NUM S VAR=VAR_$R($S($R(9)<5:26,1:9))_U
+"RTN","WEBM14",76,0)
+ S VAR=$E(VAR,1,($L(VAR)-1))
+"RTN","WEBM14",77,0)
+ F I=1:1:NUM S:$L($P(VAR,U,I))=2 $P(VAR,U,I)=$$A($P(VAR,U,I))
+"RTN","WEBM14",78,0)
+ Q $TR(VAR,U)
+"RTN","WEBM14",79,0)
+ ;
+"RTN","WEBM14",80,0)
+A(NUM) ; Return Alpha
+"RTN","WEBM14",81,0)
+ Q $E("ABCDEFGHIJKLMNOPQRSTUVWXYZ",NUM)
+"RTN","WEBM14",82,0)
+ ;
+"RTN","WEBM14",83,0)
+ ; ----------------------------------------------------------------------------
+"RTN","WEBM14",84,0)
+ ;
+"RTN","WEBM14",85,0)
+GD(RET,IEN) ; RPC: WEBM GET IHE CONTENT
+"RTN","WEBM14",86,0)
+ D GET(.RET,$G(IEN),,,1)
+"RTN","WEBM14",87,0)
+ Q
+"RTN","WEBM14",88,0)
+ ;
+"RTN","WEBM14",89,0)
+GET(RET,IEN,DFN,SORT,DOC) ; RPC: WEBM GET IHE DOCS
+"RTN","WEBM14",90,0)
+ ;
+"RTN","WEBM14",91,0)
+ ; IEN^DATE OF ENTRY^DFN^DATE OF CREATION^DATE OF IMPORT/EXPORT^DOCUMENT TYPE^
+"RTN","WEBM14",92,0)
+ ; DIRECTION^GUID/ID^DOCUMENT TITLE^SENDING FACILITY/PROVIDER^INTENDED RECIPIENT
+"RTN","WEBM14",93,0)
+ ;
+"RTN","WEBM14",94,0)
+ N RCT,TS,STRT,END D SORT($G(SORT))
+"RTN","WEBM14",95,0)
+ S RET=$NA(^TMP($J,"WEBM14 GET")) K @RET S @RET@(0)="0^Nothing found."
+"RTN","WEBM14",96,0)
+ I $G(DOC) D  Q
+"RTN","WEBM14",97,0)
+ . Q:'$G(IEN)
+"RTN","WEBM14",98,0)
+ . K @RET D GETS^DIQ(1031.6,IEN_",",2,"E",RET)
+"RTN","WEBM14",99,0)
+ . K @RET@(1031.6,IEN_",",2,"E") S:'$D(@RET) @RET@(0)=""
+"RTN","WEBM14",100,0)
+ I $G(IEN) D  Q
+"RTN","WEBM14",101,0)
+ . Q:'$D(^WEBM(1031.6,IEN))
+"RTN","WEBM14",102,0)
+ . S @RET@(1)=$$FLDS(IEN),@RET@(0)=1
+"RTN","WEBM14",103,0)
+ I '$$CHECK^WEBM2($G(DFN)) S @RET@(0)="0^Patient entry not found." Q
+"RTN","WEBM14",104,0)
+ S (RCT,TS,IEN)=0
+"RTN","WEBM14",105,0)
+ F  S IEN=$O(^WEBM(1031.6,"P",DFN,IEN)) Q:'IEN  D
+"RTN","WEBM14",106,0)
+ . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","WEBM14",107,0)
+ . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","WEBM14",108,0)
+ . S @RET@(RCT)=$$FLDS(IEN)
+"RTN","WEBM14",109,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","WEBM14",110,0)
+ Q
+"RTN","WEBM14",111,0)
+ ;
+"RTN","WEBM14",112,0)
+FLDS(IEN) ; Return Transformed Fields
+"RTN","WEBM14",113,0)
+ N OUT,LINE,FLD,STR
+"RTN","WEBM14",114,0)
+ D GETS^DIQ(1031.6,IEN_",","*","IE","OUT")
+"RTN","WEBM14",115,0)
+ S LINE=$NA(OUT) F  S LINE=$Q(@LINE) Q:LINE=""  S FLD($QS(LINE,3),$QS(LINE,4))=@LINE
+"RTN","WEBM14",116,0)
+ S STR=IEN_U
+"RTN","WEBM14",117,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U            ; DT OF ENTRY
+"RTN","WEBM14",118,0)
+ S STR=STR_FLD(.02,"I")_U                               ; DFN
+"RTN","WEBM14",119,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.03,"I"),"5Z")_U            ; DT CREATION
+"RTN","WEBM14",120,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.04,"I"),"5Z")_U            ; DT IMPORT/EXPORT
+"RTN","WEBM14",121,0)
+ S STR=STR_$$GET1^DIQ(1031.61,FLD(.05,"I")_",",.01)_U  ; DOCUMENT TYPE
+"RTN","WEBM14",122,0)
+ S STR=STR_FLD(.06,"E")_U                               ; DIRECTION
+"RTN","WEBM14",123,0)
+ S STR=STR_FLD(.07,"I")_U                               ; GUID/ID
+"RTN","WEBM14",124,0)
+ S STR=STR_FLD(1.1,"I")_U                               ; DOCUMENT TITLE
+"RTN","WEBM14",125,0)
+ S STR=STR_FLD(1.2,"I")_U                               ; SENDING FACILITY/PROVIDER
+"RTN","WEBM14",126,0)
+ S STR=STR_FLD(1.3,"I")                                 ; INTENDED RECIPIENT
+"RTN","WEBM14",127,0)
+ Q STR
+"RTN","WEBM14",128,0)
+ ;
+"RTN","WEBM14",129,0)
+ ; ---------------------------------- COMMON ----------------------------------
+"RTN","WEBM14",130,0)
+ ;
+"RTN","WEBM14",131,0)
+SORT(SORT) ; Set Start and End
+"RTN","WEBM14",132,0)
+ D S^WEBM2(SORT)
+"RTN","WEBM14",133,0)
+ Q
+"RTN","WEBM15")
+0^1^B104007914
+"RTN","WEBM15",1,0)
+WEBM15 ;DSS/TFF - WEBM PREGNANCY;08/26/2016 16:00
+"RTN","WEBM15",2,0)
+ ;;2.0;WEBM 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","WEBM15",3,0)
+ ;
+"RTN","WEBM15",4,0)
+ ;
+"RTN","WEBM15",5,0)
+ ;
+"RTN","WEBM15",6,0)
+ Q
+"RTN","WEBM15",7,0)
+ ;
+"RTN","WEBM15",8,0)
+PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,HRD,AB) ; RPC: WEBM SAVE PREG DETAILS
+"RTN","WEBM15",9,0)
+ ;
+"RTN","WEBM15",10,0)
+ ; CREATE, UPDATE, or DELETE a PREGNANCY HISTORY record
+"RTN","WEBM15",11,0)
+ ;
+"RTN","WEBM15",12,0)
+ ;    DFN = PATIENT IEN
+"RTN","WEBM15",13,0)
+ ;    IEN = If not null then edit unless ###@ then delete
+"RTN","WEBM15",14,0)
+ ;  DATES = EDC^END^EDD
+"RTN","WEBM15",15,0)
+ ;    TYP = C(urrent),H(istorical)
+"RTN","WEBM15",16,0)
+ ;    FOF = IEN, U(nspecified), S(pouse)
+"RTN","WEBM15",17,0)
+ ;    OBP = OB (VARIABLE POINTER)
+"RTN","WEBM15",18,0)
+ ;          NVA.IEN (NON-VA) (1031.1)
+"RTN","WEBM15",19,0)
+ ;           VA.IEN (VA) (200)
+"RTN","WEBM15",20,0)
+ ;    FAP = FACILITY (VARIABLE POINTER)
+"RTN","WEBM15",21,0)
+ ;          NVA.IEN (NON-VA) (1031.1)
+"RTN","WEBM15",22,0)
+ ;           VA.IEN (VA) (4)
+"RTN","WEBM15",23,0)
+ ;    BAB = NUMBER
+"RTN","WEBM15",24,0)
+ ;            IF 1,2,3 THEN THREE BABIES WILL BE ADDED
+"RTN","WEBM15",25,0)
+ ;            IF 1,2@,3 THEN BABY 2 WILL BE DELETED
+"RTN","WEBM15",26,0)
+ ;            *** + is the next number.
+"RTN","WEBM15",27,0)
+ ;   POST = ADDITIONAL DETAILS (CARET DELIMITED STRING)
+"RTN","WEBM15",28,0)
+ ;            1: GESTATIONAL AGE (#W#D or # (in days))
+"RTN","WEBM15",29,0)
+ ;            2: LENGTH OF LABOR (NUMBER (IN HOURS))
+"RTN","WEBM15",30,0)
+ ;            3: TYPE OF DELIVERY (TEXT 1-20 CHARACTERS)
+"RTN","WEBM15",31,0)
+ ;            4: ANESTHESIA (TEXT 1-50 CHARACTERS)
+"RTN","WEBM15",32,0)
+ ;            5: PRETERM DELIVERY (0:NO,1:YES)
+"RTN","WEBM15",33,0)
+ ;            6: OUTCOME
+"RTN","WEBM15",34,0)
+ ;            7: HIGH RISK FLAG (0:FALSE,1:TRUE)
+"RTN","WEBM15",35,0)
+ ;            8: DAYS IN HOSPITAL
+"RTN","WEBM15",36,0)
+ ;    COM = COMMENTS (ARRAY of Text)
+"RTN","WEBM15",37,0)
+ ;    HRD = HIGH RISK DESCRIPTION (ARRAY of Text)
+"RTN","WEBM15",38,0)
+ ;
+"RTN","WEBM15",39,0)
+ ; X-REFS on EDD and STATUS
+"RTN","WEBM15",40,0)
+ ; If EDD>DT then update WV PATIENT - CURRENTLY PREGNANT (#.13) to 'YES'
+"RTN","WEBM15",41,0)
+ ; and EDC (#.14) with the EDD value
+"RTN","WEBM15",42,0)
+ ;
+"RTN","WEBM15",43,0)
+ ; RETURN: IEN^IEN;BABY|...
+"RTN","WEBM15",44,0)
+ ;         OR -1^MESSAGE
+"RTN","WEBM15",45,0)
+ ;
+"RTN","WEBM15",46,0)
+ N EDC,END,EDD,CT,FLD,IENS,IPT,STR S RET=-1
+"RTN","WEBM15",47,0)
+ I $G(IEN)?.N1"@" D DELETE(+IEN) Q
+"RTN","WEBM15",48,0)
+ S DATES=$G(DATES)
+"RTN","WEBM15",49,0)
+ S EDC=$P(DATES,U),END=$P(DATES,U,2),EDD=$P(DATES,U,3)
+"RTN","WEBM15",50,0)
+ ; *** POST PREGNANCY DATA
+"RTN","WEBM15",51,0)
+ F CT=1:1:8 S FLD("3."_CT)=$P($G(POST),U,CT)
+"RTN","WEBM15",52,0)
+ D:'$G(AB) AB^WEBM2("EDC,END,EDD,FOF,OBP,FAP,BAB,FLD")
+"RTN","WEBM15",53,0)
+ S:$G(EDC)'="@" EDC=$$DT^WEBM2($G(EDC))
+"RTN","WEBM15",54,0)
+ S:$G(END)'="@" END=$$DT^WEBM2($G(END))
+"RTN","WEBM15",55,0)
+ S:$G(EDD)'="@" EDD=$$DT^WEBM2($G(EDD))
+"RTN","WEBM15",56,0)
+ S TYP=$$UP^XLFSTR($E($G(TYP))) S:TYP=""!(TYP="C") TYP=$S(EDD>DT:"C",EDD&(EDD<DT):"H",1:"")
+"RTN","WEBM15",57,0)
+ I '$G(IEN) D  Q:$P(RET,U,2)'=""
+"RTN","WEBM15",58,0)
+ . I '$$CHECK^WEBM2($G(DFN)) S RET="-1^Patient entry not found." Q
+"RTN","WEBM15",59,0)
+ . S IENS="+1,",IPT(1031.13,IENS,.01)=$$NOW^XLFDT               ; DATE RECORDED
+"RTN","WEBM15",60,0)
+ . S:TYP="" TYP="C"
+"RTN","WEBM15",61,0)
+ S:$G(IEN) IENS=+IEN_","
+"RTN","WEBM15",62,0)
+ S:EDC'="" IPT(1031.13,IENS,.02)=EDC                            ; EDC
+"RTN","WEBM15",63,0)
+ I $G(DFN),$D(^DPT(DFN)) S IPT(1031.13,IENS,.03)=DFN            ; PATIENT
+"RTN","WEBM15",64,0)
+ S:TYP'="" IPT(1031.13,IENS,.04)=TYP                            ; STATUS
+"RTN","WEBM15",65,0)
+ S:END'="" IPT(1031.13,IENS,.07)=END                            ; END
+"RTN","WEBM15",66,0)
+ I $G(OBP)'="",$$VPG(.OBP,0) S IPT(1031.13,IENS,.08)=OBP        ; OB
+"RTN","WEBM15",67,0)
+ I $G(FAP)'="",$$VPG(.FAP,1) S IPT(1031.13,IENS,.09)=FAP        ; FACILITY
+"RTN","WEBM15",68,0)
+ S IPT(1031.13,IENS,1.1)=DUZ                                    ; UPDATED BY
+"RTN","WEBM15",69,0)
+ S:$G(FLD(3.1))'="" IPT(1031.13,IENS,3.1)=$$G1^WEBM4(FLD(3.1))  ; GESTATIONAL AGE
+"RTN","WEBM15",70,0)
+ S:$G(FLD(3.2))'="" IPT(1031.13,IENS,3.2)=FLD(3.2)              ; LENGTH OF LABOR
+"RTN","WEBM15",71,0)
+ S:$G(FLD(3.3))'="" IPT(1031.13,IENS,3.3)=FLD(3.3)              ; TYPE OF DELIVERY
+"RTN","WEBM15",72,0)
+ S:$G(FLD(3.4))'="" IPT(1031.13,IENS,3.4)=FLD(3.4)              ; ANESTHESIA
+"RTN","WEBM15",73,0)
+ S FLD(3.5)=$E($$UP^XLFSTR(FLD(3.5)),1)
+"RTN","WEBM15",74,0)
+ S FLD(3.5)=$S(FLD(3.5)="Y"!(FLD(3.5)="T"):1,FLD(3.5)="N"!(FLD(3.5)="F"):0,1:"")
+"RTN","WEBM15",75,0)
+ S:$G(FLD(3.5))'="" IPT(1031.13,IENS,3.5)=FLD(3.5)              ; PRETERM DELIVERY
+"RTN","WEBM15",76,0)
+ S:$G(FLD(3.6))'="" IPT(1031.13,IENS,3.6)=FLD(3.6)              ; OUTCOME
+"RTN","WEBM15",77,0)
+ S:$G(FLD(3.7))'="" IPT(1031.13,IENS,3.7)=FLD(3.7)              ; HIGH RISK FLAG
+"RTN","WEBM15",78,0)
+ S:$G(FLD(3.8))'="" IPT(1031.13,IENS,3.8)=FLD(3.8)              ; DAYS IN HOSPITAL
+"RTN","WEBM15",79,0)
+ D UPDATE^DIE(,"IPT",$S($G(IEN):"",1:"IEN")) K IPT
+"RTN","WEBM15",80,0)
+ S (RET,IEN)=$S($G(IEN):+IEN,$G(IEN(1)):IEN(1),1:"") I 'IEN S RET="-1^Failed to Update." Q
+"RTN","WEBM15",81,0)
+ S DFN=$$GET1^DIQ(1031.13,IEN_",",.03,"I")
+"RTN","WEBM15",82,0)
+ I $G(FOF)'="" D
+"RTN","WEBM15",83,0)
+ . S FOF=$$FOF^WEBM9(DFN,FOF)
+"RTN","WEBM15",84,0)
+ . S IPT(1031.13,IEN_",",.05)=FOF                               ; FATHER OF FETUS/BABY
+"RTN","WEBM15",85,0)
+ S:EDD'="" IPT(1031.13,IEN_",",.06)=$S(EDD="@":"@",1:$$EDD(EDD,IEN))  ; EDD
+"RTN","WEBM15",86,0)
+ D:$D(IPT) UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM15",87,0)
+ ; *** BABIES
+"RTN","WEBM15",88,0)
+ I $G(BAB)'="" D
+"RTN","WEBM15",89,0)
+ . I BAB="+" S RET=IEN_U_$$BAB("+",IEN) Q
+"RTN","WEBM15",90,0)
+ . F CT=1:1:$L(BAB,",") D
+"RTN","WEBM15",91,0)
+ . . I $P(BAB,",",CT) S STR=$G(STR)_$$BAB($P(BAB,",",CT),IEN)_"|"
+"RTN","WEBM15",92,0)
+ . Q:'$D(STR)
+"RTN","WEBM15",93,0)
+ . I $E(STR,$L(STR))="|" S STR=$E(STR,1,($L(STR)-1))
+"RTN","WEBM15",94,0)
+ . S RET=IEN_U_STR
+"RTN","WEBM15",95,0)
+ ; *** COMMENTS
+"RTN","WEBM15",96,0)
+ I $D(COM)>9 K ^TMP($J,"WEBM PREG") D
+"RTN","WEBM15",97,0)
+ . D XY^WEBM2(.COM,$NA(^TMP($J,"WEBM PREG")))
+"RTN","WEBM15",98,0)
+ . D WP^DIE(1031.13,IEN_",",4,"K","^TMP($J,""WEBM PREG"")")
+"RTN","WEBM15",99,0)
+ . K ^TMP($J,"WEBM PREG")
+"RTN","WEBM15",100,0)
+ I '$G(AB)&('$D(COM)!($G(COM(+$O(COM(""))))="")) D
+"RTN","WEBM15",101,0)
+ . K ^TMP($J,"WEBM PREG") S ^TMP($J,"WEBM PREG",1)=""
+"RTN","WEBM15",102,0)
+ . D WP^DIE(1031.13,IEN_",",4,"K","^TMP($J,""WEBM PREG"")")
+"RTN","WEBM15",103,0)
+ . K ^TMP($J,"WEBM PREG")
+"RTN","WEBM15",104,0)
+ ; *** HIGH RISK DESCRIPTION
+"RTN","WEBM15",105,0)
+ I $D(HRD)>9 K ^TMP($J,"WEBM PREG") D
+"RTN","WEBM15",106,0)
+ . D XY^WEBM2(.HRD,$NA(^TMP($J,"WEBM PREG")))
+"RTN","WEBM15",107,0)
+ . D WP^DIE(1031.13,IEN_",",5,"K","^TMP($J,""WEBM PREG"")")
+"RTN","WEBM15",108,0)
+ . K ^TMP($J,"WEBM PREG")
+"RTN","WEBM15",109,0)
+ I '$G(AB)&('$D(HRD)!($G(HRD(+$O(HRD(""))))="")) D
+"RTN","WEBM15",110,0)
+ . K ^TMP($J,"WEBM PREG") S ^TMP($J,"WEBM PREG",1)=""
+"RTN","WEBM15",111,0)
+ . D WP^DIE(1031.13,IEN_",",5,"K","^TMP($J,""WEBM PREG"")")
+"RTN","WEBM15",112,0)
+ . K ^TMP($J,"WEBM PREG")
+"RTN","WEBM15",113,0)
+ Q
+"RTN","WEBM15",114,0)
+ ;
+"RTN","WEBM15",115,0)
+VPG(VAL,TYP) ; Validate variable pointer for Pregnancy File
+"RTN","WEBM15",116,0)
+ Q:VAL="@" 1
+"RTN","WEBM15",117,0)
+ N LOC,IEN,FLG
+"RTN","WEBM15",118,0)
+ S LOC=$P(VAL,"."),IEN=+$P(VAL,".",2)
+"RTN","WEBM15",119,0)
+ Q:"^NVA^VA^"'[(U_LOC_U) 0
+"RTN","WEBM15",120,0)
+ I 'TYP D  Q:$D(FLG) 0
+"RTN","WEBM15",121,0)
+ . I (LOC="NVA"&('$D(^WEBM(1031.1,IEN))))!(LOC="VA"&('$D(^VA(200,IEN)))) S FLG=1
+"RTN","WEBM15",122,0)
+ . S VAL=IEN_";VA(200,"
+"RTN","WEBM15",123,0)
+ I TYP D  Q:$D(FLG) 0
+"RTN","WEBM15",124,0)
+ . I (LOC="NVA"&('$D(^WEBM(1031.1,IEN))))!(LOC="VA"&('$D(^DIC(4,IEN)))) S FLG=1
+"RTN","WEBM15",125,0)
+ . S VAL=IEN_";DIC(4,"
+"RTN","WEBM15",126,0)
+ I LOC="NVA" S VAL=IEN_";WEBM(1031.1,"
+"RTN","WEBM15",127,0)
+ Q 1
+"RTN","WEBM15",128,0)
+ ;
+"RTN","WEBM15",129,0)
+EDD(DATE,PIEN) ; Create an EDD record and return the IEN
+"RTN","WEBM15",130,0)
+ Q:'$G(PIEN) ""
+"RTN","WEBM15",131,0)
+ N DFN,FLG,IPT,IEN
+"RTN","WEBM15",132,0)
+ S DFN=$$GET1^DIQ(1031.13,PIEN_",",.03,"I") Q:'DFN ""
+"RTN","WEBM15",133,0)
+ S FLG=$O(^WEBM(1031.03,"C",DFN,DATE,"")) Q:FLG FLG
+"RTN","WEBM15",134,0)
+ S IPT(1031.03,"+1,",.01)=DATE            ; ESTIMATED DELIVERY DATE
+"RTN","WEBM15",135,0)
+ S IPT(1031.03,"+1,",.02)=DFN             ; PATIENT
+"RTN","WEBM15",136,0)
+ S IPT(1031.03,"+1,",.03)=DUZ             ; ENTERED BY
+"RTN","WEBM15",137,0)
+ S IPT(1031.03,"+1,",.04)=$$NOW^XLFDT     ; DATE ENTERED
+"RTN","WEBM15",138,0)
+ S IPT(1031.03,"+1,",2.1)=PIEN
+"RTN","WEBM15",139,0)
+ D UPDATE^DIE(,"IPT","IEN")
+"RTN","WEBM15",140,0)
+ Q $G(IEN(1))
+"RTN","WEBM15",141,0)
+ ;
+"RTN","WEBM15",142,0)
+BAB(VAL,PIEN) ; Record baby to pregnancy
+"RTN","WEBM15",143,0)
+ N DIK,DA,X,Y,IPT,IEN,NUM
+"RTN","WEBM15",144,0)
+ I '$D(DFN) N DFN S DFN=$$GET1^DIQ(1031.13,PIEN_",",.03,"I")
+"RTN","WEBM15",145,0)
+ Q:'DFN ""
+"RTN","WEBM15",146,0)
+ S IEN=$O(^WEBM(1031.112,"C",DFN,PIEN,+VAL,""))
+"RTN","WEBM15",147,0)
+ I VAL["@" D  Q ""
+"RTN","WEBM15",148,0)
+ . Q:'IEN
+"RTN","WEBM15",149,0)
+ . S DA=IEN,DIK="^WEBM(1031.112," D ^DIK
+"RTN","WEBM15",150,0)
+ . ; *** Delete from Pregnancy
+"RTN","WEBM15",151,0)
+ . S DA=$O(^WEBM(1031.13,PIEN,2,"B",IEN,""))
+"RTN","WEBM15",152,0)
+ . S DA(1)=PIEN,DIK="^WEBM(1031.13,"_DA(1)_",2," D ^DIK
+"RTN","WEBM15",153,0)
+ S:'IEN IEN="+1"
+"RTN","WEBM15",154,0)
+ S (NUM,IPT(1031.112,IEN_",",.01))=$$NUM    ; NUMBER
+"RTN","WEBM15",155,0)
+ S IPT(1031.112,IEN_",",.02)=DFN            ; PATIENT
+"RTN","WEBM15",156,0)
+ S IPT(1031.112,IEN_",",.03)=PIEN           ; PREGNANCY
+"RTN","WEBM15",157,0)
+ K IEN D UPDATE^DIE(,"IPT","IEN") Q:'$G(IEN(1)) ""
+"RTN","WEBM15",158,0)
+ S IPT(1031.132,"+1,"_PIEN_",",.01)=IEN(1)
+"RTN","WEBM15",159,0)
+ D UPDATE^DIE(,"IPT")
+"RTN","WEBM15",160,0)
+ Q IEN(1)_";"_NUM
+"RTN","WEBM15",161,0)
+ ;
+"RTN","WEBM15",162,0)
+NUM() ; Set Baby Number for new entries
+"RTN","WEBM15",163,0)
+ Q $O(^WEBM(1031.112,"C",DFN,PIEN,""),-1)+1
+"RTN","WEBM15",164,0)
+ ;
+"RTN","WEBM15",165,0)
+PREGG(RET,IEN,DFN,SORT,NCOM) ; RPC: WEBM GET PREG DETAILS
+"RTN","WEBM15",166,0)
+ ;
+"RTN","WEBM15",167,0)
+ ; If IEN = "C" get only the CURRENT pregnancy
+"RTN","WEBM15",168,0)
+ ;
+"RTN","WEBM15",169,0)
+ ; RETURN:
+"RTN","WEBM15",170,0)
+ ;  L^IEN^DATE RECORDED^EDC^DFN|PATIENT^STATUS^FOF|(IEN OR IDENTIFIER)^
+"RTN","WEBM15",171,0)
+ ;    EDD^END^OB IEN|OB^FACILITY IEN|FACILITY^
+"RTN","WEBM15",172,0)
+ ;    UPDATED BY IEN|UPDATED BY^GESTATIONAL AGE^LENGTH OF DELIVERY^
+"RTN","WEBM15",173,0)
+ ;    TYPE OF DELIVERY^ANESTHESIA^PRETERM DELIVERY^BIRTH TYPE^
+"RTN","WEBM15",174,0)
+ ;    IEN;BABY#|IEN;BABY#^OUTCOME^HIGH RISK FLAG(0,1)^DAYS IN HOSPITAL
+"RTN","WEBM15",175,0)
+ ;    
+"RTN","WEBM15",176,0)
+ ;  C^IEN^COMMENT
+"RTN","WEBM15",177,0)
+ ;  H^IEN^COMMENT
+"RTN","WEBM15",178,0)
+ ;
+"RTN","WEBM15",179,0)
+ N RCT,TS,DATE,STRT,END D SORT($G(SORT))
+"RTN","WEBM15",180,0)
+ S RET=$NA(^TMP($J,"WEBM PREG")) K @RET S @RET@(0)="0^Nothing found."
+"RTN","WEBM15",181,0)
+ I $G(IEN) D P1(IEN,1) S:$D(@RET@(1)) @RET@(0)=1 Q
+"RTN","WEBM15",182,0)
+ I $G(IEN)="C" Q:'$G(DFN)  D  Q
+"RTN","WEBM15",183,0)
+ . S IEN=$$PG^WEBM4(DFN) Q:'IEN
+"RTN","WEBM15",184,0)
+ . D P1(IEN,1) S @RET@(0)=1
+"RTN","WEBM15",185,0)
+ Q:'$G(DFN)
+"RTN","WEBM15",186,0)
+ I '$$CHECK^WEBM2($G(DFN)) S @RET@(0)="0^Patient entry not found." Q
+"RTN","WEBM15",187,0)
+ S (RCT,TS)=0,DATE=""
+"RTN","WEBM15",188,0)
+ F  S DATE=$O(^WEBM(1031.13,"P",DFN,DATE),-1) Q:DATE=""  D
+"RTN","WEBM15",189,0)
+ . S IEN="" F  S IEN=$O(^WEBM(1031.13,"P",DFN,DATE,IEN),-1) Q:IEN=""  D
+"RTN","WEBM15",190,0)
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","WEBM15",191,0)
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","WEBM15",192,0)
+ . . D P1(IEN,RCT)
+"RTN","WEBM15",193,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","WEBM15",194,0)
+ Q
+"RTN","WEBM15",195,0)
+ ;
+"RTN","WEBM15",196,0)
+P1(IEN,ND) ; Continue
+"RTN","WEBM15",197,0)
+ N OUT,CT,FLD,STR,HT
+"RTN","WEBM15",198,0)
+ D GETS^DIQ(1031.13,IEN_",","*","IE","OUT") Q:'$D(OUT)
+"RTN","WEBM15",199,0)
+ S CT=$NA(OUT) F  S CT=$Q(@CT) Q:CT=""  S FLD($QS(CT,3),$QS(CT,4))=@CT
+"RTN","WEBM15",200,0)
+ S STR="L^"_IEN_U_$$FMTE^XLFDT(FLD(.01,"I"),"5Z")_U         ; DATE RECORDED
+"RTN","WEBM15",201,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.02,"I"),"5Z")_U                ; EDC
+"RTN","WEBM15",202,0)
+ S STR=STR_FLD(.03,"I")_"|"_$$NAME^WEBM2(FLD(.03,"E"))_U    ; PATIENT
+"RTN","WEBM15",203,0)
+ S STR=STR_FLD(.04,"E")_U                                   ; STATUS
+"RTN","WEBM15",204,0)
+ S STR=STR_$$NAME^WEBM2(FLD(.05,"I"))_U                     ; FATHER OF FETUS/BABY
+"RTN","WEBM15",205,0)
+ S STR=STR_$$FMTE^XLFDT($$GET1^DIQ(1031.03,FLD(.06,"I")_",",.01,"I"),"5Z")_U    ; EDD
+"RTN","WEBM15",206,0)
+ S STR=STR_$$FMTE^XLFDT(FLD(.07,"I"),"5Z")_U                ; END
+"RTN","WEBM15",207,0)
+ S STR=STR_$S(FLD(.08,"I"):+FLD(.08,"I"),1:"")_"|"_$$NAME^WEBM2(FLD(.08,"E"))_U  ; OB
+"RTN","WEBM15",208,0)
+ S STR=STR_$S(FLD(.09,"I"):+FLD(.09,"I"),1:"")_"|"_$$NAME^WEBM2(FLD(.09,"E"))_U  ; FACILITY
+"RTN","WEBM15",209,0)
+ S STR=STR_FLD(1.1,"I")_"|"_$$NAME^WEBM2(FLD(1.1,"E"))_U    ; UPDATED BY
+"RTN","WEBM15",210,0)
+ S STR=STR_FLD(3.1,"I")_U                                   ; GESTATIONAL AGE
+"RTN","WEBM15",211,0)
+ S STR=STR_FLD(3.2,"I")_U                                   ; LENGTH OF LABOR
+"RTN","WEBM15",212,0)
+ S STR=STR_FLD(3.3,"I")_U                                   ; TYPE OF DELIVERY
+"RTN","WEBM15",213,0)
+ S STR=STR_FLD(3.4,"I")_U                                   ; ANESTHESIA
+"RTN","WEBM15",214,0)
+ S STR=STR_FLD(3.5,"E")_U                                   ; PRETERM DELIVERY
+"RTN","WEBM15",215,0)
+ S STR=STR_FLD(999.1,"E")_U                                 ; BIRTH TYPE (C)
+"RTN","WEBM15",216,0)
+ S STR=STR_$$FETUS(IEN)_U                                   ; BABIES
+"RTN","WEBM15",217,0)
+ S STR=STR_$$OT^WEBM03(FLD(3.6,"I"))_U                      ; OUTCOME
+"RTN","WEBM15",218,0)
+ S STR=STR_+FLD(3.7,"I")_U                                  ; HIGH RISK FLAG
+"RTN","WEBM15",219,0)
+ S STR=STR_+FLD(3.8,"I")                                    ; DAYS IN HOSPITAL
+"RTN","WEBM15",220,0)
+ S @RET@(ND)=STR Q:$D(NCOM)
+"RTN","WEBM15",221,0)
+ ; *** COMMENTS
+"RTN","WEBM15",222,0)
+ S CT=0 F  S CT=$O(FLD(4,CT)) Q:'CT  S @RET@(ND,CT)="C^"_IEN_U_FLD(4,CT)
+"RTN","WEBM15",223,0)
+ ; *** HIGH RISK DESCRIPTION
+"RTN","WEBM15",224,0)
+ S CT=$O(@RET@(ND,""),-1)
+"RTN","WEBM15",225,0)
+ S HT=0 F  S HT=$O(FLD(5,HT)) Q:'HT  S @RET@(ND,(CT+HT))="H^"_IEN_U_FLD(5,HT)
+"RTN","WEBM15",226,0)
+ Q
+"RTN","WEBM15",227,0)
+ ;
+"RTN","WEBM15",228,0)
+FETUS(IEN) ; Return Baby String as IEN;Number|...
+"RTN","WEBM15",229,0)
+ N OUT,CT,STR
+"RTN","WEBM15",230,0)
+ D GETS^DIQ(1031.13,IEN_",","2*","IE","OUT") Q:'$D(OUT) ""
+"RTN","WEBM15",231,0)
+ S CT="" F  S CT=$O(OUT(1031.132,CT)) Q:CT=""  D
+"RTN","WEBM15",232,0)
+ . S STR=$G(STR)_OUT(1031.132,CT,.01,"I")_";"_OUT(1031.132,CT,.01,"E")_"|"
+"RTN","WEBM15",233,0)
+ I $E(STR,$L(STR))="|" S STR=$E(STR,1,($L(STR)-1))
+"RTN","WEBM15",234,0)
+ Q $G(STR)
+"RTN","WEBM15",235,0)
+ ;
+"RTN","WEBM15",236,0)
+ ;
+"RTN","WEBM15",237,0)
+HPG(RET,RSTRT,RSTOP,SORT) ; RPC: WEBM GET PREG HISTORY RANGE
+"RTN","WEBM15",238,0)
+ ;
+"RTN","WEBM15",239,0)
+ ; Get all historical pregnancies (for all patients) where the End Date falls within a specific range
+"RTN","WEBM15",240,0)
+ ; File 1031.13, Index S - PREGNANCY END  (1031.13,.07)
+"RTN","WEBM15",241,0)
+ ;
+"RTN","WEBM15",242,0)
+ N RCT,TS,DATE,IEN,STRT,END D SORT($G(SORT))
+"RTN","WEBM15",243,0)
+ S RET=$NA(^TMP($J,"WEBM HPG")) K @RET S @RET@(0)="0^Nothing found."
+"RTN","WEBM15",244,0)
+ S RSTRT=$$DT^WEBM2($G(RSTRT)),RSTOP=$$DT^WEBM2($G(RSTOP)) Q:RSTRT=""!(RSTOP="")
+"RTN","WEBM15",245,0)
+ S (RCT,TS)=0,DATE=RSTRT
+"RTN","WEBM15",246,0)
+ F  S DATE=$O(^WEBM(1031.13,"S",DATE)) Q:DATE=""  Q:DATE>=RSTOP  D
+"RTN","WEBM15",247,0)
+ . S IEN=0 F  S IEN=$O(^WEBM(1031.13,"S",DATE,IEN)) Q:'IEN  D
+"RTN","WEBM15",248,0)
+ . . S TS=TS+1 I STRT'="",TS'>STRT Q
+"RTN","WEBM15",249,0)
+ . . S RCT=RCT+1 I END'="",RCT>END Q
+"RTN","WEBM15",250,0)
+ . . S @RET@(RCT)=$$HPG1(IEN)
+"RTN","WEBM15",251,0)
+ S:$G(TS) @RET@(0)=TS
+"RTN","WEBM15",252,0)
+ Q
+"RTN","WEBM15",253,0)
+ ;
+"RTN","WEBM15",254,0)
+HPG1(IEN) ; Continue
+"RTN","WEBM15",255,0)
+ N OUT,STR
+"RTN","WEBM15",256,0)
+ D PREGG^WEBM15(.OUT,IEN,,,1) S STR=$G(@OUT@(1)) K @OUT
+"RTN","WEBM15",257,0)
+ Q STR
+"RTN","WEBM15",258,0)
+ ;
+"RTN","WEBM15",259,0)
+DELETE(IEN) ; Delete Pregnancy
+"RTN","WEBM15",260,0)
+ N DIK,DA,X,Y,CT Q:'$G(IEN)
+"RTN","WEBM15",261,0)
+ ; *** DELETE BABIES
+"RTN","WEBM15",262,0)
+ I $D(^WEBM(1031.13,IEN,2)) D
+"RTN","WEBM15",263,0)
+ . S DIK="^WEBM(1031.112,"
+"RTN","WEBM15",264,0)
+ . S DA=0 F  S DA=$O(^WEBM(1031.13,IEN,2,"B",DA)) Q:'DA  D ^DIK
+"RTN","WEBM15",265,0)
+ ; *** WEBM EDD HISTORY
+"RTN","WEBM15",266,0)
+ ;     WEBM OBSERVATIONS
+"RTN","WEBM15",267,0)
+ S CT=0 F  S CT=$O(^WEBM(1031.03,"P",IEN,CT)) Q:'CT  D
+"RTN","WEBM15",268,0)
+ . S DIK="^WEBM(1031.12,",DA=$$GET1^DIQ(1031.03,CT_",",2.2,"I") D:DA ^DIK
+"RTN","WEBM15",269,0)
+ . S DIK="^WEBM(1031.03,",DA=CT D ^DIK
+"RTN","WEBM15",270,0)
+ ; *** WEBM OBSERVATIONS
+"RTN","WEBM15",271,0)
+ S DIK="^WEBM(1031.12,"
+"RTN","WEBM15",272,0)
+ S DA=0 F  S DA=$O(^WEBM(1031.12,"OBJ",IEN_";WEBM(1031.13,",DA)) Q:'DA  D ^DIK
+"RTN","WEBM15",273,0)
+ ; *** WEBM MCC PATIENT CHECKLIST
+"RTN","WEBM15",274,0)
+ S CT=$NA(^WEBM(1031.76,"C",IEN)) F  S CT=$Q(@CT) Q:CT=""  Q:$QS(CT,3)'=IEN  D
+"RTN","WEBM15",275,0)
+ . S DA(1)=$QS(CT,4),DA=$QS(CT,5),DIK="^WEBM(1031.76,"_DA(1)_",1," D ^DIK
+"RTN","WEBM15",276,0)
+ ; *** WEBM PREGNANCY-NOTE
+"RTN","WEBM15",277,0)
+ S CT=$NA(^WEBM(1031.83,"P",IEN)) F  S CT=$Q(@CT) Q:CT=""  Q:$QS(CT,3)'=IEN  D
+"RTN","WEBM15",278,0)
+ . S DA(1)=$QS(CT,4),DA=$QS(CT,5),DIK="^WEBM(1031.83,"_DA(1)_",1," D ^DIK
+"RTN","WEBM15",279,0)
+ ; *** DELETE the PREGNANCY
+"RTN","WEBM15",280,0)
+ S DIK="^WEBM(1031.13,",DA=+IEN D ^DIK S:'$D(^WEBM(1031.13,+IEN)) RET=1
+"RTN","WEBM15",281,0)
+ Q
+"RTN","WEBM15",282,0)
+ ;
+"RTN","WEBM15",283,0)
+OPTION ; OPTION: WEBM DELETE PREGNANCY
+"RTN","WEBM15",284,0)
+ N DIR,DA,X,Y,DIRUT,IEN
+"RTN","WEBM15",285,0)
+ S DIR("A")="Select PREGNANCY HISTORY to DELETE"
+"RTN","WEBM15",286,0)
+ S DIR(0)="PO^1031.13:AEQ" D ^DIR Q:$D(DIRUT)!(Y<1)  S IEN=+Y
+"RTN","WEBM15",287,0)
+ W !!,$$CJ^XLFSTR("****** ARE YOU SURE? THIS CANNOT BE UNDONE! ******",80),!!
+"RTN","WEBM15",288,0)
+ S DIR("A")="I am sure that I want to DELETE this PREGNANCY HISTORY record"
+"RTN","WEBM15",289,0)
+ S DIR(0)="Y",DIR("B")="NO" D ^DIR Q:$D(DIRUT)!(Y<1)
+"RTN","WEBM15",290,0)
+ D DELETE(IEN)
+"RTN","WEBM15",291,0)
+ Q
+"RTN","WEBM15",292,0)
+ ;
+"RTN","WEBM15",293,0)
+ ; ---------------------------------- COMMON ----------------------------------
+"RTN","WEBM15",294,0)
+ ;
+"RTN","WEBM15",295,0)
+SORT(SORT) ; Set Start and End
+"RTN","WEBM15",296,0)
+ D S^WEBM2(SORT)
+"RTN","WEBM15",297,0)
+ Q
+"RTN","WEBM2")
+0^5^B48511547
+"RTN","WEBM2",1,0)
+WEBM2 ;DSS/TFF - WEBM X-REFERENCES AND UTILITIES;08/26/2016 16:00
+"RTN","WEBM2",2,0)
+ ;;2.0;WEBM 2.0;**6**;Aug 26, 2016;Build 2
+"RTN","WEBM2",3,0)
+ ;
+"RTN","WEBM2",4,0)
+ ;
+"RTN","WEBM2",5,0)
+ ;
+"RTN","WEBM2",6,0)
+ Q
+"RTN","WEBM2",7,0)
+ ;
+"RTN","WEBM2",8,0)
+ ; --------------------------------- CODING -----------------------------------
+"RTN","WEBM2",9,0)
+ ;
+"RTN","WEBM2",10,0)
+ICODE(SYS,CD) ; Transform and lookup code (internal)
+"RTN","WEBM2",11,0)
+ Q:CD="@" CD
+"RTN","WEBM2",12,0)
+ N IEN,CODE,CK
+"RTN","WEBM2",13,0)
+ I SYS="LNC" D
+"RTN","WEBM2",14,0)
+ . S IEN=+CD,CK=$P(CD,"-",2)
+"RTN","WEBM2",15,0)
+ . I $$FIND1^DIC(95.3,,"A",IEN)&($$GET1^DIQ(95.3,IEN_",",15)=CK) D
+"RTN","WEBM2",16,0)
+ . . S CODE=IEN_";LAB(95.3,"
+"RTN","WEBM2",17,0)
+ I SYS="SCT" D
+"RTN","WEBM2",18,0)
+ . S IEN=$$FIND1^DIC(757.02,,"O",CD,"CODE") Q:'IEN
+"RTN","WEBM2",19,0)
+ . I $$GET1^DIQ(757.02,IEN_",",1)=CD D
+"RTN","WEBM2",20,0)
+ . . S CODE=IEN_";LEX(757.02,"
+"RTN","WEBM2",21,0)
+ Q $G(CODE)
+"RTN","WEBM2",22,0)
+ ;
+"RTN","WEBM2",23,0)
+DCODE(Y) ; Display Code
+"RTN","WEBM2",24,0)
+ N FLE S FLE=$TR($P(Y,"(",2),",","")
+"RTN","WEBM2",25,0)
+ I $P(Y,";",2)="LAB(95.3," S Y=$$GET1^DIQ(FLE,+Y_",",.01)
+"RTN","WEBM2",26,0)
+ E  I $P(Y,";",2)="LEX(757.02," S Y=$$GET1^DIQ(FLE,+Y_",",1)
+"RTN","WEBM2",27,0)
+ Q Y
+"RTN","WEBM2",28,0)
+ ;
+"RTN","WEBM2",29,0)
+SCODE(VP,IEN,FLE) ; Set the Code Type
+"RTN","WEBM2",30,0)
+ N TYP,IPT
+"RTN","WEBM2",31,0)
+ S TYP=$S($P(VP,";",2)="LAB(95.3,":"LNC",$P(VP,";",2)="LEX(757.02,":"SCT",1:"OTHER")
+"RTN","WEBM2",32,0)
+ S IPT(FLE,IEN_",",$S(FLE=1031.123:.03,FLE=1031.12:.07,1:""))=TYP
+"RTN","WEBM2",33,0)
+ D UPDATE^DIE(,"IPT")
+"RTN","WEBM2",34,0)
+ Q
+"RTN","WEBM2",35,0)
+ ;
+"RTN","WEBM2",36,0)
+LCODE(CODE,TYP,SOR) ; Log codes that are not found in WEBM CODES (1031.99)
+"RTN","WEBM2",37,0)
+ ; *** USED BY WEBM OBSERVATION
+"RTN","WEBM2",38,0)
+ N IPT,REASON,DLAYGO
+"RTN","WEBM2",39,0)
+ S DLAYGO=1031.99
+"RTN","WEBM2",40,0)
+ S IPT(1031.99,"+1,",.01)=$$NOW^XLFDT
+"RTN","WEBM2",41,0)
+ S IPT(1031.99,"+1,",.02)=CODE
+"RTN","WEBM2",42,0)
+ S IPT(1031.99,"+1,",.03)=TYP
+"RTN","WEBM2",43,0)
+ S IPT(1031.99,"+1,",.04)=DUZ
+"RTN","WEBM2",44,0)
+ S IPT(1031.99,"+1,",.05)=SOR
+"RTN","WEBM2",45,0)
+ S REASON=$S(TYP'="LNC"&(TYP'="SCT"):"Type is not LOINC or SNOMED CT.",1:"Unable to find code as "_TYP_".")
+"RTN","WEBM2",46,0)
+ S IPT(1031.99,"+1,",.06)=REASON
+"RTN","WEBM2",47,0)
+ D UPDATE^DIE(,"IPT")
+"RTN","WEBM2",48,0)
+ Q
+"RTN","WEBM2",49,0)
+ ;
+"RTN","WEBM2",50,0)
+ ; --------------------------------- UTILITIES --------------------------------
+"RTN","WEBM2",51,0)
+ ;
+"RTN","WEBM2",52,0)
+WITHIN(SUB,WOLE,DL) ; Is a string within another
+"RTN","WEBM2",53,0)
+ ; WOLE IS DELIMITED BY CARET
+"RTN","WEBM2",54,0)
+ N CT,FLG S:'$D(DL) DL=U
+"RTN","WEBM2",55,0)
+ F CT=1:1:$L(WOLE,DL) I $P(WOLE,DL,CT)=SUB S FLG=1
+"RTN","WEBM2",56,0)
+ Q +$G(FLG)
+"RTN","WEBM2",57,0)
+ ;
+"RTN","WEBM2",58,0)
+FORMAT(X) ; -- enforce (xxx)xxx-xxxx phone format
+"RTN","WEBM2",59,0)
+ S X=$G(X) I X?1"("3N1")"3N1"-"4N.E Q X
+"RTN","WEBM2",60,0)
+ N P,N,I,Y S P=""
+"RTN","WEBM2",61,0)
+ F I=1:1:$L(X) S N=$E(X,I) I N=+N S P=P_N
+"RTN","WEBM2",62,0)
+ S:$L(P)<10 P=$E("0000000000",1,10-$L(P))_P
+"RTN","WEBM2",63,0)
+ S Y=$S(P:"("_$E(P,1,3)_")"_$E(P,4,6)_"-"_$E(P,7,10),1:"")
+"RTN","WEBM2",64,0)
+ Q Y
+"RTN","WEBM2",65,0)
+ ;
+"RTN","WEBM2",66,0)
+AB(LIST) ; Change null to @ for null means delete
+"RTN","WEBM2",67,0)
+ ;
+"RTN","WEBM2",68,0)
+ ; This API turns non-existing or existing but equal to null variables
+"RTN","WEBM2",69,0)
+ ; into the @. Originally, most WEBM RPCS were set up to ignore null
+"RTN","WEBM2",70,0)
+ ; and use @ as the user's confirmation that they wish to delete data
+"RTN","WEBM2",71,0)
+ ; before using FileMan API's.
+"RTN","WEBM2",72,0)
+ ;
+"RTN","WEBM2",73,0)
+ ; The implementation of this API means that before calling any WEBM
+"RTN","WEBM2",74,0)
+ ; add or update action all values expressing the current state of the
+"RTN","WEBM2",75,0)
+ ; record must be passed - thus a get function may need to be called first
+"RTN","WEBM2",76,0)
+ ; Some methods will include the AB input variable and if set to 1 will
+"RTN","WEBM2",77,0)
+ ; bypass the use of this method.
+"RTN","WEBM2",78,0)
+ ;
+"RTN","WEBM2",79,0)
+ ; THE MCCDASHBOARD expects that by sending a null the user wishes to
+"RTN","WEBM2",80,0)
+ ; delete that associated data element.
+"RTN","WEBM2",81,0)
+ ;
+"RTN","WEBM2",82,0)
+ ; Array inputs are expected to be IDENTIFIER^VALUE PAIRS
+"RTN","WEBM2",83,0)
+ ; EXAMPLE: ARRAY(<SUBSCRIPT>)="ZIP<^ - THE LAST PIECE IS THE VALUE>66666"
+"RTN","WEBM2",84,0)
+ ;
+"RTN","WEBM2",85,0)
+ N I,VAR,CT
+"RTN","WEBM2",86,0)
+ F I=1:1:$L(LIST,",") S VAR=$P(LIST,",",I) D
+"RTN","WEBM2",87,0)
+ . I '$D(@VAR) S @VAR="@"
+"RTN","WEBM2",88,0)
+ . E  I $D(@VAR)=10 S CT=$NA(@VAR) F  S CT=$Q(@CT) Q:CT=""  D
+"RTN","WEBM2",89,0)
+ . . I $P(@CT,U,$L(@CT,U))="" S $P(@CT,U,$L(@CT,U))="@"
+"RTN","WEBM2",90,0)
+ . E  I $D(@VAR)=1&(@VAR="") S @VAR="@"
+"RTN","WEBM2",91,0)
+ Q
+"RTN","WEBM2",92,0)
+ ;
+"RTN","WEBM2",93,0)
+STORE ; Save FileMan variables for restoration
+"RTN","WEBM2",94,0)
+ M:$D(DO) VFDDO=DO
+"RTN","WEBM2",95,0)
+ M:$D(DI) VFDDI=DI
+"RTN","WEBM2",96,0)
+ M:$D(DQ) VFDDQ=DQ
+"RTN","WEBM2",97,0)
+ M:$D(DC) VFDDC=DC
+"RTN","WEBM2",98,0)
+ M:$D(DM) VFDDM=DM
+"RTN","WEBM2",99,0)
+ M:$D(DK) VFDDK=DK
+"RTN","WEBM2",100,0)
+ M:$D(DP) VFDDP=DP
+"RTN","WEBM2",101,0)
+ M:$D(DL) VFDDL=DL
+"RTN","WEBM2",102,0)
+ M:$D(DV) VFDDV=DV
+"RTN","WEBM2",103,0)
+ M:$D(DIU) VFDDIU=DIU
+"RTN","WEBM2",104,0)
+ Q
+"RTN","WEBM2",105,0)
+ ;
+"RTN","WEBM2",106,0)
+GETVAR ; Restore FileMan variables
+"RTN","WEBM2",107,0)
+ M:$D(VFDDO) DO=VFDDO
+"RTN","WEBM2",108,0)
+ M:$D(VFDDI) DI=VFDDI
+"RTN","WEBM2",109,0)
+ M:$D(VFDDQ) DQ=VFDDQ
+"RTN","WEBM2",110,0)
+ M:$D(VFDDC) DC=VFDDC
+"RTN","WEBM2",111,0)
+ M:$D(VFDDM) DM=VFDDM
+"RTN","WEBM2",112,0)
+ M:$D(VFDDK) DK=VFDDK
+"RTN","WEBM2",113,0)
+ M:$D(VFDDP) DP=VFDDP
+"RTN","WEBM2",114,0)
+ M:$D(VFDDL) DL=VFDDL
+"RTN","WEBM2",115,0)
+ M:$D(VFDDV) DV=VFDDV
+"RTN","WEBM2",116,0)
+ M:$D(VFDDIU) DIU=VFDDIU
+"RTN","WEBM2",117,0)
+ Q
+"RTN","WEBM2",118,0)
+ ;
+"RTN","WEBM2",119,0)
+CHECK(DFN) ; Check for patient in WEBM PATIENT
+"RTN","WEBM2",120,0)
+ N VFDDO,VFDDI,VFDDQ,VFDDC,VFDDM,VFDDK,VFDDP,VFDDL,VFDDV,VFDDIU
+"RTN","WEBM2",121,0)
+ D STORE
+"RTN","WEBM2",122,0)
+ N DIC,DA,X,Y,DLAYGO S DLAYGO=1031
+"RTN","WEBM2",123,0)
+ S DIC="^WEBM(1031,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
+"RTN","WEBM2",124,0)
+ ; *** ADD PATIENT TO WV PATIENT (790)
+"RTN","WEBM2",125,0)
+ N DIC,DA,X,Y,DLAYGO S DLAYGO=790
+"RTN","WEBM2",126,0)
+ S DIC="^WV(790,",DIC(0)="XL",X="`"_DFN D ^DIC I +Y<1 D GETVAR Q 0
+"RTN","WEBM2",127,0)
+ D GETVAR
+"RTN","WEBM2",128,0)
+ Q 1
+"RTN","WEBM2",129,0)
+ ;
+"RTN","WEBM2",130,0)
+NAME(NAM) ; Transform NAME,NAME to title case thats Name,Name
+"RTN","WEBM2",131,0)
+ I NAM["," S NAM=$$TITLE^XLFSTR($P(NAM,","))_","_$$TITLE^XLFSTR($P(NAM,",",2))
+"RTN","WEBM2",132,0)
+ E  S NAM=$$TITLE^XLFSTR(NAM)
+"RTN","WEBM2",133,0)
+ Q NAM
+"RTN","WEBM2",134,0)
+ ;
+"RTN","WEBM2",135,0)
+VALID(FLE,FLD,IENS,VAL) ; Check if a value is valid
+"RTN","WEBM2",136,0)
+ N VALID,ERR
+"RTN","WEBM2",137,0)
+ D VAL^DIE($G(FLE),$G(IENS),$G(FLD),,$G(VAL),.VALID,,"ERR")
+"RTN","WEBM2",138,0)
+ I VALID["^"!($D(ERR)) Q 0
+"RTN","WEBM2",139,0)
+ Q 1
+"RTN","WEBM2",140,0)
+ ;
+"RTN","WEBM2",141,0)
+DT(X) ; Validate and attempt to return a valid date
+"RTN","WEBM2",142,0)
+ N %DT S %DT="ST" D ^%DT
+"RTN","WEBM2",143,0)
+ I +Y<1 S X=$$DT1(X) S:+X'=-1 Y=X I +X<1 S X=$P(X,U,2) S %DT="STX" D ^%DT
+"RTN","WEBM2",144,0)
+ Q $S(Y'<1:Y,1:"")
+"RTN","WEBM2",145,0)
+ ;
+"RTN","WEBM2",146,0)
+DT1(VAL) ; Translate external date time to FM date time
+"RTN","WEBM2",147,0)
+ ;
+"RTN","WEBM2",148,0)
+ ; Converts these 9/23/2004 10:53:25 AM
+"RTN","WEBM2",149,0)
+ ;                09/03/2014 21:00:00
+"RTN","WEBM2",150,0)
+ ;                2009-10-22 05:00:00.0
+"RTN","WEBM2",151,0)
+ ;                10-22-2009 05:00:00.0
+"RTN","WEBM2",152,0)
+ ;                OCT 12,(, )2012 12:10 AM
+"RTN","WEBM2",153,0)
+ ;                OCT 12,(, )2012 13:00
+"RTN","WEBM2",154,0)
+ ;                July 26, 2014 @ 10
+"RTN","WEBM2",155,0)
+ ;                02-OCT-2014 13.29.28
+"RTN","WEBM2",156,0)
+ ;
+"RTN","WEBM2",157,0)
+ ; The FM call below does not work with the time portions
+"RTN","WEBM2",158,0)
+ ; of the above format
+"RTN","WEBM2",159,0)
+ ; ------------------------------------------------------
+"RTN","WEBM2",160,0)
+ ; D DT^DILF("E","DEC 12,2014",.RESULT)
+"RTN","WEBM2",161,0)
+ ; RESULT=3141212
+"RTN","WEBM2",162,0)
+ ; RESULT(0)="DEC 12, 2014"
+"RTN","WEBM2",163,0)
+ ;
+"RTN","WEBM2",164,0)
+ Q:VAL="" ""
+"RTN","WEBM2",165,0)
+ I $$FMTH^XLFDT(VAL)'=-1 Q VAL
+"RTN","WEBM2",166,0)
+ N DATE,FLG,TIME S DATE=-1,FLG=0
+"RTN","WEBM2",167,0)
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N S FLG=1
+"RTN","WEBM2",168,0)
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1" ".2A S FLG=1
+"RTN","WEBM2",169,0)
+ I $P(VAL," ",2)?.2N.1":".2N.1":".2N.1".".2N S FLG=1
+"RTN","WEBM2",170,0)
+ I VAL?3A1" "1.2N1","4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=2
+"RTN","WEBM2",171,0)
+ I VAL?3A1" "1.2N1","1" "4N.1" ".2N.1":".2N.1":".2N.1" ".2A S FLG=3
+"RTN","WEBM2",172,0)
+ I VAL?1.A1" "1.2N1","1" "4N.1" ".1"@".1" ".2N.1":".2N S FLG=4
+"RTN","WEBM2",173,0)
+ I VAL?2N1"-"3A1"-"4N.1" ".2N.1".".2N.1".".2N S FLG=5
+"RTN","WEBM2",174,0)
+ I FLG=0 D DT^DILF("E",VAL,.DATE)
+"RTN","WEBM2",175,0)
+ I FLG=1 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($P(VAL," ",2,99))
+"RTN","WEBM2",176,0)
+ I FLG=2 D DT^DILF("E",$P(VAL," ",1,2),.DATE) S TIME=$$DT2($P(VAL," ",3,99))
+"RTN","WEBM2",177,0)
+ I FLG=3 D DT^DILF("E",$P(VAL," ",1,3),.DATE) S TIME=$$DT2($P(VAL," ",4,99))
+"RTN","WEBM2",178,0)
+ I FLG=4 D DT^DILF("E",$$TRIM^XLFSTR($P(VAL,"@")),.DATE) D
+"RTN","WEBM2",179,0)
+ . S TIME=$$DT2($$TRIM^XLFSTR($P(VAL,"@",2)))
+"RTN","WEBM2",180,0)
+ I FLG=5 D DT^DILF("E",$P(VAL," "),.DATE) S TIME=$$DT2($TR($P(VAL," ",2,99),".",":"))
+"RTN","WEBM2",181,0)
+ I DATE=-1 Q -1_U_VAL
+"RTN","WEBM2",182,0)
+ Q DATE_$S($G(TIME)'="":"."_TIME,1:"")
+"RTN","WEBM2",183,0)
+ ;
+"RTN","WEBM2",184,0)
+DT2(TM) ; Convert Time
+"RTN","WEBM2",185,0)
+ N SEC,MIN,HR S TM=$$TRIM^XLFSTR($$UP^XLFSTR(TM))
+"RTN","WEBM2",186,0)
+ I TM'[":",TM?.N D  Q $G(TM)
+"RTN","WEBM2",187,0)
+ . F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
+"RTN","WEBM2",188,0)
+ Q:TM'[":" ""
+"RTN","WEBM2",189,0)
+ S SEC=$S(TM[" ":$P($P(TM,":",3)," "),TM[".":$P($P(TM,":",3),"."),1:$P(TM,":",3))
+"RTN","WEBM2",190,0)
+ S SEC=$$DT3(SEC) S:$L(SEC)=1 SEC=0_SEC
+"RTN","WEBM2",191,0)
+ S MIN=$P($P(TM,":",2)," "),MIN=$$DT3(MIN) S:$L(MIN)=1 MIN=0_MIN
+"RTN","WEBM2",192,0)
+ S HR=$P($P(TM,":")," "),HR=$$DT3(HR) S:$L(HR)=1 HR=0_HR
+"RTN","WEBM2",193,0)
+ I HR=12&((TM["AM")!($E(TM,$L(TM)-1,$L(TM))="AM")) S HR="00"
+"RTN","WEBM2",194,0)
+ I HR<12&((TM["PM")!($E(TM,$L(TM)-1,$L(TM))="PM")) S HR=HR+12
+"RTN","WEBM2",195,0)
+ S TM=HR_MIN_SEC
+"RTN","WEBM2",196,0)
+ F I=$L(TM):-1:1 Q:$E(TM,I)'=0  I $E(TM,I)=0 S TM=$E(TM,1,I-1)
+"RTN","WEBM2",197,0)
+ Q $S($G(TM)'="":TM,1:"")
+"RTN","WEBM2",198,0)
+ ;
+"RTN","WEBM2",199,0)
+DT3(SEG) ; Only Numbers
+"RTN","WEBM2",200,0)
+ Q $$TRIM^XLFSTR($TR($$UP^XLFSTR(SEG),"ABCDEFGHIJKLMNOPQRSTUVWXYZ",""))
+"RTN","WEBM2",201,0)
+ ;
+"RTN","WEBM2",202,0)
+M(VAL) ; Minus One
+"RTN","WEBM2",203,0)
+ I VAL?.N S VAL=VAL-1 Q VAL
+"RTN","WEBM2",204,0)
+ I VAL?.A Q $$ALPHA(VAL)
+"RTN","WEBM2",205,0)
+ Q VAL
+"RTN","WEBM2",206,0)
+ ;
+"RTN","WEBM2",207,0)
+ALPHA(AL) ; Return the Prior Alpha
+"RTN","WEBM2",208,0)
+ N VAL,I,X
+"RTN","WEBM2",209,0)
+ S VAL="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+"RTN","WEBM2",210,0)
+ F I=1:1:26 I $E(VAL,I)=AL S X=I-1 Q
+"RTN","WEBM2",211,0)
+ Q $E(VAL,$G(X))
+"RTN","WEBM2",212,0)
+ ;
+"RTN","WEBM2",213,0)
+KEY(VAL,KEY) ; Value to Key
+"RTN","WEBM2",214,0)
+ I KEY="" Q 0
+"RTN","WEBM2",215,0)
+ I $E(VAL,1,$L(KEY))'=KEY Q 1
+"RTN","WEBM2",216,0)
+ Q 0
+"RTN","WEBM2",217,0)
+ ;
+"RTN","WEBM2",218,0)
+PAR ; Check Parameters
+"RTN","WEBM2",219,0)
+ D:$$GET^XPAR("SYS","WEBM EVAL LABS NOW") TASK("LAB^WEBM5")
+"RTN","WEBM2",220,0)
+ D:$$GET^XPAR("SYS","WEBM EVAL PROBLEMS NOW") TASK("PROBLEM^WEBM5")
+"RTN","WEBM2",221,0)
+ D:$$GET^XPAR("SYS","WEBM EVAL CONSULTS NOW") TASK("CONSULT^WEBM5")
+"RTN","WEBM2",222,0)
+ Q
+"RTN","WEBM2",223,0)
+ ;
+"RTN","WEBM2",224,0)
+TASK(ZTRTN) ; TaskMan
+"RTN","WEBM2",225,0)
+ N ZTDESC,ZTDTH,ZTIO,ZTUCI,ZTCPU,ZTPRI,ZTSAVE,ZTKIL,ZTSYNC,ZTSK
+"RTN","WEBM2",226,0)
+ S ZTDESC="WEBM (MATERNITY TRACKER) Trigger on "_$P(ZTRTN,U)
+"RTN","WEBM2",227,0)
+ S ZTDTH=$$FMTH^XLFDT($$NOW^XLFDT),ZTIO="NULL",ZTPRI=10
+"RTN","WEBM2",228,0)
+ D ^%ZTLOAD
+"RTN","WEBM2",229,0)
+ Q
+"RTN","WEBM2",230,0)
+ ;
+"RTN","WEBM2",231,0)
+XY(IN,GL) ; Rebuild Array as Global staring with 1
+"RTN","WEBM2",232,0)
+ N I S I="" F  S I=$O(IN(I)) Q:I=""  S @GL@(I+1)=IN(I)
+"RTN","WEBM2",233,0)
+ Q
+"RTN","WEBM2",234,0)
+ ;
+"RTN","WEBM2",235,0)
+ ; --------------------------------- SORTING ----------------------------------
+"RTN","WEBM2",236,0)
+ ;
+"RTN","WEBM2",237,0)
+FN(P,C) ; Get the next record by dashboard page and count forward
+"RTN","WEBM2",238,0)
+ Q:P<2 0
+"RTN","WEBM2",239,0)
+ Q C*(P-1)
+"RTN","WEBM2",240,0)
+ ;
+"RTN","WEBM2",241,0)
+S(SORT) ; Set Start and End
+"RTN","WEBM2",242,0)
+ ;S STRT="",END="",SORT=$G(SORT),SORT=$G(SORT,"1,500")
+"RTN","WEBM2",243,0)
+ ;S:'(SORT?.N1",".N) SORT="1,500" S:$P(SORT,",",2)>500 SORT=$P(SORT,",")_",500"
+"RTN","WEBM2",244,0)
+ S STRT="",END="",SORT=$G(SORT)
+"RTN","WEBM2",245,0)
+ S STRT=$$FN($P(SORT,","),$P(SORT,",",2)),END=$P(SORT,",",2)
+"RTN","WEBM2",246,0)
+ Q
+"VER")
+8.0^22.0
+**END**
+**END**

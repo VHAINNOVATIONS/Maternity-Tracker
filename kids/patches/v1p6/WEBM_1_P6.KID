@@ -1,0 +1,864 @@
+KIDS Distribution saved on Aug 04, 2016@16:59:08
+WEBM*1.0*6
+**KIDS**:WEBM*1.0*6^
+
+**INSTALL NAME**
+WEBM*1.0*6
+"BLD",9899,0)
+WEBM*1.0*6^^0^3160804^n
+"BLD",9899,4,0)
+^9.64PA^1031.33^3
+"BLD",9899,4,1031.31,0)
+1031.31
+"BLD",9899,4,1031.31,222)
+y^y^f^^^^n
+"BLD",9899,4,1031.33,0)
+1031.33
+"BLD",9899,4,1031.33,222)
+y^y^f^^^^n
+"BLD",9899,4,1031.35,0)
+1031.35
+"BLD",9899,4,1031.35,222)
+y^y^f^^^^n
+"BLD",9899,4,"B",1031.31,1031.31)
+
+"BLD",9899,4,"B",1031.33,1031.33)
+
+"BLD",9899,4,"B",1031.35,1031.35)
+
+"BLD",9899,6.3)
+3
+"BLD",9899,"INI")
+PRE^WEBM0P
+"BLD",9899,"INID")
+^^y
+"BLD",9899,"KRN",0)
+^9.67PA^779.2^20
+"BLD",9899,"KRN",.4,0)
+.4
+"BLD",9899,"KRN",.401,0)
+.401
+"BLD",9899,"KRN",.402,0)
+.402
+"BLD",9899,"KRN",.403,0)
+.403
+"BLD",9899,"KRN",.5,0)
+.5
+"BLD",9899,"KRN",.84,0)
+.84
+"BLD",9899,"KRN",3.6,0)
+3.6
+"BLD",9899,"KRN",3.8,0)
+3.8
+"BLD",9899,"KRN",9.2,0)
+9.2
+"BLD",9899,"KRN",9.8,0)
+9.8
+"BLD",9899,"KRN",9.8,"NM",0)
+^9.68A^1^1
+"BLD",9899,"KRN",9.8,"NM",1,0)
+WEBM5^^0^B19640168
+"BLD",9899,"KRN",9.8,"NM","B","WEBM5",1)
+
+"BLD",9899,"KRN",19,0)
+19
+"BLD",9899,"KRN",19.1,0)
+19.1
+"BLD",9899,"KRN",101,0)
+101
+"BLD",9899,"KRN",409.61,0)
+409.61
+"BLD",9899,"KRN",771,0)
+771
+"BLD",9899,"KRN",779.2,0)
+779.2
+"BLD",9899,"KRN",870,0)
+870
+"BLD",9899,"KRN",8989.51,0)
+8989.51
+"BLD",9899,"KRN",8989.52,0)
+8989.52
+"BLD",9899,"KRN",8994,0)
+8994
+"BLD",9899,"KRN","B",.4,.4)
+
+"BLD",9899,"KRN","B",.401,.401)
+
+"BLD",9899,"KRN","B",.402,.402)
+
+"BLD",9899,"KRN","B",.403,.403)
+
+"BLD",9899,"KRN","B",.5,.5)
+
+"BLD",9899,"KRN","B",.84,.84)
+
+"BLD",9899,"KRN","B",3.6,3.6)
+
+"BLD",9899,"KRN","B",3.8,3.8)
+
+"BLD",9899,"KRN","B",9.2,9.2)
+
+"BLD",9899,"KRN","B",9.8,9.8)
+
+"BLD",9899,"KRN","B",19,19)
+
+"BLD",9899,"KRN","B",19.1,19.1)
+
+"BLD",9899,"KRN","B",101,101)
+
+"BLD",9899,"KRN","B",409.61,409.61)
+
+"BLD",9899,"KRN","B",771,771)
+
+"BLD",9899,"KRN","B",779.2,779.2)
+
+"BLD",9899,"KRN","B",870,870)
+
+"BLD",9899,"KRN","B",8989.51,8989.51)
+
+"BLD",9899,"KRN","B",8989.52,8989.52)
+
+"BLD",9899,"KRN","B",8994,8994)
+
+"FIA",1031.31)
+WEBM TRIGGER PROBLEMS
+"FIA",1031.31,0)
+^WEBM(1031.31,
+"FIA",1031.31,0,0)
+1031.31V
+"FIA",1031.31,0,1)
+y^y^f^^^^n
+"FIA",1031.31,0,10)
+
+"FIA",1031.31,0,11)
+
+"FIA",1031.31,0,"RLRO")
+
+"FIA",1031.31,1031.31)
+0
+"FIA",1031.31,1031.312)
+0
+"FIA",1031.33)
+WEBM TRIGGER LABS
+"FIA",1031.33,0)
+^WEBM(1031.33,
+"FIA",1031.33,0,0)
+1031.33P
+"FIA",1031.33,0,1)
+y^y^f^^^^n
+"FIA",1031.33,0,10)
+
+"FIA",1031.33,0,11)
+
+"FIA",1031.33,0,"RLRO")
+
+"FIA",1031.33,1031.33)
+0
+"FIA",1031.33,1031.331)
+0
+"FIA",1031.33,1031.332)
+0
+"FIA",1031.35)
+WEBM TRIGGER CONSULTS
+"FIA",1031.35,0)
+^WEBM(1031.35,
+"FIA",1031.35,0,0)
+1031.35P
+"FIA",1031.35,0,1)
+y^y^f^^^^n
+"FIA",1031.35,0,10)
+
+"FIA",1031.35,0,11)
+
+"FIA",1031.35,0,"RLRO")
+
+"FIA",1031.35,1031.35)
+0
+"FIA",1031.35,1031.352)
+0
+"INI")
+PRE^WEBM0P
+"IX",1031.31,1031.312,"C",0)
+1031.312^C^Continue from Last for each type for each Patient.^R^^R^IR^I^1031.312^^^^^LS
+"IX",1031.31,1031.312,"C",1)
+S ^WEBM(1031.31,DA(1),2,"C",X(1),X(2),$E(X(3),1,30),DA)=""
+"IX",1031.31,1031.312,"C",2)
+K ^WEBM(1031.31,DA(1),2,"C",X(1),X(2),$E(X(3),1,30),DA)
+"IX",1031.31,1031.312,"C",2.5)
+K ^WEBM(1031.31,DA(1),2,"C")
+"IX",1031.31,1031.312,"C",11.1,0)
+^.114IA^3^3
+"IX",1031.31,1031.312,"C",11.1,1,0)
+1^F^1031.312^.01^^1^F
+"IX",1031.31,1031.312,"C",11.1,1,3)
+
+"IX",1031.31,1031.312,"C",11.1,2,0)
+2^F^1031.312^.02^^2^F
+"IX",1031.31,1031.312,"C",11.1,2,3)
+
+"IX",1031.31,1031.312,"C",11.1,3,0)
+3^F^1031.312^.03^30^3^F
+"IX",1031.31,1031.312,"C",11.1,3,3)
+
+"IX",1031.33,1031.332,"C",0)
+1031.332^C^Continue from Last for each type for each Patient.^R^^R^IR^I^1031.332^^^^^LS
+"IX",1031.33,1031.332,"C",1)
+S ^WEBM(1031.33,DA(1),2,"C",X(1),X(2),X(3),DA)=""
+"IX",1031.33,1031.332,"C",2)
+K ^WEBM(1031.33,DA(1),2,"C",X(1),X(2),X(3),DA)
+"IX",1031.33,1031.332,"C",2.5)
+K ^WEBM(1031.33,DA(1),2,"C")
+"IX",1031.33,1031.332,"C",11.1,0)
+^.114IA^3^3
+"IX",1031.33,1031.332,"C",11.1,1,0)
+1^F^1031.332^.01^^1^F
+"IX",1031.33,1031.332,"C",11.1,1,3)
+
+"IX",1031.33,1031.332,"C",11.1,2,0)
+2^F^1031.332^.02^^2^F
+"IX",1031.33,1031.332,"C",11.1,2,3)
+
+"IX",1031.33,1031.332,"C",11.1,3,0)
+3^F^1031.332^.03^^3^F
+"IX",1031.33,1031.332,"C",11.1,3,3)
+
+"IX",1031.35,1031.35,"C",0)
+1031.35^C^IEN,STATUS^R^^R^IR^W^1031.352^^^^^LS
+"IX",1031.35,1031.35,"C",1)
+S ^WEBM(1031.35,"C",X(1),X(2),DA(1),DA)=""
+"IX",1031.35,1031.35,"C",2)
+K ^WEBM(1031.35,"C",X(1),X(2),DA(1),DA)
+"IX",1031.35,1031.35,"C",2.5)
+K ^WEBM(1031.35,"C")
+"IX",1031.35,1031.35,"C",11.1,0)
+^.114IA^2^2
+"IX",1031.35,1031.35,"C",11.1,1,0)
+1^F^1031.352^.01^^1^F
+"IX",1031.35,1031.35,"C",11.1,1,3)
+
+"IX",1031.35,1031.35,"C",11.1,2,0)
+2^F^1031.352^.02^^2^F
+"IX",1031.35,1031.35,"C",11.1,2,3)
+
+"MBREQ")
+0
+"QUES","XPF1",0)
+Y
+"QUES","XPF1","??")
+^D REP^XPDH
+"QUES","XPF1","A")
+Shall I write over your |FLAG| File
+"QUES","XPF1","B")
+YES
+"QUES","XPF1","M")
+D XPF1^XPDIQ
+"QUES","XPF2",0)
+Y
+"QUES","XPF2","??")
+^D DTA^XPDH
+"QUES","XPF2","A")
+Want my data |FLAG| yours
+"QUES","XPF2","B")
+YES
+"QUES","XPF2","M")
+D XPF2^XPDIQ
+"QUES","XPI1",0)
+YO
+"QUES","XPI1","??")
+^D INHIBIT^XPDH
+"QUES","XPI1","A")
+Want KIDS to INHIBIT LOGONs during the install
+"QUES","XPI1","B")
+NO
+"QUES","XPI1","M")
+D XPI1^XPDIQ
+"QUES","XPM1",0)
+PO^VA(200,:EM
+"QUES","XPM1","??")
+^D MG^XPDH
+"QUES","XPM1","A")
+Enter the Coordinator for Mail Group '|FLAG|'
+"QUES","XPM1","B")
+
+"QUES","XPM1","M")
+D XPM1^XPDIQ
+"QUES","XPO1",0)
+Y
+"QUES","XPO1","??")
+^D MENU^XPDH
+"QUES","XPO1","A")
+Want KIDS to Rebuild Menu Trees Upon Completion of Install
+"QUES","XPO1","B")
+NO
+"QUES","XPO1","M")
+D XPO1^XPDIQ
+"QUES","XPZ1",0)
+Y
+"QUES","XPZ1","??")
+^D OPT^XPDH
+"QUES","XPZ1","A")
+Want to DISABLE Scheduled Options, Menu Options, and Protocols
+"QUES","XPZ1","B")
+NO
+"QUES","XPZ1","M")
+D XPZ1^XPDIQ
+"QUES","XPZ2",0)
+Y
+"QUES","XPZ2","??")
+^D RTN^XPDH
+"QUES","XPZ2","A")
+Want to MOVE routines to other CPUs
+"QUES","XPZ2","B")
+NO
+"QUES","XPZ2","M")
+D XPZ2^XPDIQ
+"RTN")
+2
+"RTN","WEBM0P")
+0^^B1572939
+"RTN","WEBM0P",1,0)
+WEBM0P ;DSS/TFF - PRE INSTALL;06/28/2013 15:19
+"RTN","WEBM0P",2,0)
+ ;;1.0;WEBM 1.0;**1,2,5,6**;Feb 06, 2015;Build 3
+"RTN","WEBM0P",3,0)
+ ;Copyright 1995-2015,Document Storage Systems Inc. All Rights Reserved
+"RTN","WEBM0P",4,0)
+ ;
+"RTN","WEBM0P",5,0)
+ ;
+"RTN","WEBM0P",6,0)
+ ;
+"RTN","WEBM0P",7,0)
+ ;
+"RTN","WEBM0P",8,0)
+ Q
+"RTN","WEBM0P",9,0)
+ ;
+"RTN","WEBM0P",10,0)
+PRE ; PRE-INSTALL ACTIONS
+"RTN","WEBM0P",11,0)
+ N DIU D BMES^XPDUTL("  Deleting data dictionaries:")
+"RTN","WEBM0P",12,0)
+ ; ----------------------------------------------------------------
+"RTN","WEBM0P",13,0)
+ K ^WEBM(1031.31) S ^WEBM(1031.31,0)="WEBM TRIGGER PROBLEMS^1031.31V^^"
+"RTN","WEBM0P",14,0)
+ S DIU=1031.31,DIU(0)="T" D EN^DIU2
+"RTN","WEBM0P",15,0)
+ D MES^XPDUTL("    WEBM TRIGGER PROBLEMS (#1031.31)")
+"RTN","WEBM0P",16,0)
+ ; ----------------------------------------------------------------
+"RTN","WEBM0P",17,0)
+ K ^WEBM(1031.33) S ^WEBM(1031.33,0)="WEBM TRIGGER LABS^1031.33P^^"
+"RTN","WEBM0P",18,0)
+ S DIU=1031.33,DIU(0)="T" D EN^DIU2
+"RTN","WEBM0P",19,0)
+ D MES^XPDUTL("    WEBM TRIGGER LABS (#1031.33)")
+"RTN","WEBM0P",20,0)
+ ; ----------------------------------------------------------------
+"RTN","WEBM0P",21,0)
+ K ^WEBM(1031.35) S ^WEBM(1031.35,0)="WEBM TRIGGER CONSULTS^1031.35P^^"
+"RTN","WEBM0P",22,0)
+ S DIU=1031.35,DIU(0)="T" D EN^DIU2
+"RTN","WEBM0P",23,0)
+ D MES^XPDUTL("    WEBM TRIGGER CONSULTS (#1031.35)")
+"RTN","WEBM0P",24,0)
+ Q
+"RTN","WEBM5")
+0^1^B19640168
+"RTN","WEBM5",1,0)
+WEBM5 ;DSS/TFF - WEBM TRIGGERS;06/28/2013 15:19
+"RTN","WEBM5",2,0)
+ ;;1.0;WEBM 1.0;**1,2,5,6**;Feb 06, 2015;Build 3
+"RTN","WEBM5",3,0)
+ ;
+"RTN","WEBM5",4,0)
+ ; External References      DBIA#
+"RTN","WEBM5",5,0)
+ ; -------------------      -----
+"RTN","WEBM5",6,0)
+ ;
+"RTN","WEBM5",7,0)
+ ;
+"RTN","WEBM5",8,0)
+ ;
+"RTN","WEBM5",9,0)
+ Q
+"RTN","WEBM5",10,0)
+ ;
+"RTN","WEBM5",11,0)
+TRIGGER(FLE,NUM) ; Flag patients off of ^PXRMINDX
+"RTN","WEBM5",12,0)
+ Q:'$G(FLE)!('$G(NUM))
+"RTN","WEBM5",13,0)
+ N CON,IEN
+"RTN","WEBM5",14,0)
+ S CON=0 F  S CON=$O(^WEBM(FLE,"B",CON)) Q:'CON  D
+"RTN","WEBM5",15,0)
+ . S IEN=0 F  S IEN=$O(^WEBM(FLE,"B",CON,IEN)) Q:'IEN  D
+"RTN","WEBM5",16,0)
+ . . Q:$P($G(^WEBM(FLE,IEN,0)),U,2)    ; *** INACTIVE
+"RTN","WEBM5",17,0)
+ . . D TRG(FLE,NUM,CON,IEN)
+"RTN","WEBM5",18,0)
+ Q
+"RTN","WEBM5",19,0)
+ ;
+"RTN","WEBM5",20,0)
+TRG(FLE,NUM,CIEN,PIEN) ; Continue
+"RTN","WEBM5",21,0)
+ ;
+"RTN","WEBM5",22,0)
+ ; CIEN = Control IEN (.01 VALUE)
+"RTN","WEBM5",23,0)
+ ; PIEN = Pointer IEN (WEBM RECORD IEN)
+"RTN","WEBM5",24,0)
+ ;
+"RTN","WEBM5",25,0)
+ N CD,CONTROL,ST,DFN,FLG,LRDT,RDT,LIEN,IEN,IPT
+"RTN","WEBM5",26,0)
+ I FLE=1031.31 D  Q   ; *** PROBLEM
+"RTN","WEBM5",27,0)
+ . ; *** PXRMINDX is by ICD,10D,SCT
+"RTN","WEBM5",28,0)
+ . I CIEN[";ICD9(" D
+"RTN","WEBM5",29,0)
+ . . S CD=$$GET1^DIQ(80,+CIEN_",",1.1)
+"RTN","WEBM5",30,0)
+ . . S CD=$S(CD["ICD-9":"ICD",CD["ICD-10":"10D",1:"") Q:CD=""
+"RTN","WEBM5",31,0)
+ . . S CONTROL=$$GET1^DIQ(80,+CIEN_",",.01)
+"RTN","WEBM5",32,0)
+ . I CIEN[";LEX(757.02," D
+"RTN","WEBM5",33,0)
+ . . S CD=$$GET1^DIQ(757.02,+CIEN_",",2) Q:CD=""
+"RTN","WEBM5",34,0)
+ . . S CONTROL=$$GET1^DIQ(757.02,+CIEN_",",1)
+"RTN","WEBM5",35,0)
+ . Q:'$D(CONTROL)
+"RTN","WEBM5",36,0)
+ . ; *** C:CRONIC, A:ACUTE, U:UNKNOWN
+"RTN","WEBM5",37,0)
+ . F ST="C","A","U" D
+"RTN","WEBM5",38,0)
+ . . S DFN=0 F  S DFN=$O(^PXRMINDX(NUM,CD,"ISPP",CONTROL,"A",ST,DFN)) Q:'DFN  D
+"RTN","WEBM5",39,0)
+ . . . Q:$D(FLG(DFN))  Q:'$$SEX(DFN)
+"RTN","WEBM5",40,0)
+ . . . S LRDT=$O(^WEBM(FLE,PIEN,2,"C",DFN,""),-1),RDT=""
+"RTN","WEBM5",41,0)
+ . . . F  S RDT=$O(^PXRMINDX(NUM,CD,"ISPP",CONTROL,"A",ST,DFN,RDT),-1) Q:RDT=""  Q:LRDT'=""&(RDT<LRDT)  D
+"RTN","WEBM5",42,0)
+ . . . . S LIEN=$O(^WEBM(FLE,PIEN,2,"C",DFN,RDT,""),-1),IEN=""
+"RTN","WEBM5",43,0)
+ . . . . F  S IEN=$O(^PXRMINDX(NUM,CD,"ISPP",CONTROL,"A",ST,DFN,RDT,IEN),-1) Q:IEN=""  Q:LIEN'=""&(IEN<=LIEN)  D
+"RTN","WEBM5",44,0)
+ . . . . . S IPT(1031.312,"+1,"_PIEN_",",.01)=DFN
+"RTN","WEBM5",45,0)
+ . . . . . S IPT(1031.312,"+1,"_PIEN_",",.02)=RDT
+"RTN","WEBM5",46,0)
+ . . . . . S IPT(1031.312,"+1,"_PIEN_",",.03)=IEN
+"RTN","WEBM5",47,0)
+ . . . . . D UPDATE^DIE(,"IPT") K IPT S FLG(DFN)="" D RES(DFN,CONTROL,"PROBLEM")
+"RTN","WEBM5",48,0)
+ I FLE=1031.33 D      ; *** LAB
+"RTN","WEBM5",49,0)
+ . S CD=0 F  S CD=$O(^WEBM(FLE,PIEN,1,CD)) Q:'CD  D
+"RTN","WEBM5",50,0)
+ . . S CONTROL(+$P($G(^WEBM(FLE,PIEN,1,CD,0)),U))=$P($G(^WEBM(FLE,PIEN,1,CD,0)),U,2)
+"RTN","WEBM5",51,0)
+ . S DFN=0 F  S DFN=$O(^PXRMINDX(NUM,"IP",CIEN,DFN)) Q:'DFN  D
+"RTN","WEBM5",52,0)
+ . . Q:$D(FLG(DFN))  Q:'$$SEX(DFN)
+"RTN","WEBM5",53,0)
+ . . S LRDT=$O(^WEBM(FLE,PIEN,2,"C",DFN,""),-1),RDT=""
+"RTN","WEBM5",54,0)
+ . . F  S RDT=$O(^PXRMINDX(NUM,"IP",CIEN,DFN,RDT),-1) Q:RDT=""  Q:LRDT'=""&(RDT<LRDT)  D
+"RTN","WEBM5",55,0)
+ . . . S LIEN=$O(^WEBM(FLE,PIEN,2,"C",DFN,RDT,""),-1),IEN=""
+"RTN","WEBM5",56,0)
+ . . . F  S IEN=$O(^PXRMINDX(NUM,"IP",CIEN,DFN,RDT,IEN),-1) Q:IEN=""  Q:LIEN'=""&(IEN=LIEN)  D
+"RTN","WEBM5",57,0)
+ . . . . ; IEN = 19;CH;7019774.9;386
+"RTN","WEBM5",58,0)
+ . . . . Q:$P(IEN,";",2)'="CH"
+"RTN","WEBM5",59,0)
+ . . . . S ST=+$$GET1^DIQ(63.04,$P(IEN,";",3)_","_+IEN_",",.05,"I") Q:'$D(CONTROL(ST))
+"RTN","WEBM5",60,0)
+ . . . . ; ^LR(19,"CH",7019774.9,386)="11.1^L^^755"
+"RTN","WEBM5",61,0)
+ . . . . Q:$P($G(^LR(+IEN,"CH",$P(IEN,";",3),$P(IEN,";",4))),U)<CONTROL(ST)
+"RTN","WEBM5",62,0)
+ . . . . S IPT(1031.332,"+1,"_PIEN_",",.01)=DFN
+"RTN","WEBM5",63,0)
+ . . . . S IPT(1031.332,"+1,"_PIEN_",",.02)=RDT
+"RTN","WEBM5",64,0)
+ . . . . S IPT(1031.332,"+1,"_PIEN_",",.03)=IEN
+"RTN","WEBM5",65,0)
+ . . . . D UPDATE^DIE(,"IPT") K IPT S FLG(DFN)=""
+"RTN","WEBM5",66,0)
+ . . . . D RES(DFN,$$GET1^DIQ(60,CIEN_",",.01),"LAB")
+"RTN","WEBM5",67,0)
+ Q
+"RTN","WEBM5",68,0)
+ ;
+"RTN","WEBM5",69,0)
+SEX(DFN) ; Female Patient?
+"RTN","WEBM5",70,0)
+ Q $S($$GET1^DIQ(2,DFN_",",.02,"I")="F":1,1:0)
+"RTN","WEBM5",71,0)
+ ;
+"RTN","WEBM5",72,0)
+RES(DFN,CODE,ID) ; Record Tracking Log
+"RTN","WEBM5",73,0)
+ N OUT D REC^WEBM1(.OUT,DFN,2,"Controlled "_ID_" ("_CODE_")",,"TRIGGER")
+"RTN","WEBM5",74,0)
+ Q
+"RTN","WEBM5",75,0)
+ ;
+"RTN","WEBM5",76,0)
+ ; -------------------------------- PROBLEMS ----------------------------------
+"RTN","WEBM5",77,0)
+ ;
+"RTN","WEBM5",78,0)
+PROBLEM(RET) ; RPC: WEBM CHECK CONTROLLED PROBLEMS
+"RTN","WEBM5",79,0)
+ S RET=1 D TRIGGER(1031.31,9000011)
+"RTN","WEBM5",80,0)
+ Q
+"RTN","WEBM5",81,0)
+ ;
+"RTN","WEBM5",82,0)
+ ; ---------------------------------- LABS ------------------------------------
+"RTN","WEBM5",83,0)
+ ;
+"RTN","WEBM5",84,0)
+LAB(RET) ; RPC: WEBM CHECK CONTROLLED LABS
+"RTN","WEBM5",85,0)
+ ;
+"RTN","WEBM5",86,0)
+ ; Process:
+"RTN","WEBM5",87,0)
+ ;  1) Loop through the ^PXRMINDX(63,"IP" OR "PI" for female patients for
+"RTN","WEBM5",88,0)
+ ;     controlled labs. "IP" is item/patient for subscripted by test then
+"RTN","WEBM5",89,0)
+ ;     by patient and is the direction on this RPC.
+"RTN","WEBM5",90,0)
+ ;     - ^PXRMINDX(63,"IP",1,3,2980224.1,"19;CH;7019774.9;386")=""
+"RTN","WEBM5",91,0)
+ ;  2) If the .05 of the LRIDT of 63.04 equals the specimen in the control
+"RTN","WEBM5",92,0)
+ ;     then check the first piece of the test node.
+"RTN","WEBM5",93,0)
+ ;     - $$GET1^DIQ(63.04,7019774.9_","_19_",",.05,"I")
+"RTN","WEBM5",94,0)
+ ;     - ^LR(19,"CH",7019774.9,386)="11.1^L^^755"
+"RTN","WEBM5",95,0)
+ ;  3) If the result is a number and is => the control result then create
+"RTN","WEBM5",96,0)
+ ;     a tracking log.
+"RTN","WEBM5",97,0)
+ ;  4) If the result is not a number then check if the result is equal to
+"RTN","WEBM5",98,0)
+ ;     any special value listed in the control file.
+"RTN","WEBM5",99,0)
+ ;
+"RTN","WEBM5",100,0)
+ S RET=1 D TRIGGER(1031.33,63)
+"RTN","WEBM5",101,0)
+ Q
+"RTN","WEBM5",102,0)
+ ;
+"RTN","WEBM5",103,0)
+ ; -------------------------------- CONSULTS ----------------------------------
+"RTN","WEBM5",104,0)
+ ;
+"RTN","WEBM5",105,0)
+CONSULT(RET) ; RPC: WEBM CHECK CONTROLLED CONSULTS
+"RTN","WEBM5",106,0)
+ N CON,IEN,STAT,RDT,GMR,DFN,IPT,RES,OUT S RET=1
+"RTN","WEBM5",107,0)
+ S CON=0 F  S CON=$O(^WEBM(1031.35,"B",CON)) Q:'CON  D
+"RTN","WEBM5",108,0)
+ . S IEN=0 F  S IEN=$O(^WEBM(1031.35,"B",CON,IEN)) Q:'IEN  D
+"RTN","WEBM5",109,0)
+ . . Q:$P($G(^WEBM(1031.35,IEN,0)),U,2)    ; *** INACTIVE
+"RTN","WEBM5",110,0)
+ . . S STAT=$P($G(^WEBM(1031.35,IEN,0)),U,3) Q:STAT=""
+"RTN","WEBM5",111,0)
+ . . S RDT="" F  S RDT=$O(^GMR(123,"AE",CON,STAT,RDT),-1) Q:RDT=""  D
+"RTN","WEBM5",112,0)
+ . . . S GMR="" F  S GMR=$O(^GMR(123,"AE",CON,STAT,RDT,GMR),-1) Q:GMR=""  D
+"RTN","WEBM5",113,0)
+ . . . . S DFN=$$GET1^DIQ(123,GMR_",",.02,"I") Q:'$$SEX(DFN)
+"RTN","WEBM5",114,0)
+ . . . . Q:$D(^WEBM(1031.35,"C",GMR,STAT))
+"RTN","WEBM5",115,0)
+ . . . . S IPT(1031.352,"+1,"_IEN_",",.01)=GMR
+"RTN","WEBM5",116,0)
+ . . . . S IPT(1031.352,"+1,"_IEN_",",.02)=STAT
+"RTN","WEBM5",117,0)
+ . . . . D UPDATE^DIE(,"IPT") K IPT
+"RTN","WEBM5",118,0)
+ . . . . S RES="Controlled CONSULT ("_$$GET1^DIQ(123,GMR_",",1)_") on "
+"RTN","WEBM5",119,0)
+ . . . . S RES=RES_$$GET1^DIQ(123,GMR_",",.01)_" with a status of "
+"RTN","WEBM5",120,0)
+ . . . . S RES=RES_$$GET1^DIQ(100.01,STAT_",",.01)
+"RTN","WEBM5",121,0)
+ . . . . D REC^WEBM1(.OUT,DFN,2,RES,,"TRIGGER")
+"RTN","WEBM5",122,0)
+ Q
+"SEC","^DIC",1031.31,1031.31,0,"AUDIT")
+@
+"SEC","^DIC",1031.31,1031.31,0,"DD")
+@
+"SEC","^DIC",1031.35,1031.35,0,"AUDIT")
+@
+"SEC","^DIC",1031.35,1031.35,0,"DD")
+@
+"VER")
+8.0^22.0
+"^DD",1031.31,1031.31,0)
+FIELD^^2^3
+"^DD",1031.31,1031.31,0,"DDA")
+N
+"^DD",1031.31,1031.31,0,"DT")
+3160803
+"^DD",1031.31,1031.31,0,"IX","B",1031.31,.01)
+
+"^DD",1031.31,1031.31,0,"NM","WEBM TRIGGER PROBLEMS")
+
+"^DD",1031.31,1031.31,.01,0)
+CODE^RV^^0;1^Q
+"^DD",1031.31,1031.31,.01,1,0)
+^.1
+"^DD",1031.31,1031.31,.01,1,1,0)
+1031.31^B
+"^DD",1031.31,1031.31,.01,1,1,1)
+S ^WEBM(1031.31,"B",$E(X,1,30),DA)=""
+"^DD",1031.31,1031.31,.01,1,1,2)
+K ^WEBM(1031.31,"B",$E(X,1,30),DA)
+"^DD",1031.31,1031.31,.01,3)
+
+"^DD",1031.31,1031.31,.01,"DT")
+3160803
+"^DD",1031.31,1031.31,.01,"V",0)
+^.12P^2^2
+"^DD",1031.31,1031.31,.01,"V",1,0)
+80^ICD^1^ICD^^n
+"^DD",1031.31,1031.31,.01,"V",2,0)
+757.02^SCT^2^SCT^^n
+"^DD",1031.31,1031.31,.02,0)
+INACTIVE^S^0:FALSE;1:TRUE;^0;2^Q
+"^DD",1031.31,1031.31,.02,"DT")
+3160803
+"^DD",1031.31,1031.31,2,0)
+ALERTED^1031.312P^^2;0
+"^DD",1031.31,1031.312,0)
+ALERTED SUB-FIELD^^.03^3
+"^DD",1031.31,1031.312,0,"DT")
+3160803
+"^DD",1031.31,1031.312,0,"NM","ALERTED")
+
+"^DD",1031.31,1031.312,0,"UP")
+1031.31
+"^DD",1031.31,1031.312,.01,0)
+PATIENT^MP2'^DPT(^0;1^Q
+"^DD",1031.31,1031.312,.01,1,0)
+^.1^^0
+"^DD",1031.31,1031.312,.01,"DT")
+3160804
+"^DD",1031.31,1031.312,.02,0)
+RESULT DATE/TIME^D^^0;2^S %DT="EST" D ^%DT S X=Y K:Y<1 X
+"^DD",1031.31,1031.312,.02,"DT")
+3160804
+"^DD",1031.31,1031.312,.03,0)
+LAST IEN^F^^0;3^K:$L(X)>15!($L(X)<1) X
+"^DD",1031.31,1031.312,.03,3)
+Answer must be 1-15 characters in length.
+"^DD",1031.31,1031.312,.03,"DT")
+3160804
+"^DD",1031.33,1031.33,0)
+FIELD^^2^4
+"^DD",1031.33,1031.33,0,"DDA")
+N
+"^DD",1031.33,1031.33,0,"DT")
+3160804
+"^DD",1031.33,1031.33,0,"IX","B",1031.33,.01)
+
+"^DD",1031.33,1031.33,0,"NM","WEBM TRIGGER LABS")
+
+"^DD",1031.33,1031.33,.01,0)
+LAB TEST^RP60'X^LAB(60,^0;1^K:$D(^WEBM(1031.33,"B",X)) X
+"^DD",1031.33,1031.33,.01,1,0)
+^.1
+"^DD",1031.33,1031.33,.01,1,1,0)
+1031.33^B
+"^DD",1031.33,1031.33,.01,1,1,1)
+S ^WEBM(1031.33,"B",$E(X,1,30),DA)=""
+"^DD",1031.33,1031.33,.01,1,1,2)
+K ^WEBM(1031.33,"B",$E(X,1,30),DA)
+"^DD",1031.33,1031.33,.01,3)
+This is the Lab Test in file 60; there can only be one control file entry per lab test.
+"^DD",1031.33,1031.33,.01,4)
+
+"^DD",1031.33,1031.33,.01,"DT")
+3150204
+"^DD",1031.33,1031.33,.02,0)
+INACTIVE^S^0:NO;1:YES;^0;2^Q
+"^DD",1031.33,1031.33,.02,"DT")
+3150204
+"^DD",1031.33,1031.33,1,0)
+SITE/SPECIMEN^1031.331P^^1;0
+"^DD",1031.33,1031.33,2,0)
+ALERTED^1031.332P^^2;0
+"^DD",1031.33,1031.331,0)
+SITE/SPECIMEN SUB-FIELD^^.02^2
+"^DD",1031.33,1031.331,0,"DT")
+3160804
+"^DD",1031.33,1031.331,0,"IX","B",1031.331,.01)
+
+"^DD",1031.33,1031.331,0,"NM","SITE/SPECIMEN")
+
+"^DD",1031.33,1031.331,0,"UP")
+1031.33
+"^DD",1031.33,1031.331,.01,0)
+SITE/SPECIMEN^MP61'^LAB(61,^0;1^Q
+"^DD",1031.33,1031.331,.01,1,0)
+^.1
+"^DD",1031.33,1031.331,.01,1,1,0)
+1031.331^B
+"^DD",1031.33,1031.331,.01,1,1,1)
+S ^WEBM(1031.33,DA(1),1,"B",$E(X,1,30),DA)=""
+"^DD",1031.33,1031.331,.01,1,1,2)
+K ^WEBM(1031.33,DA(1),1,"B",$E(X,1,30),DA)
+"^DD",1031.33,1031.331,.01,"DT")
+3150204
+"^DD",1031.33,1031.331,.02,0)
+POSITIVE LAB VALUE^F^^0;2^K:$L(X)>50!($L(X)<1) X
+"^DD",1031.33,1031.331,.02,3)
+Answer must be 1-50 characters in length.
+"^DD",1031.33,1031.331,.02,"DT")
+3160804
+"^DD",1031.33,1031.332,0)
+ALERTED SUB-FIELD^^.03^3
+"^DD",1031.33,1031.332,0,"DT")
+3160804
+"^DD",1031.33,1031.332,0,"NM","ALERTED")
+
+"^DD",1031.33,1031.332,0,"UP")
+1031.33
+"^DD",1031.33,1031.332,.01,0)
+PATIENT^MP2'^DPT(^0;1^Q
+"^DD",1031.33,1031.332,.01,1,0)
+^.1^^0
+"^DD",1031.33,1031.332,.01,"DT")
+3160804
+"^DD",1031.33,1031.332,.02,0)
+RESULT DATE/TIME^D^^0;2^S %DT="EST" D ^%DT S X=Y K:Y<1 X
+"^DD",1031.33,1031.332,.02,"DT")
+3160804
+"^DD",1031.33,1031.332,.03,0)
+LAST IEN^F^^0;3^K:$L(X)>100!($L(X)<1) X
+"^DD",1031.33,1031.332,.03,3)
+Answer must be 1-100 characters in length.
+"^DD",1031.33,1031.332,.03,"DT")
+3160804
+"^DD",1031.35,1031.35,0)
+FIELD^^2^4
+"^DD",1031.35,1031.35,0,"DDA")
+N
+"^DD",1031.35,1031.35,0,"DT")
+3160803
+"^DD",1031.35,1031.35,0,"IX","B",1031.35,.01)
+
+"^DD",1031.35,1031.35,0,"NM","WEBM TRIGGER CONSULTS")
+
+"^DD",1031.35,1031.35,.01,0)
+REQUEST SERVICES^RP123.5'^GMR(123.5,^0;1^Q
+"^DD",1031.35,1031.35,.01,1,0)
+^.1
+"^DD",1031.35,1031.35,.01,1,1,0)
+1031.35^B
+"^DD",1031.35,1031.35,.01,1,1,1)
+S ^WEBM(1031.35,"B",$E(X,1,30),DA)=""
+"^DD",1031.35,1031.35,.01,1,1,2)
+K ^WEBM(1031.35,"B",$E(X,1,30),DA)
+"^DD",1031.35,1031.35,.01,3)
+
+"^DD",1031.35,1031.35,.01,"DT")
+3140715
+"^DD",1031.35,1031.35,.02,0)
+INACTIVE^S^0:NO;1:YES;^0;2^Q
+"^DD",1031.35,1031.35,.02,"DT")
+3150323
+"^DD",1031.35,1031.35,.03,0)
+STATUS^RP100.01'^ORD(100.01,^0;3^Q
+"^DD",1031.35,1031.35,.03,3)
+
+"^DD",1031.35,1031.35,.03,"DT")
+3160803
+"^DD",1031.35,1031.35,2,0)
+ALERTED^1031.352P^^2;0
+"^DD",1031.35,1031.352,0)
+ALERTED SUB-FIELD^^.02^2
+"^DD",1031.35,1031.352,0,"DT")
+3160803
+"^DD",1031.35,1031.352,0,"IX","B",1031.352,.01)
+
+"^DD",1031.35,1031.352,0,"NM","ALERTED")
+
+"^DD",1031.35,1031.352,0,"UP")
+1031.35
+"^DD",1031.35,1031.352,.01,0)
+REQUEST/CONSULTATION^MP123'^GMR(123,^0;1^Q
+"^DD",1031.35,1031.352,.01,1,0)
+^.1
+"^DD",1031.35,1031.352,.01,1,1,0)
+1031.352^B
+"^DD",1031.35,1031.352,.01,1,1,1)
+S ^WEBM(1031.35,DA(1),2,"B",$E(X,1,30),DA)=""
+"^DD",1031.35,1031.352,.01,1,1,2)
+K ^WEBM(1031.35,DA(1),2,"B",$E(X,1,30),DA)
+"^DD",1031.35,1031.352,.01,"DT")
+3160803
+"^DD",1031.35,1031.352,.02,0)
+STATUS^P100.01'^ORD(100.01,^0;2^Q
+"^DD",1031.35,1031.352,.02,"DT")
+3160803
+"^DIC",1031.31,1031.31,0)
+WEBM TRIGGER PROBLEMS^1031.31
+"^DIC",1031.31,1031.31,0,"GL")
+^WEBM(1031.31,
+"^DIC",1031.31,"B","WEBM TRIGGER PROBLEMS",1031.31)
+
+"^DIC",1031.33,1031.33,0)
+WEBM TRIGGER LABS^1031.33
+"^DIC",1031.33,1031.33,0,"GL")
+^WEBM(1031.33,
+"^DIC",1031.33,1031.33,"%",0)
+^1.005^^0
+"^DIC",1031.33,1031.33,"%D",0)
+^1.001^2^2^3160803^^^
+"^DIC",1031.33,1031.33,"%D",1,0)
+In order for WEBM to trigger off a lab results then those labs and their 
+"^DIC",1031.33,1031.33,"%D",2,0)
+positive result values must be stored here.
+"^DIC",1031.33,"B","WEBM TRIGGER LABS",1031.33)
+
+"^DIC",1031.35,1031.35,0)
+WEBM TRIGGER CONSULTS^1031.35
+"^DIC",1031.35,1031.35,0,"GL")
+^WEBM(1031.35,
+"^DIC",1031.35,1031.35,"%D",0)
+^1.001^2^2^3160803^^^^
+"^DIC",1031.35,1031.35,"%D",1,0)
+In order to have WEBM trigger off of a consult then that consult must be 
+"^DIC",1031.35,1031.35,"%D",2,0)
+entered here.
+"^DIC",1031.35,"B","WEBM TRIGGER CONSULTS",1031.35)
+
+**END**
+**END**

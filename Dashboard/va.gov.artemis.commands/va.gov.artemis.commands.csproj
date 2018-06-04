@@ -91,6 +91,7 @@
     <Compile Include="Dsio\Observation\DsioGetObservationsCommand.cs" />
     <Compile Include="Dsio\Observation\DsioObservation.cs" />
     <Compile Include="Dsio\Observation\DsioSaveObservationCommand.cs" />
+    <Compile Include="Dsio\Observation\WvrpcorSaveObservationCommand.cs" />
     <Compile Include="Dsio\Orders\DsioGetOrderDetailCommand.cs" />
     <Compile Include="Dsio\Orders\DsioGetOrderListCommand.cs" />
     <Compile Include="Dsio\Orders\DsioOrder.cs" />
@@ -116,6 +117,9 @@
     <Compile Include="Dsio\Notes\DsioDeleteANoteCommand.cs" />
     <Compile Include="Dsio\Base\DsioTelephone.cs" />
     <Compile Include="Dsio\Pregnancy\DsioSavePregDetailsCommand.cs" />
+    <Compile Include="Dsio\Pregnancy\WvrpcorGetPregDetailsCommand.cs" />
+    <Compile Include="Dsio\Pregnancy\WvrpcorGetWomensHealthDataCommand.cs" />
+    <Compile Include="Dsio\Pregnancy\WvrpcorSavePregDetailsCommand.cs" />
     <Compile Include="Dsio\Reminders\DsioGetReminderDetailCommand.cs" />
     <Compile Include="Dsio\Reminders\DsioGetReminderListCommand.cs" />
     <Compile Include="Dsio\Reminders\DsioReminder.cs" />

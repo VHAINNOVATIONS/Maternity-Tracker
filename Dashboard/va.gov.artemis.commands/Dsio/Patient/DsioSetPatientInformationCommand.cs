@@ -24,7 +24,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Patient
 
         public override string RpcName
         {
-            get { return "DSIO SET PATIENT INFORMATION"; }
+            get { return "WEBM SET PATIENT INFORMATION"; }
         }
 
         protected override void ProcessResponse()

@@ -21,7 +21,7 @@ namespace VA.Gov.Artemis.Commands.Orwu
         public OrwuHasKeyCommand(IRpcBroker newBroker)
             : base(newBroker)
         {
-            this.Context = "DSIO GUI CONTEXT";
+            this.Context = "WEBM GUI CONTEXT";
         }
 
         public void AddCommandArguments(string securityKey)

@@ -345,7 +345,7 @@ namespace VA.Gov.Artemis.UI.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
 
-            this.Error("The user does not have the required secondary menu context, DSIO GUI CONTEXT"); 
+            this.Error("The user does not have the required secondary menu context, WEBM GUI CONTEXT"); 
 
             return View(); 
         }
