@@ -27,7 +27,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Observation
         /// </summary>
         public override string RpcName
         {
-            get { return "MTD SAVE OBSERVATION"; }
+            get { return "WEBM SAVE OBSERVATION"; }
         }
 
         /// <summary>

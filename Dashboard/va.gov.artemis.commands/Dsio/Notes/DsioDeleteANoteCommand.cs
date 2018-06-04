@@ -24,7 +24,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
 
         public override string RpcName
         {
-            get { return "MTD DELETE A NOTE"; }
+            get { return "WEBM DELETE A NOTE"; }
         }
 
         public void AddCommandArguments(string ien, string justification)

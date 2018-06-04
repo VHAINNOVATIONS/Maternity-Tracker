@@ -30,7 +30,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         /// </summary>
         public override string RpcName
         {
-            get { return "MTD SAVE PREG DETAILS"; }
+            get { return "WEBM SAVE PREG DETAILS"; }
         }
 
 //;    DFN = PATIENT IEN
@@ -86,7 +86,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
 //;    HRD = HIGH RISK DESCRIPTION (ARRAY of Text)
 
 // New Version 2/17/16..
-//        PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,HRD,AB) ; RPC: MTD SAVE PREG DETAILS
+//        PREG(RET,IEN,DFN,DATES,TYP,FOF,OBP,FAP,BAB,POST,COM,HRD,AB) ; RPC: WEBM SAVE PREG DETAILS
 //;
 //; CREATE, UPDATE, or DELETE a PREGNANCY HISTORY record
 //;

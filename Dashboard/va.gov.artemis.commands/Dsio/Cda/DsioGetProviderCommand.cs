@@ -29,7 +29,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Cda
         /// </summary>
         public override string RpcName
         {
-            get { return "MTD GET PROVIDER"; }
+            get { return "WEBM GET PROVIDER"; }
         }
 
         /// <summary>

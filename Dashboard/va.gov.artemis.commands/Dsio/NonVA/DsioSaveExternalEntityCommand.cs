@@ -28,14 +28,14 @@ namespace VA.Gov.Artemis.Commands.Dsio.NonVA
 
         public override string RpcName
         {
-            get { return "MTD SAVE EXTERNAL ENTITY"; }
+            get { return "WEBM SAVE EXTERNAL ENTITY"; }
         }
 
         public void AddCommandArguments(DsioNonVAItem item)
         {
 
             // Input Parameter are now IEN, NAME, TYP, ACT, PCON, ADDR, and PHONE where ADDR and PHONE 
-            //are lists used like MTD SAVE PERSON with the exception of FAX as the fourth entry for PHONE.
+            //are lists used like WEBM SAVE PERSON with the exception of FAX as the fourth entry for PHONE.
 
 //IEN,NAME,TYP,ACT,PCON,ADDR,PHONE
 //;  ADDR = ARRAY OF LABELS: 1,2,3,CITY,STATE,ZIP

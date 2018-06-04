@@ -280,7 +280,7 @@ namespace VA.Gov.Artemis.UI.Mock
 
             OrwuHasKeyCommand command = new OrwuHasKeyCommand(broker); 
 
-            command.AddCommandArguments("MTD ADMIN"); 
+            command.AddCommandArguments("WEBM ADMIN"); 
 
             AddResponse(broker, data, command);
 

@@ -37,7 +37,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Checklist
 
         public override string RpcName
         {
-            get { return "MTD SAVE MCC CHECKLIST"; }
+            get { return "WEBM SAVE MCC CHECKLIST"; }
         }
 
         protected override void ProcessResponse()

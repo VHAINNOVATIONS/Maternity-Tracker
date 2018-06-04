@@ -21,7 +21,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         public string PatientDfn { get; set; }
         public string Ien { get; set; }
         public string RecordType { get; set; } // Current or Historical
-        public string FatherOfFetus { get; set; } // Unspecified, Spouse, or IEN of MTD PERSON
+        public string FatherOfFetus { get; set; } // Unspecified, Spouse, or IEN of WEBM PERSON
         public string FatherOfFetusIen { get; set; }
         public string EDD { get; set; }
         public string StartDate { get; set; }

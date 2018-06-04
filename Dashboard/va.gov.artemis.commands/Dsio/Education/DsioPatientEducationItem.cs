@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace VA.Gov.Artemis.Commands.Dsio.Education
 {
-//    MTD SAVE PATIENT EDUCATION
+//    WEBM SAVE PATIENT EDUCATION
 
 //Parameters:
 //•	PatientDfn – string - Unique User ID – Required
@@ -29,7 +29,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
 //•	The current user should be included in the stored data
 //•	If Ien is present, update the existing record.
 //•	If Ien is absent, create a new record.
-//•	If EducationItemIEN is present, use values from MTD EDUCATION to populate the following:
+//•	If EducationItemIEN is present, use values from WEBM EDUCATION to populate the following:
 //o	Category
 //o	Description
 //o	Type
@@ -40,7 +40,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
 //o	Description
 //o	Type
 //o	CodeSystem
-//•	Note: There should NOT be a link between MTD PATIENT EDUCATION and MTD EDUCATION.
+//•	Note: There should NOT be a link between WEBM PATIENT EDUCATION and WEBM EDUCATION.
 
     public class DsioPatientEducationItem: DsioEducationItem
     {

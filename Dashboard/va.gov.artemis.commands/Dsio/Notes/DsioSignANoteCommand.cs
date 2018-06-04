@@ -35,7 +35,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
 
         public override string RpcName
         {
-            get { return "MTD SIGN A NOTE"; }
+            get { return "WEBM SIGN A NOTE"; }
         }
 
         protected override void ProcessResponse()

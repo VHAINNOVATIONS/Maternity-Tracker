@@ -37,7 +37,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.PatientSearch
 
         public override string RpcName
         {
-            get { return "MTD PATIENT LIST"; }
+            get { return "WEBM PATIENT LIST"; }
         }
 
         protected override void ProcessLine(string line)

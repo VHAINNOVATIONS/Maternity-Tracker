@@ -23,7 +23,7 @@ namespace VA.Gov.Artemis.Commands.Orwu
         public OrwuUserInfoCommand(IRpcBroker newBroker):
             base(newBroker) 
         {
-            this.Context = "MTD GUI CONTEXT";
+            this.Context = "WEBM GUI CONTEXT";
         }
 
         public override string RpcName{get{return "ORWU USERINFO";}}

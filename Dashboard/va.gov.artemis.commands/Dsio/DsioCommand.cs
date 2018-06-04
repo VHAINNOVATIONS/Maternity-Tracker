@@ -13,7 +13,7 @@ namespace VA.Gov.Artemis.Commands.Dsio
     {
         public DsioCommand(IRpcBroker newBroker): base(newBroker)
         {
-            this.Context = "MTD GUI CONTEXT";
+            this.Context = "WEBM GUI CONTEXT";
         }
 
         public override string Version

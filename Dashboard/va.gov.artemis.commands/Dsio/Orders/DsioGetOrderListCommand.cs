@@ -52,7 +52,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Orders
 
         public override string RpcName
         {
-            get { return "MTD GET ORDER LIST"; }
+            get { return "WEBM GET ORDER LIST"; }
         }
 
         //protected override void ProcessResponse()

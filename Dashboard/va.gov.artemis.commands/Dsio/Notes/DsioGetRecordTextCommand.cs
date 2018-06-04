@@ -26,7 +26,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
 
         public override string RpcName
         {
-            get { return "MTD GET RECORD TEXT"; }
+            get { return "WEBM GET RECORD TEXT"; }
         }
 
         public void AddCommandArgument(string ien, DsioGetRecordTextMode mode)

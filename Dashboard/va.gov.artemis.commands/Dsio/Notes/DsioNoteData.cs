@@ -39,7 +39,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
         }
 
         /// <summary>
-        /// Gets the parameter as expected by MTD RPC's
+        /// Gets the parameter as expected by WEBM RPC's
         /// </summary>
         /// <returns>A string array which can be passed to VistA RPC's</returns>
         public string[] ToParameter()
@@ -59,7 +59,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
             //foreach (string key in this.Keys)
             //    returnList.Add(string.Format("{0}^{1}^{2}^{3}^{4}", "S", key.ToUpper(), key.ToUpper(),"", this[key]));
 
-            // *** Changes for MTD_DDCS_2_T1.KID
+            // *** Changes for WEBM_DDCS_2_T1.KID
             //CONTROL^(INDEXED^VALUE)
 
             foreach (string key in this.Keys)

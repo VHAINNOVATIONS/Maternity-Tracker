@@ -52,7 +52,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
 
         public override string RpcName
         {
-            get { return "MTD GET PREG HISTORY RANGE"; }
+            get { return "WEBM GET PREG HISTORY RANGE"; }
         }
     }
 }

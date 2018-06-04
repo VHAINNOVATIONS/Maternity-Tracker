@@ -25,7 +25,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Reminders
 
         public override string RpcName
         {
-            get { return "MTD GET REMINDER DETAIL"; }
+            get { return "WEBM GET REMINDER DETAIL"; }
         }
 
         protected override void ProcessResponse()

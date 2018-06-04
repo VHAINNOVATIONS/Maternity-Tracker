@@ -12,7 +12,7 @@ using VA.Gov.Artemis.Vista.Utility;
 namespace VA.Gov.Artemis.Commands.Dsio.Notes
 {
     /// <summary>
-    /// Command to interact with MTD DDCS GET CONTROL VALUE RPC
+    /// Command to interact with WEBM DDCS GET CONTROL VALUE RPC
     /// </summary>
     public class DsioDdcsGetControlValue: DsioCommand
     {
@@ -26,7 +26,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
 
         public override string RpcName
         {
-            get { return "MTD DDCS GET CONTROL VALUE"; }
+            get { return "WEBM DDCS GET CONTROL VALUE"; }
         }
 
         public void AddCommandArguments(string noteIen)

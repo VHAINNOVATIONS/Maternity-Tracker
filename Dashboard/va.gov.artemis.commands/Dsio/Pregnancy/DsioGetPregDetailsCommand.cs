@@ -56,7 +56,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
         /// </summary>
         public override string RpcName
         {
-            get { return "MTD GET PREG DETAILS"; }
+            get { return "WEBM GET PREG DETAILS"; }
         }
 
         protected override void ProcessLine(string line)

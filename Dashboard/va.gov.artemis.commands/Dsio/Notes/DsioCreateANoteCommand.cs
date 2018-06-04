@@ -26,7 +26,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Notes
 
         public override string RpcName
         {
-            get { return "MTD CREATE A NOTE"; }
+            get { return "WEBM CREATE A NOTE"; }
         }
 
         public string Ien { get; set; }

@@ -15,7 +15,7 @@ This project handles most of the processing of CDA (Clinical Document Architectu
 
 --va.gov.artemis.commands 
 
-This project contains commands for interacting with VistA data. Note that installation of a KID file (MTD) is required. 
+This project contains commands for interacting with VistA data. Note that installation of a KID file (WEBM) is required. 
 
 --va.gov.artemis.command.tests 
 
@@ -63,7 +63,7 @@ This project contains tests for the VistA project
 
 ## Dependencies 
 
-The dashboard's primary dependency is on the MTD routines found in the KID files. 
+The dashboard's primary dependency is on the WEBM routines found in the KID files. 
 
 ## Configuration 
 

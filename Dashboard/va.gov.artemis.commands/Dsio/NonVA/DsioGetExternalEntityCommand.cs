@@ -32,7 +32,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.NonVA
 
         public override string RpcName
         {
-            get { return "MTD GET EXTERNAL ENTITY"; }
+            get { return "WEBM GET EXTERNAL ENTITY"; }
         }
 
         public void AddCommandArguments(string entityType, int page, int itemsPerPage)
