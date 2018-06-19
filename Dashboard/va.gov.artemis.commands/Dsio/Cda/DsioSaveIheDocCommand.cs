@@ -26,7 +26,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Cda
 
         public override string RpcName
         {
-            get { return "DSIO SAVE IHE DOC"; }
+            get { return "WEBM SAVE IHE DOC"; }
         }
 
 

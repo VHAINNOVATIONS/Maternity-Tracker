@@ -1,10 +1,6 @@
 ﻿// Originally submitted to OSEHRA 2/21/2017 by DSS, Inc. 
 // Authored by DSS, Inc. 2014-2017
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using VA.Gov.Artemis.UI.Data.Brokers.Common;
 using VA.Gov.Artemis.UI.Data.Models.Lactation;
@@ -23,9 +19,9 @@ namespace VA.Gov.Artemis.UI.Controllers
             LactationStatus model = new LactationStatus();
 
             model.Patient = this.CurrentPatient;
-            
-            model.CurrentStatus = (this.CurrentPatient.Lactating) ? "Lactating" : "Not Lactating"; 
-            
+
+            model.CurrentStatus = (this.CurrentPatient.Lactating) ? "Lactating" : "Not Lactating";
+
             return View(model);
         }
 
@@ -39,18 +35,28 @@ namespace VA.Gov.Artemis.UI.Controllers
 
             if (model.NewStatus.HasValue)
             {
-                IenResult result = this.DashboardRepository.Observations.AddLactationObservation(model.Patient.Dfn, model.NewStatus.Value);
-
-                if (!result.Success)
-                    this.Error(result.Message);
+                IenResult wvrpcorResult = this.DashboardRepository.Observations.AddWvrpcorLactationObservation(model.Patient.Dfn, model.NewStatus.Value);
+                if (!wvrpcorResult.Success)
+                {
+                    this.Error(wvrpcorResult.Message);
+                }
                 else
                 {
-                    this.Information("Lactation Status Updated");
-                    okToContinue = true;
+                    IenResult result = this.DashboardRepository.Observations.AddLactationObservation(model.Patient.Dfn, model.NewStatus.Value);
+
+                    if (!result.Success)
+                    {
+                        this.Error(result.Message);
+                    }
+                    else
+                    {
+                        this.Information("Lactation Status Updated");
+                        okToContinue = true;
+                    }
                 }
             }
             else
-                this.Error("Please select a lactation status"); 
+                this.Error("Please select a lactation status");
 
             if (okToContinue)
                 returnResult = RedirectToAction("Summary", "Patient", new { dfn = model.Patient.Dfn });
@@ -63,7 +69,7 @@ namespace VA.Gov.Artemis.UI.Controllers
                 returnResult = View(model);
             }
 
-            return returnResult;    
-        }        
+            return returnResult;
+        }
     }
 }

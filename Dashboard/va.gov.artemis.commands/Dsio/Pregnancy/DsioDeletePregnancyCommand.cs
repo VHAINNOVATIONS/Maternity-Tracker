@@ -22,7 +22,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Pregnancy
             this.CommandArgs = new object[] { string.Format("{0}@", pregIen) };
         }
 
-        public override string RpcName { get { return "DSIO SAVE PREG DETAILS"; } }
+        public override string RpcName { get { return "WEBM SAVE PREG DETAILS"; } }
 
         protected override void ProcessResponse()
         {

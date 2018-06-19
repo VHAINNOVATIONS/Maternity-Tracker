@@ -60,7 +60,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Alerts
 
         public override string RpcName
         {
-            get { return "DSIO GET NOTIFICATIONS/ALERTS"; }
+            get { return "WEBM GET NOTIFICATIONS/ALERTS"; }
         }
     }
 }

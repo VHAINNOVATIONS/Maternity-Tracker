@@ -43,7 +43,7 @@ namespace VA.Gov.Artemis.UI.Data.Brokers.Labs
         {
             LabItemsResult result = new LabItemsResult();
 
-            // *** Using DSIO VPR to get a list of all labs ***
+            // *** Using WEBM VPR to get a list of all labs ***
             DsioVprGetPatientDataCommand command = new DsioVprGetPatientDataCommand(this.broker);
 
             // *** Add the arguments ***

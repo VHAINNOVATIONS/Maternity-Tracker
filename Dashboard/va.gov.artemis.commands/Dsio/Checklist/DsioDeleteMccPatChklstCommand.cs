@@ -24,7 +24,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Checklist
 
         public override string RpcName
         {
-            get { return "DSIO DELETE MCC PAT CHKLST"; }
+            get { return "WEBM DELETE MCC PAT CHKLST"; }
         }
 
         protected override void ProcessResponse()

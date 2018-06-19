@@ -22,7 +22,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
 
         public override string RpcName
         {
-            get { return "DSIO GET PATIENT EDUCATION"; }
+            get { return "WEBM GET PATIENT EDUCATION"; }
         }
 
         public void AddCommandArguments(string dfn, string ien, string fromDate, string toDate, string itemType, int page, int itemsPerPage)
@@ -36,7 +36,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
             //•	ToDate – DateTime – A date representing the newest item to return – Not Required
             //•	Type – List of types (Discussion, Printed, Link, etc.) – Not Required
 
-            this.CommandArgs = new object[] { dfn, ien, itemsPerPage.ToString(), page.ToString(), fromDate, toDate, itemType };
+            this.CommandArgs = new object[] { dfn, ien, page.ToString(), itemsPerPage.ToString(), fromDate, toDate, itemType };
         }
 
         protected override void ProcessLine(string line)

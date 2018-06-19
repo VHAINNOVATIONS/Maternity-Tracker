@@ -26,7 +26,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Tracking
 
         public override string RpcName
         {
-            get { return "DSIO GET TRACKING"; }
+            get { return "WEBM GET TRACKING"; }
         }
 
         // *** Various lists that can be returned by rpc ***

@@ -25,7 +25,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
             string size = (pageSize > 0) ? pageSize.ToString() : "";
             string pg = (page > 0) ? page.ToString() : ""; 
             
-            this.CommandArgs = new object[] { size, pg, category, type, ien, sort.ToString() };            
+            this.CommandArgs = new object[] { pg, size, category, type, ien, sort.ToString() };            
         }
 
         protected override void ProcessStartData()
@@ -76,7 +76,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Education
 
         public override string RpcName
         {
-            get { return "DSIO GET EDUCATION ITEMS"; }
+            get { return "WEBM GET EDUCATION ITEMS"; }
         }
     }
 }

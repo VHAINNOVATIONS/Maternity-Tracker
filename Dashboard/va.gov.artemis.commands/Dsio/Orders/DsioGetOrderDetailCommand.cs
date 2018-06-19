@@ -25,7 +25,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Orders
 
         public override string RpcName
         {
-            get { return "DSIO GET ORDER DETAIL"; }
+            get { return "WEBM GET ORDER DETAIL"; }
         }
 
         protected override void ProcessResponse()

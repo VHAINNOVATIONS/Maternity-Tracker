@@ -51,7 +51,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
         {
             using (RpcBroker broker = this.GetConnectedBroker())
             {
-                TestHasSecurityKeyCommand(broker, "DSIO ADMIN");
+                TestHasSecurityKeyCommand(broker, "WEBM ADMIN");
 
                 broker.Disconnect();
             }
@@ -65,7 +65,7 @@ namespace VA.Gov.Artemis.Commands.Tests.Real
 
             OrwuHasKeyCommand command = new OrwuHasKeyCommand(broker);
 
-            command.AddCommandArguments("DSIO ADMIN"); 
+            command.AddCommandArguments("WEBM ADMIN"); 
 
             RpcResponse response = command.Execute();
 

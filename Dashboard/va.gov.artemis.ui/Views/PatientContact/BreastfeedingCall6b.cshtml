@@ -3,10 +3,17 @@
     Authored by DSS, Inc. 2014-2017
 *@
 
+@using VA.Gov.Artemis.UI.Data.Models.PatientContact
+
 @model VA.Gov.Artemis.UI.Data.Models.PatientContact.BreastfeedingCallTab
 
 <tbody>
-    <tr><td colspan="2">@Html.CheckBoxFor(m=>m.BreastfeedingAssessment)&nbsp;&nbsp;@Html.LabelFor(m=>m.BreastfeedingAssessment, "Assess for difficulties with breastfeeding, answer questions, refer to pediatrician as needed") </td></tr>
+    <tr><td colspan="2">@Html.CheckBoxFor(m => m.BreastfeedingAssessment)&nbsp;&nbsp;@Html.LabelFor(m => m.BreastfeedingAssessment, "Assess for difficulties with breastfeeding, answer questions, refer to pediatrician as needed") </td></tr>
+    <tr><td colspan="2" style="padding-left: 40px">Is patient having difficulty with lactation?</td></tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.LactationDifficulty, YesNoMaybe.Yes, new { @id = "bf-lact-yes" })&nbsp;&nbsp;@Html.LabelFor(m => m.LactationDifficulty, YesNoMaybe.Yes.ToString(), new { @for = "bf-lact-yes" })</tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.LactationDifficulty, YesNoMaybe.No, new { @id = "bf-lact-no" })&nbsp;&nbsp;@Html.LabelFor(m => m.LactationDifficulty, YesNoMaybe.No.ToString(), new { @for = "bf-lact-no" })</tr>
+    <tr><td colspan="2" style="padding-left: 80px">@Html.RadioButtonFor(m => m.LactationDifficulty, YesNoMaybe.Maybe, new { @id = "bf-lact-maybe" })&nbsp;&nbsp;@Html.LabelFor(m => m.LactationDifficulty, YesNoMaybe.Maybe.ToString(), new { @for = "bf-lact-maybe" })</tr>
+
     <tr><td colspan="2">@Html.CheckBoxFor(m=>m.ConfirmReceipt)&nbsp;&nbsp;@Html.LabelFor(m=>m.ConfirmReceipt, "As needed, confirm breast pump and supplies delivered. (If not, follow-up)")</td></tr>
     <tr><td colspan="2">@Html.CheckBoxFor(m=>m.SuppliesUse)&nbsp;&nbsp;@Html.LabelFor(m=>m.SuppliesUse, "If received breast pump/supplies, assess for difficulties with use, answer questions, and provide support")</td></tr>
     <tr><td colspan="2">

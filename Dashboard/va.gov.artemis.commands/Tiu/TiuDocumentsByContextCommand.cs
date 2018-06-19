@@ -20,7 +20,7 @@ namespace VA.Gov.Artemis.Commands.Tiu
         /// <param name="newBroker">An object which allows communication with VistA and implements IRpcBroker</param>
         public TiuDocumentsByContextCommand(IRpcBroker newBroker): base(newBroker)
         {
-            this.Context = "DSIO GUI CONTEXT";
+            this.Context = "WEBM GUI CONTEXT";
         }
         public override string RpcName
         {

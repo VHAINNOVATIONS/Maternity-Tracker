@@ -32,6 +32,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
         private const string BreastfeedingCommentKey = "BREAST.COMMENT";
         private const string ConfirmReceiptKey = "BREAST.COMFIRMRECEIPT";
         private const string BreastfeedingAssessmentKey = "BREAST.ASSESSMENT";
+        private const string BreastfeedingLactationKey = "BREAST.LACTATION";
         private const string SuppliesUseKey = "BREAST.SUPPLIESUSE";
 
 
@@ -77,13 +78,15 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
 
         public bool BreastfeedingAssessment { get; set; }
 
+        public YesNoMaybe LactationDifficulty { get; set; }
+
         public bool SuppliesUse { get; set; }
 
         public override void AddDataElement(string key, string value)
         {
             bool val;
             key = key.ToUpper();
-            YesNoMaybe YesNoMabyVal;
+            YesNoMaybe YesNoMaybeVal;
 
             switch (key)
             {
@@ -104,16 +107,16 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                         this.Supplies = val;
                     break;
                 case PatientInterestInBrestfeedKey:
-                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMabyVal))
-                        this.PatientInterestedInBreastfeeding = YesNoMabyVal;
+                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMaybeVal))
+                        this.PatientInterestedInBreastfeeding = YesNoMaybeVal;
                     break;
                 case PatientInterestInMoreInfoKey:
-                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMabyVal))
-                        this.PatientInterestedInMoreInformation = YesNoMabyVal;
+                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMaybeVal))
+                        this.PatientInterestedInMoreInformation = YesNoMaybeVal;
                     break;
                 case PatientInterestInSuppliesKey:
-                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMabyVal))
-                        this.PatientInterestedInSupplies = YesNoMabyVal;
+                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMaybeVal))
+                        this.PatientInterestedInSupplies = YesNoMaybeVal;
                     break;
                 //case PatientIntendsToBreastfeedKey:
                 //    if (bool.TryParse(value, out val))
@@ -155,6 +158,10 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                     if (bool.TryParse(value, out val))
                         this.BreastfeedingAssessment = val;
                     break;
+                case BreastfeedingLactationKey:
+                    if (YesNoMaybe.TryParse<YesNoMaybe>(value, out YesNoMaybeVal))
+                        this.LactationDifficulty = YesNoMaybeVal;
+                    break;
                 case SuppliesUseKey:
                     if (bool.TryParse(value, out val))
                         this.SuppliesUse = val;
@@ -183,6 +190,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
             returnDictionary.Add(BreastfeedingCommentKey, this.BreastfeedingComment);
             returnDictionary.Add(ConfirmReceiptKey, this.ConfirmReceipt.ToString());
             returnDictionary.Add(BreastfeedingAssessmentKey, this.BreastfeedingAssessment.ToString());
+            returnDictionary.Add(BreastfeedingLactationKey, this.LactationDifficulty.ToString());
             returnDictionary.Add(SuppliesUseKey, this.SuppliesUse.ToString());
             
             return returnDictionary; 
@@ -248,6 +256,19 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                 if (this.BreastfeedingAssessment)
                     sb.AppendLine("Assessed for difficulties with breastfeeding, answered questions, referred to pediatrician as needed");
 
+                if (this.LactationDifficulty == YesNoMaybe.Yes)
+                {
+                    sb.AppendLine("Patient is having difficulty lactating");
+                }
+                if (this.LactationDifficulty == YesNoMaybe.No)
+                {
+                    sb.AppendLine("Patient is not having difficulty lactating");
+                }
+                if (this.LactationDifficulty == YesNoMaybe.Maybe)
+                {
+                    sb.AppendLine("Patient might be having difficulty lactating");
+                }
+
                 if (this.SuppliesUse)
                     sb.AppendLine("If received breast pump/supplies, assessed for difficulties with use, answered questions, and provided support");
 
@@ -272,6 +293,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.PatientContact
                 this.AdviseToCall ||
                 this.ConfirmReceipt ||
                 this.BreastfeedingAssessment ||
+                this.LactationDifficulty != YesNoMaybe.Unknown ||
                 this.SuppliesUse)
                 returnVal = true;
 

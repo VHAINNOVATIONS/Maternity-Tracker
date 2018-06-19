@@ -4,10 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VA.Gov.Artemis.UI.Data.Models.Patient;
 using VA.Gov.Artemis.Vista.Utility;
 
 namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
@@ -19,7 +15,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
             this.PlannedLaborDeliveryFacility = "Unknown";
             this.FatherOfFetus = "Unknown";
             this.Obstetrician = "Unknown";
-            this.Babies = new List<Baby>(); 
+            this.Babies = new List<Baby>();
         }
 
         public string Ien { get; set; }
@@ -30,10 +26,10 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
 
         [Display(Name = "Father of Baby")]
         public string FatherOfFetus { get; set; }
-                
+
         public string FatherOfFetusIen { get; set; }
 
-        public DateTime EDD {get; set; }
+        public DateTime EDD { get; set; }
 
         // *** EDD Basis for above EDD ***
         public string EddBasis { get; set; }
@@ -63,7 +59,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
                 if (this.EDD == DateTime.MinValue)
                     returnVal = "Unknown";
                 else
-                    returnVal = this.EDD.ToString(VistaDates.UserDateFormat); 
+                    returnVal = this.EDD.ToString(VistaDates.UserDateFormat);
 
                 return returnVal;
             }
@@ -128,12 +124,12 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
                         returnVal = "N/A";
                 }
                 else
-                    returnVal = "Unknown"; 
+                    returnVal = "Unknown";
 
                 return returnVal;
             }
         }
-        
+
         public string Trimester
         {
             get
@@ -157,7 +153,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
                     }
                 }
                 else
-                    returnVal = "Unknown"; 
+                    returnVal = "Unknown";
 
                 return returnVal;
             }
@@ -167,7 +163,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
         {
             get
             {
-                return this.GetGestationAgeInDays(DateTime.Now); 
+                return this.GetGestationAgeInDays(DateTime.Now);
             }
         }
 
@@ -276,7 +272,7 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
                     returnVal = string.Format("Current Pregnancy (Due {0})", this.DisplayEdd);
                 else
                 {
-                    string endDate = (string.IsNullOrWhiteSpace(this.DisplayEndDate)) ? "Unknown" : this.DisplayEndDate; 
+                    string endDate = (string.IsNullOrWhiteSpace(this.DisplayEndDate)) ? "Unknown" : this.DisplayEndDate;
                     returnVal = string.Format("Past Pregnancy ({0} - {1})", this.DisplayStartDate, endDate);
                 }
                 return returnVal;
@@ -300,15 +296,15 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
 
                     returnVal = string.Format("{0} weeks {1} days", wholeWeeks, remainderDays);
                 }
-            }            
+            }
 
-            return returnVal; 
+            return returnVal;
         }
 
         private int GetGestationAgeInDays(DateTime on)
         {
             int returnVal = -1;
-            
+
             // *** Count number of days until EDD ***
             TimeSpan difference = this.EDD.Subtract(on);
             int daysUntilEdd = (int)difference.TotalDays + 1;
@@ -331,5 +327,9 @@ namespace VA.Gov.Artemis.UI.Data.Models.Pregnancy
         public string PretermDelivery { get; set; }
         public string Outcome { get; set; }
         public string Comment { get; set; }
+
+        //Data related to CPRS
+        public string PregnantCPRS { get; set; }
+        public string LactatingCPRS { get; set; }
     }
 }

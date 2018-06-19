@@ -22,7 +22,7 @@ namespace VA.Gov.Artemis.Commands.Dsio.Checklist
 
         public override string RpcName
         {
-            get { return "DSIO GET MCC PATIENT CHECKLIST"; }
+            get { return "WEBM GET MCC PATIENT CHECKLIST"; }
         }
 
         public void AddCommandArguments(string patientDfn, string ien, string pregIen, DsioChecklistCompletionStatus complete)
